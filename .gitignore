@@ -13,3 +13,10 @@
 .externalNativeBuild
 .cxx
 local.properties
+# Ignore IDE and local configuration files
+.idea/
+*.iml
+.gradle/
+/build
+local.properties
+.kotlin
