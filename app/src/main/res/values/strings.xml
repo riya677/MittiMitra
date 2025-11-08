@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MittiMitra</string>
+    <string name="title_activity_help">HelpActivity</string>
 </resources>

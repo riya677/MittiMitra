@@ -1,71 +1,43 @@
-// 1. The plugins block MUST be first.
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android' // This is fine to keep
-}
-
-// 2. The properties logic comes AFTER plugins.
-java.util.Properties properties = new java.util.Properties()
-try {
-    properties.load(new java.io.FileInputStream(rootProject.file("local.properties")))
-} catch (java.io.IOException e) { // Correct Groovy catch syntax
-    throw new GradleException("Could not read local.properties file. Please create one with your GROQ_API_KEY.")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
-    namespace = "com.mittimitra"
-    compileSdk = 36
+    namespace 'com.mittimitra'
+    compileSdk 36
 
     defaultConfig {
-        applicationId = "com.mittimitra"
-        minSdk = 26
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        applicationId "com.mittimitra"
+        minSdk 26
+        targetSdk 36
+        versionCode 1
+        versionName "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        // This line now works
-        buildConfigField "String", "GROQ_API_KEY", "\"${properties.getProperty('GROQ_API_KEY')}\""
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled = false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
         jvmTarget = '11'
     }
     buildFeatures {
-        // Removed 'compose = true' which conflicts with Java/XML
-        buildConfig = true // Required for buildConfigField
+        compose true
     }
 }
 
 dependencies {
-<<<<<<< Updated upstream
-    // Removed all conflicting Compose dependencies
 
-    // Standard Java/XML (View) dependencies
-    implementation libs.androidx.appcompat.v161
-    implementation libs.material.v1110
-    implementation libs.androidx.constraintlayout.v214
-
-    // Your custom dependencies
-    implementation(libs.okhttp.v4120)
-    implementation(libs.logging.interceptor.v4120)
-    implementation(libs.play.services.location)
-
-    // Test dependencies
-=======
-    implementation "androidx.compose.material:material-icons-extended"
-    implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation libs.androidx.core.ktx
     implementation libs.androidx.lifecycle.runtime.ktx
     implementation libs.androidx.activity.compose
@@ -74,8 +46,14 @@ dependencies {
     implementation libs.androidx.compose.ui.graphics
     implementation libs.androidx.compose.ui.tooling.preview
     implementation libs.androidx.compose.material3
->>>>>>> Stashed changes
     testImplementation libs.junit
-    androidTestImplementation libs.androidx.junit.v115
-    androidTestImplementation libs.androidx.espresso.core.v351
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+    androidTestImplementation platform(libs.androidx.compose.bom)
+    androidTestImplementation libs.androidx.compose.ui.test.junit4
+    debugImplementation libs.androidx.compose.ui.tooling
+    debugImplementation libs.androidx.compose.ui.test.manifest
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.constraintlayout
 }
