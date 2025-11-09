@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- This item will be shown as the sandwich icon -->
+    <item
+        android:id="@+id/action_settings"
+        android:showAsAction="never"
+        android:title="Settings" />
+
+    <item
+        android:id="@+id/action_help"
+        android:showAsAction="never"
+        android:title="Help" />
+
+    <item
+        android:id="@+id/action_logout"
+        android:showAsAction="never"
+        android:title="Logout" />
+
+</menu>
