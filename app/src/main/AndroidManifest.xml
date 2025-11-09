@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Using your existing application tag -->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,18 +11,50 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MittiMitra">
+        android:theme="@style/Theme.MittiMitra"
+        tools:targetApi="31">
+
+        <!--
+        This is now the main entry point for your app.
+        The <intent-filter> tells Android this is the LAUNCHER activity.
+        -->
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.MittiMitra">
+            android:label="Home Dashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Other activities -->
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:label="Profile"
+            android:parentActivityName=".HomeActivity"/> <!-- Adds back button -->
+        <activity
+            android:name=".ScanActivity"
+            android:exported="false"
+            android:label="Scan Soil"
+            android:parentActivityName=".HomeActivity"/> <!-- Adds back button -->
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="false"
+            android:label="Scan History"
+            android:parentActivityName=".HomeActivity"/> <!-- Adds back button -->
+        <activity
+            android:name=".RecommendationActivity"
+            android:exported="false"
+            android:label="Recommendations"
+            android:parentActivityName=".HomeActivity"/> <!-- Adds back button -->
+        <activity
+            android:name=".TipActivity"
+            android:exported="false"
+            android:label="Farming Tips"
+            android:parentActivityName=".HomeActivity"/> <!-- Adds back button -->
+
     </application>
 
 </manifest>
