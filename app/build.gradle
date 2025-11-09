@@ -1,38 +1,49 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android' // You can keep this, it's fine
+}
+
+// 2. The properties logic comes AFTER plugins.
+java.util.Properties properties = new java.util.Properties()
+try {
+    properties.load(new java.io.FileInputStream(rootProject.file("local.properties")))
+} catch (java.io.IOException e) { // Correct Groovy catch syntax
+    throw new GradleException("Could not read local.properties file. Please create one with your GROQ_API_KEY.")
 }
 
 android {
-    namespace 'com.mittimitra'
-    compileSdk 36
+    namespace = "com.mittimitra"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId "com.mittimitra"
-        minSdk 26
-        targetSdk 36
-        versionCode 1
-        versionName "1.0"
+        applicationId = "com.mittimitra"
+        minSdk = 26
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // This line now works
+        buildConfigField "String", "GROQ_API_KEY", "\"${properties.getProperty('GROQ_API_KEY')}\""
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
         jvmTarget = '11'
     }
     buildFeatures {
-        compose true
+        // 3. Removed 'compose = true'
+        buildConfig = true // Required for buildConfigField
     }
 }
 
@@ -56,4 +67,7 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.material
     implementation libs.androidx.constraintlayout
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0") // Optional, for debugging
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
 }
