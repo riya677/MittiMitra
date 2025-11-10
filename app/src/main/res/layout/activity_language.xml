@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LanguageActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/language_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="@string/language_title" />
+
+    <RadioGroup
+        android:id="@+id/rg_languages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rb_system_default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_system_default"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rb_english"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_english"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rb_hindi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_hindi"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rb_tamil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_tamil"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rb_malayalam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_malayalam"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+    </RadioGroup>
+
+</LinearLayout>

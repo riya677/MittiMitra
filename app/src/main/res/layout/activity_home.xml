@@ -33,11 +33,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
+
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mitti Mitra"
+                android:text="@string/app_name"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -48,7 +49,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </com.google.android.material.appbar.MaterialToolbar>
 
     <TextView
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="Hi, User"
+        tools:text="Hi, User"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:text="Last Scan"
+        android:text="@string/last_scan"
         android:textColor="?attr/colorPrimary"
         app:layout_constraintBaseline_toBaselineOf="@id/tv_greeting"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -93,6 +93,7 @@
             android:contentDescription="Main Info"
             android:scaleType="centerCrop"
             android:src="@android:color/darker_gray" />
+
     </com.google.android.material.card.MaterialCardView>
 
     <GridLayout
@@ -101,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:columnCount="2"
-        android:rowCount="2"
+        android:rowCount="3"
         android:useDefaultMargins="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +122,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tip"
+                android:text="@string/button_tip"
                 android:layout_gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -140,7 +141,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recommendation"
+                android:text="@string/button_recommendation"
                 android:layout_gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -159,7 +160,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="History"
+                android:text="@string/button_history"
                 android:layout_gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -178,7 +179,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scan"
+                android:text="@string/button_scan"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_documents"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_documents"
                 android:layout_gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />

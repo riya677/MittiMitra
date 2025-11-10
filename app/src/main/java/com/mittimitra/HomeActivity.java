@@ -4,119 +4,90 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.card.MaterialCardView;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
+
+    private TextView tvGreeting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Initialize Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Remove default title to use our custom one
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
 
-        // Initialize Views
+        // --- Find Views ---
+        tvGreeting = findViewById(R.id.tv_greeting);
         ImageView profileIcon = findViewById(R.id.profile_icon);
         MaterialCardView btnTip = findViewById(R.id.btn_tip);
         MaterialCardView btnRecommendation = findViewById(R.id.btn_recommendation);
         MaterialCardView btnHistory = findViewById(R.id.btn_history);
         MaterialCardView btnScan = findViewById(R.id.btn_scan);
+        MaterialCardView btnDocuments = findViewById(R.id.btn_documents);
 
-        // --- Setup Click Listeners (Routing) ---
+        tvGreeting.setText(getString(R.string.greeting_default));
 
-        // Profile Icon Navigation
-        profileIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to ProfileActivity
-                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
+        // --- Set Listeners ---
+        profileIcon.setOnClickListener(v -> {
+            Toast.makeText(this, "Profile feature is in development.", Toast.LENGTH_SHORT).show();
         });
 
-        // Tip Button Navigation
-        btnTip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to TipActivity
-                Intent intent = new Intent(HomeActivity.this, TipActivity.class);
-                startActivity(intent);
-            }
+        btnTip.setOnClickListener(v -> {
+            startActivity(new Intent(HomeActivity.this, TipActivity.class));
         });
 
-        // Recommendation Button Navigation
-        btnRecommendation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to RecommendationActivity
-                Intent intent = new Intent(HomeActivity.this, RecommendationActivity.class);
-                startActivity(intent);
-            }
+        btnRecommendation.setOnClickListener(v -> {
+            startActivity(new Intent(HomeActivity.this, RecommendationActivity.class));
         });
 
-        // History Button Navigation
-        btnHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to HistoryActivity
-                Intent intent = new Intent(HomeActivity.this, HistoryActivity.class);
-                startActivity(intent);
-            }
+        btnHistory.setOnClickListener(v -> {
+            startActivity(new Intent(HomeActivity.this, HistoryActivity.class));
         });
 
-        // Scan Button Navigation
-        btnScan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to ScanActivity
-                Intent intent = new Intent(HomeActivity.this, ScanActivity.class);
-                startActivity(intent);
-            }
+        btnScan.setOnClickListener(v -> {
+            startActivity(new Intent(HomeActivity.this, ScanActivity.class));
+        });
+
+        btnDocuments.setOnClickListener(v -> {
+            startActivity(new Intent(HomeActivity.this, DocumentsActivity.class));
         });
     }
 
-    // --- Toolbar Menu (Sandwich Icon) ---
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // Handle action bar item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            // Handle Settings click
-            Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show();
-            // Example: startActivity(new Intent(this, SettingsActivity.class));
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         } else if (id == R.id.action_help) {
-            // Handle Help click
-            Toast.makeText(this, "Help clicked", Toast.LENGTH_SHORT).show();
-            // Example: startActivity(new Intent(this, HelpActivity.class));
+            // UPDATED: Go to the new HelpActivity
+            startActivity(new Intent(this, HelpActivity.class));
+            return true;
+        } else if (id == R.id.action_contact) {
+            // UPDATED: Also go to the new HelpActivity
+            startActivity(new Intent(this, HelpActivity.class));
             return true;
         } else if (id == R.id.action_logout) {
-            // Handle Logout click
-            Toast.makeText(this, "Logout clicked", Toast.LENGTH_SHORT).show();
-            // Add your logout logic here
+            Toast.makeText(this, "Logout feature is in development.", Toast.LENGTH_SHORT).show();
             return true;
         }
 
