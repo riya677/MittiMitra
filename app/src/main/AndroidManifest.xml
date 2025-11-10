@@ -68,6 +68,8 @@
             android:exported="false"
             android:label="Farming Tips"
             android:parentActivityName=".HomeActivity"/>
+
+
     </application>
 
 </manifest>
