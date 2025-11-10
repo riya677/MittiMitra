@@ -110,8 +110,8 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.action_help) {
             // Handle Help click
-            Toast.makeText(this, "Help clicked", Toast.LENGTH_SHORT).show();
-            // Example: startActivity(new Intent(this, HelpActivity.class));
+            Intent intent = new Intent(HomeActivity.this, HelpActivity.class);
+            startActivity(intent);
             return true;
         } else if (id == R.id.action_logout) {
             // Handle Logout click
