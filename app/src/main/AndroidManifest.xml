@@ -10,18 +10,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MittiMitra">
+        android:theme="@style/Theme.MittiMitra"
+        tools:targetApi="31">
+
+        <!-- Login and Signup Screen -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.MittiMitra">
+            android:name=".ui.LoginSignupActivity"
+            android:exported="false" />
+
+        <!-- Launcher / Welcome Screen -->
+        <activity
+            android:name=".ui.WelcomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

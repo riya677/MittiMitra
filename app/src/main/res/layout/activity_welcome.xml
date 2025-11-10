@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <!-- App Logo -->
+    <ImageView
+        android:id="@+id/appLogo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/mitti_logo"></ImageView>
+
+    <!-- App Name -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mitti Mitra"
+        android:textSize="24sp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"/>
+
+    <!-- Optional: Caption or Welcome Message -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Mitti Mitra"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Add other UI elements as needed -->
+
+</LinearLayout>
