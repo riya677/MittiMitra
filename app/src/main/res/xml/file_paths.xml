@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- This defines a path in our app's private storage in a "documents" folder -->
+    <files-path name="my_documents" path="documents/"/>
+</paths>

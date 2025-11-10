@@ -1,14 +1,14 @@
 // 1. The plugins block MUST be first.
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android' // This is fine to keep
+    id 'org.jetbrains.kotlin.android'
 }
 
 // 2. The properties logic comes AFTER plugins.
 java.util.Properties properties = new java.util.Properties()
 try {
     properties.load(new java.io.FileInputStream(rootProject.file("local.properties")))
-} catch (java.io.IOException e) { // Correct Groovy catch syntax
+} catch (java.io.IOException e) {
     throw new GradleException("Could not read local.properties file. Please create one with your GROQ_API_KEY.")
 }
 
@@ -25,7 +25,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        // This line now works
         buildConfigField "String", "GROQ_API_KEY", "\"${properties.getProperty('GROQ_API_KEY')}\""
     }
 
@@ -43,26 +42,28 @@ android {
         jvmTarget = '11'
     }
     buildFeatures {
-        // Removed 'compose = true' which conflicts with Java/XML
-        buildConfig = true // Required for buildConfigField
+        buildConfig = true
     }
 }
 
 dependencies {
-    // Removed all conflicting Compose dependencies
-
     // Standard Java/XML (View) dependencies
-    implementation libs.androidx.appcompat.v161
-    implementation libs.material.v1110
-    implementation libs.androidx.constraintlayout.v214
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.constraintlayout
 
-    // Your custom dependencies
-    implementation(libs.okhttp.v4120)
-    implementation(libs.logging.interceptor.v4120)
+    // AI Chat & API dependencies
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
     implementation(libs.play.services.location)
+
+    // Room Database dependencies
+    def room_version = "2.6.1"
+    implementation libs.androidx.room.runtime
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 
     // Test dependencies
     testImplementation libs.junit
-    androidTestImplementation libs.androidx.junit.v115
-    androidTestImplementation libs.androidx.espresso.core.v351
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }

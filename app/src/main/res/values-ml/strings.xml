@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">മിട്ടി മിത്ര</string>
+
+    <string name="greeting_format">നമസ്കാരം, %s</string>
+    <string name="greeting_default">നമസ്കാരം, ഉപയോക്താവേ</string>
+    <string name="last_scan">അവസാന സ്കാൻ</string>
+    <string name="button_tip">നുറുങ്ങ്</string>
+    <string name="button_recommendation">ശുപാർശ</string>
+    <string name="button_history">ചരിത്രം</string>
+    <string name="button_scan">സ്കാൻ</string>
+    <string name="button_documents">രേഖകൾ</string>
+
+    <string name="menu_settings">ക്രമീകരണങ്ങൾ</string>
+    <string name="menu_help">സഹായം</string>
+    <string name="menu_contact">ബന്ധപ്പെടുക</string>
+    <string name="menu_logout">ലോഗ് ഔട്ട്</string>
+
+    <string name="setting_language">ഭാഷ</string>
+    <string name="setting_font_size">അക്ഷര വലിപ്പം</string>
+    <string name="setting_theme">ആപ്പ് തീം</string>
+    <string name="setting_manage_data">ഡാറ്റ മാനേജ് ചെയ്യുക</string>
+
+    <string name="language_title">ഭാഷ തിരഞ്ഞെടുക്കുക</string>
+    <string name="language_system_default">സിസ്റ്റം ഡിഫോൾട്ട്</string>
+    <string name="language_english">English (ഇംഗ്ലീഷ്)</string>
+    <string name="language_hindi">हिन्दी (ഹിന്ദി)</string>
+    <string name="language_tamil">தமிழ் (തമിഴ്)</string>
+    <string name="language_malayalam">മലയാളം</string>
+
+    <string name="font_size_title">അക്ഷര വലിപ്പം ക്രമീകരിക്കുക</string>
+    <string name="font_size_small">ചെറുത്</string>
+    <string name="font_size_default">സാധാരണം</string>
+    <string name="font_size_large">വലുത്</string>
+    <string name="font_size_sample">നിങ്ങളുടെ ടെക്സ്റ്റ് ഇങ്ങനെ ആയിരിക്കും.</string>
+
+    <string name="theme_title">തീം തിരഞ്ഞെടുക്കുക</string>
+    <string name="theme_light">ലൈറ്റ്</string>
+    <string name="theme_dark">ഡാർക്ക്</string>
+    <string name="theme_system">സിസ്റ്റം ഡിഫോൾട്ട്</string>
+
+    <string name="manage_data_title">ഡാറ്റ മാനേജ് ചെയ്യുക</string>
+    <string name="manage_data_soil_title">മണ്ണിന്റെ ചരിത്രം മായ്ക്കുക</string>
+    <string name="manage_data_soil_desc">സംഭരിച്ച എല്ലാ മണ്ണ് വിശകലന റിപ്പോർട്ടുകളും ഇല്ലാതാക്കുന്നു.</string>
+    <string name="manage_data_docs_title">എല്ലാ രേഖകളും മായ്ക്കുക</string>
+    <string name="manage_data_docs_desc">ഈ ഉപകരണത്തിൽ നിന്ന് അപ്‌ലോഡ് ചെയ്‌ത എല്ലാ രേഖകളും ഇല്ലാതാക്കുന്നു.</string>
+    <string name="dialog_are_you_sure">നിങ്ങൾക്ക് ഉറപ്പാണോ?</string>
+    <string name="dialog_delete">മായ്ക്കുക</string>
+    <string name="dialog_cancel">റദ്ദാക്കുക</string>
+    <string name="toast_history_cleared">മണ്ണിന്റെ ചരിത്രം മായ്ച്ചു.</string>
+    <string name="toast_documents_cleared">എല്ലാ രേഖകളും മായ്ച്ചു.</string>
+
+    <string name="help_title">സഹായവും പിന്തുണയും</string>
+    <string name="help_faq_title">പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ (FAQ)</string>
+    <string name="help_q1">ഒരു നല്ല സോയിൽ സ്കാൻ എങ്ങനെ എടുക്കാം?</string>
+    <string name="help_a1">നല്ല വെളിച്ചം ഉറപ്പാക്കുക, സാമ്പിൾ ഒരു പ്ലെയിൻ പശ്ചാത്തലത്തിൽ വെക്കുക, ഫോക്കസ് ചെയ്യാൻ ടാപ്പുചെയ്യുക.</string>
+    <string name="help_q2">AI എത്രത്തോളം കൃത്യമാണ്?</string>
+    <string name="help_a2">AI ദൃശ്യ ഡാറ്റയെ അടിസ്ഥാനമാക്കി നിർദ്ദേശങ്ങൾ നൽകുന്നു. പ്രധാനപ്പെട്ട തീരുമാനങ്ങൾക്ക്, ദയവായി ഒരു പ്രാദേശിക കാർഷിക വിദഗ്ദ്ധനെ സമീപിക്കുക.</string>
+    <string name="help_contact_title">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
+    <string name="help_contact_phone">+91 12345 67890</string>
+    <string name="help_contact_email">support@mittimitra.com</string>
+</resources>
