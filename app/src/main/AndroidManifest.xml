@@ -57,9 +57,9 @@
             android:parentActivityName=".SettingsActivity"/>
 
         <activity
-            android:name=".FontSizeActivity"
-            android:exported="false"
-            android:label="@string/font_size_title"
+            android:name=".AccessibilityActivity"
+            androidCodeAccessible="true"
+            android:label="@string/setting_accessibility"
             android:parentActivityName=".SettingsActivity"/>
 
         <activity
@@ -77,7 +77,7 @@
         <activity
             android:name=".HelpActivity"
             android:exported="false"
-            android:label="@string/help_title"
+            androidSetting="help_title"
             android:parentActivityName=".HomeActivity"/>
 
         <activity
@@ -110,7 +110,7 @@
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
-            android:exported="false"
+            androidCodeAccessible="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"

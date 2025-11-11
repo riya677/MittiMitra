@@ -24,19 +24,18 @@ public class SettingsActivity extends BaseActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view_settings);
 
-        // --- UPDATED: Add new setting items ---
         List<SettingItem> items = new ArrayList<>();
         items.add(new SettingItem("language", getString(R.string.setting_language), android.R.drawable.ic_menu_mapmode));
-        items.add(new SettingItem("font_size", getString(R.string.setting_font_size), android.R.drawable.ic_menu_sort_alphabetically));
+        // UPDATED: Renamed "Font Size" to "Accessibility"
+        items.add(new SettingItem("accessibility", getString(R.string.setting_accessibility), android.R.drawable.ic_menu_sort_alphabetically));
         items.add(new SettingItem("theme", getString(R.string.setting_theme), android.R.drawable.ic_menu_view));
         items.add(new SettingItem("manage_data", getString(R.string.setting_manage_data), android.R.drawable.ic_menu_delete));
 
         SettingsAdapter adapter = new SettingsAdapter(items, item -> {
-            // --- UPDATED: Handle new clicks ---
             if (item.id.equals("language")) {
                 startActivity(new Intent(this, LanguageActivity.class));
-            } else if (item.id.equals("font_size")) {
-                startActivity(new Intent(this, FontSizeActivity.class));
+            } else if (item.id.equals("accessibility")) { // UPDATED
+                startActivity(new Intent(this, AccessibilityActivity.class));
             } else if (item.id.equals("theme")) {
                 startActivity(new Intent(this, ThemeSettingsActivity.class));
             } else if (item.id.equals("manage_data")) {

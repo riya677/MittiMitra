@@ -20,7 +20,7 @@
     <string name="menu_logout">Logout</string>
 
     <string name="setting_language">Language</string>
-    <string name="setting_font_size">Font Size</string>
+    <string name="setting_accessibility">Accessibility</string>
     <string name="setting_theme">App Theme</string>
     <string name="setting_manage_data">Manage Data</string>
 
@@ -32,11 +32,13 @@
     <string name="language_malayalam">മലയാളം (Malayalam)</string>
     <string name="language_telugu">తెలుగు (Telugu)</string>
 
-    <string name="font_size_title">Adjust Font Size</string>
+    <string name="font_size_title">Font Size</string>
     <string name="font_size_small">Small</string>
     <string name="font_size_default">Default</string>
     <string name="font_size_large">Large</string>
     <string name="font_size_sample">This is how your text will look.</string>
+    <string name="setting_font_dyslexic">Dyslexic-Friendly Font</string>
+    <string name="setting_font_dyslexic_desc">Uses the OpenDyslexic font for easier reading.</string>
 
     <string name="theme_title">Choose Theme</string>
     <string name="theme_light">Light</string>

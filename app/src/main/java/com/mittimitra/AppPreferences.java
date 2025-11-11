@@ -9,6 +9,7 @@ public class AppPreferences {
     private static final String KEY_FONT_SCALE = "font_scale";
     private static final String KEY_APP_LANGUAGE = "app_language";
     private static final String KEY_APP_THEME = "app_theme";
+    private static final String KEY_DYSLEXIC_FONT = "dyslexic_font"; // NEW
 
     private final SharedPreferences sharedPreferences;
 
@@ -20,26 +21,31 @@ public class AppPreferences {
     public void setFontScale(float scale) {
         sharedPreferences.edit().putFloat(KEY_FONT_SCALE, scale).apply();
     }
-
     public float getFontScale() {
-        return sharedPreferences.getFloat(KEY_FONT_SCALE, 1.0f); // 1.0f is default
+        return sharedPreferences.getFloat(KEY_FONT_SCALE, 1.0f);
     }
 
     // --- Language ---
     public void setLanguage(String languageCode) {
         sharedPreferences.edit().putString(KEY_APP_LANGUAGE, languageCode).apply();
     }
-
     public String getLanguage() {
-        return sharedPreferences.getString(KEY_APP_LANGUAGE, null); // null = system default
+        return sharedPreferences.getString(KEY_APP_LANGUAGE, null);
     }
 
-    // --- NEW: App Theme ---
+    // --- App Theme ---
     public void setTheme(String theme) {
         sharedPreferences.edit().putString(KEY_APP_THEME, theme).apply();
     }
-
     public String getTheme() {
-        return sharedPreferences.getString(KEY_APP_THEME, "system"); // "system" is default
+        return sharedPreferences.getString(KEY_APP_THEME, "system");
+    }
+
+    // --- NEW: Dyslexic Font ---
+    public void setDyslexicFontEnabled(boolean enabled) {
+        sharedPreferences.edit().putBoolean(KEY_DYSLEXIC_FONT, enabled).apply();
+    }
+    public boolean isDyslexicFontEnabled() {
+        return sharedPreferences.getBoolean(KEY_DYSLEXIC_FONT, false); // Default is false
     }
 }
