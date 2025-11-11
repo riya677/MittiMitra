@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">मिट्टी मित्र</string>
 
+    <string name="welcome_subtitle">आपका व्यक्तिगत कृषि सहायक</string>
+    <string name="login">लॉग इन करें</string>
+    <string name="signup">साइन अप करें</string>
+
     <string name="greeting_format">नमस्ते, %s</string>
     <string name="greeting_default">नमस्ते, उपयोगकर्ता</string>
     <string name="last_scan">पिछला स्कैन</string>
@@ -26,6 +30,7 @@
     <string name="language_hindi">हिन्दी</string>
     <string name="language_tamil">தமிழ் (तमिल)</string>
     <string name="language_malayalam">മലയാളം (मलयालम)</string>
+    <string name="language_telugu">తెలుగు (Telugu)</string>
 
     <string name="font_size_title">अक्षर का आकार बदलें</string>
     <string name="font_size_small">छोटा</string>

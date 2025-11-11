@@ -63,6 +63,14 @@
             android:padding="12dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rb_telugu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_telugu"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
     </RadioGroup>
 
 </LinearLayout>

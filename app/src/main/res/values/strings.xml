@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Mitti Mitra</string>
 
+    <string name="welcome_subtitle">Your Personal Farming Assistant</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+
     <string name="greeting_format">Hi, %s</string>
     <string name="greeting_default">Hi, User</string>
     <string name="last_scan">Last Scan</string>
@@ -26,6 +30,7 @@
     <string name="language_hindi">हिन्दी (Hindi)</string>
     <string name="language_tamil">தமிழ் (Tamil)</string>
     <string name="language_malayalam">മലയാളം (Malayalam)</string>
+    <string name="language_telugu">తెలుగు (Telugu)</string>
 
     <string name="font_size_title">Adjust Font Size</string>
     <string name="font_size_small">Small</string>
@@ -58,5 +63,4 @@
     <string name="help_contact_title">Contact Support</string>
     <string name="help_contact_phone">+91 12345 67890</string>
     <string name="help_contact_email">support@mittimitra.com</string>
-
 </resources>
