@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">మిట్టి మిత్ర</string>
+
+    <string name="welcome_subtitle">మీ వ్యక్తిగత వ్యవసాయ సహాయకుడు</string>
+    <string name="login">లాగిన్</string>
+    <string name="signup">సైన్ అప్</string>
+
+    <string name="greeting_format">హాయ్, %s</string>
+    <string name="greeting_default">హాయ్, యూజర్</string>
+    <string name="last_scan">చివరి స్కాన్</string>
+    <string name="button_tip">చిట్కా</string>
+    <string name="button_recommendation">సిఫార్సు</string>
+    <string name="button_history">చరిత్ర</string>
+    <string name="button_scan">స్కాన్</string>
+    <string name="button_documents">పత్రాలు</string>
+
+    <string name="menu_settings">సెట్టింగ్‌లు</string>
+    <string name="menu_help">సహాయం</string>
+    <string name="menu_contact">సంప్రదించండి</string>
+    <string name="menu_logout">లాగ్అవుట్</string>
+
+    <string name="setting_language">భాష</string>
+    <string name="setting_font_size">ఫాంట్ పరిమాణం</string>
+    <string name="setting_theme">యాప్ థీమ్</string>
+    <string name="setting_manage_data">డేటాను నిర్వహించండి</string>
+
+    <string name="language_title">భాషను ఎంచుకోండి</string>
+    <string name="language_system_default">సిస్టమ్ డిఫాల్ట్</string>
+    <string name="language_english">English (ఇంగ్లీష్)</string>
+    <string name="language_hindi">हिन्दी (హిందీ)</string>
+    <string name="language_tamil">தமிழ் (తమిళం)</string>
+    <string name="language_malayalam">മലയാളം (మలయాళం)</string>
+    <string name="language_telugu">తెలుగు (Telugu)</string>
+
+    <string name="font_size_title">ఫాంట్ పరిమాణాన్ని సర్దుబాటు చేయండి</string>
+    <string name="font_size_small">చిన్నది</string>
+    <string name="font_size_default">డిఫాల్ట్</string>
+    <string name="font_size_large">పెద్దది</string>
+    <string name="font_size_sample">మీ వచనం ఇలా కనిపిస్తుంది.</string>
+
+    <string name="theme_title">థీమ్‌ను ఎంచుకోండి</string>
+    <string name="theme_light">లైట్</string>
+    <string name="theme_dark">డార్క్</string>
+    <string name="theme_system">సిస్టమ్ డిఫాల్ట్</string>
+
+    <string name="manage_data_title">డేటాను నిర్వహించండి</string>
+    <string name="manage_data_soil_title">మట్టి చరిత్రను క్లియర్ చేయండి</string>
+    <string name="manage_data_soil_desc">సేవ్ చేసిన అన్ని మట్టి విశ్లేషణ నివేదికలను తొలగిస్తుంది.</string>
+    <string name="manage_data_docs_title">అన్ని పత్రాలను క్లియర్ చేయండి</string>
+    <string name="manage_data_docs_desc">ఈ పరికరం నుండి అప్‌లోడ్ చేసిన అన్ని పత్రాలను తొలగిస్తుంది.</string>
+    <string name="dialog_are_you_sure">మీకు ఖచ్చితంగా తెలియనా?</string>
+    <string name="dialog_delete">తొలగించు</string>
+    <string name="dialog_cancel">రద్దు చేయండి</string>
+    <string name="toast_history_cleared">మట్టి చరిత్ర క్లియర్ చేయబడింది.</string>
+    <string name="toast_documents_cleared">అన్ని పత్రాలు క్లియర్ చేయబడ్డాయి.</string>
+
+    <string name="help_title">సహాయం మరియు మద్దతు</string>
+    <string name="help_faq_title">తరచుగా అడిగే ప్రశ్నలు (FAQ)</string>
+    <string name="help_q1">మంచి మట్టి స్కాన్‌ను ఎలా తీయాలి?</string>
+    <string name="help_a1">మంచి లైటింగ్ ఉండేలా చూసుకోండి, నమూనాను సాదా నేపథ్యంపై ఉంచండి మరియు ఫోకస్ చేయడానికి నొక్కండి.</string>
+    <string name="help_q2">AI ఎంత ఖచ్చితమైనది?</string>
+    <string name="help_a2">AI దృశ్యమాన డేటా ఆధారంగా సూచనలను అందిస్తుంది. క్లిష్టమైన నిర్ణయాల కోసం, దయచేసి స్థానిక వ్యవసాయ నిపుణుడిని సంప్రదించండి.</string>
+    <string name="help_contact_title">మద్దతును సంప్రదించండి</string>
+    <string name="help_contact_phone">+91 12345 67890</string>
+    <string name="help_contact_email">support@mittimitra.com</string>
+</resources>

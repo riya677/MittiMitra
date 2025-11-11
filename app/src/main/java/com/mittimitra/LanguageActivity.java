@@ -35,6 +35,7 @@ public class LanguageActivity extends BaseActivity {
         MaterialRadioButton rbHindi = findViewById(R.id.rb_hindi);
         MaterialRadioButton rbTamil = findViewById(R.id.rb_tamil);
         MaterialRadioButton rbMalayalam = findViewById(R.id.rb_malayalam);
+        MaterialRadioButton rbTelugu = findViewById(R.id.rb_telugu); // NEW
 
         // Set the currently selected language
         String currentLang = appPreferences.getLanguage();
@@ -48,6 +49,8 @@ public class LanguageActivity extends BaseActivity {
             rbTamil.setChecked(true);
         } else if (currentLang.equals("ml")) {
             rbMalayalam.setChecked(true);
+        } else if (currentLang.equals("te")) { // NEW
+            rbTelugu.setChecked(true);
         }
 
         rgLanguages.setOnCheckedChangeListener((group, checkedId) -> {
@@ -66,6 +69,9 @@ public class LanguageActivity extends BaseActivity {
             } else if (checkedId == R.id.rb_malayalam) {
                 appPreferences.setLanguage("ml");
                 AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("ml"));
+            } else if (checkedId == R.id.rb_telugu) { // NEW
+                appPreferences.setLanguage("te");
+                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("te"));
             }
 
             // Relaunch the app to apply changes
@@ -74,8 +80,8 @@ public class LanguageActivity extends BaseActivity {
     }
 
     private void restartApp() {
-        // --- UPDATED: Restart the app by launching HomeActivity ---
-        Intent i = new Intent(this, HomeActivity.class);
+        // --- UPDATED: Restart the app by launching SplashActivity ---
+        Intent i = new Intent(this, SplashActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
         finish();
