@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - MittiMitra Auth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h2 {
+            font-size: 24px;
+        }
+
+        .navbar-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .user-info {
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            background: #ff6b6b;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #ff5252;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .welcome-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .welcome-box h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .welcome-box p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #5568d3;
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .info-display {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .info-value {
+            color: #666;
+        }
+
+        .btn-danger {
+            background: #ff6b6b;
+        }
+
+        .btn-danger:hover {
+            background: #ff5252;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2>MittiMitra</h2>
+        <div class="navbar-right">
+            <div class="user-info">
+                Welcome, <span id="usernameDisplay">User</span>
+            </div>
+            <button class="logout-btn" id="logoutBtn">Logout</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="welcome-box">
+            <h1>Welcome to your Dashboard</h1>
+            <p>Manage your profile, change password, and more.</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('profile')">Profile</button>
+            <button class="tab-btn" onclick="switchTab('edit')">Edit Profile</button>
+            <button class="tab-btn" onclick="switchTab('password')">Change Password</button>
+            <button class="tab-btn" onclick="switchTab('settings')">Settings</button>
+        </div>
+
+        <div id="profile" class="tab-content active">
+            <h2>Your Profile</h2>
+            <div id="profileInfo" class="info-display">
+                <div class="info-row">
+                    <span class="info-label">User ID:</span>
+                    <span class="info-value" id="userId">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Username:</span>
+                    <span class="info-value" id="username">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value" id="email">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Full Name:</span>
+                    <span class="info-value" id="fullName">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Phone Number:</span>
+                    <span class="info-value" id="phoneNumber">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Account Status:</span>
+                    <span class="info-value" id="accountStatus">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Joined:</span>
+                    <span class="info-value" id="createdAt">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Last Login:</span>
+                    <span class="info-value" id="lastLogin">-</span>
+                </div>
+            </div>
+            <button class="btn" onclick="loadProfile()">Refresh Profile</button>
+        </div>
+
+        <div id="edit" class="tab-content">
+            <h2>Edit Profile</h2>
+            <div id="editMessage" class="message"></div>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editFullName">Full Name</label>
+                    <input type="text" id="editFullName" name="fullName">
+                </div>
+                <div class="form-group">
+                    <label for="editEmail">Email</label>
+                    <input type="email" id="editEmail" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="editPhoneNumber">Phone Number</label>
+                    <input type="tel" id="editPhoneNumber" name="phoneNumber">
+                </div>
+                <button type="submit" class="btn">Save Changes</button>
+            </form>
+        </div>
+
+        <div id="password" class="tab-content">
+            <h2>Change Password</h2>
+            <div id="passwordMessage" class="message"></div>
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label for="oldPassword">Current Password</label>
+                    <input type="password" id="oldPassword" name="oldPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" name="newPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmNewPassword">Confirm New Password</label>
+                    <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+                </div>
+                <button type="submit" class="btn">Change Password</button>
+            </form>
+        </div>
+
+        <div id="settings" class="tab-content">
+            <h2>Account Settings</h2>
+            <div id="settingsMessage" class="message"></div>
+            <div class="form-group">
+                <h3>Delete Account</h3>
+                <p style="color: #666; margin-bottom: 15px;">
+                    WARNING: This action is irreversible. All your data will be permanently deleted.
+                </p>
+                <button type="button" class="btn btn-danger" onclick="deleteAccountPrompt()">
+                    Delete My Account
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8080/api';
+        let token = localStorage.getItem('token');
+        let userId = localStorage.getItem('userId');
+        let username = localStorage.getItem('username');
+
+        // Check authentication
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+
+        // Display username
+        document.getElementById('usernameDisplay').textContent = username;
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('username');
+            window.location.href = 'login.html';
+        });
+
+        // Tab switching
+        function switchTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-btn');
+
+            contents.forEach(content => content.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+
+            if (tabName === 'edit') {
+                loadEditForm();
+            }
+        }
+
+        // Load profile
+        async function loadProfile() {
+            try {
+                const response = await fetch(`${API_URL}/users/profile/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    const user = result.data;
+                    document.getElementById('userId').textContent = user.id;
+                    document.getElementById('username').textContent = user.username;
+                    document.getElementById('email').textContent = user.email;
+                    document.getElementById('fullName').textContent = user.fullName || '-';
+                    document.getElementById('phoneNumber').textContent = user.phoneNumber || '-';
+                    document.getElementById('accountStatus').textContent = user.isActive ? 'Active' : 'Inactive';
+                    document.getElementById('createdAt').textContent = user.createdAt || '-';
+                    document.getElementById('lastLogin').textContent = user.lastLogin || 'Never';
+                }
+            } catch (error) {
+                console.error('Error loading profile:', error);
+            }
+        }
+
+        // Load edit form
+        async function loadEditForm() {
+            try {
+                const response = await fetch(`${API_URL}/users/profile/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    const user = result.data;
+                    document.getElementById('editFullName').value = user.fullName || '';
+                    document.getElementById('editEmail').value = user.email || '';
+                    document.getElementById('editPhoneNumber').value = user.phoneNumber || '';
+                }
+            } catch (error) {
+                console.error('Error loading edit form:', error);
+            }
+        }
+
+        // Edit profile form
+        document.getElementById('editForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const updates = {
+                fullName: document.getElementById('editFullName').value,
+                email: document.getElementById('editEmail').value,
+                phoneNumber: document.getElementById('editPhoneNumber').value
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/users/profile/${userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(updates)
+                });
+
+                const result = await response.json();
+                const messageDiv = document.getElementById('editMessage');
+
+                if (result.success) {
+                    messageDiv.className = 'message success';
+                    messageDiv.textContent = 'Profile updated successfully!';
+                    messageDiv.style.display = 'block';
+                    loadProfile();
+                } else {
+                    messageDiv.className = 'message error';
+                    messageDiv.textContent = result.message || 'Error updating profile';
+                    messageDiv.style.display = 'block';
+                }
+            } catch (error) {
+                const messageDiv = document.getElementById('editMessage');
+                messageDiv.className = 'message error';
+                messageDiv.textContent = 'Error: ' + error.message;
+                messageDiv.style.display = 'block';
+            }
+        });
+
+        // Change password form
+        document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const oldPassword = document.getElementById('oldPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+
+            if (newPassword !== confirmNewPassword) {
+                const messageDiv = document.getElementById('passwordMessage');
+                messageDiv.className = 'message error';
+                messageDiv.textContent = 'New passwords do not match!';
+                messageDiv.style.display = 'block';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/users/change-password/${userId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        oldPassword,
+                        newPassword
+                    })
+                });
+
+                const result = await response.json();
+                const messageDiv = document.getElementById('passwordMessage');
+
+                if (result.success) {
+                    messageDiv.className = 'message success';
+                    messageDiv.textContent = 'Password changed successfully!';
+                    messageDiv.style.display = 'block';
+                    document.getElementById('passwordForm').reset();
+                } else {
+                    messageDiv.className = 'message error';
+                    messageDiv.textContent = result.message || 'Error changing password';
+                    messageDiv.style.display = 'block';
+                }
+            } catch (error) {
+                const messageDiv = document.getElementById('passwordMessage');
+                messageDiv.className = 'message error';
+                messageDiv.textContent = 'Error: ' + error.message;
+                messageDiv.style.display = 'block';
+            }
+        });
+
+        // Delete account
+        function deleteAccountPrompt() {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                const password = prompt('Enter your password to confirm account deletion:');
+                if (password) {
+                    deleteAccount(password);
+                }
+            }
+        }
+
+        async function deleteAccount(password) {
+            try {
+                const response = await fetch(`${API_URL}/users/account/${userId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ password })
+                });
+
+                const result = await response.json();
+                const messageDiv = document.getElementById('settingsMessage');
+
+                if (result.success) {
+                    messageDiv.className = 'message success';
+                    messageDiv.textContent = 'Account deleted. Redirecting...';
+                    messageDiv.style.display = 'block';
+                    setTimeout(() => {
+                        localStorage.removeItem('token');
+                        localStorage.removeItem('userId');
+                        localStorage.removeItem('username');
+                        window.location.href = 'login.html';
+                    }, 2000);
+                } else {
+                    messageDiv.className = 'message error';
+                    messageDiv.textContent = result.message || 'Error deleting account';
+                    messageDiv.style.display = 'block';
+                }
+            } catch (error) {
+                const messageDiv = document.getElementById('settingsMessage');
+                messageDiv.className = 'message error';
+                messageDiv.textContent = 'Error: ' + error.message;
+                messageDiv.style.display = 'block';
+            }
+        }
+
+        // Load profile on page load
+        window.addEventListener('load', () => {
+            loadProfile();
+        });
+    </script>
+</body>
+</html>

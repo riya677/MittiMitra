@@ -58,7 +58,7 @@
 
         <activity
             android:name=".AccessibilityActivity"
-            androidCodeAccessible="true"
+            android:CodeAccessible="true"
             android:label="@string/setting_accessibility"
             android:parentActivityName=".SettingsActivity"/>
 
@@ -77,7 +77,7 @@
         <activity
             android:name=".HelpActivity"
             android:exported="false"
-            androidSetting="help_title"
+            android:Setting="help_title"
             android:parentActivityName=".HomeActivity"/>
 
         <activity
@@ -110,7 +110,7 @@
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
-            androidCodeAccessible="false"
+            android:CodeAccessible="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
