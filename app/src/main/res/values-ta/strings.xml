@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">மிட்டி மித்ரா</string>
 
+    <string name="welcome_subtitle">உங்கள் தனிப்பட்ட விவசாய உதவியாளர்</string>
+    <string name="login">உள்நுழை</string>
+    <string name="signup">பதிவு</string>
+
     <string name="greeting_format">வணக்கம், %s</string>
     <string name="greeting_default">வணக்கம், பயனரே</string>
     <string name="last_scan">கடைசி ஸ்கேன்</string>
@@ -26,6 +30,7 @@
     <string name="language_hindi">हिन्दी (இந்தி)</string>
     <string name="language_tamil">தமிழ்</string>
     <string name="language_malayalam">മലയാളം (மலையாளம்)</string>
+    <string name="language_telugu">తెలుగు (Telugu)</string>
 
     <string name="font_size_title">எழுத்துரு அளவை சரிசெய்யவும்</string>
     <string name="font_size_small">சிறியது</string>
@@ -54,7 +59,7 @@
     <string name="help_q1">ஒரு நல்ல மண் ஸ்கேன் எடுப்பது எப்படி?</string>
     <string name="help_a1">நல்ல வெளிச்சத்தை உறுதிசெய்து, மாதிரியை ஒரு வெற்று பின்னணியில் வைத்து, ஃபோகஸ் செய்ய தட்டவும்.</string>
     <string name="help_q2">AI எவ்வளவு துல்லியமானது?</string>
-    <string name="help_a2">AI ஆனது காட்சித் தரவின் அடிப்படையில் பரிந்துரைகளை வழங்குகிறது. முக்கியமான முடிவுகளுக்கு, உள்ளூர் விவசாய நிபுணரை அணுகவும்.</string>
+    <string name="help_a2">AI ஆனது காட்சித் தரவின் அடிப்படையில் பரிந்துరைகளை வழங்குகிறது. முக்கியமான முடிவுகளுக்கு, உள்ளூர் விவசாய நிபுணரை அணுகவும்.</string>
     <string name="help_contact_title">ஆதரவைத் தொடர்பு கொள்ளவும்</string>
     <string name="help_contact_phone">+91 12345 67890</string>
     <string name="help_contact_email">support@mittimitra.com</string>
