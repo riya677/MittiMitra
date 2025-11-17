@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Mitti Mitra</string>
 
+    <string name="welcome_subtitle">Your Personal Farming Assistant</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+
     <string name="greeting_format">Hi, %s</string>
     <string name="greeting_default">Hi, User</string>
     <string name="last_scan">Last Scan</string>
@@ -16,7 +20,7 @@
     <string name="menu_logout">Logout</string>
 
     <string name="setting_language">Language</string>
-    <string name="setting_font_size">Font Size</string>
+    <string name="setting_accessibility">Accessibility</string>
     <string name="setting_theme">App Theme</string>
     <string name="setting_manage_data">Manage Data</string>
 
@@ -26,12 +30,15 @@
     <string name="language_hindi">हिन्दी (Hindi)</string>
     <string name="language_tamil">தமிழ் (Tamil)</string>
     <string name="language_malayalam">മലയാളം (Malayalam)</string>
+    <string name="language_telugu">తెలుగు (Telugu)</string>
 
-    <string name="font_size_title">Adjust Font Size</string>
+    <string name="font_size_title">Font Size</string>
     <string name="font_size_small">Small</string>
     <string name="font_size_default">Default</string>
     <string name="font_size_large">Large</string>
     <string name="font_size_sample">This is how your text will look.</string>
+    <string name="setting_font_dyslexic">Dyslexic-Friendly Font</string>
+    <string name="setting_font_dyslexic_desc">Uses the OpenDyslexic font for easier reading.</string>
 
     <string name="theme_title">Choose Theme</string>
     <string name="theme_light">Light</string>
@@ -58,5 +65,4 @@
     <string name="help_contact_title">Contact Support</string>
     <string name="help_contact_phone">+91 12345 67890</string>
     <string name="help_contact_email">support@mittimitra.com</string>
-
 </resources>

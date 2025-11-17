@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">മിട്ടി മിത്ര</string>
 
+    <string name="welcome_subtitle">നിങ്ങളുടെ വ്യക്തിഗത കാർഷിക സഹായി</string>
+    <string name="login">ലോഗിൻ ചെയ്യുക</string>
+    <string name="signup">സൈൻ അപ്പ് ചെയ്യുക</string>
+
     <string name="greeting_format">നമസ്കാരം, %s</string>
     <string name="greeting_default">നമസ്കാരം, ഉപയോക്താവേ</string>
     <string name="last_scan">അവസാന സ്കാൻ</string>
@@ -26,6 +30,7 @@
     <string name="language_hindi">हिन्दी (ഹിന്ദി)</string>
     <string name="language_tamil">தமிழ் (തമിഴ്)</string>
     <string name="language_malayalam">മലയാളം</string>
+    <string name="language_telugu">తెలుగు (Telugu)</string>
 
     <string name="font_size_title">അക്ഷര വലിപ്പം ക്രമീകരിക്കുക</string>
     <string name="font_size_small">ചെറുത്</string>

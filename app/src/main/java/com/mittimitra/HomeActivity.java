@@ -2,6 +2,8 @@ package com.mittimitra;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -12,10 +14,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.card.MaterialCardView;
+import com.mittimitra.database.MittiMitraDatabase;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+// UPDATED: Must extend BaseActivity
 public class HomeActivity extends BaseActivity {
 
-    private TextView tvGreeting;
+    private MittiMitraDatabase db;
+    private SessionManager sessionManager;
+    private ExecutorService databaseExecutor;
+    private Handler mainThreadHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +38,14 @@ public class HomeActivity extends BaseActivity {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
 
+        // --- Initialize DB, Session, & Threading ---
+        db = MittiMitraDatabase.getDatabase(getApplicationContext());
+        sessionManager = new SessionManager(getApplicationContext());
+        databaseExecutor = Executors.newSingleThreadExecutor();
+        mainThreadHandler = new Handler(Looper.getMainLooper());
+
         // --- Find Views ---
-        tvGreeting = findViewById(R.id.tv_greeting);
+        TextView tvGreeting = findViewById(R.id.tv_greeting);
         ImageView profileIcon = findViewById(R.id.profile_icon);
         MaterialCardView btnTip = findViewById(R.id.btn_tip);
         MaterialCardView btnRecommendation = findViewById(R.id.btn_recommendation);
@@ -37,11 +53,13 @@ public class HomeActivity extends BaseActivity {
         MaterialCardView btnScan = findViewById(R.id.btn_scan);
         MaterialCardView btnDocuments = findViewById(R.id.btn_documents);
 
-        tvGreeting.setText(getString(R.string.greeting_default));
+        // --- Set Greeting ---
+        tvGreeting.setText(String.format(getString(R.string.greeting_format), sessionManager.getUserName()));
 
         // --- Set Listeners ---
         profileIcon.setOnClickListener(v -> {
-            Toast.makeText(this, "Profile feature is in development.", Toast.LENGTH_SHORT).show();
+            // TODO: This should open your teammate's Profile Activity
+            Toast.makeText(this, "Profile feature in development.", Toast.LENGTH_SHORT).show();
         });
 
         btnTip.setOnClickListener(v -> {
@@ -79,15 +97,30 @@ public class HomeActivity extends BaseActivity {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         } else if (id == R.id.action_help) {
-            // UPDATED: Go to the new HelpActivity
             startActivity(new Intent(this, HelpActivity.class));
             return true;
         } else if (id == R.id.action_contact) {
-            // UPDATED: Also go to the new HelpActivity
             startActivity(new Intent(this, HelpActivity.class));
             return true;
         } else if (id == R.id.action_logout) {
-            Toast.makeText(this, "Logout feature is in development.", Toast.LENGTH_SHORT).show();
+            // --- UPDATED Logout Logic ---
+
+            // 1. Clear the Session Token
+            sessionManager.clearSession();
+
+            // 2. Clear the local database cache
+            databaseExecutor.execute(() -> {
+                db.clearAllTables();
+
+                mainThreadHandler.post(() -> {
+                    // 3. Relaunch the app to the Welcome screen
+                    Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(this, WelcomeActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
+                    finish();
+                });
+            });
             return true;
         }
 

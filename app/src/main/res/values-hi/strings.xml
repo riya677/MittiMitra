@@ -1,54 +1,54 @@
 <resources>
     <string name="app_name">मिट्टी मित्र</string>
 
-    <string name="greeting_format">नमस्ते, %s</string>
+    <!-- Home Screen -->
     <string name="greeting_default">नमस्ते, उपयोगकर्ता</string>
-    <string name="last_scan">पिछला स्कैन</string>
     <string name="button_tip">सलाह</string>
     <string name="button_recommendation">सिफारिश</string>
     <string name="button_history">इतिहास</string>
     <string name="button_scan">स्कैन</string>
     <string name="button_documents">दस्तावेज़</string>
 
+    <!-- Menu -->
     <string name="menu_settings">सेटिंग्स</string>
     <string name="menu_help">मदद</string>
     <string name="menu_contact">संपर्क</string>
     <string name="menu_logout">लॉग आउट</string>
 
+    <!-- Settings Screen -->
     <string name="setting_language">भाषा</string>
-    <string name="setting_font_size">अक्षर का आकार</string>
+    <string name="setting_accessibility">सरल उपयोग</string>
     <string name="setting_theme">ऐप थीम</string>
     <string name="setting_manage_data">डेटा प्रबंधित करें</string>
 
+    <!-- Language Screen -->
     <string name="language_title">भाषा चुनें</string>
     <string name="language_system_default">सिस्टम डिफ़ॉल्ट</string>
-    <string name="language_english">English (अंग्रेज़ी)</string>
     <string name="language_hindi">हिन्दी</string>
-    <string name="language_tamil">தமிழ் (तमिल)</string>
-    <string name="language_malayalam">മലയാളം (मलयालम)</string>
+    <string name="language_telugu">తెలుగు (Telugu)</string>
 
-    <string name="font_size_title">अक्षर का आकार बदलें</string>
-    <string name="font_size_small">छोटा</string>
-    <string name="font_size_default">सामान्य</string>
-    <string name="font_size_large">बड़ा</string>
+    <!-- Accessibility Screen (Font Size & Font) -->
+    <string name="font_size_title">अक्षर का आकार</string>
     <string name="font_size_sample">आपका टेक्स्ट ऐसा दिखेगा।</string>
+    <string name="setting_font_dyslexic">डिस्लेक्सिक-फ्रेंडली फ़ॉन्ट</string>
+    <string name="setting_font_dyslexic_desc">आसान पढ़ने के लिए ओपनडिस्लेक्सिक फ़ॉन्ट का उपयोग करता है।</string>
 
+    <!-- Theme Screen -->
     <string name="theme_title">थीम चुनें</string>
     <string name="theme_light">लाइट</string>
     <string name="theme_dark">डार्क</string>
     <string name="theme_system">सिस्टम डिफ़ॉल्ट</string>
 
+    <!-- Manage Data Screen -->
     <string name="manage_data_title">डेटा प्रबंधित करें</string>
     <string name="manage_data_soil_title">मिट्टी का इतिहास साफ़ करें</string>
     <string name="manage_data_soil_desc">सभी सहेजी गई मिट्टी विश्लेषण रिपोर्ट हटा देता है।</string>
     <string name="manage_data_docs_title">सभी दस्तावेज़ साफ़ करें</string>
     <string name="manage_data_docs_desc">इस डिवाइस से सभी अपलोड किए गए दस्तावेज़ हटा देता है।</string>
-    <string name="dialog_are_you_sure">क्या आपको यकीन है?</string>
     <string name="dialog_delete">हटाएं</string>
     <string name="dialog_cancel">रद्द करें</string>
-    <string name="toast_history_cleared">मिट्टी का इतिहास साफ़ किया गया।</string>
-    <string name="toast_documents_cleared">सभी दस्तावेज़ साफ़ किए गए।</string>
 
+    <!-- Help & Contact Screen -->
     <string name="help_title">सहायता और समर्थन</string>
     <string name="help_faq_title">अक्सर पूछे जाने वाले प्रश्न (FAQ)</string>
     <string name="help_q1">मैं एक अच्छा मिट्टी स्कैन कैसे करूँ?</string>
@@ -56,6 +56,4 @@
     <string name="help_q2">AI कितना सटीक है?</string>
     <string name="help_a2">AI दृश्य डेटा के आधार पर सुझाव प्रदान करता है। महत्वपूर्ण निर्णयों के लिए, कृपया किसी स्थानीय कृषि विशेषज्ञ से परामर्श लें।</string>
     <string name="help_contact_title">सहायता संपर्क</string>
-    <string name="help_contact_phone">+91 12345 67890</string>
-    <string name="help_contact_email">support@mittimitra.com</string>
 </resources>

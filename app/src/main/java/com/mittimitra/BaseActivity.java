@@ -7,23 +7,25 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.os.LocaleListCompat;
-import java.util.Locale;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // --- UPDATED: Apply theme and font BEFORE super.onCreate() ---
+        AppPreferences prefs = new AppPreferences(this);
+        applyAppTheme(prefs.getTheme());
+        applyAppFont(prefs.isDyslexicFontEnabled());
+
         super.onCreate(savedInstanceState);
 
-        AppPreferences prefs = new AppPreferences(this);
-        // Apply theme *before* setContentView
-        applyAppTheme(prefs.getTheme());
-        // Apply language
+        // Apply language (can be done after super.onCreate)
         applyAppLanguage();
     }
 
     @Override
     protected void attachBaseContext(Context newBase) {
+        // This is the magic for applying font size
         AppPreferences prefs = new AppPreferences(newBase);
         Context contextWithFont = applyFontScale(newBase, prefs.getFontScale());
         super.attachBaseContext(contextWithFont);
@@ -45,7 +47,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         return context.createConfigurationContext(config);
     }
 
-    // --- NEW: Apply Theme ---
     private void applyAppTheme(String theme) {
         switch (theme) {
             case "light":
@@ -57,6 +58,15 @@ public abstract class BaseActivity extends AppCompatActivity {
             default: // "system"
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                 break;
+        }
+    }
+
+    // --- NEW: Apply Font Theme ---
+    private void applyAppFont(boolean isDyslexicEnabled) {
+        if (isDyslexicEnabled) {
+            setTheme(R.style.Theme_MittiMitra_Dyslexic);
+        } else {
+            setTheme(R.style.Theme_MittiMitra);
         }
     }
 }
