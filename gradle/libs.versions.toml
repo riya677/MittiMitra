@@ -32,6 +32,8 @@ playServicesAuth = "21.4.0"
 playServicesAuthVersion = "20.7.0"
 playServicesLocation = "21.3.0"
 roomRuntime = "2.6.1"
+retrofit = "2.9.0"
+gson = "2.10.1"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -53,6 +55,11 @@ firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 # Firebase App Check
 firebase-appcheck-playintegrity = { module = "com.google.firebase:firebase-appcheck-playintegrity" }
 firebase-appcheck-debug = { module = "com.google.firebase:firebase-appcheck-debug" }
+
+# Networking (Retrofit + Gson) - CRITICAL FIX
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 firebase-auth = { module = "com.google.firebase:firebase-auth" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
