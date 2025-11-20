@@ -20,7 +20,7 @@
     <string name="menu_logout">లాగ్అవుట్</string>
 
     <string name="setting_language">భాష</string>
-    <string name="setting_font_size">ఫాంట్ పరిమాణం</string>
+    <string name="setting_accessibility">సౌలభ్యం</string>
     <string name="setting_theme">యాప్ థీమ్</string>
     <string name="setting_manage_data">డేటాను నిర్వహించండి</string>
 

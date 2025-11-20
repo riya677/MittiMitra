@@ -20,7 +20,7 @@
     <string name="menu_logout">வெளியேறு</string>
 
     <string name="setting_language">மொழி</string>
-    <string name="setting_font_size">எழுத்துரு அளவு</string>
+    <string name="setting_accessibility">அணுகல் தன்மை</string>
     <string name="setting_theme">ஆப் தீம்</string>
     <string name="setting_manage_data">தரவை நிர்வகி</string>
 

@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
@@ -30,23 +32,25 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".WelcomeActivity" android:theme="@style/Theme.MittiMitra.NoActionBar" />
-        <activity android:name=".LoginActivity" android:label="Login" />
-        <activity android:name=".SignupActivity" android:label="Signup" />
-        <activity android:name=".ForgotPasswordActivity" android:label="Reset Password" />
+        <activity android:name=".LoginActivity" android:exported="false" />
+        <activity android:name=".SignupActivity" android:exported="false" />
+        <activity android:name=".ForgotPasswordActivity" android:exported="false" />
+        <activity android:name=".WelcomeActivity" android:exported="false" />
+        <activity android:name=".HomeActivity" android:exported="false" />
+        <activity android:name=".ScanActivity" android:exported="false" />
+        <activity android:name=".HistoryActivity" android:exported="false" />
+        <activity android:name=".DocumentsActivity" android:exported="false" />
+        <activity android:name=".TipActivity" android:exported="false" />
+        <activity android:name=".RecommendationActivity" android:exported="false" />
+        <activity android:name=".ContactActivity" android:exported="false" />
+        <activity android:name=".ProfileActivity" android:exported="false" />
 
-        <activity android:name=".HomeActivity" android:label="Mitti Mitra" />
-
-        <!-- Feature Activities -->
-        <activity android:name=".ContactActivity" android:label="Contact Us" />
-        <activity android:name=".ProfileActivity" android:label="My Profile" />
-        <activity android:name=".SettingsActivity" android:label="Settings" />
-        <activity android:name=".ScanActivity" android:label="Scan Soil" />
-        <activity android:name=".DocumentsActivity" android:label="Documents" />
-        <activity android:name=".HistoryActivity" android:label="History" />
-        <activity android:name=".TipActivity" android:label="Farming Tips" />
-        <activity android:name=".RecommendationActivity" android:label="Advice" />
-        <activity android:name=".HelpActivity" android:label="Help" />
+        <activity android:name=".SettingsActivity" android:exported="false" />
+        <activity android:name=".LanguageActivity" android:exported="false" />
+        <activity android:name=".AccessibilityActivity" android:exported="false" />
+        <activity android:name=".ThemeSettingsActivity" android:exported="false" />
+        <activity android:name=".ManageDataActivity" android:exported="false" />
+        <activity android:name=".HelpActivity" android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

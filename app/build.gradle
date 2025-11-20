@@ -2,21 +2,28 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
-    // Add Crashlytics plugin
-    id 'com.google.firebase.crashlytics'
+    alias(libs.plugins.firebase.crashlytics)
+}
+
+Properties properties = new Properties()
+if (project.rootProject.file('local.properties').exists()) {
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
 }
 
 android {
     namespace "com.mittimitra"
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.mittimitra"
         minSdk 24
-        targetSdk 34
+        targetSdk 36
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Define the API Key here so it generates in BuildConfig
+        buildConfigField "String", "GROQ_API_KEY", "\"${properties.getProperty('GROQ_API_KEY')}\""
     }
 
     buildTypes {
@@ -34,6 +41,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 }
 
@@ -41,6 +49,15 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.material
     implementation libs.androidx.constraintlayout
+
+    // Room Database
+    implementation libs.androidx.room.runtime
+    annotationProcessor libs.androidx.room.compiler
+
+    // Network & Location
+    implementation libs.play.services.location
+    implementation libs.okhttp
+    implementation libs.logging.interceptor
 
     // Firebase BoM (Controls versions)
     implementation platform(libs.firebase.bom)
@@ -51,14 +68,14 @@ dependencies {
     implementation libs.google.firebase.storage
     implementation libs.firebase.crashlytics
     implementation libs.firebase.appcheck.playintegrity
+    implementation libs.firebase.appcheck.debug // ADDED THIS LINE
 
     // Google Sign In
     implementation libs.play.services.auth.v2070
 
-    classpath libs.firebase.crashlytics.gradle
-
     // Image Loading
     implementation libs.glide.v4160
+    annotationProcessor libs.compiler
 
     // Circle ImageView
     implementation libs.circleimageview
