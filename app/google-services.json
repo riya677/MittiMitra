@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "512527213662",
+    "project_id": "mitti-mitra-4ee33",
+    "storage_bucket": "mitti-mitra-4ee33.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512527213662:android:b629821591f603ceb600cf",
+        "android_client_info": {
+          "package_name": "com.mittimitra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512527213662-pm5gcpvg9ugia5d71oqk738r874ppu7e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mittimitra",
+            "certificate_hash": "899db548cc070d83c96c865daa03e84517110652"
+          }
+        },
+        {
+          "client_id": "512527213662-57brgiqoaf0it2kn1em8hhfpkr0ua6ta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGRPPrbfFrpxvy4u2-Nox5VT5Uf_mgvy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512527213662-57brgiqoaf0it2kn1em8hhfpkr0ua6ta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
