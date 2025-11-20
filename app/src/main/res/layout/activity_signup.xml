@@ -1,127 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:orientation="vertical"
+    android:padding="32dp"
+    android:gravity="center">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp"
-        android:gravity="center">
+        android:text="Join Mitti Mitra"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="48dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_marginBottom="10dp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_signup_google"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Sign up with Google"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        app:strokeColor="#DDD"
+        app:strokeWidth="1dp"
+        app:icon="@android:drawable/ic_dialog_email"
+        app:iconGravity="textStart"
+        app:iconTint="@null"
+        android:layout_marginBottom="16dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Create your MittiMitra account"
-            android:textSize="14sp"
-            android:textColor="#666666"
-            android:layout_marginBottom="30dp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_signup_phone"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Sign up with Phone"
+        android:backgroundTint="#4CAF50"
+        app:icon="@android:drawable/ic_menu_call"
+        app:iconGravity="textStart"/>
 
-        <EditText
-            android:id="@+id/usernameInput"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Username"
-            android:inputType="text"
-            android:padding="15dp"
-            android:background="#FFFFFF"
-            android:layout_marginBottom="12dp" />
+    <TextView
+        android:id="@+id/tv_login_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have an account? Login"
+        android:layout_marginTop="32dp"
+        android:padding="8dp"
+        android:textColor="?attr/colorPrimary"/>
 
-        <EditText
-            android:id="@+id/emailInput"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:padding="15dp"
-            android:background="#FFFFFF"
-            android:layout_marginBottom="12dp" />
-
-        <EditText
-            android:id="@+id/fullNameInput"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Full Name"
-            android:inputType="text"
-            android:padding="15dp"
-            android:background="#FFFFFF"
-            android:layout_marginBottom="12dp" />
-
-        <EditText
-            android:id="@+id/phoneInput"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Phone Number"
-            android:inputType="phone"
-            android:padding="15dp"
-            android:background="#FFFFFF"
-            android:layout_marginBottom="12dp" />
-
-        <EditText
-            android:id="@+id/passwordInput"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="15dp"
-            android:background="#FFFFFF"
-            android:layout_marginBottom="12dp" />
-
-        <EditText
-            android:id="@+id/confirmPasswordInput"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Confirm Password"
-            android:inputType="textPassword"
-            android:padding="15dp"
-            android:background="#FFFFFF"
-            android:layout_marginBottom="20dp" />
-
-        <Button
-            android:id="@+id/signupButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Sign Up"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:background="#6366F1"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="20dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Already have an account? "
-                android:textSize="14sp"
-                android:textColor="#666666" />
-
-            <TextView
-                android:id="@+id/loginLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Login here"
-                android:textSize="14sp"
-                android:textColor="#6366F1"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

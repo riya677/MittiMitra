@@ -1,91 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp"
-    android:gravity="center"
-    android:background="#F5F5F5">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="#333333"
-        android:layout_marginBottom="10dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to MittiMitra Auth System"
-        android:textSize="14sp"
-        android:textColor="#666666"
-        android:layout_marginBottom="30dp" />
-
-    <EditText
-        android:id="@+id/usernameInput"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Username or Phone Number"
-        android:inputType="text"
-        android:padding="15dp"
-        android:background="#FFFFFF"
-        android:layout_marginBottom="15dp" />
-
-    <EditText
-        android:id="@+id/passwordInput"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="15dp"
-        android:background="#FFFFFF"
-        android:layout_marginBottom="20dp" />
-
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Login"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:background="#6366F1"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="15dp" />
-
-    <TextView
-        android:id="@+id/forgotPasswordLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forgot Password?"
-        android:textSize="14sp"
-        android:textColor="#6366F1"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp" />
+    android:fillViewport="true"
+    android:background="#FFFFFF">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="24dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account? "
-            android:textSize="14sp"
-            android:textColor="#666666" />
+            android:text="Welcome Farmer"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"/>
 
         <TextView
-            android:id="@+id/signupLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign up here"
-            android:textSize="14sp"
-            android:textColor="#6366F1"
-            android:textStyle="bold" />
+            android:text="Login to access your farm tools"
+            android:textColor="#757575"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- OPTION 1: GOOGLE -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_google_signin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Continue with Google"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
+            app:strokeColor="#DDDDDD"
+            app:strokeWidth="1dp"
+            app:icon="@android:drawable/ic_dialog_email"
+            app:iconGravity="textStart"
+            app:iconTint="@null"
+            android:layout_marginBottom="24dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#E0E0E0"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=" OR PHONE " android:textColor="#9E9E9E"/>
+            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#E0E0E0"/>
+        </LinearLayout>
+
+        <!-- OPTION 2: PHONE AUTH -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_phone_auth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_send_otp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Get OTP"
+            android:layout_marginTop="16dp"/>
+
+        <!-- HIDDEN OTP SECTION -->
+        <LinearLayout
+            android:id="@+id/layout_otp_verify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="16dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter 6-digit OTP"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_otp_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="6"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/btn_verify_otp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Verify &amp; Login"
+                android:backgroundTint="#4CAF50"
+                android:layout_marginTop="16dp"/>
+        </LinearLayout>
+
+        <!-- Forgot Password (Link to reset) -->
+        <TextView
+            android:id="@+id/tv_forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trouble logging in?"
+            android:padding="16dp"
+            android:textColor="?attr/colorPrimary"
+            android:layout_marginTop="8dp"/>
+
+        <ProgressBar
+            android:id="@+id/progress_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"/>
 
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

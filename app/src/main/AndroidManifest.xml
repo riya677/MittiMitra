@@ -3,17 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
+        android:name=".MittiMitraApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -34,89 +30,33 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".WelcomeActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MittiMitra.NoActionBar" />
+        <activity android:name=".WelcomeActivity" android:theme="@style/Theme.MittiMitra.NoActionBar" />
+        <activity android:name=".LoginActivity" android:label="Login" />
+        <activity android:name=".SignupActivity" android:label="Signup" />
+        <activity android:name=".ForgotPasswordActivity" android:label="Reset Password" />
 
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false"
-            android:label="@string/app_name" />
+        <activity android:name=".HomeActivity" android:label="Mitti Mitra" />
 
-        <activity
-            android:name=".SettingsActivity"
-            android:exported="false"
-            android:label="@string/menu_settings"
-            android:parentActivityName=".HomeActivity"/>
-
-        <activity
-            android:name=".LanguageActivity"
-            android:exported="false"
-            android:label="@string/language_title"
-            android:parentActivityName=".SettingsActivity"/>
-
-        <activity
-            android:name=".AccessibilityActivity"
-            android:CodeAccessible="true"
-            android:label="@string/setting_accessibility"
-            android:parentActivityName=".SettingsActivity"/>
-
-        <activity
-            android:name=".ThemeSettingsActivity"
-            android:exported="false"
-            android:label="@string/theme_title"
-            android:parentActivityName=".SettingsActivity"/>
-
-        <activity
-            android:name=".ManageDataActivity"
-            android:exported="false"
-            android:label="@string/manage_data_title"
-            android:parentActivityName=".SettingsActivity"/>
-
-        <activity
-            android:name=".HelpActivity"
-            android:exported="false"
-            android:Setting="help_title"
-            android:parentActivityName=".HomeActivity"/>
-
-        <activity
-            android:name=".DocumentsActivity"
-            android:exported="false"
-            android:label="@string/button_documents"
-            android:parentActivityName=".HomeActivity"/>
-
-        <activity
-            android:name=".ScanActivity"
-            android:exported="false"
-            android:label="@string/button_scan"
-            android:parentActivityName=".HomeActivity"/>
-        <activity
-            android:name=".HistoryActivity"
-            android:exported="false"
-            android:label="@string/button_history"
-            android:parentActivityName=".HomeActivity"/>
-        <activity
-            android:name=".RecommendationActivity"
-            android:exported="false"
-            android:label="@string/button_recommendation"
-            android:parentActivityName=".HomeActivity"/>
-        <activity
-            android:name=".TipActivity"
-            android:exported="false"
-            android:label="@string/button_tip"
-            android:parentActivityName=".HomeActivity"/>
+        <!-- Feature Activities -->
+        <activity android:name=".ContactActivity" android:label="Contact Us" />
+        <activity android:name=".ProfileActivity" android:label="My Profile" />
+        <activity android:name=".SettingsActivity" android:label="Settings" />
+        <activity android:name=".ScanActivity" android:label="Scan Soil" />
+        <activity android:name=".DocumentsActivity" android:label="Documents" />
+        <activity android:name=".HistoryActivity" android:label="History" />
+        <activity android:name=".TipActivity" android:label="Farming Tips" />
+        <activity android:name=".RecommendationActivity" android:label="Advice" />
+        <activity android:name=".HelpActivity" android:label="Help" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
-            android:CodeAccessible="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true"
+            android:exported="false">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
 
     </application>
-
 </manifest>
