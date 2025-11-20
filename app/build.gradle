@@ -24,6 +24,7 @@ android {
 
         // Define the API Key here so it generates in BuildConfig
         buildConfigField "String", "GROQ_API_KEY", "\"${properties.getProperty('GROQ_API_KEY')}\""
+        buildConfigField "String", "OPENWEATHER_API_KEY", "\"${properties.getProperty('OPENWEATHER_API_KEY')}\""
     }
 
     buildTypes {
@@ -54,12 +55,15 @@ dependencies {
     implementation libs.androidx.room.runtime
     annotationProcessor libs.androidx.room.compiler
 
-    // Network & Location
+    // Network & Location (Retrofit + Gson ADDED HERE)
     implementation libs.play.services.location
     implementation libs.okhttp
     implementation libs.logging.interceptor
+    implementation libs.retrofit
+    implementation libs.retrofit.converter.gson
+    implementation libs.gson
 
-    // Firebase BoM (Controls versions)
+    // Firebase BoM
     implementation platform(libs.firebase.bom)
 
     // Firebase Services
@@ -68,7 +72,7 @@ dependencies {
     implementation libs.google.firebase.storage
     implementation libs.firebase.crashlytics
     implementation libs.firebase.appcheck.playintegrity
-    implementation libs.firebase.appcheck.debug // ADDED THIS LINE
+    implementation libs.firebase.appcheck.debug
 
     // Google Sign In
     implementation libs.play.services.auth.v2070

@@ -16,8 +16,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppPreferences prefs = new AppPreferences(this);
+
+        // Apply Theme Logic
         applyAppTheme(prefs.getTheme());
-        applyAppFont(prefs.isDyslexicFontEnabled());
+
+        // Accessibility Themes
+        if (prefs.isHighContrastEnabled()) {
+            setTheme(R.style.Theme_MittiMitra_HighContrast);
+        } else if (prefs.isDyslexicFontEnabled()) {
+            setTheme(R.style.Theme_MittiMitra_Dyslexic);
+        } else {
+            setTheme(R.style.Theme_MittiMitra);
+        }
+
         applyAppLanguage();
         super.onCreate(savedInstanceState);
     }
@@ -41,9 +52,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private Context applyConfig(Context context, float fontScale, String languageCode) {
         Resources res = context.getResources();
         Configuration config = new Configuration(res.getConfiguration());
-
         config.fontScale = fontScale;
-
         if (languageCode != null && !languageCode.isEmpty()) {
             Locale locale = new Locale(languageCode);
             Locale.setDefault(locale);
@@ -60,14 +69,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             case "light": AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); break;
             case "dark": AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); break;
             default: AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM); break;
-        }
-    }
-
-    private void applyAppFont(boolean isDyslexicEnabled) {
-        if (isDyslexicEnabled) {
-            setTheme(R.style.Theme_MittiMitra_Dyslexic);
-        } else {
-            setTheme(R.style.Theme_MittiMitra);
         }
     }
 }

@@ -22,10 +22,7 @@
         android:theme="@style/Theme.MittiMitra"
         tools:targetApi="31">
 
-        <activity
-            android:name=".SplashActivity"
-            android:exported="true"
-            android:theme="@style/Theme.MittiMitra.NoActionBar">
+        <activity android:name=".SplashActivity" android:exported="true" android:theme="@style/Theme.MittiMitra.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -37,6 +34,7 @@
         <activity android:name=".ForgotPasswordActivity" android:exported="false" />
         <activity android:name=".WelcomeActivity" android:exported="false" />
         <activity android:name=".HomeActivity" android:exported="false" />
+
         <activity android:name=".ScanActivity" android:exported="false" />
         <activity android:name=".HistoryActivity" android:exported="false" />
         <activity android:name=".DocumentsActivity" android:exported="false" />
@@ -57,10 +55,7 @@
             android:authorities="${applicationId}.provider"
             android:grantUriPermissions="true"
             android:exported="false">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 </manifest>

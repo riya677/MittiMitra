@@ -1,5 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <style name="Theme.MittiMitra" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -7,14 +6,20 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@android:color/black</item>
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
 
     <style name="Theme.MittiMitra.Dyslexic" parent="Theme.MittiMitra">
         <item name="android:fontFamily">@font/font_dyslexic</item>
     </style>
+
+    <style name="Theme.MittiMitra.HighContrast" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#000000</item>
+        <item name="colorPrimaryVariant">#000000</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#FFFF00</item> <item name="android:textColor">#FFFFFF</item>
+        <item name="android:windowBackground">#000000</item>
+        <item name="android:fontFamily">sans-serif-black</item> </style>
 
     <style name="Theme.MittiMitra.NoActionBar" parent="Theme.MittiMitra" />
 </resources>
