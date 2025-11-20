@@ -20,7 +20,7 @@
     <string name="menu_logout">ലോഗ് ഔട്ട്</string>
 
     <string name="setting_language">ഭാഷ</string>
-    <string name="setting_font_size">അക്ഷര വലിപ്പം</string>
+    <string name="setting_accessibility">പ്രവേശനക്ഷമത</string>
     <string name="setting_theme">ആപ്പ് തീം</string>
     <string name="setting_manage_data">ഡാറ്റ മാനേജ് ചെയ്യുക</string>
 

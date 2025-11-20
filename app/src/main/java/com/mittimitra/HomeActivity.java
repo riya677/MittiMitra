@@ -2,26 +2,30 @@ package com.mittimitra;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.TextView;
-import android.widget.Toast;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import com.bumptech.glide.Glide;
+import androidx.viewpager2.widget.ViewPager2;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.ArrayList;
+import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
-    private TextView tvWelcome;
-    private ImageView imgProfileToolbar;
     private SessionManager sessionManager;
-    private FirebaseFirestore db;
+    private ViewPager2 viewPagerCarousel;
+    private final Handler carouselHandler = new Handler(Looper.getMainLooper());
+    private final Runnable carouselRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (viewPagerCarousel != null) {
+                int currentItem = viewPagerCarousel.getCurrentItem();
+                int totalItems = viewPagerCarousel.getAdapter().getItemCount();
+                viewPagerCarousel.setCurrentItem((currentItem + 1) % totalItems);
+                carouselHandler.postDelayed(this, 3000);
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,80 +33,40 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         sessionManager = new SessionManager(this);
-        db = FirebaseFirestore.getInstance();
+        TextView tvWelcome = findViewById(R.id.tv_home_welcome);
+        tvWelcome.setText(getString(R.string.greeting_format, sessionManager.getUserName()));
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // Carousel
+        viewPagerCarousel = findViewById(R.id.viewPagerCarousel);
+        List<Integer> images = new ArrayList<>();
+        images.add(android.R.color.holo_green_light);
+        images.add(android.R.color.holo_orange_light);
+        images.add(android.R.color.holo_blue_light);
+        List<String> titles = new ArrayList<>();
+        titles.add("Instant Soil Analysis");
+        titles.add("Track Your Farming History");
+        titles.add("Expert Agricultural Tips");
 
-        tvWelcome = findViewById(R.id.tv_welcome_user);
-        imgProfileToolbar = findViewById(R.id.img_profile_toolbar);
+        CarouselAdapter adapter = new CarouselAdapter(images, titles);
+        viewPagerCarousel.setAdapter(adapter);
+        carouselHandler.postDelayed(carouselRunnable, 3000);
 
-        setupGridNavigation();
+        // Navigation
+        findViewById(R.id.card_scan).setOnClickListener(v -> startActivity(new Intent(this, ScanActivity.class)));
+        findViewById(R.id.card_history).setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
+        findViewById(R.id.card_documents).setOnClickListener(v -> startActivity(new Intent(this, DocumentsActivity.class)));
+        findViewById(R.id.card_tips).setOnClickListener(v -> startActivity(new Intent(this, TipActivity.class)));
+        findViewById(R.id.card_recommendation).setOnClickListener(v -> startActivity(new Intent(this, RecommendationActivity.class)));
+        findViewById(R.id.card_profile).setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
 
-        // Profile Icon -> Profile Page
-        findViewById(R.id.btn_profile_toolbar).setOnClickListener(v ->
-                startActivity(new Intent(this, ProfileActivity.class))
-        );
-
-        fetchUserDetails();
-    }
-
-    private void setupGridNavigation() {
-        setClick(R.id.card_scan, ScanActivity.class);
-        setClick(R.id.card_documents, DocumentsActivity.class);
-        setClick(R.id.card_history, HistoryActivity.class);
-        setClick(R.id.card_tips, TipActivity.class);
-        setClick(R.id.card_recommendations, RecommendationActivity.class);
-        setClick(R.id.card_settings, SettingsActivity.class);
-    }
-
-    private void setClick(int id, Class<?> cls) {
-        View v = findViewById(id);
-        if (v != null) v.setOnClickListener(view -> startActivity(new Intent(this, cls)));
-    }
-
-    private void fetchUserDetails() {
-        String uid = FirebaseAuth.getInstance().getUid();
-        if (uid == null) return;
-
-        String localName = sessionManager.getUserName();
-        tvWelcome.setText("Namaste, " + (localName != null ? localName : "Farmer"));
-
-        db.collection("farmers").document(uid).get().addOnSuccessListener(doc -> {
-            if (doc.exists()) {
-                String name = doc.getString("firstName");
-                String pic = doc.getString("profilePic");
-                if (name != null) {
-                    tvWelcome.setText("Namaste, " + name);
-                    sessionManager.saveUser(uid, name);
-                }
-                if (pic != null && !pic.isEmpty()) {
-                    Glide.with(this).load(pic).circleCrop().into(imgProfileToolbar);
-                }
-            }
-        });
+        findViewById(R.id.nav_scan).setOnClickListener(v -> startActivity(new Intent(this, ScanActivity.class)));
+        findViewById(R.id.nav_profile).setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
+        findViewById(R.id.nav_settings).setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_contact) {
-            startActivity(new Intent(this, ContactActivity.class)); // Requirement 1
-            return true;
-        } else if (id == R.id.action_logout) {
-            FirebaseAuth.getInstance().signOut();
-            sessionManager.clearSession();
-            startActivity(new Intent(this, WelcomeActivity.class));
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    protected void onDestroy() {
+        super.onDestroy();
+        carouselHandler.removeCallbacks(carouselRunnable);
     }
 }
