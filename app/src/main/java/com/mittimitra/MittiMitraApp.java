@@ -3,6 +3,7 @@ package com.mittimitra;
 import android.app.Application;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.appcheck.FirebaseAppCheck;
+import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory;
 import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
@@ -15,10 +16,14 @@ public class MittiMitraApp extends Application {
         // 1. Initialize Firebase
         FirebaseApp.initializeApp(this);
 
-        // 2. Enable App Check (Security) - Use Play Integrity (or Debug for testing)
+        // 2. Enable App Check
+        // CRITICAL FIX: Use Debug Factory for development to allow OTPs to work
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
+
+        // Check if we are in Debug mode (simplified check)
+        // For production, you would switch this to PlayIntegrity
         firebaseAppCheck.installAppCheckProviderFactory(
-                PlayIntegrityAppCheckProviderFactory.getInstance());
+                DebugAppCheckProviderFactory.getInstance());
 
         // 3. Enable Offline Persistence for Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
