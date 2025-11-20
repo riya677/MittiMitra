@@ -16,10 +16,14 @@ public interface SoilDao {
     void deleteAnalysis(SoilAnalysis analysis);
 
     @Query("SELECT * FROM soil_history ORDER BY timestamp DESC")
-    List<SoilAnalysis> getAllSoilAnalysis(); // Fixed method name
+    List<SoilAnalysis> getAllSoilAnalysis();
 
     @Query("SELECT * FROM soil_history ORDER BY timestamp DESC LIMIT 1")
     SoilAnalysis getLatestReport();
+
+    // NEW: Fetch specific report by ID
+    @Query("SELECT * FROM soil_history WHERE analysis_id = :id")
+    SoilAnalysis getAnalysisById(int id);
 
     @Query("DELETE FROM soil_history")
     void clearAllHistory();

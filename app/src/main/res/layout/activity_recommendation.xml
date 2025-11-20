@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:id="@+id/report_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border_background"
+        android:paddingBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#4CAF50"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@android:drawable/ic_menu_compass"
+                app:tint="#FFFFFF"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SOIL HEALTH CARD"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"/>
+                <TextView
+                    android:id="@+id/tv_report_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date: --"
+                    android:textColor="#E8F5E9"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. FARM DETAILS"
+            android:background="#E0E0E0"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textColor="#333333"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/tv_rep_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Location: --"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/tv_rep_weather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weather: --"
+                android:textColor="#000000"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. SOIL TEST RESULTS"
+            android:background="#E0E0E0"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textColor="#333333"/>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:stretchColumns="1">
+
+            <TableRow android:background="#EEEEEE" android:padding="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Parameter"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Value"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rating"
+                    android:textStyle="bold"/>
+            </TableRow>
+
+            <TableRow android:padding="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nitrogen (N)"/>
+                <TextView
+                    android:id="@+id/tv_val_n"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"/>
+                <TextView
+                    android:id="@+id/tv_rat_n"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:textStyle="bold"/>
+            </TableRow>
+
+            <TableRow android:padding="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phosphorus (P)"/>
+                <TextView
+                    android:id="@+id/tv_val_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"/>
+                <TextView
+                    android:id="@+id/tv_rat_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:textStyle="bold"/>
+            </TableRow>
+
+            <TableRow android:padding="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Potassium (K)"/>
+                <TextView
+                    android:id="@+id/tv_val_k"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"/>
+                <TextView
+                    android:id="@+id/tv_rat_k"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:textStyle="bold"/>
+            </TableRow>
+
+            <TableRow android:padding="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Soil pH"/>
+                <TextView
+                    android:id="@+id/tv_val_ph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"/>
+                <TextView
+                    android:id="@+id/tv_rat_ph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:textStyle="bold"/>
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3. EXPERT RECOMMENDATIONS"
+            android:background="#E0E0E0"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textColor="#333333"/>
+
+        <TextView
+            android:id="@+id/tv_ai_advice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Consulting AI Agronomist..."
+            android:padding="16dp"
+            android:textSize="14sp"
+            android:lineSpacingExtra="4dp"
+            android:textColor="#000000"/>
+
+        <Button
+            android:id="@+id/btn_save_pdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Download PDF Report"
+            android:layout_margin="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
