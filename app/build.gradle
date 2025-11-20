@@ -1,69 +1,69 @@
-// 1. The plugins block MUST be first.
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-}
-
-// 2. The properties logic comes AFTER plugins.
-java.util.Properties properties = new java.util.Properties()
-try {
-    properties.load(new java.io.FileInputStream(rootProject.file("local.properties")))
-} catch (java.io.IOException e) {
-    throw new GradleException("Could not read local.properties file. Please create one with your GROQ_API_KEY.")
+    id 'com.google.gms.google-services'
+    // Add Crashlytics plugin
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
-    namespace = "com.mittimitra"
-    compileSdk = 36
+    namespace "com.mittimitra"
+    compileSdk 34
 
     defaultConfig {
-        applicationId = "com.mittimitra"
-        minSdk = 26
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        buildConfigField "String", "GROQ_API_KEY", "\"${properties.getProperty('GROQ_API_KEY')}\""
+        applicationId "com.mittimitra"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled = false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '1.8'
     }
     buildFeatures {
-        buildConfig = true
+        viewBinding true
     }
 }
 
 dependencies {
-    // Standard Java/XML (View) dependencies
     implementation libs.androidx.appcompat
     implementation libs.material
     implementation libs.androidx.constraintlayout
 
-    // AI Chat & API dependencies
-    implementation(libs.okhttp)
-    implementation(libs.logging.interceptor)
-    implementation(libs.play.services.location)
+    // Firebase BoM (Controls versions)
+    implementation platform(libs.firebase.bom)
 
-    // Room Database dependencies
-    def room_version = "2.6.1"
-    implementation libs.androidx.room.runtime
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    // Firebase Services
+    implementation libs.google.firebase.auth
+    implementation libs.google.firebase.firestore
+    implementation libs.google.firebase.storage
+    implementation libs.firebase.crashlytics
+    implementation libs.firebase.appcheck.playintegrity
 
-    // Test dependencies
-    testImplementation libs.junit
+    // Google Sign In
+    implementation libs.play.services.auth.v2070
+
+    classpath libs.firebase.crashlytics.gradle
+
+    // Image Loading
+    implementation libs.glide.v4160
+
+    // Circle ImageView
+    implementation libs.circleimageview
+
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation libs.androidx.espresso.core
 }
