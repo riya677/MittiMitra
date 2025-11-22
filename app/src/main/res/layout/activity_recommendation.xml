@@ -23,9 +23,9 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@android:drawable/ic_menu_compass"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/ic_launcher_round"
                 app:tint="#FFFFFF"/>
 
             <LinearLayout
@@ -33,19 +33,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mitti Mitra"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:fontFamily="serif"
+                    android:textColor="#FFFFFF"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SOIL HEALTH CARD"
-                    android:textSize="20sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="#FFFFFF"/>
+                    android:textColor="#E8F5E9"/>
+
                 <TextView
                     android:id="@+id/tv_report_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date: --"
-                    android:textColor="#E8F5E9"
+                    android:textColor="#C8E6C9"
                     android:textSize="12sp"/>
             </LinearLayout>
         </LinearLayout>
@@ -53,33 +64,49 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1. FARM DETAILS"
+            android:text="1. FARMER DETAILS"
             android:background="#E0E0E0"
             android:padding="8dp"
             android:textStyle="bold"
             android:textColor="#333333"/>
 
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:columnCount="2"
             android:padding="12dp">
 
-            <TextView
-                android:id="@+id/tv_rep_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Location: --"
-                android:textColor="#000000"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Name: " android:textStyle="bold"/>
+            <TextView android:id="@+id/tv_rep_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textColor="#000000" android:layout_marginBottom="4dp"/>
 
-            <TextView
-                android:id="@+id/tv_rep_weather"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Weather: --"
-                android:textColor="#000000"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mobile: " android:textStyle="bold"/>
+            <TextView android:id="@+id/tv_rep_phone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textColor="#000000" android:layout_marginBottom="4dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Email: " android:textStyle="bold"/>
+            <TextView android:id="@+id/tv_rep_email" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textColor="#000000" android:layout_marginBottom="4dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="State: " android:textStyle="bold"/>
+            <TextView android:id="@+id/tv_rep_state" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textColor="#000000" android:layout_marginBottom="4dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="District: " android:textStyle="bold"/>
+            <TextView android:id="@+id/tv_rep_district" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textColor="#000000" android:layout_marginBottom="4dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Season: " android:textStyle="bold"/>
+            <TextView android:id="@+id/tv_rep_season" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textColor="#2E7D32" android:textStyle="bold" android:layout_marginBottom="4dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Location: " android:textStyle="bold"/>
+            <TextView android:id="@+id/tv_rep_location" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textColor="#000000" android:layout_marginBottom="4dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Weather: " android:textStyle="bold"/>
+            <TextView android:id="@+id/tv_rep_weather" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textColor="#000000" android:layout_marginBottom="4dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Solar: " android:textStyle="bold"/>
+            <TextView android:id="@+id/tv_rep_solar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textColor="#000000" android:layout_marginBottom="4dp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Moisture: " android:textStyle="bold"/>
+            <TextView android:id="@+id/tv_rep_moisture" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textColor="#000000" android:layout_marginBottom="4dp"/>
+
+        </GridLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -97,93 +124,30 @@
             android:stretchColumns="1">
 
             <TableRow android:background="#EEEEEE" android:padding="8dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Parameter"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Value"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rating"
-                    android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Param" android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Value" android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Level" android:textStyle="bold"/>
             </TableRow>
 
             <TableRow android:padding="8dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nitrogen (N)"/>
-                <TextView
-                    android:id="@+id/tv_val_n"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="--"/>
-                <TextView
-                    android:id="@+id/tv_rat_n"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="--"
-                    android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nitrogen (N)"/>
+                <TextView android:id="@+id/tv_val_n" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--"/>
+                <TextView android:id="@+id/tv_rat_n" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textStyle="bold"/>
             </TableRow>
-
             <TableRow android:padding="8dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Phosphorus (P)"/>
-                <TextView
-                    android:id="@+id/tv_val_p"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="--"/>
-                <TextView
-                    android:id="@+id/tv_rat_p"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="--"
-                    android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Phosphorus (P)"/>
+                <TextView android:id="@+id/tv_val_p" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--"/>
+                <TextView android:id="@+id/tv_rat_p" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textStyle="bold"/>
             </TableRow>
-
             <TableRow android:padding="8dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Potassium (K)"/>
-                <TextView
-                    android:id="@+id/tv_val_k"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="--"/>
-                <TextView
-                    android:id="@+id/tv_rat_k"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="--"
-                    android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Potassium (K)"/>
+                <TextView android:id="@+id/tv_val_k" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--"/>
+                <TextView android:id="@+id/tv_rat_k" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textStyle="bold"/>
             </TableRow>
-
             <TableRow android:padding="8dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Soil pH"/>
-                <TextView
-                    android:id="@+id/tv_val_ph"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="--"/>
-                <TextView
-                    android:id="@+id/tv_rat_ph"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="--"
-                    android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Soil pH"/>
+                <TextView android:id="@+id/tv_val_ph" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--"/>
+                <TextView android:id="@+id/tv_rat_ph" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textStyle="bold"/>
             </TableRow>
         </TableLayout>
 
@@ -211,6 +175,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Download PDF Report"
+            android:backgroundTint="#2E7D32"
             android:layout_margin="16dp"/>
 
     </LinearLayout>
