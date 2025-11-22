@@ -71,6 +71,46 @@
             android:padding="12dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rb_kannada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_kannada"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rb_marathi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_marathi"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rb_bengali"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_bengali"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rb_gujarati"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_gujarati"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/rb_punjabi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_punjabi"
+            android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+
     </RadioGroup>
 
 </LinearLayout>
