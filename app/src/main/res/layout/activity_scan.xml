@@ -1,200 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="#F8F9FA"
+    tools:context=".ScanActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/scan_toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        app:title="Soil Scanner"
-        app:titleTextColor="@android:color/white"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        app:elevation="0dp">
 
-    <ScrollView
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/scan_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="New Scan"
+            app:titleTextColor="#1B5E20"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            android:background="@android:color/transparent"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scan_toolbar">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="20dp"
+            android:clipToPadding="false">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_image_preview"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                android:layout_marginBottom="16dp">
-                <ImageView
-                    android:id="@+id/image_view_placeholder"
+                android:layout_height="320dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="28dp"
+                app:cardElevation="8dp"
+                app:strokeWidth="0dp">
+
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="center"
-                    android:background="#E0E0E0"
-                    android:src="@android:drawable/ic_menu_camera"
-                    app:tint="#757575"
-                    android:padding="80dp"/>
-            </androidx.cardview.widget.CardView>
+                    android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_context_data"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                android:layout_marginBottom="16dp"
-                android:visibility="visible">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Live Environmental Context"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:textColor="@color/design_default_color_primary"/>
-
-                    <TextView
-                        android:id="@+id/tv_location_data"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="📍 Location: Acquiring GPS..."
-                        android:layout_marginTop="8dp"
-                        android:textColor="#333333"
-                        android:textStyle="bold"/>
-
-                    <View
+                    <ImageView
+                        android:id="@+id/image_view_placeholder"
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#E0E0E0"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_height="match_parent"
+                        android:scaleType="center"
+                        android:background="#E8F5E9"
+                        android:src="@android:drawable/ic_menu_camera"
+                        app:tint="#A5D6A7"/>
 
-                    <TextView
-                        android:id="@+id/tv_weather_data"
+                    <LinearLayout
+                        android:id="@+id/layout_scan_hint"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="☁️ Weather: Waiting..."
-                        android:layout_marginTop="4dp"
-                        android:textColor="#555555"/>
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/rounded_background_small"
+                        android:backgroundTint="#99000000"
+                        android:paddingHorizontal="24dp"
+                        android:paddingVertical="12dp">
 
-                    <TextView
-                        android:id="@+id/tv_soil_dynamic_data"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="💧 Surface: Waiting..."
-                        android:layout_marginTop="4dp"
-                        android:textColor="#555555"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tap Camera Below"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.05"/>
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tv_solar_data"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="☀️ Solar: Waiting..."
-                        android:layout_marginTop="4dp"
-                        android:textColor="#555555"/>
-
-                    <View
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#E0E0E0"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"/>
-
-                    <TextView
-                        android:id="@+id/tv_soil_static_data"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🪨 Baseline: Waiting..."
-                        android:layout_marginTop="4dp"
-                        android:textColor="#333333"
-                        android:textSize="12sp"/>
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:gravity="center"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="60dp"
+                        android:background="@drawable/gradient_scrim_bottom">
 
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/btn_upload"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="24dp"
+                            android:src="@android:drawable/ic_menu_gallery"
+                            app:backgroundTint="#FFFFFF"
+                            app:tint="#1B5E20"
+                            app:elevation="6dp"
+                            android:contentDescription="Upload"/>
+
+                        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                            android:id="@+id/btn_camera"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Camera"
+                            android:textColor="#FFFFFF"
+                            app:icon="@android:drawable/ic_menu_camera"
+                            app:iconTint="#FFFFFF"
+                            app:backgroundTint="#2E7D32"
+                            app:elevation="6dp"/>
+                    </LinearLayout>
+                </FrameLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
-                android:id="@+id/initial_scan_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="8dp">
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_camera"
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Camera"
-                    android:layout_marginEnd="16dp"
-                    app:icon="@android:drawable/ic_menu_camera"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_upload"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gallery"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    app:icon="@android:drawable/ic_menu_gallery"/>
+                    android:text="Locating..."
+                    app:chipIcon="@android:drawable/ic_menu_mylocation"
+                    app:chipBackgroundColor="#E8F5E9"
+                    style="@style/Widget.MaterialComponents.Chip.Action"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/confirm_group"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:hint="Add Details (e.g. 'Tomato', 'Yellow leaves')"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                android:layout_marginBottom="24dp">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_analyze"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="Analyze Soil Sample"
-                    android:textSize="18sp"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_reset"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_user_notes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Retake Photo"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
-            </LinearLayout>
+                    android:inputType="textCapSentences"
+                    android:lines="1"
+                    android:textSize="16sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Live Environment"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"/>
 
             <LinearLayout
-                android:id="@+id/analysis_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:visibility="gone"
-                android:padding="24dp">
+                android:orientation="horizontal"
+                android:baselineAligned="false">
 
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/tv_analysing"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="AI is processing image features..."
-                    android:layout_marginTop="16dp"/>
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="#E0E0E0"
+                    app:strokeWidth="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_day"
+                            app:tint="#FF9800"/>
+                        <TextView
+                            android:id="@+id/tv_card_weather"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="--°C"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:layout_marginTop="12dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Weather"
+                            android:textSize="12sp"
+                            android:textColor="#757575"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="#E0E0E0"
+                    app:strokeWidth="1dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_menu_compass"
+                            app:tint="#2196F3"/>
+                        <TextView
+                            android:id="@+id/tv_card_moisture"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="--%"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:layout_marginTop="12dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Soil Moisture"
+                            android:textSize="12sp"
+                            android:textColor="#757575"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_hidden_solar"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/tv_hidden_soil_static"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_analyze"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:text="Generate Health Report"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:cornerRadius="16dp"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="#2E7D32"
+                app:elevation="4dp"/>
+
+            <ProgressBar
+                android:id="@+id/progress_analysis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"/>
 
         </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

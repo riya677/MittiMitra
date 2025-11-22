@@ -2,16 +2,20 @@ package com.mittimitra;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.location.Location;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout; // Make sure this import is here
+import android.widget.LinearLayout; // Needed for LayoutParams
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.SoilAnalysis;
@@ -54,53 +59,49 @@ import okhttp3.Response;
 
 public class TipActivity extends AppCompatActivity {
 
-    private static final String GROQ_API_KEY = BuildConfig.GROQ_API_KEY;
     private static final String TAG = "TipActivity";
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+    private static final String CHAT_MODEL_ID = "llama-3.1-8b-instant";
 
-    // UI
+    // UI Components
     private RecyclerView recyclerViewChat;
     private EditText etChatMessage;
-    private FloatingActionButton btnSendChat, btnRecordAudio;
+
+    // Matched to XML types to prevent Crash
+    private FloatingActionButton btnSendChat;
+    private MaterialButton btnRecordAudio;
+
     private ProgressBar loadingIndicator;
     private ChatAdapter chatAdapter;
     private final List<ChatMessage> messageList = new ArrayList<>();
 
-    // API & DB
+    // Dependencies
     private OkHttpClient httpClient;
     private MittiMitraDatabase db;
     private ExecutorService databaseExecutor;
-
-    // Location
     private FusedLocationProviderClient fusedLocationClient;
     private Location lastKnownLocation;
-    private String lastSoilReportJson = null; // Local cache for the soil report
+    private String lastSoilReportJson = null;
 
-    // Audio Recording
+    // Audio
     private MediaRecorder mediaRecorder;
     private File audioFile;
     private boolean isRecording = false;
 
-    // --- Permission Launchers ---
+    // Permissions
     private final ActivityResultLauncher<String[]> locationPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), (permissions) -> {
                 if (Boolean.TRUE.equals(permissions.get(Manifest.permission.ACCESS_FINE_LOCATION))) {
-                    Log.i(TAG, "Location permission granted.");
                     getCurrentLocation();
                 } else {
-                    Toast.makeText(this, "Location permission is needed for local tips.", Toast.LENGTH_SHORT).show();
-                    addInitialBotMessage(); // Load initial message without location
+                    addInitialBotMessage();
                 }
             });
 
     private final ActivityResultLauncher<String> audioPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), (isGranted) -> {
-                if (isGranted) {
-                    Log.i(TAG, "Audio permission granted.");
-                    toggleRecording();
-                } else {
-                    Toast.makeText(this, "Audio permission is needed for speech-to-text.", Toast.LENGTH_SHORT).show();
-                }
+                if (isGranted) toggleRecording();
+                else Toast.makeText(this, "Mic permission required.", Toast.LENGTH_SHORT).show();
             });
 
     @Override
@@ -108,31 +109,27 @@ public class TipActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tip);
 
-        // --- Setup Toolbar ---
         Toolbar toolbar = findViewById(R.id.tip_toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // --- Find Views ---
+        // Find Views
         recyclerViewChat = findViewById(R.id.recycler_view_chat);
         etChatMessage = findViewById(R.id.et_chat_message);
-        btnSendChat = findViewById(R.id.btn_send_chat);
-        btnRecordAudio = findViewById(R.id.btn_record_audio);
         loadingIndicator = findViewById(R.id.loading_indicator);
 
-        // --- Setup Dependencies ---
-        httpClient = new OkHttpClient.Builder().readTimeout(60, TimeUnit.SECONDS).build();
+        // THESE CASTS MUST MATCH THE XML ELEMENTS
+        btnSendChat = findViewById(R.id.btn_send_chat);
+        btnRecordAudio = findViewById(R.id.btn_record_audio);
+
+        httpClient = new OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS).build();
         db = MittiMitraDatabase.getDatabase(getApplicationContext());
         databaseExecutor = Executors.newSingleThreadExecutor();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // --- Setup UI ---
         setupRecyclerView();
-        requestLocation(); // This will chain-load the initial bot message
+        requestLocation();
 
-        // --- Set Listeners ---
         btnSendChat.setOnClickListener(v -> {
             String message = etChatMessage.getText().toString().trim();
             if (!message.isEmpty()) {
@@ -141,202 +138,169 @@ public class TipActivity extends AppCompatActivity {
             }
         });
 
-        btnRecordAudio.setOnClickListener(v -> {
-            requestAudioPermission();
-        });
-
-        // Set up the audio file path
+        btnRecordAudio.setOnClickListener(v -> requestAudioPermission());
         audioFile = new File(getCacheDir(), "recording.m4a");
     }
 
     private void addInitialBotMessage() {
-        String locationContext = (lastKnownLocation != null) ?
-                " at location (" + lastKnownLocation.getLatitude() + ", " + lastKnownLocation.getLongitude() + ")" : "";
-
-        // Get the latest soil report from the DB (on background thread)
         databaseExecutor.execute(() -> {
             SoilAnalysis lastScan = db.soilDao().getLatestReport();
-            if (lastScan != null) {
-                lastSoilReportJson = lastScan.soilReportJson;
-            }
-
-            String systemMessage = "You are Mitti Mitra, a friendly and expert AI farming assistant... " +
-                    // (Your full prompt from before)
-                    "The user is" + locationContext + ". " +
-                    "**DOMAIN RESTRICTION:** Your *only* topic is agriculture. If the user asks about non-farming topics, you **must** politely decline. " +
-                    "**NO THINKING TAGS:** Your final answer must *never* include `<think>` or `</think>` tags.";
-
-            callGroqChatAPI(systemMessage, true);
+            if (lastScan != null) lastSoilReportJson = lastScan.soilReportJson;
+            String sysMsg = "You are Mitti Mitra, an expert AI farming assistant. Introduce yourself briefly.";
+            callGroqChatAPI(sysMsg, true);
         });
     }
 
     private void sendMessage(String userMessage) {
         addMessage(userMessage, ChatMessage.Type.USER);
+        String locContext = (lastKnownLocation != null) ? "Loc: " + lastKnownLocation.getLatitude() + "," + lastKnownLocation.getLongitude() : "";
+        String soilContext = (lastSoilReportJson != null) ? "Last Soil Data: " + lastSoilReportJson : "";
 
-        String locationContext = (lastKnownLocation != null) ?
-                "My current location is latitude " + lastKnownLocation.getLatitude() + " and longitude " + lastKnownLocation.getLongitude() + ". " :
-                "I have not shared my location. ";
-
-        // UPDATED: Use the cached soil report
-        String soilContext = (lastSoilReportJson != null) ?
-                "My last soil scan showed: " + lastSoilReportJson + ". " :
-                "I have no soil scan history. ";
-
-        String finalPrompt = "**Here is my context (use this for farming advice):**\n" +
-                "- " + locationContext + "\n" +
-                "- " + soilContext + "\n\n" +
-                "**Here is my question:** " + userMessage + "\n\n" +
-                "**Your Task (MUST FOLLOW):**" +
-                "1.  Your allowed topics are **farming** AND questions **about the context I provided**." +
-                "2.  If my question is about **farming**, answer it using the context." +
-                "3.  If my question is about **my location or soil**, you **ARE allowed to answer it directly**." +
-                "4.  If my question is **NOT** about farming and **NOT** about my context (e.g., 'what is a movie?'), you **MUST** politely decline." +
-                "5.  Do not show your `<think>` tags.";
-
-        callGroqChatAPI(finalPrompt, false);
+        String prompt = "Context: " + locContext + "\n" + soilContext + "\nUser: " + userMessage + "\n\nAct as a friendly Agri-Expert. Format with Markdown (bold, lists) where helpful.";
+        callGroqChatAPI(prompt, false);
     }
 
-    // ... (The rest of your TipActivity.java [callGroqChatAPI, callGroqWhisperAPI, UI helpers, etc.] remains exactly the same as before) ...
-    // ... (I am omitting the rest of the file for brevity, as it does not change) ...
-
-    // --- PASTE THE REST OF YOUR TipActivity.java CODE HERE ---
-    // (Starting from the callGroqChatAPI method)
-
-    // --- Helper Methods (Copied from previous version) ---
-
-    private void callGroqChatAPI(String prompt, boolean isInitialMessage) {
+    private void callGroqChatAPI(String prompt, boolean isInitial) {
         setLoading(true);
+        String rawKey = BuildConfig.GROQ_API_KEY;
+        if(rawKey == null || rawKey.isEmpty()){
+            addMessage("API Key Missing", ChatMessage.Type.BOT);
+            setLoading(false);
+            return;
+        }
+        String cleanKey = rawKey.replace("\"", "").trim();
 
         JSONObject jsonBody = new JSONObject();
         try {
+            jsonBody.put("model", CHAT_MODEL_ID);
             JSONArray messages = new JSONArray();
             messages.put(new JSONObject().put("role", "user").put("content", prompt));
             jsonBody.put("messages", messages);
-            jsonBody.put("model", "qwen/qwen3-32b");
-            // ... (rest of your JSON body) ...
         } catch (JSONException e) {
-            Log.e(TAG, "Failed to build JSON", e);
             setLoading(false);
             return;
         }
 
-        RequestBody requestBody = RequestBody.create(jsonBody.toString(), JSON);
         Request request = new Request.Builder()
                 .url("https://api.groq.com/openai/v1/chat/completions")
-                .header("Authorization", "Bearer " + GROQ_API_KEY)
-                .header("Content-Type", "application/json")
-                .post(requestBody)
+                .header("Authorization", "Bearer " + cleanKey)
+                .post(RequestBody.create(jsonBody.toString(), JSON))
                 .build();
 
         httpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Log.e(TAG, "Groq API call failed", e);
+            @Override public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 runOnUiThread(() -> {
-                    addMessage("Error: Could not connect to AI. Please check your internet.", ChatMessage.Type.BOT);
+                    addMessage("Network Error.", ChatMessage.Type.BOT);
                     setLoading(false);
                 });
             }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                if (!response.isSuccessful()) {
-                    String errorBody = response.body().string();
-                    Log.e(TAG, "Groq API Error: " + errorBody);
-                    runOnUiThread(() -> {
-                        addMessage("Error: Failed to get response from AI. " + errorBody, ChatMessage.Type.BOT);
-                        setLoading(false);
-                    });
-                    return;
-                }
-
+            @Override public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 try {
-                    String responseBody = response.body().string();
-                    JSONObject json = new JSONObject(responseBody);
-                    String aiResponse = json.getJSONArray("choices")
-                            .getJSONObject(0)
-                            .getJSONObject("message")
-                            .getString("content");
-
-                    final String cleanResponse = aiResponse.replaceAll("<think>(?s).*?</think>", "").trim();
+                    String resBody = response.body().string();
+                    if (!response.isSuccessful()) {
+                        runOnUiThread(() -> {
+                            addMessage("Error: " + response.code(), ChatMessage.Type.BOT);
+                            setLoading(false);
+                        });
+                        return;
+                    }
+                    JSONObject json = new JSONObject(resBody);
+                    String content = json.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
 
                     runOnUiThread(() -> {
-                        if (cleanResponse.isEmpty()) {
-                            addMessage("I'm sorry, I had a thought but couldn't form a response. Could you rephrase that?", ChatMessage.Type.BOT);
-                        } else {
-                            addMessage(cleanResponse, ChatMessage.Type.BOT);
-                        }
+                        addMessage(content, ChatMessage.Type.BOT);
                         setLoading(false);
                     });
-
                 } catch (Exception e) {
-                    Log.e(TAG, "Failed to parse Groq response", e);
-                    runOnUiThread(() -> {
-                        addMessage("Error: Failed to understand AI response.", ChatMessage.Type.BOT);
-                        setLoading(false);
-                    });
+                    runOnUiThread(() -> setLoading(false));
                 }
             }
         });
     }
 
+    // --- Helper Methods ---
+    private void requestLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            locationPermissionLauncher.launch(new String[]{Manifest.permission.ACCESS_FINE_LOCATION});
+        }
+    }
+
+    private void requestAudioPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+            toggleRecording();
+        } else {
+            audioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
+        }
+    }
+
+    @SuppressWarnings("MissingPermission")
+    private void getCurrentLocation() {
+        fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
+            lastKnownLocation = location;
+            addInitialBotMessage();
+        });
+    }
+
+    private void toggleRecording() {
+        if (isRecording) stopRecording();
+        else startRecording();
+    }
+
+    private void startRecording() {
+        try {
+            mediaRecorder = new MediaRecorder();
+            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+            mediaRecorder.setOutputFile(audioFile.getAbsolutePath());
+            mediaRecorder.prepare();
+            mediaRecorder.start();
+            btnRecordAudio.setIconTint(ColorStateList.valueOf(Color.RED)); // Red when recording
+            isRecording = true;
+            Toast.makeText(this, "Listening...", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {}
+    }
+
+    private void stopRecording() {
+        try {
+            if (mediaRecorder != null) { mediaRecorder.stop(); mediaRecorder.release(); }
+        } catch (Exception e) {}
+        mediaRecorder = null;
+        isRecording = false;
+        btnRecordAudio.setIconTint(ColorStateList.valueOf(Color.parseColor("#757575"))); // Grey when idle
+        if (audioFile.exists()) callGroqWhisperAPI(audioFile);
+    }
+
     private void callGroqWhisperAPI(File audioFile) {
         setLoading(true);
+        String rawKey = BuildConfig.GROQ_API_KEY.replace("\"", "").trim();
 
-        RequestBody requestBody = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("file", audioFile.getName(),
-                        RequestBody.create(audioFile, MediaType.get("audio/mp4")))
-                .addFormDataPart("model", "whisper-large-v3")
-                .addFormDataPart("temperature", "0")
-                .addFormDataPart("response_format", "verbose_json")
-                .build();
+        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("file", audioFile.getName(), RequestBody.create(audioFile, MediaType.get("audio/mp4")))
+                .addFormDataPart("model", "whisper-large-v3").build();
 
         Request request = new Request.Builder()
                 .url("https://api.groq.com/openai/v1/audio/transcriptions")
-                .header("Authorization", "Bearer " + GROQ_API_KEY)
-                .post(requestBody)
-                .build();
+                .header("Authorization", "Bearer " + rawKey)
+                .post(requestBody).build();
 
         httpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Log.e(TAG, "Whisper API call failed", e);
-                runOnUiThread(() -> {
-                    setLoading(false);
-                    Toast.makeText(TipActivity.this, "Failed to transcribe audio.", Toast.LENGTH_SHORT).show();
-                });
+            @Override public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                runOnUiThread(() -> setLoading(false));
             }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                if (!response.isSuccessful()) {
-                    String errorBody = response.body().string();
-                    Log.e(TAG, "Whisper API Error: " + errorBody);
-                    runOnUiThread(() -> {
-                        setLoading(false);
-                        Toast.makeText(TipActivity.this, "Transcription failed.", Toast.LENGTH_SHORT).show();
-                    });
-                    return;
-                }
-
+            @Override public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 try {
-                    String responseBody = response.body().string();
-                    JSONObject json = new JSONObject(responseBody);
-                    String transcribedText = json.getString("text");
-
+                    JSONObject json = new JSONObject(response.body().string());
+                    String text = json.getString("text");
                     runOnUiThread(() -> {
-                        etChatMessage.setText(transcribedText);
+                        etChatMessage.setText(text);
                         setLoading(false);
-                        sendMessage(transcribedText);
+                        sendMessage(text);
                     });
-
                 } catch (Exception e) {
-                    Log.e(TAG, "Failed to parse Whisper response", e);
-                    runOnUiThread(() -> {
-                        setLoading(false);
-                        Toast.makeText(TipActivity.this, "Transcription parsing failed.", Toast.LENGTH_SHORT).show();
-                    });
+                    runOnUiThread(() -> setLoading(false));
                 }
             }
         });
@@ -360,158 +324,62 @@ public class TipActivity extends AppCompatActivity {
 
     private void setLoading(boolean isLoading) {
         runOnUiThread(() -> {
-            if (isLoading) {
-                loadingIndicator.setVisibility(View.VISIBLE);
-                btnSendChat.setEnabled(false);
-                btnRecordAudio.setEnabled(false);
-            } else {
-                loadingIndicator.setVisibility(View.GONE);
-                btnSendChat.setEnabled(true);
-                btnRecordAudio.setEnabled(true);
-            }
+            loadingIndicator.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+            btnSendChat.setEnabled(!isLoading);
         });
-    }
-
-    private void requestLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            getCurrentLocation();
-        } else {
-            locationPermissionLauncher.launch(new String[]{
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-            });
-        }
-    }
-
-    private void requestAudioPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-            toggleRecording();
-        } else {
-            audioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
-        }
-    }
-
-    @SuppressWarnings("MissingPermission")
-    private void getCurrentLocation() {
-        fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
-            if (location != null) {
-                this.lastKnownLocation = location;
-                Log.i(TAG, "Location found: " + location.getLatitude() + ", " + location.getLongitude());
-            } else {
-                Log.w(TAG, "Location was null.");
-            }
-            addInitialBotMessage();
-        });
-    }
-
-    private void toggleRecording() {
-        if (isRecording) {
-            stopRecording();
-        } else {
-            startRecording();
-        }
-    }
-
-    private void startRecording() {
-        try {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-                mediaRecorder = new MediaRecorder(this);
-            } else {
-                mediaRecorder = new MediaRecorder();
-            }
-            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-            mediaRecorder.setOutputFile(audioFile.getAbsolutePath());
-            mediaRecorder.prepare();
-            mediaRecorder.start();
-
-            btnRecordAudio.setColorFilter(ContextCompat.getColor(this, android.R.color.holo_red_dark));
-            isRecording = true;
-            Toast.makeText(this, "Recording started...", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            Log.e(TAG, "startRecording failed", e);
-        }
-    }
-
-    private void stopRecording() {
-        try {
-            if (mediaRecorder != null) {
-                mediaRecorder.stop();
-                mediaRecorder.release();
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "stopRecording failed", e);
-        }
-        mediaRecorder = null;
-        isRecording = false;
-        btnRecordAudio.clearColorFilter();
-        Toast.makeText(this, "Recording stopped. Transcribing...", Toast.LENGTH_SHORT).show();
-
-        if (audioFile.exists() && audioFile.length() > 0) {
-            callGroqWhisperAPI(audioFile);
-        } else {
-            Toast.makeText(this, "No audio recorded.", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        }
+        if (item.getItemId() == android.R.id.home) { finish(); return true; }
         return super.onOptionsItemSelected(item);
     }
 
+    // --- MARKDOWN PARSER ---
+    private static Spanned parseMarkdown(String markdown) {
+        if (markdown == null) return Html.fromHtml("", Html.FROM_HTML_MODE_COMPACT);
+
+        // Convert common Markdown to HTML tags
+        String html = markdown.replaceAll("\\*\\*(.*?)\\*\\*", "<b>$1</b>");
+        html = html.replaceAll("####\\s*(.*)", "<br><b>$1</b><br>"); // H4
+        html = html.replaceAll("###\\s*(.*)", "<br><b>$1</b><br>"); // H3
+        html = html.replaceAll("##\\s*(.*)", "<br><b>$1</b><br>"); // H2
+        html = html.replaceAll("^-\\s+(.*)", "• $1<br>"); // List start
+        html = html.replaceAll("\\n-\\s+(.*)", "<br>• $1"); // List item
+        html = html.replace("\n", "<br>"); // Newlines
+
+        return Html.fromHtml(html, Html.FROM_HTML_MODE_COMPACT);
+    }
+
     private static class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
-
         private final List<ChatMessage> messages;
-
-        ChatAdapter(List<ChatMessage> messages) {
-            this.messages = messages;
-        }
-
-        @NonNull
-        @Override
-        public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_chat_message, parent, false);
+        ChatAdapter(List<ChatMessage> messages) { this.messages = messages; }
+        @NonNull @Override public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_message, parent, false);
             return new ChatViewHolder(view);
         }
-
-        @Override
-        public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
+        @Override public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
             ChatMessage message = messages.get(position);
-            holder.messageText.setText(message.getMessage());
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            );
+            // USE MARKDOWN PARSER HERE
+            holder.messageText.setText(parseMarkdown(message.getMessage()));
+
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.messageText.getLayoutParams();
             if (message.getType() == ChatMessage.Type.USER) {
                 params.gravity = android.view.Gravity.END;
-                holder.messageText.setBackgroundColor(0xFF007BFF); // Blue
-                holder.messageText.setTextColor(0xFFFFFFFF); // White
+                holder.messageText.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DCF8C6")));
+                holder.messageText.setTextColor(Color.BLACK);
             } else {
                 params.gravity = android.view.Gravity.START;
-                holder.messageText.setBackgroundColor(0xFFE9ECEF); // Light Gray
-                holder.messageText.setTextColor(0xFF000000); // Black
+                holder.messageText.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+                holder.messageText.setTextColor(Color.BLACK);
             }
             holder.messageText.setLayoutParams(params);
         }
-
-        @Override
-        public int getItemCount() {
-            return messages.size();
-        }
-
+        @Override public int getItemCount() { return messages.size(); }
         static class ChatViewHolder extends RecyclerView.ViewHolder {
             TextView messageText;
-            ChatViewHolder(@NonNull View itemView) {
-                super(itemView);
-                messageText = itemView.findViewById(R.id.chat_message_text);
-            }
+            ChatViewHolder(@NonNull View itemView) { super(itemView); messageText = itemView.findViewById(R.id.chat_message_text); }
         }
     }
 }

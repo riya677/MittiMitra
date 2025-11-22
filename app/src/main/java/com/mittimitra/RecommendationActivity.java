@@ -1,25 +1,30 @@
 package com.mittimitra;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
+import android.text.Html;
+import android.text.Spanned;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.SoilAnalysis;
 
@@ -29,7 +34,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -44,89 +48,91 @@ import okhttp3.Response;
 
 public class RecommendationActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
-    private TextView tvDate, tvName, tvPhone, tvState, tvDistrict, tvSeason, tvAiAdvice;
-    private TextView tvWeather, tvSolar, tvMoisture;
-    private TextView valN, ratN, valP, ratP, valK, ratK, valPh, ratPh;
-    private View reportContainer;
+    private static final String TAG = "RecommendationActivity";
 
-    private static final String GROQ_API_KEY = BuildConfig.GROQ_API_KEY;
+    // UI Components
+    private TextView tvName, tvPhone, tvEmail, tvLocation, tvDate;
+    private TextView valN, ratN, valP, ratP, valK, ratK, valPh, ratPh;
+    private TextView tvAiContext, tvAiAdvice;
+    private View reportContainer;
+    private ExtendedFloatingActionButton btnDownload;
+
+    // Services
     private static final String API_URL = "https://api.groq.com/openai/v1/chat/completions";
+    private static final String MODEL_ID = "llama-3.3-70b-versatile";
 
     private int analysisId = -1;
     private TextToSpeech tts;
-    private SessionManager sessionManager;
-    private String currentSeason = "Unknown";
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Soil Health Report");
-        }
+        Toolbar toolbar = findViewById(R.id.toolbar_recommendation);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        analysisId = getIntent().getIntExtra("analysis_id", -1);
+        db = FirebaseFirestore.getInstance();
         tts = new TextToSpeech(this, this);
-        sessionManager = new SessionManager(this);
+        analysisId = getIntent().getIntExtra("analysis_id", -1);
 
-        // Initialize Views
         reportContainer = findViewById(R.id.report_container);
-        tvDate = findViewById(R.id.tv_report_date);
+        btnDownload = findViewById(R.id.btn_download_pdf);
+
         tvName = findViewById(R.id.tv_rep_name);
         tvPhone = findViewById(R.id.tv_rep_phone);
-        tvState = findViewById(R.id.tv_rep_state);
-        tvDistrict = findViewById(R.id.tv_rep_district);
-        tvSeason = findViewById(R.id.tv_rep_season);
-        tvWeather = findViewById(R.id.tv_rep_weather);
-        tvSolar = findViewById(R.id.tv_rep_solar);
-        tvMoisture = findViewById(R.id.tv_rep_moisture);
-        tvAiAdvice = findViewById(R.id.tv_ai_advice);
+        tvEmail = findViewById(R.id.tv_rep_email);
+        tvLocation = findViewById(R.id.tv_rep_location);
+        tvDate = findViewById(R.id.tv_report_date);
 
         valN = findViewById(R.id.tv_val_n); ratN = findViewById(R.id.tv_rat_n);
         valP = findViewById(R.id.tv_val_p); ratP = findViewById(R.id.tv_rat_p);
         valK = findViewById(R.id.tv_val_k); ratK = findViewById(R.id.tv_rat_k);
         valPh = findViewById(R.id.tv_val_ph); ratPh = findViewById(R.id.tv_rat_ph);
 
-        findViewById(R.id.btn_save_pdf).setOnClickListener(v -> generatePdf());
+        tvAiContext = findViewById(R.id.tv_ai_context);
+        tvAiAdvice = findViewById(R.id.tv_ai_advice);
 
-        // THIS LINE CAUSED THE ERROR IF THE METHOD WAS MISSING
-        tvAiAdvice.setOnClickListener(v -> speakAdvice());
+        btnDownload.setOnClickListener(v -> savePdf());
+        btnDownload.setVisibility(View.GONE); // Hide until ready
 
-        loadFarmerDetails();
-        calculateSeason();
-        loadData();
+        loadFarmerProfile();
+        loadAnalysisData();
     }
 
-    private void loadFarmerDetails() {
-        String name = sessionManager.getUserName();
-        tvName.setText(name != null ? name : "Farmer");
+    private void loadFarmerProfile() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            String phone = user.getPhoneNumber();
-            tvPhone.setText(phone != null && !phone.isEmpty() ? phone : "N/A");
+            String email = user.getEmail();
+            tvEmail.setText((email != null && !email.isEmpty()) ? email : "No Email Linked");
+
+            db.collection("farmers").document(user.getUid()).get()
+                    .addOnSuccessListener(doc -> {
+                        if (doc.exists()) {
+                            String name = doc.getString("firstName");
+                            String phone = doc.getString("phone");
+                            tvName.setText((name != null && !name.isEmpty()) ? name : "Mitti Mitra Farmer");
+                            tvPhone.setText((phone != null && !phone.isEmpty()) ? phone : "Not Registered");
+                        } else {
+                            tvName.setText("Mitti Mitra User");
+                        }
+                    })
+                    .addOnFailureListener(e -> tvName.setText("Offline User"));
         }
     }
 
-    private void calculateSeason() {
-        Calendar c = Calendar.getInstance();
-        int month = c.get(Calendar.MONTH);
-        if (month >= 5 && month <= 8) currentSeason = "Kharif";
-        else if (month >= 9 || month <= 2) currentSeason = "Rabi";
-        else currentSeason = "Zaid";
-        tvSeason.setText(currentSeason);
-    }
-
-    private void loadData() {
+    private void loadAnalysisData() {
         new Thread(() -> {
             SoilAnalysis analysis;
             if (analysisId != -1) analysis = MittiMitraDatabase.getDatabase(this).soilDao().getAnalysisById(analysisId);
             else analysis = MittiMitraDatabase.getDatabase(this).soilDao().getLatestReport();
 
-            runOnUiThread(() -> {
-                if (analysis != null) populateForm(analysis);
-            });
+            if (analysis != null) {
+                SoilAnalysis finalAnalysis = analysis;
+                runOnUiThread(() -> populateForm(finalAnalysis));
+            }
         }).start();
     }
 
@@ -134,146 +140,179 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
         try {
             JSONObject json = new JSONObject(analysis.soilReportJson);
 
-            tvDate.setText("Date: " + new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date(analysis.timestamp)));
-            tvWeather.setText(json.optString("weather", "N/A"));
-            tvSolar.setText(json.optString("solar", "N/A"));
-            tvMoisture.setText(json.optString("soil_dynamic", "N/A"));
-
-            String rawLoc = json.optString("location", "Unknown, Unknown");
-            String[] parts = rawLoc.split(",");
-            if (parts.length >= 2) {
-                tvDistrict.setText(parts[0].trim());
-                tvState.setText(parts[1].trim());
-            } else {
-                tvDistrict.setText(rawLoc);
-            }
+            tvDate.setText(new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date(analysis.timestamp)));
+            tvLocation.setText(json.optString("location", "Unknown Location"));
 
             int n = json.optInt("N");
             int p = json.optInt("P");
             int k = json.optInt("K");
-            double ph = 6.5;
-            if (json.has("pH")) ph = json.getDouble("pH");
+            double ph = json.optDouble("pH", 6.5);
 
             setRow(valN, ratN, n, 280, 560, "kg/ha");
             setRow(valP, ratP, p, 10, 25, "kg/ha");
             setRow(valK, ratK, k, 108, 280, "kg/ha");
 
-            valPh.setText(String.format(Locale.US, "%.1f", ph));
-            if(ph < 6.0) { ratPh.setText("Acidic"); ratPh.setTextColor(Color.RED); }
-            else if(ph > 7.5) { ratPh.setText("Alkaline"); ratPh.setTextColor(Color.BLUE); }
-            else { ratPh.setText("Neutral"); ratPh.setTextColor(Color.parseColor("#4CAF50")); }
+            valPh.setText(String.format("%.1f", ph));
+            if(ph < 6.0) { ratPh.setText("ACIDIC"); ratPh.setTextColor(Color.RED); }
+            else if(ph > 7.5) { ratPh.setText("ALKALINE"); ratPh.setTextColor(Color.BLUE); }
+            else { ratPh.setText("NEUTRAL"); ratPh.setTextColor(Color.parseColor("#2E7D32")); }
 
-            fetchAiAdvice(json, n, p, k, ph);
+            // --- DYNAMIC CONTEXT ---
+            String userNotes = json.optString("user_notes", "None"); // Use Notes
+            String weather = json.optString("weather", "N/A");
+            String moisture = json.optString("soil_dynamic", "N/A");
+
+            String contextText = String.format("Input: %s | Weather: %s | Moisture: %s", userNotes, weather, moisture);
+            tvAiContext.setText(contextText);
+
+            fetchProfessionalAdvice(n, p, k, ph, userNotes, weather, moisture);
 
         } catch (Exception e) { e.printStackTrace(); }
     }
 
     private void setRow(TextView vVal, TextView vRat, int val, int low, int high, String unit) {
         vVal.setText(val + " " + unit);
-        if (val < low) {
-            vRat.setText("LOW 🔴"); vRat.setTextColor(Color.RED);
-        } else if (val > high) {
-            vRat.setText("HIGH 🔴"); vRat.setTextColor(Color.RED);
-        } else {
-            vRat.setText("OPTIMAL 🟢"); vRat.setTextColor(Color.parseColor("#2E7D32"));
-        }
+        if (val < low) { vRat.setText("LOW"); vRat.setTextColor(Color.RED); }
+        else if (val > high) { vRat.setText("HIGH"); vRat.setTextColor(Color.RED); }
+        else { vRat.setText("OK"); vRat.setTextColor(Color.parseColor("#2E7D32")); }
     }
 
-    private void fetchAiAdvice(JSONObject data, int n, int p, int k, double ph) {
-        String prompt = String.format(Locale.US,
-                "Act as an Indian agricultural scientist. State: %s. Season: %s. Soil: N=%d, P=%d, K=%d, pH=%.1f. \n" +
-                        "Provide a recommendation in 3 sections:\n" +
-                        "1. Best Crops\n2. Fertilizer Dosage\n3. Crop Care.",
-                tvState.getText(), currentSeason, n, p, k, ph);
+    private void fetchProfessionalAdvice(int n, int p, int k, double ph, String userNotes, String weather, String moisture) {
+
+        String rawKey = BuildConfig.GROQ_API_KEY.replace("\"", "").trim();
+
+        // DYNAMIC PROMPT
+        String taskInstruction;
+        if (userNotes.equalsIgnoreCase("None") || userNotes.isEmpty()) {
+            // Case A: No Crop -> Recommend
+            taskInstruction =
+                    "1. **Crop Recommendation:** Suggest top 3 crops for this Soil NPK/pH.\n" +
+                            "2. **Why:** Explain suitability briefly.\n" +
+                            "3. **Soil Correction:** Advise on pH correction.";
+        } else {
+            // Case B: Specific Input -> Analyze
+            taskInstruction =
+                    "1. **Analysis for '" + userNotes + "':** Is this crop/issue relevant? Give specific advice.\n" +
+                            "2. **Fertilizer Schedule:** Exact Urea/DAP/MOP dosage (kg/acre) for " + userNotes + ".\n" +
+                            "3. **Care:** Address the user note directly (disease/irrigation).";
+        }
+
+        String systemPrompt = "You are a Senior Indian Agronomist. Provide strict, actionable advice in clean Markdown.";
+        String userPrompt = String.format(
+                "Generate Soil Health Advisory.\n\n" +
+                        "DATA:\n- User Input: %s\n- Soil: N=%d P=%d K=%d pH=%.1f\n- Weather: %s\n- Moisture: %s\n\n" +
+                        "TASKS:\n%s\n\nNote: Be precise.",
+                userNotes, n, p, k, ph, weather, moisture, taskInstruction
+        );
 
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("model", "llama3-8b-8192");
+            jsonBody.put("model", MODEL_ID);
+            jsonBody.put("temperature", 0.3);
             JSONArray messages = new JSONArray();
-            JSONObject msg = new JSONObject();
-            msg.put("role", "user");
-            msg.put("content", prompt);
-            messages.put(msg);
+            messages.put(new JSONObject().put("role", "system").put("content", systemPrompt));
+            messages.put(new JSONObject().put("role", "user").put("content", userPrompt));
             jsonBody.put("messages", messages);
-        } catch (Exception e) {}
+        } catch (Exception e) { return; }
 
-        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS).build();
-        RequestBody body = RequestBody.create(jsonBody.toString(), MediaType.get("application/json"));
-        Request request = new Request.Builder().url(API_URL).addHeader("Authorization", "Bearer " + GROQ_API_KEY).post(body).build();
+        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS).build();
+        Request request = new Request.Builder()
+                .url(API_URL)
+                .addHeader("Authorization", "Bearer " + rawKey)
+                .post(RequestBody.create(jsonBody.toString(), MediaType.get("application/json")))
+                .build();
 
         client.newCall(request).enqueue(new Callback() {
             @Override public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                runOnUiThread(() -> tvAiAdvice.setText("AI Service Unavailable."));
+                runOnUiThread(() -> tvAiAdvice.setText("Network Error."));
             }
             @Override public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                if (response.body() != null) {
-                    try {
-                        JSONObject res = new JSONObject(response.body().string());
-                        String content = res.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
-                        runOnUiThread(() -> tvAiAdvice.setText(content));
-                    } catch (Exception e) {}
+                try {
+                    if (!response.isSuccessful()) {
+                        runOnUiThread(() -> tvAiAdvice.setText("AI Error: " + response.code()));
+                        return;
+                    }
+                    JSONObject res = new JSONObject(response.body().string());
+                    String rawContent = res.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
+
+                    Spanned styledText = parseMarkdown(rawContent);
+                    runOnUiThread(() -> {
+                        tvAiAdvice.setText(styledText);
+                        btnDownload.setVisibility(View.VISIBLE);
+                    });
+                } catch (Exception e) {
+                    runOnUiThread(() -> tvAiAdvice.setText("Error parsing response."));
                 }
             }
         });
     }
 
-    @Override
-    public void onInit(int status) {
-        if (status == TextToSpeech.SUCCESS) { tts.setLanguage(new Locale("en", "IN")); }
+    private static Spanned parseMarkdown(String markdown) {
+        String html = markdown.replaceAll("\\*\\*(.*?)\\*\\*", "<b>$1</b>");
+        html = html.replaceAll("####\\s*(.*)", "<br><b>$1</b><br>");
+        html = html.replaceAll("###\\s*(.*)", "<br><b>$1</b><br>");
+        html = html.replaceAll("##\\s*(.*)", "<br><b>$1</b><br>");
+        html = html.replaceAll("^-\\s+(.*)", "• $1<br>");
+        html = html.replaceAll("\\n-\\s+(.*)", "<br>• $1");
+        html = html.replace("\n", "<br>");
+        return Html.fromHtml(html, Html.FROM_HTML_MODE_COMPACT);
     }
 
-    // --- THIS WAS THE MISSING METHOD ---
-    private void speakAdvice() {
-        String text = tvAiAdvice.getText().toString();
-        if (!text.isEmpty()) {
-            Toast.makeText(this, "Reading...", Toast.LENGTH_SHORT).show();
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+    private void savePdf() {
+        try {
+            PdfDocument document = new PdfDocument();
+            PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(reportContainer.getWidth(), reportContainer.getHeight(), 1).create();
+            PdfDocument.Page page = document.startPage(pageInfo);
+
+            Canvas canvas = page.getCanvas();
+            canvas.drawColor(Color.WHITE);
+            reportContainer.draw(canvas);
+            document.finishPage(page);
+
+            String fileName = "MittiMitra_Report_" + System.currentTimeMillis() + ".pdf";
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
+            values.put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf");
+            values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS);
+
+            Uri uri = getContentResolver().insert(MediaStore.Files.getContentUri("external"), values);
+            if (uri != null) {
+                OutputStream out = getContentResolver().openOutputStream(uri);
+                document.writeTo(out);
+                out.close();
+                Toast.makeText(this, "PDF Saved!", Toast.LENGTH_LONG).show();
+            }
+            document.close();
+        } catch (Exception e) {
+            Toast.makeText(this, "PDF Error", Toast.LENGTH_SHORT).show();
         }
     }
-    // -----------------------------------
 
-    private void generatePdf() {
-        PdfDocument document = new PdfDocument();
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(reportContainer.getWidth(), reportContainer.getHeight(), 1).create();
-        PdfDocument.Page page = document.startPage(pageInfo);
-        Canvas canvas = page.getCanvas();
-        canvas.drawColor(Color.WHITE);
-        reportContainer.draw(canvas);
-        document.finishPage(page);
-        String fileName = "Report_" + System.currentTimeMillis() + ".pdf";
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                ContentValues values = new ContentValues();
-                values.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
-                values.put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf");
-                values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS);
-                Uri uri = getContentResolver().insert(MediaStore.Files.getContentUri("external"), values);
-                if (uri != null) {
-                    OutputStream out = getContentResolver().openOutputStream(uri);
-                    document.writeTo(out);
-                    if (out != null) out.close();
-                    Toast.makeText(this, "PDF Saved!", Toast.LENGTH_LONG).show();
-                }
-            }
-        } catch (IOException e) {}
-        document.close();
+    @Override
+    public void onInit(int status) {
+        if(status == TextToSpeech.SUCCESS) tts.setLanguage(new Locale("en", "IN"));
+    }
+
+    private void speakAdvice() {
+        if (tts != null) tts.speak(tvAiAdvice.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, null);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, 1, 0, "Read Aloud").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(this, HomeActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) finish();
+        if (item.getItemId() == 1) speakAdvice();
+        return true;
     }
 
     @Override
     protected void onDestroy() {
-        if (tts != null) { tts.stop(); tts.shutdown(); }
+        if(tts != null) tts.shutdown();
         super.onDestroy();
     }
 }
