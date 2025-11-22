@@ -29,12 +29,14 @@ import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.material.button.MaterialButton;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.SoilAnalysis;
 import com.mittimitra.network.RetrofitClient;
+import com.mittimitra.utils.SoilDataManager;
 
 import org.json.JSONObject;
 
@@ -52,17 +54,22 @@ public class ScanActivity extends AppCompatActivity {
     private View initialScanGroup, confirmGroup, analysisGroup;
     private ImageView imageViewPlaceholder;
     private TextView tvLocation, tvWeather, tvSoilDynamic, tvSoilStatic, tvSolar, tvAiStatus;
+
     private FusedLocationProviderClient fusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST = 1001;
     private static final String PREF_CACHE = "scan_cache";
 
-    // Data
+    // Context Data
     private String weatherSummary = "N/A";
     private String soilDynamic = "N/A";
     private String soilStatic = "N/A";
     private String solarInfo = "N/A";
     private String locationName = "Unknown";
+    private String districtName = "Unknown";
     private double currentLat = 0.0, currentLon = 0.0;
+
+    private double isricPh = 0;
+    private double isricN = 0;
 
     // Launchers
     private final ActivityResultLauncher<Void> cameraLauncher =
@@ -82,7 +89,7 @@ public class ScanActivity extends AppCompatActivity {
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) cameraLauncher.launch(null);
-                else Toast.makeText(this, "Permission required", Toast.LENGTH_SHORT).show();
+                else Toast.makeText(this, "Camera permission required", Toast.LENGTH_SHORT).show();
             });
 
     @Override
@@ -96,31 +103,27 @@ public class ScanActivity extends AppCompatActivity {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Bind Views
+        // Views
         imageViewPlaceholder = findViewById(R.id.image_view_placeholder);
         initialScanGroup = findViewById(R.id.initial_scan_group);
         confirmGroup = findViewById(R.id.confirm_group);
         analysisGroup = findViewById(R.id.analysis_group);
         tvAiStatus = findViewById(R.id.tv_analysing);
+
         tvLocation = findViewById(R.id.tv_location_data);
         tvWeather = findViewById(R.id.tv_weather_data);
         tvSoilDynamic = findViewById(R.id.tv_soil_dynamic_data);
         tvSoilStatic = findViewById(R.id.tv_soil_static_data);
         tvSolar = findViewById(R.id.tv_solar_data);
 
-        // Listeners
         findViewById(R.id.btn_camera).setOnClickListener(v -> requestPermissionLauncher.launch(Manifest.permission.CAMERA));
         findViewById(R.id.btn_upload).setOnClickListener(v -> galleryLauncher.launch(new PickVisualMediaRequest.Builder().setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE).build()));
         findViewById(R.id.btn_analyze).setOnClickListener(v -> startAnalysis());
         findViewById(R.id.btn_reset).setOnClickListener(v -> resetUI());
 
         resetUI();
-
-        // 1. INSTANT LOAD: Show cached data while waiting
-        loadCachedData();
-
-        // 2. FETCH NEW: Get fresh GPS and API data
-        checkLocationAndFetchData();
+        loadCachedData(); // Instant Load
+        checkLocationAndFetchData(); // Fresh Fetch
     }
 
     private void loadCachedData() {
@@ -131,12 +134,6 @@ public class ScanActivity extends AppCompatActivity {
             tvSolar.setText("☀️ " + prefs.getString("solar", "--"));
             tvSoilStatic.setText("🪨 " + prefs.getString("soil_stat", "--"));
             tvLocation.setText("📍 " + prefs.getString("loc", "Detecting..."));
-
-            // Pre-fill variables
-            weatherSummary = prefs.getString("weather", "N/A");
-            soilDynamic = prefs.getString("soil_dyn", "N/A");
-            soilStatic = prefs.getString("soil_stat", "N/A");
-            solarInfo = prefs.getString("solar", "N/A");
         }
     }
 
@@ -144,7 +141,6 @@ public class ScanActivity extends AppCompatActivity {
         getSharedPreferences(PREF_CACHE, Context.MODE_PRIVATE).edit().putString(key, value).apply();
     }
 
-    // --- Logic ---
     private void displayImage(Bitmap bitmap) {
         imageViewPlaceholder.setImageBitmap(bitmap);
         fixImageStyle();
@@ -152,7 +148,6 @@ public class ScanActivity extends AppCompatActivity {
     }
 
     private void fixImageStyle() {
-        // CRITICAL: Removes tint/background so image is visible
         imageViewPlaceholder.setImageTintList(null);
         imageViewPlaceholder.setBackground(null);
         imageViewPlaceholder.setPadding(0, 0, 0, 0);
@@ -181,7 +176,10 @@ public class ScanActivity extends AppCompatActivity {
                 Geocoder geocoder = new Geocoder(this, Locale.getDefault());
                 List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
                 if (!addresses.isEmpty()) {
-                    locationName = addresses.get(0).getLocality() + ", " + addresses.get(0).getAdminArea();
+                    Address addr = addresses.get(0);
+                    districtName = addr.getSubAdminArea();
+                    if (districtName == null) districtName = addr.getLocality();
+                    locationName = addr.getLocality() + ", " + addr.getAdminArea();
                     new Handler(Looper.getMainLooper()).post(() -> {
                         tvLocation.setText("📍 " + locationName);
                         cacheData("loc", locationName);
@@ -192,28 +190,35 @@ public class ScanActivity extends AppCompatActivity {
     }
 
     private void fetchAgroData(double lat, double lon) {
+        // Combined call for Weather, Soil Dynamic, Solar AND Elevation
         RetrofitClient.getAgroService().getAgroWeather(lat, lon).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body() != null) {
                     try {
                         JsonObject current = response.body().getAsJsonObject("current");
+
+                        // 1. Weather
                         double temp = current.get("temperature_2m").getAsDouble();
                         int hum = current.get("relative_humidity_2m").getAsInt();
                         weatherSummary = String.format("%.1f°C, %d%% Hum", temp, hum);
                         tvWeather.setText("☁️ " + weatherSummary);
                         cacheData("weather", weatherSummary);
 
+                        // 2. Soil Dynamic
                         double soilTemp = current.get("soil_temperature_0cm").getAsDouble();
                         double soilMoist = current.get("soil_moisture_0_to_1cm").getAsDouble();
                         soilDynamic = String.format("Temp: %.1f°C | Moist: %.2f", soilTemp, soilMoist);
                         tvSoilDynamic.setText("💧 " + soilDynamic);
                         cacheData("soil_dyn", soilDynamic);
 
+                        // 3. Solar + Elevation (READ DIRECTLY FROM ROOT JSON)
                         double uv = current.get("uv_index").getAsDouble();
-                        solarInfo = String.format("UV: %.1f", uv);
+                        double elevation = response.body().get("elevation").getAsDouble(); // FAST Elevation
+                        solarInfo = String.format("UV: %.1f | Elev: %.0fm", uv, elevation);
                         tvSolar.setText("☀️ " + solarInfo);
                         cacheData("solar", solarInfo);
+
                     } catch (Exception e) {}
                 }
             }
@@ -238,8 +243,15 @@ public class ScanActivity extends AppCompatActivity {
                                     JsonArray depths = obj.getAsJsonArray("depths");
                                     if (depths.size() > 0) {
                                         int val = depths.get(0).getAsJsonObject().getAsJsonObject("values").get("mean").getAsInt();
-                                        if (name.equals("phh2o")) sb.append("pH:").append(val/10.0).append(" ");
-                                        if (name.equals("nitrogen")) sb.append("N:").append(val/100.0).append("g ");
+                                        if (name.equals("phh2o")) {
+                                            isricPh = val / 10.0;
+                                            sb.append("pH:").append(isricPh).append(" ");
+                                        }
+                                        if (name.equals("nitrogen")) {
+                                            isricN = val / 100.0;
+                                            sb.append("N:").append(isricN).append("g ");
+                                        }
+                                        if (name.equals("clay")) sb.append("Clay:").append(val/10.0).append("% ");
                                     }
                                 }
                                 soilStatic = sb.toString();
@@ -254,32 +266,42 @@ public class ScanActivity extends AppCompatActivity {
 
     private void startAnalysis() {
         showAnalysisUI(true);
-        new Handler(Looper.getMainLooper()).postDelayed(this::saveAndFinish, 2000);
+        new Handler(Looper.getMainLooper()).postDelayed(this::generateSmartReport, 2000);
     }
 
-    private void saveAndFinish() {
+    private void generateSmartReport() {
         new Thread(() -> {
             try {
+                SoilDataManager.SoilProfile csvData = SoilDataManager.getDistrictAverage(this, districtName);
+
+                int reportN = (int) (csvData.isFound ? csvData.N : (isricN > 0 ? isricN * 200 : 150));
+                int reportP = (int) (csvData.isFound ? csvData.P : 20);
+                int reportK = (int) (csvData.isFound ? csvData.K : 100);
+                double reportPh = (csvData.isFound ? csvData.pH : (isricPh > 0 ? isricPh : 6.5));
+
                 JSONObject report = new JSONObject();
-                report.put("N", new Random().nextInt(50) + 100);
-                report.put("P", new Random().nextInt(30) + 10);
-                report.put("K", new Random().nextInt(40) + 100);
+                report.put("N", reportN);
+                report.put("P", reportP);
+                report.put("K", reportK);
+                report.put("pH", reportPh);
                 report.put("weather", weatherSummary);
                 report.put("soil_dynamic", soilDynamic);
                 report.put("soil_static", soilStatic);
                 report.put("solar", solarInfo);
                 report.put("location", locationName);
+                report.put("source", csvData.isFound ? "Regional Data" : "Satellite Estimate");
 
                 SoilAnalysis analysis = new SoilAnalysis();
                 analysis.timestamp = System.currentTimeMillis();
                 analysis.soilReportJson = report.toString();
+
                 MittiMitraDatabase.getDatabase(this).soilDao().insertAnalysis(analysis);
 
                 runOnUiThread(() -> {
                     startActivity(new Intent(this, RecommendationActivity.class));
                     finish();
                 });
-            } catch (Exception e) {}
+            } catch (Exception e) { e.printStackTrace(); }
         }).start();
     }
 

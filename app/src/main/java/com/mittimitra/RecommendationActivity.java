@@ -18,6 +18,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.SoilAnalysis;
 
@@ -27,6 +29,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +44,8 @@ import okhttp3.Response;
 
 public class RecommendationActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
-    private TextView tvDate, tvLocation, tvWeather, tvAiAdvice;
+    private TextView tvDate, tvName, tvPhone, tvState, tvDistrict, tvSeason, tvAiAdvice;
+    private TextView tvWeather, tvSolar, tvMoisture;
     private TextView valN, ratN, valP, ratP, valK, ratK, valPh, ratPh;
     private View reportContainer;
 
@@ -50,6 +54,8 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
 
     private int analysisId = -1;
     private TextToSpeech tts;
+    private SessionManager sessionManager;
+    private String currentSeason = "Unknown";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +69,19 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
 
         analysisId = getIntent().getIntExtra("analysis_id", -1);
         tts = new TextToSpeech(this, this);
+        sessionManager = new SessionManager(this);
 
+        // Initialize Views
         reportContainer = findViewById(R.id.report_container);
         tvDate = findViewById(R.id.tv_report_date);
-        tvLocation = findViewById(R.id.tv_rep_location);
+        tvName = findViewById(R.id.tv_rep_name);
+        tvPhone = findViewById(R.id.tv_rep_phone);
+        tvState = findViewById(R.id.tv_rep_state);
+        tvDistrict = findViewById(R.id.tv_rep_district);
+        tvSeason = findViewById(R.id.tv_rep_season);
         tvWeather = findViewById(R.id.tv_rep_weather);
+        tvSolar = findViewById(R.id.tv_rep_solar);
+        tvMoisture = findViewById(R.id.tv_rep_moisture);
         tvAiAdvice = findViewById(R.id.tv_ai_advice);
 
         valN = findViewById(R.id.tv_val_n); ratN = findViewById(R.id.tv_rat_n);
@@ -76,24 +90,42 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
         valPh = findViewById(R.id.tv_val_ph); ratPh = findViewById(R.id.tv_rat_ph);
 
         findViewById(R.id.btn_save_pdf).setOnClickListener(v -> generatePdf());
+
+        // THIS LINE CAUSED THE ERROR IF THE METHOD WAS MISSING
         tvAiAdvice.setOnClickListener(v -> speakAdvice());
 
+        loadFarmerDetails();
+        calculateSeason();
         loadData();
     }
 
-    // --- Data Loading ---
+    private void loadFarmerDetails() {
+        String name = sessionManager.getUserName();
+        tvName.setText(name != null ? name : "Farmer");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String phone = user.getPhoneNumber();
+            tvPhone.setText(phone != null && !phone.isEmpty() ? phone : "N/A");
+        }
+    }
+
+    private void calculateSeason() {
+        Calendar c = Calendar.getInstance();
+        int month = c.get(Calendar.MONTH);
+        if (month >= 5 && month <= 8) currentSeason = "Kharif";
+        else if (month >= 9 || month <= 2) currentSeason = "Rabi";
+        else currentSeason = "Zaid";
+        tvSeason.setText(currentSeason);
+    }
+
     private void loadData() {
         new Thread(() -> {
             SoilAnalysis analysis;
-            if (analysisId != -1) {
-                analysis = MittiMitraDatabase.getDatabase(this).soilDao().getAnalysisById(analysisId);
-            } else {
-                analysis = MittiMitraDatabase.getDatabase(this).soilDao().getLatestReport();
-            }
+            if (analysisId != -1) analysis = MittiMitraDatabase.getDatabase(this).soilDao().getAnalysisById(analysisId);
+            else analysis = MittiMitraDatabase.getDatabase(this).soilDao().getLatestReport();
 
             runOnUiThread(() -> {
                 if (analysis != null) populateForm(analysis);
-                else tvAiAdvice.setText("No data found.");
             });
         }).start();
     }
@@ -103,8 +135,18 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
             JSONObject json = new JSONObject(analysis.soilReportJson);
 
             tvDate.setText("Date: " + new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date(analysis.timestamp)));
-            tvLocation.setText("Location: " + json.optString("location", "Unknown"));
-            tvWeather.setText("Weather: " + json.optString("weather", "N/A"));
+            tvWeather.setText(json.optString("weather", "N/A"));
+            tvSolar.setText(json.optString("solar", "N/A"));
+            tvMoisture.setText(json.optString("soil_dynamic", "N/A"));
+
+            String rawLoc = json.optString("location", "Unknown, Unknown");
+            String[] parts = rawLoc.split(",");
+            if (parts.length >= 2) {
+                tvDistrict.setText(parts[0].trim());
+                tvState.setText(parts[1].trim());
+            } else {
+                tvDistrict.setText(rawLoc);
+            }
 
             int n = json.optInt("N");
             int p = json.optInt("P");
@@ -117,8 +159,8 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
             setRow(valK, ratK, k, 108, 280, "kg/ha");
 
             valPh.setText(String.format(Locale.US, "%.1f", ph));
-            if(ph < 6.0) { ratPh.setText("Acidic"); ratPh.setTextColor(Color.parseColor("#FF5722")); }
-            else if(ph > 7.5) { ratPh.setText("Alkaline"); ratPh.setTextColor(Color.parseColor("#3F51B5")); }
+            if(ph < 6.0) { ratPh.setText("Acidic"); ratPh.setTextColor(Color.RED); }
+            else if(ph > 7.5) { ratPh.setText("Alkaline"); ratPh.setTextColor(Color.BLUE); }
             else { ratPh.setText("Neutral"); ratPh.setTextColor(Color.parseColor("#4CAF50")); }
 
             fetchAiAdvice(json, n, p, k, ph);
@@ -129,26 +171,20 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
     private void setRow(TextView vVal, TextView vRat, int val, int low, int high, String unit) {
         vVal.setText(val + " " + unit);
         if (val < low) {
-            vRat.setText("LOW");
-            vRat.setTextColor(Color.parseColor("#FF5722"));
+            vRat.setText("LOW 🔴"); vRat.setTextColor(Color.RED);
         } else if (val > high) {
-            vRat.setText("HIGH");
-            vRat.setTextColor(Color.parseColor("#2196F3"));
+            vRat.setText("HIGH 🔴"); vRat.setTextColor(Color.RED);
         } else {
-            vRat.setText("NORMAL");
-            vRat.setTextColor(Color.parseColor("#4CAF50"));
+            vRat.setText("OPTIMAL 🟢"); vRat.setTextColor(Color.parseColor("#2E7D32"));
         }
     }
 
-    // --- AI & TTS ---
     private void fetchAiAdvice(JSONObject data, int n, int p, int k, double ph) {
         String prompt = String.format(Locale.US,
-                "Act as an Indian agricultural expert. Results: N=%d kg/ha, P=%d kg/ha, K=%d kg/ha, pH=%.1f. Location: %s. Weather: %s. \n" +
-                        "Provide a concise recommendation plan in these 3 sections:\n" +
-                        "1. Fertilizer Dosage (Urea, DAP, MOP)\n" +
-                        "2. Organic Manure\n" +
-                        "3. Crop Care Tips based on weather.",
-                n, p, k, ph, data.optString("location"), data.optString("weather"));
+                "Act as an Indian agricultural scientist. State: %s. Season: %s. Soil: N=%d, P=%d, K=%d, pH=%.1f. \n" +
+                        "Provide a recommendation in 3 sections:\n" +
+                        "1. Best Crops\n2. Fertilizer Dosage\n3. Crop Care.",
+                tvState.getText(), currentSeason, n, p, k, ph);
 
         JSONObject jsonBody = new JSONObject();
         try {
@@ -167,7 +203,7 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
 
         client.newCall(request).enqueue(new Callback() {
             @Override public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                runOnUiThread(() -> tvAiAdvice.setText("AI Service Unavailable. Check connection."));
+                runOnUiThread(() -> tvAiAdvice.setText("AI Service Unavailable."));
             }
             @Override public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.body() != null) {
@@ -183,20 +219,19 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
 
     @Override
     public void onInit(int status) {
-        if (status == TextToSpeech.SUCCESS) {
-            tts.setLanguage(new Locale("en", "IN"));
-        }
+        if (status == TextToSpeech.SUCCESS) { tts.setLanguage(new Locale("en", "IN")); }
     }
 
+    // --- THIS WAS THE MISSING METHOD ---
     private void speakAdvice() {
         String text = tvAiAdvice.getText().toString();
         if (!text.isEmpty()) {
-            Toast.makeText(this, "Reading Advice...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Reading...", Toast.LENGTH_SHORT).show();
             tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
         }
     }
+    // -----------------------------------
 
-    // --- PDF Generation ---
     private void generatePdf() {
         PdfDocument document = new PdfDocument();
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(reportContainer.getWidth(), reportContainer.getHeight(), 1).create();
@@ -205,8 +240,7 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
         canvas.drawColor(Color.WHITE);
         reportContainer.draw(canvas);
         document.finishPage(page);
-
-        String fileName = "MittiMitra_Report_" + System.currentTimeMillis() + ".pdf";
+        String fileName = "Report_" + System.currentTimeMillis() + ".pdf";
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 ContentValues values = new ContentValues();
@@ -218,22 +252,16 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
                     OutputStream out = getContentResolver().openOutputStream(uri);
                     document.writeTo(out);
                     if (out != null) out.close();
-                    Toast.makeText(this, "PDF Saved to Documents!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "PDF Saved!", Toast.LENGTH_LONG).show();
                 }
-            } else {
-                Toast.makeText(this, "PDF saving requires Android 10+", Toast.LENGTH_SHORT).show();
             }
-        } catch (IOException e) {
-            Toast.makeText(this, "Error saving PDF", Toast.LENGTH_SHORT).show();
-        } finally {
-            document.close();
-        }
+        } catch (IOException e) {}
+        document.close();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            // Force Navigate to Home, clearing back stack
             Intent intent = new Intent(this, HomeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
