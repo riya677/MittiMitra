@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">ਮਿੱਟੀ ਮਿੱਤਰ</string>
+
+    <string name="welcome_subtitle">ਤੁਹਾਡਾ ਨਿੱਜੀ ਖੇਤੀ ਸਹਾਇਕ</string>
+    <string name="login">ਲੌਗਇਨ</string>
+    <string name="signup">ਸਾਈਨ ਅਪ</string>
+
+    <string name="greeting_format">ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ, %s</string>
+    <string name="greeting_default">ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ, ਵਰਤੋਂਕਾਰ</string>
+    <string name="last_scan">ਪਿਛਲਾ ਸਕੈਨ</string>
+    <string name="button_tip">ਸੁਝਾਅ</string>
+    <string name="button_recommendation">ਸਿਫਾਰਸ਼</string>
+    <string name="button_history">ਇਤਿਹਾਸ</string>
+    <string name="button_scan">ਸਕੈਨ</string>
+    <string name="button_documents">ਦਸਤਾਵੇਜ਼</string>
+
+    <string name="menu_settings">ਸੈਟਿੰਗਾਂ</string>
+    <string name="menu_help">ਮਦਦ</string>
+    <string name="menu_contact">ਸੰਪਰਕ</string>
+    <string name="menu_logout">ਲੌਗ ਆਉਟ</string>
+
+    <string name="setting_language">ਭਾਸ਼ਾ</string>
+    <string name="setting_accessibility">ਪਹੁੰਚਯੋਗਤਾ (Accessibility)</string>
+    <string name="setting_theme">ਐਪ ਥੀਮ</string>
+    <string name="setting_manage_data">ਡਾਟਾ ਪ੍ਰਬੰਧਨ</string>
+
+    <string name="language_title">ਭਾਸ਼ਾ ਚੁਣੋ</string>
+    <string name="language_system_default">ਸਿਸਟਮ ਡਿਫੌਲਟ</string>
+
+    <string name="font_size_title">ਫੌਂਟ ਦਾ ਆਕਾਰ</string>
+    <string name="font_size_sample">ਤੁਹਾਡਾ ਟੈਕਸਟ ਇਸ ਤਰ੍ਹਾਂ ਦਿਖਾਈ ਦੇਵੇਗਾ।</string>
+    <string name="setting_font_dyslexic">ਡਿਸਲੇਕਸਿਕ-ਫ੍ਰੈਂਡਲੀ ਫੌਂਟ</string>
+    <string name="setting_font_dyslexic_desc">ਆਸਾਨੀ ਨਾਲ ਪੜ੍ਹਨ ਲਈ OpenDyslexic ਫੌਂਟ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ।</string>
+
+    <string name="manage_data_title">ਡਾਟਾ ਪ੍ਰਬੰਧਨ</string>
+    <string name="manage_data_soil_title">ਮਿੱਟੀ ਦਾ ਇਤਿਹਾਸ ਸਾਫ਼ ਕਰੋ</string>
+    <string name="manage_data_soil_desc">ਸਾਰੀਆਂ ਸੁਰੱਖਿਅਤ ਕੀਤੀਆਂ ਮਿੱਟੀ ਦੀਆਂ ਰਿਪੋਰਟਾਂ ਨੂੰ ਮਿਟਾਉਂਦਾ ਹੈ।</string>
+    <string name="manage_data_docs_title">ਸਾਰੇ ਦਸਤਾਵੇਜ਼ ਸਾਫ਼ ਕਰੋ</string>
+    <string name="manage_data_docs_desc">ਇਸ ਡਿਵਾਈਸ ਤੋਂ ਅਪਲੋਡ ਕੀਤੇ ਗਏ ਸਾਰੇ ਦਸਤਾਵੇਜ਼ਾਂ ਨੂੰ ਮਿਟਾਉਂਦਾ ਹੈ।</string>
+    <string name="dialog_delete">ਮਿਟਾਓ</string>
+    <string name="dialog_cancel">ਰੱਦ ਕਰੋ</string>
+
+    <string name="help_title">ਮਦਦ ਅਤੇ ਸਹਾਇਤਾ</string>
+    <string name="help_faq_title">ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ (FAQ)</string>
+    <string name="help_q1">ਵਧੀਆ ਮਿੱਟੀ ਸਕੈਨ ਕਿਵੇਂ ਲਈਏ?</string>
+    <string name="help_a1">ਚੰਗੀ ਰੋਸ਼ਨੀ ਯਕੀਨੀ ਬਣਾਓ, ਨਮੂਨੇ ਨੂੰ ਸਾਦੇ ਪਿਛੋਕੜ \'ਤੇ ਰੱਖੋ, ਅਤੇ ਫੋਕਸ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ।</string>
+    <string name="help_contact_title">ਸੰਪਰਕ ਸਹਾਇਤਾ</string>
+</resources>
