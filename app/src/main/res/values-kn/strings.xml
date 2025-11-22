@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">ಮಿಟ್ಟಿ ಮಿತ್ರ</string>
+
+    <string name="welcome_subtitle">ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಕೃಷಿ ಸಹಾಯಕ</string>
+    <string name="login">ಲಾಗಿನ್</string>
+    <string name="signup">ಸೈನ್ ಅಪ್</string>
+
+    <string name="greeting_format">ನಮಸ್ಕಾರ, %s</string>
+    <string name="greeting_default">ನಮಸ್ಕಾರ, ಬಳಕೆದಾರ</string>
+    <string name="last_scan">ಕೊನೆಯ ಸ್ಕ್ಯಾನ್</string>
+    <string name="button_tip">ಸಲಹೆ</string>
+    <string name="button_recommendation">ಶಿಫಾರಸು</string>
+    <string name="button_history">ಇತಿಹಾಸ</string>
+    <string name="button_scan">ಸ್ಕ್ಯಾನ್</string>
+    <string name="button_documents">ದಾಖಲೆಗಳು</string>
+
+    <string name="menu_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <string name="menu_help">ಸಹಾಯ</string>
+    <string name="menu_contact">ಸಂಪರ್ಕ</string>
+    <string name="menu_logout">ಲಾಗ್ ಔಟ್</string>
+
+    <string name="setting_language">ಭಾಷೆ</string>
+    <string name="setting_accessibility">ಪ್ರವೇಶಿಸುವಿಕೆ (Accessibility)</string>
+    <string name="setting_theme">ಆ್ಯಪ್ ಥೀಮ್</string>
+    <string name="setting_manage_data">ಡೇಟಾ ನಿರ್ವಹಣೆ</string>
+
+    <string name="language_title">ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="language_system_default">ಸಿಸ್ಟಂ ಡಿಫಾಲ್ಟ್</string>
+
+    <string name="font_size_title">ಅಕ್ಷರದ ಗಾತ್ರ</string>
+    <string name="font_size_sample">ನಿಮ್ಮ ಪಠ್ಯ ಹೀಗೆ ಕಾಣುತ್ತದೆ.</string>
+    <string name="setting_font_dyslexic">ಡಿಸ್ಲೆಕ್ಸಿಕ್ ಸ್ನೇಹಿ ಫಾಂಟ್</string>
+    <string name="setting_font_dyslexic_desc">ಸುಲಭವಾಗಿ ಓದಲು OpenDyslexic ಫಾಂಟ್ ಬಳಸುತ್ತದೆ.</string>
+
+    <string name="manage_data_title">ಡೇಟಾ ನಿರ್ವಹಣೆ</string>
+    <string name="manage_data_soil_title">ಮಣ್ಣಿನ ಇತಿಹಾಸ ಅಳಿಸಿ</string>
+    <string name="manage_data_soil_desc">ಎಲ್ಲಾ ಉಳಿಸಿದ ಮಣ್ಣಿನ ವರದಿಗಳನ್ನು ಅಳಿಸುತ್ತದೆ.</string>
+    <string name="manage_data_docs_title">ಎಲ್ಲಾ ದಾಖಲೆಗಳನ್ನು ಅಳಿಸಿ</string>
+    <string name="manage_data_docs_desc">ಈ ಸಾಧನದಿಂದ ಅಪ್‌ಲೋಡ್ ಮಾಡಿದ ಎಲ್ಲಾ ದಾಖಲೆಗಳನ್ನು ಅಳಿಸುತ್ತದೆ.</string>
+    <string name="dialog_delete">ಅಳಿಸಿ</string>
+    <string name="dialog_cancel">ರದ್ದುಮಾಡಿ</string>
+
+    <string name="help_title">ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ</string>
+    <string name="help_faq_title">ಸಾಮಾನ್ಯ ಪ್ರಶ್ನೆಗಳು (FAQ)</string>
+    <string name="help_q1">ಉತ್ತಮ ಮಣ್ಣಿನ ಸ್ಕ್ಯಾನ್ ತೆಗೆಯುವುದು ಹೇಗೆ?</string>
+    <string name="help_a1">ಉತ್ತಮ ಬೆಳಕನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ, ಮಾದರಿಯನ್ನು ಸರಳ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಇರಿಸಿ ಮತ್ತು ಫೋಕಸ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+    <string name="help_contact_title">ಬೆಂಬಲ ಸಂಪರ್ಕ</string>
+</resources>

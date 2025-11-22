@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/profile_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/design_default_color_primary"
-            app:titleTextColor="@android:color/white"/>
+            app:layout_scrollFlags="scroll|enterAlways" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,7 +24,7 @@
             android:background="@color/design_default_color_primary"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingBottom="40dp">
+            android:paddingBottom="50dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_profile"
@@ -38,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Farmer Name"
+                android:text="Loading..."
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -48,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="+91 00000 00000"
+                android:text="Phone: --"
                 android:textColor="#E0E0E0"
                 android:textSize="14sp" />
 
@@ -64,27 +65,35 @@
                 android:id="@+id/tv_profile_join_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Member Since: 2024"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_background_small"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="4dp"
+                android:text="Member Since: 2024"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp"
-                android:background="@drawable/rounded_background_small"/> </LinearLayout>
+                android:alpha="0.9"/>
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="-24dp"
-            android:paddingHorizontal="16dp">
+            android:padding="16dp">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="20dp"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="6dp"
-                android:layout_marginBottom="20dp">
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -96,38 +105,51 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Recent Analysis"
+                        android:textColor="#333333"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="#333333"
                         android:layout_marginBottom="12dp"/>
 
                     <TextView
                         android:id="@+id/tv_no_recent_history"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="No recent scans found."
                         android:gravity="center"
                         android:padding="16dp"
-                        android:textColor="#757575"/>
+                        android:text="No recent scans found."
+                        android:textColor="#757575" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_recent_history"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <Button
                 android:id="@+id/btn_logout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:backgroundTint="#F44336"
+                android:layout_height="55dp"
                 android:text="Log Out"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:backgroundTint="#F44336"
+                app:cornerRadius="8dp"/>
 
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:src="@android:drawable/ic_menu_edit"
+        app:layout_anchor="@id/profile_toolbar"
+        app:layout_anchorGravity="bottom|end"
+        app:tint="@android:color/white"
+        android:contentDescription="Edit Profile" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

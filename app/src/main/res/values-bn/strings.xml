@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">মিত্তী মিত্র</string>
+
+    <string name="welcome_subtitle">আপনার ব্যক্তিগত কৃষি সহকারী</string>
+    <string name="login">লগইন</string>
+    <string name="signup">সাইন আপ</string>
+
+    <string name="greeting_format">নমস্কার, %s</string>
+    <string name="greeting_default">নমস্কার, ব্যবহারকারী</string>
+    <string name="last_scan">শেষ স্ক্যান</string>
+    <string name="button_tip">পরামর্শ</string>
+    <string name="button_recommendation">সুপারিশ</string>
+    <string name="button_history">ইতিহাস</string>
+    <string name="button_scan">স্ক্যান</string>
+    <string name="button_documents">নথি</string>
+
+    <string name="menu_settings">সে সেটিংস</string>
+    <string name="menu_help">সাহায্য</string>
+    <string name="menu_contact">যোগাযোগ</string>
+    <string name="menu_logout">লগ আউট</string>
+
+    <string name="setting_language">ভাষা</string>
+    <string name="setting_accessibility">অ্যাক্সেসিবিলিটি</string>
+    <string name="setting_theme">অ্যাপ থিম</string>
+    <string name="setting_manage_data">ডেটা ম্যানেজ করুন</string>
+
+    <string name="language_title">ভাষা নির্বাচন করুন</string>
+    <string name="language_system_default">সিস্টেম ডিফল্ট</string>
+
+    <string name="font_size_title">ফন্টের আকার</string>
+    <string name="font_size_sample">আপনার টেক্সট এইরকম দেখাবে।</string>
+    <string name="setting_font_dyslexic">ডিসলেক্সিক-বান্ধব ফন্ট</string>
+    <string name="setting_font_dyslexic_desc">সহজ পড়ার জন্য OpenDyslexic ফন্ট ব্যবহার করে।</string>
+
+    <string name="manage_data_title">ডেটা ম্যানেজ করুন</string>
+    <string name="manage_data_soil_title">মাটির ইতিহাস মুছুন</string>
+    <string name="manage_data_soil_desc">সব সংরক্ষিত মাটি বিশ্লেষণের রিপোর্ট মুছে ফেলে।</string>
+    <string name="manage_data_docs_title">সমস্ত নথি মুছুন</string>
+    <string name="manage_data_docs_desc">এই ডিভাইস থেকে আপলোড করা সমস্ত নথি মুছে ফেলে।</string>
+    <string name="dialog_delete">মুছুন</string>
+    <string name="dialog_cancel">বাতিল</string>
+
+    <string name="help_title">সাহায্য এবং সমর্থন</string>
+    <string name="help_faq_title">সচরাচর জিজ্ঞাস্য প্রশ্ন (FAQ)</string>
+    <string name="help_q1">কিভাবে ভালো মাটির স্ক্যান নেব?</string>
+    <string name="help_a1">ভালো আলো নিশ্চিত করুন, নমুনাটি একটি সাদা পৃষ্ঠে রাখুন এবং ফোকাস করতে ট্যাপ করুন।</string>
+    <string name="help_contact_title">যোগাযোগ</string>
+</resources>
