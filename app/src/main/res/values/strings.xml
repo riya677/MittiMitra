@@ -24,6 +24,11 @@
     <string name="setting_theme">App Theme</string>
     <string name="setting_manage_data">Manage Data</string>
 
+    <string name="setting_unit_converter">Land Unit Converter</string>
+    <string name="setting_unit_converter_desc">Convert Acre, Hectare, Bigha, and Guntha.</string>
+    <string name="setting_kisan_call">Call Kisan Helpline</string>
+    <string name="setting_kisan_call_desc">Connect to Govt. Kisan Call Center (1800-180-1551).</string>
+
     <string name="language_title">Select Language</string>
     <string name="language_system_default">System Default</string>
     <string name="language_english">English</string>
@@ -31,6 +36,11 @@
     <string name="language_tamil">தமிழ் (Tamil)</string>
     <string name="language_malayalam">മലയാളം (Malayalam)</string>
     <string name="language_telugu">తెలుగు (Telugu)</string>
+    <string name="language_kannada">ಕನ್ನಡ (Kannada)</string>
+    <string name="language_marathi">मराठी (Marathi)</string>
+    <string name="language_bengali">বাংলা (Bengali)</string>
+    <string name="language_gujarati">ગુજરાતી (Gujarati)</string>
+    <string name="language_punjabi">ਪੰਜਾਬੀ (Punjabi)</string>
 
     <string name="font_size_title">Font Size</string>
     <string name="font_size_small">Small</string>
@@ -65,4 +75,26 @@
     <string name="help_contact_title">Contact Support</string>
     <string name="help_contact_phone">+91 12345 67890</string>
     <string name="help_contact_email">support@mittimitra.com</string>
+
+    <string name="converter_title">Land Converter</string>
+    <string name="label_enter_area">Enter Area</string>
+    <string name="label_result">Result</string>
+    <string name="btn_convert">Convert</string>
+    <string name="unit_acre">Acre</string>
+    <string name="unit_hectare">Hectare</string>
+    <string name="unit_bigha">Bigha (Standard)</string>
+    <string name="unit_guntha">Guntha</string>
+    <string name="unit_cent">Cent</string>
+
+    <string name="setting_share_app">Share with Friends</string>
+    <string name="setting_notifications">Notification Preferences</string>
+
+    <string name="notif_title">Notifications</string>
+    <string name="notif_weather_title">Weather Alerts</string>
+    <string name="notif_weather_desc">Get heavy rain and storm warnings.</string>
+    <string name="notif_mandi_title">Mandi Prices</string>
+    <string name="notif_mandi_desc">Daily market rates for your district.</string>
+    <string name="notif_scheme_title">Govt. Schemes</string>
+    <string name="notif_scheme_desc">Updates on PM-Kisan and subsidies.</string>
+    <string name="share_message">Check out Mitti Mitra - The best app for Soil Health and Farming! Download here: https://play.google.com/store/apps/details?id=com.mittimitra</string>
 </resources>

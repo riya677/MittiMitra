@@ -50,6 +50,10 @@
         <activity android:name=".ManageDataActivity" android:exported="false" />
         <activity android:name=".HelpActivity" android:exported="false" />
 
+        <activity android:name=".UnitConverterActivity" android:exported="false" />
+
+        <activity android:name=".NotificationSettingsActivity" android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

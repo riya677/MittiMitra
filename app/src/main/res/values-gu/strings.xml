@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">મિટ્ટી મિત્ર</string>
+
+    <string name="welcome_subtitle">તમારા વ્યક્તિગત ખેતી સહાયક</string>
+    <string name="login">લોગિન</string>
+    <string name="signup">સાઇન અપ</string>
+
+    <string name="greeting_format">નમસ્તે, %s</string>
+    <string name="greeting_default">નમસ્તે, યુઝર</string>
+    <string name="last_scan">છેલ્લું સ્કેન</string>
+    <string name="button_tip">સલાહ</string>
+    <string name="button_recommendation">ભલામણ</string>
+    <string name="button_history">ઇતિહાસ</string>
+    <string name="button_scan">સ્કેન</string>
+    <string name="button_documents">દસ્તાવેજો</string>
+
+    <string name="menu_settings">સેટિંગ્સ</string>
+    <string name="menu_help">મદદ</string>
+    <string name="menu_contact">સંપર્ક</string>
+    <string name="menu_logout">લોગ આઉટ</string>
+
+    <string name="setting_language">ભાષા</string>
+    <string name="setting_accessibility">સુલભતા (Accessibility)</string>
+    <string name="setting_theme">એપ્લિકેશન થીમ</string>
+    <string name="setting_manage_data">ડેટા મેનેજ કરો</string>
+
+    <string name="language_title">ભાષા પસંદ કરો</string>
+    <string name="language_system_default">સિસ્ટમ ડિફૉલ્ટ</string>
+
+    <string name="font_size_title">ફોન્ટ સાઇઝ</string>
+    <string name="font_size_sample">તમારું લખાણ આ રીતે દેખાશે.</string>
+    <string name="setting_font_dyslexic">ડિસ્લેક્સિક-ફ્રેન્ડલી ફોન્ટ</string>
+    <string name="setting_font_dyslexic_desc">સરળ વાંચન માટે OpenDyslexic ફોન્ટનો ઉપયોગ કરે છે.</string>
+
+    <string name="manage_data_title">ડેટા મેનેજ કરો</string>
+    <string name="manage_data_soil_title">માટીનો ઇતિહાસ સાફ કરો</string>
+    <string name="manage_data_soil_desc">બધા સાચવેલા માટી વિશ્લેષણ રિપોર્ટ્સ કાઢી નાખે છે.</string>
+    <string name="manage_data_docs_title">બધા દસ્તાવેજો સાફ કરો</string>
+    <string name="manage_data_docs_desc">આ ઉપકરણમાંથી અપલોડ કરેલા બધા દસ્તાવેજો કાઢી નાખે છે.</string>
+    <string name="dialog_delete">ડિલીટ</string>
+    <string name="dialog_cancel">રદ કરો</string>
+
+    <string name="help_title">મદદ અને આધાર</string>
+    <string name="help_faq_title">વારંવાર પૂછાતા પ્રશ્નો (FAQ)</string>
+    <string name="help_q1">સારો માટી સ્કેન કેવી રીતે લેવો?</string>
+    <string name="help_a1">સારો પ્રકાશ સુનિશ્ચિત કરો, નમૂનાને સાદા બેકગ્રાઉન્ડ પર રાખો, અને ફોકસ કરવા માટે ટેપ કરો.</string>
+    <string name="help_contact_title">સંપર્ક આધાર</string>
+</resources>

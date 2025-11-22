@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">मिट्टी मित्र</string>
+
+    <string name="welcome_subtitle">तुमचा वैयक्तिक शेती सहाय्यक</string>
+    <string name="login">लॉगिन</string>
+    <string name="signup">साइन अप</string>
+
+    <string name="greeting_format">नमस्कार, %s</string>
+    <string name="greeting_default">नमस्कार, वापरकर्ता</string>
+    <string name="last_scan">शेवटचा स्कॅन</string>
+    <string name="button_tip">सल्ला</string>
+    <string name="button_recommendation">शिफारस</string>
+    <string name="button_history">इतिहास</string>
+    <string name="button_scan">स्कॅन</string>
+    <string name="button_documents">कागदपत्रे</string>
+
+    <string name="menu_settings">सेटिंग्ज</string>
+    <string name="menu_help">मदत</string>
+    <string name="menu_contact">संपर्क</string>
+    <string name="menu_logout">बाहेर पडा</string>
+
+    <string name="setting_language">भाषा</string>
+    <string name="setting_accessibility">सुलभता (Accessibility)</string>
+    <string name="setting_theme">अॅप थीम</string>
+    <string name="setting_manage_data">डेटा व्यवस्थापन</string>
+
+    <string name="language_title">भाषा निवडा</string>
+    <string name="language_system_default">सिस्टम डीफॉल्ट</string>
+
+    <string name="font_size_title">फॉन्ट आकार</string>
+    <string name="font_size_sample">तुमचा मजकूर असा दिसेल.</string>
+    <string name="setting_font_dyslexic">डिस्लेक्सिक-फ्रेंडली फॉन्ट</string>
+    <string name="setting_font_dyslexic_desc">सोप्या वाचनासाठी OpenDyslexic फॉन्ट वापरतो.</string>
+
+    <string name="manage_data_title">डेटा व्यवस्थापन</string>
+    <string name="manage_data_soil_title">मातीचा इतिहास पुसा</string>
+    <string name="manage_data_soil_desc">सर्व जतन केलेले माती परीक्षण अहवाल हटवते.</string>
+    <string name="manage_data_docs_title">सर्व कागदपत्रे पुसा</string>
+    <string name="manage_data_docs_desc">या डिव्हाइसवरून अपलोड केलेली सर्व कागदपत्रे हटवते.</string>
+    <string name="dialog_delete">हटवा</string>
+    <string name="dialog_cancel">रद्द करा</string>
+
+    <string name="help_title">मदत आणि समर्थन</string>
+    <string name="help_faq_title">नेहमी विचारले जाणारे प्रश्न (FAQ)</string>
+    <string name="help_q1">चांगला मातीचा स्कॅन कसा घ्यावा?</string>
+    <string name="help_a1">चांगला प्रकाश असल्याची खात्री करा, नमुना साध्या पृष्ठभागावर ठेवा आणि फोकस करण्यासाठी टॅप करा.</string>
+    <string name="help_contact_title">संपर्क समर्थन</string>
+</resources>
