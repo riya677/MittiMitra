@@ -5,17 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +30,8 @@ import androidx.core.app.ActivityCompat;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -43,7 +45,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,38 +52,43 @@ import retrofit2.Response;
 
 public class ScanActivity extends AppCompatActivity {
 
-    private View initialScanGroup, confirmGroup, analysisGroup;
+    private static final String TAG = "ScanActivity";
+
+    // UI Components
     private ImageView imageViewPlaceholder;
-    private TextView tvLocation, tvWeather, tvSoilDynamic, tvSoilStatic, tvSolar, tvAiStatus;
+    private View layoutScanHint;
+    private Chip chipLocation;
+    private TextView tvCardWeather, tvCardMoisture, tvHiddenSolar, tvHiddenSoilStatic;
+    private TextInputEditText etUserNotes; // UPDATED
+    private MaterialButton btnAnalyze;
+    private ProgressBar progressAnalysis;
 
     private FusedLocationProviderClient fusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST = 1001;
     private static final String PREF_CACHE = "scan_cache";
 
-    // Context Data
+    // Data Variables
     private String weatherSummary = "N/A";
     private String soilDynamic = "N/A";
     private String soilStatic = "N/A";
-    private String solarInfo = "N/A";
     private String locationName = "Unknown";
     private String districtName = "Unknown";
     private double currentLat = 0.0, currentLon = 0.0;
 
-    private double isricPh = 0;
-    private double isricN = 0;
-
-    // Launchers
+    // --- Image Launchers ---
     private final ActivityResultLauncher<Void> cameraLauncher =
             registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), result -> {
-                if (result != null) displayImage(result);
+                if (result != null) {
+                    imageViewPlaceholder.setImageBitmap(result);
+                    onImageCaptured();
+                }
             });
 
     private final ActivityResultLauncher<PickVisualMediaRequest> galleryLauncher =
             registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), result -> {
                 if (result != null) {
                     imageViewPlaceholder.setImageURI(result);
-                    fixImageStyle();
-                    showConfirmUI(true);
+                    onImageCaptured();
                 }
             });
 
@@ -103,37 +109,61 @@ public class ScanActivity extends AppCompatActivity {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Views
+        // Bind Views
         imageViewPlaceholder = findViewById(R.id.image_view_placeholder);
-        initialScanGroup = findViewById(R.id.initial_scan_group);
-        confirmGroup = findViewById(R.id.confirm_group);
-        analysisGroup = findViewById(R.id.analysis_group);
-        tvAiStatus = findViewById(R.id.tv_analysing);
+        layoutScanHint = findViewById(R.id.layout_scan_hint);
+        chipLocation = findViewById(R.id.chip_location);
+        tvCardWeather = findViewById(R.id.tv_card_weather);
+        tvCardMoisture = findViewById(R.id.tv_card_moisture);
+        tvHiddenSolar = findViewById(R.id.tv_hidden_solar);
+        tvHiddenSoilStatic = findViewById(R.id.tv_hidden_soil_static);
+        etUserNotes = findViewById(R.id.et_user_notes); // UPDATED BINDING
+        btnAnalyze = findViewById(R.id.btn_analyze);
+        progressAnalysis = findViewById(R.id.progress_analysis);
 
-        tvLocation = findViewById(R.id.tv_location_data);
-        tvWeather = findViewById(R.id.tv_weather_data);
-        tvSoilDynamic = findViewById(R.id.tv_soil_dynamic_data);
-        tvSoilStatic = findViewById(R.id.tv_soil_static_data);
-        tvSolar = findViewById(R.id.tv_solar_data);
-
+        // Listeners
         findViewById(R.id.btn_camera).setOnClickListener(v -> requestPermissionLauncher.launch(Manifest.permission.CAMERA));
-        findViewById(R.id.btn_upload).setOnClickListener(v -> galleryLauncher.launch(new PickVisualMediaRequest.Builder().setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE).build()));
-        findViewById(R.id.btn_analyze).setOnClickListener(v -> startAnalysis());
-        findViewById(R.id.btn_reset).setOnClickListener(v -> resetUI());
 
-        resetUI();
-        loadCachedData(); // Instant Load
-        checkLocationAndFetchData(); // Fresh Fetch
+        findViewById(R.id.btn_upload).setOnClickListener(v ->
+                galleryLauncher.launch(new PickVisualMediaRequest.Builder()
+                        .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                        .build()));
+
+        btnAnalyze.setOnClickListener(v -> startAnalysis());
+
+        // Initial State
+        btnAnalyze.setEnabled(false);
+
+        // Load Data
+        loadCachedData();
+        checkLocationAndFetchData();
     }
 
+    private void onImageCaptured() {
+        imageViewPlaceholder.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageViewPlaceholder.setColorFilter(null);
+        imageViewPlaceholder.setBackground(null);
+        layoutScanHint.setVisibility(View.GONE);
+        btnAnalyze.setEnabled(true);
+    }
+
+    // --- Caching & Data Loading (Same as before) ---
     private void loadCachedData() {
         SharedPreferences prefs = getSharedPreferences(PREF_CACHE, Context.MODE_PRIVATE);
         if (prefs.contains("weather")) {
-            tvWeather.setText("☁️ " + prefs.getString("weather", "--"));
-            tvSoilDynamic.setText("💧 " + prefs.getString("soil_dyn", "--"));
-            tvSolar.setText("☀️ " + prefs.getString("solar", "--"));
-            tvSoilStatic.setText("🪨 " + prefs.getString("soil_stat", "--"));
-            tvLocation.setText("📍 " + prefs.getString("loc", "Detecting..."));
+            weatherSummary = prefs.getString("weather", "N/A");
+            tvCardWeather.setText(weatherSummary);
+        }
+        if (prefs.contains("soil_dyn")) {
+            soilDynamic = prefs.getString("soil_dyn", "N/A");
+            tvCardMoisture.setText(soilDynamic + " m³/m³");
+        }
+        if (prefs.contains("loc")) {
+            locationName = prefs.getString("loc", "Unknown");
+            chipLocation.setText(locationName);
+        }
+        if (prefs.contains("soil_stat")) {
+            soilStatic = prefs.getString("soil_stat", "");
         }
     }
 
@@ -141,24 +171,12 @@ public class ScanActivity extends AppCompatActivity {
         getSharedPreferences(PREF_CACHE, Context.MODE_PRIVATE).edit().putString(key, value).apply();
     }
 
-    private void displayImage(Bitmap bitmap) {
-        imageViewPlaceholder.setImageBitmap(bitmap);
-        fixImageStyle();
-        showConfirmUI(true);
-    }
-
-    private void fixImageStyle() {
-        imageViewPlaceholder.setImageTintList(null);
-        imageViewPlaceholder.setBackground(null);
-        imageViewPlaceholder.setPadding(0, 0, 0, 0);
-        imageViewPlaceholder.setScaleType(ImageView.ScaleType.CENTER_CROP);
-    }
-
     private void checkLocationAndFetchData() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST);
             return;
         }
+        chipLocation.setText("Locating...");
         fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
             if (location != null) {
                 currentLat = location.getLatitude();
@@ -166,6 +184,8 @@ public class ScanActivity extends AppCompatActivity {
                 fetchAddress(currentLat, currentLon);
                 fetchAgroData(currentLat, currentLon);
                 fetchSoilBaseline(currentLat, currentLon);
+            } else {
+                chipLocation.setText("Location Not Found");
             }
         });
     }
@@ -181,7 +201,7 @@ public class ScanActivity extends AppCompatActivity {
                     if (districtName == null) districtName = addr.getLocality();
                     locationName = addr.getLocality() + ", " + addr.getAdminArea();
                     new Handler(Looper.getMainLooper()).post(() -> {
-                        tvLocation.setText("📍 " + locationName);
+                        chipLocation.setText(locationName);
                         cacheData("loc", locationName);
                     });
                 }
@@ -190,36 +210,25 @@ public class ScanActivity extends AppCompatActivity {
     }
 
     private void fetchAgroData(double lat, double lon) {
-        // Combined call for Weather, Soil Dynamic, Solar AND Elevation
         RetrofitClient.getAgroService().getAgroWeather(lat, lon).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body() != null) {
                     try {
                         JsonObject current = response.body().getAsJsonObject("current");
-
-                        // 1. Weather
                         double temp = current.get("temperature_2m").getAsDouble();
                         int hum = current.get("relative_humidity_2m").getAsInt();
-                        weatherSummary = String.format("%.1f°C, %d%% Hum", temp, hum);
-                        tvWeather.setText("☁️ " + weatherSummary);
+                        weatherSummary = String.format("%.1f°C\n%d%% Hum", temp, hum);
+                        tvCardWeather.setText(weatherSummary);
                         cacheData("weather", weatherSummary);
 
-                        // 2. Soil Dynamic
-                        double soilTemp = current.get("soil_temperature_0cm").getAsDouble();
-                        double soilMoist = current.get("soil_moisture_0_to_1cm").getAsDouble();
-                        soilDynamic = String.format("Temp: %.1f°C | Moist: %.2f", soilTemp, soilMoist);
-                        tvSoilDynamic.setText("💧 " + soilDynamic);
-                        cacheData("soil_dyn", soilDynamic);
-
-                        // 3. Solar + Elevation (READ DIRECTLY FROM ROOT JSON)
-                        double uv = current.get("uv_index").getAsDouble();
-                        double elevation = response.body().get("elevation").getAsDouble(); // FAST Elevation
-                        solarInfo = String.format("UV: %.1f | Elev: %.0fm", uv, elevation);
-                        tvSolar.setText("☀️ " + solarInfo);
-                        cacheData("solar", solarInfo);
-
-                    } catch (Exception e) {}
+                        if (current.has("soil_moisture_0_to_1cm")) {
+                            double soilMoist = current.get("soil_moisture_0_to_1cm").getAsDouble();
+                            soilDynamic = String.format("%.2f", soilMoist);
+                            tvCardMoisture.setText(soilDynamic + " m³/m³");
+                            cacheData("soil_dyn", soilDynamic);
+                        }
+                    } catch (Exception e) { Log.e(TAG, "Weather Parse Error", e); }
                 }
             }
             @Override public void onFailure(Call<JsonObject> call, Throwable t) {}
@@ -227,7 +236,7 @@ public class ScanActivity extends AppCompatActivity {
     }
 
     private void fetchSoilBaseline(double lat, double lon) {
-        String[] props = {"phh2o", "nitrogen", "soc", "clay", "cec"};
+        String[] props = {"phh2o", "nitrogen", "soc", "clay"};
         RetrofitClient.getSoilService().getSoilProperties(lat, lon, props, new String[]{"0-5cm"}, "mean")
                 .enqueue(new Callback<JsonObject>() {
                     @Override
@@ -243,21 +252,14 @@ public class ScanActivity extends AppCompatActivity {
                                     JsonArray depths = obj.getAsJsonArray("depths");
                                     if (depths.size() > 0) {
                                         int val = depths.get(0).getAsJsonObject().getAsJsonObject("values").get("mean").getAsInt();
-                                        if (name.equals("phh2o")) {
-                                            isricPh = val / 10.0;
-                                            sb.append("pH:").append(isricPh).append(" ");
-                                        }
-                                        if (name.equals("nitrogen")) {
-                                            isricN = val / 100.0;
-                                            sb.append("N:").append(isricN).append("g ");
-                                        }
-                                        if (name.equals("clay")) sb.append("Clay:").append(val/10.0).append("% ");
+                                        if (name.equals("phh2o")) sb.append("pH:").append(val/10.0).append(" ");
+                                        if (name.equals("nitrogen")) sb.append("N:").append(val/100.0).append("g ");
                                     }
                                 }
                                 soilStatic = sb.toString();
-                                tvSoilStatic.setText("🪨 " + soilStatic);
                                 cacheData("soil_stat", soilStatic);
-                            } catch (Exception e) {}
+                                if(tvHiddenSoilStatic != null) tvHiddenSoilStatic.setText(soilStatic);
+                            } catch (Exception e) { Log.e(TAG, "Soil Parse Error", e); }
                         }
                     }
                     @Override public void onFailure(Call<JsonObject> call, Throwable t) {}
@@ -265,8 +267,9 @@ public class ScanActivity extends AppCompatActivity {
     }
 
     private void startAnalysis() {
-        showAnalysisUI(true);
-        new Handler(Looper.getMainLooper()).postDelayed(this::generateSmartReport, 2000);
+        btnAnalyze.setVisibility(View.INVISIBLE);
+        progressAnalysis.setVisibility(View.VISIBLE);
+        new Handler(Looper.getMainLooper()).postDelayed(this::generateSmartReport, 1500);
     }
 
     private void generateSmartReport() {
@@ -274,27 +277,24 @@ public class ScanActivity extends AppCompatActivity {
             try {
                 SoilDataManager.SoilProfile csvData = SoilDataManager.getDistrictAverage(this, districtName);
 
-                int reportN = (int) (csvData.isFound ? csvData.N : (isricN > 0 ? isricN * 200 : 150));
-                int reportP = (int) (csvData.isFound ? csvData.P : 20);
-                int reportK = (int) (csvData.isFound ? csvData.K : 100);
-                double reportPh = (csvData.isFound ? csvData.pH : (isricPh > 0 ? isricPh : 6.5));
-
                 JSONObject report = new JSONObject();
-                report.put("N", reportN);
-                report.put("P", reportP);
-                report.put("K", reportK);
-                report.put("pH", reportPh);
+                report.put("N", csvData.isFound ? csvData.N : 150);
+                report.put("P", csvData.isFound ? csvData.P : 20);
+                report.put("K", csvData.isFound ? csvData.K : 100);
+                report.put("pH", csvData.isFound ? csvData.pH : 6.5);
+
+                // UPDATED: Capture User Input instead of Spinner
+                String notes = etUserNotes.getText().toString().trim();
+                report.put("user_notes", notes.isEmpty() ? "None" : notes);
+
                 report.put("weather", weatherSummary);
                 report.put("soil_dynamic", soilDynamic);
-                report.put("soil_static", soilStatic);
-                report.put("solar", solarInfo);
                 report.put("location", locationName);
-                report.put("source", csvData.isFound ? "Regional Data" : "Satellite Estimate");
+                report.put("satellite_data", soilStatic);
 
                 SoilAnalysis analysis = new SoilAnalysis();
                 analysis.timestamp = System.currentTimeMillis();
                 analysis.soilReportJson = report.toString();
-
                 MittiMitraDatabase.getDatabase(this).soilDao().insertAnalysis(analysis);
 
                 runOnUiThread(() -> {
@@ -303,27 +303,6 @@ public class ScanActivity extends AppCompatActivity {
                 });
             } catch (Exception e) { e.printStackTrace(); }
         }).start();
-    }
-
-    private void showAnalysisUI(boolean show) {
-        analysisGroup.setVisibility(show ? View.VISIBLE : View.GONE);
-        confirmGroup.setVisibility(View.GONE);
-    }
-
-    private void showConfirmUI(boolean show) {
-        confirmGroup.setVisibility(show ? View.VISIBLE : View.GONE);
-        initialScanGroup.setVisibility(View.GONE);
-    }
-
-    private void resetUI() {
-        analysisGroup.setVisibility(View.GONE);
-        confirmGroup.setVisibility(View.GONE);
-        initialScanGroup.setVisibility(View.VISIBLE);
-        imageViewPlaceholder.setImageResource(android.R.drawable.ic_menu_camera);
-        imageViewPlaceholder.setImageTintList(ColorStateList.valueOf(Color.parseColor("#757575")));
-        imageViewPlaceholder.setBackgroundColor(Color.LTGRAY);
-        imageViewPlaceholder.setPadding(150, 150, 150, 150);
-        imageViewPlaceholder.setScaleType(ImageView.ScaleType.CENTER);
     }
 
     @Override
