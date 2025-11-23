@@ -1,14 +1,15 @@
 package com.mittimitra;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import com.google.android.material.button.MaterialButton;
+import androidx.core.content.ContextCompat;
 
 public class HelpActivity extends BaseActivity {
 
@@ -17,37 +18,31 @@ public class HelpActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
 
+        // 1. Setup Toolbar (White Arrow)
         Toolbar toolbar = findViewById(R.id.help_toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+            Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24);
+            if (upArrow != null) {
+                upArrow.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+                getSupportActionBar().setHomeAsUpIndicator(upArrow);
+            }
         }
 
-        MaterialButton btnContactPhone = findViewById(R.id.btn_contact_phone);
-        MaterialButton btnContactEmail = findViewById(R.id.btn_contact_email);
-
-        btnContactPhone.setOnClickListener(v -> {
-            // Create an intent to open the phone dialer
-            Intent dialIntent = new Intent(Intent.ACTION_DIAL);
-            dialIntent.setData(Uri.parse("tel:" + getString(R.string.help_contact_phone)));
-            try {
-                startActivity(dialIntent);
-            } catch (Exception e) {
-                Toast.makeText(this, "Could not open dialer.", Toast.LENGTH_SHORT).show();
-            }
+        // 2. Button Listeners
+        findViewById(R.id.btn_contact_phone).setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + getString(R.string.help_contact_phone)));
+            startActivity(intent);
         });
 
-        btnContactEmail.setOnClickListener(v -> {
-            // Create an intent to open an email app
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-            emailIntent.setData(Uri.parse("mailto:")); // Only email apps should handle this
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.help_contact_email)});
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Mitti Mitra App Support");
-            try {
-                startActivity(Intent.createChooser(emailIntent, "Send Email"));
-            } catch (Exception e) {
-                Toast.makeText(this, "No email app found.", Toast.LENGTH_SHORT).show();
-            }
+        findViewById(R.id.btn_contact_email).setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:" + getString(R.string.help_contact_email)));
+            startActivity(intent);
         });
     }
 

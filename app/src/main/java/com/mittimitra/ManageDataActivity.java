@@ -1,15 +1,19 @@
 package com.mittimitra;
 
 import android.app.AlertDialog;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
+import android.view.View; // Import generic View
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import com.mittimitra.database.MittiMitraDatabase;
 
@@ -32,15 +36,26 @@ public class ManageDataActivity extends BaseActivity {
         databaseExecutor = Executors.newSingleThreadExecutor();
         mainThreadHandler = new Handler(Looper.getMainLooper());
 
+        // 1. Setup Toolbar (Green Theme)
         Toolbar toolbar = findViewById(R.id.manage_data_toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+            // Fix White Back Arrow
+            Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24);
+            if (upArrow != null) {
+                upArrow.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+                getSupportActionBar().setHomeAsUpIndicator(upArrow);
+            }
         }
 
-        LinearLayout btnClearSoil = findViewById(R.id.btn_clear_soil_history);
-        LinearLayout btnClearDocs = findViewById(R.id.btn_clear_documents);
+        // 2. Bind Views (Use generic 'View' to avoid casting crashes)
+        View btnClearSoil = findViewById(R.id.btn_clear_soil_history);
+        View btnClearDocs = findViewById(R.id.btn_clear_documents);
 
+        // 3. Set Listeners
         btnClearSoil.setOnClickListener(v -> {
             new AlertDialog.Builder(this)
                     .setTitle(R.string.manage_data_soil_title)
@@ -71,17 +86,13 @@ public class ManageDataActivity extends BaseActivity {
 
     private void clearDocuments() {
         databaseExecutor.execute(() -> {
-            // 1. Clear the database records
             db.documentDao().clearAllDocuments();
-
-            // 2. Delete the actual files
             File docsDir = new File(getFilesDir(), "documents");
             if (docsDir.exists() && docsDir.isDirectory()) {
                 for (File file : docsDir.listFiles()) {
                     file.delete();
                 }
             }
-
             mainThreadHandler.post(() -> {
                 Toast.makeText(this, R.string.toast_documents_cleared, Toast.LENGTH_SHORT).show();
             });

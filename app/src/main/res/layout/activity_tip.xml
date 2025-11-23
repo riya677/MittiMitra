@@ -1,61 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F4F8">
+    android:background="#F4F7F5">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <View
+        android:id="@+id/header_bg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp">
+        android:layout_height="120dp"
+        android:background="#1B5E20"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tip_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="Agri-Expert Chat"
-            app:titleTextColor="#FFFFFF"
-            app:navigationIcon="?attr/homeAsUpIndicator"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tip_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:title="Agri-Expert Chat"
+        app:titleTextColor="#FFFFFF"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:layout_constraintTop_toTopOf="parent">
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_chat"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
+        android:layout_height="0dp"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="80dp"
         android:clipToPadding="false"
-        android:scrollbars="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_marginBottom="80dp"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/tip_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_chat_message"/>
 
     <ProgressBar
         android:id="@+id/loading_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminateTint="?attr/colorPrimary"
-        android:visibility="gone"/>
+        android:indeterminateTint="#1B5E20"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/layout_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_margin="12dp"
-        app:cardCornerRadius="24dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="28dp"
         app:cardElevation="8dp"
-        app:cardBackgroundColor="#FFFFFF">
+        app:cardBackgroundColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:padding="8dp">
+            android:padding="6dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_record_audio"
@@ -70,7 +79,8 @@
                 app:iconPadding="0dp"
                 app:iconTint="#757575"
                 android:background="@android:color/transparent"
-                app:rippleColor="#E0E0E0"/>
+                app:rippleColor="#C8E6C9"
+                app:cornerRadius="24dp"/>
 
             <EditText
                 android:id="@+id/et_chat_message"
@@ -80,7 +90,7 @@
                 android:background="@android:color/transparent"
                 android:hint="Ask about crops..."
                 android:textSize="16sp"
-                android:paddingHorizontal="12dp"
+                android:paddingHorizontal="8dp"
                 android:paddingVertical="12dp"
                 android:maxLines="4"
                 android:textColor="#333333"
@@ -93,11 +103,11 @@
                 android:layout_margin="4dp"
                 app:fabSize="mini"
                 app:tint="#FFFFFF"
-                app:backgroundTint="?attr/colorPrimary"
+                app:backgroundTint="#1B5E20"
                 app:srcCompat="@android:drawable/ic_menu_send"
-                app:elevation="2dp"/>
+                app:elevation="0dp"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
