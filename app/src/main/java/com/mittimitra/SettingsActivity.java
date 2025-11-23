@@ -1,11 +1,15 @@
 package com.mittimitra;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,40 +21,37 @@ public class SettingsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        // 1. SETUP TOOLBAR (Modern Green Style)
         Toolbar toolbar = findViewById(R.id.settings_toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            // Set White Arrow
+            Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24);
+            if (upArrow != null) {
+                upArrow.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+                getSupportActionBar().setHomeAsUpIndicator(upArrow);
+            }
         }
 
+        // 2. SETUP RECYCLER VIEW
         RecyclerView recyclerView = findViewById(R.id.recycler_view_settings);
+        // Note: LayoutManager (GridLayout) is already defined in activity_settings.xml
 
+        // 3. PREPARE DATA
         List<SettingItem> items = new ArrayList<>();
 
-        // 1. Language Settings
-        items.add(new SettingItem("language", getString(R.string.setting_language), android.R.drawable.ic_menu_mapmode));
+        items.add(new SettingItem("language", "Language", android.R.drawable.ic_menu_mapmode));
+        items.add(new SettingItem("accessibility", "Accessibility", android.R.drawable.ic_menu_sort_alphabetically));
+        items.add(new SettingItem("theme", "App Theme", android.R.drawable.ic_menu_view));
+        items.add(new SettingItem("unit_converter", "Unit Converter", android.R.drawable.ic_menu_sort_by_size));
+        items.add(new SettingItem("kisan_call", "Kisan Helpline", android.R.drawable.ic_menu_call));
+        items.add(new SettingItem("manage_data", "Manage Data", android.R.drawable.ic_menu_delete));
+        items.add(new SettingItem("notifications", "Notifications", android.R.drawable.ic_popup_reminder));
+        items.add(new SettingItem("share", "Share App", android.R.drawable.ic_menu_share));
 
-        // 2. Accessibility (Font Size & Dyslexic Font)
-        items.add(new SettingItem("accessibility", getString(R.string.setting_accessibility), android.R.drawable.ic_menu_sort_alphabetically));
-
-        // 3. App Theme
-        items.add(new SettingItem("theme", getString(R.string.setting_theme), android.R.drawable.ic_menu_view));
-
-        // 4. Land Unit Converter (New Feature)
-        // Uses 'ic_menu_sort_by_size' as it relates to measurement/size
-        items.add(new SettingItem("unit_converter", getString(R.string.setting_unit_converter), android.R.drawable.ic_menu_sort_by_size));
-
-        // 5. Kisan Call Center (New Feature)
-        // Uses 'ic_menu_call' for the phone action
-        items.add(new SettingItem("kisan_call", getString(R.string.setting_kisan_call), android.R.drawable.ic_menu_call));
-
-        // 6. Manage Data (Clear History)
-        items.add(new SettingItem("manage_data", getString(R.string.setting_manage_data), android.R.drawable.ic_menu_delete));
-
-        // 1. Add these items to your list:
-        items.add(new SettingItem("notifications", getString(R.string.setting_notifications), android.R.drawable.ic_popup_reminder));
-        items.add(new SettingItem("share", getString(R.string.setting_share_app), android.R.drawable.ic_menu_share));
-
+        // 4. SETUP ADAPTER & CLICKS
         SettingsAdapter adapter = new SettingsAdapter(items, item -> {
             switch (item.id) {
                 case "language":
@@ -63,11 +64,10 @@ public class SettingsActivity extends BaseActivity {
                     startActivity(new Intent(this, ThemeSettingsActivity.class));
                     break;
                 case "unit_converter":
-                    // Launches the new Unit Converter Activity
                     startActivity(new Intent(this, UnitConverterActivity.class));
                     break;
                 case "kisan_call":
-                    // Initiates a call to the Govt. Kisan Helpline (1800-180-1551)
+                    // Call Govt Helpline: 1800-180-1551
                     Intent callIntent = new Intent(Intent.ACTION_DIAL);
                     callIntent.setData(Uri.parse("tel:18001801551"));
                     startActivity(callIntent);
@@ -82,7 +82,7 @@ public class SettingsActivity extends BaseActivity {
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message));
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out Mitti Mitra - The AI Soil Doctor for Farmers!");
                     startActivity(Intent.createChooser(shareIntent, "Share via"));
                     break;
             }
@@ -94,7 +94,7 @@ public class SettingsActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            finish();
+            finish(); // Go back when white arrow is clicked
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -35,12 +35,14 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.SoilAnalysis;
 import com.mittimitra.network.RetrofitClient;
 import com.mittimitra.utils.SoilDataManager;
-import com.mittimitra.utils.SoilNutrientMapper; // NEW IMPORT
+import com.mittimitra.utils.SoilNutrientMapper;
 
 import org.json.JSONObject;
 import org.tensorflow.lite.Interpreter;
@@ -51,12 +53,16 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import com.mittimitra.utils.NutrientStatus;
 
 public class ScanActivity extends AppCompatActivity {
 
@@ -83,23 +89,24 @@ public class ScanActivity extends AppCompatActivity {
     private static final int LOCATION_PERMISSION_REQUEST = 1001;
     private static final String PREF_CACHE = "scan_cache";
 
-    // Data Variables
+    // Variables
     private String weatherSummary = "Wait...";
     private String soilDynamic = "--";
     private String locationName = "Locating...";
+    private String districtName = "Unknown"; // Restored variable
 
     private double currentLat = 0.0;
     private double currentLon = 0.0;
 
-    // Store Final Values (Defaults)
-    private double finalN = 140;
-    private double finalP = 25;
-    private double finalK = 80;
-    private double finalpH = 6.5;
+    // Default values (0 means loading)
+    private double finalN = 0;
+    private double finalP = 0;
+    private double finalK = 0;
+    private double finalpH = 0;
 
     private Bitmap currentImageBitmap = null;
 
-    // --- Launchers (Same as before) ---
+    // --- Launchers ---
     private final ActivityResultLauncher<Void> cameraLauncher =
             registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), result -> {
                 if (result != null) {
@@ -193,7 +200,6 @@ public class ScanActivity extends AppCompatActivity {
         btnAnalyze.animate().alpha(1f).setDuration(300).start();
     }
 
-    // --- Data Loading ---
     private void loadCachedData() {
         SharedPreferences prefs = getSharedPreferences(PREF_CACHE, Context.MODE_PRIVATE);
         weatherSummary = prefs.getString("weather", "Waiting...");
@@ -207,11 +213,27 @@ public class ScanActivity extends AppCompatActivity {
         tvCardMoisture.setText(soilDynamic.equals("--") ? "--" : soilDynamic + " m³/m³");
         chipLocation.setText(locationName);
 
-        // Update Nutrients UI
-        if(tvValN != null) tvValN.setText(String.format("%.0f", finalN));
-        if(tvValP != null) tvValP.setText(String.format("%.0f", finalP));
-        if(tvValK != null) tvValK.setText(String.format("%.0f", finalK));
-        if(tvValPh != null) tvValPh.setText(String.format("%.1f", finalpH));
+        if (tvValN != null) {
+            NutrientStatus.Status s = NutrientStatus.getNitrogenStatus(finalN);
+            tvValN.setText(String.format("%.0f (%s)", finalN, s.label));
+            tvValN.setTextColor(s.color);
+        }
+        // Repeat for P, K, and pH using their respective status methods
+        if (tvValP != null) {
+            NutrientStatus.Status s = NutrientStatus.getPhosphorusStatus(finalP);
+            tvValP.setText(String.format("%.0f (%s)", finalP, s.label));
+            tvValP.setTextColor(s.color);
+        }
+        if (tvValK != null) {
+            NutrientStatus.Status s = NutrientStatus.getPotassiumStatus(finalK);
+            tvValK.setText(String.format("%.0f (%s)", finalK, s.label));
+            tvValK.setTextColor(s.color);
+        }
+        if (tvValPh != null) {
+            NutrientStatus.Status s = NutrientStatus.getPhStatus(finalpH);
+            tvValPh.setText(String.format("%.1f (%s)", finalpH, s.label));
+            tvValPh.setTextColor(s.color);
+        }
     }
 
     private void cacheData(String key, String value) {
@@ -224,7 +246,7 @@ public class ScanActivity extends AppCompatActivity {
             return;
         }
 
-        tvStatusLabel.setText("Acquiring Satellite Data...");
+        tvStatusLabel.setText("Connecting to Satellites...");
 
         fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
             if (location != null) {
@@ -232,7 +254,9 @@ public class ScanActivity extends AppCompatActivity {
                 currentLon = location.getLongitude();
                 fetchAddress(currentLat, currentLon);
                 fetchAgroData(currentLat, currentLon);
-                fetchLiveISRICData(currentLat, currentLon); // NEW: Live N and pH
+
+                // CALL LIVE SOIL DATA
+                fetchLiveSoilData(currentLat, currentLon);
             } else {
                 tvStatusLabel.setText("Using Offline Mode");
             }
@@ -246,7 +270,10 @@ public class ScanActivity extends AppCompatActivity {
                 List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
                 if (!addresses.isEmpty()) {
                     Address addr = addresses.get(0);
+                    districtName = addr.getSubAdminArea();
+                    if (districtName == null) districtName = addr.getLocality();
                     locationName = (addr.getLocality() != null ? addr.getLocality() : "Unknown") + ", " + addr.getAdminArea();
+
                     new Handler(Looper.getMainLooper()).post(() -> {
                         chipLocation.setText(locationName);
                         cacheData("loc", locationName);
@@ -256,7 +283,6 @@ public class ScanActivity extends AppCompatActivity {
         }).start();
     }
 
-    // 1. LIVE API: Get Weather
     private void fetchAgroData(double lat, double lon) {
         RetrofitClient.getAgroService().getAgroWeather(lat, lon).enqueue(new Callback<JsonObject>() {
             @Override
@@ -280,39 +306,75 @@ public class ScanActivity extends AppCompatActivity {
         });
     }
 
-    // 2. LIVE API: Get Nitrogen & pH from ISRIC
-    private void fetchLiveISRICData(double lat, double lon) {
-        String[] props = {"nitrogen", "phh2o"};
-        RetrofitClient.getSoilService().getSoilProperties(lat, lon, props, new String[]{"0-5cm"}, "mean")
+    // --- FIXED: CORRECT JSON ARRAY PARSING ---
+    private void fetchLiveSoilData(double lat, double lon) {
+        List<String> props = new ArrayList<>(Arrays.asList("nitrogen", "phh2o", "soc", "clay"));
+
+        RetrofitClient.getSoilService().getSoilProperties(lat, lon, props, "0-5cm", "mean")
                 .enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if(response.body() != null) {
                             try {
-                                JsonObject layers = response.body().getAsJsonObject("properties").getAsJsonObject("layers");
+                                // Log raw response
+                                Log.d(TAG, "ISRIC Response: " + response.body().toString());
 
-                                // Parse Nitrogen (cg/kg -> ~kg/ha roughly x10 factor for surface)
-                                double nVal = layers.getAsJsonObject("nitrogen").getAsJsonObject("depths")
-                                        .getAsJsonObject("0-5cm").getAsJsonObject("values").get("mean").getAsDouble();
-                                finalN = nVal * 2; // Simple conversion for display
+                                // FIX: 'layers' is a JsonArray, loop through it
+                                JsonArray layers = response.body().getAsJsonObject("properties").getAsJsonArray("layers");
 
-                                // Parse pH (scaled by 10)
-                                double phVal = layers.getAsJsonObject("phh2o").getAsJsonObject("depths")
-                                        .getAsJsonObject("0-5cm").getAsJsonObject("values").get("mean").getAsDouble();
-                                finalpH = phVal / 10.0;
+                                for (JsonElement layerElement : layers) {
+                                    JsonObject layer = layerElement.getAsJsonObject();
+                                    String name = layer.get("name").getAsString();
+                                    double value = getMeanValue(layer);
+
+                                    if (name.equals("nitrogen")) {
+                                        // Unit: cg/kg -> Convert to kg/ha (approx)
+                                        finalN = value * 2.0;
+                                    }
+                                    else if (name.equals("phh2o")) {
+                                        // Unit: pH*10 -> Convert to real pH
+                                        finalpH = value / 10.0;
+                                    }
+                                    else if (name.equals("soc")) {
+                                        // Organic Carbon -> Calculate P
+                                        finalP = 10 + (value * 0.2);
+                                    }
+                                    else if (name.equals("clay")) {
+                                        // Clay % -> Calculate K
+                                        finalK = 50 + (value * 3.5);
+                                    }
+                                }
 
                                 runOnUiThread(() -> {
                                     updateDashboardUI();
-                                    tvStatusLabel.setText("Live Soil Data Synced");
+                                    tvStatusLabel.setText("Live Soil Data Received");
                                 });
-                            } catch (Exception e) { Log.e(TAG, "ISRIC Error", e); }
+                            } catch (Exception e) {
+                                Log.e(TAG, "Parsing Error", e);
+                                runOnUiThread(() -> tvStatusLabel.setText("Soil Data Unavailable"));
+                            }
                         }
                     }
-                    @Override public void onFailure(Call<JsonObject> call, Throwable t) {}
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        Log.e(TAG, "Network Fail", t);
+                        runOnUiThread(() -> tvStatusLabel.setText("Network Error"));
+                    }
                 });
     }
 
-    // --- ANALYSIS (Offline TFLite) ---
+    private double getMeanValue(JsonObject layer) {
+        try {
+            return layer.getAsJsonArray("depths")
+                    .get(0).getAsJsonObject()
+                    .getAsJsonObject("values")
+                    .get("mean").getAsDouble();
+        } catch (Exception e) {
+            return 0.0;
+        }
+    }
+
+    // --- ANALYSIS (TFLite) ---
     private void startAnalysis() {
         btnAnalyze.setEnabled(false);
         btnAnalyze.setText("Analyzing...");
@@ -356,11 +418,6 @@ public class ScanActivity extends AppCompatActivity {
 
             int maxIndex = getMaxIndex(output[0]);
             String detectedSoil = (maxIndex < SOIL_LABELS.length) ? SOIL_LABELS[maxIndex] : "Unknown";
-
-            // 3. INFER P & K from Visual Soil Type
-            SoilNutrientMapper.NutrientRange estimates = SoilNutrientMapper.getEstimates(detectedSoil);
-            finalP = estimates.avgP;
-            finalK = estimates.avgK;
 
             generateSmartReport(detectedSoil);
 
@@ -407,5 +464,19 @@ public class ScanActivity extends AppCompatActivity {
                 });
             } catch (Exception e) { e.printStackTrace(); }
         }).start();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) { finish(); return true; }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION_REQUEST && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            checkLocationAndFetchData();
+        }
     }
 }
