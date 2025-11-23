@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#E0E0E0"
+    app:strokeWidth="1dp"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tv_nutrient_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="N"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"/>
+
+        <TextView
+            android:id="@+id/tv_nutrient_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
