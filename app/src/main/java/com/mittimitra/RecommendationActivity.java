@@ -11,7 +11,6 @@ import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
 import android.text.Html;
 import android.text.Spanned;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,22 +47,19 @@ import okhttp3.Response;
 
 public class RecommendationActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
-    private static final String TAG = "RecommendationActivity";
-
-    // UI Components
     private TextView tvName, tvPhone, tvEmail, tvLocation, tvDate;
     private TextView valN, ratN, valP, ratP, valK, ratK, valPh, ratPh;
     private TextView tvAiContext, tvAiAdvice;
     private View reportContainer;
     private ExtendedFloatingActionButton btnDownload;
 
-    // Services
     private static final String API_URL = "https://api.groq.com/openai/v1/chat/completions";
     private static final String MODEL_ID = "llama-3.3-70b-versatile";
 
     private int analysisId = -1;
     private TextToSpeech tts;
     private FirebaseFirestore db;
+    private String passedSoilType = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +72,14 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
 
         db = FirebaseFirestore.getInstance();
         tts = new TextToSpeech(this, this);
+
+        // Get data from intent or database
         analysisId = getIntent().getIntExtra("analysis_id", -1);
+        passedSoilType = getIntent().getStringExtra("DETECTED_SOIL_TYPE");
 
         reportContainer = findViewById(R.id.report_container);
         btnDownload = findViewById(R.id.btn_download_pdf);
+        btnDownload.setVisibility(View.GONE);
 
         tvName = findViewById(R.id.tv_rep_name);
         tvPhone = findViewById(R.id.tv_rep_phone);
@@ -96,7 +96,6 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
         tvAiAdvice = findViewById(R.id.tv_ai_advice);
 
         btnDownload.setOnClickListener(v -> savePdf());
-        btnDownload.setVisibility(View.GONE); // Hide until ready
 
         loadFarmerProfile();
         loadAnalysisData();
@@ -157,15 +156,17 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
             else if(ph > 7.5) { ratPh.setText("ALKALINE"); ratPh.setTextColor(Color.BLUE); }
             else { ratPh.setText("NEUTRAL"); ratPh.setTextColor(Color.parseColor("#2E7D32")); }
 
-            // --- DYNAMIC CONTEXT ---
-            String userNotes = json.optString("user_notes", "None"); // Use Notes
+            String userNotes = json.optString("user_notes", "None");
             String weather = json.optString("weather", "N/A");
             String moisture = json.optString("soil_dynamic", "N/A");
 
-            String contextText = String.format("Input: %s | Weather: %s | Moisture: %s", userNotes, weather, moisture);
+            // Prefer the JSON data, but fallback to intent data if needed
+            String detectedSoil = json.optString("detected_soil", passedSoilType != null ? passedSoilType : "Not Scanned");
+
+            String contextText = String.format("Input: %s | Weather: %s | Type: %s", userNotes, weather, detectedSoil);
             tvAiContext.setText(contextText);
 
-            fetchProfessionalAdvice(n, p, k, ph, userNotes, weather, moisture);
+            fetchProfessionalAdvice(n, p, k, ph, userNotes, weather, moisture, detectedSoil);
 
         } catch (Exception e) { e.printStackTrace(); }
     }
@@ -177,32 +178,20 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
         else { vRat.setText("OK"); vRat.setTextColor(Color.parseColor("#2E7D32")); }
     }
 
-    private void fetchProfessionalAdvice(int n, int p, int k, double ph, String userNotes, String weather, String moisture) {
-
+    private void fetchProfessionalAdvice(int n, int p, int k, double ph, String userNotes, String weather, String moisture, String detectedSoil) {
         String rawKey = BuildConfig.GROQ_API_KEY.replace("\"", "").trim();
 
-        // DYNAMIC PROMPT
-        String taskInstruction;
-        if (userNotes.equalsIgnoreCase("None") || userNotes.isEmpty()) {
-            // Case A: No Crop -> Recommend
-            taskInstruction =
-                    "1. **Crop Recommendation:** Suggest top 3 crops for this Soil NPK/pH.\n" +
-                            "2. **Why:** Explain suitability briefly.\n" +
-                            "3. **Soil Correction:** Advise on pH correction.";
-        } else {
-            // Case B: Specific Input -> Analyze
-            taskInstruction =
-                    "1. **Analysis for '" + userNotes + "':** Is this crop/issue relevant? Give specific advice.\n" +
-                            "2. **Fertilizer Schedule:** Exact Urea/DAP/MOP dosage (kg/acre) for " + userNotes + ".\n" +
-                            "3. **Care:** Address the user note directly (disease/irrigation).";
-        }
+        // Include Detected Soil in Prompt
+        String taskInstruction = "1. **Crop Recommendation:** Suggest top 3 crops suitable for " + detectedSoil + " soil.\n" +
+                "2. **Fertilizer:** Specific advice for NPK: " + n + "/" + p + "/" + k + ".\n" +
+                "3. **Soil Care:** Best practices for " + detectedSoil + " soil.";
 
         String systemPrompt = "You are a Senior Indian Agronomist. Provide strict, actionable advice in clean Markdown.";
         String userPrompt = String.format(
                 "Generate Soil Health Advisory.\n\n" +
-                        "DATA:\n- User Input: %s\n- Soil: N=%d P=%d K=%d pH=%.1f\n- Weather: %s\n- Moisture: %s\n\n" +
-                        "TASKS:\n%s\n\nNote: Be precise.",
-                userNotes, n, p, k, ph, weather, moisture, taskInstruction
+                        "DATA:\n- User Notes: %s\n- Soil Type: %s\n- Soil NPK: N=%d P=%d K=%d pH=%.1f\n- Weather: %s\n- Moisture: %s\n\n" +
+                        "TASKS:\n%s",
+                userNotes, detectedSoil, n, p, k, ph, weather, moisture, taskInstruction
         );
 
         JSONObject jsonBody = new JSONObject();
@@ -234,7 +223,6 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
                     }
                     JSONObject res = new JSONObject(response.body().string());
                     String rawContent = res.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
-
                     Spanned styledText = parseMarkdown(rawContent);
                     runOnUiThread(() -> {
                         tvAiAdvice.setText(styledText);
@@ -263,7 +251,6 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
             PdfDocument document = new PdfDocument();
             PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(reportContainer.getWidth(), reportContainer.getHeight(), 1).create();
             PdfDocument.Page page = document.startPage(pageInfo);
-
             Canvas canvas = page.getCanvas();
             canvas.drawColor(Color.WHITE);
             reportContainer.draw(canvas);
@@ -293,10 +280,6 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
         if(status == TextToSpeech.SUCCESS) tts.setLanguage(new Locale("en", "IN"));
     }
 
-    private void speakAdvice() {
-        if (tts != null) tts.speak(tvAiAdvice.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, null);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0, 1, 0, "Read Aloud").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -306,7 +289,7 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) finish();
-        if (item.getItemId() == 1) speakAdvice();
+        if (item.getItemId() == 1 && tts != null) tts.speak(tvAiAdvice.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, null);
         return true;
     }
 

@@ -45,12 +45,12 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_image"
                 android:layout_width="match_parent"
-                android:layout_height="340dp"
-                app:cardCornerRadius="28dp"
-                app:cardElevation="8dp"
+                android:layout_height="300dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="4dp"
                 app:strokeColor="#E0E0E0"
                 app:strokeWidth="1dp"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="20dp">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -62,7 +62,6 @@
                         android:layout_height="match_parent"
                         android:scaleType="center"
                         android:src="@android:drawable/ic_menu_camera"
-                        android:padding="0dp"
                         android:background="#FFFFFF"/>
 
                     <LinearLayout
@@ -72,14 +71,12 @@
                         android:layout_gravity="center"
                         android:orientation="vertical"
                         android:gravity="center">
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Take a photo of your soil"
+                            android:text="Tap to Capture Soil"
                             android:textColor="#757575"
-                            android:textSize="16sp"
-                            android:layout_marginTop="80dp"/>
+                            android:textSize="16sp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -87,15 +84,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:gravity="center"
-                        android:padding="20dp"
+                        android:padding="16dp"
                         android:background="@drawable/gradient_bottom_overlay">
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_upload"
                             android:layout_width="wrap_content"
-                            android:layout_height="56dp"
+                            android:layout_height="50dp"
                             android:text="Gallery"
                             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                            app:cornerRadius="28dp"
+                            app:cornerRadius="25dp"
                             app:strokeColor="#2E7D32"
                             android:textColor="#2E7D32"
                             android:layout_marginEnd="16dp"
@@ -104,91 +101,71 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_camera"
                             android:layout_width="wrap_content"
-                            android:layout_height="56dp"
+                            android:layout_height="50dp"
                             android:text="Camera"
                             app:icon="@android:drawable/ic_menu_camera"
-                            app:cornerRadius="28dp"
+                            app:cornerRadius="25dp"
                             android:layout_weight="1"/>
                     </LinearLayout>
                 </FrameLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Environment Data"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#1B5E20"
+                android:layout_marginBottom="12dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="12dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Field Conditions"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#1B5E20"/>
-
-                <TextView
-                    android:id="@+id/tv_status_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Syncing..."
-                    android:textSize="12sp"
-                    android:textColor="#666"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_data_cards"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false">
+                android:baselineAligned="false"
+                android:layout_marginBottom="20dp">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="8dp"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
                     app:strokeWidth="1dp"
                     app:strokeColor="#E0E0E0"
                     app:cardBackgroundColor="#FFFFFF">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="16dp">
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="🌤 Weather"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textColor="#616161"/>
-
                         <TextView
                             android:id="@+id/tv_card_weather"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Loading..."
-                            android:textSize="18sp"
+                            android:text="--"
+                            android:textSize="16sp"
                             android:textStyle="bold"
                             android:layout_marginTop="4dp"
                             android:textColor="#333"/>
-
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Locating..."
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="4dp"
                             style="@style/Widget.MaterialComponents.Chip.Action"
                             app:chipBackgroundColor="#F1F8E9"
-                            app:chipMinHeight="32dp"
-                            android:textSize="12sp"/>
+                            app:chipMinHeight="24dp"
+                            android:textSize="10sp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -196,33 +173,29 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="8dp"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
                     app:strokeWidth="1dp"
                     app:strokeColor="#E0E0E0"
                     app:cardBackgroundColor="#FFFFFF">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center_vertical">
-
+                        android:padding="16dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="💧 Moisture"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textColor="#616161"/>
-
                         <TextView
                             android:id="@+id/tv_card_moisture"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="--"
-                            android:textSize="22sp"
+                            android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_marginTop="4dp"
                             android:textColor="#0277BD"/>
@@ -230,18 +203,40 @@
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Soil Nutrients (Est.)"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#1B5E20"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                android:layout_marginBottom="20dp">
+
+                <include layout="@layout/item_nutrient_card" android:id="@+id/card_n" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="4dp"/>
+                <include layout="@layout/item_nutrient_card" android:id="@+id/card_p" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="4dp"/>
+                <include layout="@layout/item_nutrient_card" android:id="@+id/card_k" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="4dp"/>
+                <include layout="@layout/item_nutrient_card" android:id="@+id/card_ph" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+
+            </LinearLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Observations (e.g., 'Yellow leaves')"
+                android:hint="Your Observations (e.g. 'Yellow leaves')"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_marginTop="24dp"
                 app:boxBackgroundColor="#FFFFFF"
                 app:boxCornerRadiusTopStart="16dp"
                 app:boxCornerRadiusTopEnd="16dp"
                 app:boxCornerRadiusBottomStart="16dp"
-                app:boxCornerRadiusBottomEnd="16dp"
-                app:boxStrokeColor="#2E7D32">
+                app:boxCornerRadiusBottomEnd="16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_user_notes"
@@ -250,17 +245,27 @@
                     android:inputType="textCapSentences"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/tv_status_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ready to scan"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:textSize="12sp"
+                android:textColor="#666"/>
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp">
+                android:layout_marginTop="16dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_analyze"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
-                    android:text="Generate Health Report"
-                    android:textSize="18sp"
+                    android:text="Identify Soil &amp; Recommend"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:cornerRadius="16dp"
                     app:elevation="4dp"

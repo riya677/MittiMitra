@@ -8,11 +8,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     private static Retrofit soilRetrofit;
     private static Retrofit meteoRetrofit;
+    private static Retrofit hfRetrofit; // New instance for Hugging Face
 
-    // Create a custom client with 60s timeout for slow APIs (like ISRIC)
     private static final OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(60, TimeUnit.SECONDS) // Connect fast
-            .readTimeout(60, TimeUnit.SECONDS)    // Wait up to 60s for data
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .build();
 
@@ -20,7 +20,7 @@ public class RetrofitClient {
         if (soilRetrofit == null) {
             soilRetrofit = new Retrofit.Builder()
                     .baseUrl("https://rest.isric.org/soilgrids/v2.0/")
-                    .client(client) // Apply the custom client here
+                    .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
@@ -31,10 +31,21 @@ public class RetrofitClient {
         if (meteoRetrofit == null) {
             meteoRetrofit = new Retrofit.Builder()
                     .baseUrl("https://api.open-meteo.com/")
-                    .client(client) // Apply here too for stability
+                    .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return meteoRetrofit.create(OpenMeteoService.class);
+    }
+
+    public static HuggingFaceService getHuggingFaceService() {
+        if (hfRetrofit == null) {
+            hfRetrofit = new Retrofit.Builder()
+                    .baseUrl("https://api-inference.huggingface.co/")
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return hfRetrofit.create(HuggingFaceService.class);
     }
 }
