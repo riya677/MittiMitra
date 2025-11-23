@@ -25,6 +25,8 @@ android {
         // Define the API Key here so it generates in BuildConfig
         buildConfigField "String", "GROQ_API_KEY", "\"${properties.getProperty('GROQ_API_KEY')}\""
         buildConfigField "String", "OPENWEATHER_API_KEY", "\"${properties.getProperty('OPENWEATHER_API_KEY')}\""
+        buildConfigField "String", "HF_API_TOKEN", "\"${properties.getProperty('HF_API_TOKEN')}\""
+        buildConfigField "String", "HF_MODEL_URL", "\"${properties.getProperty('HF_MODEL_URL')}\""
     }
 
     buildTypes {
@@ -87,4 +89,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation libs.androidx.espresso.core
+
+    implementation(libs.firebase.ml.modeldownloader)
+    implementation(libs.tensorflow.lite)
 }

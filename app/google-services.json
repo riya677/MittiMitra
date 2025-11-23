@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "512527213662-lpahkg8sfdcfnjbi8hded4r2hr98s9hc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mittimitra",
+            "certificate_hash": "01f11d2326e52f38468db966077d88ad3c808028"
+          }
+        },
+        {
           "client_id": "512527213662-pm5gcpvg9ugia5d71oqk738r874ppu7e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
