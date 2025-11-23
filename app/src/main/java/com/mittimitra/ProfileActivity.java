@@ -118,6 +118,11 @@ public class ProfileActivity extends BaseActivity {
         builder.setView(view);
         AlertDialog dialog = builder.create();
 
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+        dialog.show();
+
         TextInputEditText etName = view.findViewById(R.id.et_edit_name);
         TextInputEditText etPhone = view.findViewById(R.id.et_edit_phone);
         Button btnSave = view.findViewById(R.id.btn_save_edit);

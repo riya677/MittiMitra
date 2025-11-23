@@ -358,22 +358,23 @@ public class TipActivity extends AppCompatActivity {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_message, parent, false);
             return new ChatViewHolder(view);
         }
-        @Override public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
+        @Override
+        public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
             ChatMessage message = messages.get(position);
-
-            // USE MARKDOWN PARSER HERE
             holder.messageText.setText(parseMarkdown(message.getMessage()));
-
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.messageText.getLayoutParams();
+
             if (message.getType() == ChatMessage.Type.USER) {
                 params.gravity = android.view.Gravity.END;
-                holder.messageText.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DCF8C6")));
-                holder.messageText.setTextColor(Color.BLACK);
+                holder.messageText.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DCF8C6"))); // Soft Green
+                holder.messageText.setTextColor(Color.parseColor("#000000"));
             } else {
                 params.gravity = android.view.Gravity.START;
-                holder.messageText.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
-                holder.messageText.setTextColor(Color.BLACK);
+                holder.messageText.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF"))); // White
+                holder.messageText.setTextColor(Color.parseColor("#333333")); // Dark Grey
             }
+
+            // Apply changes
             holder.messageText.setLayoutParams(params);
         }
         @Override public int getItemCount() { return messages.size(); }

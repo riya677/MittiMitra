@@ -179,25 +179,57 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
     }
 
     private void fetchProfessionalAdvice(int n, int p, int k, double ph, String userNotes, String weather, String moisture, String detectedSoil) {
+
         String rawKey = BuildConfig.GROQ_API_KEY.replace("\"", "").trim();
+        String systemPrompt =
+                "You are a Senior Scientist at the Indian Council of Agricultural Research (ICAR). , " +
+                        "Don't mention the name of the organisation , mention only Mittimitra" +
+                        "Your task is to generate a 'Soil Health Card (SHC) Advisory' adhering to Government of India guidelines. " +
+                        "Focus on Integrated Nutrient Management (INM) and long-term soil sustainability. " +
+                        "Output must be formal, scientific, and strictly formatted in Markdown.";
 
-        // Include Detected Soil in Prompt
-        String taskInstruction = "1. **Crop Recommendation:** Suggest top 3 crops suitable for " + detectedSoil + " soil.\n" +
-                "2. **Fertilizer:** Specific advice for NPK: " + n + "/" + p + "/" + k + ".\n" +
-                "3. **Soil Care:** Best practices for " + detectedSoil + " soil.";
+        String taskInstruction =
+                "### 1. 📋 **Soil Health Status Report**\n" +
+                        "- **Diagnosis:** Classify nutrient levels (Low/Medium/High) based on Indian standards.\n" +
+                        "- **Suitability:** Assess if **" + detectedSoil + "** soil is suitable for cultivation given the current status.\n\n" +
 
-        String systemPrompt = "You are a Senior Indian Agronomist. Provide strict, actionable advice in clean Markdown.";
+                        "### 2. 🌾 **Crop Planning (Agro-Climatic approach)**\n" +
+                        "- Recommend 3 crops aligned with **" + detectedSoil + "** soil and local climate (" + weather + ").\n" +
+                        "- **Variety Selection:** Suggest specific **ICAR/State University certified varieties** (e.g., 'Pusa Basmati', 'Co-86032').\n\n" +
+
+                        "### 3. 💊 **Balanced Fertilization Schedule (RDF)**\n" +
+                        "- **Goal:** Achieve Recommended Dose of Fertilizer (RDF) for the priority crop.\n" +
+                        "- **Chemical:** Prescribe exact **Neem Coated Urea**, **DAP/SSP**, and **MOP** dosage in **kg/acre**.\n" +
+                        "- **Bio-Fertilizer:** Mandate use of PSB/Azotobacter or Rhizobium cultures.\n" +
+                        "- **INM:** Suggest FYM or Vermicompost quantity per acre.\n\n" +
+
+                        "### 4. 🛠 **Soil Amelioration & Reclamation**\n" +
+                        "- **pH Correction:** Current pH is " + String.format("%.1f", ph) + ". " +
+                        (ph < 6.0 ? "Prescribe agricultural Lime/Dolomite dosage." :
+                                ph > 7.5 ? "Prescribe Gypsum requirement." :
+                                        "Soil reaction is neutral; advise on maintaining organic carbon.") + "\n" +
+                        "- **Micro-Nutrients:** Suggest Zinc/Boron soil application if typical for " + detectedSoil + " soil.\n\n" +
+
+                        "**Note:** Address the farmer's observation: '" + userNotes + "' with a scientific control measure.";
+
         String userPrompt = String.format(
-                "Generate Soil Health Advisory.\n\n" +
-                        "DATA:\n- User Notes: %s\n- Soil Type: %s\n- Soil NPK: N=%d P=%d K=%d pH=%.1f\n- Weather: %s\n- Moisture: %s\n\n" +
-                        "TASKS:\n%s",
+                "Generate Official Soil Health Advisory.\n\n" +
+                        "**FARMER DATA:**\n" +
+                        "- **Observation:** %s\n" +
+                        "- **Soil Texture:** %s\n" +
+                        "- **Nutrient Status:** N=%d, P=%d, K=%d (kg/ha)\n" +
+                        "- **pH Value:** %.1f\n" +
+                        "- **Weather:** %s (Moisture: %s)\n\n" +
+                        "**MANDATE:**\n%s",
                 userNotes, detectedSoil, n, p, k, ph, weather, moisture, taskInstruction
         );
 
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("model", MODEL_ID);
-            jsonBody.put("temperature", 0.3);
+            jsonBody.put("temperature", 0.3); // Strict and factual
+            jsonBody.put("max_tokens", 1100);
+
             JSONArray messages = new JSONArray();
             messages.put(new JSONObject().put("role", "system").put("content", systemPrompt));
             messages.put(new JSONObject().put("role", "user").put("content", userPrompt));
@@ -213,12 +245,12 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
 
         client.newCall(request).enqueue(new Callback() {
             @Override public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                runOnUiThread(() -> tvAiAdvice.setText("Network Error."));
+                runOnUiThread(() -> tvAiAdvice.setText("Server Connection Failed."));
             }
             @Override public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 try {
                     if (!response.isSuccessful()) {
-                        runOnUiThread(() -> tvAiAdvice.setText("AI Error: " + response.code()));
+                        runOnUiThread(() -> tvAiAdvice.setText("Advisory Generation Failed: " + response.code()));
                         return;
                     }
                     JSONObject res = new JSONObject(response.body().string());
@@ -229,7 +261,7 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
                         btnDownload.setVisibility(View.VISIBLE);
                     });
                 } catch (Exception e) {
-                    runOnUiThread(() -> tvAiAdvice.setText("Error parsing response."));
+                    runOnUiThread(() -> tvAiAdvice.setText("Error formatting advisory."));
                 }
             }
         });
