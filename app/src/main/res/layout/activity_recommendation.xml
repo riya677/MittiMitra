@@ -26,196 +26,201 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:padding="16dp"
         android:clipToPadding="false"
-        android:paddingBottom="80dp"> <androidx.cardview.widget.CardView
-        android:id="@+id/report_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="4dp">
+        android:paddingBottom="80dp">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/report_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@android:color/white"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FF9800"
-                android:orientation="vertical"
-                android:padding="24dp"
-                android:gravity="center">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:src="@mipmap/ic_launcher"
-                    app:tint="#FFFFFF"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="SOIL HEALTH CARD"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="#FFFFFF"
-                    android:layout_marginTop="8dp"
-                    android:letterSpacing="0.1"/>
+                    android:background="#FF9800"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:gravity="center">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/mittimitra_logo"
+                        android:scaleType="centerCrop"
+                        android:padding="3dp"
+                        android:background="#FFFFFF"
+                        app:shapeAppearanceOverlay="@style/CircleImageStyle"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SOIL HEALTH CARD"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginTop="12dp"
+                        android:letterSpacing="0.1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mitti Mitra • Digital Agriculture Mission"
+                        android:textSize="12sp"
+                        android:textColor="#FFF3E0"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="4dp" android:background="#4CAF50"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Mitti Mitra • Digital Agriculture Mission"
-                    android:textSize="12sp"
-                    android:textColor="#FFF3E0"
-                    android:layout_marginTop="4dp"/>
-            </LinearLayout>
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="#FFF8E1">
 
-            <View android:layout_width="match_parent" android:layout_height="4dp" android:background="#4CAF50"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="FARMER DETAILS"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="#FF9800"
+                        android:layout_marginBottom="8dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:background="#FFF8E1">
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:stretchColumns="1">
+
+                        <TableRow android:paddingVertical="4dp">
+                            <TextView text="Name:" android:textStyle="bold" android:textColor="#555"/>
+                            <TextView android:id="@+id/tv_rep_name" text="Loading..." android:textColor="#000" android:paddingStart="12dp"/>
+                        </TableRow>
+                        <TableRow android:paddingVertical="4dp">
+                            <TextView text="Mobile:" android:textStyle="bold" android:textColor="#555"/>
+                            <TextView android:id="@+id/tv_rep_phone" text="--" android:textColor="#000" android:paddingStart="12dp"/>
+                        </TableRow>
+                        <TableRow android:paddingVertical="4dp">
+                            <TextView text="Email:" android:textStyle="bold" android:textColor="#555"/>
+                            <TextView android:id="@+id/tv_rep_email" text="--" android:textColor="#000" android:paddingStart="12dp"/>
+                        </TableRow>
+                        <TableRow android:paddingVertical="4dp">
+                            <TextView text="Location:" android:textStyle="bold" android:textColor="#555"/>
+                            <TextView android:id="@+id/tv_rep_location" text="--" android:textColor="#000" android:paddingStart="12dp"/>
+                        </TableRow>
+                        <TableRow android:paddingVertical="4dp">
+                            <TextView text="Test Date:" android:textStyle="bold" android:textColor="#555"/>
+                            <TextView android:id="@+id/tv_report_date" text="--" android:textColor="#000" android:paddingStart="12dp"/>
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="FARMER DETAILS"
-                    android:textSize="12sp"
+                    android:text="TEST RESULTS (Primary Nutrients)"
+                    android:background="#EEEEEE"
+                    android:padding="12dp"
                     android:textStyle="bold"
-                    android:textColor="#FF9800"
-                    android:layout_marginBottom="8dp"/>
+                    android:textColor="#333"
+                    android:gravity="center"/>
 
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:stretchColumns="1">
+                    android:stretchColumns="1,2">
 
-                    <TableRow android:paddingVertical="4dp">
-                        <TextView text="Name:" android:textStyle="bold" android:textColor="#555"/>
-                        <TextView android:id="@+id/tv_rep_name" text="Loading..." android:textColor="#000" android:paddingStart="12dp"/>
+                    <TableRow android:background="#E0E0E0">
+                        <TextView text="Parameter" android:textStyle="bold" android:padding="12dp"/>
+                        <TextView text="Value" android:textStyle="bold" android:padding="12dp"/>
+                        <TextView text="Status" android:textStyle="bold" android:padding="12dp"/>
                     </TableRow>
-                    <TableRow android:paddingVertical="4dp">
-                        <TextView text="Mobile:" android:textStyle="bold" android:textColor="#555"/>
-                        <TextView android:id="@+id/tv_rep_phone" text="--" android:textColor="#000" android:paddingStart="12dp"/>
+
+                    <TableRow>
+                        <TextView text="Nitrogen (N)" android:padding="12dp"/>
+                        <TextView android:id="@+id/tv_val_n" text="--" android:padding="12dp"/>
+                        <TextView android:id="@+id/tv_rat_n" text="--" android:textStyle="bold" android:padding="12dp"/>
                     </TableRow>
-                    <TableRow android:paddingVertical="4dp">
-                        <TextView text="Email:" android:textStyle="bold" android:textColor="#555"/>
-                        <TextView android:id="@+id/tv_rep_email" text="--" android:textColor="#000" android:paddingStart="12dp"/>
+                    <View android:layout_height="1dp" android:background="#EEEEEE"/>
+
+                    <TableRow>
+                        <TextView text="Phosphorus (P)" android:padding="12dp"/>
+                        <TextView android:id="@+id/tv_val_p" text="--" android:padding="12dp"/>
+                        <TextView android:id="@+id/tv_rat_p" text="--" android:textStyle="bold" android:padding="12dp"/>
                     </TableRow>
-                    <TableRow android:paddingVertical="4dp">
-                        <TextView text="Location:" android:textStyle="bold" android:textColor="#555"/>
-                        <TextView android:id="@+id/tv_rep_location" text="--" android:textColor="#000" android:paddingStart="12dp"/>
+                    <View android:layout_height="1dp" android:background="#EEEEEE"/>
+
+                    <TableRow>
+                        <TextView text="Potassium (K)" android:padding="12dp"/>
+                        <TextView android:id="@+id/tv_val_k" text="--" android:padding="12dp"/>
+                        <TextView android:id="@+id/tv_rat_k" text="--" android:textStyle="bold" android:padding="12dp"/>
                     </TableRow>
-                    <TableRow android:paddingVertical="4dp">
-                        <TextView text="Test Date:" android:textStyle="bold" android:textColor="#555"/>
-                        <TextView android:id="@+id/tv_report_date" text="--" android:textColor="#000" android:paddingStart="12dp"/>
+                    <View android:layout_height="1dp" android:background="#EEEEEE"/>
+
+                    <TableRow>
+                        <TextView text="Soil pH" android:padding="12dp"/>
+                        <TextView android:id="@+id/tv_val_ph" text="--" android:padding="12dp"/>
+                        <TextView android:id="@+id/tv_rat_ph" text="--" android:textStyle="bold" android:padding="12dp"/>
                     </TableRow>
                 </TableLayout>
-            </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TEST RESULTS (Primary Nutrients)"
-                android:background="#EEEEEE"
-                android:padding="12dp"
-                android:textStyle="bold"
-                android:textColor="#333"
-                android:gravity="center"/>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stretchColumns="1,2">
-
-                <TableRow android:background="#E0E0E0">
-                    <TextView text="Parameter" android:textStyle="bold" android:padding="12dp"/>
-                    <TextView text="Value" android:textStyle="bold" android:padding="12dp"/>
-                    <TextView text="Status" android:textStyle="bold" android:padding="12dp"/>
-                </TableRow>
-
-                <TableRow>
-                    <TextView text="Nitrogen (N)" android:padding="12dp"/>
-                    <TextView android:id="@+id/tv_val_n" text="--" android:padding="12dp"/>
-                    <TextView android:id="@+id/tv_rat_n" text="--" android:textStyle="bold" android:padding="12dp"/>
-                </TableRow>
-                <View android:layout_height="1dp" android:background="#EEEEEE"/>
-
-                <TableRow>
-                    <TextView text="Phosphorus (P)" android:padding="12dp"/>
-                    <TextView android:id="@+id/tv_val_p" text="--" android:padding="12dp"/>
-                    <TextView android:id="@+id/tv_rat_p" text="--" android:textStyle="bold" android:padding="12dp"/>
-                </TableRow>
-                <View android:layout_height="1dp" android:background="#EEEEEE"/>
-
-                <TableRow>
-                    <TextView text="Potassium (K)" android:padding="12dp"/>
-                    <TextView android:id="@+id/tv_val_k" text="--" android:padding="12dp"/>
-                    <TextView android:id="@+id/tv_rat_k" text="--" android:textStyle="bold" android:padding="12dp"/>
-                </TableRow>
-                <View android:layout_height="1dp" android:background="#EEEEEE"/>
-
-                <TableRow>
-                    <TextView text="Soil pH" android:padding="12dp"/>
-                    <TextView android:id="@+id/tv_val_ph" text="--" android:padding="12dp"/>
-                    <TextView android:id="@+id/tv_rat_ph" text="--" android:textStyle="bold" android:padding="12dp"/>
-                </TableRow>
-            </TableLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SCIENTIFIC ADVISORY"
-                    android:textStyle="bold"
-                    android:textColor="#2E7D32"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/tv_ai_context"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Analyzing specific crop needs..."
-                    android:textStyle="italic"
-                    android:textSize="12sp"
-                    android:textColor="#757575"
-                    android:layout_marginBottom="12dp"/>
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SCIENTIFIC ADVISORY"
+                        android:textStyle="bold"
+                        android:textColor="#2E7D32"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_ai_context"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Analyzing specific crop needs..."
+                        android:textStyle="italic"
+                        android:textSize="12sp"
+                        android:textColor="#757575"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_ai_advice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Generating expert recommendation..."
+                        android:textSize="14sp"
+                        android:textColor="#212121"
+                        android:lineSpacingExtra="6dp"
+                        android:background="#F1F8E9"
+                        android:padding="12dp"/>
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tv_ai_advice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Generating expert recommendation..."
-                    android:textSize="14sp"
-                    android:textColor="#212121"
-                    android:lineSpacingExtra="6dp"
-                    android:background="#F1F8E9"
-                    android:padding="12dp"/>
+                    android:text="Generated by Mitti Mitra AI | Verified by Satellite Data"
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textColor="#9E9E9E"
+                    android:padding="16dp"
+                    android:background="#FAFAFA"/>
+
             </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Generated by Mitti Mitra AI | Verified by Satellite Data"
-                android:gravity="center"
-                android:textSize="10sp"
-                android:textColor="#9E9E9E"
-                android:padding="16dp"
-                android:background="#FAFAFA"/>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </androidx.core.widget.NestedScrollView>
 

@@ -1,48 +1,64 @@
 package com.mittimitra;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class NotificationSettingsActivity extends BaseActivity {
 
+    private SwitchMaterial switchWeather;
+    private SwitchMaterial switchMandi;
+    private SwitchMaterial switchSchemes;
     private SharedPreferences prefs;
-    private static final String PREF_NOTIF = "notif_prefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_settings);
 
+        // Initialize SharedPreferences to save data
+        prefs = getSharedPreferences("MittiMitra_Notifications", Context.MODE_PRIVATE);
+
+        // Setup Toolbar
         Toolbar toolbar = findViewById(R.id.notif_toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(""); // Title handled in XML
         }
 
-        prefs = getSharedPreferences(PREF_NOTIF, MODE_PRIVATE);
+        // Bind Views
+        switchWeather = findViewById(R.id.switch_weather);
+        switchMandi = findViewById(R.id.switch_mandi);
+        switchSchemes = findViewById(R.id.switch_schemes);
 
-        SwitchMaterial swWeather = findViewById(R.id.switch_weather);
-        SwitchMaterial swMandi = findViewById(R.id.switch_mandi);
-        SwitchMaterial swSchemes = findViewById(R.id.switch_schemes);
+        // Load Saved States (Default to true/ON)
+        switchWeather.setChecked(prefs.getBoolean("notif_weather", true));
+        switchMandi.setChecked(prefs.getBoolean("notif_mandi", true));
+        switchSchemes.setChecked(prefs.getBoolean("notif_schemes", true));
 
-        // Load saved state (Default is true)
-        swWeather.setChecked(prefs.getBoolean("weather", true));
-        swMandi.setChecked(prefs.getBoolean("mandi", true));
-        swSchemes.setChecked(prefs.getBoolean("schemes", true));
+        // Set Listeners to Save Data on Change
+        setupSwitchListener(switchWeather, "notif_weather", "Weather Alerts");
+        setupSwitchListener(switchMandi, "notif_mandi", "Mandi Prices");
+        setupSwitchListener(switchSchemes, "notif_schemes", "Govt Schemes");
+    }
 
-        // Save state on change
-        swWeather.setOnCheckedChangeListener((v, isChecked) ->
-                prefs.edit().putBoolean("weather", isChecked).apply());
+    private void setupSwitchListener(SwitchMaterial switchView, String key, String name) {
+        switchView.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Save the new state
+            prefs.edit().putBoolean(key, isChecked).apply();
 
-        swMandi.setOnCheckedChangeListener((v, isChecked) ->
-                prefs.edit().putBoolean("mandi", isChecked).apply());
-
-        swSchemes.setOnCheckedChangeListener((v, isChecked) ->
-                prefs.edit().putBoolean("schemes", isChecked).apply());
+            // Optional: Show a small feedback toast
+            String status = isChecked ? "Enabled" : "Disabled";
+            // Toast.makeText(this, name + " " + status, Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override

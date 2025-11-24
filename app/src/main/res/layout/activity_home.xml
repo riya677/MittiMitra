@@ -29,14 +29,13 @@
 
             <LinearLayout
                 android:id="@+id/layout_welcome"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/card_profile_pic"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -57,26 +56,6 @@
                     android:textSize="14sp"
                     android:layout_marginTop="4dp"/>
             </LinearLayout>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_profile_pic"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                app:cardCornerRadius="24dp"
-                app:cardBackgroundColor="#2E7D32"
-                app:cardElevation="0dp"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/layout_welcome"
-                app:layout_constraintBottom_toBottomOf="@id/layout_welcome">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@android:drawable/ic_menu_my_calendar"
-                    android:padding="10dp"
-                    app:tint="#FFFFFF"/>
-            </androidx.cardview.widget.CardView>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPagerCarousel"
@@ -306,48 +285,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:text="Expert Tips"
-                            android:textSize="16sp"
-                            android:textColor="#333333"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_profile"
-                    android:layout_width="0dp"
-                    android:layout_height="140dp"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="6dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <FrameLayout
-                            android:layout_width="56dp"
-                            android:layout_height="56dp"
-                            android:background="@drawable/circle_bg_green_light">
-                            <ImageView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                android:layout_gravity="center"
-                                android:src="@android:drawable/ic_menu_my_calendar"
-                                app:tint="#1B5E20"/>
-                        </FrameLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:text="My Profile"
+                            android:text="AI Expert Tips"
                             android:textSize="16sp"
                             android:textColor="#333333"
                             android:textStyle="bold"/>

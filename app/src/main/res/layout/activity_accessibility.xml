@@ -134,37 +134,6 @@
                             android:textColor="#757575"/>
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#EEEEEE"
-                        android:layout_marginHorizontal="16dp"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="12dp">
-
-                        <com.google.android.material.switchmaterial.SwitchMaterial
-                            android:id="@+id/switch_high_contrast"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="High Contrast Mode"
-                            android:textSize="16sp"
-                            android:textColor="#333333"
-                            app:thumbTint="#1B5E20"
-                            app:trackTint="#C8E6C9"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Increases visibility for outdoor use."
-                            android:textSize="12sp"
-                            android:textColor="#757575"/>
-                    </LinearLayout>
-
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 public class AppPreferences {
     private static final String PREF_NAME = "MittiMitraPrefs";
-    private static final String KEY_HIGH_CONTRAST = "high_contrast";
     private static final String KEY_FONT_SCALE = "font_scale";
     private static final String KEY_APP_LANGUAGE = "app_language";
     private static final String KEY_DYSLEXIC_FONT = "dyslexic_font";
@@ -15,14 +14,6 @@ public class AppPreferences {
 
     public AppPreferences(Context context) {
         sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-    }
-
-    public void setHighContrastEnabled(boolean enabled) {
-        sharedPreferences.edit().putBoolean(KEY_HIGH_CONTRAST, enabled).apply();
-    }
-
-    public boolean isHighContrastEnabled() {
-        return sharedPreferences.getBoolean(KEY_HIGH_CONTRAST, false);
     }
 
     public void setFontScale(float scale) {
