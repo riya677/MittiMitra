@@ -5,22 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground">
 
-    <!-- GREEN HEADER BACKGROUND -->
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="160dp"
         android:background="#1B5E20"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- TOOLBAR -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/notif_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
+        android:layout_marginTop="32dp"
         app:titleTextColor="#FFFFFF"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
@@ -35,10 +34,10 @@
             android:layout_gravity="center"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- SCROLLABLE CONTENT -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:fillViewport="true"
         android:clipToPadding="false"
         android:paddingBottom="24dp"
@@ -51,14 +50,13 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- CARD 1: WEATHER ALERTS -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardBackgroundColor="?attr/colorSurface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -67,7 +65,6 @@
                     android:gravity="center_vertical"
                     android:padding="16dp">
 
-                    <!-- Icon Bubble -->
                     <FrameLayout
                         android:layout_width="48dp"
                         android:layout_height="48dp"
@@ -77,8 +74,7 @@
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@android:drawable/ic_menu_day"
-                            app:tint="#FBC02D"/> <!-- Yellow for Sun/Weather -->
-                    </FrameLayout>
+                            app:tint="#FBC02D"/> </FrameLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -93,14 +89,14 @@
                             android:text="@string/notif_weather_title"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:textColor="#333333"/>
+                            android:textColor="?attr/colorOnSurface"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/notif_weather_desc"
                             android:textSize="12sp"
-                            android:textColor="#757575"
+                            android:textColor="?android:attr/textColorSecondary"
                             android:layout_marginTop="4dp"/>
                     </LinearLayout>
 
@@ -113,14 +109,13 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- CARD 2: MANDI PRICES -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardBackgroundColor="?attr/colorSurface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -129,7 +124,6 @@
                     android:gravity="center_vertical"
                     android:padding="16dp">
 
-                    <!-- Icon Bubble -->
                     <FrameLayout
                         android:layout_width="48dp"
                         android:layout_height="48dp"
@@ -155,14 +149,14 @@
                             android:text="@string/notif_mandi_title"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:textColor="#333333"/>
+                            android:textColor="?attr/colorOnSurface"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/notif_mandi_desc"
                             android:textSize="12sp"
-                            android:textColor="#757575"
+                            android:textColor="?android:attr/textColorSecondary"
                             android:layout_marginTop="4dp"/>
                     </LinearLayout>
 
@@ -175,14 +169,13 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- CARD 3: GOVT SCHEMES -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardBackgroundColor="?attr/colorSurface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -191,7 +184,6 @@
                     android:gravity="center_vertical"
                     android:padding="16dp">
 
-                    <!-- Icon Bubble -->
                     <FrameLayout
                         android:layout_width="48dp"
                         android:layout_height="48dp"
@@ -201,8 +193,7 @@
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@android:drawable/ic_dialog_info"
-                            app:tint="#1976D2"/> <!-- Blue for Info/Govt -->
-                    </FrameLayout>
+                            app:tint="#1976D2"/> </FrameLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -217,14 +208,14 @@
                             android:text="@string/notif_scheme_title"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:textColor="#333333"/>
+                            android:textColor="?attr/colorOnSurface"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/notif_scheme_desc"
                             android:textSize="12sp"
-                            android:textColor="#757575"
+                            android:textColor="?android:attr/textColorSecondary"
                             android:layout_marginTop="4dp"/>
                     </LinearLayout>
 

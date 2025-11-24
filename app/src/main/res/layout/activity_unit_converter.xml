@@ -7,20 +7,19 @@
     android:layout_height="match_parent"
     android:background="#F4F7F5">
 
-    <!-- GREEN HEADER BACKGROUND -->
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="160dp"
         android:background="#1B5E20"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- TOOLBAR -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/converter_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
+        android:layout_marginTop="32dp"
         app:titleTextColor="#FFFFFF"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
@@ -38,6 +37,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="32dp"
         android:fillViewport="true"
         android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/converter_toolbar"
@@ -47,142 +47,133 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:gravity="center_vertical"> <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#FFFFFF">
 
-            <!-- MAIN CONVERTER CARD -->
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="6dp"
-                app:cardBackgroundColor="#FFFFFF">
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_enter_area"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="#1B5E20"
+                    app:hintTextColor="#1B5E20"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_area_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:textSize="18sp"
+                        android:textColor="#333333"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="24dp">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:weightSum="2">
 
-                    <!-- INPUT FIELD -->
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/label_enter_area"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        app:boxStrokeColor="#1B5E20"
-                        app:hintTextColor="#1B5E20"
-                        app:boxCornerRadiusTopStart="12dp"
-                        app:boxCornerRadiusTopEnd="12dp"
-                        app:boxCornerRadiusBottomStart="12dp"
-                        app:boxCornerRadiusBottomEnd="12dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_area_input"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
-                            android:textSize="18sp"
-                            android:textColor="#333333"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <!-- SPINNERS ROW -->
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="24dp"
-                        android:weightSum="2">
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
 
-                        <!-- FROM -->
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginEnd="8dp">
+                            android:text="From Unit"
+                            android:textSize="12sp"
+                            android:textColor="#757575"
+                            android:layout_marginBottom="4dp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="From Unit"
-                                android:textSize="12sp"
-                                android:textColor="#757575"
-                                android:layout_marginBottom="4dp"/>
-
-                            <FrameLayout
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/border_background">
+                            <Spinner
+                                android:id="@+id/spinner_from"
                                 android:layout_width="match_parent"
-                                android:layout_height="48dp"
-                                android:background="@drawable/border_background">
-                                <Spinner
-                                    android:id="@+id/spinner_from"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@null"/>
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@android:drawable/arrow_down_float"
-                                    android:layout_gravity="center_vertical|end"
-                                    android:layout_marginEnd="8dp"
-                                    app:tint="#757575"/>
-                            </FrameLayout>
-                        </LinearLayout>
-
-                        <!-- TO -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginStart="8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="To Unit"
-                                android:textSize="12sp"
-                                android:textColor="#757575"
-                                android:layout_marginBottom="4dp"/>
-
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="48dp"
-                                android:background="@drawable/border_background">
-                                <Spinner
-                                    android:id="@+id/spinner_to"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@null"/>
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@android:drawable/arrow_down_float"
-                                    android:layout_gravity="center_vertical|end"
-                                    android:layout_marginEnd="8dp"
-                                    app:tint="#757575"/>
-                            </FrameLayout>
-                        </LinearLayout>
+                                android:layout_height="match_parent"
+                                android:background="@null"/>
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@android:drawable/arrow_down_float"
+                                android:layout_gravity="center_vertical|end"
+                                android:layout_marginEnd="8dp"
+                                app:tint="#757575"/>
+                        </FrameLayout>
                     </LinearLayout>
 
-                    <!-- CONVERT BUTTON -->
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_convert_action"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginTop="32dp"
-                        android:text="@string/btn_convert"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:cornerRadius="28dp"
-                        app:backgroundTint="#1B5E20"
-                        android:elevation="4dp"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="8dp">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="To Unit"
+                            android:textSize="12sp"
+                            android:textColor="#757575"
+                            android:layout_marginBottom="4dp"/>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/border_background">
+                            <Spinner
+                                android:id="@+id/spinner_to"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"/>
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@android:drawable/arrow_down_float"
+                                android:layout_gravity="center_vertical|end"
+                                android:layout_marginEnd="8dp"
+                                app:tint="#757575"/>
+                        </FrameLayout>
+                    </LinearLayout>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-            <!-- RESULT CARD -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_convert_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/btn_convert"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="28dp"
+                    app:backgroundTint="#1B5E20"
+                    android:elevation="4dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_result"
                 android:layout_width="match_parent"

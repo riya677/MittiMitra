@@ -10,7 +10,7 @@
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
         android:background="#1B5E20"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
+        android:layout_marginTop="32dp"
         app:titleTextColor="#FFFFFF"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
@@ -36,6 +37,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:fillViewport="true"
         android:clipToPadding="false"
         android:paddingBottom="24dp"

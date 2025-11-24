@@ -13,17 +13,27 @@ import java.util.Locale;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
+    // Variables to store the state when the activity is created
+    private String lastTheme;
+    private boolean lastDyslexic;
+    private float lastFontScale;
+    private String lastLanguage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppPreferences prefs = new AppPreferences(this);
 
-        // Apply Theme Logic
-        applyAppTheme(prefs.getTheme());
+        // 1. Capture the settings at the moment of creation
+        lastTheme = prefs.getTheme();
+        lastDyslexic = prefs.isDyslexicFontEnabled();
+        lastFontScale = prefs.getFontScale();
+        lastLanguage = prefs.getLanguage();
 
-        // Accessibility Themes
-        if (prefs.isHighContrastEnabled()) {
-            setTheme(R.style.Theme_MittiMitra_HighContrast);
-        } else if (prefs.isDyslexicFontEnabled()) {
+        // 2. Apply Theme Logic (Night Mode)
+        applyAppTheme(lastTheme);
+
+        // 3. Apply Accessibility Theme (Dyslexic Font)
+        if (lastDyslexic) {
             setTheme(R.style.Theme_MittiMitra_Dyslexic);
         } else {
             setTheme(R.style.Theme_MittiMitra);
@@ -31,6 +41,26 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         applyAppLanguage();
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 4. Check if settings changed while we were away (e.g., in Settings screen)
+        AppPreferences prefs = new AppPreferences(this);
+
+        boolean themeChanged = !prefs.getTheme().equals(lastTheme);
+        boolean dyslexicChanged = prefs.isDyslexicFontEnabled() != lastDyslexic;
+        boolean fontChanged = prefs.getFontScale() != lastFontScale;
+
+        String currentLang = prefs.getLanguage();
+        boolean langChanged = (lastLanguage == null && currentLang != null) ||
+                (lastLanguage != null && !lastLanguage.equals(currentLang));
+
+        // 5. If anything changed, RECREATE this activity to apply the new look
+        if (themeChanged || dyslexicChanged || fontChanged || langChanged) {
+            recreate();
+        }
     }
 
     @Override

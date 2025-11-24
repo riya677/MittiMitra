@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="160dp"
         android:background="#1B5E20"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
+        android:layout_marginTop="32dp"
         app:titleTextColor="#FFFFFF"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
@@ -36,6 +37,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:fillViewport="true"
         android:clipToPadding="false"
         android:paddingBottom="24dp"
@@ -55,7 +57,7 @@
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="?attr/colorSurface"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground">
@@ -76,7 +78,8 @@
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@android:drawable/ic_menu_delete"
-                            app:tint="#D32F2F"/> </FrameLayout>
+                            app:tint="#D32F2F"/>
+                    </FrameLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -91,14 +94,14 @@
                             android:text="@string/manage_data_soil_title"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:textColor="#333333"/>
+                            android:textColor="?attr/colorOnSurface"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/manage_data_soil_desc"
                             android:textSize="12sp"
-                            android:textColor="#757575"
+                            android:textColor="?android:attr/textColorSecondary"
                             android:layout_marginTop="4dp"/>
                     </LinearLayout>
 
@@ -117,7 +120,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="?attr/colorSurface"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground">
@@ -153,7 +156,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/manage_data_docs_title"
-                            android:textColor="#333333"
+                            android:textColor="?attr/colorOnSurface"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -162,7 +165,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="@string/manage_data_docs_desc"
-                            android:textColor="#757575"
+                            android:textColor="?android:attr/textColorSecondary"
                             android:textSize="12sp" />
                     </LinearLayout>
 

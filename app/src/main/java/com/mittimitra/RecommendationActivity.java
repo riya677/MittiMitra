@@ -131,6 +131,12 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
             if (analysis != null) {
                 SoilAnalysis finalAnalysis = analysis;
                 runOnUiThread(() -> populateForm(finalAnalysis));
+            } else {
+                runOnUiThread(() -> {
+                    Toast.makeText(this, "No Report Found", Toast.LENGTH_SHORT).show();
+                    // Set current date anyway so UI doesn't look broken
+                    tvDate.setText(new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date()));
+                });
             }
         }).start();
     }
@@ -139,7 +145,10 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
         try {
             JSONObject json = new JSONObject(analysis.soilReportJson);
 
-            tvDate.setText(new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date(analysis.timestamp)));
+            // UPDATED DATE LOGIC: Use timestamp if valid (>0), else use current time
+            long reportTime = analysis.timestamp > 0 ? analysis.timestamp : System.currentTimeMillis();
+            tvDate.setText(new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date(reportTime)));
+
             tvLocation.setText(json.optString("location", "Unknown Location"));
 
             int n = json.optInt("N");
@@ -182,28 +191,28 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
 
         String rawKey = BuildConfig.GROQ_API_KEY.replace("\"", "").trim();
         String systemPrompt =
-                "You are a Senior Scientist at the Indian Council of Agricultural Research (ICAR). , " +
-                        "Don't mention the name of the organisation , mention only Mittimitra" +
+                "You are a Senior Scientist at the Indian Council of Agricultural Research (ICAR). " +
+                        "Don't mention the name of the organisation , mention only Mittimitra. " +
                         "Your task is to generate a 'Soil Health Card (SHC) Advisory' adhering to Government of India guidelines. " +
                         "Focus on Integrated Nutrient Management (INM) and long-term soil sustainability. " +
                         "Output must be formal, scientific, and strictly formatted in Markdown.";
 
         String taskInstruction =
-                "### 1. 📋 **Soil Health Status Report**\n" +
+                "### 1. 搭 **Soil Health Status Report**\n" +
                         "- **Diagnosis:** Classify nutrient levels (Low/Medium/High) based on Indian standards.\n" +
                         "- **Suitability:** Assess if **" + detectedSoil + "** soil is suitable for cultivation given the current status.\n\n" +
 
-                        "### 2. 🌾 **Crop Planning (Agro-Climatic approach)**\n" +
+                        "### 2. 言 **Crop Planning (Agro-Climatic approach)**\n" +
                         "- Recommend 3 crops aligned with **" + detectedSoil + "** soil and local climate (" + weather + ").\n" +
                         "- **Variety Selection:** Suggest specific **ICAR/State University certified varieties** (e.g., 'Pusa Basmati', 'Co-86032').\n\n" +
 
-                        "### 3. 💊 **Balanced Fertilization Schedule (RDF)**\n" +
+                        "### 3. 抽 **Balanced Fertilization Schedule (RDF)**\n" +
                         "- **Goal:** Achieve Recommended Dose of Fertilizer (RDF) for the priority crop.\n" +
                         "- **Chemical:** Prescribe exact **Neem Coated Urea**, **DAP/SSP**, and **MOP** dosage in **kg/acre**.\n" +
                         "- **Bio-Fertilizer:** Mandate use of PSB/Azotobacter or Rhizobium cultures.\n" +
                         "- **INM:** Suggest FYM or Vermicompost quantity per acre.\n\n" +
 
-                        "### 4. 🛠 **Soil Amelioration & Reclamation**\n" +
+                        "### 4. 屏 **Soil Amelioration & Reclamation**\n" +
                         "- **pH Correction:** Current pH is " + String.format("%.1f", ph) + ". " +
                         (ph < 6.0 ? "Prescribe agricultural Lime/Dolomite dosage." :
                                 ph > 7.5 ? "Prescribe Gypsum requirement." :
@@ -227,7 +236,7 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("model", MODEL_ID);
-            jsonBody.put("temperature", 0.3); // Strict and factual
+            jsonBody.put("temperature", 0.3);
             jsonBody.put("max_tokens", 1100);
 
             JSONArray messages = new JSONArray();
@@ -272,8 +281,8 @@ public class RecommendationActivity extends AppCompatActivity implements TextToS
         html = html.replaceAll("####\\s*(.*)", "<br><b>$1</b><br>");
         html = html.replaceAll("###\\s*(.*)", "<br><b>$1</b><br>");
         html = html.replaceAll("##\\s*(.*)", "<br><b>$1</b><br>");
-        html = html.replaceAll("^-\\s+(.*)", "• $1<br>");
-        html = html.replaceAll("\\n-\\s+(.*)", "<br>• $1");
+        html = html.replaceAll("^-\\s+(.*)", "窶｢ $1<br>");
+        html = html.replaceAll("\\n-\\s+(.*)", "<br>窶｢ $1");
         html = html.replace("\n", "<br>");
         return Html.fromHtml(html, Html.FROM_HTML_MODE_COMPACT);
     }

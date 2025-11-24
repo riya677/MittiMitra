@@ -65,12 +65,14 @@ public class HomeActivity extends BaseActivity {
         findViewById(R.id.card_tips).setOnClickListener(v -> startActivity(new Intent(this, TipActivity.class)));
         findViewById(R.id.card_recommendation).setOnClickListener(v -> startActivity(new Intent(this, RecommendationActivity.class)));
         findViewById(R.id.card_help).setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
-        findViewById(R.id.card_profile).setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
     }
 
     private void setupBottomNavigation() {
         findViewById(R.id.nav_scan).setOnClickListener(v -> startActivity(new Intent(this, ScanActivity.class)));
+
+        // RE-ENABLED profile navigation
         findViewById(R.id.nav_profile).setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
+
         findViewById(R.id.nav_settings).setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
     }
 

@@ -14,12 +14,10 @@ public class AccessibilityActivity extends BaseActivity {
     private AppPreferences appPreferences;
     private Slider slider;
     private SwitchMaterial fontSwitch;
-    private SwitchMaterial highContrastSwitch;
     private TextView tvSample;
 
     private float currentScale = 1.0f;
     private boolean currentDyslexicEnabled = false;
-    private boolean currentHighContrast = false;
     private boolean hasChanges = false;
 
     @Override
@@ -32,9 +30,8 @@ public class AccessibilityActivity extends BaseActivity {
         // Load preferences
         currentScale = appPreferences.getFontScale();
         currentDyslexicEnabled = appPreferences.isDyslexicFontEnabled();
-        currentHighContrast = appPreferences.isHighContrastEnabled();
 
-        // Setup Toolbar (CRITICAL for Back Button and preventing crash)
+        // Setup Toolbar
         Toolbar toolbar = findViewById(R.id.accessibility_toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -46,16 +43,13 @@ public class AccessibilityActivity extends BaseActivity {
         slider = findViewById(R.id.slider_font_size);
         tvSample = findViewById(R.id.tv_font_sample);
         fontSwitch = findViewById(R.id.switch_dyslexic_font);
-        highContrastSwitch = findViewById(R.id.switch_high_contrast);
 
-        // --- CRITICAL CRASH FIX: Clamp Slider Value ---
-        // If currentScale is somehow 0.0 or > 1.5, the app will crash. We fix it here.
+        // Clamp Slider Value
         if (currentScale < 0.8f) currentScale = 0.8f;
         if (currentScale > 1.5f) currentScale = 1.5f;
 
         slider.setValue(currentScale);
         fontSwitch.setChecked(currentDyslexicEnabled);
-        if (highContrastSwitch != null) highContrastSwitch.setChecked(currentHighContrast);
 
         updateSampleText(currentScale);
 
@@ -71,16 +65,8 @@ public class AccessibilityActivity extends BaseActivity {
         fontSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentDyslexicEnabled = isChecked;
             hasChanges = true;
-            saveAndRestart(); // Immediate restart for font change
+            saveAndRestart();
         });
-
-        if (highContrastSwitch != null) {
-            highContrastSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                currentHighContrast = isChecked;
-                hasChanges = true;
-                saveAndRestart();
-            });
-        }
     }
 
     private void updateSampleText(float scale) {
@@ -91,7 +77,6 @@ public class AccessibilityActivity extends BaseActivity {
     private void saveAndRestart() {
         appPreferences.setFontScale(currentScale);
         appPreferences.setDyslexicFontEnabled(currentDyslexicEnabled);
-        appPreferences.setHighContrastEnabled(currentHighContrast);
 
         Intent i = new Intent(this, HomeActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
