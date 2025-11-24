@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="160dp"
         android:background="#1B5E20"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
+        android:layout_marginTop="32dp"
         app:titleTextColor="#FFFFFF"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
@@ -36,6 +37,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:fillViewport="true"
         android:clipToPadding="false"
         android:paddingBottom="24dp"
@@ -48,7 +50,7 @@
             android:layout_margin="16dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
-            app:cardBackgroundColor="#FFFFFF">
+            app:cardBackgroundColor="?attr/colorSurface">
 
             <RadioGroup
                 android:id="@+id/rg_themes"
@@ -63,13 +65,13 @@
                     android:text="@string/theme_light"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
+                    android:textColor="?attr/colorOnSurface"
                     app:buttonTint="#1B5E20"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#EEEEEE"
+                    android:background="?android:attr/listDivider"
                     android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
@@ -79,13 +81,13 @@
                     android:text="@string/theme_dark"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
+                    android:textColor="?attr/colorOnSurface"
                     app:buttonTint="#1B5E20"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#EEEEEE"
+                    android:background="?android:attr/listDivider"
                     android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
@@ -95,7 +97,7 @@
                     android:text="@string/theme_system"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
+                    android:textColor="?attr/colorOnSurface"
                     app:buttonTint="#1B5E20"/>
 
             </RadioGroup>

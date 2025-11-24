@@ -13,13 +13,10 @@
         <item name="android:fontFamily">@font/font_dyslexic</item>
     </style>
 
-    <style name="Theme.MittiMitra.HighContrast" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">#000000</item>
-        <item name="colorPrimaryVariant">#000000</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
-        <item name="colorSecondary">#FFFF00</item> <item name="android:textColor">#FFFFFF</item>
-        <item name="android:windowBackground">#000000</item>
-        <item name="android:fontFamily">sans-serif-black</item> </style>
-
     <style name="Theme.MittiMitra.NoActionBar" parent="Theme.MittiMitra" />
+
+    <style name="CircleImageStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
