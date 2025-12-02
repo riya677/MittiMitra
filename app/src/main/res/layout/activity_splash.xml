@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#1B5E20"
+    android:background="@color/brand_green"
+    android:fitsSystemWindows="true"
     tools:context=".SplashActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -16,21 +18,27 @@
         android:layout_marginBottom="24dp"
         android:src="@drawable/mittimitra_logo"
         android:scaleType="centerCrop"
-        app:shapeAppearanceOverlay="@style/CircleImageStyle" />
+        android:background="@color/text_white"
+        android:padding="4dp"
+        app:shapeAppearanceOverlay="@style/CircleImageStyle"
+        android:contentDescription="@string/desc_logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
-        android:textColor="@android:color/white"
+        android:textColor="@color/text_white"
         android:textStyle="bold"
-        android:fontFamily="sans-serif-medium" />
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end"/>
 
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:indeterminateTint="@android:color/white"/>
+        android:indeterminateTint="@color/text_white"/>
 
 </LinearLayout>

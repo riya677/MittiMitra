@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEEEEE">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -15,8 +16,8 @@
             android:id="@+id/toolbar_recommendation"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Soil Health Card"
-            app:titleTextColor="@android:color/white"
+            app:title="@string/rec_title"
+            app:titleTextColor="@color/text_white"
             app:navigationIcon="?attr/homeAsUpIndicator"/>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -32,7 +33,7 @@
             android:id="@+id/report_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="2dp"
             app:cardElevation="4dp">
 
@@ -44,7 +45,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#FF9800"
+                    android:background="@color/color_accent_orange"
                     android:orientation="vertical"
                     android:padding="24dp"
                     android:gravity="center">
@@ -55,44 +56,50 @@
                         android:src="@drawable/mittimitra_logo"
                         android:scaleType="centerCrop"
                         android:padding="3dp"
-                        android:background="#FFFFFF"
-                        app:shapeAppearanceOverlay="@style/CircleImageStyle"/>
+                        android:background="@color/text_white"
+                        app:shapeAppearanceOverlay="@style/CircleImageStyle"
+                        android:contentDescription="@string/desc_logo"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SOIL HEALTH CARD"
+                        android:text="@string/rec_header_title"
                         android:textSize="24sp"
                         android:textStyle="bold"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_white"
                         android:layout_marginTop="12dp"
-                        android:letterSpacing="0.1"/>
+                        android:letterSpacing="0.1"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:ellipsize="end"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mitti Mitra • Digital Agriculture Mission"
+                        android:text="@string/rec_header_subtitle"
                         android:textSize="12sp"
-                        android:textColor="#FFF3E0"
-                        android:layout_marginTop="4dp"/>
+                        android:textColor="@color/text_light_orange"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:ellipsize="end"/>
                 </LinearLayout>
 
-                <View android:layout_width="match_parent" android:layout_height="4dp" android:background="#4CAF50"/>
+                <View android:layout_width="match_parent" android:layout_height="4dp" android:background="@color/color_divider_success"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp"
-                    android:background="#FFF8E1">
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="FARMER DETAILS"
+                        android:text="@string/rec_farmer_details"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:textColor="#FF9800"
+                        android:textColor="@color/color_accent_orange"
                         android:layout_marginBottom="8dp"/>
 
                     <TableLayout
@@ -101,24 +108,24 @@
                         android:stretchColumns="1">
 
                         <TableRow android:paddingVertical="4dp">
-                            <TextView text="Name:" android:textStyle="bold" android:textColor="#555"/>
-                            <TextView android:id="@+id/tv_rep_name" text="Loading..." android:textColor="#000" android:paddingStart="12dp"/>
+                            <TextView text="@string/rec_label_name" android:textStyle="bold" android:textColor="?android:attr/textColorSecondary"/>
+                            <TextView android:id="@+id/tv_rep_name" text="@string/profile_name_placeholder" android:textColor="?android:attr/textColorPrimary" android:paddingStart="12dp"/>
                         </TableRow>
                         <TableRow android:paddingVertical="4dp">
-                            <TextView text="Mobile:" android:textStyle="bold" android:textColor="#555"/>
-                            <TextView android:id="@+id/tv_rep_phone" text="--" android:textColor="#000" android:paddingStart="12dp"/>
+                            <TextView text="@string/rec_label_mobile" android:textStyle="bold" android:textColor="?android:attr/textColorSecondary"/>
+                            <TextView android:id="@+id/tv_rep_phone" text="--" android:textColor="?android:attr/textColorPrimary" android:paddingStart="12dp"/>
                         </TableRow>
                         <TableRow android:paddingVertical="4dp">
-                            <TextView text="Email:" android:textStyle="bold" android:textColor="#555"/>
-                            <TextView android:id="@+id/tv_rep_email" text="--" android:textColor="#000" android:paddingStart="12dp"/>
+                            <TextView text="@string/rec_label_email" android:textStyle="bold" android:textColor="?android:attr/textColorSecondary"/>
+                            <TextView android:id="@+id/tv_rep_email" text="--" android:textColor="?android:attr/textColorPrimary" android:paddingStart="12dp"/>
                         </TableRow>
                         <TableRow android:paddingVertical="4dp">
-                            <TextView text="Location:" android:textStyle="bold" android:textColor="#555"/>
-                            <TextView android:id="@+id/tv_rep_location" text="--" android:textColor="#000" android:paddingStart="12dp"/>
+                            <TextView text="@string/rec_label_location" android:textStyle="bold" android:textColor="?android:attr/textColorSecondary"/>
+                            <TextView android:id="@+id/tv_rep_location" text="--" android:textColor="?android:attr/textColorPrimary" android:paddingStart="12dp"/>
                         </TableRow>
                         <TableRow android:paddingVertical="4dp">
-                            <TextView text="Test Date:" android:textStyle="bold" android:textColor="#555"/>
-                            <TextView android:id="@+id/tv_report_date" text="--" android:textColor="#000" android:paddingStart="12dp"/>
+                            <TextView text="@string/rec_label_date" android:textStyle="bold" android:textColor="?android:attr/textColorSecondary"/>
+                            <TextView android:id="@+id/tv_report_date" text="--" android:textColor="?android:attr/textColorPrimary" android:paddingStart="12dp"/>
                         </TableRow>
                     </TableLayout>
                 </LinearLayout>
@@ -126,48 +133,50 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TEST RESULTS (Primary Nutrients)"
-                    android:background="#EEEEEE"
+                    android:text="@string/rec_results_title"
                     android:padding="12dp"
                     android:textStyle="bold"
-                    android:textColor="#333"
-                    android:gravity="center"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:background="?android:attr/listDivider"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
 
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:stretchColumns="1,2">
 
-                    <TableRow android:background="#E0E0E0">
-                        <TextView text="Parameter" android:textStyle="bold" android:padding="12dp"/>
-                        <TextView text="Value" android:textStyle="bold" android:padding="12dp"/>
-                        <TextView text="Status" android:textStyle="bold" android:padding="12dp"/>
+                    <TableRow>
+                        <TextView text="@string/rec_col_param" android:textStyle="bold" android:padding="12dp" android:textColor="?android:attr/textColorPrimary"/>
+                        <TextView text="@string/rec_col_value" android:textStyle="bold" android:padding="12dp" android:textColor="?android:attr/textColorPrimary"/>
+                        <TextView text="@string/rec_col_status" android:textStyle="bold" android:padding="12dp" android:textColor="?android:attr/textColorPrimary"/>
                     </TableRow>
 
                     <TableRow>
-                        <TextView text="Nitrogen (N)" android:padding="12dp"/>
-                        <TextView android:id="@+id/tv_val_n" text="--" android:padding="12dp"/>
+                        <TextView text="@string/rec_param_n" android:padding="12dp" android:textColor="?android:attr/textColorSecondary"/>
+                        <TextView android:id="@+id/tv_val_n" text="--" android:padding="12dp" android:textColor="?android:attr/textColorPrimary"/>
                         <TextView android:id="@+id/tv_rat_n" text="--" android:textStyle="bold" android:padding="12dp"/>
                     </TableRow>
-                    <View android:layout_height="1dp" android:background="#EEEEEE"/>
+                    <View android:layout_height="1dp" android:background="?android:attr/listDivider"/>
 
                     <TableRow>
-                        <TextView text="Phosphorus (P)" android:padding="12dp"/>
-                        <TextView android:id="@+id/tv_val_p" text="--" android:padding="12dp"/>
+                        <TextView text="@string/rec_param_p" android:padding="12dp" android:textColor="?android:attr/textColorSecondary"/>
+                        <TextView android:id="@+id/tv_val_p" text="--" android:padding="12dp" android:textColor="?android:attr/textColorPrimary"/>
                         <TextView android:id="@+id/tv_rat_p" text="--" android:textStyle="bold" android:padding="12dp"/>
                     </TableRow>
-                    <View android:layout_height="1dp" android:background="#EEEEEE"/>
+                    <View android:layout_height="1dp" android:background="?android:attr/listDivider"/>
 
                     <TableRow>
-                        <TextView text="Potassium (K)" android:padding="12dp"/>
-                        <TextView android:id="@+id/tv_val_k" text="--" android:padding="12dp"/>
+                        <TextView text="@string/rec_param_k" android:padding="12dp" android:textColor="?android:attr/textColorSecondary"/>
+                        <TextView android:id="@+id/tv_val_k" text="--" android:padding="12dp" android:textColor="?android:attr/textColorPrimary"/>
                         <TextView android:id="@+id/tv_rat_k" text="--" android:textStyle="bold" android:padding="12dp"/>
                     </TableRow>
-                    <View android:layout_height="1dp" android:background="#EEEEEE"/>
+                    <View android:layout_height="1dp" android:background="?android:attr/listDivider"/>
 
                     <TableRow>
-                        <TextView text="Soil pH" android:padding="12dp"/>
-                        <TextView android:id="@+id/tv_val_ph" text="--" android:padding="12dp"/>
+                        <TextView text="@string/rec_param_ph" android:padding="12dp" android:textColor="?android:attr/textColorSecondary"/>
+                        <TextView android:id="@+id/tv_val_ph" text="--" android:padding="12dp" android:textColor="?android:attr/textColorPrimary"/>
                         <TextView android:id="@+id/tv_rat_ph" text="--" android:textStyle="bold" android:padding="12dp"/>
                     </TableRow>
                 </TableLayout>
@@ -181,9 +190,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SCIENTIFIC ADVISORY"
+                        android:text="@string/rec_advisory_title"
                         android:textStyle="bold"
-                        android:textColor="#2E7D32"
+                        android:textColor="@color/color_success_text"
                         android:textSize="16sp"
                         android:layout_marginBottom="8dp"/>
 
@@ -191,33 +200,33 @@
                         android:id="@+id/tv_ai_context"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Analyzing specific crop needs..."
+                        android:text="@string/rec_ai_context"
                         android:textStyle="italic"
                         android:textSize="12sp"
-                        android:textColor="#757575"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:layout_marginBottom="12dp"/>
 
                     <TextView
                         android:id="@+id/tv_ai_advice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Generating expert recommendation..."
+                        android:text="@string/rec_ai_generating"
                         android:textSize="14sp"
-                        android:textColor="#212121"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:lineSpacingExtra="6dp"
-                        android:background="#F1F8E9"
                         android:padding="12dp"/>
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Generated by Mitti Mitra AI | Verified by Satellite Data"
+                    android:text="@string/rec_footer"
                     android:gravity="center"
                     android:textSize="10sp"
-                    android:textColor="#9E9E9E"
+                    android:textColor="?android:attr/textColorSecondary"
                     android:padding="16dp"
-                    android:background="#FAFAFA"/>
+                    android:maxLines="2"
+                    android:ellipsize="end"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -230,11 +239,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:text="Download PDF"
-        android:textColor="@android:color/white"
+        android:text="@string/rec_btn_download"
+        android:textColor="@color/text_white"
         app:icon="@android:drawable/stat_sys_download"
-        app:iconTint="@android:color/white"
-        app:backgroundTint="#FF9800"
+        app:iconTint="@color/text_white"
+        app:backgroundTint="@color/color_accent_orange"
         android:elevation="6dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

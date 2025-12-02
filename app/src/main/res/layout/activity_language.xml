@@ -5,23 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
-    <!-- GREEN HEADER BACKGROUND -->
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- TOOLBAR -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/language_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        app:titleTextColor="#FFFFFF"
+        android:layout_marginTop="16dp"
+        app:titleTextColor="@color/text_white"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -29,13 +29,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/language_title"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- SCROLLABLE CONTENT -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -51,7 +52,7 @@
             android:layout_margin="16dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
-            app:cardBackgroundColor="#FFFFFF">
+            app:cardBackgroundColor="?attr/colorSurface">
 
             <RadioGroup
                 android:id="@+id/rg_languages"
@@ -66,10 +67,10 @@
                     android:text="@string/language_system_default"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="4dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?android:attr/listDivider" android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rb_english"
@@ -78,10 +79,10 @@
                     android:text="@string/language_english"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="4dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?android:attr/listDivider" android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rb_hindi"
@@ -90,10 +91,10 @@
                     android:text="@string/language_hindi"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="4dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?android:attr/listDivider" android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rb_tamil"
@@ -102,10 +103,10 @@
                     android:text="@string/language_tamil"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="4dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?android:attr/listDivider" android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rb_malayalam"
@@ -114,10 +115,10 @@
                     android:text="@string/language_malayalam"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="4dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?android:attr/listDivider" android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rb_telugu"
@@ -126,10 +127,10 @@
                     android:text="@string/language_telugu"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="4dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?android:attr/listDivider" android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rb_kannada"
@@ -138,10 +139,10 @@
                     android:text="@string/language_kannada"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="4dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?android:attr/listDivider" android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rb_marathi"
@@ -150,10 +151,10 @@
                     android:text="@string/language_marathi"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="4dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?android:attr/listDivider" android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rb_bengali"
@@ -162,10 +163,10 @@
                     android:text="@string/language_bengali"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="4dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?android:attr/listDivider" android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rb_gujarati"
@@ -174,10 +175,10 @@
                     android:text="@string/language_gujarati"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginVertical="4dp"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?android:attr/listDivider" android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rb_punjabi"
@@ -186,8 +187,8 @@
                     android:text="@string/language_punjabi"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="#333333"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
             </RadioGroup>
         </androidx.cardview.widget.CardView>

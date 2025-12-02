@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="20dp"
     app:cardElevation="0dp"
-    app:cardBackgroundColor="#FFFFFF">
+    app:cardBackgroundColor="?attr/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,25 +17,27 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Profile"
+            android:text="@string/edit_profile_title"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="#1B5E20"
-            android:layout_marginBottom="24dp"/>
+            android:textColor="@color/brand_green"
+            android:layout_marginBottom="24dp"
+            android:maxLines="1"
+            android:ellipsize="end"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
+            android:hint="@string/edit_profile_name_hint"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxStrokeColor="#1B5E20"
-            app:hintTextColor="#1B5E20"
+            app:boxStrokeColor="@color/brand_green"
+            app:hintTextColor="@color/brand_green"
             app:boxCornerRadiusTopStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusBottomEnd="12dp"
             app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
-            app:startIconTint="#1B5E20"
+            app:startIconTint="@color/brand_green"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -43,25 +45,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:textColor="#333333"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone Number"
-            app:helperText="Required for alerts"
-            app:helperTextTextColor="#1B5E20"
+            android:hint="@string/edit_profile_phone_hint"
+            app:helperText="@string/edit_profile_phone_helper"
+            app:helperTextTextColor="@color/brand_green"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxStrokeColor="#1B5E20"
-            app:hintTextColor="#1B5E20"
+            app:boxStrokeColor="@color/brand_green"
+            app:hintTextColor="@color/brand_green"
             app:boxCornerRadiusTopStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusBottomEnd="12dp"
             app:startIconDrawable="@android:drawable/ic_menu_call"
-            app:startIconTint="#1B5E20"
+            app:startIconTint="@color/brand_green"
             android:layout_marginBottom="32dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -70,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="phone"
                 android:maxLength="10"
-                android:textColor="#333333"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,18 +87,19 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="Cancel"
-                android:textColor="#757575"
+                android:text="@string/dialog_cancel"
+                android:textColor="?android:attr/textColorSecondary"
                 android:layout_marginEnd="8dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_save_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="Save Changes"
-                app:backgroundTint="#1B5E20"
+                android:text="@string/btn_save_changes"
+                app:backgroundTint="@color/brand_green"
                 app:cornerRadius="25dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/text_white"/>
         </LinearLayout>
 
     </LinearLayout>
