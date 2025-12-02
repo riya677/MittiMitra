@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -20,9 +21,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
         android:elevation="0dp"
-        android:layout_marginTop="32dp"
-        app:title="Scan History"
-        app:titleTextColor="#FFFFFF"
+        android:layout_marginTop="16dp"
+        app:title="@string/title_scan_history"
+        app:titleTextColor="@color/text_white"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,17 +56,21 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:src="@android:drawable/ic_menu_recent_history"
-            app:tint="#BDBDBD"/>
+            app:tint="?android:attr/textColorSecondary"
+            android:contentDescription="@string/desc_icon"/>
 
         <TextView
             android:id="@+id/tv_empty_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No scan history found"
+            android:text="@string/profile_no_history"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#757575"
-            android:layout_marginTop="8dp"/>
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:ellipsize="end"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

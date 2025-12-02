@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
@@ -19,8 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        android:layout_marginTop="32dp"
-        app:titleTextColor="#FFFFFF"
+        android:layout_marginTop="16dp"
+        app:titleTextColor="@color/text_white"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,10 +29,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/setting_manage_data"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"/>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
@@ -78,7 +81,8 @@
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@android:drawable/ic_menu_delete"
-                            app:tint="#D32F2F"/>
+                            app:tint="@color/color_delete"
+                            android:contentDescription="@string/desc_icon"/>
                     </FrameLayout>
 
                     <LinearLayout
@@ -94,7 +98,9 @@
                             android:text="@string/manage_data_soil_title"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:textColor="?attr/colorOnSurface"/>
+                            android:textColor="?attr/colorOnSurface"
+                            android:maxLines="1"
+                            android:ellipsize="end"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -102,7 +108,9 @@
                             android:text="@string/manage_data_soil_desc"
                             android:textSize="12sp"
                             android:textColor="?android:attr/textColorSecondary"
-                            android:layout_marginTop="4dp"/>
+                            android:layout_marginTop="4dp"
+                            android:maxLines="2"
+                            android:ellipsize="end"/>
                     </LinearLayout>
 
                     <ImageView
@@ -110,7 +118,8 @@
                         android:layout_height="24dp"
                         android:src="@android:drawable/arrow_down_float"
                         android:rotation="-90"
-                        app:tint="#BDBDBD"/>
+                        app:tint="?android:attr/textColorSecondary"
+                        android:importantForAccessibility="no"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -142,7 +151,8 @@
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@android:drawable/ic_menu_agenda"
-                            app:tint="#D32F2F" />
+                            app:tint="@color/color_delete"
+                            android:contentDescription="@string/desc_icon" />
                     </FrameLayout>
 
                     <LinearLayout
@@ -158,7 +168,9 @@
                             android:text="@string/manage_data_docs_title"
                             android:textColor="?attr/colorOnSurface"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:maxLines="1"
+                            android:ellipsize="end" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -166,7 +178,9 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/manage_data_docs_desc"
                             android:textColor="?android:attr/textColorSecondary"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:maxLines="2"
+                            android:ellipsize="end" />
                     </LinearLayout>
 
                     <ImageView
@@ -174,7 +188,8 @@
                         android:layout_height="24dp"
                         android:rotation="-90"
                         android:src="@android:drawable/arrow_down_float"
-                        app:tint="#BDBDBD" />
+                        app:tint="?android:attr/textColorSecondary"
+                        android:importantForAccessibility="no" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

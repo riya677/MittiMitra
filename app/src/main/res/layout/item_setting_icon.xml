@@ -7,7 +7,7 @@
     android:layout_margin="8dp"
     app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
-    app:cardBackgroundColor="#FFFFFF"
+    app:cardBackgroundColor="?attr/colorSurface"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground">
@@ -30,7 +30,8 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:scaleType="fitCenter"
-                app:tint="#1B5E20"
+                app:tint="@color/brand_green"
+                android:contentDescription="@string/desc_icon"
                 tools:src="@android:drawable/ic_menu_manage" />
         </FrameLayout>
 
@@ -40,9 +41,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:textSize="15sp"
-            android:textColor="#333333"
+            android:textColor="?android:attr/textColorPrimary"
             android:textStyle="bold"
             android:gravity="center"
+            android:maxLines="2"
+            android:ellipsize="end"
             tools:text="Setting Name" />
 
     </LinearLayout>

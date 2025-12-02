@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
@@ -19,8 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        android:layout_marginTop="32dp"
-        app:titleTextColor="#FFFFFF"
+        android:layout_marginTop="16dp"
+        app:titleTextColor="@color/text_white"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,10 +29,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/theme_title"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"/>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
@@ -65,8 +68,8 @@
                     android:text="@string/theme_light"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="?attr/colorOnSurface"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -81,8 +84,8 @@
                     android:text="@string/theme_dark"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="?attr/colorOnSurface"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -97,8 +100,8 @@
                     android:text="@string/theme_system"
                     android:padding="12dp"
                     android:textSize="16sp"
-                    android:textColor="?attr/colorOnSurface"
-                    app:buttonTint="#1B5E20"/>
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:buttonTint="@color/brand_green"/>
 
             </RadioGroup>
         </androidx.cardview.widget.CardView>

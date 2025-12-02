@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
@@ -19,18 +20,21 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        app:titleTextColor="#FFFFFF"
+        android:layout_marginTop="16dp"
+        app:titleTextColor="@color/text_white"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contact Support"
-            android:textColor="#FFFFFF"
+            android:text="@string/help_contact_title"
+            android:textColor="@color/text_white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"/>
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
@@ -54,7 +58,7 @@
                 android:layout_marginBottom="24dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="6dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardBackgroundColor="?attr/colorSurface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -72,25 +76,29 @@
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:src="@android:drawable/ic_dialog_email"
-                            app:tint="#1B5E20"/>
+                            app:tint="@color/brand_green"
+                            android:contentDescription="@string/desc_icon"/>
                     </FrameLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="We're Here to Help"
+                        android:text="@string/contact_header"
                         android:textSize="22sp"
                         android:textStyle="bold"
-                        android:textColor="#1B5E20"
-                        android:layout_marginTop="16dp"/>
+                        android:textColor="@color/brand_green"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:ellipsize="end"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reach out to us for specific farming advice or technical support."
+                        android:text="@string/contact_desc"
                         android:gravity="center"
                         android:layout_marginTop="8dp"
-                        android:textColor="#757575"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:textSize="14sp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -102,7 +110,7 @@
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="?attr/colorSurface"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground">
@@ -122,7 +130,8 @@
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@android:drawable/ic_menu_call"
-                            app:tint="#1B5E20"/>
+                            app:tint="@color/brand_green"
+                            android:contentDescription="@string/desc_icon"/>
                     </FrameLayout>
 
                     <LinearLayout
@@ -134,16 +143,20 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Call Support"
+                            android:text="@string/contact_call"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:textColor="#333333"/>
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:maxLines="1"
+                            android:ellipsize="end"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Mon-Sat, 9AM - 6PM"
+                            android:text="@string/contact_time"
                             android:textSize="12sp"
-                            android:textColor="#757575"/>
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:maxLines="1"
+                            android:ellipsize="end"/>
                     </LinearLayout>
 
                     <ImageView
@@ -151,7 +164,8 @@
                         android:layout_height="24dp"
                         android:src="@android:drawable/arrow_down_float"
                         android:rotation="-90"
-                        app:tint="#BDBDBD"/>
+                        app:tint="?android:attr/textColorSecondary"
+                        android:importantForAccessibility="no"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -161,7 +175,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="?attr/colorSurface"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground">
@@ -181,7 +195,8 @@
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@android:drawable/ic_dialog_email"
-                            app:tint="#1B5E20"/>
+                            app:tint="@color/brand_green"
+                            android:contentDescription="@string/desc_icon"/>
                     </FrameLayout>
 
                     <LinearLayout
@@ -193,16 +208,20 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Email Us"
+                            android:text="@string/contact_email"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:textColor="#333333"/>
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:maxLines="1"
+                            android:ellipsize="end"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="support@mittimitra.com"
+                            android:text="@string/contact_email_addr"
                             android:textSize="12sp"
-                            android:textColor="#757575"/>
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:maxLines="1"
+                            android:ellipsize="end"/>
                     </LinearLayout>
 
                     <ImageView
@@ -210,7 +229,8 @@
                         android:layout_height="24dp"
                         android:src="@android:drawable/arrow_down_float"
                         android:rotation="-90"
-                        app:tint="#BDBDBD"/>
+                        app:tint="?android:attr/textColorSecondary"
+                        android:importantForAccessibility="no"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

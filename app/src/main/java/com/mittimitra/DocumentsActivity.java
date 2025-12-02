@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class DocumentsActivity extends AppCompatActivity {
+public class DocumentsActivity extends BaseActivity {
 
     private static final String TAG = "DocumentsActivity";
 

@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -20,9 +21,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
         android:elevation="0dp"
-        android:layout_marginTop="32dp"
-        app:title="Relevant Documents"
-        app:titleTextColor="#FFFFFF"
+        android:layout_marginTop="16dp"
+        app:title="@string/title_documents"
+        app:titleTextColor="@color/text_white"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,13 +41,16 @@
 
     <TextView
         android:id="@+id/tv_empty_docs"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="No documents found.\nTap '+' to add one."
+        android:text="@string/msg_no_documents"
         android:gravity="center"
         android:textSize="16sp"
-        android:textColor="#757575"
+        android:textColor="?android:attr/textColorSecondary"
         android:visibility="gone"
+        android:layout_marginHorizontal="32dp"
+        android:maxLines="3"
+        android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/documents_toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,10 +62,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
-        android:contentDescription="Add Document"
+        android:contentDescription="@string/desc_add_document"
         android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="#1B5E20"
-        app:tint="#FFFFFF"
+        app:backgroundTint="@color/brand_green"
+        app:tint="@color/text_white"
         app:elevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -36,11 +36,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     buildFeatures {
         viewBinding true
@@ -53,11 +53,11 @@ dependencies {
     implementation libs.material
     implementation libs.androidx.constraintlayout
 
-    // Room Database
+    // Room
     implementation libs.androidx.room.runtime
     annotationProcessor libs.androidx.room.compiler
 
-    // Network & Location (Retrofit + Gson ADDED HERE)
+    // Network
     implementation libs.play.services.location
     implementation libs.okhttp
     implementation libs.logging.interceptor
@@ -65,31 +65,25 @@ dependencies {
     implementation libs.retrofit.converter.gson
     implementation libs.gson
 
-    // Firebase BoM
+    // Firebase
     implementation platform(libs.firebase.bom)
-
-    // Firebase Services
     implementation libs.google.firebase.auth
     implementation libs.google.firebase.firestore
     implementation libs.google.firebase.storage
     implementation libs.firebase.crashlytics
     implementation libs.firebase.appcheck.playintegrity
     implementation libs.firebase.appcheck.debug
-
-    // Google Sign In
     implementation libs.play.services.auth.v2070
 
-    // Image Loading
+    // Images
     implementation libs.glide.v4160
     annotationProcessor libs.compiler
-
-    // Circle ImageView
     implementation libs.circleimageview
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation libs.androidx.espresso.core
-
+    // ML
     implementation(libs.firebase.ml.modeldownloader)
     implementation(libs.tensorflow.lite)
+
+    implementation 'com.google.guava:guava:31.1-android'
+    implementation 'androidx.work:work-runtime:2.9.0'
 }

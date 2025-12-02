@@ -5,8 +5,8 @@
     <string name="login">లాగిన్</string>
     <string name="signup">సైన్ అప్</string>
 
-    <string name="greeting_format">హాయ్, %s</string>
-    <string name="greeting_default">హాయ్, యూజర్</string>
+    <string name="greeting_format">నమస్తే, %s</string>
+    <string name="greeting_default">నమస్తే, వినియోగదారు</string>
     <string name="last_scan">చివరి స్కాన్</string>
     <string name="button_tip">చిట్కా</string>
     <string name="button_recommendation">సిఫార్సు</string>
@@ -14,53 +14,213 @@
     <string name="button_scan">స్కాన్</string>
     <string name="button_documents">పత్రాలు</string>
 
-    <string name="menu_settings">సెట్టింగ్‌లు</string>
+    <string name="menu_settings">సెట్టింగులు</string>
     <string name="menu_help">సహాయం</string>
     <string name="menu_contact">సంప్రదించండి</string>
-    <string name="menu_logout">లాగ్అవుట్</string>
+    <string name="menu_logout">లాగ్ అవుట్</string>
 
     <string name="setting_language">భాష</string>
-    <string name="setting_accessibility">సౌలభ్యం</string>
+    <string name="setting_accessibility">ప్రాప్యత</string>
     <string name="setting_theme">యాప్ థీమ్</string>
-    <string name="setting_manage_data">డేటాను నిర్వహించండి</string>
+    <string name="setting_manage_data">డేటా నిర్వహణ</string>
+
+    <string name="setting_unit_converter">భూమి యూనిట్ కన్వర్టర్</string>
+    <string name="setting_unit_converter_desc">ఎకరం, హెక్టారు, బిఘా మరియు గుంటను మార్చండి.</string>
+    <string name="setting_kisan_call">కిసాన్ హెల్ప్‌లైన్‌కు కాల్ చేయండి</string>
+    <string name="setting_kisan_call_desc">ప్రభుత్వ కిసాన్ కాల్ సెంటర్‌తో కనెక్ట్ అవ్వండి (1800-180-1551).</string>
 
     <string name="language_title">భాషను ఎంచుకోండి</string>
     <string name="language_system_default">సిస్టమ్ డిఫాల్ట్</string>
-    <string name="language_english">English (ఇంగ్లీష్)</string>
-    <string name="language_hindi">हिन्दी (హిందీ)</string>
-    <string name="language_tamil">தமிழ் (తమిళం)</string>
-    <string name="language_malayalam">മലയാളം (మలయాళం)</string>
+    <string name="language_english">English</string>
+    <string name="language_hindi">हिन्दी (Hindi)</string>
+    <string name="language_tamil">தமிழ் (Tamil)</string>
+    <string name="language_malayalam">മലയാളം (Malayalam)</string>
     <string name="language_telugu">తెలుగు (Telugu)</string>
+    <string name="language_kannada">ಕನ್ನಡ (Kannada)</string>
+    <string name="language_marathi">मराठी (Marathi)</string>
+    <string name="language_bengali">বাংলা (Bengali)</string>
+    <string name="language_gujarati">ગુજરાતી (Gujarati)</string>
+    <string name="language_punjabi">ਪੰਜਾਬੀ (Punjabi)</string>
 
-    <string name="font_size_title">ఫాంట్ పరిమాణాన్ని సర్దుబాటు చేయండి</string>
-    <string name="font_size_small">చిన్నది</string>
+    <string name="font_size_title">ఫాంట్ పరిమాణం</string>
+    <string name="font_size_small">చిన్న</string>
     <string name="font_size_default">డిఫాల్ట్</string>
-    <string name="font_size_large">పెద్దది</string>
-    <string name="font_size_sample">మీ వచనం ఇలా కనిపిస్తుంది.</string>
+    <string name="font_size_large">పెద్ద</string>
+    <string name="font_size_sample">మీ టెక్స్ట్ ఇలా ఉంటుంది.</string>
+    <string name="setting_font_dyslexic">డిస్లెక్సిక్ ఫాంట్</string>
+    <string name="setting_font_dyslexic_desc">డిస్లెక్సిక్ వినియోగదారుల కోసం చదవడానికి సులభమైన ఫాంట్.</string>
 
-    <string name="theme_title">థీమ్‌ను ఎంచుకోండి</string>
+    <string name="theme_title">థీమ్ ఎంచుకోండి</string>
     <string name="theme_light">లైట్</string>
     <string name="theme_dark">డార్క్</string>
     <string name="theme_system">సిస్టమ్ డిఫాల్ట్</string>
 
-    <string name="manage_data_title">డేటాను నిర్వహించండి</string>
-    <string name="manage_data_soil_title">మట్టి చరిత్రను క్లియర్ చేయండి</string>
-    <string name="manage_data_soil_desc">సేవ్ చేసిన అన్ని మట్టి విశ్లేషణ నివేదికలను తొలగిస్తుంది.</string>
+    <string name="manage_data_title">డేటా నిర్వహణ</string>
+    <string name="manage_data_soil_title">నేల చరిత్రను క్లియర్ చేయండి</string>
+    <string name="manage_data_soil_desc">సేవ్ చేసిన అన్ని నేల విశ్లేషణ నివేదికలను తొలగిస్తుంది.</string>
     <string name="manage_data_docs_title">అన్ని పత్రాలను క్లియర్ చేయండి</string>
     <string name="manage_data_docs_desc">ఈ పరికరం నుండి అప్‌లోడ్ చేసిన అన్ని పత్రాలను తొలగిస్తుంది.</string>
-    <string name="dialog_are_you_sure">మీకు ఖచ్చితంగా తెలియనా?</string>
+    <string name="dialog_are_you_sure">మీరు ఖచ్చితంగా ఉన్నారా?</string>
     <string name="dialog_delete">తొలగించు</string>
-    <string name="dialog_cancel">రద్దు చేయండి</string>
-    <string name="toast_history_cleared">మట్టి చరిత్ర క్లియర్ చేయబడింది.</string>
+    <string name="dialog_cancel">రద్దు చేయి</string>
+    <string name="toast_history_cleared">నేల చరిత్ర క్లియర్ చేయబడింది.</string>
     <string name="toast_documents_cleared">అన్ని పత్రాలు క్లియర్ చేయబడ్డాయి.</string>
 
     <string name="help_title">సహాయం మరియు మద్దతు</string>
     <string name="help_faq_title">తరచుగా అడిగే ప్రశ్నలు (FAQ)</string>
-    <string name="help_q1">మంచి మట్టి స్కాన్‌ను ఎలా తీయాలి?</string>
-    <string name="help_a1">మంచి లైటింగ్ ఉండేలా చూసుకోండి, నమూనాను సాదా నేపథ్యంపై ఉంచండి మరియు ఫోకస్ చేయడానికి నొక్కండి.</string>
+    <string name="help_q1">నేను మంచి నేల స్కాన్‌ను ఎలా తీసుకోవాలి?</string>
+    <string name="help_a1">మంచి లైటింగ్‌ను నిర్ధారించుకోండి, నమూనాను సాదా నేపథ్యంపై ఉంచండి మరియు ఫోకస్ చేయడానికి నొక్కండి.</string>
     <string name="help_q2">AI ఎంత ఖచ్చితమైనది?</string>
-    <string name="help_a2">AI దృశ్యమాన డేటా ఆధారంగా సూచనలను అందిస్తుంది. క్లిష్టమైన నిర్ణయాల కోసం, దయచేసి స్థానిక వ్యవసాయ నిపుణుడిని సంప్రదించండి.</string>
+    <string name="help_a2">AI దృశ్య డేటా ఆధారంగా సూచనలను అందిస్తుంది. క్లిష్టమైన నిర్ణయాల కోసం, దయచేసి స్థానిక వ్యవసాయ నిపుణుడిని సంప్రదించండి.</string>
     <string name="help_contact_title">మద్దతును సంప్రదించండి</string>
     <string name="help_contact_phone">+91 12345 67890</string>
     <string name="help_contact_email">support@mittimitra.com</string>
+
+    <string name="converter_title">భూమి కన్వర్టర్</string>
+    <string name="label_enter_area">విస్తీర్ణాన్ని నమోదు చేయండి</string>
+    <string name="label_result">ఫలితం</string>
+    <string name="btn_convert">మార్చండి</string>
+    <string name="unit_acre">ఎకరం</string>
+    <string name="unit_hectare">హెక్టారు</string>
+    <string name="unit_bigha">బిఘా (ప్రామాణికం)</string>
+    <string name="unit_guntha">గుంట</string>
+    <string name="unit_cent">సెంట్</string>
+
+    <string name="setting_share_app">స్నేహితులతో పంచుకోండి</string>
+    <string name="setting_notifications">నోటిఫికేషన్ ప్రాధాన్యతలు</string>
+
+    <string name="notif_title">నోటిఫికేషన్లు</string>
+    <string name="notif_weather_title">వాతావరణ హెచ్చరికలు</string>
+    <string name="notif_weather_desc">భారీ వర్షం మరియు తుఫాను హెచ్చరికలను పొందండి.</string>
+    <string name="notif_mandi_title">మండి ధరలు</string>
+    <string name="notif_mandi_desc">మీ జిల్లా కోసం రోజువారీ మార్కెట్ ధరలు.</string>
+    <string name="notif_scheme_title">ప్రభుత్వ పథకాలు</string>
+    <string name="notif_scheme_desc">పిఎం-కిసాన్ మరియు సబ్సిడీలపై నవీకరణలు.</string>
+    <string name="share_message">నేల ఆరోగ్యం మరియు వ్యవసాయం కోసం ఉత్తమ యాప్ - మిట్టి మిత్రను చూడండి! ఇక్కడ డౌన్‌లోడ్ చేసుకోండి: https://play.google.com/store/apps/details?id=com.mittimitra</string>
+
+    <string name="title_pm_kisan">PM-KISAN: ₹6,000/సంవత్సరానికి ఆదాయ మద్దతు</string>
+    <string name="title_smart_tools">స్మార్ట్ టూల్స్</string>
+    <string name="title_soil_health">నేల ఆరోగ్య కార్డు: మీ నేల బలాన్ని తెలుసుకోండి</string>
+    <string name="title_fasal_bima">PM ఫసల్ బీమా యోజన: మీ పంటలను భద్రపరచండి</string>
+
+    <string name="notif_weather">వాతావరణ హెచ్చరికలు</string>
+    <string name="notif_mandi">మండి ధరలు</string>
+    <string name="notif_schemes">ప్రభుత్వ పథకాలు</string>
+
+    <string name="contact_header">సహాయం చేయడానికి మేము ఇక్కడ ఉన్నాము</string>
+    <string name="contact_desc">నిర్దిష్ట వ్యవసాయ సలహా లేదా సాంకేతిక మద్దతు కోసం మమ్మల్ని సంప్రదించండి.</string>
+    <string name="contact_call">కాల్ మద్దతు</string>
+    <string name="contact_time">సోమ-శని, ఉదయం 9 - సాయంత్రం 6</string>
+    <string name="contact_email">మాకు ఇమెయిల్ చేయండి</string>
+    <string name="contact_email_addr">support@mittimitra.com</string>
+
+    <string name="label_from_unit">నుండి యూనిట్</string>
+    <string name="label_to_unit">కు యూనిట్</string>
+
+    <string name="scan_title">కొత్త నేల స్కాన్</string>
+    <string name="scan_env_data">పర్యావరణ డేటా</string>
+    <string name="scan_weather">వాతావరణం</string>
+    <string name="scan_moisture">తేమ</string>
+    <string name="scan_nutrients">నేల పోషకాలు (అంచనా)</string>
+    <string name="scan_hint">మీ పరిశీలనలు (ఉదా. \'పసుపు ఆకులు\')</string>
+    <string name="scan_status_ready">స్కాన్ చేయడానికి సిద్ధంగా ఉంది</string>
+    <string name="scan_btn_gallery">గ్యాలరీ</string>
+    <string name="scan_btn_camera">కెమెరా</string>
+    <string name="scan_btn_analyze">నేలను గుర్తించి సిఫార్సు చేయండి</string>
+
+    <string name="profile_recent">ఇటీవలి విశ్లేషణ</string>
+    <string name="profile_no_history">ఇటీవలి స్కాన్‌లు ఏవీ కనుగొనబడలేదు.</string>
+    <string name="profile_logout">లాగ్ అవుట్</string>
+    <string name="profile_member_since">సభ్యత్వ తేదీ:</string>
+    <string name="profile_phone">ఫోన్:</string>
+
+    <string name="rec_title">నేల ఆరోగ్య కార్డు</string>
+    <string name="rec_header_title">నేల ఆరోగ్య కార్డు</string>
+    <string name="rec_header_subtitle">మిట్టి మిత్ర • డిజిటల్ వ్యవసాయ మిషన్</string>
+    <string name="rec_farmer_details">రైతు వివరాలు</string>
+    <string name="rec_label_name">పేరు:</string>
+    <string name="rec_label_mobile">మొబైల్:</string>
+    <string name="rec_label_email">ఇమెయిల్:</string>
+    <string name="rec_label_location">స్థానం:</string>
+    <string name="rec_label_date">పరీక్ష తేదీ:</string>
+    <string name="rec_results_title">పరీక్ష ఫలితాలు (ప్రాథమిక పోషకాలు)</string>
+    <string name="rec_col_param">పరామితి</string>
+    <string name="rec_col_value">విలువ</string>
+    <string name="rec_col_status">స్థితి</string>
+    <string name="rec_advisory_title">శాస్త్రీయ సలహా</string>
+    <string name="rec_footer">మిట్టి మిత్ర AI ద్వారా రూపొందించబడింది | ఉపగ్రహ డేటా ద్వారా ధృవీకరించబడింది</string>
+    <string name="rec_btn_download">PDF డౌన్‌లోడ్ చేయండి</string>
+
+    <string name="login_welcome">తిరిగి స్వాగతం</string>
+    <string name="login_subtitle">మీ వ్యవసాయ సాధనాలను యాక్సెస్ చేయడానికి లాగిన్ చేయండి</string>
+    <string name="login_google">Googleతో కొనసాగించండి</string>
+    <string name="login_or_divider">లేదా ఫోన్</string>
+    <string name="login_hint_phone">ఫోన్ నంబర్</string>
+    <string name="login_btn_otp">OTP పొందండి</string>
+    <string name="login_hint_otp">6-అంకెల OTPని నమోదు చేయండి</string>
+    <string name="login_btn_verify">ధృవీకరించండి &amp; లాగిన్ చేయండి</string>
+    <string name="login_trouble">లాగిన్ చేయడంలో సమస్య ఉందా?</string>
+
+    <string name="home_welcome_default">నమస్తే, రైతు</string>
+    <string name="home_card_scan">మట్టిని స్కాన్ చేయండి</string>
+    <string name="home_card_advice">సలహా పొందండి</string>
+    <string name="home_card_tips">AI నిపుణుల చిట్కాలు</string>
+    <string name="home_section_tools">స్మార్ట్ సాధనాలు</string>
+    <string name="desc_logo">యాప్ లోగో</string>
+    <string name="desc_icon">చిహ్నం</string>
+
+    <string name="title_documents">సంబంధిత పత్రాలు</string>
+    <string name="msg_no_documents">పత్రాలు ఏవీ కనుగొనబడలేదు.\nజోడించడానికి \'+\' నొక్కండి.</string>
+    <string name="desc_add_document">పత్రాన్ని జోడించండి</string>
+
+    <string name="title_scan_history">స్కాన్ చరిత్ర</string>
+
+    <string name="welcome_home_title">స్వాగతం!</string>
+    <string name="welcome_home_desc">మీరు విజయవంతంగా లాగిన్ అయ్యారు!</string>
+
+    <string name="btn_test_notification">టెస్ట్ నోటిఫికేషన్ పంపండి</string>
+    <string name="desc_notification_icon">నోటిఫికేషన్ చిహ్నం</string>
+
+    <string name="profile_name_placeholder">లోడ్ అవుతోంది...</string>
+    <string name="profile_email_placeholder">email@example.com</string>
+    <string name="desc_profile_image">ప్రొఫైల్ చిత్రం</string>
+    <string name="desc_change_photo">ప్రొఫైల్ ఫోటోను మార్చండి</string>
+    <string name="desc_edit_profile">ప్రొఫైల్ వివరాలను సవరించండి</string>
+
+    <string name="rec_param_n">నైట్రోజన్ (N)</string>
+    <string name="rec_param_p">ఫాస్ఫరస్ (P)</string>
+    <string name="rec_param_k">పొటాషియం (K)</string>
+    <string name="rec_param_ph">మట్టి pH</string>
+    <string name="rec_ai_context">పంట అవసరాలను విశ్లేషిస్తోంది...</string>
+    <string name="rec_ai_generating">నిపుణుల సిఫార్సును రూపొందిస్తోంది...</string>
+
+    <string name="scan_locating">స్థానాన్ని గుర్తిస్తోంది...</string>
+    <string name="desc_image_preview">చిత్ర ప్రివ్యూ</string>
+    <string name="signup_title">మిట్టి మిత్రలో చేరండి</string>
+    <string name="signup_subtitle">ఈరోజే మీ స్మార్ట్ వ్యవసాయ ప్రయాణాన్ని ప్రారంభించండి</string>
+    <string name="signup_create_account">ఖాతాను సృష్టించండి</string>
+    <string name="signup_google">Googleతో సైన్ అప్ చేయండి</string>
+    <string name="signup_phone">ఫోన్‌తో సైన్ అప్ చేయండి</string>
+    <string name="signup_footer">ఖాతా లేదా?</string>
+
+    <string name="chat_title">అగ్రి-ఎక్స్‌పర్ట్ చాట్</string>
+    <string name="chat_hint">పంటల గురించి అడగండి...</string>
+    <string name="desc_mic">ఆడియో రికార్డ్ చేయండి</string>
+    <string name="desc_send">సందేశం పంపండి</string>
+
+    <string name="welcome_get_started">ప్రారంభించండి</string>
+    <string name="welcome_join_community">అత్యంత తెలివైన రైతు సంఘంలో చేరండి.</string>
+
+    <string name="edit_profile_title">ప్రొఫైల్‌ను సవరించండి</string>
+    <string name="edit_profile_name_hint">పూర్తి పేరు</string>
+    <string name="edit_profile_phone_hint">ఫోన్ నంబర్</string>
+    <string name="edit_profile_phone_helper">హెచ్చరికలకు అవసరం</string>
+    <string name="btn_save_changes">మార్పులను సేవ్ చేయండి</string>
+
+    <string name="btn_view">చూడండి</string>
+
+    <string name="placeholder_location">తెలియని స్థానం</string>
+    <string name="placeholder_date">తేదీ</string>
+    <string name="status_calculating">గణిస్తోంది...</string>
+    <string name="desc_view_details">వివరాలను చూడండి</string>
 </resources>

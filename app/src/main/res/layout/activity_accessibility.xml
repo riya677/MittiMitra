@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
@@ -19,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        app:titleTextColor="#FFFFFF"
+        android:layout_marginTop="16dp"
+        app:titleTextColor="@color/text_white"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -27,10 +29,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/setting_accessibility"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"/>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
@@ -54,7 +58,7 @@
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardBackgroundColor="?attr/colorSurface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -68,7 +72,7 @@
                         android:text="@string/font_size_title"
                         android:textStyle="bold"
                         android:textSize="16sp"
-                        android:textColor="#1B5E20"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:layout_marginBottom="16dp"/>
 
                     <com.google.android.material.slider.Slider
@@ -79,11 +83,11 @@
                         android:valueTo="1.5"
                         android:stepSize="0.1"
                         android:value="1.0"
-                        app:thumbColor="#1B5E20"
-                        app:trackColorActive="#1B5E20"
-                        app:trackColorInactive="#C8E6C9"
-                        app:tickColorActive="#FFFFFF"
-                        app:tickColorInactive="#1B5E20"/>
+                        app:thumbColor="@color/brand_green"
+                        app:trackColorActive="@color/brand_green"
+                        app:trackColorInactive="@color/brand_green_light"
+                        app:tickColorActive="@color/text_white"
+                        app:tickColorInactive="@color/brand_green"/>
 
                     <TextView
                         android:id="@+id/tv_font_sample"
@@ -92,7 +96,9 @@
                         android:layout_marginTop="8dp"
                         android:text="@string/font_size_sample"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="#333333"/>
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:gravity="center"
+                        android:minLines="2"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -101,7 +107,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardBackgroundColor="?attr/colorSurface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -121,9 +127,9 @@
                             android:layout_height="wrap_content"
                             android:text="@string/setting_font_dyslexic"
                             android:textSize="16sp"
-                            android:textColor="#333333"
-                            app:thumbTint="#1B5E20"
-                            app:trackTint="#C8E6C9"/>
+                            android:textColor="?android:attr/textColorPrimary"
+                            app:thumbTint="@color/brand_green"
+                            app:trackTint="@color/brand_green_light"/>
 
                         <TextView
                             android:layout_width="match_parent"
@@ -131,7 +137,9 @@
                             android:layout_marginTop="4dp"
                             android:text="@string/setting_font_dyslexic_desc"
                             android:textSize="12sp"
-                            android:textColor="#757575"/>
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:maxLines="3"
+                            android:ellipsize="end"/>
                     </LinearLayout>
 
                 </LinearLayout>

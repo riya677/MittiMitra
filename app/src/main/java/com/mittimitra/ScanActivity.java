@@ -64,7 +64,7 @@ import retrofit2.Response;
 
 import com.mittimitra.utils.NutrientStatus;
 
-public class ScanActivity extends AppCompatActivity {
+public class ScanActivity extends BaseActivity {
 
     private static final String TAG = "ScanActivity";
     private static final String MODEL_PATH = "soil_classifier.tflite";

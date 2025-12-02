@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,7 +10,8 @@
         android:layout_height="match_parent"
         android:layout_margin="8dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="4dp">
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="?attr/colorSurface">
 
         <ImageView
             android:id="@+id/img_carousel"
@@ -17,7 +19,9 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
-            android:src="@android:color/darker_gray"/>
+            android:src="@android:color/darker_gray"
+            android:contentDescription="@string/desc_image_preview"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"/>
 
         <View
             android:layout_width="match_parent"
@@ -30,13 +34,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:padding="16dp"
-            android:text="Title"
-            android:textColor="#FFFFFF"
+            tools:text="Govt Scheme Title"
+            android:textColor="@color/text_white"
             android:textSize="16sp"
             android:textStyle="bold"
             android:maxLines="2"
             android:ellipsize="end"
-            android:shadowColor="#000000"
+            android:shadowColor="@color/black"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"/>
