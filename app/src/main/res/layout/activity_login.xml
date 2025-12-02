@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="#F4F7F5"
+    android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -30,15 +31,16 @@
             android:layout_height="80dp"
             android:src="@drawable/mittimitra_logo"
             android:scaleType="centerCrop"
-            android:background="#FFFFFF"
+            android:background="@color/text_white"
             android:padding="2dp"
+            android:contentDescription="@string/desc_logo"
             app:shapeAppearanceOverlay="@style/CircleImageStyle" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome Back"
-            android:textColor="#FFFFFF"
+            android:text="@string/login_welcome"
+            android:textColor="@color/text_white"
             android:textSize="28sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp"/>
@@ -46,9 +48,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login to access your farm tools"
-            android:textColor="#C8E6C9"
+            android:text="@string/login_subtitle"
+            android:textColor="@color/brand_green_light"
             android:textSize="14sp"
+            android:gravity="center"
             android:layout_marginTop="4dp"/>
     </LinearLayout>
 
@@ -59,7 +62,7 @@
         android:layout_marginTop="32dp"
         app:cardCornerRadius="24dp"
         app:cardElevation="8dp"
-        app:cardBackgroundColor="#FFFFFF"
+        app:cardBackgroundColor="@color/text_white"
         app:layout_constraintTop_toBottomOf="@id/layout_header_content">
 
         <LinearLayout
@@ -72,11 +75,11 @@
                 android:id="@+id/btn_google_signin"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Continue with Google"
-                android:textColor="#333333"
+                android:text="@string/login_google"
+                android:textColor="@color/text_dark"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                app:backgroundTint="#FFFFFF"
+                app:backgroundTint="@color/text_white"
                 app:strokeColor="#E0E0E0"
                 app:strokeWidth="1dp"
                 app:cornerRadius="30dp"
@@ -92,30 +95,36 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="24dp">
                 <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#F5F5F5"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=" OR PHONE " android:textColor="#757575" android:textSize="12sp" android:paddingHorizontal="8dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_or_divider"
+                    android:textColor="#757575"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="8dp"/>
                 <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#F5F5F5"/>
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone Number"
+                android:hint="@string/login_hint_phone"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:boxStrokeColor="#1B5E20"
-                app:hintTextColor="#1B5E20"
+                app:boxStrokeColor="@color/brand_green"
+                app:hintTextColor="@color/brand_green"
                 app:boxCornerRadiusTopStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:startIconDrawable="@android:drawable/ic_menu_call"
-                app:startIconTint="#1B5E20">
+                app:startIconTint="@color/brand_green">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_phone_auth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
-                    android:textColor="#333333"
+                    android:textColor="@color/text_dark"
                     android:textSize="16sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,10 +132,10 @@
                 android:id="@+id/btn_send_otp"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:text="Get OTP"
+                android:text="@string/login_btn_otp"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                app:backgroundTint="#1B5E20"
+                app:backgroundTint="@color/brand_green"
                 app:cornerRadius="28dp"
                 android:layout_marginTop="16dp"/>
 
@@ -141,16 +150,16 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter 6-digit OTP"
+                    android:hint="@string/login_hint_otp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="#1B5E20"
-                    app:hintTextColor="#1B5E20"
+                    app:boxStrokeColor="@color/brand_green"
+                    app:hintTextColor="@color/brand_green"
                     app:boxCornerRadiusTopStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusBottomEnd="12dp"
                     app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-                    app:startIconTint="#1B5E20">
+                    app:startIconTint="@color/brand_green">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_otp_code"
@@ -159,7 +168,7 @@
                         android:inputType="number"
                         android:maxLength="6"
                         android:letterSpacing="0.2"
-                        android:textColor="#333333"
+                        android:textColor="@color/text_dark"
                         android:textSize="18sp"
                         android:gravity="center"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -168,7 +177,7 @@
                     android:id="@+id/btn_verify_otp"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:text="Verify &amp; Login"
+                    android:text="@string/login_btn_verify"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     app:backgroundTint="#2E7D32"
@@ -180,10 +189,10 @@
                 android:id="@+id/tv_forgot_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trouble logging in?"
+                android:text="@string/login_trouble"
                 android:layout_gravity="center"
                 android:padding="12dp"
-                android:textColor="#1B5E20"
+                android:textColor="@color/brand_green"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"/>
 
@@ -192,7 +201,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:indeterminateTint="#1B5E20"
+                android:indeterminateTint="@color/brand_green"
                 android:visibility="gone"/>
 
         </LinearLayout>

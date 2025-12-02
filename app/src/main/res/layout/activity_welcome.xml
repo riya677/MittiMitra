@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/guideline_split" />
 
@@ -30,6 +31,7 @@
         android:scaleType="centerCrop"
         app:shapeAppearanceOverlay="@style/CircleImageStyle"
         android:layout_marginBottom="16dp"
+        android:contentDescription="@string/desc_logo"
         app:layout_constraintBottom_toTopOf="@+id/tv_app_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,11 +43,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/text_white"
         android:textSize="36sp"
         android:textStyle="bold"
         android:fontFamily="sans-serif-black"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/img_logo"
         app:layout_constraintBottom_toTopOf="@+id/tv_subtitle"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +61,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_subtitle"
-        android:textColor="#C8E6C9"
+        android:textColor="@color/brand_green_light"
         android:textSize="16sp"
         android:letterSpacing="0.05"
+        android:gravity="center"
+        android:maxLines="2"
+        android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/tv_app_name"
         app:layout_constraintBottom_toBottomOf="@id/guideline_split"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +78,7 @@
         android:layout_marginHorizontal="24dp"
         app:cardCornerRadius="24dp"
         app:cardElevation="12dp"
-        app:cardBackgroundColor="#FFFFFF"
+        app:cardBackgroundColor="?attr/colorSurface"
         app:layout_constraintTop_toBottomOf="@id/guideline_split"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.3">
@@ -84,21 +92,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Get Started"
-                android:textColor="#1B5E20"
+                android:text="@string/welcome_get_started"
+                android:textColor="@color/brand_green"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Join the smartest farming community."
-                android:textColor="#757575"
+                android:text="@string/welcome_join_community"
+                android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="32dp"/>
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                android:maxLines="2"
+                android:ellipsize="end"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_go_to_login"
@@ -107,8 +120,8 @@
                 android:text="@string/login"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                app:backgroundTint="#1B5E20"
+                android:textColor="@color/text_white"
+                app:backgroundTint="@color/brand_green"
                 app:cornerRadius="30dp"
                 android:layout_marginBottom="16dp"/>
 
@@ -120,8 +133,8 @@
                 android:text="@string/signup"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#1B5E20"
-                app:strokeColor="#1B5E20"
+                android:textColor="@color/brand_green"
+                app:strokeColor="@color/brand_green"
                 app:strokeWidth="2dp"
                 app:cornerRadius="30dp"/>
 

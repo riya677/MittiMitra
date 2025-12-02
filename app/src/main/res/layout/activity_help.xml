@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
@@ -19,8 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        android:layout_marginTop="32dp"
-        app:titleTextColor="#FFFFFF"
+        android:layout_marginTop="16dp"
+        app:titleTextColor="@color/text_white"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,10 +29,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/help_title"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"/>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
@@ -57,7 +60,7 @@
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardBackgroundColor="?attr/colorSurface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -81,7 +84,8 @@
                                 android:layout_height="20dp"
                                 android:layout_gravity="center"
                                 android:src="@android:drawable/ic_menu_help"
-                                app:tint="#1B5E20"/>
+                                app:tint="@color/brand_green"
+                                android:contentDescription="@string/desc_icon"/>
                         </FrameLayout>
 
                         <TextView
@@ -90,8 +94,10 @@
                             android:text="@string/help_faq_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:textColor="#333333"
-                            android:layout_marginStart="12dp"/>
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:layout_marginStart="12dp"
+                            android:maxLines="2"
+                            android:ellipsize="end"/>
                     </LinearLayout>
 
                     <TextView
@@ -99,21 +105,23 @@
                         android:layout_height="wrap_content"
                         android:text="@string/help_q1"
                         android:textStyle="bold"
-                        android:textColor="#1B5E20"
-                        android:textSize="15sp"/>
+                        android:textColor="@color/brand_green"
+                        android:textSize="15sp"
+                        android:maxLines="3"
+                        android:ellipsize="end"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/help_a1"
                         android:textSize="14sp"
-                        android:textColor="#616161"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:lineSpacingExtra="2dp"/>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#EEEEEE"
+                        android:background="?android:attr/listDivider"
                         android:layout_marginVertical="12dp"/>
 
                     <TextView
@@ -121,15 +129,17 @@
                         android:layout_height="wrap_content"
                         android:text="@string/help_q2"
                         android:textStyle="bold"
-                        android:textColor="#1B5E20"
-                        android:textSize="15sp"/>
+                        android:textColor="@color/brand_green"
+                        android:textSize="15sp"
+                        android:maxLines="3"
+                        android:ellipsize="end"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/help_a2"
                         android:textSize="14sp"
-                        android:textColor="#616161"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:lineSpacingExtra="2dp"/>
 
                 </LinearLayout>
@@ -140,7 +150,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardBackgroundColor="?attr/colorSurface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -154,8 +164,10 @@
                         android:text="@string/help_contact_title"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="#333333"
-                        android:layout_marginBottom="16dp"/>
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:layout_marginBottom="16dp"
+                        android:maxLines="1"
+                        android:ellipsize="end"/>
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_contact_phone"
@@ -163,10 +175,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:text="@string/help_contact_phone"
-                        android:textColor="#1B5E20"
+                        android:textColor="@color/brand_green"
                         app:icon="@android:drawable/ic_menu_call"
-                        app:iconTint="#1B5E20"
-                        app:strokeColor="#1B5E20"
+                        app:iconTint="@color/brand_green"
+                        app:strokeColor="@color/brand_green"
                         app:cornerRadius="8dp"/>
 
                     <com.google.android.material.button.MaterialButton
@@ -177,10 +189,10 @@
                         android:layout_marginTop="8dp"
                         android:text="@string/help_contact_email"
                         android:textAllCaps="false"
-                        android:textColor="#1B5E20"
+                        android:textColor="@color/brand_green"
                         app:icon="@android:drawable/ic_dialog_email"
-                        app:iconTint="#1B5E20"
-                        app:strokeColor="#1B5E20"
+                        app:iconTint="@color/brand_green"
+                        app:strokeColor="@color/brand_green"
                         app:cornerRadius="8dp"/>
 
                 </LinearLayout>

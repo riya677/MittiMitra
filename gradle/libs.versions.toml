@@ -22,6 +22,7 @@ espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.9.4"
 activityCompose = "1.11.0"
 composeBom = "2024.09.00"
+listenablefuture = "9999.0-empty-to-avoid-conflict-with-guava"
 loggingInterceptor = "5.3.0"
 loggingInterceptorVersion = "4.12.0"
 material = "1.13.0"
@@ -35,6 +36,8 @@ roomRuntime = "2.6.1"
 retrofit = "2.9.0"
 gson = "2.10.1"
 tensorflowLite = "2.16.1"
+workRuntime = "2.11.0"
+workRuntimeVersion = "2.9.0"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -49,6 +52,8 @@ androidx-junit-v115 = { module = "androidx.test.ext:junit", version.ref = "andro
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 
+androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
+androidx-work-runtime-v290 = { module = "androidx.work:work-runtime", version.ref = "workRuntimeVersion" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
@@ -58,6 +63,7 @@ firebase-appcheck-playintegrity = { module = "com.google.firebase:firebase-appch
 firebase-appcheck-debug = { module = "com.google.firebase:firebase-appcheck-debug" }
 
 # Networking (Retrofit + Gson) - CRITICAL FIX
+listenablefuture = { module = "com.google.guava:listenablefuture", version.ref = "listenablefuture" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }

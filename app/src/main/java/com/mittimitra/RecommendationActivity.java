@@ -45,7 +45,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class RecommendationActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
+public class RecommendationActivity extends BaseActivity implements TextToSpeech.OnInitListener {
 
     private TextView tvName, tvPhone, tvEmail, tvLocation, tvDate;
     private TextView valN, ratN, valP, ratP, valK, ratK, valPh, ratPh;

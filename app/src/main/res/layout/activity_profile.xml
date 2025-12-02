@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -16,13 +17,13 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentScrim="#1B5E20"
+            app:contentScrim="@color/brand_green"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#1B5E20"
+                android:background="@color/brand_green"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingTop="?attr/actionBarSize"
@@ -38,8 +39,9 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@android:drawable/sym_def_app_icon"
-                        app:civ_border_color="#FFFFFF"
-                        app:civ_border_width="3dp" />
+                        app:civ_border_color="@color/text_white"
+                        app:civ_border_width="3dp"
+                        android:contentDescription="@string/desc_profile_image"/>
 
                     <ImageView
                         android:id="@+id/btn_change_photo"
@@ -49,11 +51,12 @@
                         android:background="@drawable/circle_bg_green_light"
                         android:src="@android:drawable/ic_menu_camera"
                         android:padding="6dp"
-                        app:tint="#1B5E20"
+                        app:tint="@color/brand_green"
                         android:elevation="4dp"
                         android:clickable="true"
                         android:focusable="true"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"/>
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/desc_change_photo"/>
                 </FrameLayout>
 
                 <TextView
@@ -61,27 +64,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Loading..."
-                    android:textColor="#FFFFFF"
+                    android:text="@string/profile_name_placeholder"
+                    android:textColor="@color/text_white"
                     android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:paddingHorizontal="16dp"/>
 
                 <TextView
                     android:id="@+id/tv_profile_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Phone: --"
-                    android:textColor="#C8E6C9"
-                    android:textSize="14sp" />
+                    android:text="@string/profile_phone"
+                    android:textColor="@color/brand_green_light"
+                    android:textSize="14sp"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
 
                 <TextView
                     android:id="@+id/tv_profile_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="email@example.com"
-                    android:textColor="#C8E6C9"
-                    android:textSize="14sp" />
+                    android:text="@string/profile_email_placeholder"
+                    android:textColor="@color/brand_green_light"
+                    android:textSize="14sp"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
 
                 <TextView
                     android:id="@+id/tv_profile_join_date"
@@ -92,10 +102,12 @@
                     android:backgroundTint="#2E7D32"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
-                    android:text="Member Since: 2024"
-                    android:textColor="#FFFFFF"
+                    android:text="@string/profile_member_since"
+                    android:textColor="@color/text_white"
                     android:textSize="12sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
             </LinearLayout>
 
             <androidx.appcompat.widget.Toolbar
@@ -103,7 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:titleTextColor="#FFFFFF"
+                app:titleTextColor="@color/text_white"
                 app:navigationIcon="?attr/homeAsUpIndicator" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -129,7 +141,7 @@
                 android:layout_marginBottom="24dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardBackgroundColor="?attr/colorSurface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -153,17 +165,20 @@
                                 android:layout_height="20dp"
                                 android:layout_gravity="center"
                                 android:src="@android:drawable/ic_menu_recent_history"
-                                app:tint="#1B5E20"/>
+                                app:tint="@color/brand_green"
+                                android:contentDescription="@string/desc_icon"/>
                         </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Recent Analysis"
-                            android:textColor="#333333"
+                            android:text="@string/profile_recent"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:layout_marginStart="12dp"/>
+                            android:layout_marginStart="12dp"
+                            android:maxLines="1"
+                            android:ellipsize="end"/>
                     </LinearLayout>
 
                     <TextView
@@ -172,9 +187,11 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="24dp"
-                        android:text="No recent scans found."
-                        android:textColor="#757575"
-                        android:textSize="14sp"/>
+                        android:text="@string/profile_no_history"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp"
+                        android:maxLines="2"
+                        android:ellipsize="end"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_recent_history"
@@ -189,14 +206,14 @@
                 android:id="@+id/btn_logout"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Log Out"
-                android:textColor="#D32F2F"
+                android:text="@string/profile_logout"
+                android:textColor="@color/color_delete"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                app:backgroundTint="#FFEBEE"
+                app:backgroundTint="@color/color_delete_light"
                 app:cornerRadius="30dp"
                 app:icon="@android:drawable/ic_lock_power_off"
-                app:iconTint="#D32F2F"
+                app:iconTint="@color/color_delete"
                 app:iconGravity="textStart"/>
 
         </LinearLayout>
@@ -210,9 +227,9 @@
         android:src="@android:drawable/ic_menu_edit"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:backgroundTint="#FFFFFF"
-        app:tint="#1B5E20"
-        android:contentDescription="Edit Profile"
+        app:backgroundTint="@color/text_white"
+        app:tint="@color/brand_green"
+        android:contentDescription="@string/desc_edit_profile"
         app:elevation="6dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -57,7 +57,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class TipActivity extends AppCompatActivity {
+public class TipActivity extends BaseActivity {
 
     private static final String TAG = "TipActivity";
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");

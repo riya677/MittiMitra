@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
@@ -19,8 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        android:layout_marginTop="32dp"
-        app:titleTextColor="#FFFFFF"
+        android:layout_marginTop="16dp"
+        app:titleTextColor="@color/text_white"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,16 +29,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/converter_title"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"/>
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:fillViewport="true"
         android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/converter_toolbar"
@@ -48,131 +51,139 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp"
-            android:gravity="center_vertical"> <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="6dp"
-            app:cardBackgroundColor="#FFFFFF">
+            android:gravity="center_vertical">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/label_enter_area"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="#1B5E20"
-                    app:hintTextColor="#1B5E20"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusBottomEnd="12dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_area_input"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:textSize="18sp"
-                        android:textColor="#333333"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="?attr/colorSurface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="24dp"
-                    android:weightSum="2">
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/label_enter_area"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxStrokeColor="@color/brand_green"
+                        app:hintTextColor="@color/brand_green"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_area_input"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:textSize="18sp"
+                            android:textColor="?android:attr/textColorPrimary"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="8dp">
+                        android:orientation="horizontal"
+                        android:layout_marginTop="24dp"
+                        android:weightSum="2">
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="From Unit"
-                            android:textSize="12sp"
-                            android:textColor="#757575"
-                            android:layout_marginBottom="4dp"/>
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="8dp">
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:background="@drawable/border_background">
-                            <Spinner
-                                android:id="@+id/spinner_from"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_from_unit"
+                                android:textSize="12sp"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:layout_marginBottom="4dp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                            <FrameLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@null"/>
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@android:drawable/arrow_down_float"
-                                android:layout_gravity="center_vertical|end"
-                                android:layout_marginEnd="8dp"
-                                app:tint="#757575"/>
-                        </FrameLayout>
+                                android:layout_height="48dp"
+                                android:background="@drawable/border_background">
+                                <Spinner
+                                    android:id="@+id/spinner_from"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@null"/>
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@android:drawable/arrow_down_float"
+                                    android:layout_gravity="center_vertical|end"
+                                    android:layout_marginEnd="8dp"
+                                    app:tint="?android:attr/textColorPrimary"
+                                    android:importantForAccessibility="no"/>
+                            </FrameLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_to_unit"
+                                android:textSize="12sp"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:layout_marginBottom="4dp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:background="@drawable/border_background">
+                                <Spinner
+                                    android:id="@+id/spinner_to"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@null"/>
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@android:drawable/arrow_down_float"
+                                    android:layout_gravity="center_vertical|end"
+                                    android:layout_marginEnd="8dp"
+                                    app:tint="?android:attr/textColorPrimary"
+                                    android:importantForAccessibility="no"/>
+                            </FrameLayout>
+                        </LinearLayout>
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="8dp">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_convert_action"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/btn_convert"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="28dp"
+                        app:backgroundTint="@color/brand_green"
+                        android:elevation="4dp"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="To Unit"
-                            android:textSize="12sp"
-                            android:textColor="#757575"
-                            android:layout_marginBottom="4dp"/>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:background="@drawable/border_background">
-                            <Spinner
-                                android:id="@+id/spinner_to"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@null"/>
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@android:drawable/arrow_down_float"
-                                android:layout_gravity="center_vertical|end"
-                                android:layout_marginEnd="8dp"
-                                app:tint="#757575"/>
-                        </FrameLayout>
-                    </LinearLayout>
                 </LinearLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_convert_action"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="32dp"
-                    android:text="@string/btn_convert"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="28dp"
-                    app:backgroundTint="#1B5E20"
-                    android:elevation="4dp"/>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_result"
@@ -181,7 +192,7 @@
                 android:layout_marginTop="8dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#E8F5E9"
+                app:cardBackgroundColor="?attr/colorSurface"
                 android:visibility="gone">
 
                 <LinearLayout
@@ -195,11 +206,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/label_result"
-                        android:textColor="#2E7D32"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:textSize="14sp"
                         android:textAllCaps="true"
                         android:letterSpacing="0.1"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:ellipsize="end"/>
 
                     <TextView
                         android:id="@+id/tv_result_value"
@@ -208,17 +221,21 @@
                         android:text="0.00"
                         android:textSize="36sp"
                         android:textStyle="bold"
-                        android:textColor="#1B5E20"
-                        android:layout_marginTop="8dp"/>
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:layout_marginTop="8dp"
+                        android:maxLines="1"
+                        android:ellipsize="end"/>
 
                     <TextView
                         android:id="@+id/tv_result_unit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hectare"
+                        android:text="@string/unit_hectare"
                         android:textSize="18sp"
-                        android:textColor="#388E3C"
-                        android:layout_marginTop="4dp"/>
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:layout_marginTop="4dp"
+                        android:maxLines="1"
+                        android:ellipsize="end"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

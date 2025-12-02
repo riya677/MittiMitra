@@ -2,11 +2,11 @@
     <string name="app_name">മിട്ടി മിത്ര</string>
 
     <string name="welcome_subtitle">നിങ്ങളുടെ വ്യക്തിഗത കാർഷിക സഹായി</string>
-    <string name="login">ലോഗിൻ ചെയ്യുക</string>
-    <string name="signup">സൈൻ അപ്പ് ചെയ്യുക</string>
+    <string name="login">ലോഗിൻ</string>
+    <string name="signup">സൈൻ അപ്പ്</string>
 
     <string name="greeting_format">നമസ്കാരം, %s</string>
-    <string name="greeting_default">നമസ്കാരം, ഉപയോക്താവേ</string>
+    <string name="greeting_default">നമസ്കാരം, ഉപയോക്താവ്</string>
     <string name="last_scan">അവസാന സ്കാൻ</string>
     <string name="button_tip">നുറുങ്ങ്</string>
     <string name="button_recommendation">ശുപാർശ</string>
@@ -17,50 +17,210 @@
     <string name="menu_settings">ക്രമീകരണങ്ങൾ</string>
     <string name="menu_help">സഹായം</string>
     <string name="menu_contact">ബന്ധപ്പെടുക</string>
-    <string name="menu_logout">ലോഗ് ഔട്ട്</string>
+    <string name="menu_logout">ലോഗ് ഔട്ട്</string>
 
     <string name="setting_language">ഭാഷ</string>
-    <string name="setting_accessibility">പ്രവേശനക്ഷമത</string>
+    <string name="setting_accessibility">ആക്സസ്സിബിലിറ്റി</string>
     <string name="setting_theme">ആപ്പ് തീം</string>
-    <string name="setting_manage_data">ഡാറ്റ മാനേജ് ചെയ്യുക</string>
+    <string name="setting_manage_data">ഡാറ്റ കൈകാര്യം ചെയ്യുക</string>
+
+    <string name="setting_unit_converter">ഭൂമി അളവ് മാറ്റുന്ന ഉപകരണം</string>
+    <string name="setting_unit_converter_desc">ഏക്കർ, ഹെക്ടർ, ബിഘ, ഗുന്ത എന്നിവ മാറ്റുക.</string>
+    <string name="setting_kisan_call">കിസാൻ ഹെൽപ്പ്ലൈൻ വിളിക്കുക</string>
+    <string name="setting_kisan_call_desc">സർക്കാർ കിസാൻ കോൾ സെന്ററുമായി ബന്ധപ്പെടുക (1800-180-1551).</string>
 
     <string name="language_title">ഭാഷ തിരഞ്ഞെടുക്കുക</string>
     <string name="language_system_default">സിസ്റ്റം ഡിഫോൾട്ട്</string>
-    <string name="language_english">English (ഇംഗ്ലീഷ്)</string>
-    <string name="language_hindi">हिन्दी (ഹിന്ദി)</string>
-    <string name="language_tamil">தமிழ் (തമിഴ്)</string>
-    <string name="language_malayalam">മലയാളം</string>
+    <string name="language_english">English</string>
+    <string name="language_hindi">हिन्दी (Hindi)</string>
+    <string name="language_tamil">தமிழ் (Tamil)</string>
+    <string name="language_malayalam">മലയാളം (Malayalam)</string>
     <string name="language_telugu">తెలుగు (Telugu)</string>
+    <string name="language_kannada">ಕನ್ನಡ (Kannada)</string>
+    <string name="language_marathi">मराठी (Marathi)</string>
+    <string name="language_bengali">বাংলা (Bengali)</string>
+    <string name="language_gujarati">ગુજરાતી (Gujarati)</string>
+    <string name="language_punjabi">ਪੰਜਾਬੀ (Punjabi)</string>
 
-    <string name="font_size_title">അക്ഷര വലിപ്പം ക്രമീകരിക്കുക</string>
+    <string name="font_size_title">ഫോണ്ട് വലിപ്പം</string>
     <string name="font_size_small">ചെറുത്</string>
-    <string name="font_size_default">സാധാരണം</string>
+    <string name="font_size_default">സാധാരണ</string>
     <string name="font_size_large">വലുത്</string>
-    <string name="font_size_sample">നിങ്ങളുടെ ടെക്സ്റ്റ് ഇങ്ങനെ ആയിരിക്കും.</string>
+    <string name="font_size_sample">നിങ്ങളുടെ എഴുത്ത് ഇങ്ങനെയിരിക്കും.</string>
+    <string name="setting_font_dyslexic">ഡിസ്ലെക്സിക് ഫോണ്ട്</string>
+    <string name="setting_font_dyslexic_desc">ഡിസ്ലെക്സിക് ഉപയോക്താക്കൾക്ക് വായിക്കാൻ എളുപ്പമുള്ള ഫോണ്ട്.</string>
 
     <string name="theme_title">തീം തിരഞ്ഞെടുക്കുക</string>
     <string name="theme_light">ലൈറ്റ്</string>
     <string name="theme_dark">ഡാർക്ക്</string>
     <string name="theme_system">സിസ്റ്റം ഡിഫോൾട്ട്</string>
 
-    <string name="manage_data_title">ഡാറ്റ മാനേജ് ചെയ്യുക</string>
-    <string name="manage_data_soil_title">മണ്ണിന്റെ ചരിത്രം മായ്ക്കുക</string>
-    <string name="manage_data_soil_desc">സംഭരിച്ച എല്ലാ മണ്ണ് വിശകലന റിപ്പോർട്ടുകളും ഇല്ലാതാക്കുന്നു.</string>
+    <string name="manage_data_title">ഡാറ്റ കൈകാര്യം ചെയ്യുക</string>
+    <string name="manage_data_soil_title">മണ്ണ് പരിശോധന ചരിത്രം മായ്ക്കുക</string>
+    <string name="manage_data_soil_desc">സൂക്ഷിച്ച എല്ലാ മണ്ണ് പരിശോധന റിപ്പോർട്ടുകളും മായ്ക്കുന്നു.</string>
     <string name="manage_data_docs_title">എല്ലാ രേഖകളും മായ്ക്കുക</string>
-    <string name="manage_data_docs_desc">ഈ ഉപകരണത്തിൽ നിന്ന് അപ്‌ലോഡ് ചെയ്‌ത എല്ലാ രേഖകളും ഇല്ലാതാക്കുന്നു.</string>
-    <string name="dialog_are_you_sure">നിങ്ങൾക്ക് ഉറപ്പാണോ?</string>
+    <string name="manage_data_docs_desc">ഈ ഉപകരണത്തിൽ നിന്ന് അപ്‌ലോഡ് ചെയ്ത എല്ലാ രേഖകളും മായ്ക്കുന്നു.</string>
+    <string name="dialog_are_you_sure">നിങ്ങൾക്ക് ഉറപ്പാണോ?</string>
     <string name="dialog_delete">മായ്ക്കുക</string>
     <string name="dialog_cancel">റദ്ദാക്കുക</string>
-    <string name="toast_history_cleared">മണ്ണിന്റെ ചരിത്രം മായ്ച്ചു.</string>
+    <string name="toast_history_cleared">മണ്ണ് ചരിത്രം മായ്ച്ചു.</string>
     <string name="toast_documents_cleared">എല്ലാ രേഖകളും മായ്ച്ചു.</string>
 
     <string name="help_title">സഹായവും പിന്തുണയും</string>
-    <string name="help_faq_title">പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ (FAQ)</string>
-    <string name="help_q1">ഒരു നല്ല സോയിൽ സ്കാൻ എങ്ങനെ എടുക്കാം?</string>
-    <string name="help_a1">നല്ല വെളിച്ചം ഉറപ്പാക്കുക, സാമ്പിൾ ഒരു പ്ലെയിൻ പശ്ചാത്തലത്തിൽ വെക്കുക, ഫോക്കസ് ചെയ്യാൻ ടാപ്പുചെയ്യുക.</string>
-    <string name="help_q2">AI എത്രത്തോളം കൃത്യമാണ്?</string>
-    <string name="help_a2">AI ദൃശ്യ ഡാറ്റയെ അടിസ്ഥാനമാക്കി നിർദ്ദേശങ്ങൾ നൽകുന്നു. പ്രധാനപ്പെട്ട തീരുമാനങ്ങൾക്ക്, ദയവായി ഒരു പ്രാദേശിക കാർഷിക വിദഗ്ദ്ധനെ സമീപിക്കുക.</string>
-    <string name="help_contact_title">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
+    <string name="help_faq_title">പതിവ് ചോദ്യങ്ങൾ (FAQ)</string>
+    <string name="help_q1">നല്ല മണ്ണ് സ്കാൻ എങ്ങനെ എടുക്കാം?</string>
+    <string name="help_a1">നല്ല വെളിച്ചം ഉറപ്പാക്കുക, സാമ്പിൾ ഒരു വെള്ള പശ്ചാത്തലത്തിൽ വയ്ക്കുക, ഫോക്കസ് ചെയ്യാൻ ടാപ്പുചെയ്യുക.</string>
+    <string name="help_q2">AI എത്ര കൃത്യമാണ്?</string>
+    <string name="help_a2">AI ദൃശ്യ വിവരങ്ങൾ അടിസ്ഥാനമാക്കി നിർദ്ദേശങ്ങൾ നൽകുന്നു. പ്രധാന തീരുമാനങ്ങൾക്ക്, ദയവായി ഒരു പ്രാദേശിക കാർഷിക വിദഗ്ദ്ധനെ സമീപിക്കുക.</string>
+    <string name="help_contact_title">സപ്പോർട്ടുമായി ബന്ധപ്പെടുക</string>
     <string name="help_contact_phone">+91 12345 67890</string>
     <string name="help_contact_email">support@mittimitra.com</string>
+
+    <string name="converter_title">ഭൂമി അളവ് മാറ്റൽ</string>
+    <string name="label_enter_area">വിസ്തീർണ്ണം നൽകുക</string>
+    <string name="label_result">ഫലം</string>
+    <string name="btn_convert">മാറ്റുക</string>
+    <string name="unit_acre">ഏക്കർ</string>
+    <string name="unit_hectare">ഹെക്ടർ</string>
+    <string name="unit_bigha">ബിഘ (സ്റ്റാൻഡേർഡ്)</string>
+    <string name="unit_guntha">ഗുന്ത</string>
+    <string name="unit_cent">സെന്റ്</string>
+
+    <string name="setting_share_app">സുഹൃത്തുക്കളുമായി പങ്കിടുക</string>
+    <string name="setting_notifications">അറിയിപ്പ് മുൻഗണനകൾ</string>
+
+    <string name="notif_title">അറിയിപ്പുകൾ</string>
+    <string name="notif_weather_title">കാലാവസ്ഥ മുന്നറിയിപ്പുകൾ</string>
+    <string name="notif_weather_desc">കനത്ത മഴയും കൊടുങ്കാറ്റും സംബന്ധിച്ച മുന്നറിയിപ്പുകൾ നേടുക.</string>
+    <string name="notif_mandi_title">മണ്ടി വിലകൾ</string>
+    <string name="notif_mandi_desc">നിങ്ങളുടെ ജില്ലയിലെ പ്രതിദിന വിപണി നിരക്കുകൾ.</string>
+    <string name="notif_scheme_title">സർക്കാർ പദ്ധതികൾ</string>
+    <string name="notif_scheme_desc">പിഎം-കിസാൻ, സബ്സിഡികൾ എന്നിവയെക്കുറിച്ചുള്ള അപ്‌ഡേറ്റുകൾ.</string>
+    <string name="share_message">മണ്ണ് ആരോഗ്യത്തിനും കൃഷിക്കുമുള്ള മികച്ച ആപ്പ് - മിട്ടി മിത്ര പരിശോധിക്കൂ! ഇവിടെ ഡൗൺലോഡ് ചെയ്യുക: https://play.google.com/store/apps/details?id=com.mittimitra</string>
+
+    <string name="title_pm_kisan">പിഎം-കിസാൻ: ₹6,000/വർഷം വരുമാന പിന്തുണ</string>
+    <string name="title_smart_tools">സ്മാർട്ട് ടൂളുകൾ</string>
+    <string name="title_soil_health">സോയിൽ ഹെൽത്ത് കാർഡ്: നിങ്ങളുടെ മണ്ണിന്റെ ശക്തി അറിയുക</string>
+    <string name="title_fasal_bima">പിഎം ഫസൽ ബീമാ യോജന: നിങ്ങളുടെ വിളകൾ സുരക്ഷിതമാക്കുക</string>
+
+    <string name="notif_weather">കാലാവസ്ഥ മുന്നറിയിപ്പുകൾ</string>
+    <string name="notif_mandi">മണ്ടി വിലകൾ</string>
+    <string name="notif_schemes">സർക്കാർ പദ്ധതികൾ</string>
+
+    <string name="contact_header">സഹായിക്കാൻ ഞങ്ങളുണ്ട്</string>
+    <string name="contact_desc">പ്രത്യേക കാർഷിക ഉപദേശത്തിനോ സാങ്കേതിക സഹായത്തിനോ ഞങ്ങളെ ബന്ധപ്പെടുക.</string>
+    <string name="contact_call">കാൾ സപ്പോർട്ട്</string>
+    <string name="contact_time">തിങ്കൾ-ശനി, രാവിലെ 9 - വൈകുന്നേരം 6</string>
+    <string name="contact_email">ഞങ്ങൾക്ക് ഇമെയിൽ ചെയ്യുക</string>
+    <string name="contact_email_addr">support@mittimitra.com</string>
+
+    <string name="label_from_unit">നിന്നുള്ള യൂണിറ്റ്</string>
+    <string name="label_to_unit">ലേക്കുള്ള യൂണിറ്റ്</string>
+
+    <string name="scan_title">പുതിയ മണ്ണ് സ്കാൻ</string>
+    <string name="scan_env_data">പരിസ്ഥിതി ഡാറ്റ</string>
+    <string name="scan_weather">കാലാവസ്ഥ</string>
+    <string name="scan_moisture">ഈർപ്പം</string>
+    <string name="scan_nutrients">മണ്ണ് പോഷകങ്ങൾ (ഏകദേശം)</string>
+    <string name="scan_hint">നിങ്ങളുടെ നിരീക്ഷണങ്ങൾ (ഉദാഹരണത്തിന് \'മഞ്ഞ ഇലകൾ\')</string>
+    <string name="scan_status_ready">സ്കാൻ ചെയ്യാൻ തയ്യാറാണ്</string>
+    <string name="scan_btn_gallery">ഗാലറി</string>
+    <string name="scan_btn_camera">ക്യാമറ</string>
+    <string name="scan_btn_analyze">മണ്ണ് തിരിച്ചറിഞ്ഞ് ശുപാർശ നൽകുക</string>
+
+    <string name="profile_recent">സമീപകാല വിശകലനം</string>
+    <string name="profile_no_history">സമീപകാല സ്കാനുകൾ ഒന്നും കണ്ടെത്തിയില്ല.</string>
+    <string name="profile_logout">ലോഗ് ഔട്ട്</string>
+    <string name="profile_member_since">അംഗമായ തീയതി:</string>
+    <string name="profile_phone">ഫോൺ:</string>
+
+    <string name="rec_title">സോയിൽ ഹെൽത്ത് കാർഡ്</string>
+    <string name="rec_header_title">സോയിൽ ഹെൽത്ത് കാർഡ്</string>
+    <string name="rec_header_subtitle">മിട്ടി മിത്ര • ഡിജിറ്റൽ അഗ്രികൾച്ചർ മിഷൻ</string>
+    <string name="rec_farmer_details">കർഷക വിവരങ്ങൾ</string>
+    <string name="rec_label_name">പേര്:</string>
+    <string name="rec_label_mobile">മൊബൈൽ:</string>
+    <string name="rec_label_email">ഇമെയിൽ:</string>
+    <string name="rec_label_location">സ്ഥലം:</string>
+    <string name="rec_label_date">പരിശോധന തീയതി:</string>
+    <string name="rec_results_title">പരിശോധന ഫലങ്ങൾ (പ്രാഥമിക പോഷകങ്ങൾ)</string>
+    <string name="rec_col_param">പാരാമീറ്റർ</string>
+    <string name="rec_col_value">മൂല്യം</string>
+    <string name="rec_col_status">അവസ്ഥ</string>
+    <string name="rec_advisory_title">ശാസ്ത്രീയ ഉപദേശം</string>
+    <string name="rec_footer">മിട്ടി മിത്ര AI തയ്യാറാക്കിയത് | സാറ്റലൈറ്റ് ഡാറ്റ വഴി പരിശോധിച്ചത്</string>
+    <string name="rec_btn_download">PDF ഡൗൺലോഡ് ചെയ്യുക</string>
+
+    <string name="login_welcome">സ്വാഗതം</string>
+    <string name="login_subtitle">നിങ്ങളുടെ കാർഷിക ടൂളുകൾ ഉപയോഗിക്കാൻ ലോഗിൻ ചെയ്യുക</string>
+    <string name="login_google">Google വഴി തുടരുക</string>
+    <string name="login_or_divider">അല്ലെങ്കിൽ ഫോൺ</string>
+    <string name="login_hint_phone">ഫോൺ നമ്പർ</string>
+    <string name="login_btn_otp">OTP നേടുക</string>
+    <string name="login_hint_otp">6-അക്ക OTP നൽകുക</string>
+    <string name="login_btn_verify">പരിശോധിച്ച് ലോഗിൻ ചെയ്യുക</string>
+    <string name="login_trouble">ലോഗിൻ ചെയ്യുന്നതിൽ പ്രശ്നമുണ്ടോ?</string>
+
+    <string name="home_welcome_default">നമസ്കാരം, കർഷകൻ</string>
+    <string name="home_card_scan">മണ്ണ് പരിശോധിക്കുക</string>
+    <string name="home_card_advice">ഉപദേശം തേടുക</string>
+    <string name="home_card_tips">AI വിദഗ്ദ്ധ നിർദ്ദേശങ്ങൾ</string>
+    <string name="home_section_tools">സ്മാർട്ട് ടൂളുകൾ</string>
+    <string name="desc_logo">ആപ്പ് ലോഗോ</string>
+    <string name="desc_icon">ഐക്കൺ</string>
+
+    <string name="title_documents">ബന്ധപ്പെട്ട രേഖകൾ</string>
+    <string name="msg_no_documents">രേഖകളൊന്നും കണ്ടെത്തിയില്ല.\nചേർക്കാൻ \'+\' ടാപ്പ് ചെയ്യുക.</string>
+    <string name="desc_add_document">രേഖ ചേർക്കുക</string>
+
+    <string name="title_scan_history">പരിശോധനാ ചരിത്രം</string>
+
+    <string name="welcome_home_title">സ്വാഗതം!</string>
+    <string name="welcome_home_desc">നിങ്ങൾ വിജയകരമായി ലോഗിൻ ചെയ്തു!</string>
+
+    <string name="btn_test_notification">ടെസ്റ്റ് നോട്ടിഫിക്കേഷൻ അയയ്ക്കുക</string>
+    <string name="desc_notification_icon">നോട്ടിഫിക്കേഷൻ ഐക്കൺ</string>
+
+    <string name="profile_name_placeholder">ലോഡ് ചെയ്യുന്നു...</string>
+    <string name="profile_email_placeholder">email@example.com</string>
+    <string name="desc_profile_image">പ്രൊഫൈൽ ചിത്രം</string>
+    <string name="desc_change_photo">പ്രൊഫൈൽ ഫോട്ടോ മാറ്റുക</string>
+    <string name="desc_edit_profile">പ്രൊഫൈൽ വിവരങ്ങൾ മാറ്റുക</string>
+
+    <string name="rec_param_n">നൈട്രജൻ (N)</string>
+    <string name="rec_param_p">ഫോസ്ഫറസ് (P)</string>
+    <string name="rec_param_k">പൊട്ടാസ്യം (K)</string>
+    <string name="rec_param_ph">മണ്ണിന്റെ pH</string>
+    <string name="rec_ai_context">വിളയുടെ ആവശ്യങ്ങൾ വിശകലനം ചെയ്യുന്നു...</string>
+    <string name="rec_ai_generating">വിദഗ്ദ്ധ നിർദ്ദേശം തയ്യാറാക്കുന്നു...</string>
+
+    <string name="scan_locating">സ്ഥലം കണ്ടെത്തുന്നു...</string>
+    <string name="desc_image_preview">ചിത്രം കാണുക</string>
+    <string name="signup_title">മിട്ടി മിത്രയിൽ ചേരൂ</string>
+    <string name="signup_subtitle">നിങ്ങളുടെ സ്മാർട്ട് കാർഷിക യാത്ര ഇന്ന് തന്നെ തുടങ്ങൂ</string>
+    <string name="signup_create_account">അക്കൗണ്ട് നിർമ്മിക്കുക</string>
+    <string name="signup_google">Google വഴി സൈൻ അപ്പ് ചെയ്യുക</string>
+    <string name="signup_phone">ഫോൺ വഴി സൈൻ അപ്പ് ചെയ്യുക</string>
+    <string name="signup_footer">അക്കൗണ്ട് ഉണ്ടോ?</string>
+
+    <string name="chat_title">കാർഷിക വിദഗ്ദ്ധ ചാറ്റ്</string>
+    <string name="chat_hint">വിളകളെക്കുറിച്ച് ചോദിക്കുക...</string>
+    <string name="desc_mic">ഓഡിയോ റെക്കോർഡ് ചെയ്യുക</string>
+    <string name="desc_send">സന്ദേശം അയയ്ക്കുക</string>
+
+    <string name="welcome_get_started">തുടങ്ങാം</string>
+    <string name="welcome_join_community">ഏറ്റവും മികച്ച കർഷക കൂട്ടായ്മയിൽ ചേരൂ.</string>
+
+    <string name="edit_profile_title">പ്രൊഫൈൽ എഡിറ്റ് ചെയ്യുക</string>
+    <string name="edit_profile_name_hint">പൂർണ്ണ നാമം</string>
+    <string name="edit_profile_phone_hint">ഫോൺ നമ്പർ</string>
+    <string name="edit_profile_phone_helper">അറിയിപ്പുകൾക്ക് നിർബന്ധം</string>
+    <string name="btn_save_changes">മാറ്റങ്ങൾ സേവ് ചെയ്യുക</string>
+
+    <string name="btn_view">കാണുക</string>
+
+    <string name="placeholder_location">അജ്ഞാത സ്ഥലം</string>
+    <string name="placeholder_date">തീയതി</string>
+    <string name="status_calculating">കണക്കാക്കുന്നു...</string>
+    <string name="desc_view_details">വിശദാംശങ്ങൾ കാണുക</string>
 </resources>

@@ -8,6 +8,11 @@ import android.widget.TextView;
 import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class HomeActivity extends BaseActivity {
 
@@ -44,10 +49,11 @@ public class HomeActivity extends BaseActivity {
         images.add(R.drawable.banner_soil_health);
         images.add(R.drawable.banner_fasal_bima);
 
+        // FIX: Use getString() for ALL titles so language switching works
         List<String> titles = new ArrayList<>();
-        titles.add("PM-KISAN: ₹6,000/yr Income Support");
-        titles.add("Soil Health Card: Know Your Soil Strength");
-        titles.add("PM Fasal Bima Yojana: Secure Your Crops");
+        titles.add(getString(R.string.title_pm_kisan));
+        titles.add(getString(R.string.title_soil_health));
+        titles.add(getString(R.string.title_fasal_bima));
 
         CarouselAdapter adapter = new CarouselAdapter(images, titles);
         viewPagerCarousel.setAdapter(adapter);
@@ -56,6 +62,15 @@ public class HomeActivity extends BaseActivity {
 
         setupGridNavigation();
         setupBottomNavigation();
+
+        // FIX: Ask for Notification Permission (Required for Android 13+)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            if (androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                    != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                androidx.core.app.ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
+            }
+        }
     }
 
     private void setupGridNavigation() {

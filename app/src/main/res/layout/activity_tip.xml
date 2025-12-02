@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
@@ -19,10 +20,21 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        app:title="Agri-Expert Chat"
-        app:titleTextColor="#FFFFFF"
+        android:layout_marginTop="16dp"
+        app:titleTextColor="@color/text_white"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chat_title"
+            android:textColor="@color/text_white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"/>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -42,7 +54,7 @@
         android:id="@+id/loading_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminateTint="#1B5E20"
+        android:indeterminateTint="@color/brand_green"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +68,7 @@
         android:layout_margin="16dp"
         app:cardCornerRadius="28dp"
         app:cardElevation="8dp"
-        app:cardBackgroundColor="#FFFFFF"
+        app:cardBackgroundColor="?attr/colorSurface"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
@@ -77,10 +89,11 @@
                 app:icon="@android:drawable/ic_btn_speak_now"
                 app:iconGravity="textStart"
                 app:iconPadding="0dp"
-                app:iconTint="#757575"
+                app:iconTint="?android:attr/textColorSecondary"
                 android:background="@android:color/transparent"
-                app:rippleColor="#C8E6C9"
-                app:cornerRadius="24dp"/>
+                app:rippleColor="@color/brand_green_light"
+                app:cornerRadius="24dp"
+                android:contentDescription="@string/desc_mic"/>
 
             <EditText
                 android:id="@+id/et_chat_message"
@@ -88,12 +101,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:hint="Ask about crops..."
+                android:hint="@string/chat_hint"
                 android:textSize="16sp"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="12dp"
                 android:maxLines="4"
-                android:textColor="#333333"
+                android:textColor="?android:attr/textColorPrimary"
                 android:inputType="textCapSentences|textMultiLine"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -102,10 +115,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 app:fabSize="mini"
-                app:tint="#FFFFFF"
-                app:backgroundTint="#1B5E20"
+                app:tint="@color/text_white"
+                app:backgroundTint="@color/brand_green"
                 app:srcCompat="@android:drawable/ic_menu_send"
-                app:elevation="0dp"/>
+                app:elevation="0dp"
+                android:contentDescription="@string/desc_send"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
