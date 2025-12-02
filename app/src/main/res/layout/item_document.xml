@@ -8,7 +8,7 @@
     android:layout_marginVertical="8dp"
     app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
-    app:cardBackgroundColor="#FFFFFF">
+    app:cardBackgroundColor="?attr/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,8 @@
                 android:layout_height="24dp"
                 android:layout_gravity="center"
                 app:srcCompat="@android:drawable/ic_menu_agenda"
-                app:tint="#1B5E20"/>
+                app:tint="@color/brand_green"
+                android:contentDescription="@string/desc_icon"/>
         </FrameLayout>
 
         <TextView
@@ -41,7 +42,7 @@
             tools:text="Soil_Report_2024.pdf"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#333333"
+            android:textColor="?android:attr/textColorPrimary"
             android:maxLines="1"
             android:ellipsize="end"/>
 
@@ -56,8 +57,8 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="View"
-                android:textColor="#1B5E20"
+                android:text="@string/btn_view"
+                android:textColor="@color/brand_green"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:minWidth="0dp"
@@ -69,8 +70,8 @@
                 android:layout_height="40dp"
                 android:src="@android:drawable/ic_menu_delete"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                app:tint="#D32F2F"
-                android:contentDescription="Delete"/>
+                app:tint="@color/color_delete"
+                android:contentDescription="@string/dialog_delete"/>
 
         </LinearLayout>
 

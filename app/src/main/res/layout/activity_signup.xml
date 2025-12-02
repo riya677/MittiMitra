@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5">
+    android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="#1B5E20"
+        android:background="@color/brand_green"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -30,26 +31,33 @@
             android:layout_height="80dp"
             android:src="@drawable/mittimitra_logo"
             android:scaleType="centerCrop"
-            android:background="#FFFFFF"
+            android:background="@color/text_white"
             android:padding="2dp"
-            app:shapeAppearanceOverlay="@style/CircleImageStyle" />
+            app:shapeAppearanceOverlay="@style/CircleImageStyle"
+            android:contentDescription="@string/desc_logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Join Mitti Mitra"
-            android:textColor="#FFFFFF"
+            android:text="@string/signup_title"
+            android:textColor="@color/text_white"
             android:textSize="28sp"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:ellipsize="end"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start your smart farming journey today"
-            android:textColor="#C8E6C9"
+            android:text="@string/signup_subtitle"
+            android:textColor="@color/brand_green_light"
             android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:ellipsize="end"/>
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
@@ -59,7 +67,7 @@
         android:layout_marginTop="32dp"
         app:cardCornerRadius="24dp"
         app:cardElevation="8dp"
-        app:cardBackgroundColor="#FFFFFF"
+        app:cardBackgroundColor="?attr/colorSurface"
         app:layout_constraintTop_toBottomOf="@id/layout_header_content">
 
         <LinearLayout
@@ -71,22 +79,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Create Account"
+                android:text="@string/signup_create_account"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#1B5E20"
+                android:textColor="@color/brand_green"
                 android:layout_gravity="center"
-                android:layout_marginBottom="24dp"/>
+                android:layout_marginBottom="24dp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_signup_google"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Sign up with Google"
-                android:textColor="#333333"
+                android:text="@string/signup_google"
+                android:textColor="@color/text_dark"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                app:backgroundTint="#FFFFFF"
+                app:backgroundTint="@color/text_white"
                 app:strokeColor="#E0E0E0"
                 app:strokeWidth="1dp"
                 app:cornerRadius="30dp"
@@ -99,21 +109,21 @@
                 android:id="@+id/btn_signup_phone"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Sign up with Phone"
-                android:textColor="#FFFFFF"
+                android:text="@string/signup_phone"
+                android:textColor="@color/text_white"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                app:backgroundTint="#1B5E20"
+                app:backgroundTint="@color/brand_green"
                 app:cornerRadius="30dp"
                 app:icon="@android:drawable/ic_menu_call"
-                app:iconTint="#FFFFFF"
+                app:iconTint="@color/text_white"
                 app:iconGravity="textStart"
                 android:layout_marginBottom="24dp"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#F5F5F5"
+                android:background="?android:attr/listDivider"
                 android:layout_marginBottom="24dp"/>
 
             <LinearLayout
@@ -125,16 +135,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Already have an account?"
-                    android:textColor="#757575"
-                    android:textSize="14sp"/>
+                    android:text="@string/signup_footer"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="14sp"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
 
                 <TextView
                     android:id="@+id/tv_login_link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Login"
-                    android:textColor="#1B5E20"
+                    android:text="@string/login"
+                    android:textColor="@color/brand_green"
                     android:textStyle="bold"
                     android:textSize="14sp"
                     android:padding="8dp"/>

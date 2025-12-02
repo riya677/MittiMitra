@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">মিত্তী মিত্র</string>
+    <string name="app_name">মিত্তি মিত্র</string>
 
     <string name="welcome_subtitle">আপনার ব্যক্তিগত কৃষি সহকারী</string>
     <string name="login">লগইন</string>
@@ -8,41 +8,219 @@
     <string name="greeting_format">নমস্কার, %s</string>
     <string name="greeting_default">নমস্কার, ব্যবহারকারী</string>
     <string name="last_scan">শেষ স্ক্যান</string>
-    <string name="button_tip">পরামর্শ</string>
-    <string name="button_recommendation">সুপারিশ</string>
+    <string name="button_tip">টিপস</string>
+    <string name="button_recommendation">পরামর্শ</string>
     <string name="button_history">ইতিহাস</string>
     <string name="button_scan">স্ক্যান</string>
     <string name="button_documents">নথি</string>
 
-    <string name="menu_settings">সে সেটিংস</string>
+    <string name="menu_settings">সেটিংস</string>
     <string name="menu_help">সাহায্য</string>
     <string name="menu_contact">যোগাযোগ</string>
     <string name="menu_logout">লগ আউট</string>
 
     <string name="setting_language">ভাষা</string>
-    <string name="setting_accessibility">অ্যাক্সেসিবিলিটি</string>
+    <string name="setting_accessibility">অ্যাক্সেসযোগ্যতা</string>
     <string name="setting_theme">অ্যাপ থিম</string>
-    <string name="setting_manage_data">ডেটা ম্যানেজ করুন</string>
+    <string name="setting_manage_data">ডেটা পরিচালনা</string>
+
+    <string name="setting_unit_converter">জমি একক রূপান্তরকারী</string>
+    <string name="setting_unit_converter_desc">একর, হেক্টর, বিঘা এবং গুন্ঠা রূপান্তর করুন।</string>
+    <string name="setting_kisan_call">কিসান হেল্পলাইনে কল করুন</string>
+    <string name="setting_kisan_call_desc">সরকারি কিসান কল সেন্টারে যোগাযোগ করুন (১৮০০-১৮০-১৫৫১)।</string>
 
     <string name="language_title">ভাষা নির্বাচন করুন</string>
     <string name="language_system_default">সিস্টেম ডিফল্ট</string>
+    <string name="language_english">English</string>
+    <string name="language_hindi">हिन्दी (Hindi)</string>
+    <string name="language_tamil">தமிழ் (Tamil)</string>
+    <string name="language_malayalam">മലയാളം (Malayalam)</string>
+    <string name="language_telugu">తెలుగు (Telugu)</string>
+    <string name="language_kannada">ಕನ್ನಡ (Kannada)</string>
+    <string name="language_marathi">मराठी (Marathi)</string>
+    <string name="language_bengali">বাংলা (Bengali)</string>
+    <string name="language_gujarati">ગુજરાતી (Gujarati)</string>
+    <string name="language_punjabi">ਪੰਜਾਬੀ (Punjabi)</string>
 
     <string name="font_size_title">ফন্টের আকার</string>
-    <string name="font_size_sample">আপনার টেক্সট এইরকম দেখাবে।</string>
-    <string name="setting_font_dyslexic">ডিসলেক্সিক-বান্ধব ফন্ট</string>
-    <string name="setting_font_dyslexic_desc">সহজ পড়ার জন্য OpenDyslexic ফন্ট ব্যবহার করে।</string>
+    <string name="font_size_small">ছোট</string>
+    <string name="font_size_default">ডিফল্ট</string>
+    <string name="font_size_large">বড়</string>
+    <string name="font_size_sample">আপনার টেক্সট এরকম দেখাবে।</string>
+    <string name="setting_font_dyslexic">ডিসলেক্সিক ফন্ট</string>
+    <string name="setting_font_dyslexic_desc">ডিসলেক্সিক ব্যবহারকারীদের জন্য পড়ার সহজ ফন্ট।</string>
 
-    <string name="manage_data_title">ডেটা ম্যানেজ করুন</string>
+    <string name="theme_title">থিম নির্বাচন করুন</string>
+    <string name="theme_light">লাইট</string>
+    <string name="theme_dark">ডার্ক</string>
+    <string name="theme_system">সিস্টেম ডিফল্ট</string>
+
+    <string name="manage_data_title">ডেটা পরিচালনা</string>
     <string name="manage_data_soil_title">মাটির ইতিহাস মুছুন</string>
-    <string name="manage_data_soil_desc">সব সংরক্ষিত মাটি বিশ্লেষণের রিপোর্ট মুছে ফেলে।</string>
+    <string name="manage_data_soil_desc">সমস্ত সংরক্ষিত মাটি বিশ্লেষণ রিপোর্ট মুছে দেয়।</string>
     <string name="manage_data_docs_title">সমস্ত নথি মুছুন</string>
-    <string name="manage_data_docs_desc">এই ডিভাইস থেকে আপলোড করা সমস্ত নথি মুছে ফেলে।</string>
+    <string name="manage_data_docs_desc">এই ডিভাইস থেকে সমস্ত আপলোড করা নথি মুছে দেয়।</string>
+    <string name="dialog_are_you_sure">আপনি কি নিশ্চিত?</string>
     <string name="dialog_delete">মুছুন</string>
     <string name="dialog_cancel">বাতিল</string>
+    <string name="toast_history_cleared">মাটির ইতিহাস মুছে ফেলা হয়েছে।</string>
+    <string name="toast_documents_cleared">সমস্ত নথি মুছে ফেলা হয়েছে।</string>
 
     <string name="help_title">সাহায্য এবং সমর্থন</string>
-    <string name="help_faq_title">সচরাচর জিজ্ঞাস্য প্রশ্ন (FAQ)</string>
-    <string name="help_q1">কিভাবে ভালো মাটির স্ক্যান নেব?</string>
-    <string name="help_a1">ভালো আলো নিশ্চিত করুন, নমুনাটি একটি সাদা পৃষ্ঠে রাখুন এবং ফোকাস করতে ট্যাপ করুন।</string>
-    <string name="help_contact_title">যোগাযোগ</string>
+    <string name="help_faq_title">সচরাচর জিজ্ঞাসিত প্রশ্ন (FAQ)</string>
+    <string name="help_q1">আমি কিভাবে ভালো মাটির স্ক্যান নেব?</string>
+    <string name="help_a1">ভালো আলো নিশ্চিত করুন, নমুনাটি একটি সাদা পটভূমিতে রাখুন এবং ফোকাস করতে ট্যাপ করুন।</string>
+    <string name="help_q2">এআই কতটা সঠিক?</string>
+    <string name="help_a2">এআই ভিজ্যুয়াল ডেটার উপর ভিত্তি করে পরামর্শ দেয়। গুরুত্বপূর্ণ সিদ্ধান্তের জন্য, অনুগ্রহ করে স্থানীয় কৃষি বিশেষজ্ঞের সাথে পরামর্শ করুন।</string>
+    <string name="help_contact_title">যোগাযোগ সহায়তা</string>
+    <string name="help_contact_phone">+৯১ ১২৩৪৫ ৬৭৮৯০</string>
+    <string name="help_contact_email">support@mittimitra.com</string>
+
+    <string name="converter_title">জমি রূপান্তরকারী</string>
+    <string name="label_enter_area">এলাকা লিখুন</string>
+    <string name="label_result">ফলাফল</string>
+    <string name="btn_convert">রূপান্তর করুন</string>
+    <string name="unit_acre">একর</string>
+    <string name="unit_hectare">হেক্টর</string>
+    <string name="unit_bigha">বিঘা (স্ট্যান্ডার্ড)</string>
+    <string name="unit_guntha">গুন্ঠা</string>
+    <string name="unit_cent">শতাংশ</string>
+
+    <string name="setting_share_app">বন্ধুদের সাথে শেয়ার করুন</string>
+    <string name="setting_notifications">বিজ্ঞপ্তি পছন্দসমূহ</string>
+
+    <string name="notif_title">বিজ্ঞপ্তি</string>
+    <string name="notif_weather_title">আবহাওয়া সতর্কতা</string>
+    <string name="notif_weather_desc">ভারী বৃষ্টি এবং ঝড়ের সতর্কতা পান।</string>
+    <string name="notif_mandi_title">মান্ডি মূল্য</string>
+    <string name="notif_mandi_desc">আপনার জেলার জন্য দৈনিক বাজার দর।</string>
+    <string name="notif_scheme_title">সরকারি স্কিম</string>
+    <string name="notif_scheme_desc">পিএম-কিসান এবং ভর্তুকি সম্পর্কে আপডেট।</string>
+    <string name="share_message">মাটি স্বাস্থ্য এবং কৃষির জন্য সেরা অ্যাপ - মিত্তি মিত্র দেখুন! এখানে ডাউনলোড করুন: https://play.google.com/store/apps/details?id=com.mittimitra</string>
+
+    <string name="title_pm_kisan">পিএম-কিসান: ₹৬,০০০/বছর আয় সহায়তা</string>
+    <string name="title_smart_tools">স্মার্ট টুলস</string>
+    <string name="title_soil_health">মাটি স্বাস্থ্য কার্ড: আপনার মাটির শক্তি জানুন</string>
+    <string name="title_fasal_bima">পিএম ফসল বীমা যোজনা: আপনার ফসল সুরক্ষিত করুন</string>
+
+    <string name="notif_weather">আবহাওয়া সতর্কতা</string>
+    <string name="notif_mandi">মান্ডি মূল্য</string>
+    <string name="notif_schemes">সরকারি স্কিম</string>
+
+    <string name="contact_header">আমরা সাহায্যের জন্য এখানে আছি</string>
+    <string name="contact_desc">নির্দিষ্ট কৃষি পরামর্শ বা প্রযুক্তিগত সহায়তার জন্য আমাদের সাথে যোগাযোগ করুন।</string>
+    <string name="contact_call">কল সাপোর্ট</string>
+    <string name="contact_time">সোম-শনি, সকাল ৯টা - সন্ধ্যা ৬টা</string>
+    <string name="contact_email">আমাদের ইমেল করুন</string>
+    <string name="contact_email_addr">support@mittimitra.com</string>
+
+    <string name="label_from_unit">থেকে একক</string>
+    <string name="label_to_unit">প্রতি একক</string>
+
+    <string name="scan_title">নতুন মাটি স্ক্যান</string>
+    <string name="scan_env_data">পরিবেশ ডেটা</string>
+    <string name="scan_weather">আবহাওয়া</string>
+    <string name="scan_moisture">আর্দ্রতা</string>
+    <string name="scan_nutrients">মাটির পুষ্টি (আনুমানিক)</string>
+    <string name="scan_hint">আপনার পর্যবেক্ষণ (যেমন \'হলুদ পাতা\')</string>
+    <string name="scan_status_ready">স্ক্যান করতে প্রস্তুত</string>
+    <string name="scan_btn_gallery">গ্যালারি</string>
+    <string name="scan_btn_camera">ক্যামেরা</string>
+    <string name="scan_btn_analyze">মাটি সনাক্ত করুন ও পরামর্শ দিন</string>
+
+    <string name="profile_recent">সাম্প্রতিক বিশ্লেষণ</string>
+    <string name="profile_no_history">কোনো সাম্প্রতিক স্ক্যান পাওয়া যায়নি।</string>
+    <string name="profile_logout">লগ আউট</string>
+    <string name="profile_member_since">সদস্য হওয়ার তারিখ:</string>
+    <string name="profile_phone">ফোন:</string>
+
+    <string name="rec_title">মাটি স্বাস্থ্য কার্ড</string>
+    <string name="rec_header_title">মাটি স্বাস্থ্য কার্ড</string>
+    <string name="rec_header_subtitle">মিত্তি মিত্র • ডিজিটাল কৃষি মিশন</string>
+    <string name="rec_farmer_details">কৃষক বিবরণ</string>
+    <string name="rec_label_name">নাম:</string>
+    <string name="rec_label_mobile">মোবাইল:</string>
+    <string name="rec_label_email">ইমেল:</string>
+    <string name="rec_label_location">অবস্থান:</string>
+    <string name="rec_label_date">পরীক্ষার তারিখ:</string>
+    <string name="rec_results_title">পরীক্ষার ফলাফল (প্রাথমিক পুষ্টি)</string>
+    <string name="rec_col_param">প্যারামিটার</string>
+    <string name="rec_col_value">মান</string>
+    <string name="rec_col_status">অবস্থা</string>
+    <string name="rec_advisory_title">বৈজ্ঞানিক পরামর্শ</string>
+    <string name="rec_footer">মিত্তি মিত্র এআই দ্বারা তৈরি | স্যাটেলাইট ডেটা দ্বারা যাচাইকৃত</string>
+    <string name="rec_btn_download">PDF ডাউনলোড করুন</string>
+
+    <string name="login_welcome">স্বাগতম</string>
+    <string name="login_subtitle">আপনার কৃষি সরঞ্জামগুলি অ্যাক্সেস করতে লগইন করুন</string>
+    <string name="login_google">Google এর সাথে চালিয়ে যান</string>
+    <string name="login_or_divider">অথবা ফোন</string>
+    <string name="login_hint_phone">ফোন নম্বর</string>
+    <string name="login_btn_otp">OTP পান</string>
+    <string name="login_hint_otp">৬-সংখ্যার OTP লিখুন</string>
+    <string name="login_btn_verify">যাচাই করুন এবং লগইন করুন</string>
+    <string name="login_trouble">লগইন করতে সমস্যা?</string>
+
+    <string name="home_welcome_default">নমস্কার, কৃষক বন্ধু</string>
+    <string name="home_card_scan">মাটি স্ক্যান করুন</string>
+    <string name="home_card_advice">পরামর্শ নিন</string>
+    <string name="home_card_tips">AI বিশেষজ্ঞের টিপস</string>
+    <string name="home_section_tools">স্মার্ট টুলস</string>
+    <string name="desc_logo">অ্যাপ লোগো</string>
+    <string name="desc_icon">আইকন</string>
+
+    <string name="title_documents">প্রাসঙ্গিক নথি</string>
+    <string name="msg_no_documents">কোন নথি পাওয়া যায়নি।\nযোগ করতে \'+\' আলতো চাপুন।</string>
+    <string name="desc_add_document">নথি যোগ করুন</string>
+
+    <string name="title_scan_history">স্ক্যান ইতিহাস</string>
+
+    <string name="welcome_home_title">স্বাগতম!</string>
+    <string name="welcome_home_desc">আপনি সফলভাবে লগইন করেছেন!</string>
+
+    <string name="btn_test_notification">টেস্ট নোটিফিকেশন পাঠান</string>
+    <string name="desc_notification_icon">নোটিফিকেশন আইকন</string>
+
+    <string name="profile_name_placeholder">লোড হচ্ছে...</string>
+    <string name="profile_email_placeholder">email@example.com</string>
+    <string name="desc_profile_image">প্রোফাইল ছবি</string>
+    <string name="desc_change_photo">প্রোফাইল ছবি পরিবর্তন করুন</string>
+    <string name="desc_edit_profile">প্রোফাইল বিবরণ সম্পাদনা করুন</string>
+
+    <string name="rec_param_n">নাইট্রোজেন (N)</string>
+    <string name="rec_param_p">ফসফরাস (P)</string>
+    <string name="rec_param_k">পটাশিয়াম (K)</string>
+    <string name="rec_param_ph">মাটির pH</string>
+    <string name="rec_ai_context">ফসলের চাহিদা বিশ্লেষণ করা হচ্ছে...</string>
+    <string name="rec_ai_generating">বিশেষজ্ঞের সুপারিশ তৈরি করা হচ্ছে...</string>
+
+    <string name="scan_locating">অবস্থান নির্ণয় করা হচ্ছে...</string>
+    <string name="desc_image_preview">ছবির প্রিভিউ</string>
+    <string name="signup_title">মিত্তি মিত্রে যোগ দিন</string>
+    <string name="signup_subtitle">আজই আপনার স্মার্ট চাষের যাত্রা শুরু করুন</string>
+    <string name="signup_create_account">অ্যাকাউন্ট তৈরি করুন</string>
+    <string name="signup_google">Google এর সাথে সাইন আপ করুন</string>
+    <string name="signup_phone">ফোনের মাধ্যমে সাইন আপ করুন</string>
+    <string name="signup_footer">ইতিমধ্যে অ্যাকাউন্ট আছে?</string>
+
+    <string name="chat_title">কৃষি-বিশেষজ্ঞ চ্যাট</string>
+    <string name="chat_hint">ফসল সম্পর্কে জিজ্ঞাসা করুন...</string>
+    <string name="desc_mic">অডিও রেকর্ড করুন</string>
+    <string name="desc_send">বার্তা পাঠান</string>
+
+    <string name="welcome_get_started">শুরু করুন</string>
+    <string name="welcome_join_community">সবচেয়ে স্মার্ট কৃষক সম্প্রদায়ে যোগ দিন।</string>
+
+    <string name="edit_profile_title">প্রোফাইল সম্পাদনা করুন</string>
+    <string name="edit_profile_name_hint">পুরো নাম</string>
+    <string name="edit_profile_phone_hint">ফোন নম্বর</string>
+    <string name="edit_profile_phone_helper">সতর্কতার জন্য প্রয়োজনীয়</string>
+    <string name="btn_save_changes">পরিবর্তন সেভ করুন</string>
+
+    <string name="btn_view">দেখুন</string>
+
+    <string name="placeholder_location">অজানা অবস্থান</string>
+    <string name="placeholder_date">তারিখ</string>
+    <string name="status_calculating">গণনা করা হচ্ছে...</string>
+    <string name="desc_view_details">বিবরণ দেখুন</string>
 </resources>
