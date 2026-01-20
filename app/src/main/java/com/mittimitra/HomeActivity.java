@@ -70,7 +70,16 @@ public class HomeActivity extends BaseActivity {
                 androidx.core.app.ActivityCompat.requestPermissions(this,
                         new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
             }
-        }
+            }
+        // Schedule Smart Reminders (Periodic Work)
+        androidx.work.PeriodicWorkRequest weatherWork =
+                new androidx.work.PeriodicWorkRequest.Builder(NotificationWorker.class, 12, java.util.concurrent.TimeUnit.HOURS)
+                        .build();
+        androidx.work.WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+                "SmartWeatherWork",
+                androidx.work.ExistingPeriodicWorkPolicy.KEEP,
+                weatherWork
+        );
     }
 
     private void setupGridNavigation() {

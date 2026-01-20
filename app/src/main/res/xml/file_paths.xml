@@ -2,4 +2,6 @@
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- This defines a path in our app's private storage in a "documents" folder -->
     <files-path name="my_documents" path="documents/"/>
+    <!-- For CSV exports -->
+    <external-files-path name="exports" path="exports/"/>
 </paths>

@@ -31,7 +31,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -55,7 +56,10 @@ dependencies {
 
     // Room
     implementation libs.androidx.room.runtime
+    implementation libs.androidx.swiperefreshlayout
     annotationProcessor libs.androidx.room.compiler
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     // Network
     implementation libs.play.services.location

@@ -16,18 +16,19 @@ import java.util.List;
 
 public class SettingsActivity extends BaseActivity {
 
+    private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        // 1. SETUP TOOLBAR (Modern Green Style)
+        // 1. SETUP TOOLBAR
         Toolbar toolbar = findViewById(R.id.settings_toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-            // Set White Arrow
             Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24);
             if (upArrow != null) {
                 upArrow.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
@@ -35,23 +36,30 @@ public class SettingsActivity extends BaseActivity {
             }
         }
 
-        // 2. SETUP RECYCLER VIEW
-        RecyclerView recyclerView = findViewById(R.id.recycler_view_settings);
-        // Note: LayoutManager (GridLayout) is already defined in activity_settings.xml
+        // 2. INIT RECYCLERVIEW
+        recyclerView = findViewById(R.id.recycler_view_settings);
+    }
 
-        // 3. PREPARE DATA
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 3. REFRESH DATA ON RESUME (Fixes "Names not changing" issue)
+        loadSettingsList();
+    }
+
+    private void loadSettingsList() {
         List<SettingItem> items = new ArrayList<>();
 
-        items.add(new SettingItem("language", "Language", android.R.drawable.ic_menu_mapmode));
-        items.add(new SettingItem("accessibility", "Accessibility", android.R.drawable.ic_menu_sort_alphabetically));
-        items.add(new SettingItem("theme", "App Theme", android.R.drawable.ic_menu_view));
-        items.add(new SettingItem("unit_converter", "Unit Converter", android.R.drawable.ic_menu_sort_by_size));
-        items.add(new SettingItem("kisan_call", "Kisan Helpline", android.R.drawable.ic_menu_call));
-        items.add(new SettingItem("manage_data", "Manage Data", android.R.drawable.ic_menu_delete));
-        items.add(new SettingItem("notifications", "Notifications", android.R.drawable.ic_popup_reminder));
-        items.add(new SettingItem("share", "Share App", android.R.drawable.ic_menu_share));
+        // Use getString() here so it fetches the new language string every time
+        items.add(new SettingItem("language", getString(R.string.setting_language), android.R.drawable.ic_menu_mapmode));
+        items.add(new SettingItem("accessibility", getString(R.string.setting_accessibility), android.R.drawable.ic_menu_sort_alphabetically));
+        items.add(new SettingItem("theme", getString(R.string.setting_theme), android.R.drawable.ic_menu_view));
+        items.add(new SettingItem("unit_converter", getString(R.string.setting_unit_converter), android.R.drawable.ic_menu_sort_by_size));
+        items.add(new SettingItem("kisan_call", getString(R.string.setting_kisan_call), android.R.drawable.ic_menu_call));
+        items.add(new SettingItem("manage_data", getString(R.string.setting_manage_data), android.R.drawable.ic_menu_delete));
+        items.add(new SettingItem("notifications", getString(R.string.setting_notifications), android.R.drawable.ic_popup_reminder));
+        items.add(new SettingItem("share", getString(R.string.setting_share_app), android.R.drawable.ic_menu_share));
 
-        // 4. SETUP ADAPTER & CLICKS
         SettingsAdapter adapter = new SettingsAdapter(items, item -> {
             switch (item.id) {
                 case "language":
@@ -67,7 +75,6 @@ public class SettingsActivity extends BaseActivity {
                     startActivity(new Intent(this, UnitConverterActivity.class));
                     break;
                 case "kisan_call":
-                    // Call Govt Helpline: 1800-180-1551
                     Intent callIntent = new Intent(Intent.ACTION_DIAL);
                     callIntent.setData(Uri.parse("tel:18001801551"));
                     startActivity(callIntent);
@@ -82,7 +89,7 @@ public class SettingsActivity extends BaseActivity {
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out Mitti Mitra - The AI Soil Doctor for Farmers!");
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message));
                     startActivity(Intent.createChooser(shareIntent, "Share via"));
                     break;
             }
@@ -94,7 +101,7 @@ public class SettingsActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            finish(); // Go back when white arrow is clicked
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

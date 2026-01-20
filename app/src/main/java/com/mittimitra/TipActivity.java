@@ -1,6 +1,7 @@
 package com.mittimitra;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -14,11 +15,19 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
+import android.content.Intent;
+import android.view.MotionEvent;
 import android.widget.EditText;
 import android.widget.LinearLayout; // Needed for LayoutParams
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -34,6 +43,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mittimitra.database.MittiMitraDatabase;
+import com.mittimitra.database.dao.ChatDao;
 import com.mittimitra.database.entity.SoilAnalysis;
 
 import org.json.JSONArray;
@@ -78,6 +88,7 @@ public class TipActivity extends BaseActivity {
     // Dependencies
     private OkHttpClient httpClient;
     private MittiMitraDatabase db;
+    private ChatDao chatDao;
     private ExecutorService databaseExecutor;
     private FusedLocationProviderClient fusedLocationClient;
     private Location lastKnownLocation;
@@ -98,9 +109,11 @@ public class TipActivity extends BaseActivity {
                 }
             });
 
+    private SpeechRecognizer speechRecognizer;
+
     private final ActivityResultLauncher<String> audioPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), (isGranted) -> {
-                if (isGranted) toggleRecording();
+                if (isGranted) startListening();
                 else Toast.makeText(this, "Mic permission required.", Toast.LENGTH_SHORT).show();
             });
 
@@ -124,6 +137,7 @@ public class TipActivity extends BaseActivity {
 
         httpClient = new OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS).build();
         db = MittiMitraDatabase.getDatabase(getApplicationContext());
+        chatDao = db.chatDao();
         databaseExecutor = Executors.newSingleThreadExecutor();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -138,9 +152,61 @@ public class TipActivity extends BaseActivity {
             }
         });
 
-        btnRecordAudio.setOnClickListener(v -> requestAudioPermission());
-        audioFile = new File(getCacheDir(), "recording.m4a");
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (speechRecognizer != null) speechRecognizer.destroy();
+    }
+
+
+
+    private void startListening() {
+        if (!SpeechRecognizer.isRecognitionAvailable(this)) {
+            Toast.makeText(this, "Voice input not supported on this device", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Ask MittiMitra...");
+        
+        speechRecognizer.startListening(intent);
+    }
+
+    // --- SpeechListener Implementation ---
+    private final RecognitionListener speechListener = new RecognitionListener() {
+        @Override public void onReadyForSpeech(Bundle params) { 
+            btnRecordAudio.setIcon(ContextCompat.getDrawable(TipActivity.this, android.R.drawable.ic_btn_speak_now));
+            btnRecordAudio.setText("Listening...");
+        }
+        @Override public void onBeginningOfSpeech() {}
+        @Override public void onRmsChanged(float rmsdB) {}
+        @Override public void onBufferReceived(byte[] buffer) {}
+        @Override public void onEndOfSpeech() {
+            btnRecordAudio.setIcon(ContextCompat.getDrawable(TipActivity.this, android.R.drawable.ic_btn_speak_now)); // Reset icon or use mic icon
+            btnRecordAudio.setText("");
+        }
+        @Override public void onError(int error) {
+            String msg = "Error: " + error;
+            if (error == SpeechRecognizer.ERROR_NO_MATCH) msg = "Did not understand, please try again.";
+            Toast.makeText(TipActivity.this, msg, Toast.LENGTH_SHORT).show();
+            btnRecordAudio.setText("");
+        }
+        @Override public void onResults(Bundle results) {
+            ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            if (matches != null && !matches.isEmpty()) {
+                String spokenText = matches.get(0);
+                etChatMessage.setText(spokenText);
+                sendMessage(spokenText); // Auto-send
+                etChatMessage.setText("");
+            }
+        }
+        @Override public void onPartialResults(Bundle partialResults) {}
+        @Override public void onEvent(int eventType, Bundle params) {}
+    };
 
     private void addInitialBotMessage() {
         databaseExecutor.execute(() -> {
@@ -168,6 +234,14 @@ public class TipActivity extends BaseActivity {
             setLoading(false);
             return;
         }
+        
+        // Check for network before making call
+        if (!isNetworkAvailable()) {
+            loadOfflineTips();
+            setLoading(false);
+            return;
+        }
+
         String cleanKey = rawKey.replace("\"", "").trim();
 
         JSONObject jsonBody = new JSONObject();
@@ -190,7 +264,7 @@ public class TipActivity extends BaseActivity {
         httpClient.newCall(request).enqueue(new Callback() {
             @Override public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 runOnUiThread(() -> {
-                    addMessage("Network Error.", ChatMessage.Type.BOT);
+                    loadOfflineTips(); // FALLBACK TO OFFLINE
                     setLoading(false);
                 });
             }
@@ -199,7 +273,7 @@ public class TipActivity extends BaseActivity {
                     String resBody = response.body().string();
                     if (!response.isSuccessful()) {
                         runOnUiThread(() -> {
-                            addMessage("Error: " + response.code(), ChatMessage.Type.BOT);
+                            loadOfflineTips(); // FALLBACK ON ERROR
                             setLoading(false);
                         });
                         return;
@@ -212,10 +286,43 @@ public class TipActivity extends BaseActivity {
                         setLoading(false);
                     });
                 } catch (Exception e) {
-                    runOnUiThread(() -> setLoading(false));
+                    runOnUiThread(() -> loadOfflineTips());
                 }
             }
         });
+    }
+
+    private boolean isNetworkAvailable() {
+        android.net.ConnectivityManager cm = (android.net.ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    private void loadOfflineTips() {
+        try {
+            java.io.InputStream is = getAssets().open("offline_tips.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String jsonString = new String(buffer, "UTF-8");
+            JSONObject json = new JSONObject(jsonString);
+            JSONObject tips = json.getJSONObject("tips");
+            
+            // Basic logic: if last soil known, show specific advice, else default
+            String advice = tips.getString("default");
+            
+            if (lastSoilReportJson != null) {
+                if (lastSoilReportJson.toLowerCase().contains("clay")) advice = tips.getString("clay");
+                else if (lastSoilReportJson.toLowerCase().contains("red")) advice = tips.getString("red");
+                else if (lastSoilReportJson.toLowerCase().contains("black")) advice = tips.getString("black");
+                else if (lastSoilReportJson.toLowerCase().contains("sandy")) advice = tips.getString("sandy");
+                else if (lastSoilReportJson.toLowerCase().contains("loam")) advice = tips.getString("loam");
+            }
+
+            addMessage("<b>[OFFLINE MODE]</b><br>" + advice, ChatMessage.Type.BOT);
+        } catch (Exception e) {
+            addMessage("Offline tips unavailable.", ChatMessage.Type.BOT);
+        }
     }
 
     // --- Helper Methods ---
@@ -229,7 +336,7 @@ public class TipActivity extends BaseActivity {
 
     private void requestAudioPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-            toggleRecording();
+            startListening();
         } else {
             audioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
         }
@@ -260,13 +367,18 @@ public class TipActivity extends BaseActivity {
             btnRecordAudio.setIconTint(ColorStateList.valueOf(Color.RED)); // Red when recording
             isRecording = true;
             Toast.makeText(this, "Listening...", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {}
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to start recording", e);
+            Toast.makeText(this, "Could not start recording", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void stopRecording() {
         try {
             if (mediaRecorder != null) { mediaRecorder.stop(); mediaRecorder.release(); }
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            Log.e(TAG, "Error stopping recording", e);
+        }
         mediaRecorder = null;
         isRecording = false;
         btnRecordAudio.setIconTint(ColorStateList.valueOf(Color.parseColor("#757575"))); // Grey when idle
@@ -312,6 +424,25 @@ public class TipActivity extends BaseActivity {
         layoutManager.setStackFromEnd(true);
         recyclerViewChat.setLayoutManager(layoutManager);
         recyclerViewChat.setAdapter(chatAdapter);
+        loadChatHistory();
+    }
+
+    private void loadChatHistory() {
+        databaseExecutor.execute(() -> {
+            List<com.mittimitra.database.entity.ChatMessage> savedMessages = chatDao.getAllMessages();
+            if (savedMessages != null && !savedMessages.isEmpty()) {
+                runOnUiThread(() -> {
+                    for (com.mittimitra.database.entity.ChatMessage msg : savedMessages) {
+                        ChatMessage.Type type = msg.isUser ? ChatMessage.Type.USER : ChatMessage.Type.BOT;
+                        messageList.add(new ChatMessage(msg.content, type));
+                    }
+                    chatAdapter.notifyDataSetChanged();
+                    if (!messageList.isEmpty()) {
+                        recyclerViewChat.scrollToPosition(messageList.size() - 1);
+                    }
+                });
+            }
+        });
     }
 
     private void addMessage(String message, ChatMessage.Type type) {
@@ -320,6 +451,15 @@ public class TipActivity extends BaseActivity {
             chatAdapter.notifyItemInserted(messageList.size() - 1);
             recyclerViewChat.scrollToPosition(messageList.size() - 1);
         });
+        
+        // Persist to database (don't persist LOADING type)
+        if (type != ChatMessage.Type.LOADING) {
+            databaseExecutor.execute(() -> {
+                com.mittimitra.database.entity.ChatMessage dbMessage = 
+                    new com.mittimitra.database.entity.ChatMessage(message, type == ChatMessage.Type.USER);
+                chatDao.insertMessage(dbMessage);
+            });
+        }
     }
 
     private void setLoading(boolean isLoading) {

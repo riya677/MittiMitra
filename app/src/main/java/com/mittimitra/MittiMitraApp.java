@@ -21,13 +21,18 @@ public class MittiMitraApp extends Application {
         FirebaseApp.initializeApp(this);
 
         // 2. Enable App Check
-        // CRITICAL FIX: Use Debug Factory for development to allow OTPs to work
+        // Use Debug Factory for development, PlayIntegrity for production
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
 
-        // Check if we are in Debug mode (simplified check)
-        // For production, you would switch this to PlayIntegrity
-        firebaseAppCheck.installAppCheckProviderFactory(
-                DebugAppCheckProviderFactory.getInstance());
+        if (BuildConfig.DEBUG) {
+            // Debug mode: Use Debug App Check for development and testing
+            firebaseAppCheck.installAppCheckProviderFactory(
+                    DebugAppCheckProviderFactory.getInstance());
+        } else {
+            // Release mode: Use Play Integrity for production security
+            firebaseAppCheck.installAppCheckProviderFactory(
+                    PlayIntegrityAppCheckProviderFactory.getInstance());
+        }
 
         // 3. Enable Offline Persistence for Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();

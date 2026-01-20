@@ -54,6 +54,7 @@
         <activity android:name=".UnitConverterActivity" android:exported="false" />
 
         <activity android:name=".NotificationSettingsActivity" android:exported="false" />
+        <activity android:name=".CompareActivity" android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
