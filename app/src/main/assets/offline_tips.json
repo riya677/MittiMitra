@@ -1,0 +1,10 @@
+{
+  "tips": {
+    "clay": "<b>Clay Soil Advice:</b><br>• <b>Crops:</b> Rice, Lettuce, Broccoli.<br>• <b>Issues:</b> Poor drainage. Add organic compost.<br>• <b>Watering:</b> Water less frequently but deeply.",
+    "red": "<b>Red Soil Advice:</b><br>• <b>Crops:</b> Cotton, Pulses, Millets.<br>• <b>Issues:</b> Low nutrients. Add nitrogen and phosphorus fertilizers.<br>• <b>Watering:</b> Requires regular irrigation.",
+    "black": "<b>Black Soil (Regur) Advice:</b><br>• <b>Crops:</b> Cotton, Sugarcane, Wheat.<br>• <b>Issues:</b> Cracks when dry. Mulch to retain moisture.<br>• <b>Watering:</b> High water retention, avoid over-watering.",
+    "sandy": "<b>Sandy Soil Advice:</b><br>• <b>Crops:</b> Melons, Coconuts, Cactus.<br>• <b>Issues:</b> Low water retention. Add manure/peat moss.<br>• <b>Watering:</b> Frequent light watering needed.",
+    "loam": "<b>Loamy Soil Advice:</b><br>• <b>Crops:</b> Wheat, Sugarcane, Cotton.<br>• <b>Issues:</b> Ideal soil. Simply maintain organic matter.<br>• <b>Watering:</b> Standard irrigation."
+  },
+  "default": "<b>General Soil Tip:</b><br>Always test your soil pH before planting. Add organic compost to improve soil structure regardless of type."
+}

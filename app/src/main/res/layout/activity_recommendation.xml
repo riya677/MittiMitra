@@ -85,6 +85,41 @@
                         android:ellipsize="end"/>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rec_health_score"
+                        android:textStyle="bold"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp"/>
+
+                    <ProgressBar
+                        android:id="@+id/gauge_soil_health"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:layout_marginVertical="8dp"
+                        android:progressDrawable="@drawable/gauge_progress"
+                        android:max="100"
+                        android:progress="75"/>
+
+                    <TextView
+                        android:id="@+id/tv_health_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Calculating Health..."
+                        android:textStyle="bold"
+                        android:textColor="@color/brand_green"
+                        android:textSize="18sp"/>
+                </LinearLayout>
+
                 <View android:layout_width="match_parent" android:layout_height="4dp" android:background="@color/color_divider_success"/>
 
                 <LinearLayout

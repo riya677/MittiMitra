@@ -223,4 +223,17 @@
     <string name="placeholder_date">தேதி</string>
     <string name="status_calculating">கணக்கிடுகிறது...</string>
     <string name="desc_view_details">விவரங்களைப் பார்க்க</string>
+
+    <!-- History -->
+    <string name="history">பகுப்பாய்வு வரலாறு</string>
+    <string name="delete_confirmation">பதிவை நீக்கு</string>
+    <string name="delete_history_message">இந்த மண் பகுப்பாய்வு பதிவை நீக்க நிச்சயமாக விரும்புகிறீர்களா?</string>
+    <string name="delete">நீக்கு</string>
+    <string name="cancel">ரத்து</string>
+    <string name="record_deleted">பதிவு நீக்கப்பட்டது</string>
+
+    <!-- Share -->
+    <string name="share_report">அறிக்கையைப் பகிரவும்</string>
+    <string name="share_via">இதன் மூலம் பகிரவும்</string>
+
 </resources>

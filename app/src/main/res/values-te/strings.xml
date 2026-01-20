@@ -223,4 +223,17 @@
     <string name="placeholder_date">తేదీ</string>
     <string name="status_calculating">గణిస్తోంది...</string>
     <string name="desc_view_details">వివరాలను చూడండి</string>
+
+    <!-- History -->
+    <string name="history">విశ్లేషణ చరిత్ర</string>
+    <string name="delete_confirmation">రికార్డును తొలగించు</string>
+    <string name="delete_history_message">మీరు ఖచ్చితంగా ఈ నేల విశ్లేషణ రికార్డును తొలగించాలనుకుంటున్నారా?</string>
+    <string name="delete">తొలగించు</string>
+    <string name="cancel">రద్దు చేయి</string>
+    <string name="record_deleted">రికార్డు తొలగించబడింది</string>
+
+    <!-- Share -->
+    <string name="share_report">నివేదికను షేర్ చేయండి</string>
+    <string name="share_via">దీని ద్వారా షేర్ చేయండి</string>
+
 </resources>

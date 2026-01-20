@@ -225,4 +225,51 @@
     <string name="status_calculating">Calculating...</string>
     <string name="desc_view_details">View Details</string>
 
+    <!-- History -->
+    <string name="history">Analysis History</string>
+    <string name="delete_confirmation">Delete Record</string>
+    <string name="delete_history_message">Are you sure you want to delete this soil analysis record?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="record_deleted">Record deleted</string>
+
+    <!-- Share -->
+    <string name="share_report">Share Report</string>
+    <string name="share_via">Share via</string>
+    <string name="undo">Undo</string>
+
+    <!-- Export & Compare -->
+    <string name="export_csv">Export CSV</string>
+    <string name="compare_analysis">Compare</string>
+    <string name="no_data_to_export">No data to export</string>
+    <string name="need_two_records">Need at least 2 records to compare</string>
+    <string name="compare_title">Compare Analysis</string>
+    <string name="select_records">Select 2 records to compare</string>
+    <string name="clear_chat">Clear Chat</string>
+    <string name="chat_cleared">Chat history cleared</string>
+
+    <string name="rec_health_score">Soil Health Score</string>
+    <string name="health_excellent">Excellent Condition 🌿</string>
+    <string name="health_good">Good Condition 🌱</string>
+    <string name="health_attention">Needs Attention ⚠️</string>
+    <string name="health_poor">Poor Condition 🛑</string>
+    <string name="status_acidic">ACIDIC</string>
+    <string name="status_alkaline">ALKALINE</string>
+    <string name="status_neutral">NEUTRAL</string>
+    
+    <string name="alert_too_dark">Too Dark! Move to light to avoid shadows ☀️</string>
+    <string name="alert_data_received">Live Soil Data Received</string>
+    <string name="alert_data_unavailable">Soil Data Unavailable</string>
+    <string name="alert_network_error">Network Error</string>
+    <string name="alert_connecting">Connecting to Satellites...</string>
+    <string name="alert_offline_mode">Using Offline Mode</string>
+    
+    <string name="weather_high_humidity">High humidity! Watch out for fungal diseases.</string>
+    <string name="weather_high_heat">High heat! Irrigate crops frequently.</string>
+    <string name="weather_alert_title">Seasonal Weather Alert ⛈️</string>
+    
+    <string name="unit_result_format">Result: %1$.2f %2$s</string>
+    <string name="soil_status_low">LOW</string>
+    <string name="soil_status_high">HIGH</string>
+    <string name="soil_status_ok">OK</string>
 </resources>

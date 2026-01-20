@@ -1,6 +1,7 @@
 package com.mittimitra;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.pdf.PdfDocument;
@@ -17,7 +18,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -50,6 +50,11 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
     private TextView tvName, tvPhone, tvEmail, tvLocation, tvDate;
     private TextView valN, ratN, valP, ratP, valK, ratK, valPh, ratPh;
     private TextView tvAiContext, tvAiAdvice;
+    
+    // New Gauge Views
+    private android.widget.ProgressBar gaugeSoilHealth;
+    private TextView tvHealthStatus;
+    
     private View reportContainer;
     private ExtendedFloatingActionButton btnDownload;
 
@@ -60,6 +65,7 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
     private TextToSpeech tts;
     private FirebaseFirestore db;
     private String passedSoilType = null;
+    private Uri savedPdfUri = null; // Store saved PDF for sharing
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +100,10 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
 
         tvAiContext = findViewById(R.id.tv_ai_context);
         tvAiAdvice = findViewById(R.id.tv_ai_advice);
+
+        // Init Gauge
+        gaugeSoilHealth = findViewById(R.id.gauge_soil_health);
+        tvHealthStatus = findViewById(R.id.tv_health_status);
 
         btnDownload.setOnClickListener(v -> savePdf());
 
@@ -165,6 +175,35 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
             else if(ph > 7.5) { ratPh.setText("ALKALINE"); ratPh.setTextColor(Color.BLUE); }
             else { ratPh.setText("NEUTRAL"); ratPh.setTextColor(Color.parseColor("#2E7D32")); }
 
+            // --- CALCULATE SOIL HEALTH SCORE ---
+            // Score Logic: 100 is perfect (pH 6.5-7.5). Deduct 15 points for every 1.0 deviation from 7.0
+            float deviation = (float) Math.abs(ph - 7.0);
+            int healthScore = Math.max(0, 100 - (int)(deviation * 15));
+            gaugeSoilHealth.setProgress(healthScore);
+            
+            String statusText;
+            int statusColor;
+            
+            if (healthScore >= 80) {
+                statusText = "Excellent Condition 🌿";
+                statusColor = Color.parseColor("#2E7D32"); // Green
+            } else if (healthScore >= 60) {
+                statusText = getString(R.string.health_good);
+                statusColor = Color.DKGRAY;
+            } else if (healthScore >= 40) {
+                statusText = getString(R.string.health_attention);
+                statusColor = Color.parseColor("#FF9800"); // Orange
+            } else {
+                statusText = getString(R.string.health_poor);
+                statusColor = Color.RED;
+            }
+            
+            tvHealthStatus.setText(statusText);
+            tvHealthStatus.setTextColor(statusColor);
+            // -----------------------------------
+
+
+
             String userNotes = json.optString("user_notes", "None");
             String weather = json.optString("weather", "N/A");
             String moisture = json.optString("soil_dynamic", "N/A");
@@ -177,14 +216,17 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
 
             fetchProfessionalAdvice(n, p, k, ph, userNotes, weather, moisture, detectedSoil);
 
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            android.util.Log.e("RecommendationActivity", "Error parsing soil report", e);
+            tvAiAdvice.setText("Error loading report data. Please try a new scan.");
+        }
     }
 
     private void setRow(TextView vVal, TextView vRat, int val, int low, int high, String unit) {
         vVal.setText(val + " " + unit);
-        if (val < low) { vRat.setText("LOW"); vRat.setTextColor(Color.RED); }
-        else if (val > high) { vRat.setText("HIGH"); vRat.setTextColor(Color.RED); }
-        else { vRat.setText("OK"); vRat.setTextColor(Color.parseColor("#2E7D32")); }
+        if (val < low) { vRat.setText(getString(R.string.soil_status_low)); vRat.setTextColor(Color.RED); }
+        else if (val > high) { vRat.setText(getString(R.string.soil_status_high)); vRat.setTextColor(Color.RED); }
+        else { vRat.setText(getString(R.string.soil_status_ok)); vRat.setTextColor(Color.parseColor("#2E7D32")); }
     }
 
     private void fetchProfessionalAdvice(int n, int p, int k, double ph, String userNotes, String weather, String moisture, String detectedSoil) {
@@ -204,7 +246,8 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
 
                         "### 2. 言 **Crop Planning (Agro-Climatic approach)**\n" +
                         "- Recommend 3 crops aligned with **" + detectedSoil + "** soil and local climate (" + weather + ").\n" +
-                        "- **Variety Selection:** Suggest specific **ICAR/State University certified varieties** (e.g., 'Pusa Basmati', 'Co-86032').\n\n" +
+                        "- **Variety Selection:** Suggest specific **ICAR/State University certified varieties** (e.g., 'Pusa Basmati', 'Co-86032').\n" +
+                        "- **ECONOMIC REASONING:** For each crop, estimate current **Mandi Market Prices (INR/Quintal)** for the region. Highlight the most profitable option.\n\n" +
 
                         "### 3. 抽 **Balanced Fertilization Schedule (RDF)**\n" +
                         "- **Goal:** Achieve Recommended Dose of Fertilizer (RDF) for the priority crop.\n" +
@@ -290,11 +333,13 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
     private void savePdf() {
         try {
             PdfDocument document = new PdfDocument();
-            PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(reportContainer.getWidth(), reportContainer.getHeight(), 1).create();
+            // A4 Size in points (595 x 842)
+            PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(595, 842, 1).create();
             PdfDocument.Page page = document.startPage(pageInfo);
             Canvas canvas = page.getCanvas();
-            canvas.drawColor(Color.WHITE);
-            reportContainer.draw(canvas);
+            
+            drawAgriPass(canvas); // Custom drawing
+
             document.finishPage(page);
 
             String fileName = "MittiMitra_Report_" + System.currentTimeMillis() + ".pdf";
@@ -308,12 +353,37 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
                 OutputStream out = getContentResolver().openOutputStream(uri);
                 document.writeTo(out);
                 out.close();
-                Toast.makeText(this, "PDF Saved!", Toast.LENGTH_LONG).show();
+                savedPdfUri = uri; // Store for sharing
+                
+                // Offer to share
+                new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle(R.string.share_report)
+                    .setMessage("PDF saved! Would you like to share it?")
+                    .setPositiveButton(R.string.share_via, (dialog, which) -> shareReport())
+                    .setNegativeButton(R.string.cancel, null)
+                    .show();
             }
             document.close();
         } catch (Exception e) {
-            Toast.makeText(this, "PDF Error", Toast.LENGTH_SHORT).show();
+            android.util.Log.e("RecommendationActivity", "PDF save error", e);
+            Toast.makeText(this, "Error saving PDF", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void shareReport() {
+        if (savedPdfUri == null) {
+            Toast.makeText(this, "No report to share. Save it first.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("application/pdf");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, savedPdfUri);
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Mitti Mitra Soil Report");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Here is my soil health report from Mitti Mitra app.");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_via)));
     }
 
     @Override
@@ -323,15 +393,151 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, 1, 0, "Read Aloud").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(0, 1, 0, "Read Aloud").setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        menu.add(0, 2, 1, R.string.share_report).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) finish();
-        if (item.getItemId() == 1 && tts != null) tts.speak(tvAiAdvice.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, null);
-        return true;
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        if (item.getItemId() == 1 && tts != null) {
+            tts.speak(tvAiAdvice.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, null);
+            return true;
+        }
+        if (item.getItemId() == 2) {
+            if (savedPdfUri != null) {
+                shareReport();
+            } else {
+                Toast.makeText(this, "Download the report first", Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void drawAgriPass(Canvas canvas) {
+        android.graphics.Paint paint = new android.graphics.Paint();
+        android.graphics.Paint titlePaint = new android.graphics.Paint();
+        
+        // Background
+        canvas.drawColor(Color.WHITE);
+        
+        // Header
+        titlePaint.setColor(getColor(R.color.brand_green));
+        titlePaint.setTextSize(24);
+        titlePaint.setTypeface(android.graphics.Typeface.create(android.graphics.Typeface.DEFAULT, android.graphics.Typeface.BOLD));
+        titlePaint.setTextAlign(android.graphics.Paint.Align.CENTER);
+        canvas.drawText("MITTI MITRA - SOIL HEALTH CARD", 595/2, 50, titlePaint);
+        
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(12);
+        paint.setTextAlign(android.graphics.Paint.Align.CENTER);
+        canvas.drawText("Official Agri-Pass | Govt. of India Guidelines Compliant", 595/2, 70, paint);
+        
+        // Border
+        paint.setStyle(android.graphics.Paint.Style.STROKE);
+        paint.setStrokeWidth(2);
+        paint.setColor(getColor(R.color.brand_green));
+        canvas.drawRect(20, 20, 575, 822, paint);
+        
+        // Reset Paint
+        paint.setStyle(android.graphics.Paint.Style.FILL);
+        paint.setTextAlign(android.graphics.Paint.Align.LEFT);
+        paint.setTextSize(14);
+        
+        int y = 120;
+        int x = 40;
+        
+        // Farmer Details
+        paint.setFakeBoldText(true);
+        canvas.drawText("FARMER DETAILS", x, y, paint);
+        paint.setFakeBoldText(false);
+        y += 20;
+        canvas.drawText("Name: " + tvName.getText().toString(), x, y, paint);
+        y += 20;
+        canvas.drawText("Location: " + tvLocation.getText().toString(), x, y, paint);
+        y += 20;
+        canvas.drawText("Date: " + tvDate.getText().toString(), x, y, paint);
+        
+        // Divider
+        y += 30;
+        paint.setColor(Color.LTGRAY);
+        canvas.drawLine(40, y, 555, y, paint);
+        paint.setColor(Color.BLACK);
+        
+        // Soil Metrics
+        y += 30;
+        paint.setFakeBoldText(true);
+        canvas.drawText("SOIL ANALYSIS RESULTS", x, y, paint);
+        paint.setFakeBoldText(false);
+        y += 25;
+        
+        // Header Row
+        paint.setColor(Color.DKGRAY);
+        canvas.drawRect(40, y-15, 555, y+10, paint);
+        paint.setColor(Color.WHITE);
+        canvas.drawText("PARAMETER", x+10, y, paint);
+        canvas.drawText("VALUE", x+200, y, paint);
+        canvas.drawText("STATUS", x+350, y, paint);
+        paint.setColor(Color.BLACK);
+        
+        y += 30;
+        drawRow(canvas, "Nitrogen (N)", valN.getText().toString(), ratN.getText().toString(), x, y);
+        y += 25;
+        drawRow(canvas, "Phosphorus (P)", valP.getText().toString(), ratP.getText().toString(), x, y);
+        y += 25;
+        drawRow(canvas, "Potassium (K)", valK.getText().toString(), ratK.getText().toString(), x, y);
+        y += 25;
+        drawRow(canvas, "pH Level", valPh.getText().toString(), ratPh.getText().toString(), x, y);
+        
+        // Advisory
+        y += 50;
+        paint.setFakeBoldText(true);
+        canvas.drawText("SCIENTIFIC ADVISORY", x, y, paint);
+        paint.setFakeBoldText(false);
+        y += 25;
+        
+        String advisory = tvAiAdvice.getText().toString();
+        // Simple text wrap (very basic)
+        android.text.TextPaint textPaint = new android.text.TextPaint();
+        textPaint.setColor(Color.BLACK);
+        textPaint.setTextSize(12);
+        
+        android.text.StaticLayout staticLayout = android.text.StaticLayout.Builder.obtain(
+                advisory, 0, advisory.length(), textPaint, 515)
+                .setAlignment(android.text.Layout.Alignment.ALIGN_NORMAL)
+                .build();
+        
+        canvas.save();
+        canvas.translate(x, y);
+        staticLayout.draw(canvas);
+        canvas.restore();
+        
+        // QR Code Placeholder
+        y += staticLayout.getHeight() + 50;
+        paint.setColor(Color.LTGRAY);
+        canvas.drawRect(595/2 - 40, y, 595/2 + 40, y + 80, paint);
+        paint.setColor(Color.BLACK);
+        paint.setTextAlign(android.graphics.Paint.Align.CENTER);
+        canvas.drawText("Scan to Verify", 595/2, y + 95, paint);
+    }
+    
+    private void drawRow(Canvas canvas, String param, String val, String status, int x, int y) {
+        android.graphics.Paint paint = new android.graphics.Paint();
+        paint.setTextSize(12);
+        paint.setColor(Color.BLACK);
+        canvas.drawText(param, x+10, y, paint);
+        canvas.drawText(val, x+200, y, paint);
+        
+        if(status.contains("LOW") || status.contains("ACIDIC")) paint.setColor(Color.RED);
+        else if(status.contains("OK") || status.contains("NEUTRAL")) paint.setColor(Color.parseColor("#2E7D32"));
+        else paint.setColor(Color.BLUE);
+        
+        canvas.drawText(status, x+350, y, paint);
     }
 
     @Override
