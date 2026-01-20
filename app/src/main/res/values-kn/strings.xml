@@ -223,4 +223,17 @@
     <string name="placeholder_date">ದಿನಾಂಕ</string>
     <string name="status_calculating">ಲೆಕ್ಕಾಚಾರ ಮಾಡಲಾಗುತ್ತಿದೆ...</string>
     <string name="desc_view_details">ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ</string>
+
+    <!-- History -->
+    <string name="history">ವಿಶ್ಲೇಷಣೆ ಇತಿಹಾಸ</string>
+    <string name="delete_confirmation">ದಾಖಲೆ ಅಳಿಸಿ</string>
+    <string name="delete_history_message">ನೀವು ಖಚಿತವಾಗಿ ಈ ಮಣ್ಣಿನ ವಿಶ್ಲೇಷಣೆ ದಾಖಲೆಯನ್ನು ಅಳಿಸಲು ಬಯಸುತ್ತೀರಾ?</string>
+    <string name="delete">ಅಳಿಸು</string>
+    <string name="cancel">ರದ್ದುಮಾಡು</string>
+    <string name="record_deleted">ದಾಖಲೆ ಅಳಿಸಲಾಗಿದೆ</string>
+
+    <!-- Share -->
+    <string name="share_report">ವರದಿ ಹಂಚಿರಿ</string>
+    <string name="share_via">ಇದರ ಮೂಲಕ ಹಂಚಿರಿ</string>
+
 </resources>

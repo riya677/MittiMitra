@@ -1,5 +1,7 @@
 package com.mittimitra;
 
+import com.mittimitra.utils.NutrientStatus;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -62,9 +64,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import com.mittimitra.utils.NutrientStatus;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import com.google.android.material.snackbar.Snackbar;
 
-public class ScanActivity extends BaseActivity {
+public class ScanActivity extends BaseActivity implements SensorEventListener {
 
     private static final String TAG = "ScanActivity";
     private static final String MODEL_PATH = "soil_classifier.tflite";
@@ -106,6 +112,11 @@ public class ScanActivity extends BaseActivity {
 
     private Bitmap currentImageBitmap = null;
 
+    // Sensors
+    private SensorManager sensorManager;
+    private Sensor lightSensor;
+    private boolean isLowLight = false;
+
     // --- Launchers ---
     private final ActivityResultLauncher<Void> cameraLauncher =
             registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), result -> {
@@ -146,6 +157,12 @@ public class ScanActivity extends BaseActivity {
         }
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        
+        // Sensor Setup
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        if (sensorManager != null) {
+            lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        }
 
         // Bind Views
         imageViewPlaceholder = findViewById(R.id.image_view_placeholder);
@@ -279,7 +296,9 @@ public class ScanActivity extends BaseActivity {
                         cacheData("loc", locationName);
                     });
                 }
-            } catch (IOException e) { e.printStackTrace(); }
+            } catch (IOException e) {
+                Log.e(TAG, "Geocoding failed", e);
+            }
         }).start();
     }
 
@@ -299,10 +318,21 @@ public class ScanActivity extends BaseActivity {
                         cacheData("weather", weatherSummary);
                         cacheData("soil_dyn", soilDynamic);
                         updateDashboardUI();
-                    } catch (Exception e) { }
+                    } catch (Exception e) {
+                        Log.e(TAG, "Weather parsing error", e);
+                        // Use cached data on parse error
+                        updateDashboardUI();
+                    }
                 }
             }
-            @Override public void onFailure(Call<JsonObject> call, Throwable t) {}
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.e(TAG, "Weather fetch failed", t);
+                runOnUiThread(() -> {
+                    // Use cached data, just update UI
+                    updateDashboardUI();
+                });
+            }
         });
     }
 
@@ -479,4 +509,36 @@ public class ScanActivity extends BaseActivity {
             checkLocationAndFetchData();
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (sensorManager != null && lightSensor != null) {
+            sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (sensorManager != null) {
+            sensorManager.unregisterListener(this);
+        }
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
+            float lux = event.values[0];
+            if (lux < 50 && !isLowLight) {
+                isLowLight = true;
+                Snackbar.make(layoutScanHint, getString(R.string.alert_too_dark), Snackbar.LENGTH_SHORT).show();
+            } else if (lux >= 50 && isLowLight) {
+                isLowLight = false; // Reset if light improves
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 }

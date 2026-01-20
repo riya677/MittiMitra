@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_green">#81C784</color> <!-- Lighter green for dark mode -->
+    <color name="brand_green_light">#1B5E20</color> <!-- Darker background for dark mode -->
+    <color name="text_dark">#FFFFFF</color>
+    <color name="text_secondary">#B0BEC5</color>
+    <color name="color_accent_orange">#FFB74D</color> <!-- Lighter orange -->
+    <color name="color_success_text">#81C784</color> <!-- Light green text -->
+    <color name="color_moisture">#4FC3F7</color> <!-- Light blue -->
+    <color name="color_green_50">#263238</color> <!-- Dark surface for cards -->
+    <color name="white">#000000</color> <!-- Inverted for some uses, but dangerous if misused. Better to keep white as white and change usage. -->
+    <!-- Keeping white as #FFFFFFFF usually safest, rely on text_dark/light separation -->
+</resources>

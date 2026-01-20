@@ -20,4 +20,7 @@ public class Document {
 
     @ColumnInfo(name = "document_type")
     public String documentType;
+    
+    @ColumnInfo(name = "expiry_date")
+    public Long expiryDate; // Timestamp in milliseconds, null if no expiry
 }

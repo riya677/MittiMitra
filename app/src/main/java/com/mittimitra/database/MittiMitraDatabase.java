@@ -1,22 +1,63 @@
 package com.mittimitra.database;
 
 import android.content.Context;
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.migration.Migration;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import com.mittimitra.database.dao.ChatDao;
 import com.mittimitra.database.dao.DocumentDao;
 import com.mittimitra.database.dao.SoilDao;
+import com.mittimitra.database.entity.ChatMessage;
 import com.mittimitra.database.entity.Document;
 import com.mittimitra.database.entity.SoilAnalysis;
 
-// UPDATED: Version is now 2
-@Database(entities = {SoilAnalysis.class, Document.class}, version = 2, exportSchema = false)
+/**
+ * Room Database for MittiMitra app.
+ * 
+ * Migration History:
+ * - v1 → v2: Removed user ID and foreign key constraints from tables
+ *            (This was a breaking change, used destructive migration)
+ * - v2 → v3: Added chat_messages table for chat history persistence
+ * 
+ * For future migrations, add proper migration objects below.
+ */
+@Database(entities = {SoilAnalysis.class, Document.class, ChatMessage.class}, version = 4, exportSchema = false)
 public abstract class MittiMitraDatabase extends RoomDatabase {
 
     public abstract SoilDao soilDao();
     public abstract DocumentDao documentDao();
+    public abstract ChatDao chatDao();
 
     private static volatile MittiMitraDatabase INSTANCE;
+
+    /**
+     * Migration from version 2 to 3.
+     * Adds chat_messages table for persisting chat history.
+     */
+    static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS `chat_messages` (" +
+                    "`message_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                    "`content` TEXT, " +
+                    "`is_user` INTEGER NOT NULL, " +
+                    "`timestamp` INTEGER NOT NULL)");
+        }
+    };
+
+    /**
+     * Migration from version 3 to 4.
+     * Adds expiry_date column to documents table for "Scheme Alerts".
+     */
+    static final Migration MIGRATION_3_4 = new Migration(3, 4) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE `documents` ADD COLUMN `expiry_date` INTEGER");
+        }
+    };
 
     public static MittiMitraDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -24,8 +65,10 @@ public abstract class MittiMitraDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     MittiMitraDatabase.class, "mitti_mitra_database")
-                            // THIS FIXES THE CRASH:
-                            .fallbackToDestructiveMigration()
+                            // Allow destructive migration only from v1 (breaking schema change)
+                            // Future migrations (v2+) will use proper Migration objects
+                            .fallbackToDestructiveMigrationFrom(1)
+                            .addMigrations(MIGRATION_2_3, MIGRATION_3_4)
                             .build();
                 }
             }

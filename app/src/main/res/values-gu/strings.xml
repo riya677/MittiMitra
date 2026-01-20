@@ -223,4 +223,17 @@
     <string name="placeholder_date">તારીખ</string>
     <string name="status_calculating">ગણતરી કરી રહ્યું છે...</string>
     <string name="desc_view_details">વિગતો જુઓ</string>
+
+    <!-- History -->
+    <string name="history">વિશ્લેષણ ઇતિહાસ</string>
+    <string name="delete_confirmation">રેકોર્ડ કાઢી નાખો</string>
+    <string name="delete_history_message">શું તમે ખરેખર આ માટી વિશ્લેષણ રેકોર્ડ કાઢી નાખવા માંગો છો?</string>
+    <string name="delete">કાઢી નાખો</string>
+    <string name="cancel">રદ કરો</string>
+    <string name="record_deleted">રેકોર્ડ કાઢી નાખ્યો</string>
+
+    <!-- Share -->
+    <string name="share_report">રિપોર્ટ શેર કરો</string>
+    <string name="share_via">આ દ્વારા શેર કરો</string>
+
 </resources>

@@ -148,19 +148,46 @@ public class DocumentsActivity extends BaseActivity {
                 }
 
                 Document newDoc = new Document();
-                // UPDATED: No user ID
                 newDoc.documentName = fileName;
                 newDoc.documentType = fileType;
                 newDoc.internalFilePath = localFile.getAbsolutePath();
 
-                db.documentDao().insertDocument(newDoc);
-
-                mainThreadHandler.post(this::loadDocuments);
+                // ASK FOR EXPIRY DATE (Optional)
+                mainThreadHandler.post(() -> showExpiryDialog(newDoc));
 
             } catch (Exception e) {
                 Log.e(TAG, "Failed to copy file", e);
                 mainThreadHandler.post(() -> Toast.makeText(DocumentsActivity.this, "Failed to save file", Toast.LENGTH_SHORT).show());
             }
+        });
+    }
+
+    private void showExpiryDialog(Document newDoc) {
+        new AlertDialog.Builder(this)
+                .setTitle("Add Expiry Reminder?")
+                .setMessage("Does this document have an expiration date? (e.g. Insurance, Lease)")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    // Show Date Picker
+                    java.util.Calendar c = java.util.Calendar.getInstance();
+                    new android.app.DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+                        c.set(year, month, dayOfMonth);
+                        newDoc.expiryDate = c.getTimeInMillis();
+                        saveDocumentToDb(newDoc);
+                        Toast.makeText(this, "Reminder Set!", Toast.LENGTH_SHORT).show();
+                    }, c.get(java.util.Calendar.YEAR), c.get(java.util.Calendar.MONTH), c.get(java.util.Calendar.DAY_OF_MONTH)).show();
+                })
+                .setNegativeButton("No", (dialog, which) -> {
+                    newDoc.expiryDate = null;
+                    saveDocumentToDb(newDoc);
+                })
+                .setCancelable(false)
+                .show();
+    }
+
+    private void saveDocumentToDb(Document doc) {
+        databaseExecutor.execute(() -> {
+            db.documentDao().insertDocument(doc);
+            mainThreadHandler.post(this::loadDocuments);
         });
     }
 
