@@ -56,6 +56,16 @@ public class UnitConverterActivity extends BaseActivity {
         spTo.setAdapter(adapter);
         spTo.setSelection(1); // Default to Hectare
 
+        // Restore saved values
+        android.content.SharedPreferences prefs = getSharedPreferences("MittiMitraPrefs", MODE_PRIVATE);
+        String savedArea = prefs.getString("last_area", "");
+        int savedFrom = prefs.getInt("last_unit_from", 0);
+        int savedTo = prefs.getInt("last_unit_to", 1);
+        
+        etArea.setText(savedArea);
+        spFrom.setSelection(savedFrom);
+        spTo.setSelection(savedTo);
+
         btnConvert.setOnClickListener(v -> calculate());
     }
 
@@ -80,6 +90,13 @@ public class UnitConverterActivity extends BaseActivity {
             tvResultValue.setText(String.format("%.4f", result));
             tvResultUnit.setText(units[toIndex]);
             cardResult.setVisibility(View.VISIBLE);
+
+            // Save for next time
+            android.content.SharedPreferences.Editor editor = getSharedPreferences("MittiMitraPrefs", MODE_PRIVATE).edit();
+            editor.putString("last_area", input);
+            editor.putInt("last_unit_from", fromIndex);
+            editor.putInt("last_unit_to", toIndex);
+            editor.apply();
 
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Invalid number", Toast.LENGTH_SHORT).show();

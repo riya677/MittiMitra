@@ -222,4 +222,17 @@
     <string name="placeholder_date">तारीख</string>
     <string name="status_calculating">गणना करत आहे...</string>
     <string name="desc_view_details">तपशील पाहा</string>
+
+    <!-- History -->
+    <string name="history">विश्लेषण इतिहास</string>
+    <string name="delete_confirmation">रेकॉर्ड हटवा</string>
+    <string name="delete_history_message">तुम्हाला खात्री आहे का की तुम्ही हा माती विश्लेषण रेकॉर्ड हटवू इच्छिता?</string>
+    <string name="delete">हटवा</string>
+    <string name="cancel">रद्द करा</string>
+    <string name="record_deleted">रेकॉर्ड हटवला</string>
+
+    <!-- Share -->
+    <string name="share_report">अहवाल शेअर करा</string>
+    <string name="share_via">याद्वारे शेअर करा</string>
+
 </resources>

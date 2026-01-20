@@ -223,4 +223,17 @@
     <string name="placeholder_date">ਮਿਤੀ</string>
     <string name="status_calculating">ਗਣਨਾ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ...</string>
     <string name="desc_view_details">ਵੇਰਵੇ ਵੇਖੋ</string>
+
+    <!-- History -->
+    <string name="history">ਵਿਸ਼ਲੇਸ਼ਣ ਇਤਿਹਾਸ</string>
+    <string name="delete_confirmation">ਰਿਕਾਰਡ ਮਿਟਾਓ</string>
+    <string name="delete_history_message">ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਇਸ ਮਿੱਟੀ ਵਿਸ਼ਲੇਸ਼ਣ ਰਿਕਾਰਡ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="delete">ਮਿਟਾਓ</string>
+    <string name="cancel">ਰੱਦ ਕਰੋ</string>
+    <string name="record_deleted">ਰਿਕਾਰਡ ਮਿਟਾਇਆ ਗਿਆ</string>
+
+    <!-- Share -->
+    <string name="share_report">ਰਿਪੋਰਟ ਸਾਂਝੀ ਕਰੋ</string>
+    <string name="share_via">ਇਸ ਰਾਹੀਂ ਸਾਂਝਾ ਕਰੋ</string>
+
 </resources>

@@ -184,21 +184,47 @@ public class ProfileActivity extends BaseActivity {
     }
 
     private void loadFirestoreData(String uid) {
-        db.collection("farmers").document(uid).get().addOnSuccessListener(doc -> {
-            if (doc.exists()) {
-                if (doc.contains("firstName")) {
-                    String name = doc.getString("firstName");
-                    tvName.setText(name);
-                    sessionManager.saveUser(uid, name);
+        android.content.SharedPreferences prefs = getSharedPreferences("profile_cache", MODE_PRIVATE);
+        
+        db.collection("farmers").document(uid).get()
+            .addOnSuccessListener(doc -> {
+                if (doc.exists()) {
+                    if (doc.contains("firstName")) {
+                        String name = doc.getString("firstName");
+                        tvName.setText(name);
+                        sessionManager.saveUser(uid, name);
+                        // Cache for offline
+                        prefs.edit().putString("cached_name", name).apply();
+                    }
+                    if (doc.contains("phone")) {
+                        currentPhone = doc.getString("phone");
+                        tvPhone.setText(currentPhone);
+                        // Cache for offline
+                        prefs.edit().putString("cached_phone", currentPhone).apply();
+                    } else {
+                        tvPhone.setText("Add Phone Number");
+                    }
                 }
-                if (doc.contains("phone")) {
-                    currentPhone = doc.getString("phone");
-                    tvPhone.setText(currentPhone);
-                } else {
-                    tvPhone.setText("Add Phone Number");
-                }
-            }
-        });
+            })
+            .addOnFailureListener(e -> {
+                // Load from cache when offline
+                loadCachedProfile(prefs);
+            });
+    }
+
+    private void loadCachedProfile(android.content.SharedPreferences prefs) {
+        String cachedName = prefs.getString("cached_name", null);
+        String cachedPhone = prefs.getString("cached_phone", null);
+        
+        if (cachedName != null) {
+            tvName.setText(cachedName);
+        }
+        if (cachedPhone != null) {
+            currentPhone = cachedPhone;
+            tvPhone.setText(cachedPhone);
+        } else {
+            tvPhone.setText("Offline - Add phone later");
+        }
     }
 
     private void showEditDialog() {

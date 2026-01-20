@@ -22,4 +22,8 @@ public interface DocumentDao {
     // --- NEW ---
     @Query("DELETE FROM documents")
     void clearAllDocuments();
+
+    // --- NEW ---
+    @Query("SELECT * FROM documents WHERE expiry_date BETWEEN :now AND :threshold")
+    List<Document> getExpiringDocuments(long now, long threshold);
 }
