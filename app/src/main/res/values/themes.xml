@@ -1,18 +1,82 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
     <style name="Theme.MittiMitra" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@android:color/white</item>
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@android:color/black</item>
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Primary Brand Colors -->
+        <item name="colorPrimary">@color/brand_primary</item>
+        <item name="colorPrimaryVariant">@color/brand_primary_dark</item>
+        <item name="colorOnPrimary">@color/text_on_primary</item>
+        
+        <!-- Secondary Brand Colors -->
+        <item name="colorSecondary">@color/brand_secondary</item>
+        <item name="colorSecondaryVariant">@color/brand_secondary</item>
+        <item name="colorOnSecondary">@color/text_on_secondary</item>
+        
+        <!-- Status Bar -->
+        <item name="android:statusBarColor">@color/surface_background</item>
+        <item name="android:windowLightStatusBar">true</item> <!-- Dark icons on light background -->
+
+        <!-- General UI -->
+        <item name="android:windowBackground">@color/surface_background</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        
+        <!-- Component Styles -->
+        <item name="materialButtonStyle">@style/Widget.Mitti.Button</item>
+        <item name="materialCardViewStyle">@style/Widget.Mitti.Card</item>
+        <item name="textInputStyle">@style/Widget.Mitti.TextInputLayout</item>
+    </style>
+
+    <!-- Custom Widget Styles for Premium Look -->
+    
+    <!-- 1. Buttons (Rounded, High Contrast) -->
+    <style name="Widget.Mitti.Button" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">12dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="elevation">0dp</item>
+        <item name="backgroundTint">@color/brand_primary</item>
+    </style>
+
+    <style name="Widget.Mitti.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">12dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="strokeColor">@color/brand_primary</item>
+        <item name="android:textColor">@color/brand_primary</item>
+    </style>
+
+    <!-- 2. Cards (Soft Shadow, Rounded) -->
+    <style name="Widget.Mitti.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardBackgroundColor">@color/surface_card</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+    
+    <!-- 3. Text Input (Clean, Outlined) -->
+    <style name="Widget.Mitti.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxStrokeColor">@color/brand_primary</item>
+    </style>
+
+    <!-- 4. Text Styles -->
+    <style name="TextAppearance.Mitti.Headline" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textColor">@color/brand_primary_dark</item>
+    </style>
+
+    <style name="TextAppearance.Mitti.Subhead" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/text_primary</item>
     </style>
 
     <style name="Theme.MittiMitra.Dyslexic" parent="Theme.MittiMitra">
         <item name="android:fontFamily">@font/font_dyslexic</item>
     </style>
-
+    
     <style name="Theme.MittiMitra.NoActionBar" parent="Theme.MittiMitra" />
 
     <style name="CircleImageStyle">

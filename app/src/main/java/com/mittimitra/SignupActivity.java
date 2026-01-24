@@ -11,8 +11,8 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         // Redirect to LoginActivity which handles the auth flow for both new and existing users
-        findViewById(R.id.btn_signup_google).setOnClickListener(v -> redirectToLogin());
-        findViewById(R.id.btn_signup_phone).setOnClickListener(v -> redirectToLogin());
+        // Redirect to LoginActivity which handles the auth flow for both new and existing users
+        findViewById(R.id.btn_do_signup).setOnClickListener(v -> redirectToLogin());
 
         findViewById(R.id.tv_login_link).setOnClickListener(v -> redirectToLogin());
     }

@@ -40,8 +40,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.widget.ImageView;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.dao.ChatDao;
 import com.mittimitra.database.entity.SoilAnalysis;
@@ -71,7 +71,7 @@ public class TipActivity extends BaseActivity {
 
     private static final String TAG = "TipActivity";
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-    private static final String CHAT_MODEL_ID = "llama-3.1-8b-instant";
+    private static final String CHAT_MODEL_ID = "llama-3.3-70b-versatile";
 
     // UI Components
     private RecyclerView recyclerViewChat;
@@ -79,7 +79,7 @@ public class TipActivity extends BaseActivity {
 
     // Matched to XML types to prevent Crash
     private FloatingActionButton btnSendChat;
-    private MaterialButton btnRecordAudio;
+    private ImageView btnRecordAudio;
 
     private ProgressBar loadingIndicator;
     private ChatAdapter chatAdapter;
@@ -152,6 +152,12 @@ public class TipActivity extends BaseActivity {
             }
         });
 
+        // Initialize Speech Recognizer
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        speechRecognizer.setRecognitionListener(speechListener);
+        
+        // Set up audio button click
+        btnRecordAudio.setOnClickListener(v -> requestAudioPermission());
     }
 
     @Override
@@ -179,21 +185,19 @@ public class TipActivity extends BaseActivity {
     // --- SpeechListener Implementation ---
     private final RecognitionListener speechListener = new RecognitionListener() {
         @Override public void onReadyForSpeech(Bundle params) { 
-            btnRecordAudio.setIcon(ContextCompat.getDrawable(TipActivity.this, android.R.drawable.ic_btn_speak_now));
-            btnRecordAudio.setText("Listening...");
+            btnRecordAudio.setImageTintList(ColorStateList.valueOf(Color.RED)); // Red when listening
         }
         @Override public void onBeginningOfSpeech() {}
         @Override public void onRmsChanged(float rmsdB) {}
         @Override public void onBufferReceived(byte[] buffer) {}
         @Override public void onEndOfSpeech() {
-            btnRecordAudio.setIcon(ContextCompat.getDrawable(TipActivity.this, android.R.drawable.ic_btn_speak_now)); // Reset icon or use mic icon
-            btnRecordAudio.setText("");
+            btnRecordAudio.setImageTintList(ColorStateList.valueOf(Color.parseColor("#757575"))); // Reset to grey
         }
         @Override public void onError(int error) {
             String msg = "Error: " + error;
             if (error == SpeechRecognizer.ERROR_NO_MATCH) msg = "Did not understand, please try again.";
             Toast.makeText(TipActivity.this, msg, Toast.LENGTH_SHORT).show();
-            btnRecordAudio.setText("");
+            btnRecordAudio.setImageTintList(ColorStateList.valueOf(Color.parseColor("#757575"))); // Reset to grey
         }
         @Override public void onResults(Bundle results) {
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
@@ -212,7 +216,9 @@ public class TipActivity extends BaseActivity {
         databaseExecutor.execute(() -> {
             SoilAnalysis lastScan = db.soilDao().getLatestReport();
             if (lastScan != null) lastSoilReportJson = lastScan.soilReportJson;
-            String sysMsg = "You are Mitti Mitra, an expert AI farming assistant. Introduce yourself briefly.";
+            String sysMsg = "You are 'Kisan Sahayak', a friendly and expert AI farming assistant for Indian farmers. " +
+                    "Speak in simple language. If the user speaks in Hindi/local language, reply in that language. " +
+                    "Keep answers concise (max 3-4 sentences) unless asked for details.";
             callGroqChatAPI(sysMsg, true);
         });
     }
@@ -332,6 +338,11 @@ public class TipActivity extends BaseActivity {
         } else {
             locationPermissionLauncher.launch(new String[]{Manifest.permission.ACCESS_FINE_LOCATION});
         }
+        
+        // Update Title to "Kisan Sahayak"
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(R.string.kisan_sahayak_title);
+        }
     }
 
     private void requestAudioPermission() {
@@ -364,7 +375,7 @@ public class TipActivity extends BaseActivity {
             mediaRecorder.setOutputFile(audioFile.getAbsolutePath());
             mediaRecorder.prepare();
             mediaRecorder.start();
-            btnRecordAudio.setIconTint(ColorStateList.valueOf(Color.RED)); // Red when recording
+            btnRecordAudio.setImageTintList(ColorStateList.valueOf(Color.RED)); // Red when recording
             isRecording = true;
             Toast.makeText(this, "Listening...", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
@@ -381,7 +392,7 @@ public class TipActivity extends BaseActivity {
         }
         mediaRecorder = null;
         isRecording = false;
-        btnRecordAudio.setIconTint(ColorStateList.valueOf(Color.parseColor("#757575"))); // Grey when idle
+        btnRecordAudio.setImageTintList(ColorStateList.valueOf(Color.parseColor("#757575"))); // Grey when idle
         if (audioFile.exists()) callGroqWhisperAPI(audioFile);
     }
 

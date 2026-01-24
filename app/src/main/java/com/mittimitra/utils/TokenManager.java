@@ -13,6 +13,7 @@ public class TokenManager {
     private SharedPreferences.Editor editor;
 
     public TokenManager(Context context) {
+        // TODO: For strict security, upgrade to EncryptedSharedPreferences (requires androidx.security library)
         sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }

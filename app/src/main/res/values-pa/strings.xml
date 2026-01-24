@@ -236,4 +236,32 @@
     <string name="share_report">ਰਿਪੋਰਟ ਸਾਂਝੀ ਕਰੋ</string>
     <string name="share_via">ਇਸ ਰਾਹੀਂ ਸਾਂਝਾ ਕਰੋ</string>
 
+    <!-- Weather Alerts -->
+    <string name="weather_alerts_title">ਮੌਸਮ ਅਲਰਟ</string>
+    <string name="search_location_hint">ਸ਼ਹਿਰ ਜਾਂ ਖੇਤਰ ਖੋਜੋ...</string>
+    <string name="search">ਲੱਭੋ</string>
+    <string name="current_weather">ਮੌਜੂਦਾ ਮੌਸਮ</string>
+    <string name="seven_day_forecast">📅 7-ਦਿਨਾਂ ਦੀ ਭਵਿੱਖਬਾਣੀ</string>
+    <string name="agri_recommendations">🌾 ਖੇਤੀ ਸਿਫਾਰਸ਼ਾਂ</string>
+    <string name="home_card_weather">ਮੌਸਮ ਅਲਰਟ</string>
+
+    <!-- Crop Calendar -->
+    <string name="crop_calendar_title">ਫ਼ਸਲ ਕੈਲੰਡਰ</string>
+    <string name="crop_calendar_subtitle">AI-ਸੰਚਾਲਿਤ ਬਿਜਾਈ ਅਤੇ ਕਟਾਈ ਅਨੁਸੂਚੀ</string>
+    <string name="select_crop">ਫ਼ਸਲ ਚੁਣੋ</string>
+    <string name="generate_schedule">AI ਅਨੁਸੂਚੀ ਬਣਾਓ</string>
+    <string name="home_card_calendar">ਫ਼ਸਲ ਕੈਲੰਡਰ</string>
+
+    <!-- Irrigation Calculator -->
+    <string name="irrigation_title">ਸਿੰਚਾਈ ਕੈਲਕੁਲੇਟਰ</string>
+    <string name="irrigation_subtitle">ਫ਼ਸਲ, ਮਿੱਟੀ ਅਤੇ ਮੌਸਮ ਦੇ ਆਧਾਰ \'ਤੇ ਰੋਜ਼ਾਨਾ ਪਾਣੀ ਦੀ ਲੋੜ</string>
+    <string name="soil_type">ਮਿੱਟੀ ਦੀ ਕਿਸਮ</string>
+    <string name="field_size">ਖੇਤ ਦਾ ਆਕਾਰ</string>
+    <string name="calculate_water">ਪਾਣੀ ਦੀ ਲੋੜ ਗਿਣੋ</string>
+    <string name="water_requirement">ਰੋਜ਼ਾਨਾ ਪਾਣੀ ਦੀ ਲੋੜ</string>
+    <string name="home_card_irrigation">ਸਿੰਚਾਈ</string>
+
+    <!-- Plant Doctor -->
+    <string name="home_card_plant_doctor">ਪੌਦਾ ਡਾਕਟਰ</string>
+
 </resources>

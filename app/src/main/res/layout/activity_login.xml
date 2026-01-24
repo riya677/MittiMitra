@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F7F5"
+    android:background="@color/surface_background"
     android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@color/brand_green"
+        android:layout_height="320dp"
+        android:background="@drawable/bg_header_gradient"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -27,11 +27,11 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
             android:src="@drawable/mittimitra_logo"
             android:scaleType="centerCrop"
-            android:background="@color/text_white"
+            android:background="@color/surface_card"
             android:padding="2dp"
             android:contentDescription="@string/desc_logo"
             app:shapeAppearanceOverlay="@style/CircleImageStyle" />
@@ -40,29 +40,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_welcome"
-            android:textColor="@color/text_white"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
+            android:fontFamily="sans-serif-black"
+            android:layout_marginTop="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_subtitle"
-            android:textColor="@color/brand_green_light"
+            android:textColor="@color/brand_primary_light"
             android:textSize="14sp"
             android:gravity="center"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="6dp"
+            android:alpha="0.8"/>
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="32dp"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="8dp"
-        app:cardBackgroundColor="@color/text_white"
+        android:layout_marginTop="40dp"
+        style="@style/Widget.Mitti.Card"
+        app:cardBackgroundColor="@color/surface_card"
         app:layout_constraintTop_toBottomOf="@id/layout_header_content">
 
         <LinearLayout
@@ -76,13 +76,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="@string/login_google"
-                android:textColor="@color/text_dark"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                app:backgroundTint="@color/text_white"
-                app:strokeColor="#E0E0E0"
+                android:textColor="@color/text_primary"
+                style="@style/Widget.Mitti.Button.Outlined"
                 app:strokeWidth="1dp"
-                app:cornerRadius="30dp"
+                app:strokeColor="#E0E0E0"
                 app:icon="@android:drawable/ic_dialog_email"
                 app:iconTint="#EA4335"
                 app:iconGravity="textStart"
@@ -94,50 +91,41 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:layout_marginBottom="24dp">
-                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#F5F5F5"/>
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#E0E0E0"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/login_or_divider"
-                    android:textColor="#757575"
+                    android:textColor="@color/text_tertiary"
                     android:textSize="12sp"
-                    android:paddingHorizontal="8dp"/>
-                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#F5F5F5"/>
+                    android:paddingHorizontal="12dp"/>
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#E0E0E0"/>
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login_hint_phone"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:boxStrokeColor="@color/brand_green"
-                app:hintTextColor="@color/brand_green"
-                app:boxCornerRadiusTopStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusBottomEnd="12dp"
+                style="@style/Widget.Mitti.TextInputLayout"
                 app:startIconDrawable="@android:drawable/ic_menu_call"
-                app:startIconTint="@color/brand_green">
+                app:startIconTint="@color/brand_primary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_phone_auth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
-                    android:textColor="@color/text_dark"
+                    android:textColor="@color/text_primary"
                     android:textSize="16sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_send_otp"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="56dp"
                 android:text="@string/login_btn_otp"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                app:backgroundTint="@color/brand_green"
-                app:cornerRadius="28dp"
-                android:layout_marginTop="16dp"/>
+                style="@style/Widget.Mitti.Button"
+                android:layout_marginTop="20dp"/>
 
             <LinearLayout
                 android:id="@+id/layout_otp_verify"
@@ -145,21 +133,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="20dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/login_hint_otp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/brand_green"
-                    app:hintTextColor="@color/brand_green"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusBottomEnd="12dp"
+                    style="@style/Widget.Mitti.TextInputLayout"
                     app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
-                    app:startIconTint="@color/brand_green">
+                    app:startIconTint="@color/brand_primary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_otp_code"
@@ -168,7 +150,7 @@
                         android:inputType="number"
                         android:maxLength="6"
                         android:letterSpacing="0.2"
-                        android:textColor="@color/text_dark"
+                        android:textColor="@color/text_primary"
                         android:textSize="18sp"
                         android:gravity="center"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -176,13 +158,10 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_verify_otp"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="56dp"
                     android:text="@string/login_btn_verify"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    app:backgroundTint="#2E7D32"
-                    app:cornerRadius="28dp"
-                    android:layout_marginTop="16dp"/>
+                    style="@style/Widget.Mitti.Button"
+                    android:layout_marginTop="20dp"/>
             </LinearLayout>
 
             <TextView
@@ -192,7 +171,7 @@
                 android:text="@string/login_trouble"
                 android:layout_gravity="center"
                 android:padding="12dp"
-                android:textColor="@color/brand_green"
+                android:textColor="@color/brand_primary"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"/>
 
@@ -201,10 +180,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:indeterminateTint="@color/brand_green"
+                android:indeterminateTint="@color/brand_primary"
                 android:visibility="gone"/>
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

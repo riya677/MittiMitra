@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground"
+    android:background="@color/surface_background"
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:background="@color/surface_background"
         app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
@@ -18,17 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="?attr/homeAsUpIndicator">
-
+            
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/scan_title"
+                style="@style/TextAppearance.Mitti.Headline"
                 android:textSize="20sp"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:maxLines="1"
-                android:ellipsize="end"/>
+                android:layout_gravity="center"/>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -42,19 +39,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp"
+            android:padding="24dp"
             android:clipToPadding="false">
 
+            <!-- Scan Area -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_image"
+                style="@style/Widget.Mitti.Card"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="4dp"
-                app:strokeColor="?android:attr/textColorSecondary"
-                app:strokeWidth="1dp"
-                app:cardBackgroundColor="?attr/colorSurface"
-                android:layout_marginBottom="20dp">
+                android:layout_height="320dp"
+                app:cardBackgroundColor="@color/surface_card"
+                android:layout_marginBottom="24dp">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -64,19 +59,32 @@
                         android:id="@+id/image_view_placeholder"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="center"
-                        android:src="@android:drawable/ic_menu_camera"
-                        android:background="?attr/colorSurface"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_placeholder_pattern"
                         android:contentDescription="@string/desc_image_preview"/>
-
+                    
+                    <!-- Empty State Icon overlay -->
                     <LinearLayout
                         android:id="@+id/layout_scan_hint"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical"
-                        android:gravity="center"/>
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                         <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@android:drawable/ic_menu_camera"
+                            app:tint="@color/text_hint"
+                            android:importantForAccessibility="no"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/scan_hint_text"
+                            android:layout_marginTop="16dp"
+                            android:textColor="@color/text_hint"/>
+                    </LinearLayout>
 
+                    <!-- Control Bar -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -87,151 +95,155 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_upload"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_marginEnd="16dp"
+                            style="@style/Widget.Mitti.Button.Outlined"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
                             android:layout_weight="1"
                             android:text="@string/scan_btn_gallery"
-                            app:cornerRadius="25dp"
                             app:icon="@android:drawable/ic_menu_gallery"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
+                            android:textColor="@color/brand_primary"
+                            app:strokeColor="@color/brand_primary"
+                            app:backgroundTint="@color/surface_card"/>
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_camera"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
+                            style="@style/Widget.Mitti.Button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/scan_btn_camera"
-                            app:cornerRadius="25dp"
-                            app:icon="@android:drawable/ic_menu_camera"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
+                            app:icon="@android:drawable/ic_menu_camera"/>
                     </LinearLayout>
                 </FrameLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Environmental Data -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/scan_env_data"
-                android:textSize="18sp"
+                style="@style/TextAppearance.Mitti.Subhead"
                 android:textStyle="bold"
-                android:textColor="?android:attr/textColorPrimary"
-                android:layout_marginBottom="12dp"
-                android:maxLines="1"
-                android:ellipsize="end"/>
+                android:layout_marginBottom="16dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:baselineAligned="false"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="24dp">
 
+                <!-- Weather Card -->
                 <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.Mitti.Card"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginEnd="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="0dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="?android:attr/textColorSecondary"
-                    app:cardBackgroundColor="?attr/colorSurface">
+                    android:layout_marginEnd="8dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="16dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/scan_weather"
-                            android:textSize="12sp"
-                            android:textColor="?android:attr/textColorSecondary"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
+                        <LinearLayout 
+                            android:layout_width="wrap_content" 
+                            android:layout_height="wrap_content" 
+                            android:orientation="horizontal" 
+                            android:gravity="center_vertical">
+                             <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/ic_menu_today" app:tint="@color/text_secondary"/>
+                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/scan_weather"
+                                android:layout_marginStart="8dp"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary"/>
+                        </LinearLayout>
+                        
                         <TextView
                             android:id="@+id/tv_card_weather"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="--"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="4dp"
-                            android:textColor="?android:attr/textColorPrimary"/>
+                            android:layout_marginTop="8dp"
+                            android:textColor="@color/text_primary"/>
+                            
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/scan_locating"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="8dp"
                             style="@style/Widget.MaterialComponents.Chip.Action"
-                            app:chipBackgroundColor="?attr/colorSurface"
-                            app:chipMinHeight="24dp"
-                            android:textSize="10sp"/>
+                            app:chipBackgroundColor="@color/brand_primary_light"
+                            android:textColor="@color/brand_primary_dark"
+                            app:chipMinHeight="28dp"
+                            android:textSize="11sp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Moisture Card -->
                 <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.Mitti.Card"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="0dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="?android:attr/textColorSecondary"
-                    app:cardBackgroundColor="?attr/colorSurface">
+                    android:layout_marginStart="8dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:padding="16dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/scan_moisture"
-                            android:textSize="12sp"
-                            android:textColor="?android:attr/textColorSecondary"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
+                        <LinearLayout 
+                            android:layout_width="wrap_content" 
+                            android:layout_height="wrap_content" 
+                            android:orientation="horizontal" 
+                            android:gravity="center_vertical">
+                             <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/ic_menu_compass" app:tint="@color/text_secondary"/>
+                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/scan_moisture"
+                                android:layout_marginStart="8dp"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary"/>
+                        </LinearLayout>
+                        
                         <TextView
                             android:id="@+id/tv_card_moisture"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="--"
-                            android:textSize="20sp"
+                            android:textSize="22sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="4dp"
-                            android:textColor="@color/color_moisture"/>
+                            android:layout_marginTop="8dp"
+                            android:textColor="@color/brand_accent"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
-            <TextView
+            <!-- Nutrients Header -->
+             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/scan_nutrients"
-                android:textSize="18sp"
+                style="@style/TextAppearance.Mitti.Subhead"
                 android:textStyle="bold"
-                android:textColor="?android:attr/textColorPrimary"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="20dp"
-                android:maxLines="1"
-                android:ellipsize="end"/>
+                android:layout_marginBottom="16dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="4"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="24dp">
 
-                <include layout="@layout/item_nutrient_card" android:id="@+id/card_n" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="4dp"/>
-                <include layout="@layout/item_nutrient_card" android:id="@+id/card_p" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="4dp"/>
-                <include layout="@layout/item_nutrient_card" android:id="@+id/card_k" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="4dp"/>
+                <include layout="@layout/item_nutrient_card" android:id="@+id/card_n" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="6dp"/>
+                <include layout="@layout/item_nutrient_card" android:id="@+id/card_p" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="6dp"/>
+                <include layout="@layout/item_nutrient_card" android:id="@+id/card_k" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="6dp"/>
                 <include layout="@layout/item_nutrient_card" android:id="@+id/card_ph" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
 
             </LinearLayout>
@@ -240,19 +252,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/scan_hint"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:boxBackgroundColor="?attr/colorSurface"
-                app:boxCornerRadiusTopStart="16dp"
-                app:boxCornerRadiusTopEnd="16dp"
-                app:boxCornerRadiusBottomStart="16dp"
-                app:boxCornerRadiusBottomEnd="16dp">
+                style="@style/Widget.Mitti.TextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_user_notes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:inputType="textCapSentences"/>
+                    android:inputType="textCapSentences"
+                    android:lines="2"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -261,27 +268,21 @@
                 android:layout_height="wrap_content"
                 android:text="@string/scan_status_ready"
                 android:gravity="center"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:textSize="12sp"
-                android:textColor="?android:attr/textColorSecondary"
-                android:maxLines="1"
-                android:ellipsize="end"/>
+                android:textColor="@color/text_tertiary"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="8dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_analyze"
+                    style="@style/Widget.Mitti.Button"
                     android:layout_width="match_parent"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/scan_btn_analyze"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="16dp"
-                    app:elevation="4dp"
-                    app:backgroundTint="@color/brand_green"
                     android:visibility="gone"/>
 
                 <ProgressBar

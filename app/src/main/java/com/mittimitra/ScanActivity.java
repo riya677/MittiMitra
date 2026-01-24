@@ -1,6 +1,7 @@
 package com.mittimitra;
 
 import com.mittimitra.utils.NutrientStatus;
+import com.mittimitra.utils.WeatherUtils;
 
 import android.Manifest;
 import android.content.Context;
@@ -309,12 +310,28 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
                 if (response.body() != null) {
                     try {
                         JsonObject current = response.body().getAsJsonObject("current");
-                        weatherSummary = String.format(Locale.US, "%.0f°C | %d%%",
-                                current.get("temperature_2m").getAsDouble(),
-                                current.get("relative_humidity_2m").getAsInt());
+                        
+                        double temp = current.get("temperature_2m").getAsDouble();
+                        int humidity = current.get("relative_humidity_2m").getAsInt();
+                        double precipitation = current.has("precipitation") ? current.get("precipitation").getAsDouble() : 0.0;
+                        double windSpeed = current.has("wind_speed_10m") ? current.get("wind_speed_10m").getAsDouble() : 0.0;
+                        int weatherCode = current.has("weather_code") ? current.get("weather_code").getAsInt() : 0;
+
+                        // Weather Summary
+                        String[] desc = WeatherUtils.getWeatherDescription(weatherCode);
+                        weatherSummary = String.format(Locale.US, "%s %.0f°C | %d%%", desc[0], temp, humidity);
+
                         if (current.has("soil_moisture_0_to_1cm")) {
                             soilDynamic = String.format(Locale.US, "%.2f", current.get("soil_moisture_0_to_1cm").getAsDouble());
                         }
+                        
+                        // Show actionable alerts if any
+                        List<String> alerts = WeatherUtils.getAgriculturalRecommendations(temp, humidity, windSpeed, precipitation);
+                        if(!alerts.isEmpty() && !alerts.get(0).startsWith("✅")) {
+                             String primaryAlert = alerts.get(0).split(":")[0]; // Get Title
+                             runOnUiThread(() -> Snackbar.make(layoutScanHint, "⚠️ Alert: " + primaryAlert, Snackbar.LENGTH_LONG).show());
+                        }
+
                         cacheData("weather", weatherSummary);
                         cacheData("soil_dyn", soilDynamic);
                         updateDashboardUI();
@@ -485,6 +502,9 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
                 analysis.timestamp = System.currentTimeMillis();
                 analysis.soilReportJson = report.toString();
                 MittiMitraDatabase.getDatabase(this).soilDao().insertAnalysis(analysis);
+
+                // Save soil type for Irrigation Calculator
+                new AppPreferences(ScanActivity.this).setLastSoilType(detectedSoilType);
 
                 runOnUiThread(() -> {
                     Intent intent = new Intent(ScanActivity.this, RecommendationActivity.class);

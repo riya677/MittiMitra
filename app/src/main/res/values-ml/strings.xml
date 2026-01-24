@@ -236,4 +236,32 @@
     <string name="share_report">റിപ്പോർട്ട് പങ്കിടുക</string>
     <string name="share_via">ഇതുവഴി പങ്കിടുക</string>
 
+    <!-- Weather Alerts -->
+    <string name="weather_alerts_title">കാലാവസ്ഥ അലർട്ടുകൾ</string>
+    <string name="search_location_hint">നഗരം അല്ലെങ്കിൽ പ്രദേശം തിരയുക...</string>
+    <string name="search">തിരയുക</string>
+    <string name="current_weather">നിലവിലെ കാലാവസ്ഥ</string>
+    <string name="seven_day_forecast">📅 7-ദിവസത്തെ പ്രവചനം</string>
+    <string name="agri_recommendations">🌾 കാർഷിക ശുപാർശകൾ</string>
+    <string name="home_card_weather">കാലാവസ്ഥ അലർട്ട്</string>
+
+    <!-- Crop Calendar -->
+    <string name="crop_calendar_title">വിള കലണ്ടർ</string>
+    <string name="crop_calendar_subtitle">AI-പ്രവർത്തിത വിതയ്ക്കലും വിളവെടുപ്പും ഷെഡ്യൂൾ</string>
+    <string name="select_crop">വിള തിരഞ്ഞെടുക്കുക</string>
+    <string name="generate_schedule">AI ഷെഡ്യൂൾ സൃഷ്ടിക്കുക</string>
+    <string name="home_card_calendar">വിള കലണ്ടർ</string>
+
+    <!-- Irrigation Calculator -->
+    <string name="irrigation_title">ജലസേചന കാൽക്കുലേറ്റർ</string>
+    <string name="irrigation_subtitle">വിള, മണ്ണ്, കാലാവസ്ഥ എന്നിവയുടെ അടിസ്ഥാനത്തിൽ ദൈനംദിന ജല ആവശ്യം</string>
+    <string name="soil_type">മണ്ണിന്റെ തരം</string>
+    <string name="field_size">പാടത്തിന്റെ വലിപ്പം</string>
+    <string name="calculate_water">ജല ആവശ്യം കണക്കാക്കുക</string>
+    <string name="water_requirement">ദൈനംദിന ജല ആവശ്യം</string>
+    <string name="home_card_irrigation">ജലസേചനം</string>
+
+    <!-- Plant Doctor -->
+    <string name="home_card_plant_doctor">സസ്യ ഡോക്ടർ</string>
+
 </resources>

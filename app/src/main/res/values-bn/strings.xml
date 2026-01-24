@@ -236,4 +236,32 @@
     <string name="share_report">রিপোর্ট শেয়ার করুন</string>
     <string name="share_via">এর মাধ্যমে শেয়ার করুন</string>
 
+    <!-- Weather Alerts -->
+    <string name="weather_alerts_title">আবহাওয়া সতর্কতা</string>
+    <string name="search_location_hint">শহর বা অঞ্চল খুঁজুন...</string>
+    <string name="search">খুঁজুন</string>
+    <string name="current_weather">বর্তমান আবহাওয়া</string>
+    <string name="seven_day_forecast">📅 ৭-দিনের পূর্বাভাস</string>
+    <string name="agri_recommendations">🌾 কৃষি পরামর্শ</string>
+    <string name="home_card_weather">আবহাওয়া সতর্কতা</string>
+
+    <!-- Crop Calendar -->
+    <string name="crop_calendar_title">ফসল পঞ্জিকা</string>
+    <string name="crop_calendar_subtitle">AI-চালিত বপন এবং কাটার সময়সূচী</string>
+    <string name="select_crop">ফসল নির্বাচন করুন</string>
+    <string name="generate_schedule">AI সময়সূচী তৈরি করুন</string>
+    <string name="home_card_calendar">ফসল পঞ্জিকা</string>
+
+    <!-- Irrigation Calculator -->
+    <string name="irrigation_title">সেচ ক্যালকুলেটর</string>
+    <string name="irrigation_subtitle">ফসল, মাটি এবং আবহাওয়ার ভিত্তিতে দৈনিক পানির প্রয়োজনীয়তা</string>
+    <string name="soil_type">মাটির ধরন</string>
+    <string name="field_size">জমির আকার</string>
+    <string name="calculate_water">পানির গণনা করুন</string>
+    <string name="water_requirement">দৈনিক পানির প্রয়োজনীয়তা</string>
+    <string name="home_card_irrigation">সেচ</string>
+
+    <!-- Plant Doctor -->
+    <string name="home_card_plant_doctor">উদ্ভিদ ডাক্তার</string>
+
 </resources>

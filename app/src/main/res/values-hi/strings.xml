@@ -4,7 +4,7 @@
     <string name="welcome_subtitle">आपका अपना खेती सहायक</string>
     <string name="button_scan">मिट्टी जाँच</string>
     <string name="button_history">पुराना रिकॉर्ड</string>
-    <string name="button_tips">सुझाव</string>
+
     <string name="button_recommendation">सलाह</string>
     <string name="button_documents">दस्तावेज़</string>
 
@@ -16,7 +16,7 @@
     <string name="scan_title">नई मिट्टी जाँच</string>
     <string name="scan_btn_camera">कैमरा</string>
     <string name="scan_btn_gallery">गैलरी</string>
-    <string name="scan_btn_analyze">जाँच और सिफारिश</string>
+    <string name="scan_btn_analyze">Analyze Plant</string>
     <string name="scan_status_ready">स्कैन के लिए तैयार</string>
     <string name="alert_too_dark">बहुत अंधेरा है! छाया से बचने के लिए रोशनी में आएं ☀️</string>
     
@@ -37,4 +37,32 @@
     
     <!-- Fallback for untranslated strings -->
     <string name="unit_result_format">परिणाम: %1$.2f %2$s</string>
+
+    <!-- Weather Alerts -->
+    <string name="weather_alerts_title">मौसम अलर्ट</string>
+    <string name="search_location_hint">शहर या क्षेत्र खोजें...</string>
+    <string name="search">खोजें</string>
+    <string name="current_weather">वर्तमान मौसम</string>
+    <string name="seven_day_forecast">📅 7-दिन का पूर्वानुमान</string>
+    <string name="agri_recommendations">🌾 कृषि सलाह</string>
+    <string name="home_card_weather">मौसम अलर्ट</string>
+
+    <!-- Crop Calendar -->
+    <string name="crop_calendar_title">फसल कैलेंडर</string>
+    <string name="crop_calendar_subtitle">AI-संचालित बुवाई और कटाई अनुसूची</string>
+    <string name="select_crop">फसल चुनें</string>
+    <string name="generate_schedule">AI अनुसूची बनाएं</string>
+    <string name="home_card_calendar">फसल कैलेंडर</string>
+
+    <!-- Irrigation Calculator -->
+    <string name="irrigation_title">सिंचाई कैलकुलेटर</string>
+    <string name="irrigation_subtitle">फसल, मिट्टी और मौसम के आधार पर दैनिक पानी की आवश्यकता</string>
+    <string name="soil_type">मिट्टी का प्रकार</string>
+    <string name="field_size">खेत का आकार</string>
+    <string name="calculate_water">पानी की गणना करें</string>
+    <string name="water_requirement">दैनिक पानी की आवश्यकता</string>
+    <string name="home_card_irrigation">सिंचाई</string>
+
+    <!-- Plant Doctor -->
+    <string name="home_card_plant_doctor">पौधा डॉक्टर</string>
 </resources>
