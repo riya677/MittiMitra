@@ -44,6 +44,9 @@ public class ProfileActivity extends BaseActivity {
     private SessionManager sessionManager;
     private RecyclerView recyclerRecent;
     private TextView tvNoHistory;
+    
+    // Stats Views
+    private TextView tvBadgeIcon, tvBadgeName, tvLandSize, tvCropName;
 
     // Firebase (Only Firestore now, NO Storage)
     private FirebaseFirestore db;
@@ -91,6 +94,12 @@ public class ProfileActivity extends BaseActivity {
         FloatingActionButton fabEdit = findViewById(R.id.fab_edit_profile);
         ImageView btnChangePhoto = findViewById(R.id.btn_change_photo);
 
+        // Stats
+        tvBadgeIcon = findViewById(R.id.tv_stat_badge_icon);
+        tvBadgeName = findViewById(R.id.tv_stat_badge);
+        tvLandSize = findViewById(R.id.tv_stat_land);
+        tvCropName = findViewById(R.id.tv_stat_crop);
+
         // Setup Data
         tvName.setText(sessionManager.getUserName());
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -113,6 +122,7 @@ public class ProfileActivity extends BaseActivity {
 
         recyclerRecent.setLayoutManager(new LinearLayoutManager(this));
         loadRecentHistory();
+        loadFarmStats();
 
         // Listeners
         fabEdit.setOnClickListener(v -> showEditDialog());
@@ -308,6 +318,45 @@ public class ProfileActivity extends BaseActivity {
                 }
             });
         }).start();
+    }
+
+    private void loadFarmStats() {
+        // 1. Load Session Data
+        AppPreferences prefs = new AppPreferences(this);
+        
+        String landSize = prefs.getLastFieldSize();
+        tvLandSize.setText(landSize.isEmpty() ? "--" : landSize + " Acres");
+        
+        String crop = prefs.getLastCrop();
+        if (crop != null) {
+             tvCropName.setText(crop.split(" ")[0]); // "Wheat" from "Wheat (Gehu)"
+        } else {
+            tvCropName.setText("None");
+        }
+
+        // 2. Load Badge based on Scan History Count
+        new Thread(() -> {
+            int scanCount = MittiMitraDatabase.getDatabase(this)
+                    .soilDao().getAllSoilAnalysis().size();
+            
+            runOnUiThread(() -> updateBadge(scanCount));
+        }).start();
+    }
+
+    private void updateBadge(int scanCount) {
+        if (scanCount >= 50) {
+            tvBadgeIcon.setText("👑");
+            tvBadgeName.setText("Mitti Mitra");
+        } else if (scanCount >= 20) {
+            tvBadgeIcon.setText("🌳");
+            tvBadgeName.setText("Guardian");
+        } else if (scanCount >= 5) {
+            tvBadgeIcon.setText("🌿");
+            tvBadgeName.setText("Expert");
+        } else {
+            tvBadgeIcon.setText("🌱");
+            tvBadgeName.setText("Novice");
+        }
     }
 
     @Override
