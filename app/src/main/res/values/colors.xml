@@ -60,4 +60,6 @@
     <!-- Dividers -->
     <color name="divider">#E0E0E0</color>
 
+    <color name="brand_surface">#FFFFFF</color>
+
 </resources>

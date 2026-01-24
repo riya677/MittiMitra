@@ -152,7 +152,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🌾 My Farm Dashboard"
+                        android:text="@string/profile_farm_dashboard"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/brand_green"
@@ -181,13 +181,13 @@
                                 android:id="@+id/tv_stat_badge"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Novice"
+                                android:text="@string/profile_rank_novice"
                                 android:textStyle="bold"
                                 android:textColor="@color/text_primary"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Rank"
+                                android:text="@string/profile_stat_rank"
                                 android:textSize="12sp"/>
                         </LinearLayout>
 
@@ -213,7 +213,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Land Size"
+                                android:text="@string/profile_stat_land"
                                 android:textSize="12sp"/>
                         </LinearLayout>
 
@@ -233,13 +233,13 @@
                                 android:id="@+id/tv_stat_crop"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="None"
+                                android:text="@string/status_none"
                                 android:textStyle="bold"
                                 android:textColor="@color/text_primary"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Active Crop"
+                                android:text="@string/profile_stat_crop"
                                 android:textSize="12sp"/>
                         </LinearLayout>
                     </LinearLayout>

@@ -37,14 +37,8 @@ public class IrrigationActivity extends AppCompatActivity {
     private TextView tvWaterRequired, tvIrrigationAdvice, tvWeatherNote;
     private AppPreferences prefs;
 
-    private final String[] CROPS = {
-        "Rice", "Wheat", "Maize", "Cotton", "Sugarcane",
-        "Tomato", "Potato", "Onion", "Chilli", "Soybean"
-    };
-
-    private final String[] SOIL_TYPES = {
-        "Clay (चिकनी)", "Sandy (बालू)", "Loamy (दोमट)", "Black (काली)", "Red (लाल)"
-    };
+    private String[] crops;
+    private String[] soilTypes;
 
     // Water requirement in mm/day for each crop (approximate)
     private final double[] CROP_WATER_NEEDS = {
@@ -99,8 +93,11 @@ public class IrrigationActivity extends AppCompatActivity {
     }
 
     private void setupSpinners() {
+        crops = getResources().getStringArray(R.array.irrigation_crops);
+        soilTypes = getResources().getStringArray(R.array.irrigation_soil_types);
+
         ArrayAdapter<String> cropAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, CROPS);
+                android.R.layout.simple_spinner_item, crops);
         cropAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCrop.setAdapter(cropAdapter);
 
@@ -108,8 +105,8 @@ public class IrrigationActivity extends AppCompatActivity {
         String lastCrop = prefs.getLastCrop();
         if (lastCrop != null) {
             String cropName = lastCrop.split(" ")[0]; // Match by first word
-            for (int i = 0; i < CROPS.length; i++) {
-                if (CROPS[i].startsWith(cropName)) {
+            for (int i = 0; i < crops.length; i++) {
+                if (crops[i].startsWith(cropName)) {
                     spinnerCrop.setSelection(i);
                     break;
                 }
@@ -117,15 +114,15 @@ public class IrrigationActivity extends AppCompatActivity {
         }
 
         ArrayAdapter<String> soilAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, SOIL_TYPES);
+                android.R.layout.simple_spinner_item, soilTypes);
         soilAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSoilType.setAdapter(soilAdapter);
 
         // Session: Pre-fill Soil Type
         String lastSoil = prefs.getLastSoilType();
         if (lastSoil != null) {
-            for (int i = 0; i < SOIL_TYPES.length; i++) {
-                if (SOIL_TYPES[i].startsWith(lastSoil)) {
+            for (int i = 0; i < soilTypes.length; i++) {
+                if (soilTypes[i].startsWith(lastSoil)) {
                     spinnerSoilType.setSelection(i);
                     break;
                 }
@@ -184,7 +181,7 @@ public class IrrigationActivity extends AppCompatActivity {
     private void calculateWaterRequirement() {
         String fieldSizeStr = etFieldSize.getText().toString().trim();
         if (fieldSizeStr.isEmpty()) {
-            Toast.makeText(this, "Please enter field size", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.irrigation_hint_size), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -195,7 +192,7 @@ public class IrrigationActivity extends AppCompatActivity {
         try {
             fieldSizeAcres = Double.parseDouble(fieldSizeStr);
         } catch (NumberFormatException e) {
-            Toast.makeText(this, "Invalid field size", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.irrigation_error_size), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -229,7 +226,7 @@ public class IrrigationActivity extends AppCompatActivity {
         double totalLiters = litersPerAcre * fieldSizeAcres;
 
         // Display results
-        String waterText = String.format("💧 %.0f liters/day\n(%.1f mm depth)", totalLiters, effectiveWater);
+        String waterText = getString(R.string.irrigation_result_water, totalLiters, effectiveWater);
         tvWaterRequired.setText(waterText);
 
         // Get irrigation advice
@@ -237,9 +234,9 @@ public class IrrigationActivity extends AppCompatActivity {
         tvIrrigationAdvice.setText(advice);
 
         // Weather note
-        String weatherNote = String.format("📍 %s\n🌡️ Current: %.1f°C, 💧 Humidity: %.0f%%", prefs.getLastLocationName(), currentTemp, currentHumidity);
+        String weatherNote = getString(R.string.irrigation_weather_note, prefs.getLastLocationName(), currentTemp, currentHumidity);
         if (currentPrecipitation > 0) {
-            weatherNote += String.format("\n🌧️ Recent rain: %.1f mm", currentPrecipitation);
+            weatherNote += getString(R.string.irrigation_rain_append, String.format("%.1f", currentPrecipitation));
         }
         tvWeatherNote.setText(weatherNote);
 

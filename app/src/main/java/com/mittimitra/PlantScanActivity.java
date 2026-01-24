@@ -122,7 +122,7 @@ public class PlantScanActivity extends BaseActivity {
         if (currentBitmap == null) return;
 
         progressBar.setVisibility(View.VISIBLE);
-        tvStatus.setText("Running Advanced Analysis...");
+        tvStatus.setText(R.string.plant_status_scanning);
         btnAnalyze.setEnabled(false);
 
         // 1. Run Classification (Fast, Specialized)
@@ -213,11 +213,11 @@ public class PlantScanActivity extends BaseActivity {
                                 
                                 parseAndShowGroqResult(content);
                             } catch (Exception e) {
-                                tvStatus.setText("Error parsing AI response.");
+                                tvStatus.setText(R.string.plant_status_error);
                                 Log.e(TAG, "Groq Parse Error", e);
                             }
                         } else {
-                            tvStatus.setText("AI Analysis Unavailable (" + response.code() + ")");
+                            tvStatus.setText(getString(R.string.plant_status_unavailable, String.valueOf(response.code())));
                              try {
                                 Log.e(TAG, "Groq Error: " + response.errorBody().string());
                             } catch (IOException e) {}
@@ -230,7 +230,8 @@ public class PlantScanActivity extends BaseActivity {
                     runOnUiThread(() -> {
                         progressBar.setVisibility(View.GONE);
                         btnAnalyze.setEnabled(true);
-                        tvStatus.setText("Network Error: " + t.getMessage());
+                        btnAnalyze.setEnabled(true);
+                        tvStatus.setText(getString(R.string.alert_network_error));
                     });
                 }
             });
@@ -285,7 +286,7 @@ public class PlantScanActivity extends BaseActivity {
             }
 
             tvResultDesc.setText(desc.toString());
-            tvStatus.setText("AI Analysis Complete");
+            tvStatus.setText(R.string.plant_status_complete);
 
         } catch (Exception e) {
             // Fallback if JSON parsing fails - show raw text

@@ -1,267 +1,302 @@
-<resources>
-    <string name="app_name">മിട്ടി മിത്ര</string>
+﻿<resources>
+    <string name="app_name">à´®à´¿à´Ÿàµà´Ÿà´¿ à´®à´¿à´¤àµà´°</string>
 
-    <string name="welcome_subtitle">നിങ്ങളുടെ വ്യക്തിഗത കാർഷിക സഹായി</string>
-    <string name="login">ലോഗിൻ</string>
-    <string name="signup">സൈൻ അപ്പ്</string>
+    <string name="welcome_subtitle">à´¨à´¿à´™àµà´™à´³àµà´Ÿàµ† à´µàµà´¯à´•àµà´¤à´¿à´—à´¤ à´•à´¾àµ¼à´·à´¿à´• à´¸à´¹à´¾à´¯à´¿</string>
+    <string name="login">à´²àµ‹à´—à´¿àµ»</string>
+    <string name="signup">à´¸àµˆàµ» à´…à´ªàµà´ªàµ</string>
 
-    <string name="greeting_format">നമസ്കാരം, %s</string>
-    <string name="greeting_default">നമസ്കാരം, ഉപയോക്താവ്</string>
-    <string name="last_scan">അവസാന സ്കാൻ</string>
-    <string name="button_tip">നുറുങ്ങ്</string>
-    <string name="button_recommendation">ശുപാർശ</string>
-    <string name="button_history">ചരിത്രം</string>
-    <string name="button_scan">സ്കാൻ</string>
-    <string name="button_documents">രേഖകൾ</string>
+    <string name="greeting_format">à´¨à´®à´¸àµà´•à´¾à´°à´‚, %s</string>
+    <string name="greeting_default">à´¨à´®à´¸àµà´•à´¾à´°à´‚, à´‰à´ªà´¯àµ‹à´•àµà´¤à´¾à´µàµ</string>
+    <string name="last_scan">à´…à´µà´¸à´¾à´¨ à´¸àµà´•à´¾àµ»</string>
+    <string name="button_tip">à´¨àµà´±àµà´™àµà´™àµ</string>
+    <string name="button_recommendation">à´¶àµà´ªà´¾àµ¼à´¶</string>
+    <string name="button_history">à´šà´°à´¿à´¤àµà´°à´‚</string>
+    <string name="button_scan">à´¸àµà´•à´¾àµ»</string>
+    <string name="button_documents">à´°àµ‡à´–à´•àµ¾</string>
 
-    <string name="menu_settings">ക്രമീകരണങ്ങൾ</string>
-    <string name="menu_help">സഹായം</string>
-    <string name="menu_contact">ബന്ധപ്പെടുക</string>
-    <string name="menu_logout">ലോഗ് ഔട്ട്</string>
+    <string name="menu_settings">à´•àµà´°à´®àµ€à´•à´°à´£à´™àµà´™àµ¾</string>
+    <string name="menu_help">à´¸à´¹à´¾à´¯à´‚</string>
+    <string name="menu_contact">à´¬à´¨àµà´§à´ªàµà´ªàµ†à´Ÿàµà´•</string>
+    <string name="menu_logout">à´²àµ‹à´—àµ à´”à´Ÿàµà´Ÿàµ</string>
 
-    <string name="setting_language">ഭാഷ</string>
-    <string name="setting_accessibility">ആക്സസ്സിബിലിറ്റി</string>
-    <string name="setting_theme">ആപ്പ് തീം</string>
-    <string name="setting_manage_data">ഡാറ്റ കൈകാര്യം ചെയ്യുക</string>
+    <string name="setting_language">à´­à´¾à´·</string>
+    <string name="setting_accessibility">à´†à´•àµà´¸à´¸àµà´¸à´¿à´¬à´¿à´²à´¿à´±àµà´±à´¿</string>
+    <string name="setting_theme">à´†à´ªàµà´ªàµ à´¤àµ€à´‚</string>
+    <string name="setting_manage_data">à´¡à´¾à´±àµà´± à´•àµˆà´•à´¾à´°àµà´¯à´‚ à´šàµ†à´¯àµà´¯àµà´•</string>
 
-    <string name="setting_unit_converter">ഭൂമി അളവ് മാറ്റുന്ന ഉപകരണം</string>
-    <string name="setting_unit_converter_desc">ഏക്കർ, ഹെക്ടർ, ബിഘ, ഗുന്ത എന്നിവ മാറ്റുക.</string>
-    <string name="setting_kisan_call">കിസാൻ ഹെൽപ്പ്ലൈൻ വിളിക്കുക</string>
-    <string name="setting_kisan_call_desc">സർക്കാർ കിസാൻ കോൾ സെന്ററുമായി ബന്ധപ്പെടുക (1800-180-1551).</string>
+    <string name="setting_unit_converter">à´­àµ‚à´®à´¿ à´…à´³à´µàµ à´®à´¾à´±àµà´±àµà´¨àµà´¨ à´‰à´ªà´•à´°à´£à´‚</string>
+    <string name="setting_unit_converter_desc">à´à´•àµà´•àµ¼, à´¹àµ†à´•àµà´Ÿàµ¼, à´¬à´¿à´˜, à´—àµà´¨àµà´¤ à´Žà´¨àµà´¨à´¿à´µ à´®à´¾à´±àµà´±àµà´•.</string>
+    <string name="setting_kisan_call">à´•à´¿à´¸à´¾àµ» à´¹àµ†àµ½à´ªàµà´ªàµà´²àµˆàµ» à´µà´¿à´³à´¿à´•àµà´•àµà´•</string>
+    <string name="setting_kisan_call_desc">à´¸àµ¼à´•àµà´•à´¾àµ¼ à´•à´¿à´¸à´¾àµ» à´•àµ‹àµ¾ à´¸àµ†à´¨àµà´±à´±àµà´®à´¾à´¯à´¿ à´¬à´¨àµà´§à´ªàµà´ªàµ†à´Ÿàµà´• (1800-180-1551).</string>
 
-    <string name="language_title">ഭാഷ തിരഞ്ഞെടുക്കുക</string>
-    <string name="language_system_default">സിസ്റ്റം ഡിഫോൾട്ട്</string>
+    <string name="language_title">à´­à´¾à´· à´¤à´¿à´°à´žàµà´žàµ†à´Ÿàµà´•àµà´•àµà´•</string>
+    <string name="language_system_default">à´¸à´¿à´¸àµà´±àµà´±à´‚ à´¡à´¿à´«àµ‹àµ¾à´Ÿàµà´Ÿàµ</string>
     <string name="language_english">English</string>
-    <string name="language_hindi">हिन्दी (Hindi)</string>
-    <string name="language_tamil">தமிழ் (Tamil)</string>
-    <string name="language_malayalam">മലയാളം (Malayalam)</string>
-    <string name="language_telugu">తెలుగు (Telugu)</string>
-    <string name="language_kannada">ಕನ್ನಡ (Kannada)</string>
-    <string name="language_marathi">मराठी (Marathi)</string>
-    <string name="language_bengali">বাংলা (Bengali)</string>
-    <string name="language_gujarati">ગુજરાતી (Gujarati)</string>
-    <string name="language_punjabi">ਪੰਜਾਬੀ (Punjabi)</string>
+    <string name="language_hindi">à¤¹à¤¿à¤¨à¥à¤¦à¥€ (Hindi)</string>
+    <string name="language_tamil">à®¤à®®à®¿à®´à¯ (Tamil)</string>
+    <string name="language_malayalam">à´®à´²à´¯à´¾à´³à´‚ (Malayalam)</string>
+    <string name="language_telugu">à°¤à±†à°²à±à°—à± (Telugu)</string>
+    <string name="language_kannada">à²•à²¨à³à²¨à²¡ (Kannada)</string>
+    <string name="language_marathi">à¤®à¤°à¤¾à¤ à¥€ (Marathi)</string>
+    <string name="language_bengali">à¦¬à¦¾à¦‚à¦²à¦¾ (Bengali)</string>
+    <string name="language_gujarati">àª—à«àªœàª°àª¾àª¤à«€ (Gujarati)</string>
+    <string name="language_punjabi">à¨ªà©°à¨œà¨¾à¨¬à©€ (Punjabi)</string>
 
-    <string name="font_size_title">ഫോണ്ട് വലിപ്പം</string>
-    <string name="font_size_small">ചെറുത്</string>
-    <string name="font_size_default">സാധാരണ</string>
-    <string name="font_size_large">വലുത്</string>
-    <string name="font_size_sample">നിങ്ങളുടെ എഴുത്ത് ഇങ്ങനെയിരിക്കും.</string>
-    <string name="setting_font_dyslexic">ഡിസ്ലെക്സിക് ഫോണ്ട്</string>
-    <string name="setting_font_dyslexic_desc">ഡിസ്ലെക്സിക് ഉപയോക്താക്കൾക്ക് വായിക്കാൻ എളുപ്പമുള്ള ഫോണ്ട്.</string>
+    <string name="font_size_title">à´«àµ‹à´£àµà´Ÿàµ à´µà´²à´¿à´ªàµà´ªà´‚</string>
+    <string name="font_size_small">à´šàµ†à´±àµà´¤àµ</string>
+    <string name="font_size_default">à´¸à´¾à´§à´¾à´°à´£</string>
+    <string name="font_size_large">à´µà´²àµà´¤àµ</string>
+    <string name="font_size_sample">à´¨à´¿à´™àµà´™à´³àµà´Ÿàµ† à´Žà´´àµà´¤àµà´¤àµ à´‡à´™àµà´™à´¨àµ†à´¯à´¿à´°à´¿à´•àµà´•àµà´‚.</string>
+    <string name="setting_font_dyslexic">à´¡à´¿à´¸àµà´²àµ†à´•àµà´¸à´¿à´•àµ à´«àµ‹à´£àµà´Ÿàµ</string>
+    <string name="setting_font_dyslexic_desc">à´¡à´¿à´¸àµà´²àµ†à´•àµà´¸à´¿à´•àµ à´‰à´ªà´¯àµ‹à´•àµà´¤à´¾à´•àµà´•àµ¾à´•àµà´•àµ à´µà´¾à´¯à´¿à´•àµà´•à´¾àµ» à´Žà´³àµà´ªàµà´ªà´®àµà´³àµà´³ à´«àµ‹à´£àµà´Ÿàµ.</string>
 
-    <string name="theme_title">തീം തിരഞ്ഞെടുക്കുക</string>
-    <string name="theme_light">ലൈറ്റ്</string>
-    <string name="theme_dark">ഡാർക്ക്</string>
-    <string name="theme_system">സിസ്റ്റം ഡിഫോൾട്ട്</string>
+    <string name="theme_title">à´¤àµ€à´‚ à´¤à´¿à´°à´žàµà´žàµ†à´Ÿàµà´•àµà´•àµà´•</string>
+    <string name="theme_light">à´²àµˆà´±àµà´±àµ</string>
+    <string name="theme_dark">à´¡à´¾àµ¼à´•àµà´•àµ</string>
+    <string name="theme_system">à´¸à´¿à´¸àµà´±àµà´±à´‚ à´¡à´¿à´«àµ‹àµ¾à´Ÿàµà´Ÿàµ</string>
 
-    <string name="manage_data_title">ഡാറ്റ കൈകാര്യം ചെയ്യുക</string>
-    <string name="manage_data_soil_title">മണ്ണ് പരിശോധന ചരിത്രം മായ്ക്കുക</string>
-    <string name="manage_data_soil_desc">സൂക്ഷിച്ച എല്ലാ മണ്ണ് പരിശോധന റിപ്പോർട്ടുകളും മായ്ക്കുന്നു.</string>
-    <string name="manage_data_docs_title">എല്ലാ രേഖകളും മായ്ക്കുക</string>
-    <string name="manage_data_docs_desc">ഈ ഉപകരണത്തിൽ നിന്ന് അപ്‌ലോഡ് ചെയ്ത എല്ലാ രേഖകളും മായ്ക്കുന്നു.</string>
-    <string name="dialog_are_you_sure">നിങ്ങൾക്ക് ഉറപ്പാണോ?</string>
-    <string name="dialog_delete">മായ്ക്കുക</string>
-    <string name="dialog_cancel">റദ്ദാക്കുക</string>
-    <string name="toast_history_cleared">മണ്ണ് ചരിത്രം മായ്ച്ചു.</string>
-    <string name="toast_documents_cleared">എല്ലാ രേഖകളും മായ്ച്ചു.</string>
+    <string name="manage_data_title">à´¡à´¾à´±àµà´± à´•àµˆà´•à´¾à´°àµà´¯à´‚ à´šàµ†à´¯àµà´¯àµà´•</string>
+    <string name="manage_data_soil_title">à´®à´£àµà´£àµ à´ªà´°à´¿à´¶àµ‹à´§à´¨ à´šà´°à´¿à´¤àµà´°à´‚ à´®à´¾à´¯àµà´•àµà´•àµà´•</string>
+    <string name="manage_data_soil_desc">à´¸àµ‚à´•àµà´·à´¿à´šàµà´š à´Žà´²àµà´²à´¾ à´®à´£àµà´£àµ à´ªà´°à´¿à´¶àµ‹à´§à´¨ à´±à´¿à´ªàµà´ªàµ‹àµ¼à´Ÿàµà´Ÿàµà´•à´³àµà´‚ à´®à´¾à´¯àµà´•àµà´•àµà´¨àµà´¨àµ.</string>
+    <string name="manage_data_docs_title">à´Žà´²àµà´²à´¾ à´°àµ‡à´–à´•à´³àµà´‚ à´®à´¾à´¯àµà´•àµà´•àµà´•</string>
+    <string name="manage_data_docs_desc">à´ˆ à´‰à´ªà´•à´°à´£à´¤àµà´¤à´¿àµ½ à´¨à´¿à´¨àµà´¨àµ à´…à´ªàµâ€Œà´²àµ‹à´¡àµ à´šàµ†à´¯àµà´¤ à´Žà´²àµà´²à´¾ à´°àµ‡à´–à´•à´³àµà´‚ à´®à´¾à´¯àµà´•àµà´•àµà´¨àµà´¨àµ.</string>
+    <string name="dialog_are_you_sure">à´¨à´¿à´™àµà´™àµ¾à´•àµà´•àµ à´‰à´±à´ªàµà´ªà´¾à´£àµ‹?</string>
+    <string name="dialog_delete">à´®à´¾à´¯àµà´•àµà´•àµà´•</string>
+    <string name="dialog_cancel">à´±à´¦àµà´¦à´¾à´•àµà´•àµà´•</string>
+    <string name="toast_history_cleared">à´®à´£àµà´£àµ à´šà´°à´¿à´¤àµà´°à´‚ à´®à´¾à´¯àµà´šàµà´šàµ.</string>
+    <string name="toast_documents_cleared">à´Žà´²àµà´²à´¾ à´°àµ‡à´–à´•à´³àµà´‚ à´®à´¾à´¯àµà´šàµà´šàµ.</string>
 
-    <string name="help_title">സഹായവും പിന്തുണയും</string>
-    <string name="help_faq_title">പതിവ് ചോദ്യങ്ങൾ (FAQ)</string>
-    <string name="help_q1">നല്ല മണ്ണ് സ്കാൻ എങ്ങനെ എടുക്കാം?</string>
-    <string name="help_a1">നല്ല വെളിച്ചം ഉറപ്പാക്കുക, സാമ്പിൾ ഒരു വെള്ള പശ്ചാത്തലത്തിൽ വയ്ക്കുക, ഫോക്കസ് ചെയ്യാൻ ടാപ്പുചെയ്യുക.</string>
-    <string name="help_q2">AI എത്ര കൃത്യമാണ്?</string>
-    <string name="help_a2">AI ദൃശ്യ വിവരങ്ങൾ അടിസ്ഥാനമാക്കി നിർദ്ദേശങ്ങൾ നൽകുന്നു. പ്രധാന തീരുമാനങ്ങൾക്ക്, ദയവായി ഒരു പ്രാദേശിക കാർഷിക വിദഗ്ദ്ധനെ സമീപിക്കുക.</string>
-    <string name="help_contact_title">സപ്പോർട്ടുമായി ബന്ധപ്പെടുക</string>
+    <string name="help_title">à´¸à´¹à´¾à´¯à´µàµà´‚ à´ªà´¿à´¨àµà´¤àµà´£à´¯àµà´‚</string>
+    <string name="help_faq_title">à´ªà´¤à´¿à´µàµ à´šàµ‹à´¦àµà´¯à´™àµà´™àµ¾ (FAQ)</string>
+    <string name="help_q1">à´¨à´²àµà´² à´®à´£àµà´£àµ à´¸àµà´•à´¾àµ» à´Žà´™àµà´™à´¨àµ† à´Žà´Ÿàµà´•àµà´•à´¾à´‚?</string>
+    <string name="help_a1">à´¨à´²àµà´² à´µàµ†à´³à´¿à´šàµà´šà´‚ à´‰à´±à´ªàµà´ªà´¾à´•àµà´•àµà´•, à´¸à´¾à´®àµà´ªà´¿àµ¾ à´’à´°àµ à´µàµ†à´³àµà´³ à´ªà´¶àµà´šà´¾à´¤àµà´¤à´²à´¤àµà´¤à´¿àµ½ à´µà´¯àµà´•àµà´•àµà´•, à´«àµ‹à´•àµà´•à´¸àµ à´šàµ†à´¯àµà´¯à´¾àµ» à´Ÿà´¾à´ªàµà´ªàµà´šàµ†à´¯àµà´¯àµà´•.</string>
+    <string name="help_q2">AI à´Žà´¤àµà´° à´•àµƒà´¤àµà´¯à´®à´¾à´£àµ?</string>
+    <string name="help_a2">AI à´¦àµƒà´¶àµà´¯ à´µà´¿à´µà´°à´™àµà´™àµ¾ à´…à´Ÿà´¿à´¸àµà´¥à´¾à´¨à´®à´¾à´•àµà´•à´¿ à´¨à´¿àµ¼à´¦àµà´¦àµ‡à´¶à´™àµà´™àµ¾ à´¨àµ½à´•àµà´¨àµà´¨àµ. à´ªàµà´°à´§à´¾à´¨ à´¤àµ€à´°àµà´®à´¾à´¨à´™àµà´™àµ¾à´•àµà´•àµ, à´¦à´¯à´µà´¾à´¯à´¿ à´’à´°àµ à´ªàµà´°à´¾à´¦àµ‡à´¶à´¿à´• à´•à´¾àµ¼à´·à´¿à´• à´µà´¿à´¦à´—àµà´¦àµà´§à´¨àµ† à´¸à´®àµ€à´ªà´¿à´•àµà´•àµà´•.</string>
+    <string name="help_contact_title">à´¸à´ªàµà´ªàµ‹àµ¼à´Ÿàµà´Ÿàµà´®à´¾à´¯à´¿ à´¬à´¨àµà´§à´ªàµà´ªàµ†à´Ÿàµà´•</string>
     <string name="help_contact_phone">+91 12345 67890</string>
     <string name="help_contact_email">support@mittimitra.com</string>
 
-    <string name="converter_title">ഭൂമി അളവ് മാറ്റൽ</string>
-    <string name="label_enter_area">വിസ്തീർണ്ണം നൽകുക</string>
-    <string name="label_result">ഫലം</string>
-    <string name="btn_convert">മാറ്റുക</string>
-    <string name="unit_acre">ഏക്കർ</string>
-    <string name="unit_hectare">ഹെക്ടർ</string>
-    <string name="unit_bigha">ബിഘ (സ്റ്റാൻഡേർഡ്)</string>
-    <string name="unit_guntha">ഗുന്ത</string>
-    <string name="unit_cent">സെന്റ്</string>
+    <string name="converter_title">à´­àµ‚à´®à´¿ à´…à´³à´µàµ à´®à´¾à´±àµà´±àµ½</string>
+    <string name="label_enter_area">à´µà´¿à´¸àµà´¤àµ€àµ¼à´£àµà´£à´‚ à´¨àµ½à´•àµà´•</string>
+    <string name="label_result">à´«à´²à´‚</string>
+    <string name="btn_convert">à´®à´¾à´±àµà´±àµà´•</string>
+    <string name="unit_acre">à´à´•àµà´•àµ¼</string>
+    <string name="unit_hectare">à´¹àµ†à´•àµà´Ÿàµ¼</string>
+    <string name="unit_bigha">à´¬à´¿à´˜ (à´¸àµà´±àµà´±à´¾àµ»à´¡àµ‡àµ¼à´¡àµ)</string>
+    <string name="unit_guntha">à´—àµà´¨àµà´¤</string>
+    <string name="unit_cent">à´¸àµ†à´¨àµà´±àµ</string>
 
-    <string name="setting_share_app">സുഹൃത്തുക്കളുമായി പങ്കിടുക</string>
-    <string name="setting_notifications">അറിയിപ്പ് മുൻഗണനകൾ</string>
+    <string name="setting_share_app">à´¸àµà´¹àµƒà´¤àµà´¤àµà´•àµà´•à´³àµà´®à´¾à´¯à´¿ à´ªà´™àµà´•à´¿à´Ÿàµà´•</string>
+    <string name="setting_notifications">à´…à´±à´¿à´¯à´¿à´ªàµà´ªàµ à´®àµàµ»à´—à´£à´¨à´•àµ¾</string>
 
-    <string name="notif_title">അറിയിപ്പുകൾ</string>
-    <string name="notif_weather_title">കാലാവസ്ഥ മുന്നറിയിപ്പുകൾ</string>
-    <string name="notif_weather_desc">കനത്ത മഴയും കൊടുങ്കാറ്റും സംബന്ധിച്ച മുന്നറിയിപ്പുകൾ നേടുക.</string>
-    <string name="notif_mandi_title">മണ്ടി വിലകൾ</string>
-    <string name="notif_mandi_desc">നിങ്ങളുടെ ജില്ലയിലെ പ്രതിദിന വിപണി നിരക്കുകൾ.</string>
-    <string name="notif_scheme_title">സർക്കാർ പദ്ധതികൾ</string>
-    <string name="notif_scheme_desc">പിഎം-കിസാൻ, സബ്സിഡികൾ എന്നിവയെക്കുറിച്ചുള്ള അപ്‌ഡേറ്റുകൾ.</string>
-    <string name="share_message">മണ്ണ് ആരോഗ്യത്തിനും കൃഷിക്കുമുള്ള മികച്ച ആപ്പ് - മിട്ടി മിത്ര പരിശോധിക്കൂ! ഇവിടെ ഡൗൺലോഡ് ചെയ്യുക: https://play.google.com/store/apps/details?id=com.mittimitra</string>
+    <string name="notif_title">à´…à´±à´¿à´¯à´¿à´ªàµà´ªàµà´•àµ¾</string>
+    <string name="notif_weather_title">à´•à´¾à´²à´¾à´µà´¸àµà´¥ à´®àµà´¨àµà´¨à´±à´¿à´¯à´¿à´ªàµà´ªàµà´•àµ¾</string>
+    <string name="notif_weather_desc">à´•à´¨à´¤àµà´¤ à´®à´´à´¯àµà´‚ à´•àµŠà´Ÿàµà´™àµà´•à´¾à´±àµà´±àµà´‚ à´¸à´‚à´¬à´¨àµà´§à´¿à´šàµà´š à´®àµà´¨àµà´¨à´±à´¿à´¯à´¿à´ªàµà´ªàµà´•àµ¾ à´¨àµ‡à´Ÿàµà´•.</string>
+    <string name="notif_mandi_title">à´®à´£àµà´Ÿà´¿ à´µà´¿à´²à´•àµ¾</string>
+    <string name="notif_mandi_desc">à´¨à´¿à´™àµà´™à´³àµà´Ÿàµ† à´œà´¿à´²àµà´²à´¯à´¿à´²àµ† à´ªàµà´°à´¤à´¿à´¦à´¿à´¨ à´µà´¿à´ªà´£à´¿ à´¨à´¿à´°à´•àµà´•àµà´•àµ¾.</string>
+    <string name="notif_scheme_title">à´¸àµ¼à´•àµà´•à´¾àµ¼ à´ªà´¦àµà´§à´¤à´¿à´•àµ¾</string>
+    <string name="notif_scheme_desc">à´ªà´¿à´Žà´‚-à´•à´¿à´¸à´¾àµ», à´¸à´¬àµà´¸à´¿à´¡à´¿à´•àµ¾ à´Žà´¨àµà´¨à´¿à´µà´¯àµ†à´•àµà´•àµà´±à´¿à´šàµà´šàµà´³àµà´³ à´…à´ªàµâ€Œà´¡àµ‡à´±àµà´±àµà´•àµ¾.</string>
+    <string name="share_message">à´®à´£àµà´£àµ à´†à´°àµ‹à´—àµà´¯à´¤àµà´¤à´¿à´¨àµà´‚ à´•àµƒà´·à´¿à´•àµà´•àµà´®àµà´³àµà´³ à´®à´¿à´•à´šàµà´š à´†à´ªàµà´ªàµ - à´®à´¿à´Ÿàµà´Ÿà´¿ à´®à´¿à´¤àµà´° à´ªà´°à´¿à´¶àµ‹à´§à´¿à´•àµà´•àµ‚! à´‡à´µà´¿à´Ÿàµ† à´¡àµ—àµºà´²àµ‹à´¡àµ à´šàµ†à´¯àµà´¯àµà´•: https://play.google.com/store/apps/details?id=com.mittimitra</string>
 
-    <string name="title_pm_kisan">പിഎം-കിസാൻ: ₹6,000/വർഷം വരുമാന പിന്തുണ</string>
-    <string name="title_smart_tools">സ്മാർട്ട് ടൂളുകൾ</string>
-    <string name="title_soil_health">സോയിൽ ഹെൽത്ത് കാർഡ്: നിങ്ങളുടെ മണ്ണിന്റെ ശക്തി അറിയുക</string>
-    <string name="title_fasal_bima">പിഎം ഫസൽ ബീമാ യോജന: നിങ്ങളുടെ വിളകൾ സുരക്ഷിതമാക്കുക</string>
+    <string name="title_pm_kisan">à´ªà´¿à´Žà´‚-à´•à´¿à´¸à´¾àµ»: â‚¹6,000/à´µàµ¼à´·à´‚ à´µà´°àµà´®à´¾à´¨ à´ªà´¿à´¨àµà´¤àµà´£</string>
+    <string name="title_smart_tools">à´¸àµà´®à´¾àµ¼à´Ÿàµà´Ÿàµ à´Ÿàµ‚à´³àµà´•àµ¾</string>
+    <string name="title_soil_health">à´¸àµ‹à´¯à´¿àµ½ à´¹àµ†àµ½à´¤àµà´¤àµ à´•à´¾àµ¼à´¡àµ: à´¨à´¿à´™àµà´™à´³àµà´Ÿàµ† à´®à´£àµà´£à´¿à´¨àµà´±àµ† à´¶à´•àµà´¤à´¿ à´…à´±à´¿à´¯àµà´•</string>
+    <string name="title_fasal_bima">à´ªà´¿à´Žà´‚ à´«à´¸àµ½ à´¬àµ€à´®à´¾ à´¯àµ‹à´œà´¨: à´¨à´¿à´™àµà´™à´³àµà´Ÿàµ† à´µà´¿à´³à´•àµ¾ à´¸àµà´°à´•àµà´·à´¿à´¤à´®à´¾à´•àµà´•àµà´•</string>
 
-    <string name="notif_weather">കാലാവസ്ഥ മുന്നറിയിപ്പുകൾ</string>
-    <string name="notif_mandi">മണ്ടി വിലകൾ</string>
-    <string name="notif_schemes">സർക്കാർ പദ്ധതികൾ</string>
+    <string name="notif_weather">à´•à´¾à´²à´¾à´µà´¸àµà´¥ à´®àµà´¨àµà´¨à´±à´¿à´¯à´¿à´ªàµà´ªàµà´•àµ¾</string>
+    <string name="notif_mandi">à´®à´£àµà´Ÿà´¿ à´µà´¿à´²à´•àµ¾</string>
+    <string name="notif_schemes">à´¸àµ¼à´•àµà´•à´¾àµ¼ à´ªà´¦àµà´§à´¤à´¿à´•àµ¾</string>
 
-    <string name="contact_header">സഹായിക്കാൻ ഞങ്ങളുണ്ട്</string>
-    <string name="contact_desc">പ്രത്യേക കാർഷിക ഉപദേശത്തിനോ സാങ്കേതിക സഹായത്തിനോ ഞങ്ങളെ ബന്ധപ്പെടുക.</string>
-    <string name="contact_call">കാൾ സപ്പോർട്ട്</string>
-    <string name="contact_time">തിങ്കൾ-ശനി, രാവിലെ 9 - വൈകുന്നേരം 6</string>
-    <string name="contact_email">ഞങ്ങൾക്ക് ഇമെയിൽ ചെയ്യുക</string>
+    <string name="contact_header">à´¸à´¹à´¾à´¯à´¿à´•àµà´•à´¾àµ» à´žà´™àµà´™à´³àµà´£àµà´Ÿàµ</string>
+    <string name="contact_desc">à´ªàµà´°à´¤àµà´¯àµ‡à´• à´•à´¾àµ¼à´·à´¿à´• à´‰à´ªà´¦àµ‡à´¶à´¤àµà´¤à´¿à´¨àµ‹ à´¸à´¾à´™àµà´•àµ‡à´¤à´¿à´• à´¸à´¹à´¾à´¯à´¤àµà´¤à´¿à´¨àµ‹ à´žà´™àµà´™à´³àµ† à´¬à´¨àµà´§à´ªàµà´ªàµ†à´Ÿàµà´•.</string>
+    <string name="contact_call">à´•à´¾àµ¾ à´¸à´ªàµà´ªàµ‹àµ¼à´Ÿàµà´Ÿàµ</string>
+    <string name="contact_time">à´¤à´¿à´™àµà´•àµ¾-à´¶à´¨à´¿, à´°à´¾à´µà´¿à´²àµ† 9 - à´µàµˆà´•àµà´¨àµà´¨àµ‡à´°à´‚ 6</string>
+    <string name="contact_email">à´žà´™àµà´™àµ¾à´•àµà´•àµ à´‡à´®àµ†à´¯à´¿àµ½ à´šàµ†à´¯àµà´¯àµà´•</string>
     <string name="contact_email_addr">support@mittimitra.com</string>
 
-    <string name="label_from_unit">നിന്നുള്ള യൂണിറ്റ്</string>
-    <string name="label_to_unit">ലേക്കുള്ള യൂണിറ്റ്</string>
+    <string name="label_from_unit">à´¨à´¿à´¨àµà´¨àµà´³àµà´³ à´¯àµ‚à´£à´¿à´±àµà´±àµ</string>
+    <string name="label_to_unit">à´²àµ‡à´•àµà´•àµà´³àµà´³ à´¯àµ‚à´£à´¿à´±àµà´±àµ</string>
 
-    <string name="scan_title">പുതിയ മണ്ണ് സ്കാൻ</string>
-    <string name="scan_env_data">പരിസ്ഥിതി ഡാറ്റ</string>
-    <string name="scan_weather">കാലാവസ്ഥ</string>
-    <string name="scan_moisture">ഈർപ്പം</string>
-    <string name="scan_nutrients">മണ്ണ് പോഷകങ്ങൾ (ഏകദേശം)</string>
-    <string name="scan_hint">നിങ്ങളുടെ നിരീക്ഷണങ്ങൾ (ഉദാഹരണത്തിന് \'മഞ്ഞ ഇലകൾ\')</string>
-    <string name="scan_status_ready">സ്കാൻ ചെയ്യാൻ തയ്യാറാണ്</string>
-    <string name="scan_btn_gallery">ഗാലറി</string>
-    <string name="scan_btn_camera">ക്യാമറ</string>
-    <string name="scan_btn_analyze">മണ്ണ് തിരിച്ചറിഞ്ഞ് ശുപാർശ നൽകുക</string>
+    <string name="scan_title">à´ªàµà´¤à´¿à´¯ à´®à´£àµà´£àµ à´¸àµà´•à´¾àµ»</string>
+    <string name="scan_env_data">à´ªà´°à´¿à´¸àµà´¥à´¿à´¤à´¿ à´¡à´¾à´±àµà´±</string>
+    <string name="scan_weather">à´•à´¾à´²à´¾à´µà´¸àµà´¥</string>
+    <string name="scan_moisture">à´ˆàµ¼à´ªàµà´ªà´‚</string>
+    <string name="scan_nutrients">à´®à´£àµà´£àµ à´ªàµ‹à´·à´•à´™àµà´™àµ¾ (à´à´•à´¦àµ‡à´¶à´‚)</string>
+    <string name="scan_hint">à´¨à´¿à´™àµà´™à´³àµà´Ÿàµ† à´¨à´¿à´°àµ€à´•àµà´·à´£à´™àµà´™àµ¾ (à´‰à´¦à´¾à´¹à´°à´£à´¤àµà´¤à´¿à´¨àµ \'à´®à´žàµà´ž à´‡à´²à´•àµ¾\')</string>
+    <string name="scan_status_ready">à´¸àµà´•à´¾àµ» à´šàµ†à´¯àµà´¯à´¾àµ» à´¤à´¯àµà´¯à´¾à´±à´¾à´£àµ</string>
+    <string name="scan_btn_gallery">à´—à´¾à´²à´±à´¿</string>
+    <string name="scan_btn_camera">à´•àµà´¯à´¾à´®à´±</string>
+    <string name="scan_btn_analyze">à´®à´£àµà´£àµ à´¤à´¿à´°à´¿à´šàµà´šà´±à´¿à´žàµà´žàµ à´¶àµà´ªà´¾àµ¼à´¶ à´¨àµ½à´•àµà´•</string>
 
-    <string name="profile_recent">സമീപകാല വിശകലനം</string>
-    <string name="profile_no_history">സമീപകാല സ്കാനുകൾ ഒന്നും കണ്ടെത്തിയില്ല.</string>
-    <string name="profile_logout">ലോഗ് ഔട്ട്</string>
-    <string name="profile_member_since">അംഗമായ തീയതി:</string>
-    <string name="profile_phone">ഫോൺ:</string>
+    <string name="profile_recent">à´¸à´®àµ€à´ªà´•à´¾à´² à´µà´¿à´¶à´•à´²à´¨à´‚</string>
+    <string name="profile_no_history">à´¸à´®àµ€à´ªà´•à´¾à´² à´¸àµà´•à´¾à´¨àµà´•àµ¾ à´’à´¨àµà´¨àµà´‚ à´•à´£àµà´Ÿàµ†à´¤àµà´¤à´¿à´¯à´¿à´²àµà´².</string>
+    <string name="profile_logout">à´²àµ‹à´—àµ à´”à´Ÿàµà´Ÿàµ</string>
+    <string name="profile_member_since">à´…à´‚à´—à´®à´¾à´¯ à´¤àµ€à´¯à´¤à´¿:</string>
+    <string name="profile_phone">à´«àµ‹àµº:</string>
 
-    <string name="rec_title">സോയിൽ ഹെൽത്ത് കാർഡ്</string>
-    <string name="rec_header_title">സോയിൽ ഹെൽത്ത് കാർഡ്</string>
-    <string name="rec_header_subtitle">മിട്ടി മിത്ര • ഡിജിറ്റൽ അഗ്രികൾച്ചർ മിഷൻ</string>
-    <string name="rec_farmer_details">കർഷക വിവരങ്ങൾ</string>
-    <string name="rec_label_name">പേര്:</string>
-    <string name="rec_label_mobile">മൊബൈൽ:</string>
-    <string name="rec_label_email">ഇമെയിൽ:</string>
-    <string name="rec_label_location">സ്ഥലം:</string>
-    <string name="rec_label_date">പരിശോധന തീയതി:</string>
-    <string name="rec_results_title">പരിശോധന ഫലങ്ങൾ (പ്രാഥമിക പോഷകങ്ങൾ)</string>
-    <string name="rec_col_param">പാരാമീറ്റർ</string>
-    <string name="rec_col_value">മൂല്യം</string>
-    <string name="rec_col_status">അവസ്ഥ</string>
-    <string name="rec_advisory_title">ശാസ്ത്രീയ ഉപദേശം</string>
-    <string name="rec_footer">മിട്ടി മിത്ര AI തയ്യാറാക്കിയത് | സാറ്റലൈറ്റ് ഡാറ്റ വഴി പരിശോധിച്ചത്</string>
-    <string name="rec_btn_download">PDF ഡൗൺലോഡ് ചെയ്യുക</string>
+    <string name="rec_title">à´¸àµ‹à´¯à´¿àµ½ à´¹àµ†àµ½à´¤àµà´¤àµ à´•à´¾àµ¼à´¡àµ</string>
+    <string name="rec_header_title">à´¸àµ‹à´¯à´¿àµ½ à´¹àµ†àµ½à´¤àµà´¤àµ à´•à´¾àµ¼à´¡àµ</string>
+    <string name="rec_header_subtitle">à´®à´¿à´Ÿàµà´Ÿà´¿ à´®à´¿à´¤àµà´° â€¢ à´¡à´¿à´œà´¿à´±àµà´±àµ½ à´…à´—àµà´°à´¿à´•àµ¾à´šàµà´šàµ¼ à´®à´¿à´·àµ»</string>
+    <string name="rec_farmer_details">à´•àµ¼à´·à´• à´µà´¿à´µà´°à´™àµà´™àµ¾</string>
+    <string name="rec_label_name">à´ªàµ‡à´°àµ:</string>
+    <string name="rec_label_mobile">à´®àµŠà´¬àµˆàµ½:</string>
+    <string name="rec_label_email">à´‡à´®àµ†à´¯à´¿àµ½:</string>
+    <string name="rec_label_location">à´¸àµà´¥à´²à´‚:</string>
+    <string name="rec_label_date">à´ªà´°à´¿à´¶àµ‹à´§à´¨ à´¤àµ€à´¯à´¤à´¿:</string>
+    <string name="rec_results_title">à´ªà´°à´¿à´¶àµ‹à´§à´¨ à´«à´²à´™àµà´™àµ¾ (à´ªàµà´°à´¾à´¥à´®à´¿à´• à´ªàµ‹à´·à´•à´™àµà´™àµ¾)</string>
+    <string name="rec_col_param">à´ªà´¾à´°à´¾à´®àµ€à´±àµà´±àµ¼</string>
+    <string name="rec_col_value">à´®àµ‚à´²àµà´¯à´‚</string>
+    <string name="rec_col_status">à´…à´µà´¸àµà´¥</string>
+    <string name="rec_advisory_title">à´¶à´¾à´¸àµà´¤àµà´°àµ€à´¯ à´‰à´ªà´¦àµ‡à´¶à´‚</string>
+    <string name="rec_footer">à´®à´¿à´Ÿàµà´Ÿà´¿ à´®à´¿à´¤àµà´° AI à´¤à´¯àµà´¯à´¾à´±à´¾à´•àµà´•à´¿à´¯à´¤àµ | à´¸à´¾à´±àµà´±à´²àµˆà´±àµà´±àµ à´¡à´¾à´±àµà´± à´µà´´à´¿ à´ªà´°à´¿à´¶àµ‹à´§à´¿à´šàµà´šà´¤àµ</string>
+    <string name="rec_btn_download">PDF à´¡àµ—àµºà´²àµ‹à´¡àµ à´šàµ†à´¯àµà´¯àµà´•</string>
 
-    <string name="login_welcome">സ്വാഗതം</string>
-    <string name="login_subtitle">നിങ്ങളുടെ കാർഷിക ടൂളുകൾ ഉപയോഗിക്കാൻ ലോഗിൻ ചെയ്യുക</string>
-    <string name="login_google">Google വഴി തുടരുക</string>
-    <string name="login_or_divider">അല്ലെങ്കിൽ ഫോൺ</string>
-    <string name="login_hint_phone">ഫോൺ നമ്പർ</string>
-    <string name="login_btn_otp">OTP നേടുക</string>
-    <string name="login_hint_otp">6-അക്ക OTP നൽകുക</string>
-    <string name="login_btn_verify">പരിശോധിച്ച് ലോഗിൻ ചെയ്യുക</string>
-    <string name="login_trouble">ലോഗിൻ ചെയ്യുന്നതിൽ പ്രശ്നമുണ്ടോ?</string>
+    <string name="login_welcome">à´¸àµà´µà´¾à´—à´¤à´‚</string>
+    <string name="login_subtitle">à´¨à´¿à´™àµà´™à´³àµà´Ÿàµ† à´•à´¾àµ¼à´·à´¿à´• à´Ÿàµ‚à´³àµà´•àµ¾ à´‰à´ªà´¯àµ‹à´—à´¿à´•àµà´•à´¾àµ» à´²àµ‹à´—à´¿àµ» à´šàµ†à´¯àµà´¯àµà´•</string>
+    <string name="login_google">Google à´µà´´à´¿ à´¤àµà´Ÿà´°àµà´•</string>
+    <string name="login_or_divider">à´…à´²àµà´²àµ†à´™àµà´•à´¿àµ½ à´«àµ‹àµº</string>
+    <string name="login_hint_phone">à´«àµ‹àµº à´¨à´®àµà´ªàµ¼</string>
+    <string name="login_btn_otp">OTP à´¨àµ‡à´Ÿàµà´•</string>
+    <string name="login_hint_otp">6-à´…à´•àµà´• OTP à´¨àµ½à´•àµà´•</string>
+    <string name="login_btn_verify">à´ªà´°à´¿à´¶àµ‹à´§à´¿à´šàµà´šàµ à´²àµ‹à´—à´¿àµ» à´šàµ†à´¯àµà´¯àµà´•</string>
+    <string name="login_trouble">à´²àµ‹à´—à´¿àµ» à´šàµ†à´¯àµà´¯àµà´¨àµà´¨à´¤à´¿àµ½ à´ªàµà´°à´¶àµà´¨à´®àµà´£àµà´Ÿàµ‹?</string>
 
-    <string name="home_welcome_default">നമസ്കാരം, കർഷകൻ</string>
-    <string name="home_card_scan">മണ്ണ് പരിശോധിക്കുക</string>
-    <string name="home_card_advice">ഉപദേശം തേടുക</string>
-    <string name="home_card_tips">AI വിദഗ്ദ്ധ നിർദ്ദേശങ്ങൾ</string>
-    <string name="home_section_tools">സ്മാർട്ട് ടൂളുകൾ</string>
-    <string name="desc_logo">ആപ്പ് ലോഗോ</string>
-    <string name="desc_icon">ഐക്കൺ</string>
+    <string name="home_welcome_default">à´¨à´®à´¸àµà´•à´¾à´°à´‚, à´•àµ¼à´·à´•àµ»</string>
+    <string name="home_card_scan">à´®à´£àµà´£àµ à´ªà´°à´¿à´¶àµ‹à´§à´¿à´•àµà´•àµà´•</string>
+    <string name="home_card_advice">à´‰à´ªà´¦àµ‡à´¶à´‚ à´¤àµ‡à´Ÿàµà´•</string>
+    <string name="home_card_tips">AI à´µà´¿à´¦à´—àµà´¦àµà´§ à´¨à´¿àµ¼à´¦àµà´¦àµ‡à´¶à´™àµà´™àµ¾</string>
+    <string name="home_section_tools">à´¸àµà´®à´¾àµ¼à´Ÿàµà´Ÿàµ à´Ÿàµ‚à´³àµà´•àµ¾</string>
+    <string name="desc_logo">à´†à´ªàµà´ªàµ à´²àµ‹à´—àµ‹</string>
+    <string name="desc_icon">à´à´•àµà´•àµº</string>
 
-    <string name="title_documents">ബന്ധപ്പെട്ട രേഖകൾ</string>
-    <string name="msg_no_documents">രേഖകളൊന്നും കണ്ടെത്തിയില്ല.\nചേർക്കാൻ \'+\' ടാപ്പ് ചെയ്യുക.</string>
-    <string name="desc_add_document">രേഖ ചേർക്കുക</string>
+    <string name="title_documents">à´¬à´¨àµà´§à´ªàµà´ªàµ†à´Ÿàµà´Ÿ à´°àµ‡à´–à´•àµ¾</string>
+    <string name="msg_no_documents">à´°àµ‡à´–à´•à´³àµŠà´¨àµà´¨àµà´‚ à´•à´£àµà´Ÿàµ†à´¤àµà´¤à´¿à´¯à´¿à´²àµà´².\nà´šàµ‡àµ¼à´•àµà´•à´¾àµ» \'+\' à´Ÿà´¾à´ªàµà´ªàµ à´šàµ†à´¯àµà´¯àµà´•.</string>
+    <string name="desc_add_document">à´°àµ‡à´– à´šàµ‡àµ¼à´•àµà´•àµà´•</string>
 
-    <string name="title_scan_history">പരിശോധനാ ചരിത്രം</string>
+    <string name="title_scan_history">à´ªà´°à´¿à´¶àµ‹à´§à´¨à´¾ à´šà´°à´¿à´¤àµà´°à´‚</string>
 
-    <string name="welcome_home_title">സ്വാഗതം!</string>
-    <string name="welcome_home_desc">നിങ്ങൾ വിജയകരമായി ലോഗിൻ ചെയ്തു!</string>
+    <string name="welcome_home_title">à´¸àµà´µà´¾à´—à´¤à´‚!</string>
+    <string name="welcome_home_desc">à´¨à´¿à´™àµà´™àµ¾ à´µà´¿à´œà´¯à´•à´°à´®à´¾à´¯à´¿ à´²àµ‹à´—à´¿àµ» à´šàµ†à´¯àµà´¤àµ!</string>
 
-    <string name="btn_test_notification">ടെസ്റ്റ് നോട്ടിഫിക്കേഷൻ അയയ്ക്കുക</string>
-    <string name="desc_notification_icon">നോട്ടിഫിക്കേഷൻ ഐക്കൺ</string>
+    <string name="btn_test_notification">à´Ÿàµ†à´¸àµà´±àµà´±àµ à´¨àµ‹à´Ÿàµà´Ÿà´¿à´«à´¿à´•àµà´•àµ‡à´·àµ» à´…à´¯à´¯àµà´•àµà´•àµà´•</string>
+    <string name="desc_notification_icon">à´¨àµ‹à´Ÿàµà´Ÿà´¿à´«à´¿à´•àµà´•àµ‡à´·àµ» à´à´•àµà´•àµº</string>
 
-    <string name="profile_name_placeholder">ലോഡ് ചെയ്യുന്നു...</string>
+    <string name="profile_name_placeholder">à´²àµ‹à´¡àµ à´šàµ†à´¯àµà´¯àµà´¨àµà´¨àµ...</string>
     <string name="profile_email_placeholder">email@example.com</string>
-    <string name="desc_profile_image">പ്രൊഫൈൽ ചിത്രം</string>
-    <string name="desc_change_photo">പ്രൊഫൈൽ ഫോട്ടോ മാറ്റുക</string>
-    <string name="desc_edit_profile">പ്രൊഫൈൽ വിവരങ്ങൾ മാറ്റുക</string>
+    <string name="desc_profile_image">à´ªàµà´°àµŠà´«àµˆàµ½ à´šà´¿à´¤àµà´°à´‚</string>
+    <string name="desc_change_photo">à´ªàµà´°àµŠà´«àµˆàµ½ à´«àµ‹à´Ÿàµà´Ÿàµ‹ à´®à´¾à´±àµà´±àµà´•</string>
+    <string name="desc_edit_profile">à´ªàµà´°àµŠà´«àµˆàµ½ à´µà´¿à´µà´°à´™àµà´™àµ¾ à´®à´¾à´±àµà´±àµà´•</string>
 
-    <string name="rec_param_n">നൈട്രജൻ (N)</string>
-    <string name="rec_param_p">ഫോസ്ഫറസ് (P)</string>
-    <string name="rec_param_k">പൊട്ടാസ്യം (K)</string>
-    <string name="rec_param_ph">മണ്ണിന്റെ pH</string>
-    <string name="rec_ai_context">വിളയുടെ ആവശ്യങ്ങൾ വിശകലനം ചെയ്യുന്നു...</string>
-    <string name="rec_ai_generating">വിദഗ്ദ്ധ നിർദ്ദേശം തയ്യാറാക്കുന്നു...</string>
+    <string name="rec_param_n">à´¨àµˆà´Ÿàµà´°à´œàµ» (N)</string>
+    <string name="rec_param_p">à´«àµ‹à´¸àµà´«à´±à´¸àµ (P)</string>
+    <string name="rec_param_k">à´ªàµŠà´Ÿàµà´Ÿà´¾à´¸àµà´¯à´‚ (K)</string>
+    <string name="rec_param_ph">à´®à´£àµà´£à´¿à´¨àµà´±àµ† pH</string>
+    <string name="rec_ai_context">à´µà´¿à´³à´¯àµà´Ÿàµ† à´†à´µà´¶àµà´¯à´™àµà´™àµ¾ à´µà´¿à´¶à´•à´²à´¨à´‚ à´šàµ†à´¯àµà´¯àµà´¨àµà´¨àµ...</string>
+    <string name="rec_ai_generating">à´µà´¿à´¦à´—àµà´¦àµà´§ à´¨à´¿àµ¼à´¦àµà´¦àµ‡à´¶à´‚ à´¤à´¯àµà´¯à´¾à´±à´¾à´•àµà´•àµà´¨àµà´¨àµ...</string>
 
-    <string name="scan_locating">സ്ഥലം കണ്ടെത്തുന്നു...</string>
-    <string name="desc_image_preview">ചിത്രം കാണുക</string>
-    <string name="signup_title">മിട്ടി മിത്രയിൽ ചേരൂ</string>
-    <string name="signup_subtitle">നിങ്ങളുടെ സ്മാർട്ട് കാർഷിക യാത്ര ഇന്ന് തന്നെ തുടങ്ങൂ</string>
-    <string name="signup_create_account">അക്കൗണ്ട് നിർമ്മിക്കുക</string>
-    <string name="signup_google">Google വഴി സൈൻ അപ്പ് ചെയ്യുക</string>
-    <string name="signup_phone">ഫോൺ വഴി സൈൻ അപ്പ് ചെയ്യുക</string>
-    <string name="signup_footer">അക്കൗണ്ട് ഉണ്ടോ?</string>
+    <string name="scan_locating">à´¸àµà´¥à´²à´‚ à´•à´£àµà´Ÿàµ†à´¤àµà´¤àµà´¨àµà´¨àµ...</string>
+    <string name="desc_image_preview">à´šà´¿à´¤àµà´°à´‚ à´•à´¾à´£àµà´•</string>
+    <string name="signup_title">à´®à´¿à´Ÿàµà´Ÿà´¿ à´®à´¿à´¤àµà´°à´¯à´¿àµ½ à´šàµ‡à´°àµ‚</string>
+    <string name="signup_subtitle">à´¨à´¿à´™àµà´™à´³àµà´Ÿàµ† à´¸àµà´®à´¾àµ¼à´Ÿàµà´Ÿàµ à´•à´¾àµ¼à´·à´¿à´• à´¯à´¾à´¤àµà´° à´‡à´¨àµà´¨àµ à´¤à´¨àµà´¨àµ† à´¤àµà´Ÿà´™àµà´™àµ‚</string>
+    <string name="signup_create_account">à´…à´•àµà´•àµ—à´£àµà´Ÿàµ à´¨à´¿àµ¼à´®àµà´®à´¿à´•àµà´•àµà´•</string>
+    <string name="signup_google">Google à´µà´´à´¿ à´¸àµˆàµ» à´…à´ªàµà´ªàµ à´šàµ†à´¯àµà´¯àµà´•</string>
+    <string name="signup_phone">à´«àµ‹àµº à´µà´´à´¿ à´¸àµˆàµ» à´…à´ªàµà´ªàµ à´šàµ†à´¯àµà´¯àµà´•</string>
+    <string name="signup_footer">à´…à´•àµà´•àµ—à´£àµà´Ÿàµ à´‰à´£àµà´Ÿàµ‹?</string>
 
-    <string name="chat_title">കാർഷിക വിദഗ്ദ്ധ ചാറ്റ്</string>
-    <string name="chat_hint">വിളകളെക്കുറിച്ച് ചോദിക്കുക...</string>
-    <string name="desc_mic">ഓഡിയോ റെക്കോർഡ് ചെയ്യുക</string>
-    <string name="desc_send">സന്ദേശം അയയ്ക്കുക</string>
+    <string name="chat_title">à´•à´¾àµ¼à´·à´¿à´• à´µà´¿à´¦à´—àµà´¦àµà´§ à´šà´¾à´±àµà´±àµ</string>
+    <string name="chat_hint">à´µà´¿à´³à´•à´³àµ†à´•àµà´•àµà´±à´¿à´šàµà´šàµ à´šàµ‹à´¦à´¿à´•àµà´•àµà´•...</string>
+    <string name="desc_mic">à´“à´¡à´¿à´¯àµ‹ à´±àµ†à´•àµà´•àµ‹àµ¼à´¡àµ à´šàµ†à´¯àµà´¯àµà´•</string>
+    <string name="desc_send">à´¸à´¨àµà´¦àµ‡à´¶à´‚ à´…à´¯à´¯àµà´•àµà´•àµà´•</string>
 
-    <string name="welcome_get_started">തുടങ്ങാം</string>
-    <string name="welcome_join_community">ഏറ്റവും മികച്ച കർഷക കൂട്ടായ്മയിൽ ചേരൂ.</string>
+    <string name="welcome_get_started">à´¤àµà´Ÿà´™àµà´™à´¾à´‚</string>
+    <string name="welcome_join_community">à´à´±àµà´±à´µàµà´‚ à´®à´¿à´•à´šàµà´š à´•àµ¼à´·à´• à´•àµ‚à´Ÿàµà´Ÿà´¾à´¯àµà´®à´¯à´¿àµ½ à´šàµ‡à´°àµ‚.</string>
 
-    <string name="edit_profile_title">പ്രൊഫൈൽ എഡിറ്റ് ചെയ്യുക</string>
-    <string name="edit_profile_name_hint">പൂർണ്ണ നാമം</string>
-    <string name="edit_profile_phone_hint">ഫോൺ നമ്പർ</string>
-    <string name="edit_profile_phone_helper">അറിയിപ്പുകൾക്ക് നിർബന്ധം</string>
-    <string name="btn_save_changes">മാറ്റങ്ങൾ സേവ് ചെയ്യുക</string>
+    <string name="edit_profile_title">à´ªàµà´°àµŠà´«àµˆàµ½ à´Žà´¡à´¿à´±àµà´±àµ à´šàµ†à´¯àµà´¯àµà´•</string>
+    <string name="edit_profile_name_hint">à´ªàµ‚àµ¼à´£àµà´£ à´¨à´¾à´®à´‚</string>
+    <string name="edit_profile_phone_hint">à´«àµ‹àµº à´¨à´®àµà´ªàµ¼</string>
+    <string name="edit_profile_phone_helper">à´…à´±à´¿à´¯à´¿à´ªàµà´ªàµà´•àµ¾à´•àµà´•àµ à´¨à´¿àµ¼à´¬à´¨àµà´§à´‚</string>
+    <string name="btn_save_changes">à´®à´¾à´±àµà´±à´™àµà´™àµ¾ à´¸àµ‡à´µàµ à´šàµ†à´¯àµà´¯àµà´•</string>
 
-    <string name="btn_view">കാണുക</string>
+    <string name="btn_view">à´•à´¾à´£àµà´•</string>
 
-    <string name="placeholder_location">അജ്ഞാത സ്ഥലം</string>
-    <string name="placeholder_date">തീയതി</string>
-    <string name="status_calculating">കണക്കാക്കുന്നു...</string>
-    <string name="desc_view_details">വിശദാംശങ്ങൾ കാണുക</string>
+    <string name="placeholder_location">à´…à´œàµà´žà´¾à´¤ à´¸àµà´¥à´²à´‚</string>
+    <string name="placeholder_date">à´¤àµ€à´¯à´¤à´¿</string>
+    <string name="status_calculating">à´•à´£à´•àµà´•à´¾à´•àµà´•àµà´¨àµà´¨àµ...</string>
+    <string name="desc_view_details">à´µà´¿à´¶à´¦à´¾à´‚à´¶à´™àµà´™àµ¾ à´•à´¾à´£àµà´•</string>
 
     <!-- History -->
-    <string name="history">വിശകലന ചരിത്രം</string>
-    <string name="delete_confirmation">റെക്കോർഡ് ഇല്ലാതാക്കുക</string>
-    <string name="delete_history_message">ഈ മണ്ണ് വിശകലന റെക്കോർഡ് ഇല്ലാതാക്കണമെന്ന് നിങ്ങൾക്ക് ഉറപ്പാണോ?</string>
-    <string name="delete">ഇല്ലാതാക്കുക</string>
-    <string name="cancel">റദ്ദാക്കുക</string>
-    <string name="record_deleted">റെക്കോർഡ് ഇല്ലാതാക്കി</string>
+    <string name="history">à´µà´¿à´¶à´•à´²à´¨ à´šà´°à´¿à´¤àµà´°à´‚</string>
+    <string name="delete_confirmation">à´±àµ†à´•àµà´•àµ‹àµ¼à´¡àµ à´‡à´²àµà´²à´¾à´¤à´¾à´•àµà´•àµà´•</string>
+    <string name="delete_history_message">à´ˆ à´®à´£àµà´£àµ à´µà´¿à´¶à´•à´²à´¨ à´±àµ†à´•àµà´•àµ‹àµ¼à´¡àµ à´‡à´²àµà´²à´¾à´¤à´¾à´•àµà´•à´£à´®àµ†à´¨àµà´¨àµ à´¨à´¿à´™àµà´™àµ¾à´•àµà´•àµ à´‰à´±à´ªàµà´ªà´¾à´£àµ‹?</string>
+    <string name="delete">à´‡à´²àµà´²à´¾à´¤à´¾à´•àµà´•àµà´•</string>
+    <string name="cancel">à´±à´¦àµà´¦à´¾à´•àµà´•àµà´•</string>
+    <string name="record_deleted">à´±àµ†à´•àµà´•àµ‹àµ¼à´¡àµ à´‡à´²àµà´²à´¾à´¤à´¾à´•àµà´•à´¿</string>
 
     <!-- Share -->
-    <string name="share_report">റിപ്പോർട്ട് പങ്കിടുക</string>
-    <string name="share_via">ഇതുവഴി പങ്കിടുക</string>
+    <string name="share_report">à´±à´¿à´ªàµà´ªàµ‹àµ¼à´Ÿàµà´Ÿàµ à´ªà´™àµà´•à´¿à´Ÿàµà´•</string>
+    <string name="share_via">à´‡à´¤àµà´µà´´à´¿ à´ªà´™àµà´•à´¿à´Ÿàµà´•</string>
 
     <!-- Weather Alerts -->
-    <string name="weather_alerts_title">കാലാവസ്ഥ അലർട്ടുകൾ</string>
-    <string name="search_location_hint">നഗരം അല്ലെങ്കിൽ പ്രദേശം തിരയുക...</string>
-    <string name="search">തിരയുക</string>
-    <string name="current_weather">നിലവിലെ കാലാവസ്ഥ</string>
-    <string name="seven_day_forecast">📅 7-ദിവസത്തെ പ്രവചനം</string>
-    <string name="agri_recommendations">🌾 കാർഷിക ശുപാർശകൾ</string>
-    <string name="home_card_weather">കാലാവസ്ഥ അലർട്ട്</string>
+    <string name="weather_alerts_title">à´•à´¾à´²à´¾à´µà´¸àµà´¥ à´…à´²àµ¼à´Ÿàµà´Ÿàµà´•àµ¾</string>
+    <string name="search_location_hint">à´¨à´—à´°à´‚ à´…à´²àµà´²àµ†à´™àµà´•à´¿àµ½ à´ªàµà´°à´¦àµ‡à´¶à´‚ à´¤à´¿à´°à´¯àµà´•...</string>
+    <string name="search">à´¤à´¿à´°à´¯àµà´•</string>
+    <string name="current_weather">à´¨à´¿à´²à´µà´¿à´²àµ† à´•à´¾à´²à´¾à´µà´¸àµà´¥</string>
+    <string name="seven_day_forecast">ðŸ“… 7-à´¦à´¿à´µà´¸à´¤àµà´¤àµ† à´ªàµà´°à´µà´šà´¨à´‚</string>
+    <string name="agri_recommendations">ðŸŒ¾ à´•à´¾àµ¼à´·à´¿à´• à´¶àµà´ªà´¾àµ¼à´¶à´•àµ¾</string>
+    <string name="home_card_weather">à´•à´¾à´²à´¾à´µà´¸àµà´¥ à´…à´²àµ¼à´Ÿàµà´Ÿàµ</string>
 
     <!-- Crop Calendar -->
-    <string name="crop_calendar_title">വിള കലണ്ടർ</string>
-    <string name="crop_calendar_subtitle">AI-പ്രവർത്തിത വിതയ്ക്കലും വിളവെടുപ്പും ഷെഡ്യൂൾ</string>
-    <string name="select_crop">വിള തിരഞ്ഞെടുക്കുക</string>
-    <string name="generate_schedule">AI ഷെഡ്യൂൾ സൃഷ്ടിക്കുക</string>
-    <string name="home_card_calendar">വിള കലണ്ടർ</string>
+    <string name="crop_calendar_title">à´µà´¿à´³ à´•à´²à´£àµà´Ÿàµ¼</string>
+    <string name="crop_calendar_subtitle">AI-à´ªàµà´°à´µàµ¼à´¤àµà´¤à´¿à´¤ à´µà´¿à´¤à´¯àµà´•àµà´•à´²àµà´‚ à´µà´¿à´³à´µàµ†à´Ÿàµà´ªàµà´ªàµà´‚ à´·àµ†à´¡àµà´¯àµ‚àµ¾</string>
+    <string name="select_crop">à´µà´¿à´³ à´¤à´¿à´°à´žàµà´žàµ†à´Ÿàµà´•àµà´•àµà´•</string>
+    <string name="generate_schedule">AI à´·àµ†à´¡àµà´¯àµ‚àµ¾ à´¸àµƒà´·àµà´Ÿà´¿à´•àµà´•àµà´•</string>
+    <string name="home_card_calendar">à´µà´¿à´³ à´•à´²à´£àµà´Ÿàµ¼</string>
 
     <!-- Irrigation Calculator -->
-    <string name="irrigation_title">ജലസേചന കാൽക്കുലേറ്റർ</string>
-    <string name="irrigation_subtitle">വിള, മണ്ണ്, കാലാവസ്ഥ എന്നിവയുടെ അടിസ്ഥാനത്തിൽ ദൈനംദിന ജല ആവശ്യം</string>
-    <string name="soil_type">മണ്ണിന്റെ തരം</string>
-    <string name="field_size">പാടത്തിന്റെ വലിപ്പം</string>
-    <string name="calculate_water">ജല ആവശ്യം കണക്കാക്കുക</string>
-    <string name="water_requirement">ദൈനംദിന ജല ആവശ്യം</string>
-    <string name="home_card_irrigation">ജലസേചനം</string>
+    <string name="irrigation_title">à´œà´²à´¸àµ‡à´šà´¨ à´•à´¾àµ½à´•àµà´•àµà´²àµ‡à´±àµà´±àµ¼</string>
+    <string name="irrigation_subtitle">à´µà´¿à´³, à´®à´£àµà´£àµ, à´•à´¾à´²à´¾à´µà´¸àµà´¥ à´Žà´¨àµà´¨à´¿à´µà´¯àµà´Ÿàµ† à´…à´Ÿà´¿à´¸àµà´¥à´¾à´¨à´¤àµà´¤à´¿àµ½ à´¦àµˆà´¨à´‚à´¦à´¿à´¨ à´œà´² à´†à´µà´¶àµà´¯à´‚</string>
+    <string name="soil_type">à´®à´£àµà´£à´¿à´¨àµà´±àµ† à´¤à´°à´‚</string>
+    <string name="field_size">à´ªà´¾à´Ÿà´¤àµà´¤à´¿à´¨àµà´±àµ† à´µà´²à´¿à´ªàµà´ªà´‚</string>
+    <string name="calculate_water">à´œà´² à´†à´µà´¶àµà´¯à´‚ à´•à´£à´•àµà´•à´¾à´•àµà´•àµà´•</string>
+    <string name="water_requirement">à´¦àµˆà´¨à´‚à´¦à´¿à´¨ à´œà´² à´†à´µà´¶àµà´¯à´‚</string>
+    <string name="home_card_irrigation">à´œà´²à´¸àµ‡à´šà´¨à´‚</string>
 
     <!-- Plant Doctor -->
-    <string name="home_card_plant_doctor">സസ്യ ഡോക്ടർ</string>
+    <string name="home_card_plant_doctor">à´¸à´¸àµà´¯ à´¡àµ‹à´•àµà´Ÿàµ¼</string>
 
+    <!-- NEW LOCALIZATION STRINGS (Malayalam) -->
+    <!-- Mandi Connect -->
+    <string name="mandi_title">à´®à´£àµà´Ÿà´¿ à´µà´¿à´²à´•àµ¾ (à´¤à´¤àµà´¸à´®à´¯à´‚)</string>
+    <string name="mandi_select_prompt">à´µà´¿à´³à´¯àµà´‚ à´ªàµà´°à´¦àµ‡à´¶à´µàµà´‚ à´¤à´¿à´°à´žàµà´žàµ†à´Ÿàµà´•àµà´•àµà´•</string>
+    <string name="mandi_btn_check">à´µà´¿à´²à´•àµ¾ à´ªà´°à´¿à´¶àµ‹à´§à´¿à´•àµà´•àµà´•</string>
+    <string name="mandi_error_no_data">à´µà´¿à´µà´°à´™àµà´™àµ¾ à´²à´­àµà´¯à´®à´²àµà´².</string>
+    <string name="mandi_error_connect">à´ªà´¿à´¶à´•àµ: %s</string>
+    <string name="mandi_source">à´‰à´±à´µà´¿à´Ÿà´‚: Agmarknet</string>
+
+    <!-- Plant Doctor -->
+    <string name="plant_status_scanning">à´ªà´°à´¿à´¶àµ‹à´§à´¨ à´¨à´Ÿà´•àµà´•àµà´¨àµà´¨àµ...</string>
+    <string name="plant_status_complete">AI à´ªà´°à´¿à´¶àµ‹à´§à´¨ à´ªàµ‚àµ¼à´¤àµà´¤à´¿à´¯à´¾à´¯à´¿</string>
+    <string name="plant_status_unavailable">à´¸àµ‡à´µà´¨à´‚ à´²à´­àµà´¯à´®à´²àµà´² (%s)</string>
+    <string name="plant_status_error">à´ªà´¿à´¶à´•àµ.</string>
+    <string name="plant_diagnosis">à´°àµ‹à´—à´¨à´¿àµ¼à´£àµà´£à´¯à´‚: %s</string>
+    <string name="plant_remedies">à´ªà´°à´¿à´¹à´¾à´°à´™àµà´™àµ¾:</string>
+    <string name="plant_doctor_scanning">à´šàµ†à´Ÿà´¿ à´ªà´°à´¿à´¶àµ‹à´§à´¨...</string>
+
+    <!-- Irrigation -->
+    <string name="irrigation_hint_size">à´ªàµà´ªà´¾à´Ÿà´¤àµà´¤à´¿à´¨àµà´±àµ† à´µà´²à´¿à´ªàµà´ªà´‚ à´¨àµ½à´•àµà´•</string>
+    <string name="irrigation_error_size">à´¤àµ†à´±àµà´±à´¾à´¯ à´µà´²à´¿à´ªàµà´ªà´‚</string>
+    <string name="irrigation_result_water">ðŸ’§ %1$.0f à´²à´¿à´±àµà´±àµ¼/à´¦à´¿à´µà´¸à´‚\n(%2$.1f mm à´†à´´à´‚)</string>
+    <string name="irrigation_weather_note">ðŸ“ %1$s\nðŸŒ¡ï¸ à´¤à´¾à´ªà´¨à´¿à´²: %2$.1fÂ°C, ðŸ’§ à´ˆàµ¼à´ªàµà´ªà´‚: %3$.0f%%</string>
+
+    <!-- Profile Dashboard -->
+    <string name="profile_farm_dashboard">ðŸŒ¾ à´Žà´¨àµà´±àµ† à´«à´¾à´‚</string>
+    <string name="profile_stat_rank">à´±à´¾à´™àµà´•àµ</string>
+    <string name="profile_stat_land">à´­àµ‚à´®à´¿</string>
+    <string name="profile_stat_crop">à´µà´¿à´³</string>
+    <string name="profile_rank_novice">à´¤àµà´Ÿà´•àµà´•à´•àµà´•à´¾à´°àµ»</string>
+    <string name="profile_rank_expert">à´µà´¿à´¦à´—àµà´¦àµà´§àµ»</string>
+    <string name="profile_rank_guardian">à´¸à´‚à´°à´•àµà´·à´•àµ»</string>
+    <string name="profile_rank_master">à´®à´¿à´Ÿàµà´Ÿà´¿ à´®à´¿à´¤àµà´°</string>
+    <string name="unit_acres">à´à´•àµà´•àµ¼</string>
+    <string name="status_none">à´’à´¨àµà´¨àµà´®à´¿à´²àµà´²</string>
 </resources>

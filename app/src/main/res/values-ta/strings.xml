@@ -1,267 +1,302 @@
-<resources>
-    <string name="app_name">மிட்டி மித்ரா</string>
+﻿<resources>
+    <string name="app_name">à®®à®¿à®Ÿà¯à®Ÿà®¿ à®®à®¿à®¤à¯à®°à®¾</string>
 
-    <string name="welcome_subtitle">உங்கள் தனிப்பட்ட விவசாய உதவியாளர்</string>
-    <string name="login">உள்நுழைய</string>
-    <string name="signup">பதிவுபெற</string>
+    <string name="welcome_subtitle">à®‰à®™à¯à®•à®³à¯ à®¤à®©à®¿à®ªà¯à®ªà®Ÿà¯à®Ÿ à®µà®¿à®µà®šà®¾à®¯ à®‰à®¤à®µà®¿à®¯à®¾à®³à®°à¯</string>
+    <string name="login">à®‰à®³à¯à®¨à¯à®´à¯ˆà®¯</string>
+    <string name="signup">à®ªà®¤à®¿à®µà¯à®ªà¯†à®±</string>
 
-    <string name="greeting_format">வணக்கம், %s</string>
-    <string name="greeting_default">வணக்கம், பயனர்</string>
-    <string name="last_scan">கடைசி ஸ்கேன்</string>
-    <string name="button_tip">குறிப்பு</string>
-    <string name="button_recommendation">பரிந்துரை</string>
-    <string name="button_history">வரலாறு</string>
-    <string name="button_scan">ஸ்கேன்</string>
-    <string name="button_documents">ஆவணங்கள்</string>
+    <string name="greeting_format">à®µà®£à®•à¯à®•à®®à¯, %s</string>
+    <string name="greeting_default">à®µà®£à®•à¯à®•à®®à¯, à®ªà®¯à®©à®°à¯</string>
+    <string name="last_scan">à®•à®Ÿà¯ˆà®šà®¿ à®¸à¯à®•à¯‡à®©à¯</string>
+    <string name="button_tip">à®•à¯à®±à®¿à®ªà¯à®ªà¯</string>
+    <string name="button_recommendation">à®ªà®°à®¿à®¨à¯à®¤à¯à®°à¯ˆ</string>
+    <string name="button_history">à®µà®°à®²à®¾à®±à¯</string>
+    <string name="button_scan">à®¸à¯à®•à¯‡à®©à¯</string>
+    <string name="button_documents">à®†à®µà®£à®™à¯à®•à®³à¯</string>
 
-    <string name="menu_settings">அமைப்புகள்</string>
-    <string name="menu_help">உதவி</string>
-    <string name="menu_contact">தொடர்பு</string>
-    <string name="menu_logout">வெளியேறு</string>
+    <string name="menu_settings">à®…à®®à¯ˆà®ªà¯à®ªà¯à®•à®³à¯</string>
+    <string name="menu_help">à®‰à®¤à®µà®¿</string>
+    <string name="menu_contact">à®¤à¯Šà®Ÿà®°à¯à®ªà¯</string>
+    <string name="menu_logout">à®µà¯†à®³à®¿à®¯à¯‡à®±à¯</string>
 
-    <string name="setting_language">மொழி</string>
-    <string name="setting_accessibility">அணுகல்தன்மை</string>
-    <string name="setting_theme">பயன்பாட்டு தீம்</string>
-    <string name="setting_manage_data">தரவு மேலாண்மை</string>
+    <string name="setting_language">à®®à¯Šà®´à®¿</string>
+    <string name="setting_accessibility">à®…à®£à¯à®•à®²à¯à®¤à®©à¯à®®à¯ˆ</string>
+    <string name="setting_theme">à®ªà®¯à®©à¯à®ªà®¾à®Ÿà¯à®Ÿà¯ à®¤à¯€à®®à¯</string>
+    <string name="setting_manage_data">à®¤à®°à®µà¯ à®®à¯‡à®²à®¾à®£à¯à®®à¯ˆ</string>
 
-    <string name="setting_unit_converter">நில அலகு மாற்றி</string>
-    <string name="setting_unit_converter_desc">ஏக்கர், ஹெக்டேர், பிஹா மற்றும் குண்டாவை மாற்றவும்.</string>
-    <string name="setting_kisan_call">கிசான் ஹெல்ப்லைனை அழைக்கவும்</string>
-    <string name="setting_kisan_call_desc">அரசு கிசான் கால் சென்டருடன் இணைக்கவும் (1800-180-1551).</string>
+    <string name="setting_unit_converter">à®¨à®¿à®² à®…à®²à®•à¯ à®®à®¾à®±à¯à®±à®¿</string>
+    <string name="setting_unit_converter_desc">à®à®•à¯à®•à®°à¯, à®¹à¯†à®•à¯à®Ÿà¯‡à®°à¯, à®ªà®¿à®¹à®¾ à®®à®±à¯à®±à¯à®®à¯ à®•à¯à®£à¯à®Ÿà®¾à®µà¯ˆ à®®à®¾à®±à¯à®±à®µà¯à®®à¯.</string>
+    <string name="setting_kisan_call">à®•à®¿à®šà®¾à®©à¯ à®¹à¯†à®²à¯à®ªà¯à®²à¯ˆà®©à¯ˆ à®…à®´à¯ˆà®•à¯à®•à®µà¯à®®à¯</string>
+    <string name="setting_kisan_call_desc">à®…à®°à®šà¯ à®•à®¿à®šà®¾à®©à¯ à®•à®¾à®²à¯ à®šà¯†à®©à¯à®Ÿà®°à¯à®Ÿà®©à¯ à®‡à®£à¯ˆà®•à¯à®•à®µà¯à®®à¯ (1800-180-1551).</string>
 
-    <string name="language_title">மொழியைத் தேர்ந்தெடுக்கவும்</string>
-    <string name="language_system_default">கணினி இயல்புநிலை</string>
+    <string name="language_title">à®®à¯Šà®´à®¿à®¯à¯ˆà®¤à¯ à®¤à¯‡à®°à¯à®¨à¯à®¤à¯†à®Ÿà¯à®•à¯à®•à®µà¯à®®à¯</string>
+    <string name="language_system_default">à®•à®£à®¿à®©à®¿ à®‡à®¯à®²à¯à®ªà¯à®¨à®¿à®²à¯ˆ</string>
     <string name="language_english">English</string>
-    <string name="language_hindi">हिन्दी (Hindi)</string>
-    <string name="language_tamil">தமிழ் (Tamil)</string>
-    <string name="language_malayalam">മലയാളം (Malayalam)</string>
-    <string name="language_telugu">తెలుగు (Telugu)</string>
-    <string name="language_kannada">ಕನ್ನಡ (Kannada)</string>
-    <string name="language_marathi">मराठी (Marathi)</string>
-    <string name="language_bengali">বাংলা (Bengali)</string>
-    <string name="language_gujarati">ગુજરાતી (Gujarati)</string>
-    <string name="language_punjabi">ਪੰਜਾਬੀ (Punjabi)</string>
+    <string name="language_hindi">à¤¹à¤¿à¤¨à¥à¤¦à¥€ (Hindi)</string>
+    <string name="language_tamil">à®¤à®®à®¿à®´à¯ (Tamil)</string>
+    <string name="language_malayalam">à´®à´²à´¯à´¾à´³à´‚ (Malayalam)</string>
+    <string name="language_telugu">à°¤à±†à°²à±à°—à± (Telugu)</string>
+    <string name="language_kannada">à²•à²¨à³à²¨à²¡ (Kannada)</string>
+    <string name="language_marathi">à¤®à¤°à¤¾à¤ à¥€ (Marathi)</string>
+    <string name="language_bengali">à¦¬à¦¾à¦‚à¦²à¦¾ (Bengali)</string>
+    <string name="language_gujarati">àª—à«àªœàª°àª¾àª¤à«€ (Gujarati)</string>
+    <string name="language_punjabi">à¨ªà©°à¨œà¨¾à¨¬à©€ (Punjabi)</string>
 
-    <string name="font_size_title">எழுத்துரு அளவு</string>
-    <string name="font_size_small">சிறிய</string>
-    <string name="font_size_default">இயல்புநிலை</string>
-    <string name="font_size_large">பெரிய</string>
-    <string name="font_size_sample">உங்கள் உரை இப்படி இருக்கும்.</string>
-    <string name="setting_font_dyslexic">டிஸ்லெக்ஸிக் எழுத்துரு</string>
-    <string name="setting_font_dyslexic_desc">டிஸ்லெக்ஸிக் பயனர்களுக்கு படிக்க எளிதான எழுத்துரு.</string>
+    <string name="font_size_title">à®Žà®´à¯à®¤à¯à®¤à¯à®°à¯ à®…à®³à®µà¯</string>
+    <string name="font_size_small">à®šà®¿à®±à®¿à®¯</string>
+    <string name="font_size_default">à®‡à®¯à®²à¯à®ªà¯à®¨à®¿à®²à¯ˆ</string>
+    <string name="font_size_large">à®ªà¯†à®°à®¿à®¯</string>
+    <string name="font_size_sample">à®‰à®™à¯à®•à®³à¯ à®‰à®°à¯ˆ à®‡à®ªà¯à®ªà®Ÿà®¿ à®‡à®°à¯à®•à¯à®•à¯à®®à¯.</string>
+    <string name="setting_font_dyslexic">à®Ÿà®¿à®¸à¯à®²à¯†à®•à¯à®¸à®¿à®•à¯ à®Žà®´à¯à®¤à¯à®¤à¯à®°à¯</string>
+    <string name="setting_font_dyslexic_desc">à®Ÿà®¿à®¸à¯à®²à¯†à®•à¯à®¸à®¿à®•à¯ à®ªà®¯à®©à®°à¯à®•à®³à¯à®•à¯à®•à¯ à®ªà®Ÿà®¿à®•à¯à®• à®Žà®³à®¿à®¤à®¾à®© à®Žà®´à¯à®¤à¯à®¤à¯à®°à¯.</string>
 
-    <string name="theme_title">தீம் தேர்வு</string>
-    <string name="theme_light">லைட்</string>
-    <string name="theme_dark">டார்க்</string>
-    <string name="theme_system">கணினி இயல்புநிலை</string>
+    <string name="theme_title">à®¤à¯€à®®à¯ à®¤à¯‡à®°à¯à®µà¯</string>
+    <string name="theme_light">à®²à¯ˆà®Ÿà¯</string>
+    <string name="theme_dark">à®Ÿà®¾à®°à¯à®•à¯</string>
+    <string name="theme_system">à®•à®£à®¿à®©à®¿ à®‡à®¯à®²à¯à®ªà¯à®¨à®¿à®²à¯ˆ</string>
 
-    <string name="manage_data_title">தரவு மேலாண்மை</string>
-    <string name="manage_data_soil_title">மண் வரலாற்றை அழிக்கவும்</string>
-    <string name="manage_data_soil_desc">சேமிக்கப்பட்ட அனைத்து மண் ஆய்வு அறிக்கைகளையும் நீக்குகிறது.</string>
-    <string name="manage_data_docs_title">அனைத்து ஆவணங்களையும் அழிக்கவும்</string>
-    <string name="manage_data_docs_desc">இந்த சாதனத்திலிருந்து பதிவேற்றப்பட்ட அனைத்து ஆவணங்களையும் நீக்குகிறது.</string>
-    <string name="dialog_are_you_sure">நிச்சயமாகவா?</string>
-    <string name="dialog_delete">நீக்கு</string>
-    <string name="dialog_cancel">ரத்து</string>
-    <string name="toast_history_cleared">மண் வரலாறு அழிக்கப்பட்டது.</string>
-    <string name="toast_documents_cleared">அனைத்து ஆவணங்களும் அழிக்கப்பட்டன.</string>
+    <string name="manage_data_title">à®¤à®°à®µà¯ à®®à¯‡à®²à®¾à®£à¯à®®à¯ˆ</string>
+    <string name="manage_data_soil_title">à®®à®£à¯ à®µà®°à®²à®¾à®±à¯à®±à¯ˆ à®…à®´à®¿à®•à¯à®•à®µà¯à®®à¯</string>
+    <string name="manage_data_soil_desc">à®šà¯‡à®®à®¿à®•à¯à®•à®ªà¯à®ªà®Ÿà¯à®Ÿ à®…à®©à¯ˆà®¤à¯à®¤à¯ à®®à®£à¯ à®†à®¯à¯à®µà¯ à®…à®±à®¿à®•à¯à®•à¯ˆà®•à®³à¯ˆà®¯à¯à®®à¯ à®¨à¯€à®•à¯à®•à¯à®•à®¿à®±à®¤à¯.</string>
+    <string name="manage_data_docs_title">à®…à®©à¯ˆà®¤à¯à®¤à¯ à®†à®µà®£à®™à¯à®•à®³à¯ˆà®¯à¯à®®à¯ à®…à®´à®¿à®•à¯à®•à®µà¯à®®à¯</string>
+    <string name="manage_data_docs_desc">à®‡à®¨à¯à®¤ à®šà®¾à®¤à®©à®¤à¯à®¤à®¿à®²à®¿à®°à¯à®¨à¯à®¤à¯ à®ªà®¤à®¿à®µà¯‡à®±à¯à®±à®ªà¯à®ªà®Ÿà¯à®Ÿ à®…à®©à¯ˆà®¤à¯à®¤à¯ à®†à®µà®£à®™à¯à®•à®³à¯ˆà®¯à¯à®®à¯ à®¨à¯€à®•à¯à®•à¯à®•à®¿à®±à®¤à¯.</string>
+    <string name="dialog_are_you_sure">à®¨à®¿à®šà¯à®šà®¯à®®à®¾à®•à®µà®¾?</string>
+    <string name="dialog_delete">à®¨à¯€à®•à¯à®•à¯</string>
+    <string name="dialog_cancel">à®°à®¤à¯à®¤à¯</string>
+    <string name="toast_history_cleared">à®®à®£à¯ à®µà®°à®²à®¾à®±à¯ à®…à®´à®¿à®•à¯à®•à®ªà¯à®ªà®Ÿà¯à®Ÿà®¤à¯.</string>
+    <string name="toast_documents_cleared">à®…à®©à¯ˆà®¤à¯à®¤à¯ à®†à®µà®£à®™à¯à®•à®³à¯à®®à¯ à®…à®´à®¿à®•à¯à®•à®ªà¯à®ªà®Ÿà¯à®Ÿà®©.</string>
 
-    <string name="help_title">உதவி மற்றும் ஆதரவு</string>
-    <string name="help_faq_title">அடிக்கடி கேட்கப்படும் கேள்விகள் (FAQ)</string>
-    <string name="help_q1">நான் எப்படி ஒரு நல்ல மண் ஸ்கேன் எடுப்பது?</string>
-    <string name="help_a1">நல்ல வெளிச்சத்தை உறுதிப்படுத்தவும், மாதிரியை ஒரு வெள்ளை பின்னணியில் வைக்கவும், கவனம் செலுத்த தட்டவும்.</string>
-    <string name="help_q2">AI எவ்வளவு துல்லியமானது?</string>
-    <string name="help_a2">AI காட்சி தரவின் அடிப்படையில் பரிந்துரைகளை வழங்குகிறது. முக்கியமான முடிவுகளுக்கு, உள்ளூர் விவசாய நிபுணரை அணுகவும்.</string>
-    <string name="help_contact_title">ஆதரவைத் தொடர்புகொள்ளவும்</string>
+    <string name="help_title">à®‰à®¤à®µà®¿ à®®à®±à¯à®±à¯à®®à¯ à®†à®¤à®°à®µà¯</string>
+    <string name="help_faq_title">à®…à®Ÿà®¿à®•à¯à®•à®Ÿà®¿ à®•à¯‡à®Ÿà¯à®•à®ªà¯à®ªà®Ÿà¯à®®à¯ à®•à¯‡à®³à¯à®µà®¿à®•à®³à¯ (FAQ)</string>
+    <string name="help_q1">à®¨à®¾à®©à¯ à®Žà®ªà¯à®ªà®Ÿà®¿ à®’à®°à¯ à®¨à®²à¯à®² à®®à®£à¯ à®¸à¯à®•à¯‡à®©à¯ à®Žà®Ÿà¯à®ªà¯à®ªà®¤à¯?</string>
+    <string name="help_a1">à®¨à®²à¯à®² à®µà¯†à®³à®¿à®šà¯à®šà®¤à¯à®¤à¯ˆ à®‰à®±à¯à®¤à®¿à®ªà¯à®ªà®Ÿà¯à®¤à¯à®¤à®µà¯à®®à¯, à®®à®¾à®¤à®¿à®°à®¿à®¯à¯ˆ à®’à®°à¯ à®µà¯†à®³à¯à®³à¯ˆ à®ªà®¿à®©à¯à®©à®£à®¿à®¯à®¿à®²à¯ à®µà¯ˆà®•à¯à®•à®µà¯à®®à¯, à®•à®µà®©à®®à¯ à®šà¯†à®²à¯à®¤à¯à®¤ à®¤à®Ÿà¯à®Ÿà®µà¯à®®à¯.</string>
+    <string name="help_q2">AI à®Žà®µà¯à®µà®³à®µà¯ à®¤à¯à®²à¯à®²à®¿à®¯à®®à®¾à®©à®¤à¯?</string>
+    <string name="help_a2">AI à®•à®¾à®Ÿà¯à®šà®¿ à®¤à®°à®µà®¿à®©à¯ à®…à®Ÿà®¿à®ªà¯à®ªà®Ÿà¯ˆà®¯à®¿à®²à¯ à®ªà®°à®¿à®¨à¯à®¤à¯à®°à¯ˆà®•à®³à¯ˆ à®µà®´à®™à¯à®•à¯à®•à®¿à®±à®¤à¯. à®®à¯à®•à¯à®•à®¿à®¯à®®à®¾à®© à®®à¯à®Ÿà®¿à®µà¯à®•à®³à¯à®•à¯à®•à¯, à®‰à®³à¯à®³à¯‚à®°à¯ à®µà®¿à®µà®šà®¾à®¯ à®¨à®¿à®ªà¯à®£à®°à¯ˆ à®…à®£à¯à®•à®µà¯à®®à¯.</string>
+    <string name="help_contact_title">à®†à®¤à®°à®µà¯ˆà®¤à¯ à®¤à¯Šà®Ÿà®°à¯à®ªà¯à®•à¯Šà®³à¯à®³à®µà¯à®®à¯</string>
     <string name="help_contact_phone">+91 12345 67890</string>
     <string name="help_contact_email">support@mittimitra.com</string>
 
-    <string name="converter_title">நில மாற்றி</string>
-    <string name="label_enter_area">பகுதியை உள்ளிடவும்</string>
-    <string name="label_result">முடிவு</string>
-    <string name="btn_convert">மாற்று</string>
-    <string name="unit_acre">ஏக்கர்</string>
-    <string name="unit_hectare">ஹெக்டேர்</string>
-    <string name="unit_bigha">பிஹா (நிலையானது)</string>
-    <string name="unit_guntha">குண்டா</string>
-    <string name="unit_cent">சென்ட்</string>
+    <string name="converter_title">à®¨à®¿à®² à®®à®¾à®±à¯à®±à®¿</string>
+    <string name="label_enter_area">à®ªà®•à¯à®¤à®¿à®¯à¯ˆ à®‰à®³à¯à®³à®¿à®Ÿà®µà¯à®®à¯</string>
+    <string name="label_result">à®®à¯à®Ÿà®¿à®µà¯</string>
+    <string name="btn_convert">à®®à®¾à®±à¯à®±à¯</string>
+    <string name="unit_acre">à®à®•à¯à®•à®°à¯</string>
+    <string name="unit_hectare">à®¹à¯†à®•à¯à®Ÿà¯‡à®°à¯</string>
+    <string name="unit_bigha">à®ªà®¿à®¹à®¾ (à®¨à®¿à®²à¯ˆà®¯à®¾à®©à®¤à¯)</string>
+    <string name="unit_guntha">à®•à¯à®£à¯à®Ÿà®¾</string>
+    <string name="unit_cent">à®šà¯†à®©à¯à®Ÿà¯</string>
 
-    <string name="setting_share_app">நண்பர்களுடன் பகிரவும்</string>
-    <string name="setting_notifications">அறிவிப்பு விருப்பங்கள்</string>
+    <string name="setting_share_app">à®¨à®£à¯à®ªà®°à¯à®•à®³à¯à®Ÿà®©à¯ à®ªà®•à®¿à®°à®µà¯à®®à¯</string>
+    <string name="setting_notifications">à®…à®±à®¿à®µà®¿à®ªà¯à®ªà¯ à®µà®¿à®°à¯à®ªà¯à®ªà®™à¯à®•à®³à¯</string>
 
-    <string name="notif_title">அறிவிப்புகள்</string>
-    <string name="notif_weather_title">வானிலை எச்சரிக்கைகள்</string>
-    <string name="notif_weather_desc">கனமழை மற்றும் புயல் எச்சரிக்கைகளைப் பெறுங்கள்.</string>
-    <string name="notif_mandi_title">மண்டி விலைகள்</string>
-    <string name="notif_mandi_desc">உங்கள் மாவட்டத்திற்கான தினசரி சந்தை விலைகள்.</string>
-    <string name="notif_scheme_title">அரசு திட்டங்கள்</string>
-    <string name="notif_scheme_desc">பிஎம்-கிசான் மற்றும் மானியங்கள் பற்றிய புதுப்பிப்புகள்.</string>
-    <string name="share_message">மண் ஆரோக்கியம் மற்றும் விவசாயத்திற்கான சிறந்த பயன்பாடு - மிட்டி மித்ராவைப் பாருங்கள்! இங்கே பதிவிறக்கவும்: https://play.google.com/store/apps/details?id=com.mittimitra</string>
+    <string name="notif_title">à®…à®±à®¿à®µà®¿à®ªà¯à®ªà¯à®•à®³à¯</string>
+    <string name="notif_weather_title">à®µà®¾à®©à®¿à®²à¯ˆ à®Žà®šà¯à®šà®°à®¿à®•à¯à®•à¯ˆà®•à®³à¯</string>
+    <string name="notif_weather_desc">à®•à®©à®®à®´à¯ˆ à®®à®±à¯à®±à¯à®®à¯ à®ªà¯à®¯à®²à¯ à®Žà®šà¯à®šà®°à®¿à®•à¯à®•à¯ˆà®•à®³à¯ˆà®ªà¯ à®ªà¯†à®±à¯à®™à¯à®•à®³à¯.</string>
+    <string name="notif_mandi_title">à®®à®£à¯à®Ÿà®¿ à®µà®¿à®²à¯ˆà®•à®³à¯</string>
+    <string name="notif_mandi_desc">à®‰à®™à¯à®•à®³à¯ à®®à®¾à®µà®Ÿà¯à®Ÿà®¤à¯à®¤à®¿à®±à¯à®•à®¾à®© à®¤à®¿à®©à®šà®°à®¿ à®šà®¨à¯à®¤à¯ˆ à®µà®¿à®²à¯ˆà®•à®³à¯.</string>
+    <string name="notif_scheme_title">à®…à®°à®šà¯ à®¤à®¿à®Ÿà¯à®Ÿà®™à¯à®•à®³à¯</string>
+    <string name="notif_scheme_desc">à®ªà®¿à®Žà®®à¯-à®•à®¿à®šà®¾à®©à¯ à®®à®±à¯à®±à¯à®®à¯ à®®à®¾à®©à®¿à®¯à®™à¯à®•à®³à¯ à®ªà®±à¯à®±à®¿à®¯ à®ªà¯à®¤à¯à®ªà¯à®ªà®¿à®ªà¯à®ªà¯à®•à®³à¯.</string>
+    <string name="share_message">à®®à®£à¯ à®†à®°à¯‹à®•à¯à®•à®¿à®¯à®®à¯ à®®à®±à¯à®±à¯à®®à¯ à®µà®¿à®µà®šà®¾à®¯à®¤à¯à®¤à®¿à®±à¯à®•à®¾à®© à®šà®¿à®±à®¨à¯à®¤ à®ªà®¯à®©à¯à®ªà®¾à®Ÿà¯ - à®®à®¿à®Ÿà¯à®Ÿà®¿ à®®à®¿à®¤à¯à®°à®¾à®µà¯ˆà®ªà¯ à®ªà®¾à®°à¯à®™à¯à®•à®³à¯! à®‡à®™à¯à®•à¯‡ à®ªà®¤à®¿à®µà®¿à®±à®•à¯à®•à®µà¯à®®à¯: https://play.google.com/store/apps/details?id=com.mittimitra</string>
 
-    <string name="title_pm_kisan">PM-KISAN: ₹6,000/ஆண்டு வருமான ஆதரவு</string>
-    <string name="title_smart_tools">ஸ்மார்ட் கருவிகள்</string>
-    <string name="title_soil_health">மண் சுகாதார அட்டை: உங்கள் மண்ணின் வலிமையை அறியுங்கள்</string>
-    <string name="title_fasal_bima">PM பயிர் காப்பீட்டு திட்டம்: உங்கள் பயிர்களைப் பாதுகாக்கவும்</string>
+    <string name="title_pm_kisan">PM-KISAN: â‚¹6,000/à®†à®£à¯à®Ÿà¯ à®µà®°à¯à®®à®¾à®© à®†à®¤à®°à®µà¯</string>
+    <string name="title_smart_tools">à®¸à¯à®®à®¾à®°à¯à®Ÿà¯ à®•à®°à¯à®µà®¿à®•à®³à¯</string>
+    <string name="title_soil_health">à®®à®£à¯ à®šà¯à®•à®¾à®¤à®¾à®° à®…à®Ÿà¯à®Ÿà¯ˆ: à®‰à®™à¯à®•à®³à¯ à®®à®£à¯à®£à®¿à®©à¯ à®µà®²à®¿à®®à¯ˆà®¯à¯ˆ à®…à®±à®¿à®¯à¯à®™à¯à®•à®³à¯</string>
+    <string name="title_fasal_bima">PM à®ªà®¯à®¿à®°à¯ à®•à®¾à®ªà¯à®ªà¯€à®Ÿà¯à®Ÿà¯ à®¤à®¿à®Ÿà¯à®Ÿà®®à¯: à®‰à®™à¯à®•à®³à¯ à®ªà®¯à®¿à®°à¯à®•à®³à¯ˆà®ªà¯ à®ªà®¾à®¤à¯à®•à®¾à®•à¯à®•à®µà¯à®®à¯</string>
 
-    <string name="notif_weather">வானிலை எச்சரிக்கைகள்</string>
-    <string name="notif_mandi">மண்டி விலைகள்</string>
-    <string name="notif_schemes">அரசு திட்டங்கள்</string>
+    <string name="notif_weather">à®µà®¾à®©à®¿à®²à¯ˆ à®Žà®šà¯à®šà®°à®¿à®•à¯à®•à¯ˆà®•à®³à¯</string>
+    <string name="notif_mandi">à®®à®£à¯à®Ÿà®¿ à®µà®¿à®²à¯ˆà®•à®³à¯</string>
+    <string name="notif_schemes">à®…à®°à®šà¯ à®¤à®¿à®Ÿà¯à®Ÿà®™à¯à®•à®³à¯</string>
 
-    <string name="contact_header">நாங்கள் உதவ இங்கே இருக்கிறோம்</string>
-    <string name="contact_desc">குறிப்பிட்ட விவசாய ஆலோசனை அல்லது தொழில்நுட்ப ஆதரவுக்காக எங்களைத் தொடர்பு கொள்ளவும்.</string>
-    <string name="contact_call">ஆதரவை அழைக்கவும்</string>
-    <string name="contact_time">திங்கள்-சனி, காலை 9 - மாலை 6</string>
-    <string name="contact_email">எங்களுக்கு மின்னஞ்சல் அனுப்புங்கள்</string>
+    <string name="contact_header">à®¨à®¾à®™à¯à®•à®³à¯ à®‰à®¤à®µ à®‡à®™à¯à®•à¯‡ à®‡à®°à¯à®•à¯à®•à®¿à®±à¯‹à®®à¯</string>
+    <string name="contact_desc">à®•à¯à®±à®¿à®ªà¯à®ªà®¿à®Ÿà¯à®Ÿ à®µà®¿à®µà®šà®¾à®¯ à®†à®²à¯‹à®šà®©à¯ˆ à®…à®²à¯à®²à®¤à¯ à®¤à¯Šà®´à®¿à®²à¯à®¨à¯à®Ÿà¯à®ª à®†à®¤à®°à®µà¯à®•à¯à®•à®¾à®• à®Žà®™à¯à®•à®³à¯ˆà®¤à¯ à®¤à¯Šà®Ÿà®°à¯à®ªà¯ à®•à¯Šà®³à¯à®³à®µà¯à®®à¯.</string>
+    <string name="contact_call">à®†à®¤à®°à®µà¯ˆ à®…à®´à¯ˆà®•à¯à®•à®µà¯à®®à¯</string>
+    <string name="contact_time">à®¤à®¿à®™à¯à®•à®³à¯-à®šà®©à®¿, à®•à®¾à®²à¯ˆ 9 - à®®à®¾à®²à¯ˆ 6</string>
+    <string name="contact_email">à®Žà®™à¯à®•à®³à¯à®•à¯à®•à¯ à®®à®¿à®©à¯à®©à®žà¯à®šà®²à¯ à®…à®©à¯à®ªà¯à®ªà¯à®™à¯à®•à®³à¯</string>
     <string name="contact_email_addr">support@mittimitra.com</string>
 
-    <string name="label_from_unit">இருந்து அலகு</string>
-    <string name="label_to_unit">க்கு அலகு</string>
+    <string name="label_from_unit">à®‡à®°à¯à®¨à¯à®¤à¯ à®…à®²à®•à¯</string>
+    <string name="label_to_unit">à®•à¯à®•à¯ à®…à®²à®•à¯</string>
 
-    <string name="scan_title">புதிய மண் ஸ்கேன்</string>
-    <string name="scan_env_data">சுற்றுச்சூழல் தரவு</string>
-    <string name="scan_weather">வானிலை</string>
-    <string name="scan_moisture">ஈரப்பதம்</string>
-    <string name="scan_nutrients">மண் ஊட்டச்சத்துக்கள் (மதிப்பீடு)</string>
-    <string name="scan_hint">உங்கள் அவதானிப்புகள் (எ.கா. \'மஞ்சள் இலைகள்\')</string>
-    <string name="scan_status_ready">ஸ்கேன் செய்யத் தயார்</string>
-    <string name="scan_btn_gallery">கேலரி</string>
-    <string name="scan_btn_camera">கேமரா</string>
-    <string name="scan_btn_analyze">மண்ணை அடையாளம் கண்டு பரிந்துரைக்கவும்</string>
+    <string name="scan_title">à®ªà¯à®¤à®¿à®¯ à®®à®£à¯ à®¸à¯à®•à¯‡à®©à¯</string>
+    <string name="scan_env_data">à®šà¯à®±à¯à®±à¯à®šà¯à®šà¯‚à®´à®²à¯ à®¤à®°à®µà¯</string>
+    <string name="scan_weather">à®µà®¾à®©à®¿à®²à¯ˆ</string>
+    <string name="scan_moisture">à®ˆà®°à®ªà¯à®ªà®¤à®®à¯</string>
+    <string name="scan_nutrients">à®®à®£à¯ à®Šà®Ÿà¯à®Ÿà®šà¯à®šà®¤à¯à®¤à¯à®•à¯à®•à®³à¯ (à®®à®¤à®¿à®ªà¯à®ªà¯€à®Ÿà¯)</string>
+    <string name="scan_hint">à®‰à®™à¯à®•à®³à¯ à®…à®µà®¤à®¾à®©à®¿à®ªà¯à®ªà¯à®•à®³à¯ (à®Ž.à®•à®¾. \'à®®à®žà¯à®šà®³à¯ à®‡à®²à¯ˆà®•à®³à¯\')</string>
+    <string name="scan_status_ready">à®¸à¯à®•à¯‡à®©à¯ à®šà¯†à®¯à¯à®¯à®¤à¯ à®¤à®¯à®¾à®°à¯</string>
+    <string name="scan_btn_gallery">à®•à¯‡à®²à®°à®¿</string>
+    <string name="scan_btn_camera">à®•à¯‡à®®à®°à®¾</string>
+    <string name="scan_btn_analyze">à®®à®£à¯à®£à¯ˆ à®…à®Ÿà¯ˆà®¯à®¾à®³à®®à¯ à®•à®£à¯à®Ÿà¯ à®ªà®°à®¿à®¨à¯à®¤à¯à®°à¯ˆà®•à¯à®•à®µà¯à®®à¯</string>
 
-    <string name="profile_recent">சமீபத்திய பகுப்பாய்வு</string>
-    <string name="profile_no_history">சமீபத்திய ஸ்கேன்கள் எதுவும் இல்லை.</string>
-    <string name="profile_logout">வெளியேறு</string>
-    <string name="profile_member_since">உறுப்பினர் தேதி:</string>
-    <string name="profile_phone">தொலைபேசி:</string>
+    <string name="profile_recent">à®šà®®à¯€à®ªà®¤à¯à®¤à®¿à®¯ à®ªà®•à¯à®ªà¯à®ªà®¾à®¯à¯à®µà¯</string>
+    <string name="profile_no_history">à®šà®®à¯€à®ªà®¤à¯à®¤à®¿à®¯ à®¸à¯à®•à¯‡à®©à¯à®•à®³à¯ à®Žà®¤à¯à®µà¯à®®à¯ à®‡à®²à¯à®²à¯ˆ.</string>
+    <string name="profile_logout">à®µà¯†à®³à®¿à®¯à¯‡à®±à¯</string>
+    <string name="profile_member_since">à®‰à®±à¯à®ªà¯à®ªà®¿à®©à®°à¯ à®¤à¯‡à®¤à®¿:</string>
+    <string name="profile_phone">à®¤à¯Šà®²à¯ˆà®ªà¯‡à®šà®¿:</string>
 
-    <string name="rec_title">மண் சுகாதார அட்டை</string>
-    <string name="rec_header_title">மண் சுகாதார அட்டை</string>
-    <string name="rec_header_subtitle">மிட்டி மித்ரா • டிஜிட்டல் விவசாய மிஷன்</string>
-    <string name="rec_farmer_details">விவசாயி விவரங்கள்</string>
-    <string name="rec_label_name">பெயர்:</string>
-    <string name="rec_label_mobile">மொபைல்:</string>
-    <string name="rec_label_email">மின்னஞ்சல்:</string>
-    <string name="rec_label_location">இடம்:</string>
-    <string name="rec_label_date">சோதனை தேதி:</string>
-    <string name="rec_results_title">சோதனை முடிவுகள் (முதன்மை ஊட்டச்சத்துக்கள்)</string>
-    <string name="rec_col_param">அளவுரு</string>
-    <string name="rec_col_value">மதிப்பு</string>
-    <string name="rec_col_status">நிலை</string>
-    <string name="rec_advisory_title">அறிவியல் ஆலோசனை</string>
-    <string name="rec_footer">மிட்டி மித்ரா AI ஆல் உருவாக்கப்பட்டது | செயற்கைக்கோள் தரவு மூலம் சரிபார்க்கப்பட்டது</string>
-    <string name="rec_btn_download">PDF பதிவிறக்கவும்</string>
+    <string name="rec_title">à®®à®£à¯ à®šà¯à®•à®¾à®¤à®¾à®° à®…à®Ÿà¯à®Ÿà¯ˆ</string>
+    <string name="rec_header_title">à®®à®£à¯ à®šà¯à®•à®¾à®¤à®¾à®° à®…à®Ÿà¯à®Ÿà¯ˆ</string>
+    <string name="rec_header_subtitle">à®®à®¿à®Ÿà¯à®Ÿà®¿ à®®à®¿à®¤à¯à®°à®¾ â€¢ à®Ÿà®¿à®œà®¿à®Ÿà¯à®Ÿà®²à¯ à®µà®¿à®µà®šà®¾à®¯ à®®à®¿à®·à®©à¯</string>
+    <string name="rec_farmer_details">à®µà®¿à®µà®šà®¾à®¯à®¿ à®µà®¿à®µà®°à®™à¯à®•à®³à¯</string>
+    <string name="rec_label_name">à®ªà¯†à®¯à®°à¯:</string>
+    <string name="rec_label_mobile">à®®à¯Šà®ªà¯ˆà®²à¯:</string>
+    <string name="rec_label_email">à®®à®¿à®©à¯à®©à®žà¯à®šà®²à¯:</string>
+    <string name="rec_label_location">à®‡à®Ÿà®®à¯:</string>
+    <string name="rec_label_date">à®šà¯‹à®¤à®©à¯ˆ à®¤à¯‡à®¤à®¿:</string>
+    <string name="rec_results_title">à®šà¯‹à®¤à®©à¯ˆ à®®à¯à®Ÿà®¿à®µà¯à®•à®³à¯ (à®®à¯à®¤à®©à¯à®®à¯ˆ à®Šà®Ÿà¯à®Ÿà®šà¯à®šà®¤à¯à®¤à¯à®•à¯à®•à®³à¯)</string>
+    <string name="rec_col_param">à®…à®³à®µà¯à®°à¯</string>
+    <string name="rec_col_value">à®®à®¤à®¿à®ªà¯à®ªà¯</string>
+    <string name="rec_col_status">à®¨à®¿à®²à¯ˆ</string>
+    <string name="rec_advisory_title">à®…à®±à®¿à®µà®¿à®¯à®²à¯ à®†à®²à¯‹à®šà®©à¯ˆ</string>
+    <string name="rec_footer">à®®à®¿à®Ÿà¯à®Ÿà®¿ à®®à®¿à®¤à¯à®°à®¾ AI à®†à®²à¯ à®‰à®°à¯à®µà®¾à®•à¯à®•à®ªà¯à®ªà®Ÿà¯à®Ÿà®¤à¯ | à®šà¯†à®¯à®±à¯à®•à¯ˆà®•à¯à®•à¯‹à®³à¯ à®¤à®°à®µà¯ à®®à¯‚à®²à®®à¯ à®šà®°à®¿à®ªà®¾à®°à¯à®•à¯à®•à®ªà¯à®ªà®Ÿà¯à®Ÿà®¤à¯</string>
+    <string name="rec_btn_download">PDF à®ªà®¤à®¿à®µà®¿à®±à®•à¯à®•à®µà¯à®®à¯</string>
 
-    <string name="login_welcome">மீண்டும் வருக</string>
-    <string name="login_subtitle">உங்கள் பண்ணை கருவிகளை அணுக உள்நுழையவும்</string>
-    <string name="login_google">Google மூலம் தொடரவும்</string>
-    <string name="login_or_divider">அல்லது தொலைபேசி</string>
-    <string name="login_hint_phone">தொலைபேசி எண்</string>
-    <string name="login_btn_otp">OTP பெறவும்</string>
-    <string name="login_hint_otp">6-இலக்க OTP ஐ உள்ளிடவும்</string>
-    <string name="login_btn_verify">சரிபார்த்து உள்நுழையவும்</string>
-    <string name="login_trouble">உள்நுழைவதில் சிக்கலா?</string>
+    <string name="login_welcome">à®®à¯€à®£à¯à®Ÿà¯à®®à¯ à®µà®°à¯à®•</string>
+    <string name="login_subtitle">à®‰à®™à¯à®•à®³à¯ à®ªà®£à¯à®£à¯ˆ à®•à®°à¯à®µà®¿à®•à®³à¯ˆ à®…à®£à¯à®• à®‰à®³à¯à®¨à¯à®´à¯ˆà®¯à®µà¯à®®à¯</string>
+    <string name="login_google">Google à®®à¯‚à®²à®®à¯ à®¤à¯Šà®Ÿà®°à®µà¯à®®à¯</string>
+    <string name="login_or_divider">à®…à®²à¯à®²à®¤à¯ à®¤à¯Šà®²à¯ˆà®ªà¯‡à®šà®¿</string>
+    <string name="login_hint_phone">à®¤à¯Šà®²à¯ˆà®ªà¯‡à®šà®¿ à®Žà®£à¯</string>
+    <string name="login_btn_otp">OTP à®ªà¯†à®±à®µà¯à®®à¯</string>
+    <string name="login_hint_otp">6-à®‡à®²à®•à¯à®• OTP à® à®‰à®³à¯à®³à®¿à®Ÿà®µà¯à®®à¯</string>
+    <string name="login_btn_verify">à®šà®°à®¿à®ªà®¾à®°à¯à®¤à¯à®¤à¯ à®‰à®³à¯à®¨à¯à®´à¯ˆà®¯à®µà¯à®®à¯</string>
+    <string name="login_trouble">à®‰à®³à¯à®¨à¯à®´à¯ˆà®µà®¤à®¿à®²à¯ à®šà®¿à®•à¯à®•à®²à®¾?</string>
 
-    <string name="home_welcome_default">வணக்கம், விவசாயி</string>
-    <string name="home_card_scan">மண்ணை ஸ்கேன் செய்யவும்</string>
-    <string name="home_card_advice">ஆலோசனை பெறவும்</string>
-    <string name="home_card_tips">AI நிபுணர் குறிப்புகள்</string>
-    <string name="home_section_tools">ஸ்மார்ட் கருவிகள்</string>
-    <string name="desc_logo">செயலி லோகோ</string>
-    <string name="desc_icon">ஐகான்</string>
+    <string name="home_welcome_default">à®µà®£à®•à¯à®•à®®à¯, à®µà®¿à®µà®šà®¾à®¯à®¿</string>
+    <string name="home_card_scan">à®®à®£à¯à®£à¯ˆ à®¸à¯à®•à¯‡à®©à¯ à®šà¯†à®¯à¯à®¯à®µà¯à®®à¯</string>
+    <string name="home_card_advice">à®†à®²à¯‹à®šà®©à¯ˆ à®ªà¯†à®±à®µà¯à®®à¯</string>
+    <string name="home_card_tips">AI à®¨à®¿à®ªà¯à®£à®°à¯ à®•à¯à®±à®¿à®ªà¯à®ªà¯à®•à®³à¯</string>
+    <string name="home_section_tools">à®¸à¯à®®à®¾à®°à¯à®Ÿà¯ à®•à®°à¯à®µà®¿à®•à®³à¯</string>
+    <string name="desc_logo">à®šà¯†à®¯à®²à®¿ à®²à¯‹à®•à¯‹</string>
+    <string name="desc_icon">à®à®•à®¾à®©à¯</string>
 
-    <string name="title_documents">தொடர்புடைய ஆவணங்கள்</string>
-    <string name="msg_no_documents">ஆவணங்கள் எதுவும் இல்லை.\nசேர்க்க \'+\' ஐத் தட்டவும்.</string>
-    <string name="desc_add_document">ஆவணத்தைச் சேர்க்கவும்</string>
+    <string name="title_documents">à®¤à¯Šà®Ÿà®°à¯à®ªà¯à®Ÿà¯ˆà®¯ à®†à®µà®£à®™à¯à®•à®³à¯</string>
+    <string name="msg_no_documents">à®†à®µà®£à®™à¯à®•à®³à¯ à®Žà®¤à¯à®µà¯à®®à¯ à®‡à®²à¯à®²à¯ˆ.\nà®šà¯‡à®°à¯à®•à¯à®• \'+\' à®à®¤à¯ à®¤à®Ÿà¯à®Ÿà®µà¯à®®à¯.</string>
+    <string name="desc_add_document">à®†à®µà®£à®¤à¯à®¤à¯ˆà®šà¯ à®šà¯‡à®°à¯à®•à¯à®•à®µà¯à®®à¯</string>
 
-    <string name="title_scan_history">ஸ்கேன் வரலாறு</string>
+    <string name="title_scan_history">à®¸à¯à®•à¯‡à®©à¯ à®µà®°à®²à®¾à®±à¯</string>
 
-    <string name="welcome_home_title">நல்வரவு!</string>
-    <string name="welcome_home_desc">நீங்கள் வெற்றிகரமாக உள்நுழைந்துள்ளீர்கள்!</string>
+    <string name="welcome_home_title">à®¨à®²à¯à®µà®°à®µà¯!</string>
+    <string name="welcome_home_desc">à®¨à¯€à®™à¯à®•à®³à¯ à®µà¯†à®±à¯à®±à®¿à®•à®°à®®à®¾à®• à®‰à®³à¯à®¨à¯à®´à¯ˆà®¨à¯à®¤à¯à®³à¯à®³à¯€à®°à¯à®•à®³à¯!</string>
 
-    <string name="btn_test_notification">சோதனை அறிவிப்பை அனுப்பவும்</string>
-    <string name="desc_notification_icon">அறிவிப்பு ஐகான்</string>
+    <string name="btn_test_notification">à®šà¯‹à®¤à®©à¯ˆ à®…à®±à®¿à®µà®¿à®ªà¯à®ªà¯ˆ à®…à®©à¯à®ªà¯à®ªà®µà¯à®®à¯</string>
+    <string name="desc_notification_icon">à®…à®±à®¿à®µà®¿à®ªà¯à®ªà¯ à®à®•à®¾à®©à¯</string>
 
-    <string name="profile_name_placeholder">ஏற்றுகிறது...</string>
+    <string name="profile_name_placeholder">à®à®±à¯à®±à¯à®•à®¿à®±à®¤à¯...</string>
     <string name="profile_email_placeholder">email@example.com</string>
-    <string name="desc_profile_image">சுயவிவரப் படம்</string>
-    <string name="desc_change_photo">சுயவிவரப் படத்தை மாற்றவும்</string>
-    <string name="desc_edit_profile">சுயவிவர விவரங்களைத் திருத்தவும்</string>
+    <string name="desc_profile_image">à®šà¯à®¯à®µà®¿à®µà®°à®ªà¯ à®ªà®Ÿà®®à¯</string>
+    <string name="desc_change_photo">à®šà¯à®¯à®µà®¿à®µà®°à®ªà¯ à®ªà®Ÿà®¤à¯à®¤à¯ˆ à®®à®¾à®±à¯à®±à®µà¯à®®à¯</string>
+    <string name="desc_edit_profile">à®šà¯à®¯à®µà®¿à®µà®° à®µà®¿à®µà®°à®™à¯à®•à®³à¯ˆà®¤à¯ à®¤à®¿à®°à¯à®¤à¯à®¤à®µà¯à®®à¯</string>
 
-    <string name="rec_param_n">நைட்ரஜன் (N)</string>
-    <string name="rec_param_p">பாஸ்பரஸ் (P)</string>
-    <string name="rec_param_k">பொட்டாசியம் (K)</string>
-    <string name="rec_param_ph">மண் pH</string>
-    <string name="rec_ai_context">பயிர் தேவைகளை பகுப்பாய்வு செய்கிறது...</string>
-    <string name="rec_ai_generating">நிபுணர் பரிந்துரையை உருவாக்குகிறது...</string>
+    <string name="rec_param_n">à®¨à¯ˆà®Ÿà¯à®°à®œà®©à¯ (N)</string>
+    <string name="rec_param_p">à®ªà®¾à®¸à¯à®ªà®°à®¸à¯ (P)</string>
+    <string name="rec_param_k">à®ªà¯Šà®Ÿà¯à®Ÿà®¾à®šà®¿à®¯à®®à¯ (K)</string>
+    <string name="rec_param_ph">à®®à®£à¯ pH</string>
+    <string name="rec_ai_context">à®ªà®¯à®¿à®°à¯ à®¤à¯‡à®µà¯ˆà®•à®³à¯ˆ à®ªà®•à¯à®ªà¯à®ªà®¾à®¯à¯à®µà¯ à®šà¯†à®¯à¯à®•à®¿à®±à®¤à¯...</string>
+    <string name="rec_ai_generating">à®¨à®¿à®ªà¯à®£à®°à¯ à®ªà®°à®¿à®¨à¯à®¤à¯à®°à¯ˆà®¯à¯ˆ à®‰à®°à¯à®µà®¾à®•à¯à®•à¯à®•à®¿à®±à®¤à¯...</string>
 
-    <string name="scan_locating">இடத்தைக் கண்டறிகிறது...</string>
-    <string name="desc_image_preview">பட முன்னோட்டம்</string>
-    <string name="signup_title">மிட்டி மித்ராவில் சேரவும்</string>
-    <string name="signup_subtitle">இன்றே உங்கள் ஸ்மார்ட் விவசாயப் பயணத்தைத் தொடங்குங்கள்</string>
-    <string name="signup_create_account">கணக்கை உருவாக்கவும்</string>
-    <string name="signup_google">Google மூலம் பதிவு செய்யவும்</string>
-    <string name="signup_phone">தொலைபேசி மூலம் பதிவு செய்யவும்</string>
-    <string name="signup_footer">ஏற்கனவே கணக்கு உள்ளதா?</string>
+    <string name="scan_locating">à®‡à®Ÿà®¤à¯à®¤à¯ˆà®•à¯ à®•à®£à¯à®Ÿà®±à®¿à®•à®¿à®±à®¤à¯...</string>
+    <string name="desc_image_preview">à®ªà®Ÿ à®®à¯à®©à¯à®©à¯‹à®Ÿà¯à®Ÿà®®à¯</string>
+    <string name="signup_title">à®®à®¿à®Ÿà¯à®Ÿà®¿ à®®à®¿à®¤à¯à®°à®¾à®µà®¿à®²à¯ à®šà¯‡à®°à®µà¯à®®à¯</string>
+    <string name="signup_subtitle">à®‡à®©à¯à®±à¯‡ à®‰à®™à¯à®•à®³à¯ à®¸à¯à®®à®¾à®°à¯à®Ÿà¯ à®µà®¿à®µà®šà®¾à®¯à®ªà¯ à®ªà®¯à®£à®¤à¯à®¤à¯ˆà®¤à¯ à®¤à¯Šà®Ÿà®™à¯à®•à¯à®™à¯à®•à®³à¯</string>
+    <string name="signup_create_account">à®•à®£à®•à¯à®•à¯ˆ à®‰à®°à¯à®µà®¾à®•à¯à®•à®µà¯à®®à¯</string>
+    <string name="signup_google">Google à®®à¯‚à®²à®®à¯ à®ªà®¤à®¿à®µà¯ à®šà¯†à®¯à¯à®¯à®µà¯à®®à¯</string>
+    <string name="signup_phone">à®¤à¯Šà®²à¯ˆà®ªà¯‡à®šà®¿ à®®à¯‚à®²à®®à¯ à®ªà®¤à®¿à®µà¯ à®šà¯†à®¯à¯à®¯à®µà¯à®®à¯</string>
+    <string name="signup_footer">à®à®±à¯à®•à®©à®µà¯‡ à®•à®£à®•à¯à®•à¯ à®‰à®³à¯à®³à®¤à®¾?</string>
 
-    <string name="chat_title">விவசாய நிபுணர் அரட்டை</string>
-    <string name="chat_hint">பயிர்கள் பற்றி கேளுங்கள்...</string>
-    <string name="desc_mic">ஆடியோவைப் பதிவு செய்யவும்</string>
-    <string name="desc_send">செய்தி அனுப்பவும்</string>
+    <string name="chat_title">à®µà®¿à®µà®šà®¾à®¯ à®¨à®¿à®ªà¯à®£à®°à¯ à®…à®°à®Ÿà¯à®Ÿà¯ˆ</string>
+    <string name="chat_hint">à®ªà®¯à®¿à®°à¯à®•à®³à¯ à®ªà®±à¯à®±à®¿ à®•à¯‡à®³à¯à®™à¯à®•à®³à¯...</string>
+    <string name="desc_mic">à®†à®Ÿà®¿à®¯à¯‹à®µà¯ˆà®ªà¯ à®ªà®¤à®¿à®µà¯ à®šà¯†à®¯à¯à®¯à®µà¯à®®à¯</string>
+    <string name="desc_send">à®šà¯†à®¯à¯à®¤à®¿ à®…à®©à¯à®ªà¯à®ªà®µà¯à®®à¯</string>
 
-    <string name="welcome_get_started">தொடங்குங்கள்</string>
-    <string name="welcome_join_community">புத்திசாலித்தனமான விவசாய சமூகத்தில் சேரவும்.</string>
+    <string name="welcome_get_started">à®¤à¯Šà®Ÿà®™à¯à®•à¯à®™à¯à®•à®³à¯</string>
+    <string name="welcome_join_community">à®ªà¯à®¤à¯à®¤à®¿à®šà®¾à®²à®¿à®¤à¯à®¤à®©à®®à®¾à®© à®µà®¿à®µà®šà®¾à®¯ à®šà®®à¯‚à®•à®¤à¯à®¤à®¿à®²à¯ à®šà¯‡à®°à®µà¯à®®à¯.</string>
 
-    <string name="edit_profile_title">சுயவிவரத்தைத் திருத்தவும்</string>
-    <string name="edit_profile_name_hint">முழுப்பெயர்</string>
-    <string name="edit_profile_phone_hint">தொலைபேசி எண்</string>
-    <string name="edit_profile_phone_helper">எச்சரிக்கைகளுக்கு அவசியம்</string>
-    <string name="btn_save_changes">மாற்றங்களைச் சேமிக்கவும்</string>
+    <string name="edit_profile_title">à®šà¯à®¯à®µà®¿à®µà®°à®¤à¯à®¤à¯ˆà®¤à¯ à®¤à®¿à®°à¯à®¤à¯à®¤à®µà¯à®®à¯</string>
+    <string name="edit_profile_name_hint">à®®à¯à®´à¯à®ªà¯à®ªà¯†à®¯à®°à¯</string>
+    <string name="edit_profile_phone_hint">à®¤à¯Šà®²à¯ˆà®ªà¯‡à®šà®¿ à®Žà®£à¯</string>
+    <string name="edit_profile_phone_helper">à®Žà®šà¯à®šà®°à®¿à®•à¯à®•à¯ˆà®•à®³à¯à®•à¯à®•à¯ à®…à®µà®šà®¿à®¯à®®à¯</string>
+    <string name="btn_save_changes">à®®à®¾à®±à¯à®±à®™à¯à®•à®³à¯ˆà®šà¯ à®šà¯‡à®®à®¿à®•à¯à®•à®µà¯à®®à¯</string>
 
-    <string name="btn_view">பார்க்க</string>
+    <string name="btn_view">à®ªà®¾à®°à¯à®•à¯à®•</string>
 
-    <string name="placeholder_location">தெரியாத இடம்</string>
-    <string name="placeholder_date">தேதி</string>
-    <string name="status_calculating">கணக்கிடுகிறது...</string>
-    <string name="desc_view_details">விவரங்களைப் பார்க்க</string>
+    <string name="placeholder_location">à®¤à¯†à®°à®¿à®¯à®¾à®¤ à®‡à®Ÿà®®à¯</string>
+    <string name="placeholder_date">à®¤à¯‡à®¤à®¿</string>
+    <string name="status_calculating">à®•à®£à®•à¯à®•à®¿à®Ÿà¯à®•à®¿à®±à®¤à¯...</string>
+    <string name="desc_view_details">à®µà®¿à®µà®°à®™à¯à®•à®³à¯ˆà®ªà¯ à®ªà®¾à®°à¯à®•à¯à®•</string>
 
     <!-- History -->
-    <string name="history">பகுப்பாய்வு வரலாறு</string>
-    <string name="delete_confirmation">பதிவை நீக்கு</string>
-    <string name="delete_history_message">இந்த மண் பகுப்பாய்வு பதிவை நீக்க நிச்சயமாக விரும்புகிறீர்களா?</string>
-    <string name="delete">நீக்கு</string>
-    <string name="cancel">ரத்து</string>
-    <string name="record_deleted">பதிவு நீக்கப்பட்டது</string>
+    <string name="history">à®ªà®•à¯à®ªà¯à®ªà®¾à®¯à¯à®µà¯ à®µà®°à®²à®¾à®±à¯</string>
+    <string name="delete_confirmation">à®ªà®¤à®¿à®µà¯ˆ à®¨à¯€à®•à¯à®•à¯</string>
+    <string name="delete_history_message">à®‡à®¨à¯à®¤ à®®à®£à¯ à®ªà®•à¯à®ªà¯à®ªà®¾à®¯à¯à®µà¯ à®ªà®¤à®¿à®µà¯ˆ à®¨à¯€à®•à¯à®• à®¨à®¿à®šà¯à®šà®¯à®®à®¾à®• à®µà®¿à®°à¯à®®à¯à®ªà¯à®•à®¿à®±à¯€à®°à¯à®•à®³à®¾?</string>
+    <string name="delete">à®¨à¯€à®•à¯à®•à¯</string>
+    <string name="cancel">à®°à®¤à¯à®¤à¯</string>
+    <string name="record_deleted">à®ªà®¤à®¿à®µà¯ à®¨à¯€à®•à¯à®•à®ªà¯à®ªà®Ÿà¯à®Ÿà®¤à¯</string>
 
     <!-- Share -->
-    <string name="share_report">அறிக்கையைப் பகிரவும்</string>
-    <string name="share_via">இதன் மூலம் பகிரவும்</string>
+    <string name="share_report">à®…à®±à®¿à®•à¯à®•à¯ˆà®¯à¯ˆà®ªà¯ à®ªà®•à®¿à®°à®µà¯à®®à¯</string>
+    <string name="share_via">à®‡à®¤à®©à¯ à®®à¯‚à®²à®®à¯ à®ªà®•à®¿à®°à®µà¯à®®à¯</string>
 
     <!-- Weather Alerts -->
-    <string name="weather_alerts_title">வானிலை எச்சரிக்கைகள்</string>
-    <string name="search_location_hint">நகரம் அல்லது பகுதியைத் தேடவும்...</string>
-    <string name="search">தேடு</string>
-    <string name="current_weather">தற்போதைய வானிலை</string>
-    <string name="seven_day_forecast">📅 7-நாள் முன்னறிவிப்பு</string>
-    <string name="agri_recommendations">🌾 விவசாய பரிந்துரைகள்</string>
-    <string name="home_card_weather">வானிலை எச்சரிக்கைகள்</string>
+    <string name="weather_alerts_title">à®µà®¾à®©à®¿à®²à¯ˆ à®Žà®šà¯à®šà®°à®¿à®•à¯à®•à¯ˆà®•à®³à¯</string>
+    <string name="search_location_hint">à®¨à®•à®°à®®à¯ à®…à®²à¯à®²à®¤à¯ à®ªà®•à¯à®¤à®¿à®¯à¯ˆà®¤à¯ à®¤à¯‡à®Ÿà®µà¯à®®à¯...</string>
+    <string name="search">à®¤à¯‡à®Ÿà¯</string>
+    <string name="current_weather">à®¤à®±à¯à®ªà¯‹à®¤à¯ˆà®¯ à®µà®¾à®©à®¿à®²à¯ˆ</string>
+    <string name="seven_day_forecast">ðŸ“… 7-à®¨à®¾à®³à¯ à®®à¯à®©à¯à®©à®±à®¿à®µà®¿à®ªà¯à®ªà¯</string>
+    <string name="agri_recommendations">ðŸŒ¾ à®µà®¿à®µà®šà®¾à®¯ à®ªà®°à®¿à®¨à¯à®¤à¯à®°à¯ˆà®•à®³à¯</string>
+    <string name="home_card_weather">à®µà®¾à®©à®¿à®²à¯ˆ à®Žà®šà¯à®šà®°à®¿à®•à¯à®•à¯ˆà®•à®³à¯</string>
 
     <!-- Crop Calendar -->
-    <string name="crop_calendar_title">பயிர் காலண்டர்</string>
-    <string name="crop_calendar_subtitle">AI-இயக்கப்படும் விதைப்பு மற்றும் அறுவடை அட்டவணை</string>
-    <string name="select_crop">பயிரைத் தேர்ந்தெடுக்கவும்</string>
-    <string name="generate_schedule">AI அட்டவணை உருவாக்கவும்</string>
-    <string name="home_card_calendar">பயிர் காலண்டர்</string>
+    <string name="crop_calendar_title">à®ªà®¯à®¿à®°à¯ à®•à®¾à®²à®£à¯à®Ÿà®°à¯</string>
+    <string name="crop_calendar_subtitle">AI-à®‡à®¯à®•à¯à®•à®ªà¯à®ªà®Ÿà¯à®®à¯ à®µà®¿à®¤à¯ˆà®ªà¯à®ªà¯ à®®à®±à¯à®±à¯à®®à¯ à®…à®±à¯à®µà®Ÿà¯ˆ à®…à®Ÿà¯à®Ÿà®µà®£à¯ˆ</string>
+    <string name="select_crop">à®ªà®¯à®¿à®°à¯ˆà®¤à¯ à®¤à¯‡à®°à¯à®¨à¯à®¤à¯†à®Ÿà¯à®•à¯à®•à®µà¯à®®à¯</string>
+    <string name="generate_schedule">AI à®…à®Ÿà¯à®Ÿà®µà®£à¯ˆ à®‰à®°à¯à®µà®¾à®•à¯à®•à®µà¯à®®à¯</string>
+    <string name="home_card_calendar">à®ªà®¯à®¿à®°à¯ à®•à®¾à®²à®£à¯à®Ÿà®°à¯</string>
 
     <!-- Irrigation Calculator -->
-    <string name="irrigation_title">நீர்ப்பாசன கணிப்பான்</string>
-    <string name="irrigation_subtitle">பயிர், மண் மற்றும் வானிலையின் அடிப்படையில் தினசரி நீர் தேவை</string>
-    <string name="soil_type">மண் வகை</string>
-    <string name="field_size">வயல் அளவு</string>
-    <string name="calculate_water">நீர் தேவையைக் கணக்கிடவும்</string>
-    <string name="water_requirement">தினசரி நீர் தேவை</string>
-    <string name="home_card_irrigation">நீர்ப்பாசனம்</string>
+    <string name="irrigation_title">à®¨à¯€à®°à¯à®ªà¯à®ªà®¾à®šà®© à®•à®£à®¿à®ªà¯à®ªà®¾à®©à¯</string>
+    <string name="irrigation_subtitle">à®ªà®¯à®¿à®°à¯, à®®à®£à¯ à®®à®±à¯à®±à¯à®®à¯ à®µà®¾à®©à®¿à®²à¯ˆà®¯à®¿à®©à¯ à®…à®Ÿà®¿à®ªà¯à®ªà®Ÿà¯ˆà®¯à®¿à®²à¯ à®¤à®¿à®©à®šà®°à®¿ à®¨à¯€à®°à¯ à®¤à¯‡à®µà¯ˆ</string>
+    <string name="soil_type">à®®à®£à¯ à®µà®•à¯ˆ</string>
+    <string name="field_size">à®µà®¯à®²à¯ à®…à®³à®µà¯</string>
+    <string name="calculate_water">à®¨à¯€à®°à¯ à®¤à¯‡à®µà¯ˆà®¯à¯ˆà®•à¯ à®•à®£à®•à¯à®•à®¿à®Ÿà®µà¯à®®à¯</string>
+    <string name="water_requirement">à®¤à®¿à®©à®šà®°à®¿ à®¨à¯€à®°à¯ à®¤à¯‡à®µà¯ˆ</string>
+    <string name="home_card_irrigation">à®¨à¯€à®°à¯à®ªà¯à®ªà®¾à®šà®©à®®à¯</string>
 
     <!-- Plant Doctor -->
-    <string name="home_card_plant_doctor">செடி மருத்துவர்</string>
+    <string name="home_card_plant_doctor">à®šà¯†à®Ÿà®¿ à®®à®°à¯à®¤à¯à®¤à¯à®µà®°à¯</string>
 
+    <!-- NEW LOCALIZATION STRINGS (Tamil) -->
+    <!-- Mandi Connect -->
+    <string name="mandi_title">à®®à®£à¯à®Ÿà®¿ à®µà®¿à®²à¯ˆà®•à®³à¯ (à®¨à¯‡à®°à®²à¯ˆ)</string>
+    <string name="mandi_select_prompt">à®ªà®¯à®¿à®°à¯ à®®à®±à¯à®±à¯à®®à¯ à®ªà®•à¯à®¤à®¿à®¯à¯ˆà®¤à¯ à®¤à¯‡à®°à¯à®¨à¯à®¤à¯†à®Ÿà¯à®•à¯à®•à®µà¯à®®à¯</string>
+    <string name="mandi_btn_check">à®µà®¿à®²à¯ˆà®•à®³à¯ˆà®šà¯ à®šà®°à®¿à®ªà®¾à®°à¯à®•à¯à®•à®µà¯à®®à¯</string>
+    <string name="mandi_error_no_data">à®¤à®•à®µà®²à¯ à®‡à®²à¯à®²à¯ˆ.</string>
+    <string name="mandi_error_connect">à®ªà®¿à®´à¯ˆ: %s</string>
+    <string name="mandi_source">à®†à®¤à®¾à®°à®®à¯: Agmarknet</string>
+
+    <!-- Plant Doctor -->
+    <string name="plant_status_scanning">à®ªà®•à¯à®ªà¯à®ªà®¾à®¯à¯à®µà¯ à®¨à®Ÿà®•à¯à®•à®¿à®±à®¤à¯...</string>
+    <string name="plant_status_complete">AI à®ªà®•à¯à®ªà¯à®ªà®¾à®¯à¯à®µà¯ à®®à¯à®Ÿà®¿à®¨à¯à®¤à®¤à¯</string>
+    <string name="plant_status_unavailable">à®šà¯‡à®µà¯ˆ à®•à®¿à®Ÿà¯ˆà®•à¯à®•à®µà®¿à®²à¯à®²à¯ˆ (%s)</string>
+    <string name="plant_status_error">à®ªà®¿à®´à¯ˆ.</string>
+    <string name="plant_diagnosis">à®•à®£à¯à®Ÿà®±à®¿à®¤à®²à¯: %s</string>
+    <string name="plant_remedies">à®¤à¯€à®°à¯à®µà¯à®•à®³à¯:</string>
+    <string name="plant_doctor_scanning">à®šà¯†à®Ÿà®¿ à®¸à¯à®•à¯‡à®©à¯...</string>
+
+    <!-- Irrigation -->
+    <string name="irrigation_hint_size">à®µà®¯à®²à¯ à®…à®³à®µà¯ˆ à®‰à®³à¯à®³à®¿à®Ÿà®µà¯à®®à¯</string>
+    <string name="irrigation_error_size">à®¤à®µà®±à®¾à®© à®…à®³à®µà¯</string>
+    <string name="irrigation_result_water">ðŸ’§ %1$.0f à®²à®¿à®Ÿà¯à®Ÿà®°à¯/à®¨à®¾à®³à¯\n(%2$.1f à®®à®¿à®®à¯€ à®†à®´à®®à¯)</string>
+    <string name="irrigation_weather_note">ðŸ“ %1$s\nðŸŒ¡ï¸ à®µà¯†à®ªà¯à®ªà®¨à®¿à®²à¯ˆ: %2$.1fÂ°C, ðŸ’§ à®ˆà®°à®®à¯: %3$.0f%%</string>
+
+    <!-- Profile Dashboard -->
+    <string name="profile_farm_dashboard">ðŸŒ¾ à®Žà®©à®¤à¯ à®ªà®£à¯à®£à¯ˆ</string>
+    <string name="profile_stat_rank">à®¤à®°à®®à¯</string>
+    <string name="profile_stat_land">à®¨à®¿à®²à®®à¯</string>
+    <string name="profile_stat_crop">à®ªà®¯à®¿à®°à¯</string>
+    <string name="profile_rank_novice">à®ªà¯à®¤à®¿à®¯à®µà®°à¯</string>
+    <string name="profile_rank_expert">à®¨à®¿à®ªà¯à®£à®°à¯</string>
+    <string name="profile_rank_guardian">à®•à®¾à®µà®²à®°à¯</string>
+    <string name="profile_rank_master">à®®à®¿à®Ÿà¯à®Ÿà®¿ à®®à®¿à®¤à¯à®°à®¾</string>
+    <string name="unit_acres">à®à®•à¯à®•à®°à¯</string>
+    <string name="status_none">à®à®¤à¯à®®à®¿à®²à¯à®²à¯ˆ</string>
 </resources>

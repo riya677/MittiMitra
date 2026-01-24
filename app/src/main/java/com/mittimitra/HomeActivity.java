@@ -91,10 +91,14 @@ public class HomeActivity extends BaseActivity {
         findViewById(R.id.card_help).setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
         findViewById(R.id.card_plant_doctor).setOnClickListener(v -> startActivity(new Intent(this, PlantScanActivity.class)));
         
+        // Scheme Promo Banner
+        findViewById(R.id.card_scheme_promo).setOnClickListener(v -> startActivity(new Intent(this, SchemeActivity.class)));
+
         // New Features
         findViewById(R.id.card_weather).setOnClickListener(v -> startActivity(new Intent(this, WeatherAlertsActivity.class)));
         findViewById(R.id.card_calendar).setOnClickListener(v -> startActivity(new Intent(this, CropCalendarActivity.class)));
         findViewById(R.id.card_irrigation).setOnClickListener(v -> startActivity(new Intent(this, IrrigationActivity.class)));
+        findViewById(R.id.card_mandi).setOnClickListener(v -> startActivity(new Intent(this, MandiActivity.class)));
     }
 
     private void setupBottomNavigation() {

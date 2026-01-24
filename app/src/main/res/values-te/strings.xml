@@ -1,267 +1,302 @@
-<resources>
-    <string name="app_name">మిట్టి మిత్ర</string>
+﻿<resources>
+    <string name="app_name">à°®à°¿à°Ÿà±à°Ÿà°¿ à°®à°¿à°¤à±à°°</string>
 
-    <string name="welcome_subtitle">మీ వ్యక్తిగత వ్యవసాయ సహాయకుడు</string>
-    <string name="login">లాగిన్</string>
-    <string name="signup">సైన్ అప్</string>
+    <string name="welcome_subtitle">à°®à±€ à°µà±à°¯à°•à±à°¤à°¿à°—à°¤ à°µà±à°¯à°µà°¸à°¾à°¯ à°¸à°¹à°¾à°¯à°•à±à°¡à±</string>
+    <string name="login">à°²à°¾à°—à°¿à°¨à±</string>
+    <string name="signup">à°¸à±ˆà°¨à± à°…à°ªà±</string>
 
-    <string name="greeting_format">నమస్తే, %s</string>
-    <string name="greeting_default">నమస్తే, వినియోగదారు</string>
-    <string name="last_scan">చివరి స్కాన్</string>
-    <string name="button_tip">చిట్కా</string>
-    <string name="button_recommendation">సిఫార్సు</string>
-    <string name="button_history">చరిత్ర</string>
-    <string name="button_scan">స్కాన్</string>
-    <string name="button_documents">పత్రాలు</string>
+    <string name="greeting_format">à°¨à°®à°¸à±à°¤à±‡, %s</string>
+    <string name="greeting_default">à°¨à°®à°¸à±à°¤à±‡, à°µà°¿à°¨à°¿à°¯à±‹à°—à°¦à°¾à°°à±</string>
+    <string name="last_scan">à°šà°¿à°µà°°à°¿ à°¸à±à°•à°¾à°¨à±</string>
+    <string name="button_tip">à°šà°¿à°Ÿà±à°•à°¾</string>
+    <string name="button_recommendation">à°¸à°¿à°«à°¾à°°à±à°¸à±</string>
+    <string name="button_history">à°šà°°à°¿à°¤à±à°°</string>
+    <string name="button_scan">à°¸à±à°•à°¾à°¨à±</string>
+    <string name="button_documents">à°ªà°¤à±à°°à°¾à°²à±</string>
 
-    <string name="menu_settings">సెట్టింగులు</string>
-    <string name="menu_help">సహాయం</string>
-    <string name="menu_contact">సంప్రదించండి</string>
-    <string name="menu_logout">లాగ్ అవుట్</string>
+    <string name="menu_settings">à°¸à±†à°Ÿà±à°Ÿà°¿à°‚à°—à±à°²à±</string>
+    <string name="menu_help">à°¸à°¹à°¾à°¯à°‚</string>
+    <string name="menu_contact">à°¸à°‚à°ªà±à°°à°¦à°¿à°‚à°šà°‚à°¡à°¿</string>
+    <string name="menu_logout">à°²à°¾à°—à± à°…à°µà±à°Ÿà±</string>
 
-    <string name="setting_language">భాష</string>
-    <string name="setting_accessibility">ప్రాప్యత</string>
-    <string name="setting_theme">యాప్ థీమ్</string>
-    <string name="setting_manage_data">డేటా నిర్వహణ</string>
+    <string name="setting_language">à°­à°¾à°·</string>
+    <string name="setting_accessibility">à°ªà±à°°à°¾à°ªà±à°¯à°¤</string>
+    <string name="setting_theme">à°¯à°¾à°ªà± à°¥à±€à°®à±</string>
+    <string name="setting_manage_data">à°¡à±‡à°Ÿà°¾ à°¨à°¿à°°à±à°µà°¹à°£</string>
 
-    <string name="setting_unit_converter">భూమి యూనిట్ కన్వర్టర్</string>
-    <string name="setting_unit_converter_desc">ఎకరం, హెక్టారు, బిఘా మరియు గుంటను మార్చండి.</string>
-    <string name="setting_kisan_call">కిసాన్ హెల్ప్‌లైన్‌కు కాల్ చేయండి</string>
-    <string name="setting_kisan_call_desc">ప్రభుత్వ కిసాన్ కాల్ సెంటర్‌తో కనెక్ట్ అవ్వండి (1800-180-1551).</string>
+    <string name="setting_unit_converter">à°­à±‚à°®à°¿ à°¯à±‚à°¨à°¿à°Ÿà± à°•à°¨à±à°µà°°à±à°Ÿà°°à±</string>
+    <string name="setting_unit_converter_desc">à°Žà°•à°°à°‚, à°¹à±†à°•à±à°Ÿà°¾à°°à±, à°¬à°¿à°˜à°¾ à°®à°°à°¿à°¯à± à°—à±à°‚à°Ÿà°¨à± à°®à°¾à°°à±à°šà°‚à°¡à°¿.</string>
+    <string name="setting_kisan_call">à°•à°¿à°¸à°¾à°¨à± à°¹à±†à°²à±à°ªà±â€Œà°²à±ˆà°¨à±â€Œà°•à± à°•à°¾à°²à± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="setting_kisan_call_desc">à°ªà±à°°à°­à±à°¤à±à°µ à°•à°¿à°¸à°¾à°¨à± à°•à°¾à°²à± à°¸à±†à°‚à°Ÿà°°à±â€Œà°¤à±‹ à°•à°¨à±†à°•à±à°Ÿà± à°…à°µà±à°µà°‚à°¡à°¿ (1800-180-1551).</string>
 
-    <string name="language_title">భాషను ఎంచుకోండి</string>
-    <string name="language_system_default">సిస్టమ్ డిఫాల్ట్</string>
+    <string name="language_title">à°­à°¾à°·à°¨à± à°Žà°‚à°šà±à°•à±‹à°‚à°¡à°¿</string>
+    <string name="language_system_default">à°¸à°¿à°¸à±à°Ÿà°®à± à°¡à°¿à°«à°¾à°²à±à°Ÿà±</string>
     <string name="language_english">English</string>
-    <string name="language_hindi">हिन्दी (Hindi)</string>
-    <string name="language_tamil">தமிழ் (Tamil)</string>
-    <string name="language_malayalam">മലയാളം (Malayalam)</string>
-    <string name="language_telugu">తెలుగు (Telugu)</string>
-    <string name="language_kannada">ಕನ್ನಡ (Kannada)</string>
-    <string name="language_marathi">मराठी (Marathi)</string>
-    <string name="language_bengali">বাংলা (Bengali)</string>
-    <string name="language_gujarati">ગુજરાતી (Gujarati)</string>
-    <string name="language_punjabi">ਪੰਜਾਬੀ (Punjabi)</string>
+    <string name="language_hindi">à¤¹à¤¿à¤¨à¥à¤¦à¥€ (Hindi)</string>
+    <string name="language_tamil">à®¤à®®à®¿à®´à¯ (Tamil)</string>
+    <string name="language_malayalam">à´®à´²à´¯à´¾à´³à´‚ (Malayalam)</string>
+    <string name="language_telugu">à°¤à±†à°²à±à°—à± (Telugu)</string>
+    <string name="language_kannada">à²•à²¨à³à²¨à²¡ (Kannada)</string>
+    <string name="language_marathi">à¤®à¤°à¤¾à¤ à¥€ (Marathi)</string>
+    <string name="language_bengali">à¦¬à¦¾à¦‚à¦²à¦¾ (Bengali)</string>
+    <string name="language_gujarati">àª—à«àªœàª°àª¾àª¤à«€ (Gujarati)</string>
+    <string name="language_punjabi">à¨ªà©°à¨œà¨¾à¨¬à©€ (Punjabi)</string>
 
-    <string name="font_size_title">ఫాంట్ పరిమాణం</string>
-    <string name="font_size_small">చిన్న</string>
-    <string name="font_size_default">డిఫాల్ట్</string>
-    <string name="font_size_large">పెద్ద</string>
-    <string name="font_size_sample">మీ టెక్స్ట్ ఇలా ఉంటుంది.</string>
-    <string name="setting_font_dyslexic">డిస్లెక్సిక్ ఫాంట్</string>
-    <string name="setting_font_dyslexic_desc">డిస్లెక్సిక్ వినియోగదారుల కోసం చదవడానికి సులభమైన ఫాంట్.</string>
+    <string name="font_size_title">à°«à°¾à°‚à°Ÿà± à°ªà°°à°¿à°®à°¾à°£à°‚</string>
+    <string name="font_size_small">à°šà°¿à°¨à±à°¨</string>
+    <string name="font_size_default">à°¡à°¿à°«à°¾à°²à±à°Ÿà±</string>
+    <string name="font_size_large">à°ªà±†à°¦à±à°¦</string>
+    <string name="font_size_sample">à°®à±€ à°Ÿà±†à°•à±à°¸à±à°Ÿà± à°‡à°²à°¾ à°‰à°‚à°Ÿà±à°‚à°¦à°¿.</string>
+    <string name="setting_font_dyslexic">à°¡à°¿à°¸à±à°²à±†à°•à±à°¸à°¿à°•à± à°«à°¾à°‚à°Ÿà±</string>
+    <string name="setting_font_dyslexic_desc">à°¡à°¿à°¸à±à°²à±†à°•à±à°¸à°¿à°•à± à°µà°¿à°¨à°¿à°¯à±‹à°—à°¦à°¾à°°à±à°² à°•à±‹à°¸à°‚ à°šà°¦à°µà°¡à°¾à°¨à°¿à°•à°¿ à°¸à±à°²à°­à°®à±ˆà°¨ à°«à°¾à°‚à°Ÿà±.</string>
 
-    <string name="theme_title">థీమ్ ఎంచుకోండి</string>
-    <string name="theme_light">లైట్</string>
-    <string name="theme_dark">డార్క్</string>
-    <string name="theme_system">సిస్టమ్ డిఫాల్ట్</string>
+    <string name="theme_title">à°¥à±€à°®à± à°Žà°‚à°šà±à°•à±‹à°‚à°¡à°¿</string>
+    <string name="theme_light">à°²à±ˆà°Ÿà±</string>
+    <string name="theme_dark">à°¡à°¾à°°à±à°•à±</string>
+    <string name="theme_system">à°¸à°¿à°¸à±à°Ÿà°®à± à°¡à°¿à°«à°¾à°²à±à°Ÿà±</string>
 
-    <string name="manage_data_title">డేటా నిర్వహణ</string>
-    <string name="manage_data_soil_title">నేల చరిత్రను క్లియర్ చేయండి</string>
-    <string name="manage_data_soil_desc">సేవ్ చేసిన అన్ని నేల విశ్లేషణ నివేదికలను తొలగిస్తుంది.</string>
-    <string name="manage_data_docs_title">అన్ని పత్రాలను క్లియర్ చేయండి</string>
-    <string name="manage_data_docs_desc">ఈ పరికరం నుండి అప్‌లోడ్ చేసిన అన్ని పత్రాలను తొలగిస్తుంది.</string>
-    <string name="dialog_are_you_sure">మీరు ఖచ్చితంగా ఉన్నారా?</string>
-    <string name="dialog_delete">తొలగించు</string>
-    <string name="dialog_cancel">రద్దు చేయి</string>
-    <string name="toast_history_cleared">నేల చరిత్ర క్లియర్ చేయబడింది.</string>
-    <string name="toast_documents_cleared">అన్ని పత్రాలు క్లియర్ చేయబడ్డాయి.</string>
+    <string name="manage_data_title">à°¡à±‡à°Ÿà°¾ à°¨à°¿à°°à±à°µà°¹à°£</string>
+    <string name="manage_data_soil_title">à°¨à±‡à°² à°šà°°à°¿à°¤à±à°°à°¨à± à°•à±à°²à°¿à°¯à°°à± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="manage_data_soil_desc">à°¸à±‡à°µà± à°šà±‡à°¸à°¿à°¨ à°…à°¨à±à°¨à°¿ à°¨à±‡à°² à°µà°¿à°¶à±à°²à±‡à°·à°£ à°¨à°¿à°µà±‡à°¦à°¿à°•à°²à°¨à± à°¤à±Šà°²à°—à°¿à°¸à±à°¤à±à°‚à°¦à°¿.</string>
+    <string name="manage_data_docs_title">à°…à°¨à±à°¨à°¿ à°ªà°¤à±à°°à°¾à°²à°¨à± à°•à±à°²à°¿à°¯à°°à± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="manage_data_docs_desc">à°ˆ à°ªà°°à°¿à°•à°°à°‚ à°¨à±à°‚à°¡à°¿ à°…à°ªà±â€Œà°²à±‹à°¡à± à°šà±‡à°¸à°¿à°¨ à°…à°¨à±à°¨à°¿ à°ªà°¤à±à°°à°¾à°²à°¨à± à°¤à±Šà°²à°—à°¿à°¸à±à°¤à±à°‚à°¦à°¿.</string>
+    <string name="dialog_are_you_sure">à°®à±€à°°à± à°–à°šà±à°šà°¿à°¤à°‚à°—à°¾ à°‰à°¨à±à°¨à°¾à°°à°¾?</string>
+    <string name="dialog_delete">à°¤à±Šà°²à°—à°¿à°‚à°šà±</string>
+    <string name="dialog_cancel">à°°à°¦à±à°¦à± à°šà±‡à°¯à°¿</string>
+    <string name="toast_history_cleared">à°¨à±‡à°² à°šà°°à°¿à°¤à±à°° à°•à±à°²à°¿à°¯à°°à± à°šà±‡à°¯à°¬à°¡à°¿à°‚à°¦à°¿.</string>
+    <string name="toast_documents_cleared">à°…à°¨à±à°¨à°¿ à°ªà°¤à±à°°à°¾à°²à± à°•à±à°²à°¿à°¯à°°à± à°šà±‡à°¯à°¬à°¡à±à°¡à°¾à°¯à°¿.</string>
 
-    <string name="help_title">సహాయం మరియు మద్దతు</string>
-    <string name="help_faq_title">తరచుగా అడిగే ప్రశ్నలు (FAQ)</string>
-    <string name="help_q1">నేను మంచి నేల స్కాన్‌ను ఎలా తీసుకోవాలి?</string>
-    <string name="help_a1">మంచి లైటింగ్‌ను నిర్ధారించుకోండి, నమూనాను సాదా నేపథ్యంపై ఉంచండి మరియు ఫోకస్ చేయడానికి నొక్కండి.</string>
-    <string name="help_q2">AI ఎంత ఖచ్చితమైనది?</string>
-    <string name="help_a2">AI దృశ్య డేటా ఆధారంగా సూచనలను అందిస్తుంది. క్లిష్టమైన నిర్ణయాల కోసం, దయచేసి స్థానిక వ్యవసాయ నిపుణుడిని సంప్రదించండి.</string>
-    <string name="help_contact_title">మద్దతును సంప్రదించండి</string>
+    <string name="help_title">à°¸à°¹à°¾à°¯à°‚ à°®à°°à°¿à°¯à± à°®à°¦à±à°¦à°¤à±</string>
+    <string name="help_faq_title">à°¤à°°à°šà±à°—à°¾ à°…à°¡à°¿à°—à±‡ à°ªà±à°°à°¶à±à°¨à°²à± (FAQ)</string>
+    <string name="help_q1">à°¨à±‡à°¨à± à°®à°‚à°šà°¿ à°¨à±‡à°² à°¸à±à°•à°¾à°¨à±â€Œà°¨à± à°Žà°²à°¾ à°¤à±€à°¸à±à°•à±‹à°µà°¾à°²à°¿?</string>
+    <string name="help_a1">à°®à°‚à°šà°¿ à°²à±ˆà°Ÿà°¿à°‚à°—à±â€Œà°¨à± à°¨à°¿à°°à±à°§à°¾à°°à°¿à°‚à°šà±à°•à±‹à°‚à°¡à°¿, à°¨à°®à±‚à°¨à°¾à°¨à± à°¸à°¾à°¦à°¾ à°¨à±‡à°ªà°¥à±à°¯à°‚à°ªà±ˆ à°‰à°‚à°šà°‚à°¡à°¿ à°®à°°à°¿à°¯à± à°«à±‹à°•à°¸à± à°šà±‡à°¯à°¡à°¾à°¨à°¿à°•à°¿ à°¨à±Šà°•à±à°•à°‚à°¡à°¿.</string>
+    <string name="help_q2">AI à°Žà°‚à°¤ à°–à°šà±à°šà°¿à°¤à°®à±ˆà°¨à°¦à°¿?</string>
+    <string name="help_a2">AI à°¦à±ƒà°¶à±à°¯ à°¡à±‡à°Ÿà°¾ à°†à°§à°¾à°°à°‚à°—à°¾ à°¸à±‚à°šà°¨à°²à°¨à± à°…à°‚à°¦à°¿à°¸à±à°¤à±à°‚à°¦à°¿. à°•à±à°²à°¿à°·à±à°Ÿà°®à±ˆà°¨ à°¨à°¿à°°à±à°£à°¯à°¾à°² à°•à±‹à°¸à°‚, à°¦à°¯à°šà±‡à°¸à°¿ à°¸à±à°¥à°¾à°¨à°¿à°• à°µà±à°¯à°µà°¸à°¾à°¯ à°¨à°¿à°ªà±à°£à±à°¡à°¿à°¨à°¿ à°¸à°‚à°ªà±à°°à°¦à°¿à°‚à°šà°‚à°¡à°¿.</string>
+    <string name="help_contact_title">à°®à°¦à±à°¦à°¤à±à°¨à± à°¸à°‚à°ªà±à°°à°¦à°¿à°‚à°šà°‚à°¡à°¿</string>
     <string name="help_contact_phone">+91 12345 67890</string>
     <string name="help_contact_email">support@mittimitra.com</string>
 
-    <string name="converter_title">భూమి కన్వర్టర్</string>
-    <string name="label_enter_area">విస్తీర్ణాన్ని నమోదు చేయండి</string>
-    <string name="label_result">ఫలితం</string>
-    <string name="btn_convert">మార్చండి</string>
-    <string name="unit_acre">ఎకరం</string>
-    <string name="unit_hectare">హెక్టారు</string>
-    <string name="unit_bigha">బిఘా (ప్రామాణికం)</string>
-    <string name="unit_guntha">గుంట</string>
-    <string name="unit_cent">సెంట్</string>
+    <string name="converter_title">à°­à±‚à°®à°¿ à°•à°¨à±à°µà°°à±à°Ÿà°°à±</string>
+    <string name="label_enter_area">à°µà°¿à°¸à±à°¤à±€à°°à±à°£à°¾à°¨à±à°¨à°¿ à°¨à°®à±‹à°¦à± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="label_result">à°«à°²à°¿à°¤à°‚</string>
+    <string name="btn_convert">à°®à°¾à°°à±à°šà°‚à°¡à°¿</string>
+    <string name="unit_acre">à°Žà°•à°°à°‚</string>
+    <string name="unit_hectare">à°¹à±†à°•à±à°Ÿà°¾à°°à±</string>
+    <string name="unit_bigha">à°¬à°¿à°˜à°¾ (à°ªà±à°°à°¾à°®à°¾à°£à°¿à°•à°‚)</string>
+    <string name="unit_guntha">à°—à±à°‚à°Ÿ</string>
+    <string name="unit_cent">à°¸à±†à°‚à°Ÿà±</string>
 
-    <string name="setting_share_app">స్నేహితులతో పంచుకోండి</string>
-    <string name="setting_notifications">నోటిఫికేషన్ ప్రాధాన్యతలు</string>
+    <string name="setting_share_app">à°¸à±à°¨à±‡à°¹à°¿à°¤à±à°²à°¤à±‹ à°ªà°‚à°šà±à°•à±‹à°‚à°¡à°¿</string>
+    <string name="setting_notifications">à°¨à±‹à°Ÿà°¿à°«à°¿à°•à±‡à°·à°¨à± à°ªà±à°°à°¾à°§à°¾à°¨à±à°¯à°¤à°²à±</string>
 
-    <string name="notif_title">నోటిఫికేషన్లు</string>
-    <string name="notif_weather_title">వాతావరణ హెచ్చరికలు</string>
-    <string name="notif_weather_desc">భారీ వర్షం మరియు తుఫాను హెచ్చరికలను పొందండి.</string>
-    <string name="notif_mandi_title">మండి ధరలు</string>
-    <string name="notif_mandi_desc">మీ జిల్లా కోసం రోజువారీ మార్కెట్ ధరలు.</string>
-    <string name="notif_scheme_title">ప్రభుత్వ పథకాలు</string>
-    <string name="notif_scheme_desc">పిఎం-కిసాన్ మరియు సబ్సిడీలపై నవీకరణలు.</string>
-    <string name="share_message">నేల ఆరోగ్యం మరియు వ్యవసాయం కోసం ఉత్తమ యాప్ - మిట్టి మిత్రను చూడండి! ఇక్కడ డౌన్‌లోడ్ చేసుకోండి: https://play.google.com/store/apps/details?id=com.mittimitra</string>
+    <string name="notif_title">à°¨à±‹à°Ÿà°¿à°«à°¿à°•à±‡à°·à°¨à±à°²à±</string>
+    <string name="notif_weather_title">à°µà°¾à°¤à°¾à°µà°°à°£ à°¹à±†à°šà±à°šà°°à°¿à°•à°²à±</string>
+    <string name="notif_weather_desc">à°­à°¾à°°à±€ à°µà°°à±à°·à°‚ à°®à°°à°¿à°¯à± à°¤à±à°«à°¾à°¨à± à°¹à±†à°šà±à°šà°°à°¿à°•à°²à°¨à± à°ªà±Šà°‚à°¦à°‚à°¡à°¿.</string>
+    <string name="notif_mandi_title">à°®à°‚à°¡à°¿ à°§à°°à°²à±</string>
+    <string name="notif_mandi_desc">à°®à±€ à°œà°¿à°²à±à°²à°¾ à°•à±‹à°¸à°‚ à°°à±‹à°œà±à°µà°¾à°°à±€ à°®à°¾à°°à±à°•à±†à°Ÿà± à°§à°°à°²à±.</string>
+    <string name="notif_scheme_title">à°ªà±à°°à°­à±à°¤à±à°µ à°ªà°¥à°•à°¾à°²à±</string>
+    <string name="notif_scheme_desc">à°ªà°¿à°Žà°‚-à°•à°¿à°¸à°¾à°¨à± à°®à°°à°¿à°¯à± à°¸à°¬à±à°¸à°¿à°¡à±€à°²à°ªà±ˆ à°¨à°µà±€à°•à°°à°£à°²à±.</string>
+    <string name="share_message">à°¨à±‡à°² à°†à°°à±‹à°—à±à°¯à°‚ à°®à°°à°¿à°¯à± à°µà±à°¯à°µà°¸à°¾à°¯à°‚ à°•à±‹à°¸à°‚ à°‰à°¤à±à°¤à°® à°¯à°¾à°ªà± - à°®à°¿à°Ÿà±à°Ÿà°¿ à°®à°¿à°¤à±à°°à°¨à± à°šà±‚à°¡à°‚à°¡à°¿! à°‡à°•à±à°•à°¡ à°¡à±Œà°¨à±â€Œà°²à±‹à°¡à± à°šà±‡à°¸à±à°•à±‹à°‚à°¡à°¿: https://play.google.com/store/apps/details?id=com.mittimitra</string>
 
-    <string name="title_pm_kisan">PM-KISAN: ₹6,000/సంవత్సరానికి ఆదాయ మద్దతు</string>
-    <string name="title_smart_tools">స్మార్ట్ టూల్స్</string>
-    <string name="title_soil_health">నేల ఆరోగ్య కార్డు: మీ నేల బలాన్ని తెలుసుకోండి</string>
-    <string name="title_fasal_bima">PM ఫసల్ బీమా యోజన: మీ పంటలను భద్రపరచండి</string>
+    <string name="title_pm_kisan">PM-KISAN: â‚¹6,000/à°¸à°‚à°µà°¤à±à°¸à°°à°¾à°¨à°¿à°•à°¿ à°†à°¦à°¾à°¯ à°®à°¦à±à°¦à°¤à±</string>
+    <string name="title_smart_tools">à°¸à±à°®à°¾à°°à±à°Ÿà± à°Ÿà±‚à°²à±à°¸à±</string>
+    <string name="title_soil_health">à°¨à±‡à°² à°†à°°à±‹à°—à±à°¯ à°•à°¾à°°à±à°¡à±: à°®à±€ à°¨à±‡à°² à°¬à°²à°¾à°¨à±à°¨à°¿ à°¤à±†à°²à±à°¸à±à°•à±‹à°‚à°¡à°¿</string>
+    <string name="title_fasal_bima">PM à°«à°¸à°²à± à°¬à±€à°®à°¾ à°¯à±‹à°œà°¨: à°®à±€ à°ªà°‚à°Ÿà°²à°¨à± à°­à°¦à±à°°à°ªà°°à°šà°‚à°¡à°¿</string>
 
-    <string name="notif_weather">వాతావరణ హెచ్చరికలు</string>
-    <string name="notif_mandi">మండి ధరలు</string>
-    <string name="notif_schemes">ప్రభుత్వ పథకాలు</string>
+    <string name="notif_weather">à°µà°¾à°¤à°¾à°µà°°à°£ à°¹à±†à°šà±à°šà°°à°¿à°•à°²à±</string>
+    <string name="notif_mandi">à°®à°‚à°¡à°¿ à°§à°°à°²à±</string>
+    <string name="notif_schemes">à°ªà±à°°à°­à±à°¤à±à°µ à°ªà°¥à°•à°¾à°²à±</string>
 
-    <string name="contact_header">సహాయం చేయడానికి మేము ఇక్కడ ఉన్నాము</string>
-    <string name="contact_desc">నిర్దిష్ట వ్యవసాయ సలహా లేదా సాంకేతిక మద్దతు కోసం మమ్మల్ని సంప్రదించండి.</string>
-    <string name="contact_call">కాల్ మద్దతు</string>
-    <string name="contact_time">సోమ-శని, ఉదయం 9 - సాయంత్రం 6</string>
-    <string name="contact_email">మాకు ఇమెయిల్ చేయండి</string>
+    <string name="contact_header">à°¸à°¹à°¾à°¯à°‚ à°šà±‡à°¯à°¡à°¾à°¨à°¿à°•à°¿ à°®à±‡à°®à± à°‡à°•à±à°•à°¡ à°‰à°¨à±à°¨à°¾à°®à±</string>
+    <string name="contact_desc">à°¨à°¿à°°à±à°¦à°¿à°·à±à°Ÿ à°µà±à°¯à°µà°¸à°¾à°¯ à°¸à°²à°¹à°¾ à°²à±‡à°¦à°¾ à°¸à°¾à°‚à°•à±‡à°¤à°¿à°• à°®à°¦à±à°¦à°¤à± à°•à±‹à°¸à°‚ à°®à°®à±à°®à°²à±à°¨à°¿ à°¸à°‚à°ªà±à°°à°¦à°¿à°‚à°šà°‚à°¡à°¿.</string>
+    <string name="contact_call">à°•à°¾à°²à± à°®à°¦à±à°¦à°¤à±</string>
+    <string name="contact_time">à°¸à±‹à°®-à°¶à°¨à°¿, à°‰à°¦à°¯à°‚ 9 - à°¸à°¾à°¯à°‚à°¤à±à°°à°‚ 6</string>
+    <string name="contact_email">à°®à°¾à°•à± à°‡à°®à±†à°¯à°¿à°²à± à°šà±‡à°¯à°‚à°¡à°¿</string>
     <string name="contact_email_addr">support@mittimitra.com</string>
 
-    <string name="label_from_unit">నుండి యూనిట్</string>
-    <string name="label_to_unit">కు యూనిట్</string>
+    <string name="label_from_unit">à°¨à±à°‚à°¡à°¿ à°¯à±‚à°¨à°¿à°Ÿà±</string>
+    <string name="label_to_unit">à°•à± à°¯à±‚à°¨à°¿à°Ÿà±</string>
 
-    <string name="scan_title">కొత్త నేల స్కాన్</string>
-    <string name="scan_env_data">పర్యావరణ డేటా</string>
-    <string name="scan_weather">వాతావరణం</string>
-    <string name="scan_moisture">తేమ</string>
-    <string name="scan_nutrients">నేల పోషకాలు (అంచనా)</string>
-    <string name="scan_hint">మీ పరిశీలనలు (ఉదా. \'పసుపు ఆకులు\')</string>
-    <string name="scan_status_ready">స్కాన్ చేయడానికి సిద్ధంగా ఉంది</string>
-    <string name="scan_btn_gallery">గ్యాలరీ</string>
-    <string name="scan_btn_camera">కెమెరా</string>
-    <string name="scan_btn_analyze">నేలను గుర్తించి సిఫార్సు చేయండి</string>
+    <string name="scan_title">à°•à±Šà°¤à±à°¤ à°¨à±‡à°² à°¸à±à°•à°¾à°¨à±</string>
+    <string name="scan_env_data">à°ªà°°à±à°¯à°¾à°µà°°à°£ à°¡à±‡à°Ÿà°¾</string>
+    <string name="scan_weather">à°µà°¾à°¤à°¾à°µà°°à°£à°‚</string>
+    <string name="scan_moisture">à°¤à±‡à°®</string>
+    <string name="scan_nutrients">à°¨à±‡à°² à°ªà±‹à°·à°•à°¾à°²à± (à°…à°‚à°šà°¨à°¾)</string>
+    <string name="scan_hint">à°®à±€ à°ªà°°à°¿à°¶à±€à°²à°¨à°²à± (à°‰à°¦à°¾. \'à°ªà°¸à±à°ªà± à°†à°•à±à°²à±\')</string>
+    <string name="scan_status_ready">à°¸à±à°•à°¾à°¨à± à°šà±‡à°¯à°¡à°¾à°¨à°¿à°•à°¿ à°¸à°¿à°¦à±à°§à°‚à°—à°¾ à°‰à°‚à°¦à°¿</string>
+    <string name="scan_btn_gallery">à°—à±à°¯à°¾à°²à°°à±€</string>
+    <string name="scan_btn_camera">à°•à±†à°®à±†à°°à°¾</string>
+    <string name="scan_btn_analyze">à°¨à±‡à°²à°¨à± à°—à±à°°à±à°¤à°¿à°‚à°šà°¿ à°¸à°¿à°«à°¾à°°à±à°¸à± à°šà±‡à°¯à°‚à°¡à°¿</string>
 
-    <string name="profile_recent">ఇటీవలి విశ్లేషణ</string>
-    <string name="profile_no_history">ఇటీవలి స్కాన్‌లు ఏవీ కనుగొనబడలేదు.</string>
-    <string name="profile_logout">లాగ్ అవుట్</string>
-    <string name="profile_member_since">సభ్యత్వ తేదీ:</string>
-    <string name="profile_phone">ఫోన్:</string>
+    <string name="profile_recent">à°‡à°Ÿà±€à°µà°²à°¿ à°µà°¿à°¶à±à°²à±‡à°·à°£</string>
+    <string name="profile_no_history">à°‡à°Ÿà±€à°µà°²à°¿ à°¸à±à°•à°¾à°¨à±â€Œà°²à± à°à°µà±€ à°•à°¨à±à°—à±Šà°¨à°¬à°¡à°²à±‡à°¦à±.</string>
+    <string name="profile_logout">à°²à°¾à°—à± à°…à°µà±à°Ÿà±</string>
+    <string name="profile_member_since">à°¸à°­à±à°¯à°¤à±à°µ à°¤à±‡à°¦à±€:</string>
+    <string name="profile_phone">à°«à±‹à°¨à±:</string>
 
-    <string name="rec_title">నేల ఆరోగ్య కార్డు</string>
-    <string name="rec_header_title">నేల ఆరోగ్య కార్డు</string>
-    <string name="rec_header_subtitle">మిట్టి మిత్ర • డిజిటల్ వ్యవసాయ మిషన్</string>
-    <string name="rec_farmer_details">రైతు వివరాలు</string>
-    <string name="rec_label_name">పేరు:</string>
-    <string name="rec_label_mobile">మొబైల్:</string>
-    <string name="rec_label_email">ఇమెయిల్:</string>
-    <string name="rec_label_location">స్థానం:</string>
-    <string name="rec_label_date">పరీక్ష తేదీ:</string>
-    <string name="rec_results_title">పరీక్ష ఫలితాలు (ప్రాథమిక పోషకాలు)</string>
-    <string name="rec_col_param">పరామితి</string>
-    <string name="rec_col_value">విలువ</string>
-    <string name="rec_col_status">స్థితి</string>
-    <string name="rec_advisory_title">శాస్త్రీయ సలహా</string>
-    <string name="rec_footer">మిట్టి మిత్ర AI ద్వారా రూపొందించబడింది | ఉపగ్రహ డేటా ద్వారా ధృవీకరించబడింది</string>
-    <string name="rec_btn_download">PDF డౌన్‌లోడ్ చేయండి</string>
+    <string name="rec_title">à°¨à±‡à°² à°†à°°à±‹à°—à±à°¯ à°•à°¾à°°à±à°¡à±</string>
+    <string name="rec_header_title">à°¨à±‡à°² à°†à°°à±‹à°—à±à°¯ à°•à°¾à°°à±à°¡à±</string>
+    <string name="rec_header_subtitle">à°®à°¿à°Ÿà±à°Ÿà°¿ à°®à°¿à°¤à±à°° â€¢ à°¡à°¿à°œà°¿à°Ÿà°²à± à°µà±à°¯à°µà°¸à°¾à°¯ à°®à°¿à°·à°¨à±</string>
+    <string name="rec_farmer_details">à°°à±ˆà°¤à± à°µà°¿à°µà°°à°¾à°²à±</string>
+    <string name="rec_label_name">à°ªà±‡à°°à±:</string>
+    <string name="rec_label_mobile">à°®à±Šà°¬à±ˆà°²à±:</string>
+    <string name="rec_label_email">à°‡à°®à±†à°¯à°¿à°²à±:</string>
+    <string name="rec_label_location">à°¸à±à°¥à°¾à°¨à°‚:</string>
+    <string name="rec_label_date">à°ªà°°à±€à°•à±à°· à°¤à±‡à°¦à±€:</string>
+    <string name="rec_results_title">à°ªà°°à±€à°•à±à°· à°«à°²à°¿à°¤à°¾à°²à± (à°ªà±à°°à°¾à°¥à°®à°¿à°• à°ªà±‹à°·à°•à°¾à°²à±)</string>
+    <string name="rec_col_param">à°ªà°°à°¾à°®à°¿à°¤à°¿</string>
+    <string name="rec_col_value">à°µà°¿à°²à±à°µ</string>
+    <string name="rec_col_status">à°¸à±à°¥à°¿à°¤à°¿</string>
+    <string name="rec_advisory_title">à°¶à°¾à°¸à±à°¤à±à°°à±€à°¯ à°¸à°²à°¹à°¾</string>
+    <string name="rec_footer">à°®à°¿à°Ÿà±à°Ÿà°¿ à°®à°¿à°¤à±à°° AI à°¦à±à°µà°¾à°°à°¾ à°°à±‚à°ªà±Šà°‚à°¦à°¿à°‚à°šà°¬à°¡à°¿à°‚à°¦à°¿ | à°‰à°ªà°—à±à°°à°¹ à°¡à±‡à°Ÿà°¾ à°¦à±à°µà°¾à°°à°¾ à°§à±ƒà°µà±€à°•à°°à°¿à°‚à°šà°¬à°¡à°¿à°‚à°¦à°¿</string>
+    <string name="rec_btn_download">PDF à°¡à±Œà°¨à±â€Œà°²à±‹à°¡à± à°šà±‡à°¯à°‚à°¡à°¿</string>
 
-    <string name="login_welcome">తిరిగి స్వాగతం</string>
-    <string name="login_subtitle">మీ వ్యవసాయ సాధనాలను యాక్సెస్ చేయడానికి లాగిన్ చేయండి</string>
-    <string name="login_google">Googleతో కొనసాగించండి</string>
-    <string name="login_or_divider">లేదా ఫోన్</string>
-    <string name="login_hint_phone">ఫోన్ నంబర్</string>
-    <string name="login_btn_otp">OTP పొందండి</string>
-    <string name="login_hint_otp">6-అంకెల OTPని నమోదు చేయండి</string>
-    <string name="login_btn_verify">ధృవీకరించండి &amp; లాగిన్ చేయండి</string>
-    <string name="login_trouble">లాగిన్ చేయడంలో సమస్య ఉందా?</string>
+    <string name="login_welcome">à°¤à°¿à°°à°¿à°—à°¿ à°¸à±à°µà°¾à°—à°¤à°‚</string>
+    <string name="login_subtitle">à°®à±€ à°µà±à°¯à°µà°¸à°¾à°¯ à°¸à°¾à°§à°¨à°¾à°²à°¨à± à°¯à°¾à°•à±à°¸à±†à°¸à± à°šà±‡à°¯à°¡à°¾à°¨à°¿à°•à°¿ à°²à°¾à°—à°¿à°¨à± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="login_google">Googleà°¤à±‹ à°•à±Šà°¨à°¸à°¾à°—à°¿à°‚à°šà°‚à°¡à°¿</string>
+    <string name="login_or_divider">à°²à±‡à°¦à°¾ à°«à±‹à°¨à±</string>
+    <string name="login_hint_phone">à°«à±‹à°¨à± à°¨à°‚à°¬à°°à±</string>
+    <string name="login_btn_otp">OTP à°ªà±Šà°‚à°¦à°‚à°¡à°¿</string>
+    <string name="login_hint_otp">6-à°…à°‚à°•à±†à°² OTPà°¨à°¿ à°¨à°®à±‹à°¦à± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="login_btn_verify">à°§à±ƒà°µà±€à°•à°°à°¿à°‚à°šà°‚à°¡à°¿ &amp; à°²à°¾à°—à°¿à°¨à± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="login_trouble">à°²à°¾à°—à°¿à°¨à± à°šà±‡à°¯à°¡à°‚à°²à±‹ à°¸à°®à°¸à±à°¯ à°‰à°‚à°¦à°¾?</string>
 
-    <string name="home_welcome_default">నమస్తే, రైతు</string>
-    <string name="home_card_scan">మట్టిని స్కాన్ చేయండి</string>
-    <string name="home_card_advice">సలహా పొందండి</string>
-    <string name="home_card_tips">AI నిపుణుల చిట్కాలు</string>
-    <string name="home_section_tools">స్మార్ట్ సాధనాలు</string>
-    <string name="desc_logo">యాప్ లోగో</string>
-    <string name="desc_icon">చిహ్నం</string>
+    <string name="home_welcome_default">à°¨à°®à°¸à±à°¤à±‡, à°°à±ˆà°¤à±</string>
+    <string name="home_card_scan">à°®à°Ÿà±à°Ÿà°¿à°¨à°¿ à°¸à±à°•à°¾à°¨à± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="home_card_advice">à°¸à°²à°¹à°¾ à°ªà±Šà°‚à°¦à°‚à°¡à°¿</string>
+    <string name="home_card_tips">AI à°¨à°¿à°ªà±à°£à±à°² à°šà°¿à°Ÿà±à°•à°¾à°²à±</string>
+    <string name="home_section_tools">à°¸à±à°®à°¾à°°à±à°Ÿà± à°¸à°¾à°§à°¨à°¾à°²à±</string>
+    <string name="desc_logo">à°¯à°¾à°ªà± à°²à±‹à°—à±‹</string>
+    <string name="desc_icon">à°šà°¿à°¹à±à°¨à°‚</string>
 
-    <string name="title_documents">సంబంధిత పత్రాలు</string>
-    <string name="msg_no_documents">పత్రాలు ఏవీ కనుగొనబడలేదు.\nజోడించడానికి \'+\' నొక్కండి.</string>
-    <string name="desc_add_document">పత్రాన్ని జోడించండి</string>
+    <string name="title_documents">à°¸à°‚à°¬à°‚à°§à°¿à°¤ à°ªà°¤à±à°°à°¾à°²à±</string>
+    <string name="msg_no_documents">à°ªà°¤à±à°°à°¾à°²à± à°à°µà±€ à°•à°¨à±à°—à±Šà°¨à°¬à°¡à°²à±‡à°¦à±.\nà°œà±‹à°¡à°¿à°‚à°šà°¡à°¾à°¨à°¿à°•à°¿ \'+\' à°¨à±Šà°•à±à°•à°‚à°¡à°¿.</string>
+    <string name="desc_add_document">à°ªà°¤à±à°°à°¾à°¨à±à°¨à°¿ à°œà±‹à°¡à°¿à°‚à°šà°‚à°¡à°¿</string>
 
-    <string name="title_scan_history">స్కాన్ చరిత్ర</string>
+    <string name="title_scan_history">à°¸à±à°•à°¾à°¨à± à°šà°°à°¿à°¤à±à°°</string>
 
-    <string name="welcome_home_title">స్వాగతం!</string>
-    <string name="welcome_home_desc">మీరు విజయవంతంగా లాగిన్ అయ్యారు!</string>
+    <string name="welcome_home_title">à°¸à±à°µà°¾à°—à°¤à°‚!</string>
+    <string name="welcome_home_desc">à°®à±€à°°à± à°µà°¿à°œà°¯à°µà°‚à°¤à°‚à°—à°¾ à°²à°¾à°—à°¿à°¨à± à°…à°¯à±à°¯à°¾à°°à±!</string>
 
-    <string name="btn_test_notification">టెస్ట్ నోటిఫికేషన్ పంపండి</string>
-    <string name="desc_notification_icon">నోటిఫికేషన్ చిహ్నం</string>
+    <string name="btn_test_notification">à°Ÿà±†à°¸à±à°Ÿà± à°¨à±‹à°Ÿà°¿à°«à°¿à°•à±‡à°·à°¨à± à°ªà°‚à°ªà°‚à°¡à°¿</string>
+    <string name="desc_notification_icon">à°¨à±‹à°Ÿà°¿à°«à°¿à°•à±‡à°·à°¨à± à°šà°¿à°¹à±à°¨à°‚</string>
 
-    <string name="profile_name_placeholder">లోడ్ అవుతోంది...</string>
+    <string name="profile_name_placeholder">à°²à±‹à°¡à± à°…à°µà±à°¤à±‹à°‚à°¦à°¿...</string>
     <string name="profile_email_placeholder">email@example.com</string>
-    <string name="desc_profile_image">ప్రొఫైల్ చిత్రం</string>
-    <string name="desc_change_photo">ప్రొఫైల్ ఫోటోను మార్చండి</string>
-    <string name="desc_edit_profile">ప్రొఫైల్ వివరాలను సవరించండి</string>
+    <string name="desc_profile_image">à°ªà±à°°à±Šà°«à±ˆà°²à± à°šà°¿à°¤à±à°°à°‚</string>
+    <string name="desc_change_photo">à°ªà±à°°à±Šà°«à±ˆà°²à± à°«à±‹à°Ÿà±‹à°¨à± à°®à°¾à°°à±à°šà°‚à°¡à°¿</string>
+    <string name="desc_edit_profile">à°ªà±à°°à±Šà°«à±ˆà°²à± à°µà°¿à°µà°°à°¾à°²à°¨à± à°¸à°µà°°à°¿à°‚à°šà°‚à°¡à°¿</string>
 
-    <string name="rec_param_n">నైట్రోజన్ (N)</string>
-    <string name="rec_param_p">ఫాస్ఫరస్ (P)</string>
-    <string name="rec_param_k">పొటాషియం (K)</string>
-    <string name="rec_param_ph">మట్టి pH</string>
-    <string name="rec_ai_context">పంట అవసరాలను విశ్లేషిస్తోంది...</string>
-    <string name="rec_ai_generating">నిపుణుల సిఫార్సును రూపొందిస్తోంది...</string>
+    <string name="rec_param_n">à°¨à±ˆà°Ÿà±à°°à±‹à°œà°¨à± (N)</string>
+    <string name="rec_param_p">à°«à°¾à°¸à±à°«à°°à°¸à± (P)</string>
+    <string name="rec_param_k">à°ªà±Šà°Ÿà°¾à°·à°¿à°¯à°‚ (K)</string>
+    <string name="rec_param_ph">à°®à°Ÿà±à°Ÿà°¿ pH</string>
+    <string name="rec_ai_context">à°ªà°‚à°Ÿ à°…à°µà°¸à°°à°¾à°²à°¨à± à°µà°¿à°¶à±à°²à±‡à°·à°¿à°¸à±à°¤à±‹à°‚à°¦à°¿...</string>
+    <string name="rec_ai_generating">à°¨à°¿à°ªà±à°£à±à°² à°¸à°¿à°«à°¾à°°à±à°¸à±à°¨à± à°°à±‚à°ªà±Šà°‚à°¦à°¿à°¸à±à°¤à±‹à°‚à°¦à°¿...</string>
 
-    <string name="scan_locating">స్థానాన్ని గుర్తిస్తోంది...</string>
-    <string name="desc_image_preview">చిత్ర ప్రివ్యూ</string>
-    <string name="signup_title">మిట్టి మిత్రలో చేరండి</string>
-    <string name="signup_subtitle">ఈరోజే మీ స్మార్ట్ వ్యవసాయ ప్రయాణాన్ని ప్రారంభించండి</string>
-    <string name="signup_create_account">ఖాతాను సృష్టించండి</string>
-    <string name="signup_google">Googleతో సైన్ అప్ చేయండి</string>
-    <string name="signup_phone">ఫోన్‌తో సైన్ అప్ చేయండి</string>
-    <string name="signup_footer">ఖాతా లేదా?</string>
+    <string name="scan_locating">à°¸à±à°¥à°¾à°¨à°¾à°¨à±à°¨à°¿ à°—à±à°°à±à°¤à°¿à°¸à±à°¤à±‹à°‚à°¦à°¿...</string>
+    <string name="desc_image_preview">à°šà°¿à°¤à±à°° à°ªà±à°°à°¿à°µà±à°¯à±‚</string>
+    <string name="signup_title">à°®à°¿à°Ÿà±à°Ÿà°¿ à°®à°¿à°¤à±à°°à°²à±‹ à°šà±‡à°°à°‚à°¡à°¿</string>
+    <string name="signup_subtitle">à°ˆà°°à±‹à°œà±‡ à°®à±€ à°¸à±à°®à°¾à°°à±à°Ÿà± à°µà±à°¯à°µà°¸à°¾à°¯ à°ªà±à°°à°¯à°¾à°£à°¾à°¨à±à°¨à°¿ à°ªà±à°°à°¾à°°à°‚à°­à°¿à°‚à°šà°‚à°¡à°¿</string>
+    <string name="signup_create_account">à°–à°¾à°¤à°¾à°¨à± à°¸à±ƒà°·à±à°Ÿà°¿à°‚à°šà°‚à°¡à°¿</string>
+    <string name="signup_google">Googleà°¤à±‹ à°¸à±ˆà°¨à± à°…à°ªà± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="signup_phone">à°«à±‹à°¨à±â€Œà°¤à±‹ à°¸à±ˆà°¨à± à°…à°ªà± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="signup_footer">à°–à°¾à°¤à°¾ à°²à±‡à°¦à°¾?</string>
 
-    <string name="chat_title">అగ్రి-ఎక్స్‌పర్ట్ చాట్</string>
-    <string name="chat_hint">పంటల గురించి అడగండి...</string>
-    <string name="desc_mic">ఆడియో రికార్డ్ చేయండి</string>
-    <string name="desc_send">సందేశం పంపండి</string>
+    <string name="chat_title">à°…à°—à±à°°à°¿-à°Žà°•à±à°¸à±â€Œà°ªà°°à±à°Ÿà± à°šà°¾à°Ÿà±</string>
+    <string name="chat_hint">à°ªà°‚à°Ÿà°² à°—à±à°°à°¿à°‚à°šà°¿ à°…à°¡à°—à°‚à°¡à°¿...</string>
+    <string name="desc_mic">à°†à°¡à°¿à°¯à±‹ à°°à°¿à°•à°¾à°°à±à°¡à± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="desc_send">à°¸à°‚à°¦à±‡à°¶à°‚ à°ªà°‚à°ªà°‚à°¡à°¿</string>
 
-    <string name="welcome_get_started">ప్రారంభించండి</string>
-    <string name="welcome_join_community">అత్యంత తెలివైన రైతు సంఘంలో చేరండి.</string>
+    <string name="welcome_get_started">à°ªà±à°°à°¾à°°à°‚à°­à°¿à°‚à°šà°‚à°¡à°¿</string>
+    <string name="welcome_join_community">à°…à°¤à±à°¯à°‚à°¤ à°¤à±†à°²à°¿à°µà±ˆà°¨ à°°à±ˆà°¤à± à°¸à°‚à°˜à°‚à°²à±‹ à°šà±‡à°°à°‚à°¡à°¿.</string>
 
-    <string name="edit_profile_title">ప్రొఫైల్‌ను సవరించండి</string>
-    <string name="edit_profile_name_hint">పూర్తి పేరు</string>
-    <string name="edit_profile_phone_hint">ఫోన్ నంబర్</string>
-    <string name="edit_profile_phone_helper">హెచ్చరికలకు అవసరం</string>
-    <string name="btn_save_changes">మార్పులను సేవ్ చేయండి</string>
+    <string name="edit_profile_title">à°ªà±à°°à±Šà°«à±ˆà°²à±â€Œà°¨à± à°¸à°µà°°à°¿à°‚à°šà°‚à°¡à°¿</string>
+    <string name="edit_profile_name_hint">à°ªà±‚à°°à±à°¤à°¿ à°ªà±‡à°°à±</string>
+    <string name="edit_profile_phone_hint">à°«à±‹à°¨à± à°¨à°‚à°¬à°°à±</string>
+    <string name="edit_profile_phone_helper">à°¹à±†à°šà±à°šà°°à°¿à°•à°²à°•à± à°…à°µà°¸à°°à°‚</string>
+    <string name="btn_save_changes">à°®à°¾à°°à±à°ªà±à°²à°¨à± à°¸à±‡à°µà± à°šà±‡à°¯à°‚à°¡à°¿</string>
 
-    <string name="btn_view">చూడండి</string>
+    <string name="btn_view">à°šà±‚à°¡à°‚à°¡à°¿</string>
 
-    <string name="placeholder_location">తెలియని స్థానం</string>
-    <string name="placeholder_date">తేదీ</string>
-    <string name="status_calculating">గణిస్తోంది...</string>
-    <string name="desc_view_details">వివరాలను చూడండి</string>
+    <string name="placeholder_location">à°¤à±†à°²à°¿à°¯à°¨à°¿ à°¸à±à°¥à°¾à°¨à°‚</string>
+    <string name="placeholder_date">à°¤à±‡à°¦à±€</string>
+    <string name="status_calculating">à°—à°£à°¿à°¸à±à°¤à±‹à°‚à°¦à°¿...</string>
+    <string name="desc_view_details">à°µà°¿à°µà°°à°¾à°²à°¨à± à°šà±‚à°¡à°‚à°¡à°¿</string>
 
     <!-- History -->
-    <string name="history">విశ్లేషణ చరిత్ర</string>
-    <string name="delete_confirmation">రికార్డును తొలగించు</string>
-    <string name="delete_history_message">మీరు ఖచ్చితంగా ఈ నేల విశ్లేషణ రికార్డును తొలగించాలనుకుంటున్నారా?</string>
-    <string name="delete">తొలగించు</string>
-    <string name="cancel">రద్దు చేయి</string>
-    <string name="record_deleted">రికార్డు తొలగించబడింది</string>
+    <string name="history">à°µà°¿à°¶à±à°²à±‡à°·à°£ à°šà°°à°¿à°¤à±à°°</string>
+    <string name="delete_confirmation">à°°à°¿à°•à°¾à°°à±à°¡à±à°¨à± à°¤à±Šà°²à°—à°¿à°‚à°šà±</string>
+    <string name="delete_history_message">à°®à±€à°°à± à°–à°šà±à°šà°¿à°¤à°‚à°—à°¾ à°ˆ à°¨à±‡à°² à°µà°¿à°¶à±à°²à±‡à°·à°£ à°°à°¿à°•à°¾à°°à±à°¡à±à°¨à± à°¤à±Šà°²à°—à°¿à°‚à°šà°¾à°²à°¨à±à°•à±à°‚à°Ÿà±à°¨à±à°¨à°¾à°°à°¾?</string>
+    <string name="delete">à°¤à±Šà°²à°—à°¿à°‚à°šà±</string>
+    <string name="cancel">à°°à°¦à±à°¦à± à°šà±‡à°¯à°¿</string>
+    <string name="record_deleted">à°°à°¿à°•à°¾à°°à±à°¡à± à°¤à±Šà°²à°—à°¿à°‚à°šà°¬à°¡à°¿à°‚à°¦à°¿</string>
 
     <!-- Share -->
-    <string name="share_report">నివేదికను షేర్ చేయండి</string>
-    <string name="share_via">దీని ద్వారా షేర్ చేయండి</string>
+    <string name="share_report">à°¨à°¿à°µà±‡à°¦à°¿à°•à°¨à± à°·à±‡à°°à± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="share_via">à°¦à±€à°¨à°¿ à°¦à±à°µà°¾à°°à°¾ à°·à±‡à°°à± à°šà±‡à°¯à°‚à°¡à°¿</string>
 
     <!-- Weather Alerts -->
-    <string name="weather_alerts_title">వాతావరణ హెచ్చరికలు</string>
-    <string name="search_location_hint">నగరం లేదా ప్రాంతాన్ని వెతకండి...</string>
-    <string name="search">వెతుకు</string>
-    <string name="current_weather">ప్రస్తుత వాతావరణం</string>
-    <string name="seven_day_forecast">📅 7-రోజుల అంచనా</string>
-    <string name="agri_recommendations">🌾 వ్యవసాయ సిఫార్సులు</string>
-    <string name="home_card_weather">వాతావరణ హెచ్చరికలు</string>
+    <string name="weather_alerts_title">à°µà°¾à°¤à°¾à°µà°°à°£ à°¹à±†à°šà±à°šà°°à°¿à°•à°²à±</string>
+    <string name="search_location_hint">à°¨à°—à°°à°‚ à°²à±‡à°¦à°¾ à°ªà±à°°à°¾à°‚à°¤à°¾à°¨à±à°¨à°¿ à°µà±†à°¤à°•à°‚à°¡à°¿...</string>
+    <string name="search">à°µà±†à°¤à±à°•à±</string>
+    <string name="current_weather">à°ªà±à°°à°¸à±à°¤à±à°¤ à°µà°¾à°¤à°¾à°µà°°à°£à°‚</string>
+    <string name="seven_day_forecast">ðŸ“… 7-à°°à±‹à°œà±à°² à°…à°‚à°šà°¨à°¾</string>
+    <string name="agri_recommendations">ðŸŒ¾ à°µà±à°¯à°µà°¸à°¾à°¯ à°¸à°¿à°«à°¾à°°à±à°¸à±à°²à±</string>
+    <string name="home_card_weather">à°µà°¾à°¤à°¾à°µà°°à°£ à°¹à±†à°šà±à°šà°°à°¿à°•à°²à±</string>
 
     <!-- Crop Calendar -->
-    <string name="crop_calendar_title">పంట క్యాలెండర్</string>
-    <string name="crop_calendar_subtitle">AI-ఆధారిత విత్తడం మరియు కోత షెడ్యూల్</string>
-    <string name="select_crop">పంట ఎంచుకోండి</string>
-    <string name="generate_schedule">AI షెడ్యూల్ రూపొందించండి</string>
-    <string name="home_card_calendar">పంట క్యాలెండర్</string>
+    <string name="crop_calendar_title">à°ªà°‚à°Ÿ à°•à±à°¯à°¾à°²à±†à°‚à°¡à°°à±</string>
+    <string name="crop_calendar_subtitle">AI-à°†à°§à°¾à°°à°¿à°¤ à°µà°¿à°¤à±à°¤à°¡à°‚ à°®à°°à°¿à°¯à± à°•à±‹à°¤ à°·à±†à°¡à±à°¯à±‚à°²à±</string>
+    <string name="select_crop">à°ªà°‚à°Ÿ à°Žà°‚à°šà±à°•à±‹à°‚à°¡à°¿</string>
+    <string name="generate_schedule">AI à°·à±†à°¡à±à°¯à±‚à°²à± à°°à±‚à°ªà±Šà°‚à°¦à°¿à°‚à°šà°‚à°¡à°¿</string>
+    <string name="home_card_calendar">à°ªà°‚à°Ÿ à°•à±à°¯à°¾à°²à±†à°‚à°¡à°°à±</string>
 
     <!-- Irrigation Calculator -->
-    <string name="irrigation_title">నీటిపారుదల కాలిక్యులేటర్</string>
-    <string name="irrigation_subtitle">పంట, నేల మరియు వాతావరణం ఆధారంగా రోజువారీ నీటి అవసరం</string>
-    <string name="soil_type">నేల రకం</string>
-    <string name="field_size">పొలం పరిమాణం</string>
-    <string name="calculate_water">నీటి అవసరాన్ని లెక్కించండి</string>
-    <string name="water_requirement">రోజువారీ నీటి అవసరం</string>
-    <string name="home_card_irrigation">నీటిపారుదల</string>
+    <string name="irrigation_title">à°¨à±€à°Ÿà°¿à°ªà°¾à°°à±à°¦à°² à°•à°¾à°²à°¿à°•à±à°¯à±à°²à±‡à°Ÿà°°à±</string>
+    <string name="irrigation_subtitle">à°ªà°‚à°Ÿ, à°¨à±‡à°² à°®à°°à°¿à°¯à± à°µà°¾à°¤à°¾à°µà°°à°£à°‚ à°†à°§à°¾à°°à°‚à°—à°¾ à°°à±‹à°œà±à°µà°¾à°°à±€ à°¨à±€à°Ÿà°¿ à°…à°µà°¸à°°à°‚</string>
+    <string name="soil_type">à°¨à±‡à°² à°°à°•à°‚</string>
+    <string name="field_size">à°ªà±Šà°²à°‚ à°ªà°°à°¿à°®à°¾à°£à°‚</string>
+    <string name="calculate_water">à°¨à±€à°Ÿà°¿ à°…à°µà°¸à°°à°¾à°¨à±à°¨à°¿ à°²à±†à°•à±à°•à°¿à°‚à°šà°‚à°¡à°¿</string>
+    <string name="water_requirement">à°°à±‹à°œà±à°µà°¾à°°à±€ à°¨à±€à°Ÿà°¿ à°…à°µà°¸à°°à°‚</string>
+    <string name="home_card_irrigation">à°¨à±€à°Ÿà°¿à°ªà°¾à°°à±à°¦à°²</string>
 
     <!-- Plant Doctor -->
-    <string name="home_card_plant_doctor">మొక్క డాక్టర్</string>
+    <string name="home_card_plant_doctor">à°®à±Šà°•à±à°• à°¡à°¾à°•à±à°Ÿà°°à±</string>
 
+    <!-- NEW LOCALIZATION STRINGS (Telugu) -->
+    <!-- Mandi Connect -->
+    <string name="mandi_title">à°®à°‚à°¡à°¿ à°§à°°à°²à± (à°²à±ˆà°µà±)</string>
+    <string name="mandi_select_prompt">à°ªà°‚à°Ÿ à°®à°°à°¿à°¯à± à°ªà±à°°à°¾à°‚à°¤à°¾à°¨à±à°¨à°¿ à°Žà°‚à°šà±à°•à±‹à°‚à°¡à°¿</string>
+    <string name="mandi_btn_check">à°§à°°à°²à°¨à± à°¤à°¨à°¿à°–à±€ à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="mandi_error_no_data">à°¡à±‡à°Ÿà°¾ à°…à°‚à°¦à±à°¬à°¾à°Ÿà±à°²à±‹ à°²à±‡à°¦à±.</string>
+    <string name="mandi_error_connect">à°²à±‹à°ªà°‚: %s</string>
+    <string name="mandi_source">à°®à±‚à°²à°‚: Agmarknet</string>
+
+    <!-- Plant Doctor -->
+    <string name="plant_status_scanning">à°µà°¿à°¶à±à°²à±‡à°·à°£ à°œà°°à±à°—à±à°¤à±‹à°‚à°¦à°¿...</string>
+    <string name="plant_status_complete">AI à°µà°¿à°¶à±à°²à±‡à°·à°£ à°ªà±‚à°°à±à°¤à°¯à°¿à°‚à°¦à°¿</string>
+    <string name="plant_status_unavailable">à°¸à±‡à°µ à°…à°‚à°¦à±à°¬à°¾à°Ÿà±à°²à±‹ à°²à±‡à°¦à± (%s)</string>
+    <string name="plant_status_error">à°²à±‹à°ªà°‚.</string>
+    <string name="plant_diagnosis">à°µà±à°¯à°¾à°§à°¿ à°¨à°¿à°°à±à°§à°¾à°°à°£: %s</string>
+    <string name="plant_remedies">à°ªà°°à°¿à°·à±à°•à°¾à°°à°¾à°²à±:</string>
+    <string name="plant_doctor_scanning">à°®à±Šà°•à±à°•à°² à°¸à±à°•à°¾à°¨à°¿à°‚à°—à±...</string>
+
+    <!-- Irrigation -->
+    <string name="irrigation_hint_size">à°¦à°¯à°šà±‡à°¸à°¿ à°ªà±Šà°²à°‚ à°ªà°°à°¿à°®à°¾à°£à°¾à°¨à±à°¨à°¿ à°¨à°®à±‹à°¦à± à°šà±‡à°¯à°‚à°¡à°¿</string>
+    <string name="irrigation_error_size">à°šà±†à°²à±à°²à°¨à°¿ à°ªà°°à°¿à°®à°¾à°£à°‚</string>
+    <string name="irrigation_result_water">ðŸ’§ %1$.0f à°²à±€à°Ÿà°°à±à°²à±/à°°à±‹à°œà±\n(%2$.1f à°®à°¿à°®à±€ à°²à±‹à°¤à±)</string>
+    <string name="irrigation_weather_note">ðŸ“ %1$s\nðŸŒ¡ï¸ à°‰à°·à±à°£à±‹à°—à±à°°à°¤: %2$.1fÂ°C, ðŸ’§ à°¤à±‡à°®: %3$.0f%%</string>
+
+    <!-- Profile Dashboard -->
+    <string name="profile_farm_dashboard">ðŸŒ¾ à°¨à°¾ à°ªà±Šà°²à°‚</string>
+    <string name="profile_stat_rank">à°°à±à°¯à°¾à°‚à°•à±</string>
+    <string name="profile_stat_land">à°­à±‚à°®à°¿</string>
+    <string name="profile_stat_crop">à°ªà°‚à°Ÿ</string>
+    <string name="profile_rank_novice">à°•à±Šà°¤à±à°¤ à°°à±ˆà°¤à±</string>
+    <string name="profile_rank_expert">à°¨à°¿à°ªà±à°£à±à°¡à±</string>
+    <string name="profile_rank_guardian">à°¸à°‚à°°à°•à±à°·à°•à±à°¡à±</string>
+    <string name="profile_rank_master">à°®à°¿à°Ÿà±à°Ÿà°¿ à°®à°¿à°¤à±à°°</string>
+    <string name="unit_acres">à°Žà°•à°°à°¾à°²à±</string>
+    <string name="status_none">à°à°¦à±€ à°²à±‡à°¦à±</string>
 </resources>

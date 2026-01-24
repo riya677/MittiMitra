@@ -325,13 +325,13 @@ public class ProfileActivity extends BaseActivity {
         AppPreferences prefs = new AppPreferences(this);
         
         String landSize = prefs.getLastFieldSize();
-        tvLandSize.setText(landSize.isEmpty() ? "--" : landSize + " Acres");
+        tvLandSize.setText(landSize.isEmpty() ? "--" : landSize + " " + getString(R.string.unit_acres));
         
         String crop = prefs.getLastCrop();
         if (crop != null) {
              tvCropName.setText(crop.split(" ")[0]); // "Wheat" from "Wheat (Gehu)"
         } else {
-            tvCropName.setText("None");
+            tvCropName.setText(getString(R.string.status_none));
         }
 
         // 2. Load Badge based on Scan History Count
@@ -346,16 +346,16 @@ public class ProfileActivity extends BaseActivity {
     private void updateBadge(int scanCount) {
         if (scanCount >= 50) {
             tvBadgeIcon.setText("👑");
-            tvBadgeName.setText("Mitti Mitra");
+            tvBadgeName.setText(getString(R.string.profile_rank_master));
         } else if (scanCount >= 20) {
             tvBadgeIcon.setText("🌳");
-            tvBadgeName.setText("Guardian");
+            tvBadgeName.setText(getString(R.string.profile_rank_guardian));
         } else if (scanCount >= 5) {
             tvBadgeIcon.setText("🌿");
-            tvBadgeName.setText("Expert");
+            tvBadgeName.setText(getString(R.string.profile_rank_expert));
         } else {
             tvBadgeIcon.setText("🌱");
-            tvBadgeName.setText("Novice");
+            tvBadgeName.setText(getString(R.string.profile_rank_novice));
         }
     }
 
