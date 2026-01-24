@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mitti Mitra</string>
+    <string name="welcome_subtitle">I Lo neih pui tu tur</string>
+    <string name="login">Luhna</string>
+    <string name="signup">Inziak lut rawh</string>
+
+    <string name="greeting_format">Chibai, %s</string>
+    <string name="greeting_default">Chibai, Zirchiangtu</string>
+    <string name="last_scan">Enfik Hnuhnung Ber</string>
+    <string name="button_tip">Thurawn</string>
+    <string name="button_recommendation">Rawtna</string>
+    <string name="button_history">Chanchin</string>
+    <string name="button_scan">Enfik</string>
+    <string name="button_documents">Lehkha Pawimawh</string>
+
+    <string name="menu_settings">Inrelbawlna</string>
+    <string name="menu_help">Puihna</string>
+    <string name="menu_contact">Biak Pawhna</string>
+    <string name="menu_logout">Chhuahna</string>
+
+    <string name="setting_language">á¹¬awng</string>
+    <string name="setting_accessibility">Hman Awlsamna</string>
+    <string name="setting_theme">App Lan Dan</string>
+    <string name="setting_manage_data">Data Enkawlna</string>
+
+    <string name="setting_unit_converter">Ram Tehna Thlakna</string>
+    <string name="setting_unit_converter_desc">Acre, Hectare, Bigha, leh Guntha thlakna.</string>
+    <string name="setting_kisan_call">Kisan Helpline Be Rawh</string>
+    <string name="setting_kisan_call_desc">Sorkar Kisan Call Center pawh rawh (1800-180-1551).</string>
+
+    <string name="language_title">á¹¬awng thlang rawh</string>
+    <string name="language_system_default">System Default</string>
+    <string name="language_english">English</string>
+    <string name="language_hindi">à¤¹à¤¿à¤¨à¥à¤¦à¥€ (Hindi)</string>
+    <string name="language_tamil">à®¤à®®à®¿à®´à¯ (Tamil)</string>
+    <string name="language_malayalam">à´®à´²à´¯à´¾à´³à´‚ (Malayalam)</string>
+    <string name="language_telugu">à°¤à±†à°²à±à°—à± (Telugu)</string>
+    <string name="language_kannada">à²•à²¨à³à²¨à²¡ (Kannada)</string>
+    <string name="language_marathi">à¤®à¤°à¤¾à¤ à¥€ (Marathi)</string>
+    <string name="language_bengali">à¦¬à¦¾à¦‚à¦²à¦¾ (Bengali)</string>
+    <string name="language_gujarati">àª—à«àªœàª°àª¾àª¤à«€ (Gujarati)</string>
+    <string name="language_punjabi">à¨ªà©°à¨œà¨¾à¨¬à©€ (Punjabi)</string>
+    <string name="language_assamese">à¦…à¦¸à¦®à§€à¦¯à¦¼à¦¾ (Assamese)</string>
+    <string name="language_manipuri">à¦®à§ˆà¦¤à§ˆà¦²à§‹à¦¨à§ (Manipuri)</string>
+    <string name="language_bodo">à¤¬à¤¡à¤¼à¥‹ (Bodo)</string>
+    <string name="language_mizo">Mizo Å£awng (Mizo)</string>
+    <string name="language_garo">AÂ·chik (Garo)</string>
+
+    <string name="font_size_title">Hawrawp Len Zawng</string>
+    <string name="font_size_small">Te</string>
+    <string name="font_size_default">Pangngai</string>
+    <string name="font_size_large">Lian</string>
+    <string name="font_size_sample">He tiang hian a lang ang.</string>
+    <string name="setting_font_dyslexic">Dyslexic-Friendly Font</string>
+    <string name="setting_font_dyslexic_desc">Chhiar awlsam nan OpenDyslexic font hman a ni.</string>
+
+    <string name="theme_title">Lan Dan Thlang Rawh</string>
+    <string name="theme_light">Eng</string>
+    <string name="theme_dark">Thim</string>
+    <string name="theme_system">System Default</string>
+
+    <string name="manage_data_title">Data Enkawlna</string>
+    <string name="manage_data_soil_title">Lei Chanchin Nawt Reh</string>
+    <string name="manage_data_soil_desc">Lei enfikna report vawng sa zawng zawng a nawt reh ang.</string>
+    <string name="manage_data_docs_title">Lehkha Pawimawh Zawng Nawt Reh</string>
+    <string name="manage_data_docs_desc">He device a lehkha pawimawh dah luh zawng zawng a nawt reh ang.</string>
+    <string name="dialog_are_you_sure">I chiang em?</string>
+    <string name="dialog_delete">Nawt Reh</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="toast_history_cleared">Lei chanchin nawt reh a ni.</string>
+    <string name="toast_documents_cleared">Lehkha pawimawh zawng nawt reh a ni.</string>
+
+    <string name="help_title">Puihna leh á¹¬anpuina</string>
+    <string name="help_faq_title">Zawhna Hlauh (FAQ)</string>
+    <string name="help_q1">Engtin nge lei enfikna á¹­ha ka lak ang?</string>
+    <string name="help_a1">Eng á¹­ha a awm tih chiang la, a hnung varah dah la, tin hmet rawh.</string>
+    <string name="help_q2">AI hi eng tiang a dik nge?</string>
+    <string name="help_a2">AI chuan thil hmuh aá¹­angin rawtna a siam. Thutlukna pawimawh atan chuan khawngaihin loneihna lam thiam rawn ang che.</string>
+    <string name="help_contact_title">Biak Pawh Tur</string>
+    <string name="help_contact_phone">+91 12345 67890</string>
+    <string name="help_contact_email">support@mittimitra.com</string>
+
+    <string name="converter_title">Ram Tehna Thlakna</string>
+    <string name="label_enter_area">Ram zau zawng ziak rawh</string>
+    <string name="label_result">Chhuak</string>
+    <string name="btn_convert">Thlak</string>
+    <string name="unit_acre">Acre</string>
+    <string name="unit_hectare">Hectare</string>
+    <string name="unit_bigha">Bigha</string>
+    <string name="unit_guntha">Guntha</string>
+    <string name="unit_cent">Cent</string>
+
+    <string name="setting_share_app">á¹¬hiante Hnenah Share Rawh</string>
+    <string name="setting_notifications">Hriattirna Duhthlan</string>
+
+    <string name="notif_title">Hriattirna</string>
+    <string name="notif_weather_title">Sik leh Sa Hriattirna</string>
+    <string name="notif_weather_desc">Ruah sur leh thli tharkar hriattirna dawng rawh.</string>
+    <string name="notif_mandi_title">Bazar Man</string>
+    <string name="notif_mandi_desc">I district a bazar man nitin.</string>
+    <string name="notif_scheme_title">Sawrkar Ruahmanna</string>
+    <string name="notif_scheme_desc">PM-KISAN leh á¹­anpuina dangte.</string>
+    <string name="share_message">Mitti Mitra en rawh - Lei Hriselna leh Loneihna atan app á¹­ha ber! Hetah download rawh: https://play.google.com/store/apps/details?id=com.mittimitra</string>
+
+    <string name="title_pm_kisan">PM-KISAN: â‚¹6,000/kum khat</string>
+    <string name="title_smart_tools">Hmanrua Changkang</string>
+    <string name="title_soil_health">Lei Hriselna Card: I lei chakna hre rawh</string>
+    <string name="title_fasal_bima">PM Fasal Bima Yojana: I thlai venhimna</string>
+
+    <string name="notif_weather">Sik leh Sa Hriattirna</string>
+    <string name="notif_mandi">Bazar Man</string>
+    <string name="notif_schemes">Sawrkar Ruahmanna</string>
+
+    <string name="contact_header">Pui tur che in kan awm</string>
+    <string name="contact_desc">Loneihna lam thurawn emaw thil dang atan min be rawh.</string>
+    <string name="contact_call">Call Support</string>
+    <string name="contact_time">Thawhá¹­an-Inrin, 9AM - 6PM</string>
+    <string name="contact_email">Email Us</string>
+    <string name="contact_email_addr">support@mittimitra.com</string>
+
+    <string name="label_from_unit">Aá¹­angin</string>
+    <string name="label_to_unit">Ah</string>
+
+    <string name="scan_title">Lei Enfik Thar</string>
+    <string name="scan_env_data">Vela Thil Awm Data</string>
+    <string name="scan_weather">Sik leh Sa</string>
+    <string name="scan_moisture">Hnawng</string>
+    <string name="scan_nutrients">Lei Chakna (Chhut)</string>
+    <string name="scan_hint">I thil hmuh (e.g. \'Hnah eng\')</string>
+    <string name="scan_status_ready">Enfik turin a inpeih</string>
+    <string name="scan_btn_gallery">Gallery</string>
+    <string name="scan_btn_camera">Camera</string>
+    <string name="scan_btn_analyze">Thlai Zirchiang</string>
+
+    <string name="profile_recent">Zirchianna Hnuhnung</string>
+    <string name="profile_no_history">Enfikna hmuh a nilo.</string>
+    <string name="profile_logout">Log Out</string>
+    <string name="profile_member_since">Member Nih á¹¬an:</string>
+    <string name="profile_phone">Phone:</string>
+
+    <string name="rec_title">Lei Hriselna Report</string>
+    <string name="rec_header_title">LEI HRISELNA CARD</string>
+    <string name="rec_header_subtitle">Mitti Mitra â€¢ Digital Agriculture Mission</string>
+    <string name="rec_farmer_details">LONEITU CHANCHIN</string>
+    <string name="rec_label_name">Hming:</string>
+    <string name="rec_label_mobile">Mobile:</string>
+    <string name="rec_label_email">Email:</string>
+    <string name="rec_label_location">Hmun:</string>
+    <string name="rec_label_date">Date:</string>
+    <string name="rec_results_title">TEST RESULT (Lei Chakna)</string>
+    <string name="rec_col_param">Parameter</string>
+    <string name="rec_col_value">Value</string>
+    <string name="rec_col_status">Status</string>
+    <string name="rec_advisory_title">SCIENTIFIC ADVISORY</string>
+    <string name="rec_footer">Mitti Mitra AI siam | Satellite Data hmanga finfiah</string>
+    <string name="rec_btn_download">Download PDF</string>
+
+    <string name="login_welcome">Lo Kir Leh Rawh</string>
+    <string name="login_subtitle">I lo hmanrua hmang turin lut rawh</string>
+    <string name="login_google">Google hmangin chhunzawm rawh</string>
+    <string name="login_or_divider">EMAW PHONE</string>
+    <string name="login_hint_phone">Phone Number</string>
+    <string name="login_btn_otp">OTP La Rawh</string>
+    <string name="login_hint_otp">6-digit OTP ziak rawh</string>
+    <string name="login_btn_verify">Finfiah &amp; Lut</string>
+    <string name="login_trouble">Luh harsatna?</string>
+
+    <string name="home_welcome_default">Chibai, Zirchiangtu</string>
+    <string name="home_card_scan">Lei Enfik</string>
+    <string name="home_card_advice">Thurawn La</string>
+    <string name="home_card_tips">Kisan Sahayak (AI)</string>
+    <string name="home_card_plant_doctor">Plant Doctor</string>
+    <string name="home_section_tools">Hmanrua Changkang</string>
+    <string name="desc_logo">App Logo</string>
+    <string name="desc_icon">Icon</string>
+
+    <string name="title_documents">Lehkha Pawimawh</string>
+    <string name="msg_no_documents">Lehkha hmuh a nilo.\nDah belh turin \'+\' hmet rawh.</string>
+    <string name="desc_add_document">Lehkha Belh</string>
+
+    <string name="title_scan_history">Enfikna Chanchin</string>
+
+    <string name="welcome_home_title">Chibai!</string>
+    <string name="welcome_home_desc">I lut tluang e!</string>
+
+    <string name="btn_test_notification">Notification Test Thawn Rawh</string>
+    <string name="desc_notification_icon">Notification Icon</string>
+
+    <string name="profile_name_placeholder">Loading...</string>
+    <string name="profile_email_placeholder">email@example.com</string>
+    <string name="desc_profile_image">Profile Picture</string>
+    <string name="desc_change_photo">Profile Photo Thlak</string>
+    <string name="desc_edit_profile">Profile Siam á¹¬ha</string>
+
+    <string name="rec_param_n">Nitrogen (N)</string>
+    <string name="rec_param_p">Phosphorus (P)</string>
+    <string name="rec_param_k">Potassium (K)</string>
+    <string name="rec_param_ph">Soil pH</string>
+    <string name="rec_ai_context">Thlai mamawh bik en chian a ni...</string>
+    <string name="rec_ai_generating">Expert thurawn siam a ni...</string>
+
+    <string name="scan_locating">Hmun zawn a ni...</string>
+    <string name="desc_image_preview">Image Preview</string>
+    <string name="signup_title">Mitti Mitra Zawm Rawh</string>
+    <string name="signup_subtitle">I smart farming journey vawiin ah á¹­an rawh</string>
+    <string name="signup_create_account">Account Siam Rawh</string>
+    <string name="signup_google">Google hmangin inziak lut</string>
+    <string name="signup_phone">Phone hmangin inziak lut</string>
+    <string name="signup_footer">Account i nei tawh em?</string>
+
+    <string name="chat_title">Agri-Expert Chat</string>
+    <string name="chat_hint">Thlai chungchang zawt rawh...</string>
+    <string name="desc_mic">Record Audio</string>
+    <string name="desc_send">Message Thawn</string>
+
+    <string name="welcome_get_started">á¹¬an Rawh</string>
+    <string name="welcome_join_community">Farming community fing ber zawm rawh.</string>
+
+    <string name="edit_profile_title">Edit Profile</string>
+    <string name="edit_profile_name_hint">Hming Pum</string>
+    <string name="edit_profile_phone_hint">Phone Number</string>
+    <string name="edit_profile_phone_helper">Hriattirna atan a pawimawh</string>
+    <string name="btn_save_changes">Save Changes</string>
+
+    <string name="btn_view">En Rawh</string>
+
+    <string name="placeholder_location">Hmun Hriatloh</string>
+    <string name="placeholder_date">Date</string>
+    <string name="status_calculating">Chhut a ni...</string>
+    <string name="desc_view_details">Chiang Zawk</string>
+
+    <string name="history">Analysis History</string>
+    <string name="delete_confirmation">Delete Record</string>
+    <string name="delete_history_message">He lei enfikna record hi i nawt reh duh tak tak em?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="record_deleted">Record deleted</string>
+
+    <string name="share_report">Share Report</string>
+    <string name="share_via">Share via</string>
+    <string name="undo">Undo</string>
+
+    <string name="export_csv">Export CSV</string>
+    <string name="compare_analysis">Khaikhin</string>
+    <string name="no_data_to_export">Export tur data a awmlo</string>
+    <string name="need_two_records">Khaikhin turin record 2 a mamawh</string>
+    <string name="compare_title">Compare Analysis</string>
+    <string name="select_records">Khaikhin tur record 2 thlang rawh</string>
+    <string name="clear_chat">Clear Chat</string>
+    <string name="chat_cleared">Chat history cleared</string>
+
+    <string name="rec_health_score">Soil Health Score</string>
+    <string name="health_excellent">Dinhmun á¹¬ha Lutuk ðŸŒ¿</string>
+    <string name="health_good">Dinhmun á¹¬ha ðŸŒ±</string>
+    <string name="health_attention">Ngaihven Ngai âš ï¸</string>
+    <string name="health_poor">Dinhmun Chhe Lutuk ðŸ›‘</string>
+    <string name="status_acidic">ACIDIC</string>
+    <string name="status_alkaline">ALKALINE</string>
+    <string name="status_neutral">NEUTRAL</string>
+    
+    <string name="alert_too_dark">Thim Lutuk! Hlim a awmloh nan eng ah kal rawh â˜€ï¸</string>
+    <string name="alert_data_received">Live Soil Data Hmuh A Ni</string>
+    <string name="alert_data_unavailable">Soil Data Hmuh Theihloh</string>
+    <string name="alert_network_error">Network Error</string>
+    <string name="alert_connecting">Connecting to Satellites...</string>
+    <string name="alert_offline_mode">Using Offline Mode</string>
+    
+    <string name="weather_high_humidity">Hnawng sang! Fungal natna lakah fimkhur rawh.</string>
+    <string name="weather_high_heat">Khaw lum lutuk! Thlai tui pe fo rawh.</string>
+    <string name="weather_alert_title">Seasonal Weather Alert â›ˆï¸</string>
+    
+    <string name="unit_result_format">Result: %1$.2f %2$s</string>
+    <string name="soil_status_low">HNIAM</string>
+    <string name="soil_status_high">SANG</string>
+    <string name="soil_status_ok">á¹¬HA</string>
+
+    <string name="kisan_sahayak_title">Kisan Sahayak</string>
+    <string name="kisan_sahayak_prompt">I lo chungchang engpawh min zawt rawh...</string>
+    <string name="plant_doctor_title">Plant Doctor</string>
+    <string name="plant_doctor_scanning">Thlai Enfik A Ni...</string>
+    <string name="plant_doctor_no_disease">Thlai Hrisel</string>
+    <string name="plant_doctor_confidence">Rintlak: %s%%</string>
+    <string name="plant_doctor_cure">Remedy</string>
+    <string name="plant_scan_hint">Hnah natna awm thlalak fiah tak la rawh ðŸƒ</string>
+    <string name="scan_hint_text">Lei sample ah camera tin rawh</string>
+    
+    <string name="signup_hint_name">Hming Pum</string>
+    <string name="signup_hint_email">Email Address (Optional)</string>
+    <string name="signup_hint_mobile">Mobile Number</string>
+    <string name="signup_btn_create">Account Siam</string>
+    <string name="signup_login_link">Account i nei tawh em? Login</string>
+
+    <string name="weather_alerts_title">Sik leh Sa Hriattirna</string>
+    <string name="search_location_hint">Khawpui emaw hmun zawng rawh...</string>
+    <string name="search">Zawng Rawh</string>
+    <string name="current_weather">Current Weather</string>
+    <string name="seven_day_forecast">ðŸ“… 7-Day Forecast</string>
+    <string name="agri_recommendations">ðŸŒ¾ Agricultural Recommendations</string>
+    <string name="home_card_weather">Weather Alerts</string>
+
+    <string name="crop_calendar_title">Crop Calendar</string>
+    <string name="crop_calendar_subtitle">AI-powered planting and harvesting schedules</string>
+    <string name="select_crop">Thlai Thlang Rawh</string>
+    <string name="generate_schedule">Generate AI Schedule</string>
+    <string name="home_card_calendar">Crop Calendar</string>
+
+    <string name="irrigation_title">Irrigation Calculator</string>
+    <string name="irrigation_subtitle">Calculate daily water requirements based on crop, soil, and weather</string>
+    <string name="soil_type">Lei Chi</string>
+    <string name="field_size">Field Size</string>
+    <string name="calculate_water">Calculate Water Needs</string>
+    <string name="water_requirement">Daily Water Requirement</string>
+    <string name="home_card_irrigation">Irrigation</string>
+
+    <string name="mandi_title">Live Mandi Prices</string>
+    <string name="mandi_select_prompt">Select Crop &amp; Region</string>
+    <string name="mandi_btn_check">Check Prices</string>
+    <string name="mandi_error_no_data">No live data found for this selection.</string>
+    <string name="mandi_error_connect">Error connecting to Agmarknet: %s</string>
+    <string name="mandi_source">Source: Agmarknet (gov.in)</string>
+
+    <string name="plant_status_scanning">Running Advanced Analysis...</string>
+    <string name="plant_status_complete">AI Analysis Complete</string>
+    <string name="plant_status_unavailable">AI Analysis Unavailable (%s)</string>
+    <string name="plant_status_error">Error parsing AI response.</string>
+    <string name="plant_diagnosis">Diagnosis: %s</string>
+    <string name="plant_remedies">Remedies:</string>
+
+    <string name="irrigation_hint_size">Please enter field size</string>
+    <string name="irrigation_error_size">Invalid field size</string>
+    <string name="irrigation_result_water">ðŸ’§ %1$.0f liters/day\n(%2$.1f mm depth)</string>
+    <string name="irrigation_weather_note">ðŸ“ %1$s\nðŸŒ¡ï¸ Current: %2$.1fÂ°C, ðŸ’§ Humidity: %3$.0f%%</string>
+
+    <string name="profile_farm_dashboard">ðŸŒ¾ My Farm Dashboard</string>
+    <string name="profile_stat_rank">Rank</string>
+    <string name="profile_stat_land">Land Size</string>
+    <string name="profile_stat_crop">Active Crop</string>
+    <string name="profile_rank_novice">Novice</string>
+    <string name="profile_rank_expert">Expert</string>
+    <string name="profile_rank_guardian">Guardian</string>
+    <string name="profile_rank_master">Mitti Mitra</string>
+    <string name="unit_acres">Acres</string>
+    <string name="status_none">None</string>
+</resources>

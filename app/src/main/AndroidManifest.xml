@@ -59,9 +59,11 @@
         <activity android:name=".PlantScanActivity" android:exported="false" />
 
         <!-- New Features -->
+        <activity android:name=".SchemeActivity" android:exported="false" />
         <activity android:name=".WeatherAlertsActivity" android:exported="false" />
         <activity android:name=".CropCalendarActivity" android:exported="false" />
         <activity android:name=".IrrigationActivity" android:exported="false" />
+        <activity android:name=".MandiActivity" android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

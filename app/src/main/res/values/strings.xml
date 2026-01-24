@@ -41,6 +41,11 @@
     <string name="language_bengali">বাংলা (Bengali)</string>
     <string name="language_gujarati">ગુજરાતી (Gujarati)</string>
     <string name="language_punjabi">ਪੰਜਾਬੀ (Punjabi)</string>
+    <string name="language_assamese">অসমীয়া (Assamese)</string>
+    <string name="language_manipuri">মৈতৈলোন্ (Manipuri)</string>
+    <string name="language_bodo">बड़ो (Bodo)</string>
+    <string name="language_mizo">Mizo ţawng (Mizo)</string>
+    <string name="language_garo">A·chik (Garo)</string>
 
     <string name="font_size_title">Font Size</string>
     <string name="font_size_small">Small</string>
@@ -300,6 +305,14 @@
     <string name="seven_day_forecast">📅 7-Day Forecast</string>
     <string name="agri_recommendations">🌾 Agricultural Recommendations</string>
     <string name="home_card_weather">Weather Alerts</string>
+    <string name="error_enter_location">Please enter a location</string>
+    <string name="location_default">India (Default)</string>
+    <string name="error_location_not_found">Location not found</string>
+    <string name="error_geocoding">Geocoding failed</string>
+    <string name="error_fetch_weather">Failed to fetch weather</string>
+    <string name="label_humidity_format">💧 Humidity: %.0f%%</string>
+    <string name="label_wind_format">💨 Wind: %.1f km/h</string>
+    <string name="pest_risk_format">🐛 Pest Risk: %s - Monitor crops closely!</string>
 
     <!-- Crop Calendar -->
     <string name="crop_calendar_title">Crop Calendar</string>
@@ -316,4 +329,140 @@
     <string name="calculate_water">Calculate Water Needs</string>
     <string name="water_requirement">Daily Water Requirement</string>
     <string name="home_card_irrigation">Irrigation</string>
+
+    <!-- NEW LOCALIZATION STRINGS -->
+    <!-- Mandi Connect -->
+    <string name="mandi_title">Live Mandi Prices</string>
+    <string name="mandi_select_prompt">Select Crop &amp; Region</string>
+    <string name="mandi_btn_check">Check Prices</string>
+    <string name="mandi_error_no_data">No live data found for this selection.</string>
+    <string name="mandi_error_connect">Error connecting to Agmarknet: %s</string>
+    <string name="mandi_source">Source: Agmarknet (gov.in)</string>
+
+    <!-- Plant Doctor -->
+    <string name="plant_status_scanning">Running Advanced Analysis...</string>
+    <string name="plant_status_complete">AI Analysis Complete</string>
+    <string name="plant_status_unavailable">AI Analysis Unavailable (%s)</string>
+    <string name="plant_status_error">Error parsing AI response.</string>
+    <string name="plant_diagnosis">Diagnosis: %s</string>
+    <string name="plant_remedies">Remedies:</string>
+
+    <!-- Irrigation -->
+    <string name="irrigation_hint_size">Please enter field size</string>
+    <string name="irrigation_error_size">Invalid field size</string>
+    <string name="irrigation_result_water">💧 %1$.0f liters/day\n(%2$.1f mm depth)</string>
+    <string name="irrigation_weather_note">📍 %1$s\n🌡️ Current: %2$.1f°C, 💧 Humidity: %3$.0f%%</string>
+    <string name="irrigation_rain_append">\n🌧️ %s mm</string>
+
+    <!-- Profile Dashboard -->
+    <string name="profile_farm_dashboard">🌾 My Farm Dashboard</string>
+    <string name="profile_stat_rank">Rank</string>
+    <string name="profile_stat_land">Land Size</string>
+    <string name="profile_stat_crop">Active Crop</string>
+    <string name="profile_rank_novice">Novice</string>
+    <string name="profile_rank_expert">Expert</string>
+    <string name="profile_rank_guardian">Guardian</string>
+    <string name="profile_rank_master">Mitti Mitra</string>
+    <string name="unit_acres">Acres</string>
+    <string name="status_none">None</string>
+
+    <!-- Scheme Activity -->
+    <string name="scheme_select_profile">Select Your Profile</string>
+    <string name="scheme_land_size">Land Size</string>
+    <string name="scheme_land_small">Small (&lt; 2ha)</string>
+    <string name="scheme_land_medium">Medium (2-4ha)</string>
+    <string name="scheme_land_large">Large (> 4ha)</string>
+    <string name="scheme_no_match">No schemes match your profile.</string>
+    <string name="scheme_benefit_label">Benefit: </string>
+    <string name="scheme_tap_apply">Tap to Apply →</string>
+    
+    <!-- Mandi Item -->
+    <string name="mandi_market_label">Market Name</string>
+    <string name="mandi_price_min_max">Min: 2000 - Max 2500</string>
+    <string name="mandi_price_modal_label">Modal Price</string>
+
+    <!-- ARRAYS -->
+    <string-array name="mandi_states">
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chhattisgarh</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Madhya Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Odisha</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttar Pradesh</item>
+        <item>Uttarakhand</item>
+        <item>West Bengal</item>
+        <item>Andaman and Nicobar</item>
+        <item>Chandigarh</item>
+        <item>Delhi</item>
+        <item>Jammu and Kashmir</item>
+        <item>Ladakh</item>
+        <item>Puducherry</item>
+    </string-array>
+
+    <string-array name="mandi_commodities">
+        <item>Wheat</item>
+        <item>Rice</item>
+        <item>Maize</item>
+        <item>Cotton</item>
+        <item>Soyabean</item>
+        <item>Sugarcane</item>
+        <item>Onion</item>
+        <item>Potato</item>
+        <item>Tomato</item>
+        <item>Chilli Red</item>
+        <item>Garlic</item>
+        <item>Tur (Arhar)</item>
+        <item>Gram (Chana)</item>
+        <item>Moong (Green Gram)</item>
+        <item>Urad (Black Gram)</item>
+        <item>Groundnut</item>
+        <item>Mustard</item>
+        <item>Sesamum</item>
+        <item>Banana</item>
+        <item>Mango</item>
+        <item>Orange</item>
+        <item>Grapes</item>
+        <item>Apple</item>
+    </string-array>
+    
+    <string-array name="irrigation_crops">
+        <item>Rice</item>
+        <item>Wheat</item>
+        <item>Maize</item>
+        <item>Cotton</item>
+        <item>Sugarcane</item>
+        <item>Tomato</item>
+        <item>Potato</item>
+        <item>Onion</item>
+        <item>Chilli</item>
+        <item>Soybean</item>
+    </string-array>
+
+    <string-array name="irrigation_soil_types">
+        <item>Clay (चिकनी)</item>
+        <item>Sandy (बालू)</item>
+        <item>Loamy (दोमट)</item>
+        <item>Black (काली)</item>
+        <item>Red (लाल)</item>
+    </string-array>
 </resources>

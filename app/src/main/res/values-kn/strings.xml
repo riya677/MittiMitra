@@ -1,267 +1,302 @@
-<resources>
-    <string name="app_name">ಮಿಟ್ಟಿ ಮಿತ್ರ</string>
+﻿<resources>
+    <string name="app_name">à²®à²¿à²Ÿà³à²Ÿà²¿ à²®à²¿à²¤à³à²°</string>
 
-    <string name="welcome_subtitle">ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಕೃಷಿ ಸಹಾಯಕ</string>
-    <string name="login">ಲಾಗಿನ್</string>
-    <string name="signup">ಸೈನ್ ಅಪ್</string>
+    <string name="welcome_subtitle">à²¨à²¿à²®à³à²® à²µà³ˆà²¯à²•à³à²¤à²¿à²• à²•à³ƒà²·à²¿ à²¸à²¹à²¾à²¯à²•</string>
+    <string name="login">à²²à²¾à²—à²¿à²¨à³</string>
+    <string name="signup">à²¸à³ˆà²¨à³ à²…à²ªà³</string>
 
-    <string name="greeting_format">ನಮಸ್ಕಾರ, %s</string>
-    <string name="greeting_default">ನಮಸ್ಕಾರ, ಬಳಕೆದಾರ</string>
-    <string name="last_scan">ಕೊನೆಯ ಸ್ಕ್ಯಾನ್</string>
-    <string name="button_tip">ಸಲಹೆ</string>
-    <string name="button_recommendation">ಶಿಫಾರಸು</string>
-    <string name="button_history">ಇತಿಹಾಸ</string>
-    <string name="button_scan">ಸ್ಕ್ಯಾನ್</string>
-    <string name="button_documents">ದಾಖಲೆಗಳು</string>
+    <string name="greeting_format">à²¨à²®à²¸à³à²•à²¾à²°, %s</string>
+    <string name="greeting_default">à²¨à²®à²¸à³à²•à²¾à²°, à²¬à²³à²•à³†à²¦à²¾à²°</string>
+    <string name="last_scan">à²•à³Šà²¨à³†à²¯ à²¸à³à²•à³à²¯à²¾à²¨à³</string>
+    <string name="button_tip">à²¸à²²à²¹à³†</string>
+    <string name="button_recommendation">à²¶à²¿à²«à²¾à²°à²¸à³</string>
+    <string name="button_history">à²‡à²¤à²¿à²¹à²¾à²¸</string>
+    <string name="button_scan">à²¸à³à²•à³à²¯à²¾à²¨à³</string>
+    <string name="button_documents">à²¦à²¾à²–à²²à³†à²—à²³à³</string>
 
-    <string name="menu_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
-    <string name="menu_help">ಸಹಾಯ</string>
-    <string name="menu_contact">ಸಂಪರ್ಕ</string>
-    <string name="menu_logout">ಲಾಗ್ ಔಟ್</string>
+    <string name="menu_settings">à²¸à³†à²Ÿà³à²Ÿà²¿à²‚à²—à³â€Œà²—à²³à³</string>
+    <string name="menu_help">à²¸à²¹à²¾à²¯</string>
+    <string name="menu_contact">à²¸à²‚à²ªà²°à³à²•</string>
+    <string name="menu_logout">à²²à²¾à²—à³ à²”à²Ÿà³</string>
 
-    <string name="setting_language">ಭಾಷೆ</string>
-    <string name="setting_accessibility">ಪ್ರವೇಶಿಸುವಿಕೆ</string>
-    <string name="setting_theme">ಅಪ್ಲಿಕೇಶನ್ ಥೀಮ್</string>
-    <string name="setting_manage_data">ಡೇಟಾ ನಿರ್ವಹಣೆ</string>
+    <string name="setting_language">à²­à²¾à²·à³†</string>
+    <string name="setting_accessibility">à²ªà³à²°à²µà³‡à²¶à²¿à²¸à³à²µà²¿à²•à³†</string>
+    <string name="setting_theme">à²…à²ªà³à²²à²¿à²•à³‡à²¶à²¨à³ à²¥à³€à²®à³</string>
+    <string name="setting_manage_data">à²¡à³‡à²Ÿà²¾ à²¨à²¿à²°à³à²µà²¹à²£à³†</string>
 
-    <string name="setting_unit_converter">ಭೂಮಿ ಘಟಕ ಪರಿವರ್ತಕ</string>
-    <string name="setting_unit_converter_desc">ಎಕರೆ, ಹೆಕ್ಟೇರ್, ಬಿಘಾ ಮತ್ತು ಗುಂಟೆ ಪರಿವರ್ತಿಸಿ.</string>
-    <string name="setting_kisan_call">ಕಿಸಾನ್ ಹೆಲ್ಪ್‌ಲೈನ್ ಕರೆ ಮಾಡಿ</string>
-    <string name="setting_kisan_call_desc">ಸರ್ಕಾರಿ ಕಿಸಾನ್ ಕಾಲ್ ಸೆಂಟರ್‌ನೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಿ (1800-180-1551).</string>
+    <string name="setting_unit_converter">à²­à³‚à²®à²¿ à²˜à²Ÿà²• à²ªà²°à²¿à²µà²°à³à²¤à²•</string>
+    <string name="setting_unit_converter_desc">à²Žà²•à²°à³†, à²¹à³†à²•à³à²Ÿà³‡à²°à³, à²¬à²¿à²˜à²¾ à²®à²¤à³à²¤à³ à²—à³à²‚à²Ÿà³† à²ªà²°à²¿à²µà²°à³à²¤à²¿à²¸à²¿.</string>
+    <string name="setting_kisan_call">à²•à²¿à²¸à²¾à²¨à³ à²¹à³†à²²à³à²ªà³â€Œà²²à³ˆà²¨à³ à²•à²°à³† à²®à²¾à²¡à²¿</string>
+    <string name="setting_kisan_call_desc">à²¸à²°à³à²•à²¾à²°à²¿ à²•à²¿à²¸à²¾à²¨à³ à²•à²¾à²²à³ à²¸à³†à²‚à²Ÿà²°à³â€Œà²¨à³Šà²‚à²¦à²¿à²—à³† à²¸à²‚à²ªà²°à³à²• à²¸à²¾à²§à²¿à²¸à²¿ (1800-180-1551).</string>
 
-    <string name="language_title">ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
-    <string name="language_system_default">ಸಿಸ್ಟಮ್ ಡೀಫಾಲ್ಟ್</string>
+    <string name="language_title">à²­à²¾à²·à³†à²¯à²¨à³à²¨à³ à²†à²¯à³à²•à³† à²®à²¾à²¡à²¿</string>
+    <string name="language_system_default">à²¸à²¿à²¸à³à²Ÿà²®à³ à²¡à³€à²«à²¾à²²à³à²Ÿà³</string>
     <string name="language_english">English</string>
-    <string name="language_hindi">हिन्दी (Hindi)</string>
-    <string name="language_tamil">தமிழ் (Tamil)</string>
-    <string name="language_malayalam">മലയാളം (Malayalam)</string>
-    <string name="language_telugu">తెలుగు (Telugu)</string>
-    <string name="language_kannada">ಕನ್ನಡ (Kannada)</string>
-    <string name="language_marathi">मराठी (Marathi)</string>
-    <string name="language_bengali">বাংলা (Bengali)</string>
-    <string name="language_gujarati">ગુજરાતી (Gujarati)</string>
-    <string name="language_punjabi">ਪੰਜਾਬੀ (Punjabi)</string>
+    <string name="language_hindi">à¤¹à¤¿à¤¨à¥à¤¦à¥€ (Hindi)</string>
+    <string name="language_tamil">à®¤à®®à®¿à®´à¯ (Tamil)</string>
+    <string name="language_malayalam">à´®à´²à´¯à´¾à´³à´‚ (Malayalam)</string>
+    <string name="language_telugu">à°¤à±†à°²à±à°—à± (Telugu)</string>
+    <string name="language_kannada">à²•à²¨à³à²¨à²¡ (Kannada)</string>
+    <string name="language_marathi">à¤®à¤°à¤¾à¤ à¥€ (Marathi)</string>
+    <string name="language_bengali">à¦¬à¦¾à¦‚à¦²à¦¾ (Bengali)</string>
+    <string name="language_gujarati">àª—à«àªœàª°àª¾àª¤à«€ (Gujarati)</string>
+    <string name="language_punjabi">à¨ªà©°à¨œà¨¾à¨¬à©€ (Punjabi)</string>
 
-    <string name="font_size_title">ಫಾಂಟ್ ಗಾತ್ರ</string>
-    <string name="font_size_small">ಚಿಕ್ಕ</string>
-    <string name="font_size_default">ಡೀಫಾಲ್ಟ್</string>
-    <string name="font_size_large">ದೊಡ್ಡ</string>
-    <string name="font_size_sample">ನಿಮ್ಮ ಪಠ್ಯ ಹೀಗೆ ಕಾಣುತ್ತದೆ.</string>
-    <string name="setting_font_dyslexic">ಡಿಸ್ಲೆಕ್ಸಿಕ್ ಫಾಂಟ್</string>
-    <string name="setting_font_dyslexic_desc">ಡಿಸ್ಲೆಕ್ಸಿಕ್ ಬಳಕೆದಾರರಿಗೆ ಓದಲು ಸುಲಭವಾದ ಫಾಂಟ್.</string>
+    <string name="font_size_title">à²«à²¾à²‚à²Ÿà³ à²—à²¾à²¤à³à²°</string>
+    <string name="font_size_small">à²šà²¿à²•à³à²•</string>
+    <string name="font_size_default">à²¡à³€à²«à²¾à²²à³à²Ÿà³</string>
+    <string name="font_size_large">à²¦à³Šà²¡à³à²¡</string>
+    <string name="font_size_sample">à²¨à²¿à²®à³à²® à²ªà² à³à²¯ à²¹à³€à²—à³† à²•à²¾à²£à³à²¤à³à²¤à²¦à³†.</string>
+    <string name="setting_font_dyslexic">à²¡à²¿à²¸à³à²²à³†à²•à³à²¸à²¿à²•à³ à²«à²¾à²‚à²Ÿà³</string>
+    <string name="setting_font_dyslexic_desc">à²¡à²¿à²¸à³à²²à³†à²•à³à²¸à²¿à²•à³ à²¬à²³à²•à³†à²¦à²¾à²°à²°à²¿à²—à³† à²“à²¦à²²à³ à²¸à³à²²à²­à²µà²¾à²¦ à²«à²¾à²‚à²Ÿà³.</string>
 
-    <string name="theme_title">ಥೀಮ್ ಆಯ್ಕೆಮಾಡಿ</string>
-    <string name="theme_light">ಲೈಟ್</string>
-    <string name="theme_dark">ಡಾರ್ಕ್</string>
-    <string name="theme_system">ಸಿಸ್ಟಮ್ ಡೀಫಾಲ್ಟ್</string>
+    <string name="theme_title">à²¥à³€à²®à³ à²†à²¯à³à²•à³†à²®à²¾à²¡à²¿</string>
+    <string name="theme_light">à²²à³ˆà²Ÿà³</string>
+    <string name="theme_dark">à²¡à²¾à²°à³à²•à³</string>
+    <string name="theme_system">à²¸à²¿à²¸à³à²Ÿà²®à³ à²¡à³€à²«à²¾à²²à³à²Ÿà³</string>
 
-    <string name="manage_data_title">ಡೇಟಾ ನಿರ್ವಹಣೆ</string>
-    <string name="manage_data_soil_title">ಮಣ್ಣಿನ ಇತಿಹಾಸ ತೆರವುಗೊಳಿಸಿ</string>
-    <string name="manage_data_soil_desc">ಎಲ್ಲಾ ಉಳಿಸಿದ ಮಣ್ಣಿನ ವಿಶ್ಲೇಷಣೆ ವರದಿಗಳನ್ನು ಅಳಿಸುತ್ತದೆ.</string>
-    <string name="manage_data_docs_title">ಎಲ್ಲಾ ದಾಖಲೆಗಳನ್ನು ತೆರವುಗೊಳಿಸಿ</string>
-    <string name="manage_data_docs_desc">ಈ ಸಾಧನದಿಂದ ಅಪ್‌ಲೋಡ್ ಮಾಡಿದ ಎಲ್ಲಾ ದಾಖಲೆಗಳನ್ನು ಅಳಿಸುತ್ತದೆ.</string>
-    <string name="dialog_are_you_sure">ನೀವು ಖಚಿತವಾಗಿದ್ದೀರಾ?</string>
-    <string name="dialog_delete">ಅಳಿಸು</string>
-    <string name="dialog_cancel">ರದ್ದುಮಾಡು</string>
-    <string name="toast_history_cleared">ಮಣ್ಣಿನ ಇತಿಹಾಸ ತೆರವುಗೊಳಿಸಲಾಗಿದೆ.</string>
-    <string name="toast_documents_cleared">ಎಲ್ಲಾ ದಾಖಲೆಗಳನ್ನು ತೆರವುಗೊಳಿಸಲಾಗಿದೆ.</string>
+    <string name="manage_data_title">à²¡à³‡à²Ÿà²¾ à²¨à²¿à²°à³à²µà²¹à²£à³†</string>
+    <string name="manage_data_soil_title">à²®à²£à³à²£à²¿à²¨ à²‡à²¤à²¿à²¹à²¾à²¸ à²¤à³†à²°à²µà³à²—à³Šà²³à²¿à²¸à²¿</string>
+    <string name="manage_data_soil_desc">à²Žà²²à³à²²à²¾ à²‰à²³à²¿à²¸à²¿à²¦ à²®à²£à³à²£à²¿à²¨ à²µà²¿à²¶à³à²²à³‡à²·à²£à³† à²µà²°à²¦à²¿à²—à²³à²¨à³à²¨à³ à²…à²³à²¿à²¸à³à²¤à³à²¤à²¦à³†.</string>
+    <string name="manage_data_docs_title">à²Žà²²à³à²²à²¾ à²¦à²¾à²–à²²à³†à²—à²³à²¨à³à²¨à³ à²¤à³†à²°à²µà³à²—à³Šà²³à²¿à²¸à²¿</string>
+    <string name="manage_data_docs_desc">à²ˆ à²¸à²¾à²§à²¨à²¦à²¿à²‚à²¦ à²…à²ªà³â€Œà²²à³‹à²¡à³ à²®à²¾à²¡à²¿à²¦ à²Žà²²à³à²²à²¾ à²¦à²¾à²–à²²à³†à²—à²³à²¨à³à²¨à³ à²…à²³à²¿à²¸à³à²¤à³à²¤à²¦à³†.</string>
+    <string name="dialog_are_you_sure">à²¨à³€à²µà³ à²–à²šà²¿à²¤à²µà²¾à²—à²¿à²¦à³à²¦à³€à²°à²¾?</string>
+    <string name="dialog_delete">à²…à²³à²¿à²¸à³</string>
+    <string name="dialog_cancel">à²°à²¦à³à²¦à³à²®à²¾à²¡à³</string>
+    <string name="toast_history_cleared">à²®à²£à³à²£à²¿à²¨ à²‡à²¤à²¿à²¹à²¾à²¸ à²¤à³†à²°à²µà³à²—à³Šà²³à²¿à²¸à²²à²¾à²—à²¿à²¦à³†.</string>
+    <string name="toast_documents_cleared">à²Žà²²à³à²²à²¾ à²¦à²¾à²–à²²à³†à²—à²³à²¨à³à²¨à³ à²¤à³†à²°à²µà³à²—à³Šà²³à²¿à²¸à²²à²¾à²—à²¿à²¦à³†.</string>
 
-    <string name="help_title">ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ</string>
-    <string name="help_faq_title">ಪದೇ ಪದೇ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು (FAQ)</string>
-    <string name="help_q1">ನಾನು ಉತ್ತಮ ಮಣ್ಣಿನ ಸ್ಕ್ಯಾನ್ ಹೇಗೆ ತೆಗೆದುಕೊಳ್ಳುವುದು?</string>
-    <string name="help_a1">ಉತ್ತಮ ಬೆಳಕನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ, ಮಾದರಿಯನ್ನು ಬಿಳಿ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಇರಿಸಿ ಮತ್ತು ಫೋಕಸ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
-    <string name="help_q2">AI ಎಷ್ಟು ನಿಖರವಾಗಿದೆ?</string>
-    <string name="help_a2">ದೃಶ್ಯ ಡೇಟಾದ ಆಧಾರದ ಮೇಲೆ AI ಸಲಹೆಗಳನ್ನು ನೀಡುತ್ತದೆ. ನಿರ್ಣಾಯಕ ನಿರ್ಧಾರಗಳಿಗಾಗಿ, ದಯವಿಟ್ಟು ಸ್ಥಳೀಯ ಕೃಷಿ ತಜ್ಞರನ್ನು ಸಂಪರ್ಕಿಸಿ.</string>
-    <string name="help_contact_title">ಬೆಂಬಲವನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
+    <string name="help_title">à²¸à²¹à²¾à²¯ à²®à²¤à³à²¤à³ à²¬à³†à²‚à²¬à²²</string>
+    <string name="help_faq_title">à²ªà²¦à³‡ à²ªà²¦à³‡ à²•à³‡à²³à²²à²¾à²—à³à²µ à²ªà³à²°à²¶à³à²¨à³†à²—à²³à³ (FAQ)</string>
+    <string name="help_q1">à²¨à²¾à²¨à³ à²‰à²¤à³à²¤à²® à²®à²£à³à²£à²¿à²¨ à²¸à³à²•à³à²¯à²¾à²¨à³ à²¹à³‡à²—à³† à²¤à³†à²—à³†à²¦à³à²•à³Šà²³à³à²³à³à²µà³à²¦à³?</string>
+    <string name="help_a1">à²‰à²¤à³à²¤à²® à²¬à³†à²³à²•à²¨à³à²¨à³ à²–à²šà²¿à²¤à²ªà²¡à²¿à²¸à²¿à²•à³Šà²³à³à²³à²¿, à²®à²¾à²¦à²°à²¿à²¯à²¨à³à²¨à³ à²¬à²¿à²³à²¿ à²¹à²¿à²¨à³à²¨à³†à²²à³†à²¯à²²à³à²²à²¿ à²‡à²°à²¿à²¸à²¿ à²®à²¤à³à²¤à³ à²«à³‹à²•à²¸à³ à²®à²¾à²¡à²²à³ à²Ÿà³à²¯à²¾à²ªà³ à²®à²¾à²¡à²¿.</string>
+    <string name="help_q2">AI à²Žà²·à³à²Ÿà³ à²¨à²¿à²–à²°à²µà²¾à²—à²¿à²¦à³†?</string>
+    <string name="help_a2">à²¦à³ƒà²¶à³à²¯ à²¡à³‡à²Ÿà²¾à²¦ à²†à²§à²¾à²°à²¦ à²®à³‡à²²à³† AI à²¸à²²à²¹à³†à²—à²³à²¨à³à²¨à³ à²¨à³€à²¡à³à²¤à³à²¤à²¦à³†. à²¨à²¿à²°à³à²£à²¾à²¯à²• à²¨à²¿à²°à³à²§à²¾à²°à²—à²³à²¿à²—à²¾à²—à²¿, à²¦à²¯à²µà²¿à²Ÿà³à²Ÿà³ à²¸à³à²¥à²³à³€à²¯ à²•à³ƒà²·à²¿ à²¤à²œà³à²žà²°à²¨à³à²¨à³ à²¸à²‚à²ªà²°à³à²•à²¿à²¸à²¿.</string>
+    <string name="help_contact_title">à²¬à³†à²‚à²¬à²²à²µà²¨à³à²¨à³ à²¸à²‚à²ªà²°à³à²•à²¿à²¸à²¿</string>
     <string name="help_contact_phone">+91 12345 67890</string>
     <string name="help_contact_email">support@mittimitra.com</string>
 
-    <string name="converter_title">ಭೂಮಿ ಪರಿವರ್ತಕ</string>
-    <string name="label_enter_area">ವಿಸ್ತೀರ್ಣ ನಮೂದಿಸಿ</string>
-    <string name="label_result">ಫಲಿತಾಂಶ</string>
-    <string name="btn_convert">ಪರಿವರ್ತಿಸಿ</string>
-    <string name="unit_acre">ಎಕರೆ</string>
-    <string name="unit_hectare">ಹೆಕ್ಟೇರ್</string>
-    <string name="unit_bigha">ಬಿಘಾ (ಸ್ಟ್ಯಾಂಡರ್ಡ್)</string>
-    <string name="unit_guntha">ಗುಂಟೆ</string>
-    <string name="unit_cent">ಸೆಂಟ್</string>
+    <string name="converter_title">à²­à³‚à²®à²¿ à²ªà²°à²¿à²µà²°à³à²¤à²•</string>
+    <string name="label_enter_area">à²µà²¿à²¸à³à²¤à³€à²°à³à²£ à²¨à²®à³‚à²¦à²¿à²¸à²¿</string>
+    <string name="label_result">à²«à²²à²¿à²¤à²¾à²‚à²¶</string>
+    <string name="btn_convert">à²ªà²°à²¿à²µà²°à³à²¤à²¿à²¸à²¿</string>
+    <string name="unit_acre">à²Žà²•à²°à³†</string>
+    <string name="unit_hectare">à²¹à³†à²•à³à²Ÿà³‡à²°à³</string>
+    <string name="unit_bigha">à²¬à²¿à²˜à²¾ (à²¸à³à²Ÿà³à²¯à²¾à²‚à²¡à²°à³à²¡à³)</string>
+    <string name="unit_guntha">à²—à³à²‚à²Ÿà³†</string>
+    <string name="unit_cent">à²¸à³†à²‚à²Ÿà³</string>
 
-    <string name="setting_share_app">ಸ್ನೇಹಿಗಳೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
-    <string name="setting_notifications">ಅಧಿಸೂಚನೆ ಆದ್ಯತೆಗಳು</string>
+    <string name="setting_share_app">à²¸à³à²¨à³‡à²¹à²¿à²—à²³à³Šà²‚à²¦à²¿à²—à³† à²¹à²‚à²šà²¿à²•à³Šà²³à³à²³à²¿</string>
+    <string name="setting_notifications">à²…à²§à²¿à²¸à³‚à²šà²¨à³† à²†à²¦à³à²¯à²¤à³†à²—à²³à³</string>
 
-    <string name="notif_title">ಅಧಿಸೂಚನೆಗಳು</string>
-    <string name="notif_weather_title">ಹವಾಮಾನ ಎಚ್ಚರಿಕೆಗಳು</string>
-    <string name="notif_weather_desc">ಭಾರೀ ಮಳೆ ಮತ್ತು ಚಂಡಮಾರುತದ ಎಚ್ಚರಿಕೆಗಳನ್ನು ಪಡೆಯಿರಿ.</string>
-    <string name="notif_mandi_title">ಮಂಡಿ ಬೆಲೆಗಳು</string>
-    <string name="notif_mandi_desc">ನಿಮ್ಮ ಜಿಲ್ಲೆಗೆ ದೈನಂದಿನ ಮಾರುಕಟ್ಟೆ ದರಗಳು.</string>
-    <string name="notif_scheme_title">ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು</string>
-    <string name="notif_scheme_desc">ಪಿಎಂ-ಕಿಸಾನ್ ಮತ್ತು ಸಬ್ಸಿಡಿಗಳ ಕುರಿತು ನವೀಕರಣಗಳು.</string>
-    <string name="share_message">ಮಣ್ಣಿನ ಆರೋಗ್ಯ ಮತ್ತು ಕೃಷಿಗಾಗಿ ಅತ್ಯುತ್ತಮ ಅಪ್ಲಿಕೇಶನ್ - ಮಿಟ್ಟಿ ಮಿತ್ರ ಪರಿಶೀಲಿಸಿ! ಇಲ್ಲಿ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ: https://play.google.com/store/apps/details?id=com.mittimitra</string>
+    <string name="notif_title">à²…à²§à²¿à²¸à³‚à²šà²¨à³†à²—à²³à³</string>
+    <string name="notif_weather_title">à²¹à²µà²¾à²®à²¾à²¨ à²Žà²šà³à²šà²°à²¿à²•à³†à²—à²³à³</string>
+    <string name="notif_weather_desc">à²­à²¾à²°à³€ à²®à²³à³† à²®à²¤à³à²¤à³ à²šà²‚à²¡à²®à²¾à²°à³à²¤à²¦ à²Žà²šà³à²šà²°à²¿à²•à³†à²—à²³à²¨à³à²¨à³ à²ªà²¡à³†à²¯à²¿à²°à²¿.</string>
+    <string name="notif_mandi_title">à²®à²‚à²¡à²¿ à²¬à³†à²²à³†à²—à²³à³</string>
+    <string name="notif_mandi_desc">à²¨à²¿à²®à³à²® à²œà²¿à²²à³à²²à³†à²—à³† à²¦à³ˆà²¨à²‚à²¦à²¿à²¨ à²®à²¾à²°à³à²•à²Ÿà³à²Ÿà³† à²¦à²°à²—à²³à³.</string>
+    <string name="notif_scheme_title">à²¸à²°à³à²•à²¾à²°à²¿ à²¯à³‹à²œà²¨à³†à²—à²³à³</string>
+    <string name="notif_scheme_desc">à²ªà²¿à²Žà²‚-à²•à²¿à²¸à²¾à²¨à³ à²®à²¤à³à²¤à³ à²¸à²¬à³à²¸à²¿à²¡à²¿à²—à²³ à²•à³à²°à²¿à²¤à³ à²¨à²µà³€à²•à²°à²£à²—à²³à³.</string>
+    <string name="share_message">à²®à²£à³à²£à²¿à²¨ à²†à²°à³‹à²—à³à²¯ à²®à²¤à³à²¤à³ à²•à³ƒà²·à²¿à²—à²¾à²—à²¿ à²…à²¤à³à²¯à³à²¤à³à²¤à²® à²…à²ªà³à²²à²¿à²•à³‡à²¶à²¨à³ - à²®à²¿à²Ÿà³à²Ÿà²¿ à²®à²¿à²¤à³à²° à²ªà²°à²¿à²¶à³€à²²à²¿à²¸à²¿! à²‡à²²à³à²²à²¿ à²¡à³Œà²¨à³â€Œà²²à³‹à²¡à³ à²®à²¾à²¡à²¿: https://play.google.com/store/apps/details?id=com.mittimitra</string>
 
-    <string name="title_pm_kisan">ಪಿಎಂ-ಕಿಸಾನ್: ₹6,000/ವರ್ಷ ಆದಾಯ ಬೆಂಬಲ</string>
-    <string name="title_smart_tools">ಸ್ಮಾರ್ಟ್ ಪರಿಕರಗಳು</string>
-    <string name="title_soil_health">ಮಣ್ಣಿನ ಆರೋಗ್ಯ ಕಾರ್ಡ್: ನಿಮ್ಮ ಮಣ್ಣಿನ ಶಕ್ತಿಯನ್ನು ತಿಳಿಯಿರಿ</string>
-    <string name="title_fasal_bima">ಪಿಎಂ ಫಸಲ್ ಬೀಮಾ ಯೋಜನೆ: ನಿಮ್ಮ ಬೆಳೆಗಳನ್ನು ಸುರಕ್ಷಿತಗೊಳಿಸಿ</string>
+    <string name="title_pm_kisan">à²ªà²¿à²Žà²‚-à²•à²¿à²¸à²¾à²¨à³: â‚¹6,000/à²µà²°à³à²· à²†à²¦à²¾à²¯ à²¬à³†à²‚à²¬à²²</string>
+    <string name="title_smart_tools">à²¸à³à²®à²¾à²°à³à²Ÿà³ à²ªà²°à²¿à²•à²°à²—à²³à³</string>
+    <string name="title_soil_health">à²®à²£à³à²£à²¿à²¨ à²†à²°à³‹à²—à³à²¯ à²•à²¾à²°à³à²¡à³: à²¨à²¿à²®à³à²® à²®à²£à³à²£à²¿à²¨ à²¶à²•à³à²¤à²¿à²¯à²¨à³à²¨à³ à²¤à²¿à²³à²¿à²¯à²¿à²°à²¿</string>
+    <string name="title_fasal_bima">à²ªà²¿à²Žà²‚ à²«à²¸à²²à³ à²¬à³€à²®à²¾ à²¯à³‹à²œà²¨à³†: à²¨à²¿à²®à³à²® à²¬à³†à²³à³†à²—à²³à²¨à³à²¨à³ à²¸à³à²°à²•à³à²·à²¿à²¤à²—à³Šà²³à²¿à²¸à²¿</string>
 
-    <string name="notif_weather">ಹವಾಮಾನ ಎಚ್ಚರಿಕೆಗಳು</string>
-    <string name="notif_mandi">ಮಂಡಿ ಬೆಲೆಗಳು</string>
-    <string name="notif_schemes">ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು</string>
+    <string name="notif_weather">à²¹à²µà²¾à²®à²¾à²¨ à²Žà²šà³à²šà²°à²¿à²•à³†à²—à²³à³</string>
+    <string name="notif_mandi">à²®à²‚à²¡à²¿ à²¬à³†à²²à³†à²—à²³à³</string>
+    <string name="notif_schemes">à²¸à²°à³à²•à²¾à²°à²¿ à²¯à³‹à²œà²¨à³†à²—à²³à³</string>
 
-    <string name="contact_header">ಸಹಾಯ ಮಾಡಲು ನಾವಿದ್ದೇವೆ</string>
-    <string name="contact_desc">ನಿರ್ದಿಷ್ಟ ಕೃಷಿ ಸಲಹೆ ಅಥವಾ ತಾಂತ್ರಿಕ ಬೆಂಬಲಕ್ಕಾಗಿ ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ.</string>
-    <string name="contact_call">ಕರೆ ಬೆಂಬಲ</string>
-    <string name="contact_time">ಸೋಮ-ಶನಿ, ಬೆಳಿಗ್ಗೆ 9 - ಸಂಜೆ 6</string>
-    <string name="contact_email">ನಮಗೆ ಇಮೇಲ್ ಮಾಡಿ</string>
+    <string name="contact_header">à²¸à²¹à²¾à²¯ à²®à²¾à²¡à²²à³ à²¨à²¾à²µà²¿à²¦à³à²¦à³‡à²µà³†</string>
+    <string name="contact_desc">à²¨à²¿à²°à³à²¦à²¿à²·à³à²Ÿ à²•à³ƒà²·à²¿ à²¸à²²à²¹à³† à²…à²¥à²µà²¾ à²¤à²¾à²‚à²¤à³à²°à²¿à²• à²¬à³†à²‚à²¬à²²à²•à³à²•à²¾à²—à²¿ à²¨à²®à³à²®à²¨à³à²¨à³ à²¸à²‚à²ªà²°à³à²•à²¿à²¸à²¿.</string>
+    <string name="contact_call">à²•à²°à³† à²¬à³†à²‚à²¬à²²</string>
+    <string name="contact_time">à²¸à³‹à²®-à²¶à²¨à²¿, à²¬à³†à²³à²¿à²—à³à²—à³† 9 - à²¸à²‚à²œà³† 6</string>
+    <string name="contact_email">à²¨à²®à²—à³† à²‡à²®à³‡à²²à³ à²®à²¾à²¡à²¿</string>
     <string name="contact_email_addr">support@mittimitra.com</string>
 
-    <string name="label_from_unit">ನಿಂದ ಘಟಕ</string>
-    <string name="label_to_unit">ಗೆ ಘಟಕ</string>
+    <string name="label_from_unit">à²¨à²¿à²‚à²¦ à²˜à²Ÿà²•</string>
+    <string name="label_to_unit">à²—à³† à²˜à²Ÿà²•</string>
 
-    <string name="scan_title">ಹೊಸ ಮಣ್ಣಿನ ಸ್ಕ್ಯಾನ್</string>
-    <string name="scan_env_data">ಪರಿಸರ ಡೇಟಾ</string>
-    <string name="scan_weather">ಹವಾಮಾನ</string>
-    <string name="scan_moisture">ತೇವಾಂಶ</string>
-    <string name="scan_nutrients">ಮಣ್ಣಿನ ಪೋಷಕಾಂಶಗಳು (ಅಂದಾಜು)</string>
-    <string name="scan_hint">ನಿಮ್ಮ ಅವಲೋಕನಗಳು (ಉದಾ. \'ಹಳದಿ ಎಲೆಗಳು\')</string>
-    <string name="scan_status_ready">ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸಿದ್ಧವಾಗಿದೆ</string>
-    <string name="scan_btn_gallery">ಗ್ಯಾಲರಿ</string>
-    <string name="scan_btn_camera">ಕ್ಯಾಮೆರಾ</string>
-    <string name="scan_btn_analyze">ಮಣ್ಣನ್ನು ಗುರುತಿಸಿ ಮತ್ತು ಶಿಫಾರಸು ಮಾಡಿ</string>
+    <string name="scan_title">à²¹à³Šà²¸ à²®à²£à³à²£à²¿à²¨ à²¸à³à²•à³à²¯à²¾à²¨à³</string>
+    <string name="scan_env_data">à²ªà²°à²¿à²¸à²° à²¡à³‡à²Ÿà²¾</string>
+    <string name="scan_weather">à²¹à²µà²¾à²®à²¾à²¨</string>
+    <string name="scan_moisture">à²¤à³‡à²µà²¾à²‚à²¶</string>
+    <string name="scan_nutrients">à²®à²£à³à²£à²¿à²¨ à²ªà³‹à²·à²•à²¾à²‚à²¶à²—à²³à³ (à²…à²‚à²¦à²¾à²œà³)</string>
+    <string name="scan_hint">à²¨à²¿à²®à³à²® à²…à²µà²²à³‹à²•à²¨à²—à²³à³ (à²‰à²¦à²¾. \'à²¹à²³à²¦à²¿ à²Žà²²à³†à²—à²³à³\')</string>
+    <string name="scan_status_ready">à²¸à³à²•à³à²¯à²¾à²¨à³ à²®à²¾à²¡à²²à³ à²¸à²¿à²¦à³à²§à²µà²¾à²—à²¿à²¦à³†</string>
+    <string name="scan_btn_gallery">à²—à³à²¯à²¾à²²à²°à²¿</string>
+    <string name="scan_btn_camera">à²•à³à²¯à²¾à²®à³†à²°à²¾</string>
+    <string name="scan_btn_analyze">à²®à²£à³à²£à²¨à³à²¨à³ à²—à³à²°à³à²¤à²¿à²¸à²¿ à²®à²¤à³à²¤à³ à²¶à²¿à²«à²¾à²°à²¸à³ à²®à²¾à²¡à²¿</string>
 
-    <string name="profile_recent">ಇತ್ತೀಚಿನ ವಿಶ್ಲೇಷಣೆ</string>
-    <string name="profile_no_history">ಇತ್ತೀಚಿನ ಸ್ಕ್ಯಾನ್‌ಗಳು ಕಂಡುಬಂದಿಲ್ಲ.</string>
-    <string name="profile_logout">ಲಾಗ್ ಔಟ್</string>
-    <string name="profile_member_since">ಸದಸ್ಯತ್ವ ದಿನಾಂಕ:</string>
-    <string name="profile_phone">ಫೋನ್:</string>
+    <string name="profile_recent">à²‡à²¤à³à²¤à³€à²šà²¿à²¨ à²µà²¿à²¶à³à²²à³‡à²·à²£à³†</string>
+    <string name="profile_no_history">à²‡à²¤à³à²¤à³€à²šà²¿à²¨ à²¸à³à²•à³à²¯à²¾à²¨à³â€Œà²—à²³à³ à²•à²‚à²¡à³à²¬à²‚à²¦à²¿à²²à³à²².</string>
+    <string name="profile_logout">à²²à²¾à²—à³ à²”à²Ÿà³</string>
+    <string name="profile_member_since">à²¸à²¦à²¸à³à²¯à²¤à³à²µ à²¦à²¿à²¨à²¾à²‚à²•:</string>
+    <string name="profile_phone">à²«à³‹à²¨à³:</string>
 
-    <string name="rec_title">ಮಣ್ಣಿನ ಆರೋಗ್ಯ ಕಾರ್ಡ್</string>
-    <string name="rec_header_title">ಮಣ್ಣಿನ ಆರೋಗ್ಯ ಕಾರ್ಡ್</string>
-    <string name="rec_header_subtitle">ಮಿಟ್ಟಿ ಮಿತ್ರ • ಡಿಜಿಟಲ್ ಕೃಷಿ ಮಿಷನ್</string>
-    <string name="rec_farmer_details">ರೈತ ವಿವರಗಳು</string>
-    <string name="rec_label_name">ಹೆಸರು:</string>
-    <string name="rec_label_mobile">ಮೊಬೈಲ್:</string>
-    <string name="rec_label_email">ಇಮೇಲ್:</string>
-    <string name="rec_label_location">ಸ್ಥಳ:</string>
-    <string name="rec_label_date">ಪರೀಕ್ಷಾ ದಿನಾಂಕ:</string>
-    <string name="rec_results_title">ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶಗಳು (ಪ್ರಾಥಮಿಕ ಪೋಷಕಾಂಶಗಳು)</string>
-    <string name="rec_col_param">ಪ್ಯಾರಾಮೀಟರ್</string>
-    <string name="rec_col_value">ಮೌಲ್ಯ</string>
-    <string name="rec_col_status">ಸ್ಥಿತಿ</string>
-    <string name="rec_advisory_title">ವೈಜ್ಞಾನಿಕ ಸಲಹೆ</string>
-    <string name="rec_footer">ಮಿಟ್ಟಿ ಮಿತ್ರ AI ನಿಂದ ರಚಿಸಲಾಗಿದೆ | ಉಪಗ್ರಹ ಡೇಟಾದಿಂದ ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
-    <string name="rec_btn_download">PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="rec_title">à²®à²£à³à²£à²¿à²¨ à²†à²°à³‹à²—à³à²¯ à²•à²¾à²°à³à²¡à³</string>
+    <string name="rec_header_title">à²®à²£à³à²£à²¿à²¨ à²†à²°à³‹à²—à³à²¯ à²•à²¾à²°à³à²¡à³</string>
+    <string name="rec_header_subtitle">à²®à²¿à²Ÿà³à²Ÿà²¿ à²®à²¿à²¤à³à²° â€¢ à²¡à²¿à²œà²¿à²Ÿà²²à³ à²•à³ƒà²·à²¿ à²®à²¿à²·à²¨à³</string>
+    <string name="rec_farmer_details">à²°à³ˆà²¤ à²µà²¿à²µà²°à²—à²³à³</string>
+    <string name="rec_label_name">à²¹à³†à²¸à²°à³:</string>
+    <string name="rec_label_mobile">à²®à³Šà²¬à³ˆà²²à³:</string>
+    <string name="rec_label_email">à²‡à²®à³‡à²²à³:</string>
+    <string name="rec_label_location">à²¸à³à²¥à²³:</string>
+    <string name="rec_label_date">à²ªà²°à³€à²•à³à²·à²¾ à²¦à²¿à²¨à²¾à²‚à²•:</string>
+    <string name="rec_results_title">à²ªà²°à³€à²•à³à²·à²¾ à²«à²²à²¿à²¤à²¾à²‚à²¶à²—à²³à³ (à²ªà³à²°à²¾à²¥à²®à²¿à²• à²ªà³‹à²·à²•à²¾à²‚à²¶à²—à²³à³)</string>
+    <string name="rec_col_param">à²ªà³à²¯à²¾à²°à²¾à²®à³€à²Ÿà²°à³</string>
+    <string name="rec_col_value">à²®à³Œà²²à³à²¯</string>
+    <string name="rec_col_status">à²¸à³à²¥à²¿à²¤à²¿</string>
+    <string name="rec_advisory_title">à²µà³ˆà²œà³à²žà²¾à²¨à²¿à²• à²¸à²²à²¹à³†</string>
+    <string name="rec_footer">à²®à²¿à²Ÿà³à²Ÿà²¿ à²®à²¿à²¤à³à²° AI à²¨à²¿à²‚à²¦ à²°à²šà²¿à²¸à²²à²¾à²—à²¿à²¦à³† | à²‰à²ªà²—à³à²°à²¹ à²¡à³‡à²Ÿà²¾à²¦à²¿à²‚à²¦ à²ªà²°à²¿à²¶à³€à²²à²¿à²¸à²²à²¾à²—à²¿à²¦à³†</string>
+    <string name="rec_btn_download">PDF à²¡à³Œà²¨à³â€Œà²²à³‹à²¡à³ à²®à²¾à²¡à²¿</string>
 
-    <string name="login_welcome">ಮತ್ತೆ ಸ್ವಾಗತ</string>
-    <string name="login_subtitle">ನಿಮ್ಮ ಕೃಷಿ ಪರಿಕರಗಳನ್ನು ಪ್ರವೇಶಿಸಲು ಲಾಗಿನ್ ಮಾಡಿ</string>
-    <string name="login_google">Google ನೊಂದಿಗೆ ಮುಂದುವರಿಯಿರಿ</string>
-    <string name="login_or_divider">ಅಥವಾ ಫೋನ್</string>
-    <string name="login_hint_phone">ಫೋನ್ ಸಂಖ್ಯೆ</string>
-    <string name="login_btn_otp">OTP ಪಡೆಯಿರಿ</string>
-    <string name="login_hint_otp">6-ಅಂಕಿಯ OTP ನಮೂದಿಸಿ</string>
-    <string name="login_btn_verify">ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಲಾಗಿನ್ ಮಾಡಿ</string>
-    <string name="login_trouble">ಲಾಗಿನ್ ಸಮಸ್ಯೆಯೇ?</string>
+    <string name="login_welcome">à²®à²¤à³à²¤à³† à²¸à³à²µà²¾à²—à²¤</string>
+    <string name="login_subtitle">à²¨à²¿à²®à³à²® à²•à³ƒà²·à²¿ à²ªà²°à²¿à²•à²°à²—à²³à²¨à³à²¨à³ à²ªà³à²°à²µà³‡à²¶à²¿à²¸à²²à³ à²²à²¾à²—à²¿à²¨à³ à²®à²¾à²¡à²¿</string>
+    <string name="login_google">Google à²¨à³Šà²‚à²¦à²¿à²—à³† à²®à³à²‚à²¦à³à²µà²°à²¿à²¯à²¿à²°à²¿</string>
+    <string name="login_or_divider">à²…à²¥à²µà²¾ à²«à³‹à²¨à³</string>
+    <string name="login_hint_phone">à²«à³‹à²¨à³ à²¸à²‚à²–à³à²¯à³†</string>
+    <string name="login_btn_otp">OTP à²ªà²¡à³†à²¯à²¿à²°à²¿</string>
+    <string name="login_hint_otp">6-à²…à²‚à²•à²¿à²¯ OTP à²¨à²®à³‚à²¦à²¿à²¸à²¿</string>
+    <string name="login_btn_verify">à²ªà²°à²¿à²¶à³€à²²à²¿à²¸à²¿ à²®à²¤à³à²¤à³ à²²à²¾à²—à²¿à²¨à³ à²®à²¾à²¡à²¿</string>
+    <string name="login_trouble">à²²à²¾à²—à²¿à²¨à³ à²¸à²®à²¸à³à²¯à³†à²¯à³‡?</string>
 
-    <string name="home_welcome_default">ನಮಸ್ಕಾರ, ರೈತ</string>
-    <string name="home_card_scan">ಮಣ್ಣನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
-    <string name="home_card_advice">ಸಲಹೆ ಪಡೆಯಿರಿ</string>
-    <string name="home_card_tips">AI ತಜ್ಞರ ಸಲಹೆಗಳು</string>
-    <string name="home_section_tools">ಸ್ಮಾರ್ಟ್ ಪರಿಕರಗಳು</string>
-    <string name="desc_logo">ಆಪ್ ಲೋಗೋ</string>
-    <string name="desc_icon">ಐಕಾನ್</string>
+    <string name="home_welcome_default">à²¨à²®à²¸à³à²•à²¾à²°, à²°à³ˆà²¤</string>
+    <string name="home_card_scan">à²®à²£à³à²£à²¨à³à²¨à³ à²¸à³à²•à³à²¯à²¾à²¨à³ à²®à²¾à²¡à²¿</string>
+    <string name="home_card_advice">à²¸à²²à²¹à³† à²ªà²¡à³†à²¯à²¿à²°à²¿</string>
+    <string name="home_card_tips">AI à²¤à²œà³à²žà²° à²¸à²²à²¹à³†à²—à²³à³</string>
+    <string name="home_section_tools">à²¸à³à²®à²¾à²°à³à²Ÿà³ à²ªà²°à²¿à²•à²°à²—à²³à³</string>
+    <string name="desc_logo">à²†à²ªà³ à²²à³‹à²—à³‹</string>
+    <string name="desc_icon">à²à²•à²¾à²¨à³</string>
 
-    <string name="title_documents">ಸಂಬಂಧಿತ ದಾಖಲೆಗಳು</string>
-    <string name="msg_no_documents">ಯಾವುದೇ ದಾಖಲೆಗಳು ಕಂಡುಬಂದಿಲ್ಲ.\nಸೇರಿಸಲು \'+\' ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
-    <string name="desc_add_document">ದಾಖಲೆಯನ್ನು ಸೇರಿಸಿ</string>
+    <string name="title_documents">à²¸à²‚à²¬à²‚à²§à²¿à²¤ à²¦à²¾à²–à²²à³†à²—à²³à³</string>
+    <string name="msg_no_documents">à²¯à²¾à²µà³à²¦à³‡ à²¦à²¾à²–à²²à³†à²—à²³à³ à²•à²‚à²¡à³à²¬à²‚à²¦à²¿à²²à³à²².\nà²¸à³‡à²°à²¿à²¸à²²à³ \'+\' à²Ÿà³à²¯à²¾à²ªà³ à²®à²¾à²¡à²¿.</string>
+    <string name="desc_add_document">à²¦à²¾à²–à²²à³†à²¯à²¨à³à²¨à³ à²¸à³‡à²°à²¿à²¸à²¿</string>
 
-    <string name="title_scan_history">ಸ್ಕ್ಯಾನ್ ಇತಿಹಾಸ</string>
+    <string name="title_scan_history">à²¸à³à²•à³à²¯à²¾à²¨à³ à²‡à²¤à²¿à²¹à²¾à²¸</string>
 
-    <string name="welcome_home_title">ಸ್ವಾಗತ!</string>
-    <string name="welcome_home_desc">ನೀವು ಯಶಸ್ವಿಯಾಗಿ ಲಾಗಿನ್ ಆಗಿದ್ದೀರಿ!</string>
+    <string name="welcome_home_title">à²¸à³à²µà²¾à²—à²¤!</string>
+    <string name="welcome_home_desc">à²¨à³€à²µà³ à²¯à²¶à²¸à³à²µà²¿à²¯à²¾à²—à²¿ à²²à²¾à²—à²¿à²¨à³ à²†à²—à²¿à²¦à³à²¦à³€à²°à²¿!</string>
 
-    <string name="btn_test_notification">ಪರೀಕ್ಷಾ ಅಧಿಸೂಚನೆ ಕಳುಹಿಸಿ</string>
-    <string name="desc_notification_icon">ಅಧಿಸೂಚನೆ ಐಕಾನ್</string>
+    <string name="btn_test_notification">à²ªà²°à³€à²•à³à²·à²¾ à²…à²§à²¿à²¸à³‚à²šà²¨à³† à²•à²³à³à²¹à²¿à²¸à²¿</string>
+    <string name="desc_notification_icon">à²…à²§à²¿à²¸à³‚à²šà²¨à³† à²à²•à²¾à²¨à³</string>
 
-    <string name="profile_name_placeholder">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</string>
+    <string name="profile_name_placeholder">à²²à³‹à²¡à³ à²†à²—à³à²¤à³à²¤à²¿à²¦à³†...</string>
     <string name="profile_email_placeholder">email@example.com</string>
-    <string name="desc_profile_image">ಪ್ರೊಫೈಲ್ ಚಿತ್ರ</string>
-    <string name="desc_change_photo">ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಬದಲಾಯಿಸಿ</string>
-    <string name="desc_edit_profile">ಪ್ರೊಫೈಲ್ ವಿವರಗಳನ್ನು ಸಂಪಾದಿಸಿ</string>
+    <string name="desc_profile_image">à²ªà³à²°à³Šà²«à³ˆà²²à³ à²šà²¿à²¤à³à²°</string>
+    <string name="desc_change_photo">à²ªà³à²°à³Šà²«à³ˆà²²à³ à²«à³‹à²Ÿà³‹ à²¬à²¦à²²à²¾à²¯à²¿à²¸à²¿</string>
+    <string name="desc_edit_profile">à²ªà³à²°à³Šà²«à³ˆà²²à³ à²µà²¿à²µà²°à²—à²³à²¨à³à²¨à³ à²¸à²‚à²ªà²¾à²¦à²¿à²¸à²¿</string>
 
-    <string name="rec_param_n">ಸಾರಜನಕ (N)</string>
-    <string name="rec_param_p">ರಂಜಕ (P)</string>
-    <string name="rec_param_k">ಪೊಟ್ಯಾಸಿಯಮ್ (K)</string>
-    <string name="rec_param_ph">ಮಣ್ಣಿನ pH</string>
-    <string name="rec_ai_context">ಬೆಳೆಯ ಅಗತ್ಯಗಳನ್ನು ವಿಶ್ಲೇಷಿಸಲಾಗುತ್ತಿದೆ...</string>
-    <string name="rec_ai_generating">ತಜ್ಞರ ಶಿಫಾರಸು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ...</string>
+    <string name="rec_param_n">à²¸à²¾à²°à²œà²¨à²• (N)</string>
+    <string name="rec_param_p">à²°à²‚à²œà²• (P)</string>
+    <string name="rec_param_k">à²ªà³Šà²Ÿà³à²¯à²¾à²¸à²¿à²¯à²®à³ (K)</string>
+    <string name="rec_param_ph">à²®à²£à³à²£à²¿à²¨ pH</string>
+    <string name="rec_ai_context">à²¬à³†à²³à³†à²¯ à²…à²—à²¤à³à²¯à²—à²³à²¨à³à²¨à³ à²µà²¿à²¶à³à²²à³‡à²·à²¿à²¸à²²à²¾à²—à³à²¤à³à²¤à²¿à²¦à³†...</string>
+    <string name="rec_ai_generating">à²¤à²œà³à²žà²° à²¶à²¿à²«à²¾à²°à²¸à³ à²¸à²¿à²¦à³à²§à²ªà²¡à²¿à²¸à²²à²¾à²—à³à²¤à³à²¤à²¿à²¦à³†...</string>
 
-    <string name="scan_locating">ಸ್ಥಳ ಪತ್ತೆಹಚ್ಚಲಾಗುತ್ತಿದೆ...</string>
-    <string name="desc_image_preview">ಚಿತ್ರ ಮುನ್ನೋಟ</string>
-    <string name="signup_title">ಮಿಟ್ಟಿ ಮಿತ್ರಗೆ ಸೇರಿ</string>
-    <string name="signup_subtitle">ಇಂದೇ ನಿಮ್ಮ ಸ್ಮಾರ್ಟ್ ಕೃಷಿ ಪ್ರಯಾಣವನ್ನು ಪ್ರಾರಂಭಿಸಿ</string>
-    <string name="signup_create_account">ಖಾತೆ ರಚಿಸಿ</string>
-    <string name="signup_google">Google ನೊಂದಿಗೆ ಸೈನ್ ಅಪ್ ಮಾಡಿ</string>
-    <string name="signup_phone">ಫೋನ್‌ನೊಂದಿಗೆ ಸೈನ್ ಅಪ್ ಮಾಡಿ</string>
-    <string name="signup_footer">ಈಗಾಗಲೇ ಖಾತೆ ಇದೆಯೇ?</string>
+    <string name="scan_locating">à²¸à³à²¥à²³ à²ªà²¤à³à²¤à³†à²¹à²šà³à²šà²²à²¾à²—à³à²¤à³à²¤à²¿à²¦à³†...</string>
+    <string name="desc_image_preview">à²šà²¿à²¤à³à²° à²®à³à²¨à³à²¨à³‹à²Ÿ</string>
+    <string name="signup_title">à²®à²¿à²Ÿà³à²Ÿà²¿ à²®à²¿à²¤à³à²°à²—à³† à²¸à³‡à²°à²¿</string>
+    <string name="signup_subtitle">à²‡à²‚à²¦à³‡ à²¨à²¿à²®à³à²® à²¸à³à²®à²¾à²°à³à²Ÿà³ à²•à³ƒà²·à²¿ à²ªà³à²°à²¯à²¾à²£à²µà²¨à³à²¨à³ à²ªà³à²°à²¾à²°à²‚à²­à²¿à²¸à²¿</string>
+    <string name="signup_create_account">à²–à²¾à²¤à³† à²°à²šà²¿à²¸à²¿</string>
+    <string name="signup_google">Google à²¨à³Šà²‚à²¦à²¿à²—à³† à²¸à³ˆà²¨à³ à²…à²ªà³ à²®à²¾à²¡à²¿</string>
+    <string name="signup_phone">à²«à³‹à²¨à³â€Œà²¨à³Šà²‚à²¦à²¿à²—à³† à²¸à³ˆà²¨à³ à²…à²ªà³ à²®à²¾à²¡à²¿</string>
+    <string name="signup_footer">à²ˆà²—à²¾à²—à²²à³‡ à²–à²¾à²¤à³† à²‡à²¦à³†à²¯à³‡?</string>
 
-    <string name="chat_title">ಕೃಷಿ ತಜ್ಞರ ಚಾಟ್</string>
-    <string name="chat_hint">ಬೆಳೆಗಳ ಬಗ್ಗೆ ಕೇಳಿ...</string>
-    <string name="desc_mic">ಆಡಿಯೋ ರೆಕಾರ್ಡ್ ಮಾಡಿ</string>
-    <string name="desc_send">ಸಂದೇಶ ಕಳುಹಿಸಿ</string>
+    <string name="chat_title">à²•à³ƒà²·à²¿ à²¤à²œà³à²žà²° à²šà²¾à²Ÿà³</string>
+    <string name="chat_hint">à²¬à³†à²³à³†à²—à²³ à²¬à²—à³à²—à³† à²•à³‡à²³à²¿...</string>
+    <string name="desc_mic">à²†à²¡à²¿à²¯à³‹ à²°à³†à²•à²¾à²°à³à²¡à³ à²®à²¾à²¡à²¿</string>
+    <string name="desc_send">à²¸à²‚à²¦à³‡à²¶ à²•à²³à³à²¹à²¿à²¸à²¿</string>
 
-    <string name="welcome_get_started">ಪ್ರಾರಂಭಿಸಿ</string>
-    <string name="welcome_join_community">ಅತ್ಯಂತ ಬುದ್ಧಿವಂತ ರೈತ ಸಮುದಾಯವನ್ನು ಸೇರಿ.</string>
+    <string name="welcome_get_started">à²ªà³à²°à²¾à²°à²‚à²­à²¿à²¸à²¿</string>
+    <string name="welcome_join_community">à²…à²¤à³à²¯à²‚à²¤ à²¬à³à²¦à³à²§à²¿à²µà²‚à²¤ à²°à³ˆà²¤ à²¸à²®à³à²¦à²¾à²¯à²µà²¨à³à²¨à³ à²¸à³‡à²°à²¿.</string>
 
-    <string name="edit_profile_title">ಪ್ರೊಫೈಲ್ ಸಂಪಾದಿಸಿ</string>
-    <string name="edit_profile_name_hint">ಪೂರ್ಣ ಹೆಸರು</string>
-    <string name="edit_profile_phone_hint">ಫೋನ್ ಸಂಖ್ಯೆ</string>
-    <string name="edit_profile_phone_helper">ಅಲರ್ಟ್‌ಗಳಿಗೆ ಅಗತ್ಯ</string>
-    <string name="btn_save_changes">ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ</string>
+    <string name="edit_profile_title">à²ªà³à²°à³Šà²«à³ˆà²²à³ à²¸à²‚à²ªà²¾à²¦à²¿à²¸à²¿</string>
+    <string name="edit_profile_name_hint">à²ªà³‚à²°à³à²£ à²¹à³†à²¸à²°à³</string>
+    <string name="edit_profile_phone_hint">à²«à³‹à²¨à³ à²¸à²‚à²–à³à²¯à³†</string>
+    <string name="edit_profile_phone_helper">à²…à²²à²°à³à²Ÿà³â€Œà²—à²³à²¿à²—à³† à²…à²—à²¤à³à²¯</string>
+    <string name="btn_save_changes">à²¬à²¦à²²à²¾à²µà²£à³†à²—à²³à²¨à³à²¨à³ à²‰à²³à²¿à²¸à²¿</string>
 
-    <string name="btn_view">ವೀಕ್ಷಿಸಿ</string>
+    <string name="btn_view">à²µà³€à²•à³à²·à²¿à²¸à²¿</string>
 
-    <string name="placeholder_location">ಅಜ್ಞಾತ ಸ್ಥಳ</string>
-    <string name="placeholder_date">ದಿನಾಂಕ</string>
-    <string name="status_calculating">ಲೆಕ್ಕಾಚಾರ ಮಾಡಲಾಗುತ್ತಿದೆ...</string>
-    <string name="desc_view_details">ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ</string>
+    <string name="placeholder_location">à²…à²œà³à²žà²¾à²¤ à²¸à³à²¥à²³</string>
+    <string name="placeholder_date">à²¦à²¿à²¨à²¾à²‚à²•</string>
+    <string name="status_calculating">à²²à³†à²•à³à²•à²¾à²šà²¾à²° à²®à²¾à²¡à²²à²¾à²—à³à²¤à³à²¤à²¿à²¦à³†...</string>
+    <string name="desc_view_details">à²µà²¿à²µà²°à²—à²³à²¨à³à²¨à³ à²µà³€à²•à³à²·à²¿à²¸à²¿</string>
 
     <!-- History -->
-    <string name="history">ವಿಶ್ಲೇಷಣೆ ಇತಿಹಾಸ</string>
-    <string name="delete_confirmation">ದಾಖಲೆ ಅಳಿಸಿ</string>
-    <string name="delete_history_message">ನೀವು ಖಚಿತವಾಗಿ ಈ ಮಣ್ಣಿನ ವಿಶ್ಲೇಷಣೆ ದಾಖಲೆಯನ್ನು ಅಳಿಸಲು ಬಯಸುತ್ತೀರಾ?</string>
-    <string name="delete">ಅಳಿಸು</string>
-    <string name="cancel">ರದ್ದುಮಾಡು</string>
-    <string name="record_deleted">ದಾಖಲೆ ಅಳಿಸಲಾಗಿದೆ</string>
+    <string name="history">à²µà²¿à²¶à³à²²à³‡à²·à²£à³† à²‡à²¤à²¿à²¹à²¾à²¸</string>
+    <string name="delete_confirmation">à²¦à²¾à²–à²²à³† à²…à²³à²¿à²¸à²¿</string>
+    <string name="delete_history_message">à²¨à³€à²µà³ à²–à²šà²¿à²¤à²µà²¾à²—à²¿ à²ˆ à²®à²£à³à²£à²¿à²¨ à²µà²¿à²¶à³à²²à³‡à²·à²£à³† à²¦à²¾à²–à²²à³†à²¯à²¨à³à²¨à³ à²…à²³à²¿à²¸à²²à³ à²¬à²¯à²¸à³à²¤à³à²¤à³€à²°à²¾?</string>
+    <string name="delete">à²…à²³à²¿à²¸à³</string>
+    <string name="cancel">à²°à²¦à³à²¦à³à²®à²¾à²¡à³</string>
+    <string name="record_deleted">à²¦à²¾à²–à²²à³† à²…à²³à²¿à²¸à²²à²¾à²—à²¿à²¦à³†</string>
 
     <!-- Share -->
-    <string name="share_report">ವರದಿ ಹಂಚಿರಿ</string>
-    <string name="share_via">ಇದರ ಮೂಲಕ ಹಂಚಿರಿ</string>
+    <string name="share_report">à²µà²°à²¦à²¿ à²¹à²‚à²šà²¿à²°à²¿</string>
+    <string name="share_via">à²‡à²¦à²° à²®à³‚à²²à²• à²¹à²‚à²šà²¿à²°à²¿</string>
 
     <!-- Weather Alerts -->
-    <string name="weather_alerts_title">ಹವಾಮಾನ ಎಚ್ಚರಿಕೆಗಳು</string>
-    <string name="search_location_hint">ನಗರ ಅಥವಾ ಪ್ರದೇಶ ಹುಡುಕಿ...</string>
-    <string name="search">ಹುಡುಕು</string>
-    <string name="current_weather">ಪ್ರಸ್ತುತ ಹವಾಮಾನ</string>
-    <string name="seven_day_forecast">📅 7-ದಿನಗಳ ಮುನ್ಸೂಚನೆ</string>
-    <string name="agri_recommendations">🌾 ಕೃಷಿ ಶಿಫಾರಸುಗಳು</string>
-    <string name="home_card_weather">ಹವಾಮಾನ ಎಚ್ಚರಿಕೆ</string>
+    <string name="weather_alerts_title">à²¹à²µà²¾à²®à²¾à²¨ à²Žà²šà³à²šà²°à²¿à²•à³†à²—à²³à³</string>
+    <string name="search_location_hint">à²¨à²—à²° à²…à²¥à²µà²¾ à²ªà³à²°à²¦à³‡à²¶ à²¹à³à²¡à³à²•à²¿...</string>
+    <string name="search">à²¹à³à²¡à³à²•à³</string>
+    <string name="current_weather">à²ªà³à²°à²¸à³à²¤à³à²¤ à²¹à²µà²¾à²®à²¾à²¨</string>
+    <string name="seven_day_forecast">ðŸ“… 7-à²¦à²¿à²¨à²—à²³ à²®à³à²¨à³à²¸à³‚à²šà²¨à³†</string>
+    <string name="agri_recommendations">ðŸŒ¾ à²•à³ƒà²·à²¿ à²¶à²¿à²«à²¾à²°à²¸à³à²—à²³à³</string>
+    <string name="home_card_weather">à²¹à²µà²¾à²®à²¾à²¨ à²Žà²šà³à²šà²°à²¿à²•à³†</string>
 
     <!-- Crop Calendar -->
-    <string name="crop_calendar_title">ಬೆಳೆ ಕ್ಯಾಲೆಂಡರ್</string>
-    <string name="crop_calendar_subtitle">AI-ಆಧಾರಿತ ಬಿತ್ತನೆ ಮತ್ತು ಕೊಯ್ಲು ವೇಳಾಪಟ್ಟಿ</string>
-    <string name="select_crop">ಬೆಳೆ ಆಯ್ಕೆಮಾಡಿ</string>
-    <string name="generate_schedule">AI ವೇಳಾಪಟ್ಟಿ ರಚಿಸಿ</string>
-    <string name="home_card_calendar">ಬೆಳೆ ಕ್ಯಾಲೆಂಡರ್</string>
+    <string name="crop_calendar_title">à²¬à³†à²³à³† à²•à³à²¯à²¾à²²à³†à²‚à²¡à²°à³</string>
+    <string name="crop_calendar_subtitle">AI-à²†à²§à²¾à²°à²¿à²¤ à²¬à²¿à²¤à³à²¤à²¨à³† à²®à²¤à³à²¤à³ à²•à³Šà²¯à³à²²à³ à²µà³‡à²³à²¾à²ªà²Ÿà³à²Ÿà²¿</string>
+    <string name="select_crop">à²¬à³†à²³à³† à²†à²¯à³à²•à³†à²®à²¾à²¡à²¿</string>
+    <string name="generate_schedule">AI à²µà³‡à²³à²¾à²ªà²Ÿà³à²Ÿà²¿ à²°à²šà²¿à²¸à²¿</string>
+    <string name="home_card_calendar">à²¬à³†à²³à³† à²•à³à²¯à²¾à²²à³†à²‚à²¡à²°à³</string>
 
     <!-- Irrigation Calculator -->
-    <string name="irrigation_title">ನೀರಾವರಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್</string>
-    <string name="irrigation_subtitle">ಬೆಳೆ, ಮಣ್ಣು ಮತ್ತು ಹವಾಮಾನದ ಆಧಾರದ ಮೇಲೆ ದೈನಂದಿನ ನೀರಿನ ಅಗತ್ಯ</string>
-    <string name="soil_type">ಮಣ್ಣಿನ ಪ್ರಕಾರ</string>
-    <string name="field_size">ಹೊಲದ ಗಾತ್ರ</string>
-    <string name="calculate_water">ನೀರಿನ ಅಗತ್ಯ ಲೆಕ್ಕಹಾಕಿ</string>
-    <string name="water_requirement">ದೈನಂದಿನ ನೀರಿನ ಅಗತ್ಯ</string>
-    <string name="home_card_irrigation">ನೀರಾವರಿ</string>
+    <string name="irrigation_title">à²¨à³€à²°à²¾à²µà²°à²¿ à²•à³à²¯à²¾à²²à³à²•à³à²²à³‡à²Ÿà²°à³</string>
+    <string name="irrigation_subtitle">à²¬à³†à²³à³†, à²®à²£à³à²£à³ à²®à²¤à³à²¤à³ à²¹à²µà²¾à²®à²¾à²¨à²¦ à²†à²§à²¾à²°à²¦ à²®à³‡à²²à³† à²¦à³ˆà²¨à²‚à²¦à²¿à²¨ à²¨à³€à²°à²¿à²¨ à²…à²—à²¤à³à²¯</string>
+    <string name="soil_type">à²®à²£à³à²£à²¿à²¨ à²ªà³à²°à²•à²¾à²°</string>
+    <string name="field_size">à²¹à³Šà²²à²¦ à²—à²¾à²¤à³à²°</string>
+    <string name="calculate_water">à²¨à³€à²°à²¿à²¨ à²…à²—à²¤à³à²¯ à²²à³†à²•à³à²•à²¹à²¾à²•à²¿</string>
+    <string name="water_requirement">à²¦à³ˆà²¨à²‚à²¦à²¿à²¨ à²¨à³€à²°à²¿à²¨ à²…à²—à²¤à³à²¯</string>
+    <string name="home_card_irrigation">à²¨à³€à²°à²¾à²µà²°à²¿</string>
 
     <!-- Plant Doctor -->
-    <string name="home_card_plant_doctor">ಸಸ್ಯ ವೈದ್ಯ</string>
+    <string name="home_card_plant_doctor">à²¸à²¸à³à²¯ à²µà³ˆà²¦à³à²¯</string>
 
+    <!-- NEW LOCALIZATION STRINGS (Kannada) -->
+    <!-- Mandi Connect -->
+    <string name="mandi_title">à²®à²‚à²¡à²¿ à²¬à³†à²²à³†à²—à²³à³ (à²²à³ˆà²µà³)</string>
+    <string name="mandi_select_prompt">à²¬à³†à²³à³† à²®à²¤à³à²¤à³ à²ªà³à²°à²¦à³‡à²¶à²µà²¨à³à²¨à³ à²†à²¯à³à²•à³†à²®à²¾à²¡à²¿</string>
+    <string name="mandi_btn_check">à²¬à³†à²²à³†à²—à²³à²¨à³à²¨à³ à²ªà²°à²¿à²¶à³€à²²à²¿à²¸à²¿</string>
+    <string name="mandi_error_no_data">à²¡à³‡à²Ÿà²¾ à²²à²­à³à²¯à²µà²¿à²²à³à²².</string>
+    <string name="mandi_error_connect">à²¦à³‹à²·: %s</string>
+    <string name="mandi_source">à²®à³‚à²²: Agmarknet</string>
+
+    <!-- Plant Doctor -->
+    <string name="plant_status_scanning">à²µà²¿à²¶à³à²²à³‡à²·à²£à³† à²¨à²¡à³†à²¯à³à²¤à³à²¤à²¿à²¦à³†...</string>
+    <string name="plant_status_complete">AI à²µà²¿à²¶à³à²²à³‡à²·à²£à³† à²ªà³‚à²°à³à²£à²—à³Šà²‚à²¡à²¿à²¦à³†</string>
+    <string name="plant_status_unavailable">à²¸à³‡à²µà³† à²²à²­à³à²¯à²µà²¿à²²à³à²² (%s)</string>
+    <string name="plant_status_error">à²¦à³‹à²·.</string>
+    <string name="plant_diagnosis">à²°à³‹à²—à²¨à²¿à²°à³à²£à²¯: %s</string>
+    <string name="plant_remedies">à²ªà²°à²¿à²¹à²¾à²°à²—à²³à³:</string>
+    <string name="plant_doctor_scanning">à²¸à²¸à³à²¯ à²¸à³à²•à³à²¯à²¾à²¨à²¿à²‚à²—à³...</string>
+
+    <!-- Irrigation -->
+    <string name="irrigation_hint_size">à²¦à²¯à²µà²¿à²Ÿà³à²Ÿà³ à²¹à³Šà²²à²¦ à²—à²¾à²¤à³à²°à²µà²¨à³à²¨à³ à²¨à²®à³‚à²¦à²¿à²¸à²¿</string>
+    <string name="irrigation_error_size">à²¤à²ªà³à²ªà²¾à²¦ à²—à²¾à²¤à³à²°</string>
+    <string name="irrigation_result_water">ðŸ’§ %1$.0f à²²à³€à²Ÿà²°à³/à²¦à²¿à²¨\n(%2$.1f à²®à²¿à²®à³€ à²†à²³)</string>
+    <string name="irrigation_weather_note">ðŸ“ %1$s\nðŸŒ¡ï¸ à²¤à²¾à²ªà²®à²¾à²¨: %2$.1fÂ°C, ðŸ’§ à²¤à³‡à²µà²¾à²‚à²¶: %3$.0f%%</string>
+
+    <!-- Profile Dashboard -->
+    <string name="profile_farm_dashboard">ðŸŒ¾ à²¨à²¨à³à²¨ à²¤à³‹à²Ÿ</string>
+    <string name="profile_stat_rank">à²¶à³à²°à³‡à²£à²¿</string>
+    <string name="profile_stat_land">à²­à³‚à²®à²¿</string>
+    <string name="profile_stat_crop">à²¬à³†à²³à³†</string>
+    <string name="profile_rank_novice">à²¹à³Šà²¸à²¬</string>
+    <string name="profile_rank_expert">à²¤à²œà³à²ž</string>
+    <string name="profile_rank_guardian">à²°à²•à³à²·à²•</string>
+    <string name="profile_rank_master">à²®à²¿à²Ÿà³à²Ÿà²¿ à²®à²¿à²¤à³à²°</string>
+    <string name="unit_acres">à²Žà²•à²°à³†</string>
+    <string name="status_none">à²à²¨à³‚ à²‡à²²à³à²²</string>
 </resources>

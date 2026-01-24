@@ -99,7 +99,7 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
     // Variables
     private String weatherSummary = "Wait...";
     private String soilDynamic = "--";
-    private String locationName = "Locating...";
+    private String locationName = ""; // Loaded in init
     private String districtName = "Unknown"; // Restored variable
 
     private double currentLat = 0.0;
@@ -192,6 +192,9 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
 
         loadCachedData();
         checkLocationAndFetchData();
+        
+        if (locationName.isEmpty()) locationName = getString(R.string.scan_locating);
+        if (weatherSummary.equals("Wait...")) weatherSummary = getString(R.string.status_calculating);
     }
 
     private void bindNutrientCard(int cardId, String label) {
@@ -264,7 +267,7 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
             return;
         }
 
-        tvStatusLabel.setText("Connecting to Satellites...");
+        tvStatusLabel.setText(getString(R.string.alert_connecting));
 
         fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
             if (location != null) {
@@ -276,7 +279,7 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
                 // CALL LIVE SOIL DATA
                 fetchLiveSoilData(currentLat, currentLon);
             } else {
-                tvStatusLabel.setText("Using Offline Mode");
+                tvStatusLabel.setText(getString(R.string.alert_offline_mode));
             }
         });
     }
@@ -394,18 +397,18 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
 
                                 runOnUiThread(() -> {
                                     updateDashboardUI();
-                                    tvStatusLabel.setText("Live Soil Data Received");
+                                    tvStatusLabel.setText(getString(R.string.alert_data_received));
                                 });
                             } catch (Exception e) {
                                 Log.e(TAG, "Parsing Error", e);
-                                runOnUiThread(() -> tvStatusLabel.setText("Soil Data Unavailable"));
+                                runOnUiThread(() -> tvStatusLabel.setText(getString(R.string.alert_data_unavailable)));
                             }
                         }
                     }
                     @Override
                     public void onFailure(Call<JsonObject> call, Throwable t) {
                         Log.e(TAG, "Network Fail", t);
-                        runOnUiThread(() -> tvStatusLabel.setText("Network Error"));
+                        runOnUiThread(() -> tvStatusLabel.setText(getString(R.string.alert_network_error)));
                     }
                 });
     }

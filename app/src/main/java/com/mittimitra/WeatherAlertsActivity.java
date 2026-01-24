@@ -94,7 +94,7 @@ public class WeatherAlertsActivity extends AppCompatActivity {
     private void searchLocation() {
         String location = etLocation.getText().toString().trim();
         if (location.isEmpty()) {
-            Toast.makeText(this, "Please enter a location", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.error_enter_location), Toast.LENGTH_SHORT).show();
             return;
         }
         geocodeAndFetch(location);
@@ -104,7 +104,7 @@ public class WeatherAlertsActivity extends AppCompatActivity {
         // Use GPS location - for now use default coordinates (India center)
         currentLat = 20.5937;
         currentLon = 78.9629;
-        tvLocationName.setText("India (Default)");
+        tvLocationName.setText(getString(R.string.location_default));
         fetchWeatherData(currentLat, currentLon);
     }
 
@@ -133,18 +133,18 @@ public class WeatherAlertsActivity extends AppCompatActivity {
                         fetchWeatherData(currentLat, currentLon);
                     } else {
                         progressBar.setVisibility(View.GONE);
-                        Toast.makeText(WeatherAlertsActivity.this, "Location not found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WeatherAlertsActivity.this, getString(R.string.error_location_not_found), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(WeatherAlertsActivity.this, "Geocoding failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WeatherAlertsActivity.this, getString(R.string.error_geocoding), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(WeatherAlertsActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WeatherAlertsActivity.this, getString(R.string.alert_network_error), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -159,7 +159,7 @@ public class WeatherAlertsActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     parseAndDisplayWeather(response.body());
                 } else {
-                    Toast.makeText(WeatherAlertsActivity.this, "Failed to fetch weather", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WeatherAlertsActivity.this, getString(R.string.error_fetch_weather), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -185,8 +185,8 @@ public class WeatherAlertsActivity extends AppCompatActivity {
             
             tvCurrentTemp.setText(String.format("%.1f°C", temp));
             tvCurrentCondition.setText(weatherDesc[0] + " " + weatherDesc[1]);
-            tvHumidity.setText(String.format("💧 Humidity: %.0f%%", humidity));
-            tvWind.setText(String.format("💨 Wind: %.1f km/h", windSpeed));
+            tvHumidity.setText(String.format(getString(R.string.label_humidity_format), humidity));
+            tvWind.setText(String.format(getString(R.string.label_wind_format), windSpeed));
 
             cardCurrent.setVisibility(View.VISIBLE);
 
@@ -196,7 +196,7 @@ public class WeatherAlertsActivity extends AppCompatActivity {
             // Add pest warning
             String pestRisk = WeatherUtils.getPestRiskLevel(temp, humidity);
             if (!pestRisk.equals("Low")) {
-                recommendations.add(0, "🐛 Pest Risk: " + pestRisk + " - Monitor crops closely!");
+                recommendations.add(0, String.format(getString(R.string.pest_risk_format), pestRisk));
             }
             
             StringBuilder recBuilder = new StringBuilder();

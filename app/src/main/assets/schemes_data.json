@@ -1,0 +1,352 @@
+[
+    {
+        "id": "pm_kisan",
+        "name": "PM-KISAN Samman Nidhi",
+        "benefits": "₹6,000/year (3 installments)",
+        "description": "Direct income support for farmers.",
+        "eligibility_text": "All landholding farmer families.",
+        "max_land_hectares": 20.0,
+        "url": "https://pmkisan.gov.in/",
+        "state": "Central"
+    },
+    {
+        "id": "pmfby",
+        "name": "Pradhan Mantri Fasal Bima Yojana",
+        "benefits": "Crop Insurance Coverage",
+        "description": "Insurance against non-preventable natural risks.",
+        "eligibility_text": "All farmers growing notified crops.",
+        "max_land_hectares": 100.0,
+        "url": "https://pmfby.gov.in/",
+        "state": "Central"
+    },
+    {
+        "id": "kcc",
+        "name": "Kisan Credit Card (KCC)",
+        "benefits": "Low Interest Loans (4% eff.)",
+        "description": "Credit for cultivation and needs.",
+        "eligibility_text": "All farmers, tenant farmers, sharecroppers.",
+        "max_land_hectares": 100.0,
+        "url": "https://sbi.co.in/web/agri-rural/agriculture-banking/crop-loan/kisan-credit-card",
+        "state": "Central"
+    },
+    {
+        "id": "shc",
+        "name": "Soil Health Card Scheme",
+        "benefits": "Free Soil Test & Report",
+        "description": "Nutrient status report of farm soil.",
+        "eligibility_text": "All farmers.",
+        "max_land_hectares": 100.0,
+        "url": "https://soilhealth.dac.gov.in/",
+        "state": "Central"
+    },
+    {
+        "id": "pmksy",
+        "name": "PM Krishi Sinchayee Yojana",
+        "benefits": "Subsidy on Drip/Sprinkler",
+        "description": "'Per Drop More Crop' irrigation support.",
+        "eligibility_text": "Farmers with water source.",
+        "max_land_hectares": 100.0,
+        "url": "https://pmksy.gov.in/",
+        "state": "Central"
+    },
+    {
+        "id": "enam",
+        "name": "e-NAM (National Agri Market)",
+        "benefits": "Online Trading Platform",
+        "description": "Better price discovery for produce.",
+        "eligibility_text": "Farmers selling in APMC.",
+        "max_land_hectares": 100.0,
+        "url": "https://www.enam.gov.in/",
+        "state": "Central"
+    },
+    {
+        "id": "aif",
+        "name": "Agriculture Infrastructure Fund",
+        "benefits": "3% Interest Subvention",
+        "description": "Financing for post-harvest management.",
+        "eligibility_text": "Farmers, FPOs, PACS.",
+        "max_land_hectares": 100.0,
+        "url": "https://agriinfra.dac.gov.in/",
+        "state": "Central"
+    },
+    {
+        "id": "pmkmy",
+        "name": "PM Kisan Maan Dhan Yojana",
+        "benefits": "₹3,000/month Pension",
+        "description": "Social security for small farmers >60 age.",
+        "eligibility_text": "Small & Marginal Farmers (18-40 entry).",
+        "max_land_hectares": 2.0,
+        "url": "https://pmkmy.gov.in/",
+        "state": "Central"
+    },
+    {
+        "id": "smam",
+        "name": "Agri Mechanization (SMAM)",
+        "benefits": "50-80% Subsidy on Machinery",
+        "description": "Subsidy for tractors, rotavators, drones.",
+        "eligibility_text": "Small/Marginal/Women farmers prioritized.",
+        "max_land_hectares": 100.0,
+        "url": "https://agrimachinery.nic.in/",
+        "state": "Central"
+    },
+    {
+        "id": "pkvy",
+        "name": "Paramparagat Krishi Vikas",
+        "benefits": "₹50,000/ha for Organic",
+        "description": "Promotion of organic farming clusters.",
+        "eligibility_text": "Groups of farmers (Cluster).",
+        "max_land_hectares": 100.0,
+        "url": "https://pgsindia-ncof.gov.in/",
+        "state": "Central"
+    },
+    {
+        "id": "assam_sasajuli",
+        "name": "MM Krishi Sa-Sajuli (Assam)",
+        "benefits": "₹5,000 for Farm Tools",
+        "description": "Financial aid for purchasing tools.",
+        "eligibility_text": "Small & Marginal farmers in Assam.",
+        "max_land_hectares": 2.0,
+        "url": "https://diragri.assam.gov.in/",
+        "state": "Assam"
+    },
+    {
+        "id": "assam_credit",
+        "name": "Farmers' Credit Subsidy (Assam)",
+        "benefits": "Loan Waiver up to ₹25,000",
+        "description": "25% subsidy on short term crop loans.",
+        "eligibility_text": "Farmers with active KCC in Assam.",
+        "max_land_hectares": 100.0,
+        "url": "https://diragri.assam.gov.in/",
+        "state": "Assam"
+    },
+    {
+        "id": "sikkim_organic",
+        "name": "Sikkim Organic Mission",
+        "benefits": "Organic Certification Support",
+        "description": "Support for 100% organic farming practices.",
+        "eligibility_text": "All farmers in Sikkim.",
+        "max_land_hectares": 100.0,
+        "url": "http://sikkimorganicmission.gov.in/",
+        "state": "Sikkim"
+    },
+    {
+        "id": "megh_piggery",
+        "name": "Piggery Mission (Meghalaya)",
+        "benefits": "Loan for Piggery Units",
+        "description": "Zero interest loan for pig breeding.",
+        "eligibility_text": "Farmers and Cooperatives in Meghalaya.",
+        "max_land_hectares": 100.0,
+        "url": "http://meghalaya.gov.in/",
+        "state": "Meghalaya"
+    },
+    {
+        "id": "megh_focus",
+        "name": "FOCUS Scheme (Meghalaya)",
+        "benefits": "₹5,000 per Producer Group",
+        "description": "Financial support to Producer Groups.",
+        "eligibility_text": "Farmer groups in Meghalaya.",
+        "max_land_hectares": 100.0,
+        "url": "http://meghalaya.gov.in/",
+        "state": "Meghalaya"
+    },
+    {
+        "id": "arunachal_atma",
+        "name": "Atma Nirbhar Krishi (Arunachal)",
+        "benefits": "45% Govt Subsidy on Loans",
+        "description": "Credit link for tractors/machinery.",
+        "eligibility_text": "Farmers/SHGs in Arunachal Pradesh.",
+        "max_land_hectares": 100.0,
+        "url": "https://agri.arunachal.gov.in/",
+        "state": "Arunachal Pradesh"
+    },
+    {
+        "id": "arunachal_bagwani",
+        "name": "Atma Nirbhar Bagwani (Arunachal)",
+        "benefits": "45% Subsidy for Horticulture",
+        "description": "For Apple, Kiwi, Orange cultivation.",
+        "eligibility_text": "Horticulture farmers in Arunachal.",
+        "max_land_hectares": 100.0,
+        "url": "https://agri.arunachal.gov.in/",
+        "state": "Arunachal Pradesh"
+    },
+    {
+        "id": "kera_kerala",
+        "name": "KERA Project (Kerala)",
+        "benefits": "Value Chain Modernization",
+        "description": "Support for commercialization & resilience.",
+        "eligibility_text": "Smallholder farmers in Kerala.",
+        "max_land_hectares": 5.0,
+        "url": "https://keralaagriculture.gov.in/",
+        "state": "Kerala"
+    },
+    {
+        "id": "soil_mgmt_kerala",
+        "name": "Soil Health Management (KL)",
+        "benefits": "Subsidy for Lime Application",
+        "description": "Correcting soil acidity for paddy.",
+        "eligibility_text": "Paddy farmers in Kerala.",
+        "max_land_hectares": 100.0,
+        "url": "https://keralaagriculture.gov.in/",
+        "state": "Kerala"
+    },
+    {
+        "id": "subhiksha_kerala",
+        "name": "Subhiksha Keralam",
+        "benefits": "Subsidy for Veggies/Tapioca",
+        "description": "Self-sufficiency in food production.",
+        "eligibility_text": "Active cultivators in Kerala.",
+        "max_land_hectares": 10.0,
+        "url": "https://keralafarmers.gov.in/",
+        "state": "Kerala"
+    },
+    {
+        "id": "rythu_bharosa_tg",
+        "name": "Rythu Bharosa (Telangana)",
+        "benefits": "₹15,000/acre per year",
+        "description": "Investment support scheme (Formerly Rythu Bandhu).",
+        "eligibility_text": "Land owning & Tenant farmers.",
+        "max_land_hectares": 100.0,
+        "url": "http://rythubandhu.telangana.gov.in/",
+        "state": "Telangana"
+    },
+    {
+        "id": "ysr_rythu",
+        "name": "YSR Rythu Bharosa (AP)",
+        "benefits": "₹13,500/year",
+        "description": "Input subsidy for farmers.",
+        "eligibility_text": "SC/ST/BC/Minority tenants & small owners.",
+        "max_land_hectares": 5.0,
+        "url": "https://ysrrythubharosa.ap.gov.in/",
+        "state": "Andhra Pradesh"
+    },
+    {
+        "id": "krishak_bandhu_wb",
+        "name": "Krishak Bandhu (West Bengal)",
+        "benefits": "₹10,000/acre & Death Benefit",
+        "description": "Income support and death insurance.",
+        "eligibility_text": "Farmers in West Bengal.",
+        "max_land_hectares": 100.0,
+        "url": "https://krishakbandhu.wb.gov.in/",
+        "state": "West Bengal"
+    },
+    {
+        "id": "kalia_odisha",
+        "name": "KALIA Scheme (Odisha)",
+        "benefits": "₹10,000/year for Cultivation",
+        "description": "Livelihood and Income Augmentation.",
+        "eligibility_text": "Small/Marginal Farmers & Landless.",
+        "max_land_hectares": 2.0,
+        "url": "https://kalia.odisha.gov.in/",
+        "state": "Odisha"
+    },
+    {
+        "id": "kusum_rj",
+        "name": "PM KUSUM / Saur Krishi (RJ)",
+        "benefits": "Land Lease for Solar",
+        "description": "Lease barren land for solar plants.",
+        "eligibility_text": "Farmers with barren land in Rajasthan.",
+        "max_land_hectares": 100.0,
+        "url": "http://rrecl.com/",
+        "state": "Rajasthan"
+    },
+    {
+        "id": "urja_mitra_rj",
+        "name": "CM Kisan Mitra Urja (RJ)",
+        "benefits": "₹1,000/month Electricity Grant",
+        "description": "Subsidy on agri electricity bills.",
+        "eligibility_text": "Metered agri consumers in Rajasthan.",
+        "max_land_hectares": 100.0,
+        "url": "https://energy.rajasthan.gov.in/",
+        "state": "Rajasthan"
+    },
+    {
+        "id": "khet_suraksha_up",
+        "name": "Khet Suraksha Yojana (UP)",
+        "benefits": "Grant for Solar Fencing",
+        "description": "Protect crops from stray animals.",
+        "eligibility_text": "Farmers in Uttar Pradesh.",
+        "max_land_hectares": 100.0,
+        "url": "http://upagriculture.com/",
+        "state": "Uttar Pradesh"
+    },
+    {
+        "id": "tubewell_up",
+        "name": "Free Boring Scheme (UP)",
+        "benefits": "Subsidy for Tubewells",
+        "description": "Irrigation support for dry lands.",
+        "eligibility_text": "Small/Marginal farmers in UP.",
+        "max_land_hectares": 2.0,
+        "url": "http://minorirrigationup.gov.in/",
+        "state": "Uttar Pradesh"
+    },
+    {
+        "id": "solar_pump_mh",
+        "name": "CM Solar Agri Pump (MH)",
+        "benefits": "95% Subsidy on Solar Pumps",
+        "description": "Day-time irrigation power.",
+        "eligibility_text": "Farmers with no grid connection (MH).",
+        "max_land_hectares": 5.0,
+        "url": "https://kusum.mahaurja.com/",
+        "state": "Maharashtra"
+    },
+    {
+        "id": "mjpsky_mh",
+        "name": "Mahatma Phule Loan Waiver",
+        "benefits": "Waiver up to ₹2 Lakhs",
+        "description": "Relief from crop loan debt.",
+        "eligibility_text": "Distressed farmers in Maharashtra.",
+        "max_land_hectares": 100.0,
+        "url": "https://mjpsky.maharashtra.gov.in/",
+        "state": "Maharashtra"
+    },
+    {
+        "id": "kisan_card_pb",
+        "name": "Punjab Kisan Card",
+        "benefits": "Interest-free Loans",
+        "description": "Digital card for input purchase.",
+        "eligibility_text": "Farmers in Punjab.",
+        "max_land_hectares": 100.0,
+        "url": "https://agri.punjab.gov.in/",
+        "state": "Punjab"
+    },
+    {
+        "id": "tn_micro_irr",
+        "name": "Micro Irrigation (TN)",
+        "benefits": "100% Subsidy",
+        "description": "Full subsidy for small farmers for drip/sprinkler.",
+        "eligibility_text": "Small/Marginal farmers in TN.",
+        "max_land_hectares": 2.0,
+        "url": "https://tnhorticulture.tn.gov.in/",
+        "state": "Tamil Nadu"
+    },
+    {
+        "id": "raitha_siri_ka",
+        "name": "Raitha Siri (Karnataka)",
+        "benefits": "₹10,000/ha for Millets",
+        "description": "Encouraging millet farming.",
+        "eligibility_text": "Millet growers in Karnataka.",
+        "max_land_hectares": 100.0,
+        "url": "https://raitamitra.karnataka.gov.in/",
+        "state": "Karnataka"
+    },
+    {
+        "id": "mp_kisan_kalyan",
+        "name": "Mukhyamantri Kisan Kalyan (MP)",
+        "benefits": "₹4,000/year Top-up",
+        "description": "State top-up to PM-KISAN.",
+        "eligibility_text": "PM-KISAN beneficiaries in MP.",
+        "max_land_hectares": 100.0,
+        "url": "https://saara.mp.gov.in/",
+        "state": "Madhya Pradesh"
+    },
+    {
+        "id": "mp_udjami",
+        "name": "Krishak Udyami Yojana (MP)",
+        "benefits": "Loan + 15% Subsidy",
+        "description": "For setting up agri-business/processing units.",
+        "eligibility_text": "Farmers' children (10th pass).",
+        "max_land_hectares": 100.0,
+        "url": "https://mp.gov.in/",
+        "state": "Madhya Pradesh"
+    }
+]
