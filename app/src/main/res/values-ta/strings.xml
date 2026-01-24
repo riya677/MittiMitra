@@ -236,4 +236,32 @@
     <string name="share_report">அறிக்கையைப் பகிரவும்</string>
     <string name="share_via">இதன் மூலம் பகிரவும்</string>
 
+    <!-- Weather Alerts -->
+    <string name="weather_alerts_title">வானிலை எச்சரிக்கைகள்</string>
+    <string name="search_location_hint">நகரம் அல்லது பகுதியைத் தேடவும்...</string>
+    <string name="search">தேடு</string>
+    <string name="current_weather">தற்போதைய வானிலை</string>
+    <string name="seven_day_forecast">📅 7-நாள் முன்னறிவிப்பு</string>
+    <string name="agri_recommendations">🌾 விவசாய பரிந்துரைகள்</string>
+    <string name="home_card_weather">வானிலை எச்சரிக்கைகள்</string>
+
+    <!-- Crop Calendar -->
+    <string name="crop_calendar_title">பயிர் காலண்டர்</string>
+    <string name="crop_calendar_subtitle">AI-இயக்கப்படும் விதைப்பு மற்றும் அறுவடை அட்டவணை</string>
+    <string name="select_crop">பயிரைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="generate_schedule">AI அட்டவணை உருவாக்கவும்</string>
+    <string name="home_card_calendar">பயிர் காலண்டர்</string>
+
+    <!-- Irrigation Calculator -->
+    <string name="irrigation_title">நீர்ப்பாசன கணிப்பான்</string>
+    <string name="irrigation_subtitle">பயிர், மண் மற்றும் வானிலையின் அடிப்படையில் தினசரி நீர் தேவை</string>
+    <string name="soil_type">மண் வகை</string>
+    <string name="field_size">வயல் அளவு</string>
+    <string name="calculate_water">நீர் தேவையைக் கணக்கிடவும்</string>
+    <string name="water_requirement">தினசரி நீர் தேவை</string>
+    <string name="home_card_irrigation">நீர்ப்பாசனம்</string>
+
+    <!-- Plant Doctor -->
+    <string name="home_card_plant_doctor">செடி மருத்துவர்</string>
+
 </resources>

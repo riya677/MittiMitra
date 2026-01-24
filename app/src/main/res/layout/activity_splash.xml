@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/brand_green"
+    android:background="@drawable/bg_header_gradient"
     android:fitsSystemWindows="true"
     tools:context=".SplashActivity">
 
@@ -15,30 +15,34 @@
         android:id="@+id/ivSplashLogo"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="32dp"
         android:src="@drawable/mittimitra_logo"
         android:scaleType="centerCrop"
-        android:background="@color/text_white"
+        android:background="#FFFFFF"
         android:padding="4dp"
         app:shapeAppearanceOverlay="@style/CircleImageStyle"
-        android:contentDescription="@string/desc_logo" />
+        android:contentDescription="@string/desc_logo"
+        android:elevation="12dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
+        android:textSize="36sp"
         android:textColor="@color/text_white"
         android:textStyle="bold"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="sans-serif-black"
         android:gravity="center"
-        android:maxLines="1"
-        android:ellipsize="end"/>
+        android:letterSpacing="0.05"
+        android:shadowColor="#40000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"/>
 
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:indeterminateTint="@color/text_white"/>
+        android:layout_marginTop="48dp"
+        android:indeterminateTint="@color/brand_secondary"/>
 
 </LinearLayout>

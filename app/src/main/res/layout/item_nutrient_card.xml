@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Mitti.Card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="3dp"
-    app:cardBackgroundColor="?attr/colorSurface">
+    app:cardBackgroundColor="@color/surface_card"
+    app:contentPadding="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:paddingVertical="16dp"
-        android:paddingHorizontal="8dp">
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="4dp">
 
         <FrameLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:background="@drawable/circle_bg_green_light">
 
             <TextView
@@ -28,9 +28,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 tools:text="N"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:textColor="@color/brand_green"/>
+                android:textColor="@color/brand_primary"/>
         </FrameLayout>
 
         <TextView
@@ -38,16 +38,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="--"
-            android:textSize="13sp"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="10sp"
-            app:autoSizeMaxTextSize="14sp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="?android:attr/textColorPrimary"
-            android:layout_marginTop="8dp"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="6dp"
             android:gravity="center"
-            android:maxLines="2"
+            android:maxLines="1"
             android:ellipsize="end"/>
 
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

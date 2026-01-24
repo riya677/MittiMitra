@@ -1,25 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- These are default Material colors. You can change them later. -->
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="brand_green">#1B5E20</color>
-    <color name="brand_green_light">#C8E6C9</color>
-    <color name="text_white">#FFFFFF</color>
+    <!-- Brand Identity: "Tech-Organic" -->
+    <color name="brand_primary">#2E7D32</color> <!-- Forest Green 800 -->
+    <color name="brand_primary_dark">#1B5E20</color> <!-- Forest Green 900 -->
+    <color name="brand_primary_light">#E8F5E9</color> <!-- Green 50 -->
+    
+    <color name="brand_secondary">#FFB300</color> <!-- Amber 600 - Harvest Gold -->
+    <color name="brand_secondary_light">#FFF8E1</color> <!-- Amber 50 -->
+
+    <color name="brand_accent">#0091EA</color> <!-- Light Blue A700 - Water/Sky -->
+
+    <!-- Neutral Surfaces -->
+    <color name="surface_background">#F5F7F6</color> <!-- Soft Mist White -->
+    <color name="surface_card">#FFFFFF</color>
+    <color name="surface_modal">#FFFFFF</color>
+
+    <!-- Typography -->
+    <color name="text_primary">#1A1C1E</color> <!-- Soft Black -->
+    <color name="text_secondary">#444746</color> <!-- Dark Grey -->
+    <color name="text_tertiary">#747775</color> <!-- Medium Grey -->
+    <color name="text_hint">#8E918F</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_on_secondary">#263238</color>
+
+    <!-- Functional -->
+    <color name="status_error">#BA1A1A</color>
+    <color name="status_success">#146C2E</color>
+    <color name="status_warning">#E65100</color>
+
+    <!-- Legacy mappings for compatibility (overridden with new palette) -->
+    <color name="purple_200">@color/brand_primary_light</color>
+    <color name="purple_500">@color/brand_primary</color>
+    <color name="purple_700">@color/brand_primary_dark</color>
+    <color name="teal_200">@color/brand_accent</color>
+    <color name="teal_700">@color/brand_primary</color>
+    <color name="black">@color/text_primary</color>
+    <color name="white">@color/surface_card</color>
+    
+    <!-- App Specific -->
+    <color name="brand_green">@color/brand_primary</color>
+    <color name="brand_green_light">@color/brand_primary_light</color>
+    <color name="text_white">@color/text_on_primary</color>
     <color name="text_dark">#333333</color>
-    <color name="text_secondary">#666666</color>
-    <color name="color_logout">#FF6B6B</color>
-    <color name="color_delete">#D32F2F</color>
-    <color name="color_accent_orange">#FF9800</color>
+    
+    <color name="color_logout">#D32F2F</color>
+    <color name="color_delete">#B71C1C</color>
+    <color name="color_accent_orange">@color/brand_secondary</color>
     <color name="color_delete_light">#FFEBEE</color>
     <color name="text_light_orange">#FFF3E0</color>
-    <color name="color_divider_success">#4CAF50</color>
-    <color name="color_success_text">#2E7D32</color>
-    <color name="color_moisture">#0277BD</color>
-    <color name="color_green_50">#E8F5E9</color>
+    <color name="color_divider_success">#A5D6A7</color>
+    <color name="color_success_text">#1B5E20</color>
+    <color name="color_moisture">@color/brand_accent</color>
+    <color name="color_green_50">@color/brand_primary_light</color>
+    
+    <!-- UI Gradients -->
+    <color name="gradient_start">#2E7D32</color>
+    <color name="gradient_end">#43A047</color>
+
+    <!-- Dividers -->
+    <color name="divider">#E0E0E0</color>
+
 </resources>

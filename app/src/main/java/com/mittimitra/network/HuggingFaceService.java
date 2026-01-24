@@ -10,7 +10,7 @@ import retrofit2.http.Url;
 
 public interface HuggingFaceService {
     @POST
-    Call<List<ClassificationResult>> classifySoil(
+    Call<List<ClassificationResult>> classifyImage(
             @Url String url,
             @Header("Authorization") String token,
             @Body RequestBody image

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface_background"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/brand_primary">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_irrigation"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/text_white"
+            app:navigationIconTint="@color/text_white"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Description -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/irrigation_subtitle"
+                android:textSize="14sp"
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Input Card -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Mitti.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Crop Selection -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/select_crop"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/spinner_irrigation_crop"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_spinner"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Soil Type -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/soil_type"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/spinner_soil_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_spinner"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Field Size -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/field_size"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="8dp"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        app:suffixText="acres">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_field_size"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="e.g., 2.5"
+                            android:inputType="numberDecimal"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_calculate"
+                        style="@style/Widget.Mitti.Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/calculate_water"
+                        app:icon="@android:drawable/ic_menu_compass"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <ProgressBar
+                android:id="@+id/progress_irrigation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+
+            <!-- Result Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_irrigation_result"
+                style="@style/Widget.Mitti.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/brand_primary_light">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/water_requirement"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_secondary"/>
+
+                    <TextView
+                        android:id="@+id/tv_water_required"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💧 0 liters/day"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/brand_primary_dark"
+                        android:layout_marginTop="8dp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider"
+                        android:layout_marginVertical="16dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_irrigation_advice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Loading advice..."
+                        android:textSize="14sp"
+                        android:textColor="@color/text_primary"
+                        android:lineSpacingMultiplier="1.3"/>
+
+                    <TextView
+                        android:id="@+id/tv_weather_note"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="🌡️ Current: 30°C"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginTop="12dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

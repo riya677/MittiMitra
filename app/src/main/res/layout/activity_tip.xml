@@ -1,127 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground"
+    android:background="@color/surface_background"
     android:fitsSystemWindows="true">
 
-    <View
-        android:id="@+id/header_bg"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@color/brand_green"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        app:elevation="0dp">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tip_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="16dp"
-        app:titleTextColor="@color/text_white"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        app:layout_constraintTop_toTopOf="parent">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tip_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/brand_primary"
+            app:titleTextColor="@color/text_white"
+            app:navigationIcon="?attr/homeAsUpIndicator">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/chat_title"
-            android:textColor="@color/text_white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:maxLines="1"
-            android:ellipsize="end"/>
-    </androidx.appcompat.widget.Toolbar>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/mittimitra_logo"
+                    android:padding="2dp"
+                    android:background="@color/text_white"
+                    app:shapeAppearanceOverlay="@style/CircleImageStyle"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kisan_sahayak_title"
+                    android:textColor="@color/text_white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="12dp"/>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Chat Area -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_chat"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:paddingHorizontal="16dp"
         android:paddingTop="16dp"
-        android:paddingBottom="80dp"
+        android:paddingBottom="90dp"
         android:clipToPadding="false"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/tip_toolbar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:background="@drawable/bg_placeholder_pattern"
         tools:listitem="@layout/item_chat_message"/>
 
     <ProgressBar
         android:id="@+id/loading_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminateTint="@color/brand_green"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/brand_primary"
+        android:visibility="gone"/>
 
-    <androidx.cardview.widget.CardView
+    <!-- Input Area -->
+    <LinearLayout
         android:id="@+id/layout_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="28dp"
-        app:cardElevation="8dp"
-        app:cardBackgroundColor="?attr/colorSurface"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:padding="12dp"
+        android:background="@color/surface_background">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="6dp">
+            android:layout_weight="1"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/surface_card"
+            app:strokeWidth="1dp"
+            app:strokeColor="#E0E0E0">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_record_audio"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:insetLeft="0dp"
-                android:insetTop="0dp"
-                android:insetRight="0dp"
-                android:insetBottom="0dp"
-                app:icon="@android:drawable/ic_btn_speak_now"
-                app:iconGravity="textStart"
-                app:iconPadding="0dp"
-                app:iconTint="?android:attr/textColorSecondary"
-                android:background="@android:color/transparent"
-                app:rippleColor="@color/brand_green_light"
-                app:cornerRadius="24dp"
-                android:contentDescription="@string/desc_mic"/>
-
-            <EditText
-                android:id="@+id/et_chat_message"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:hint="@string/chat_hint"
-                android:textSize="16sp"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="12dp"
-                android:maxLines="4"
-                android:textColor="?android:attr/textColorPrimary"
-                android:inputType="textCapSentences|textMultiLine"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btn_send_chat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                app:fabSize="mini"
-                app:tint="@color/text_white"
-                app:backgroundTint="@color/brand_green"
-                app:srcCompat="@android:drawable/ic_menu_send"
-                app:elevation="0dp"
-                android:contentDescription="@string/desc_send"/>
+                <EditText
+                    android:id="@+id/et_chat_message"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/chat_hint"
+                    android:textSize="16sp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp"
+                    android:maxLines="4"
+                    android:minHeight="48dp"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_hint"
+                    android:inputType="textCapSentences|textMultiLine"/>
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                 <ImageView
+                    android:id="@+id/btn_record_audio"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@android:drawable/ic_btn_speak_now"
+                    android:padding="12dp"
+                    app:tint="@color/text_secondary"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/desc_mic"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_send_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="2dp"
+            app:fabSize="mini"
+            app:tint="@color/text_on_primary"
+            app:backgroundTint="@color/brand_primary"
+            app:elevation="2dp"
+            app:srcCompat="@android:drawable/ic_menu_send"
+            android:contentDescription="@string/desc_send"/>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

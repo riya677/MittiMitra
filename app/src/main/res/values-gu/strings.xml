@@ -236,4 +236,32 @@
     <string name="share_report">રિપોર્ટ શેર કરો</string>
     <string name="share_via">આ દ્વારા શેર કરો</string>
 
+    <!-- Weather Alerts -->
+    <string name="weather_alerts_title">હવામાન ચેતવણીઓ</string>
+    <string name="search_location_hint">શહેર અથવા પ્રદેશ શોધો...</string>
+    <string name="search">શોધો</string>
+    <string name="current_weather">વર્તમાન હવામાન</string>
+    <string name="seven_day_forecast">📅 7-દિવસની આગાહી</string>
+    <string name="agri_recommendations">🌾 કૃષિ ભલામણો</string>
+    <string name="home_card_weather">હવામાન ચેતવણી</string>
+
+    <!-- Crop Calendar -->
+    <string name="crop_calendar_title">પાક કેલેન્ડર</string>
+    <string name="crop_calendar_subtitle">AI-સંચાલિત વાવણી અને લણણીનું સમયપત્રક</string>
+    <string name="select_crop">પાક પસંદ કરો</string>
+    <string name="generate_schedule">AI સમયપત્રક બનાવો</string>
+    <string name="home_card_calendar">પાક કેલેન્ડર</string>
+
+    <!-- Irrigation Calculator -->
+    <string name="irrigation_title">સિંચાઈ કેલ્ક્યુલેટર</string>
+    <string name="irrigation_subtitle">પાક, માટી અને હવામાનના આધારે દૈનિક પાણીની જરૂરિયાત</string>
+    <string name="soil_type">માટીનો પ્રકાર</string>
+    <string name="field_size">ખેતરનું કદ</string>
+    <string name="calculate_water">પાણીની ગણતરી કરો</string>
+    <string name="water_requirement">દૈનિક પાણીની જરૂરિયાત</string>
+    <string name="home_card_irrigation">સિંચાઈ</string>
+
+    <!-- Plant Doctor -->
+    <string name="home_card_plant_doctor">છોડ ડૉક્ટર</string>
+
 </resources>

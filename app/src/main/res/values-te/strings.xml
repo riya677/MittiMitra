@@ -236,4 +236,32 @@
     <string name="share_report">నివేదికను షేర్ చేయండి</string>
     <string name="share_via">దీని ద్వారా షేర్ చేయండి</string>
 
+    <!-- Weather Alerts -->
+    <string name="weather_alerts_title">వాతావరణ హెచ్చరికలు</string>
+    <string name="search_location_hint">నగరం లేదా ప్రాంతాన్ని వెతకండి...</string>
+    <string name="search">వెతుకు</string>
+    <string name="current_weather">ప్రస్తుత వాతావరణం</string>
+    <string name="seven_day_forecast">📅 7-రోజుల అంచనా</string>
+    <string name="agri_recommendations">🌾 వ్యవసాయ సిఫార్సులు</string>
+    <string name="home_card_weather">వాతావరణ హెచ్చరికలు</string>
+
+    <!-- Crop Calendar -->
+    <string name="crop_calendar_title">పంట క్యాలెండర్</string>
+    <string name="crop_calendar_subtitle">AI-ఆధారిత విత్తడం మరియు కోత షెడ్యూల్</string>
+    <string name="select_crop">పంట ఎంచుకోండి</string>
+    <string name="generate_schedule">AI షెడ్యూల్ రూపొందించండి</string>
+    <string name="home_card_calendar">పంట క్యాలెండర్</string>
+
+    <!-- Irrigation Calculator -->
+    <string name="irrigation_title">నీటిపారుదల కాలిక్యులేటర్</string>
+    <string name="irrigation_subtitle">పంట, నేల మరియు వాతావరణం ఆధారంగా రోజువారీ నీటి అవసరం</string>
+    <string name="soil_type">నేల రకం</string>
+    <string name="field_size">పొలం పరిమాణం</string>
+    <string name="calculate_water">నీటి అవసరాన్ని లెక్కించండి</string>
+    <string name="water_requirement">రోజువారీ నీటి అవసరం</string>
+    <string name="home_card_irrigation">నీటిపారుదల</string>
+
+    <!-- Plant Doctor -->
+    <string name="home_card_plant_doctor">మొక్క డాక్టర్</string>
+
 </resources>

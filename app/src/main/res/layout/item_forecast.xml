@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Mitti.Card"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    app:cardBackgroundColor="@color/surface_card">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_forecast_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01-24"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"/>
+
+        <TextView
+            android:id="@+id/tv_forecast_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="↑32°"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/status_warning"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tv_forecast_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="↓18°"
+            android:textSize="14sp"
+            android:textColor="@color/brand_primary"/>
+
+        <TextView
+            android:id="@+id/tv_forecast_rain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="💧20%"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

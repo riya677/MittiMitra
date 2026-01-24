@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground"
+    android:background="@color/surface_background"
     android:fitsSystemWindows="true">
 
     <View
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@color/brand_green"
+        android:layout_height="320dp"
+        android:background="@drawable/bg_header_gradient"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -21,53 +21,37 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/mittimitra_logo"
-            android:scaleType="centerCrop"
-            android:background="@color/text_white"
-            android:padding="2dp"
-            app:shapeAppearanceOverlay="@style/CircleImageStyle"
-            android:contentDescription="@string/desc_logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/signup_title"
-            android:textColor="@color/text_white"
+            android:textColor="@color/text_on_primary"
             android:textSize="28sp"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:maxLines="2"
-            android:ellipsize="end"/>
+            android:fontFamily="sans-serif-black"
+            android:layout_marginTop="16dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/signup_subtitle"
-            android:textColor="@color/brand_green_light"
+            android:textColor="@color/brand_secondary"
             android:textSize="14sp"
-            android:layout_marginTop="4dp"
             android:gravity="center"
-            android:maxLines="2"
-            android:ellipsize="end"/>
+            android:layout_marginTop="6dp"/>
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="32dp"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="8dp"
-        app:cardBackgroundColor="?attr/colorSurface"
+        style="@style/Widget.Mitti.Card"
+        app:cardBackgroundColor="@color/surface_card"
         app:layout_constraintTop_toBottomOf="@id/layout_header_content">
 
         <LinearLayout
@@ -76,83 +60,85 @@
             android:orientation="vertical"
             android:padding="32dp">
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/signup_hint_name"
+                style="@style/Widget.Mitti.TextInputLayout"
+                app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
+                app:startIconTint="@color/brand_primary"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_signup_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/text_primary"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/signup_hint_email"
+                style="@style/Widget.Mitti.TextInputLayout"
+                app:startIconDrawable="@android:drawable/ic_dialog_email"
+                app:startIconTint="@color/brand_primary"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_signup_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/text_primary"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/signup_hint_mobile"
+                style="@style/Widget.Mitti.TextInputLayout"
+                app:startIconDrawable="@android:drawable/ic_menu_call"
+                app:startIconTint="@color/brand_primary"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_signup_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:textColor="@color/text_primary"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_do_signup"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="@string/signup_btn_create"
+                style="@style/Widget.Mitti.Button"
+                android:layout_marginTop="16dp"/>
+
             <TextView
+                android:id="@+id/tv_login_link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/signup_create_account"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/brand_green"
+                android:text="@string/signup_login_link"
                 android:layout_gravity="center"
-                android:layout_marginBottom="24dp"
-                android:maxLines="1"
-                android:ellipsize="end"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_signup_google"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="@string/signup_google"
-                android:textColor="@color/text_dark"
+                android:padding="12dp"
+                android:textColor="@color/brand_primary"
                 android:textStyle="bold"
-                android:textSize="16sp"
-                app:backgroundTint="@color/text_white"
-                app:strokeColor="#E0E0E0"
-                app:strokeWidth="1dp"
-                app:cornerRadius="30dp"
-                app:icon="@android:drawable/ic_dialog_email"
-                app:iconTint="#EA4335"
-                app:iconGravity="textStart"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginTop="16dp"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_signup_phone"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="@string/signup_phone"
-                android:textColor="@color/text_white"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                app:backgroundTint="@color/brand_green"
-                app:cornerRadius="30dp"
-                app:icon="@android:drawable/ic_menu_call"
-                app:iconTint="@color/text_white"
-                app:iconGravity="textStart"
-                android:layout_marginBottom="24dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider"
-                android:layout_marginBottom="24dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ProgressBar
+                android:id="@+id/progress_signup"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/signup_footer"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="14sp"
-                    android:maxLines="1"
-                    android:ellipsize="end"/>
-
-                <TextView
-                    android:id="@+id/tv_login_link"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/login"
-                    android:textColor="@color/brand_green"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:padding="8dp"/>
-            </LinearLayout>
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/brand_primary"
+                android:visibility="gone"/>
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

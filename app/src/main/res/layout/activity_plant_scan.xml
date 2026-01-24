@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface_background"
+    android:fitsSystemWindows="false">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/plant_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:background="#00000000"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="@color/brand_primary">
+            
+            <ImageView
+                android:id="@+id/iv_plant_preview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_placeholder_pattern"
+                app:layout_collapseMode="parallax"/>
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_bottom_overlay"/>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/plant_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:title="@string/plant_doctor_title"
+                app:titleTextColor="@color/text_white"
+                app:navigationIcon="?attr/homeAsUpIndicator"/>
+                
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Hero Card for Status -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Mitti.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-40dp"
+                android:layout_marginBottom="24dp">
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_plant_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/scan_status_ready"
+                        android:background="@drawable/bg_pill_green"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="8dp"
+                        android:textColor="@color/brand_primary_dark"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium"/>
+                        
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/plant_scan_hint"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginTop="16dp"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Action Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="24dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_plant_gallery"
+                    style="@style/Widget.Mitti.Button.Outlined"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="12dp"
+                    android:text="@string/scan_btn_gallery"
+                    app:icon="@android:drawable/ic_menu_gallery"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_plant_camera"
+                    style="@style/Widget.Mitti.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/scan_btn_camera"
+                    app:icon="@android:drawable/ic_menu_camera"/>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_plant_analyze"
+                style="@style/Widget.Mitti.Button"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/scan_btn_analyze"
+                android:textSize="18sp"
+                app:elevation="4dp" />
+
+            <ProgressBar
+                android:id="@+id/progress_plant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Result Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_plant_result"
+                style="@style/Widget.Mitti.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/brand_primary_light">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="16dp">
+                        
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@android:drawable/btn_star_big_on"
+                            app:tint="@color/brand_primary"
+                            android:layout_marginEnd="12dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_result_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="EARLY BLIGHT"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/brand_primary_dark"
+                            android:fontFamily="sans-serif-black"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_result_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Analysis Result..."
+                        android:textSize="16sp"
+                        android:lineSpacingMultiplier="1.4"
+                        android:textColor="@color/text_primary"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

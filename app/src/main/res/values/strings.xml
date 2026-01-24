@@ -127,7 +127,7 @@
     <string name="scan_status_ready">Ready to scan</string>
     <string name="scan_btn_gallery">Gallery</string>
     <string name="scan_btn_camera">Camera</string>
-    <string name="scan_btn_analyze">Identify Soil &amp; Recommend</string>
+    <string name="scan_btn_analyze">Analyze Plant</string>
 
     <string name="profile_recent">Recent Analysis</string>
     <string name="profile_no_history">No recent scans found.</string>
@@ -165,7 +165,8 @@
     <string name="home_welcome_default">Namaste, Farmer</string>
     <string name="home_card_scan">Scan Soil</string>
     <string name="home_card_advice">Get Advice</string>
-    <string name="home_card_tips">AI Expert Tips</string>
+    <string name="home_card_tips">Kisan Sahayak (AI)</string>
+    <string name="home_card_plant_doctor">Plant Doctor</string>
     <string name="home_section_tools">Smart Tools</string>
     <string name="desc_logo">App Logo</string>
     <string name="desc_icon">Icon</string>
@@ -272,4 +273,47 @@
     <string name="soil_status_low">LOW</string>
     <string name="soil_status_high">HIGH</string>
     <string name="soil_status_ok">OK</string>
+
+    <!-- Chat & Plant Doctor -->
+    <string name="kisan_sahayak_title">Kisan Sahayak</string>
+    <string name="kisan_sahayak_prompt">Ask me anything about your farm...</string>
+    <string name="plant_doctor_title">Plant Doctor</string>
+    <string name="plant_doctor_scanning">Analyzing Plant...</string>
+    <string name="plant_doctor_no_disease">Healthy Plant</string>
+    <string name="plant_doctor_confidence">Confidence: %s%%</string>
+    <string name="plant_doctor_cure">Remedy</string>
+    <string name="plant_scan_hint">Take a clear photo of the affected leaf 🍃</string>
+    <string name="scan_hint_text">Point camera at soil sample</string>
+    
+    <!-- Signup -->
+    <string name="signup_hint_name">Full Name</string>
+    <string name="signup_hint_email">Email Address (Optional)</string>
+    <string name="signup_hint_mobile">Mobile Number</string>
+    <string name="signup_btn_create">Create Account</string>
+    <string name="signup_login_link">Already have an account? Login</string>
+
+    <!-- Weather Alerts -->
+    <string name="weather_alerts_title">Weather Alerts</string>
+    <string name="search_location_hint">Search city or region...</string>
+    <string name="search">Search</string>
+    <string name="current_weather">Current Weather</string>
+    <string name="seven_day_forecast">📅 7-Day Forecast</string>
+    <string name="agri_recommendations">🌾 Agricultural Recommendations</string>
+    <string name="home_card_weather">Weather Alerts</string>
+
+    <!-- Crop Calendar -->
+    <string name="crop_calendar_title">Crop Calendar</string>
+    <string name="crop_calendar_subtitle">AI-powered planting and harvesting schedules</string>
+    <string name="select_crop">Select Crop</string>
+    <string name="generate_schedule">Generate AI Schedule</string>
+    <string name="home_card_calendar">Crop Calendar</string>
+
+    <!-- Irrigation Calculator -->
+    <string name="irrigation_title">Irrigation Calculator</string>
+    <string name="irrigation_subtitle">Calculate daily water requirements based on crop, soil, and weather</string>
+    <string name="soil_type">Soil Type</string>
+    <string name="field_size">Field Size</string>
+    <string name="calculate_water">Calculate Water Needs</string>
+    <string name="water_requirement">Daily Water Requirement</string>
+    <string name="home_card_irrigation">Irrigation</string>
 </resources>
