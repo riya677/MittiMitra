@@ -54,8 +54,13 @@
             app:cardElevation="4dp"
             app:cardBackgroundColor="?attr/colorSurface">
 
-            <RadioGroup
-                android:id="@+id/rg_languages"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/rg_languages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp">
@@ -190,23 +195,7 @@
                     android:textColor="?android:attr/textColorPrimary"
                     app:buttonTint="@color/brand_green"/>
 
-            </RadioGroup>
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Northeast India Languages"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="@color/brand_primary"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"/>
-
-            <RadioGroup
-                android:id="@+id/rg_languages_ne"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?android:attr/listDivider" android:layout_marginVertical="4dp"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/rb_assamese"
@@ -267,6 +256,7 @@
                     app:buttonTint="@color/brand_green"/>
 
             </RadioGroup>
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
     </androidx.core.widget.NestedScrollView>
 

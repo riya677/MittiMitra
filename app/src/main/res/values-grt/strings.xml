@@ -1,345 +1,461 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<resources>
+﻿<resources>
     <string name="app_name">Mitti Mitra</string>
-    <string name="welcome_subtitle">NaÂ·simangni Game GeÂ·e ChaÂ·giparangna Dakchakgipa</string>
-    <string name="login">Napbo</string>
-    <string name="signup">Bimung Sebo</string>
 
-    <string name="greeting_format">Salsako, %s</string>
-    <string name="greeting_default">Salsako, Game ChaÂ·gipa</string>
-    <string name="last_scan">BonÂ·kame Niatgipa</string>
-    <string name="button_tip">KuÂ·pattianirang</string>
-    <string name="button_recommendation">Recommendation</string>
+    <string name="welcome_subtitle">Na·simangni Ge·a-gamani Dakchakgipa</string>
+    <string name="login">Napbo (Login)</string>
+    <string name="signup">Biming Segatbo (Sign Up)</string>
+
+    <string name="greeting_format">Salskam, %s</string>
+    <string name="greeting_default">Salskam, Jakbalgipa</string>
+    <string name="last_scan">Bon·kame Scan Ka·gipa</string>
+    <string name="button_tip">Ku·pattiani</string>
+    <string name="button_recommendation">Manderangna</string>
     <string name="button_history">Itihas</string>
-    <string name="button_scan">Niatbo</string>
-    <string name="button_documents">Lekka-porang</string>
+    <string name="button_scan">Scan</string>
+    <string name="button_documents">Lekka-porarang</string>
 
-    <string name="menu_settings">Donna</string>
-    <string name="menu_help">Dakchakan</string>
-    <string name="menu_contact">Agangrikna</string>
-    <string name="menu_logout">OngÂ·katbo</string>
+    <string name="menu_settings">Setings</string>
+    <string name="menu_help">Dakchakani</string>
+    <string name="menu_contact">Agangrikani</string>
+    <string name="menu_logout">Ong·katbo</string>
 
-    <string name="setting_language">Kuang</string>
-    <string name="setting_accessibility">AmÂ·sanding</string>
+    <string name="setting_language">Kuw·sik</string>
+    <string name="setting_accessibility">Altuae Jakkalani (Accessibility)</string>
     <string name="setting_theme">App Theme</string>
-    <string name="setting_manage_data">Data Niatani</string>
+    <string name="setting_manage_data">Data-ko Nirokbo</string>
 
-    <string name="setting_unit_converter">AÂ·a Tuang Dingtangata</string>
-    <string name="setting_unit_converter_desc">Acre, Hectare, Bigha, aro Guntha dingtangata.</string>
-    <string name="setting_kisan_call">Kisan Helpline-o KaÂ·bo</string>
-    <string name="setting_kisan_call_desc">Sorkarini Kisan Call Center baksa joraatbo (1800-180-1551).</string>
+    <string name="setting_unit_converter">A·a Toani</string>
+    <string name="setting_unit_converter_desc">Acre, Hectare, Bigha, aro Guntha-ko dingtangatbo.</string>
+    <string name="setting_kisan_call">Kisan Helpline-o Ka·bo</string>
+    <string name="setting_kisan_call_desc">Sorkarini Kisan Call Center-o ka·bo (1800-180-1551).</string>
 
-    <string name="language_title">Kuang Seokbo</string>
+    <string name="language_title">Ku·sikko Seokbo</string>
     <string name="language_system_default">System Default</string>
     <string name="language_english">English</string>
-    <string name="language_hindi">à¤¹à¤¿à¤¨à¥à¤¦à¥€ (Hindi)</string>
-    <string name="language_tamil">à®¤à®®à®¿à®´à¯ (Tamil)</string>
-    <string name="language_malayalam">à´®à´²à´¯à´¾à´³à´‚ (Malayalam)</string>
-    <string name="language_telugu">à°¤à±†à°²à±à°—à± (Telugu)</string>
-    <string name="language_kannada">à²•à²¨à³à²¨à²¡ (Kannada)</string>
-    <string name="language_marathi">à¤®à¤°à¤¾à¤ à¥€ (Marathi)</string>
-    <string name="language_bengali">à¦¬à¦¾à¦‚à¦²à¦¾ (Bengali)</string>
-    <string name="language_gujarati">àª—à«àªœàª°àª¾àª¤à«€ (Gujarati)</string>
-    <string name="language_punjabi">à¨ªà©°à¨œà¨¾à¨¬à©€ (Punjabi)</string>
-    <string name="language_assamese">à¦…à¦¸à¦®à§€à¦¯à¦¼à¦¾ (Assamese)</string>
-    <string name="language_manipuri">à¦®à§ˆà¦¤à§ˆà¦²à§‹à¦¨à§ (Manipuri)</string>
-    <string name="language_bodo">à¤¬à¤¡à¤¼à¥‹ (Bodo)</string>
-    <string name="language_mizo">Mizo Å£awng (Mizo)</string>
-    <string name="language_garo">AÂ·chik (Garo)</string>
+    <string name="language_hindi">हिन्दी (Hindi)</string>
+    <string name="language_tamil">தமிழ் (Tamil)</string>
+    <string name="language_malayalam">മലയാളം (Malayalam)</string>
+    <string name="language_telugu">తెలుగు (Telugu)</string>
+    <string name="language_kannada">ಕನ್ನಡ (Kannada)</string>
+    <string name="language_marathi">मराठी (Marathi)</string>
+    <string name="language_bengali">বাংলা (Bengali)</string>
+    <string name="language_gujarati">ગુજરાતી (Gujarati)</string>
+    <string name="language_punjabi">ਪੰਜਾਬੀ (Punjabi)</string>
+    <string name="language_assamese">অসমীয়া (Assamese)</string>
+    <string name="language_manipuri">মৈতৈলোন্ (Manipuri)</string>
+    <string name="language_bodo">बड़ो (Bodo)</string>
+    <string name="language_mizo">Mizo ţawng (Mizo)</string>
+    <string name="language_garo">A·chik (Garo)</string>
 
-    <string name="font_size_title">Oikor DalÂ·a</string>
+    <string name="font_size_title">Oikor Dal·ani</string>
     <string name="font_size_small">Chona</string>
-    <string name="font_size_default">Namarang</string>
-    <string name="font_size_large">DalÂ·a</string>
-    <string name="font_size_sample">NaÂ·simangni seani indake nikgen.</string>
+    <string name="font_size_default">Jakkalronggipa</string>
+    <string name="font_size_large">Dal·a</string>
+    <string name="font_size_sample">Na·simangni seani indake nikatgen.</string>
     <string name="setting_font_dyslexic">Dyslexic-Friendly Font</string>
-    <string name="setting_font_dyslexic_desc">Poraina altua na OpenDyslexic font-ko jakkalbo.</string>
+    <string name="setting_font_dyslexic_desc">Poraina altuabatna OpenDyslexic font-ko jakkalbo.</string>
 
-    <string name="theme_title">Theme Seokbo</string>
-    <string name="theme_light">SengÂ·a</string>
-    <string name="theme_dark">Andala</string>
+    <string name="theme_title">Theme-ko Seokbo</string>
+    <string name="theme_light">Teng·a (Light)</string>
+    <string name="theme_dark">Andala (Dark)</string>
     <string name="theme_system">System Default</string>
 
-    <string name="manage_data_title">Data Niatani</string>
-    <string name="manage_data_soil_title">AÂ·a Itihas-ko Kimitbo</string>
-    <string name="manage_data_soil_desc">Donumgipa aÂ·a porika report-rangko kimitgen.</string>
-    <string name="manage_data_docs_title">Pilak Lekka-porangko Kimitbo</string>
-    <string name="manage_data_docs_desc">Ia device-oni pilak gatatgipa le kka-porangko kimitgen.</string>
-    <string name="dialog_are_you_sure">NaÂ·a beberaÂ·ama?</string>
-    <string name="dialog_delete">Gimatbo</string>
+    <string name="manage_data_title">Data-ko Nirokbo</string>
+    <string name="manage_data_soil_title">A·a Porikka Ka·aniko Gimaatbo</string>
+    <string name="manage_data_soil_desc">Ripinggimin a·a report-rangko gimaatgen.</string>
+    <string name="manage_data_docs_title">Pilak Lekka-porarangko Gimaatbo</string>
+    <string name="manage_data_docs_desc">Ia device-oni upload ka·gimin lekkarangko gimaatgen.</string>
+    <string name="dialog_are_you_sure">Na·a bebeno?</string>
+    <string name="dialog_delete">Gimaatbo (Delete)</string>
     <string name="dialog_cancel">Dontongbo</string>
-    <string name="toast_history_cleared">AÂ·a itihas-ko gimatjok.</string>
-    <string name="toast_documents_cleared">Pilak lekka-porangko gimatjok.</string>
+    <string name="toast_history_cleared">A·a porikka ka·ani itihas-ko gimaatjok.</string>
+    <string name="toast_documents_cleared">Pilak lekkarangko gimaatjok.</string>
 
-    <string name="help_title">Dakchakan aro MaÂ·chakan</string>
-    <string name="help_faq_title">SingÂ·ronggipa SingÂ·anirang (FAQ)</string>
-    <string name="help_q1">Maikai anga namgipa aÂ·a scan-ko raÂ·gen?</string>
-    <string name="help_a1">Namgipa sengÂ·ani dongchina, gipokgipa kiÂ·sangao namgipa aÂ·ako donbo, aro focus-ko suÂ·bo.</string>
-    <string name="help_q2">AI badita kakket ongÂ·a?</string>
-    <string name="help_a2">AI nikanio pangchake kuÂ·pattianirangko onÂ·a. Mongsonggipa kamrangna, dingtangmancha expert-rangko singÂ·bo.</string>
-    <string name="help_contact_title">Contact Support</string>
+    <string name="help_title">Dakchakani</string>
+    <string name="help_faq_title">Sing·ronggipa Sing·anirang (FAQ)</string>
+    <string name="help_q1">Anga maikai namgipa a·a scan-ko ra·na man·gen?</string>
+    <string name="help_a1">Seng·a biapo donbo, gipokgipa biapo a·ako donbo, aro focus ka·na tap ka·bo.</string>
+    <string name="help_q2">AI badita kakket ong·a?</string>
+    <string name="help_a2">AI nikanio pangchake ku·pattiako on·a. Mongsonggipa kamrangna expert-rang baksa agangrikbo.</string>
+    <string name="help_contact_title">Support-ko Grigbo</string>
     <string name="help_contact_phone">+91 12345 67890</string>
     <string name="help_contact_email">support@mittimitra.com</string>
 
-    <string name="converter_title">AÂ·a Tuang Dingtangata</string>
-    <string name="label_enter_area">AÂ·a Tuang Sebo</string>
-    <string name="label_result">CheÂ·biani</string>
-    <string name="btn_convert">Dingtangata</string>
+    <string name="converter_title">A·a Solaigipa</string>
+    <string name="label_enter_area">A·ani Bimang</string>
+    <string name="label_result">Bipol</string>
+    <string name="btn_convert">Solaiatbo</string>
     <string name="unit_acre">Acre</string>
     <string name="unit_hectare">Hectare</string>
     <string name="unit_bigha">Bigha</string>
     <string name="unit_guntha">Guntha</string>
     <string name="unit_cent">Cent</string>
 
-    <string name="setting_share_app">Ripengrangna Share KaÂ·bo</string>
-    <string name="setting_notifications">Notification Preferences</string>
+    <string name="setting_share_app">Riperangna Watatbo</string>
+    <string name="setting_notifications">Notification-rang</string>
 
-    <string name="notif_title">Kobor</string>
-    <string name="notif_weather_title">Batar Kobor</string>
-    <string name="notif_weather_desc">Mikkaranggip aro balwa-taÂ·rak koborko manÂ·bo.</string>
-    <string name="notif_mandi_title">Bajar Dam</string>
-    <string name="notif_mandi_desc">NaÂ·simangni jilani salantin bajar dam.</string>
-    <string name="notif_scheme_title">Sorkarini Kamrang</string>
-    <string name="notif_scheme_desc">PM-KISAN aro gipin dakkchakani kobor.</string>
-    <string name="share_message">Mitti Mitra-ko nibo - AÂ·a AnÂ·sengani aro Game GeÂ·anina nambatsranggipa App! Iano download kaÂ·bo: https://play.google.com/store/apps/details?id=com.mittimitra</string>
+    <string name="notif_title">Uiatanirang (Notifications)</string>
+    <string name="notif_weather_title">Balwa-Salni Mikrakatani</string>
+    <string name="notif_weather_desc">Mikka aro balwa-ta·rakni gimin uiatani.</string>
+    <string name="notif_mandi_title">Anti-ni Dam</string>
+    <string name="notif_mandi_desc">Na·simangni jillani antini dam.</string>
+    <string name="notif_scheme_title">Sorkarini Scheme-rang</string>
+    <string name="notif_scheme_desc">PM-Kisan aro subsidy-ni gimin uiatanirang.</string>
+    <string name="share_message">Mitti Mitra-ko nibo - A·a aro Ge·a-gamanina nambatsranggipa App! Iano download ka·bo: https://play.google.com/store/apps/details?id=com.mittimitra</string>
 
-    <string name="title_pm_kisan">PM-KISAN: â‚¹6,000/Bilsi o</string>
+    <string name="title_pm_kisan">PM-KISAN: ₹6,000/bilsio Dakchakani</string>
     <string name="title_smart_tools">Smart Tools</string>
-    <string name="title_soil_health">AÂ·a AnÂ·sengani Card: NaÂ·simangni AÂ·a Bilko MaÂ·sibo</string>
-    <string name="title_fasal_bima">PM Fasal Bima Yojana: NaÂ·simangni GeÂ·a-Gamaniko Naljokkatbo</string>
+    <string name="title_soil_health">Soil Health Card: A·ani Bilko Ma·sibo</string>
+    <string name="title_fasal_bima">PM Fasal Bima Yojana: Gam-chako Naljoke Donbo</string>
 
-    <string name="notif_weather">Batar Kobor</string>
-    <string name="notif_mandi">Bajar Dam</string>
-    <string name="notif_schemes">Sorkarini Kamrang</string>
+    <string name="notif_weather">Balwa-Salni Mikrakatani</string>
+    <string name="notif_mandi">Anti-ni Dam</string>
+    <string name="notif_schemes">Sorkarini Scheme</string>
 
-    <string name="contact_header">Chinga Dakchakna Iano Donga</string>
-    <string name="contact_desc">Game geÂ·ani gimin ba technical dakchakanina chingko griribo.</string>
-    <string name="contact_call">Support-ko KaÂ·bo</string>
+    <string name="contact_header">Chinga Dakchakna Dongenga</string>
+    <string name="contact_desc">Dingtangmancha ge·a-gamani ku·pattianina chinga baksa agangrikbo.</string>
+    <string name="contact_call">Support-na Ka·bo</string>
     <string name="contact_time">Mon-Sat, 9AM - 6PM</string>
-    <string name="contact_email">Email Us</string>
+    <string name="contact_email">Email Ka·bo</string>
     <string name="contact_email_addr">support@mittimitra.com</string>
 
-    <string name="label_from_unit">Oni</string>
-    <string name="label_to_unit">Ona</string>
+    <string name="label_from_unit">Ia Unit-oni</string>
+    <string name="label_to_unit">Ia Unit-ona</string>
 
-    <string name="scan_title">Gital AÂ·a Niatani</string>
+    <string name="scan_title">Gital A·a Scan</string>
     <string name="scan_env_data">Environment Data</string>
-    <string name="scan_weather">Batar</string>
-    <string name="scan_moisture">Moisture</string>
-    <string name="scan_nutrients">Soil Nutrients (Est.)</string>
-    <string name="scan_hint">NaÂ·simangni Nikanirang (e.g. \'Rimitgipa Bijakrang\')</string>
-    <string name="scan_status_ready">Niatna Tarijok</string>
+    <string name="scan_weather">Balwa-Sal</string>
+    <string name="scan_moisture">Chisol</string>
+    <string name="scan_nutrients">A·ani Pushti (Ka·dongsoani)</string>
+    <string name="scan_hint">Na·simangni Nikani (Jekai \'Rimitchigipa Bijak\')</string>
+    <string name="scan_status_ready">Scan ka·na tarijok</string>
     <string name="scan_btn_gallery">Gallery</string>
     <string name="scan_btn_camera">Camera</string>
-    <string name="scan_btn_analyze">Bol-Bijak Niatbo</string>
+    <string name="scan_btn_analyze">Bipangko Nibo</string>
 
-    <string name="profile_recent">DaÂ·ororoni Niatani</string>
-    <string name="profile_no_history">Maming gital scan-rang dongja.</string>
-    <string name="profile_logout">Log Out</string>
-    <string name="profile_member_since">Member Since:</string>
+    <string name="profile_recent">Gital Porikka Ka·anirang</string>
+    <string name="profile_no_history">Maming gital scan dongja.</string>
+    <string name="profile_logout">Ong·katbo</string>
+    <string name="profile_member_since">Member ong·a bachenga:</string>
     <string name="profile_phone">Phone:</string>
 
-    <string name="rec_title">AÂ·a AnÂ·sengani Report</string>
+    <string name="rec_title">A·ani An·seng Baljokan Card</string>
     <string name="rec_header_title">SOIL HEALTH CARD</string>
-    <string name="rec_header_subtitle">Mitti Mitra â€¢ Digital Agriculture Mission</string>
-    <string name="rec_farmer_details">FARMER DETAILS</string>
-    <string name="rec_label_name">Bimung:</string>
+    <string name="rec_header_subtitle">Mitti Mitra • Digital Agriculture Mission</string>
+    <string name="rec_farmer_details">GAMGIPANI BI·BING</string>
+    <string name="rec_label_name">Biming:</string>
     <string name="rec_label_mobile">Mobile:</string>
     <string name="rec_label_email">Email:</string>
     <string name="rec_label_location">Biap:</string>
-    <string name="rec_label_date">Date:</string>
-    <string name="rec_results_title">TEST RESULTS (Primary Nutrients)</string>
+    <string name="rec_label_date">Tarikh:</string>
+    <string name="rec_results_title">PORIKKANI BIPOL (Mongsonggipa)</string>
     <string name="rec_col_param">Parameter</string>
     <string name="rec_col_value">Gamchatani</string>
     <string name="rec_col_status">Obosta</string>
     <string name="rec_advisory_title">SCIENTIFIC ADVISORY</string>
-    <string name="rec_footer">Mitti Mitra AI-chi OngÂ·katgipa | Satellite Data-chi CheÂ·emgipa</string>
-    <string name="rec_btn_download">PDF Download</string>
+    <string name="rec_footer">Mitti Mitra AI-ni dakgimin | Verified by Satellite Data</string>
+    <string name="rec_btn_download">PDF Download Ka·bo</string>
 
-    <string name="login_welcome">ReÂ·ba PilÂ·ani Namchik</string>
-    <string name="login_subtitle">NaÂ·simangni farm tools-ko manÂ·na login kaÂ·bo</string>
-    <string name="login_google">Google-chi Dakkangkuy</string>
-    <string name="login_or_divider">BA PHONE</string>
+    <string name="login_welcome">Rimchakso-ta·a</string>
+    <string name="login_subtitle">Ge·a-gamani ostro-rangko man·na login ka·bo</string>
+    <string name="login_google">Google-chi napbo</string>
+    <string name="login_or_divider">Ba Phone</string>
     <string name="login_hint_phone">Phone Number</string>
-    <string name="login_btn_otp">OTP ManÂ·bo</string>
-    <string name="login_hint_otp">6-digit OTP Sebo</string>
-    <string name="login_btn_verify">BeberaÂ·bo &amp; Login</string>
-    <string name="login_trouble">Login kaÂ·na nengÂ·nikanirang donga?</string>
+    <string name="login_btn_otp">OTP Ra·bo</string>
+    <string name="login_hint_otp">6-digit OTP-ko sebo</string>
+    <string name="login_btn_verify">Kakketko Nibo &amp; Login</string>
+    <string name="login_trouble">Login ka·na neng·nikanirang donga?</string>
 
-    <string name="home_welcome_default">Salsako, Game ChaÂ·gipa</string>
-    <string name="home_card_scan">AÂ·a Scan</string>
-    <string name="home_card_advice">KuÂ·pattiani RaÂ·bo</string>
+    <string name="home_welcome_default">Salskam, Game Cha·gipa</string>
+    <string name="home_card_scan">A·a Scan</string>
+    <string name="home_card_advice">Ku·pattianiko Ra·bo</string>
     <string name="home_card_tips">Kisan Sahayak (AI)</string>
     <string name="home_card_plant_doctor">Plant Doctor</string>
     <string name="home_section_tools">Smart Tools</string>
     <string name="desc_logo">App Logo</string>
     <string name="desc_icon">Icon</string>
 
-    <string name="title_documents">Nangchongmotgipa Lekka-porang</string>
-    <string name="msg_no_documents">Maming lekka-porang dongja.\nOnÂ·dapna \'+\' suÂ·bo.</string>
-    <string name="desc_add_document">Lekka-pora OnÂ·dapbo</string>
+    <string name="title_documents">Nanggipa Lekka-porarang</string>
+    <string name="msg_no_documents">Maming lekka dongja.\nOn·dapna \'+\' ko tap ka·bo.</string>
+    <string name="desc_add_document">Lekka On·dapbo</string>
 
-    <string name="title_scan_history">Scan History</string>
+    <string name="title_scan_history">Scan-ni Itihas</string>
 
-    <string name="welcome_home_title">Salsako!</string>
-    <string name="welcome_home_desc">NaÂ·a namgipae login kaÂ·manjok!</string>
+    <string name="welcome_home_title">Nokona Rimchaksoa!</string>
+    <string name="welcome_home_desc">Na·a name login ka·manjok!</string>
 
-    <string name="btn_test_notification">Test Notification Watbo</string>
+    <string name="btn_test_notification">Test Notification Watatbo</string>
     <string name="desc_notification_icon">Notification Icon</string>
 
-    <string name="profile_name_placeholder">Loading...</string>
+    <string name="profile_name_placeholder">Load ka·enga...</string>
     <string name="profile_email_placeholder">email@example.com</string>
     <string name="desc_profile_image">Profile Picture</string>
-    <string name="desc_change_photo">Change Profile Photo</string>
-    <string name="desc_edit_profile">Edit Profile Details</string>
+    <string name="desc_change_photo">Profile Photo-ko Dingtangbo</string>
+    <string name="desc_edit_profile">Profile-ni Gimin Taridapbo</string>
 
     <string name="rec_param_n">Nitrogen (N)</string>
     <string name="rec_param_p">Phosphorus (P)</string>
     <string name="rec_param_k">Potassium (K)</string>
     <string name="rec_param_ph">Soil pH</string>
-    <string name="rec_ai_context">Crop-ni nangnikani gimin niatenga...</string>
-    <string name="rec_ai_generating">Expert kuÂ·pattianirangko ongÂ·katatenga...</string>
+    <string name="rec_ai_context">Gamani nanganirangko nienga...</string>
+    <string name="rec_ai_generating">Expert-ni ku·pattianiko tarikugen...</string>
 
-    <string name="scan_locating">Biap amÂ·enga...</string>
-    <string name="desc_image_preview">Image Preview</string>
+    <string name="scan_locating">Biapko am·enga...</string>
+    <string name="desc_image_preview">Nukgni</string>
     <string name="signup_title">Mitti Mitra-o Napbo</string>
-    <string name="signup_subtitle">DaÂ·alonin naÂ·simangni smart farming-ko aÂ·bachengbo</string>
+    <string name="signup_subtitle">Da·alonin na·simangni smart farming-ko a·bachengbo</string>
     <string name="signup_create_account">Account Kulibo</string>
-    <string name="signup_google">Google-chi Sign up</string>
-    <string name="signup_phone">Phone Number-chi Sign up</string>
-    <string name="signup_footer">Ma account dongmanahama?</string>
+    <string name="signup_google">Google-chi Sign up ka·bo</string>
+    <string name="signup_phone">Phone-chi Sign up ka·bo</string>
+    <string name="signup_footer">Account dongmanengama?</string>
 
     <string name="chat_title">Agri-Expert Chat</string>
-    <string name="chat_hint">GeÂ·a-gamani gimin singÂ·bo...</string>
-    <string name="desc_mic">Audio Record</string>
-    <string name="desc_send">Message Watbo</string>
+    <string name="chat_hint">Gam-chani gimin sing·bo...</string>
+    <string name="desc_mic">Ku·rang Record Ka·bo</string>
+    <string name="desc_send">Katta Watatbo</string>
 
-    <string name="welcome_get_started">AÂ·bachengbo</string>
-    <string name="welcome_join_community">SengÂ·gipa farming community-o napbo.</string>
+    <string name="welcome_get_started">A·bachengbo</string>
+    <string name="welcome_join_community">Nambatsranggipa ge·a-gamani dol-o bakrimbo.</string>
 
-    <string name="edit_profile_title">Edit Profile</string>
-    <string name="edit_profile_name_hint">ChuÂ·gimik Bimung</string>
+    <string name="edit_profile_title">Profile-ko Taridapbo</string>
+    <string name="edit_profile_name_hint">Chu·gimik Biming</string>
     <string name="edit_profile_phone_hint">Phone Number</string>
     <string name="edit_profile_phone_helper">Alert-rangna nangchongmota</string>
-    <string name="btn_save_changes">Dingtanganirangko Donbo</string>
+    <string name="btn_save_changes">Dingtanganirangko Save Ka·bo</string>
 
     <string name="btn_view">Nibo</string>
 
-    <string name="placeholder_location">Biap MaÂ·sija</string>
-    <string name="placeholder_date">Date</string>
-    <string name="status_calculating">Hisap KaÂ·enga...</string>
-    <string name="desc_view_details">CheÂ·emcheÂ·em Nibo</string>
+    <string name="placeholder_location">Uigijagipa Biap</string>
+    <string name="placeholder_date">Tarikh</string>
+    <string name="status_calculating">Hisap ka·enga...</string>
+    <string name="desc_view_details">Che·em che·em Nibo</string>
 
     <string name="history">Analysis History</string>
-    <string name="delete_confirmation">Delete Record</string>
-    <string name="delete_history_message">Ia aÂ·a niatgipa record-ko naÂ·a kimitna beberaÂ·ama?</string>
-    <string name="delete">Kimitbo</string>
+    <string name="delete_confirmation">Record-ko Gimaatbo</string>
+    <string name="delete_history_message">Na·a ia a·a porikka ka·ani record-ko gimaatna skama?</string>
+    <string name="delete">Gimaatbo</string>
     <string name="cancel">Dontongbo</string>
-    <string name="record_deleted">Record kimitjok</string>
+    <string name="record_deleted">Record gimaatjok</string>
 
-    <string name="share_report">Share Report</string>
-    <string name="share_via">Share via</string>
-    <string name="undo">Undo</string>
+    <string name="share_report">Report-ko Sualbo</string>
+    <string name="share_via">Iachi sualbo</string>
+    <string name="undo">Gitcham</string>
 
-    <string name="export_csv">Export CSV</string>
-    <string name="compare_analysis">To-susabo</string>
-    <string name="no_data_to_export">Export kaÂ·na maming data gri</string>
-    <string name="need_two_records">To-susana komibiyana 2 record-rang nanggen</string>
-    <string name="compare_title">Compare Analysis</string>
-    <string name="select_records">To-susana 2 record-rangko seokbo</string>
-    <string name="clear_chat">Chat-ko Kimitbo</string>
-    <string name="chat_cleared">Chat history-ko kimitjok</string>
+    <string name="export_csv">CSV Export Ka·bo</string>
+    <string name="compare_analysis">Toa-nibo</string>
+    <string name="no_data_to_export">Export ka·na data dongja</string>
+    <string name="need_two_records">Toa-nina komibeoba 2 record-rang nanga</string>
+    <string name="compare_title">Analysis-ko Toa-nibo</string>
+    <string name="select_records">Toa-nina 2 record-rangko seokbo</string>
+    <string name="clear_chat">Chat-ko Gimaatbo</string>
+    <string name="chat_cleared">Chat history gimaatjok</string>
 
-    <string name="rec_health_score">Soil Health Score</string>
-    <string name="health_excellent">Nama Obosta ðŸŒ¿</string>
-    <string name="health_good">Nama Obosta ðŸŒ±</string>
-    <string name="health_attention">Simsakna Nanggen âš ï¸</string>
-    <string name="health_poor">Namgijagipa Obosta ðŸ›‘</string>
+    <string name="rec_health_score">A·ani An·sengani Score</string>
+    <string name="health_excellent">Nama Obosta 🌿</string>
+    <string name="health_good">Namba·gipa Obosta 🌱</string>
+    <string name="health_attention">Simsakna Nanga ⚠️</string>
+    <string name="health_poor">Namgijagipa Obosta 🛑</string>
     <string name="status_acidic">ACIDIC</string>
     <string name="status_alkaline">ALKALINE</string>
     <string name="status_neutral">NEUTRAL</string>
     
-    <string name="alert_too_dark">Andalduga! Andala donggijagipa biapona reÂ·bo â˜€ï¸</string>
-    <string name="alert_data_received">Live AÂ·a Data-ko ManÂ·jok</string>
-    <string name="alert_data_unavailable">AÂ·a Data-ko ManÂ·ja</string>
-    <string name="alert_network_error">Network Error</string>
-    <string name="alert_connecting">Satellites-ona joraatenga...</string>
-    <string name="alert_offline_mode">Offline Mode-ko Jakkalenga</string>
+    <string name="alert_too_dark">Andalduga! Salakkimo donbo ☀️</string>
+    <string name="alert_data_received">A·a Data Man·sojok</string>
+    <string name="alert_data_unavailable">A·a Data Man·jaha</string>
+    <string name="alert_network_error">Network Gimaenga</string>
+    <string name="alert_connecting">Satellite-o nangrimenga...</string>
+    <string name="alert_offline_mode">Offline Mode-o jakkalenga</string>
     
-    <string name="weather_high_humidity">Chibrapduga! Bende giproroanina simsakbo.</string>
-    <string name="weather_high_heat">DingÂ·duga! GeÂ·a-gamanirangna chi watrongbo.</string>
-    <string name="weather_alert_title">Seasonal Weather Alert â›ˆï¸</string>
+    <string name="weather_high_humidity">Chisol bang·duga! Simsakbo.</string>
+    <string name="weather_high_heat">Sal-rakduga! Chi watna nanga.</string>
+    <string name="weather_alert_title">Balwa-Salni Mikrakatani ⛈️</string>
     
-    <string name="unit_result_format">Result: %1$.2f %2$s</string>
-    <string name="soil_status_low">ONI</string>
-    <string name="soil_status_high">SANG</string>
-    <string name="soil_status_ok">THIK</string>
+    <string name="unit_result_format">Bipol: %1$.2f %2$s</string>
+    <string name="soil_status_low">KOM·A</string>
+    <string name="soil_status_high">BANG·A</string>
+    <string name="soil_status_ok">THIK ONG·A</string>
 
     <string name="kisan_sahayak_title">Kisan Sahayak</string>
-    <string name="kisan_sahayak_prompt">NaÂ·simangni farm-ni gimin angal singÂ·bo...</string>
+    <string name="kisan_sahayak_prompt">Na·simangni ge·a-gamani gimin sing·bo...</string>
     <string name="plant_doctor_title">Plant Doctor</string>
-    <string name="plant_doctor_scanning">Plant-ko niatenga...</string>
-    <string name="plant_doctor_no_disease">AnÂ·senggipa Bol-bijak</string>
-    <string name="plant_doctor_confidence">Confidence: %s%%</string>
-    <string name="plant_doctor_cure">AnÂ·sengatani</string>
-    <string name="plant_scan_hint">SaÂ·gipa bijakni clear photo-ko rabo ðŸƒ</string>
-    <string name="scan_hint_text">AÂ·a simple-ona camera-ko donbo</string>
+    <string name="plant_doctor_scanning">Bipangko nienga...</string>
+    <string name="plant_doctor_no_disease">An·senggipa Bipang</string>
+    <string name="plant_doctor_confidence">Ka·dongsoani: %s%%</string>
+    <string name="plant_doctor_cure">An·sengatani</string>
+    <string name="plant_scan_hint">Sa·enggipa bijakko name nikatbo 🍃</string>
+    <string name="scan_hint_text">Camera-ko a·a-ona miksongbo</string>
     
-    <string name="signup_hint_name">ChuÂ·gimik Bimung</string>
+    <string name="signup_hint_name">Chu·gimik Biming</string>
     <string name="signup_hint_email">Email Address (Optional)</string>
     <string name="signup_hint_mobile">Mobile Number</string>
     <string name="signup_btn_create">Account Kulibo</string>
-    <string name="signup_login_link">Account dongmanahama? Login</string>
+    <string name="signup_login_link">Account dongmanengama? Login</string>
 
-    <string name="weather_alerts_title">Weather Alerts</string>
-    <string name="search_location_hint">City ba Region-ko amÂ·bo...</string>
-    <string name="search">AmÂ·bo</string>
-    <string name="current_weather">Current Weather</string>
-    <string name="seven_day_forecast">ðŸ“… 7-Day Forecast</string>
-    <string name="agri_recommendations">ðŸŒ¾ Agricultural Recommendations</string>
-    <string name="home_card_weather">Weather Alerts</string>
+    <string name="weather_alerts_title">Balwa-Salni Mikrakatani</string>
+    <string name="search_location_hint">Jilla ba a·dokko am·bo...</string>
+    <string name="search">Am·bo</string>
+    <string name="current_weather">Da·oni Balwa-Sal</string>
+    <string name="seven_day_forecast">📅 7-Salni Uiatani</string>
+    <string name="agri_recommendations">🌾 Ge·a-gamani Ku·pattiani</string>
+    <string name="home_card_weather">Balwa-Sal</string>
+    <string name="error_enter_location">Biapko sebo</string>
+    <string name="location_default">India (Default)</string>
+    <string name="error_location_not_found">Biapko man·jaha</string>
+    <string name="error_geocoding">Geocoding ong·jaha</string>
+    <string name="error_fetch_weather">Balwa-Salni data-ko man·jaha</string>
+    <string name="label_humidity_format">💧 Chisol: %.0f%%</string>
+    <string name="label_wind_format">💨 Balwa: %.1f km/h</string>
+    <string name="pest_risk_format">🐛 Jo·ongni Gimaatani: %s - Simsakbo!</string>
 
-    <string name="crop_calendar_title">Crop Calendar</string>
-    <string name="crop_calendar_subtitle">AI-chi geÂ·ani aro ratani somoirang</string>
-    <string name="select_crop">GeÂ·ani-ko Seokbo</string>
-    <string name="generate_schedule">AI Schedule-ko OngÂ·katatbo</string>
-    <string name="home_card_calendar">Crop Calendar</string>
+    <string name="crop_calendar_title">Gam-chani Calendar</string>
+    <string name="crop_calendar_subtitle">AI-chi ge·ani aro ratani somoi</string>
+    <string name="select_crop">Gam-chako Seokbo</string>
+    <string name="generate_schedule">AI Schedule-ko Taribo</string>
+    <string name="home_card_calendar">Gam-chani Calendar</string>
 
-    <string name="irrigation_title">Irrigation Calculator</string>
-    <string name="irrigation_subtitle">Calculate daily water requirements based on crop, soil, and weather</string>
-    <string name="soil_type">AÂ·a MaÂ·mal</string>
-    <string name="field_size">Field Size</string>
-    <string name="calculate_water">Calculate Water Needs</string>
-    <string name="water_requirement">Daily Water Requirement</string>
-    <string name="home_card_irrigation">Irrigation</string>
+    <string name="irrigation_title">Chi Watani Calculator</string>
+    <string name="irrigation_subtitle">Salantio badita chi nanga hisap ka·bo</string>
+    <string name="soil_type">A·ani Ro·kom</string>
+    <string name="field_size">A·ani Dal·a</string>
+    <string name="calculate_water">Chi Nanganiko Hisap Ka·bo</string>
+    <string name="water_requirement">Salantio Chi Nangani</string>
+    <string name="home_card_irrigation">Chi Watani</string>
 
-    <string name="mandi_title">Live Mandi Prices</string>
-    <string name="mandi_select_prompt">Select Crop &amp; Region</string>
-    <string name="mandi_btn_check">Check Prices</string>
-    <string name="mandi_error_no_data">No live data found for this selection.</string>
-    <string name="mandi_error_connect">Error connecting to Agmarknet: %s</string>
+    <string name="mandi_title">Anti-ni Dam</string>
+    <string name="mandi_select_prompt">Gam-cha aro Biap Seokbo</string>
+    <string name="mandi_btn_check">Dam-ko Nibo</string>
+    <string name="mandi_error_no_data">Ia seokanina data dongja.</string>
+    <string name="mandi_error_connect">Agmarknet-o nangrimna man·jaenga: %s</string>
     <string name="mandi_source">Source: Agmarknet (gov.in)</string>
 
-    <string name="plant_status_scanning">Running Advanced Analysis...</string>
-    <string name="plant_status_complete">AI Analysis Complete</string>
-    <string name="plant_status_unavailable">AI Analysis Unavailable (%s)</string>
-    <string name="plant_status_error">Error parsing AI response.</string>
-    <string name="plant_diagnosis">Diagnosis: %s</string>
-    <string name="plant_remedies">Remedies:</string>
+    <string name="plant_status_scanning">Analysis ka·enga...</string>
+    <string name="plant_status_complete">AI Analysis Matchotjok</string>
+    <string name="plant_status_unavailable">AI Analysis Man·jaenga (%s)</string>
+    <string name="plant_status_error">AI response-o gualani donga.</string>
+    <string name="plant_diagnosis">Sa·ani: %s</string>
+    <string name="plant_remedies">An·sengatanirang:</string>
 
-    <string name="irrigation_hint_size">Please enter field size</string>
-    <string name="irrigation_error_size">Invalid field size</string>
-    <string name="irrigation_result_water">ðŸ’§ %1$.0f liters/day\n(%2$.1f mm depth)</string>
-    <string name="irrigation_weather_note">ðŸ“ %1$s\nðŸŒ¡ï¸ Current: %2$.1fÂ°C, ðŸ’§ Humidity: %3$.0f%%</string>
+    <string name="irrigation_hint_size">A·ani dal·ako sebo</string>
+    <string name="irrigation_error_size">A·ani dal·ako guale seaha</string>
+    <string name="irrigation_result_water">💧 %1$.0f liter/salo\n(%2$.1f mm tu·a)</string>
+    <string name="irrigation_weather_note">📍 %1$s\n🌡️ Da·o: %2$.1f°C, 💧 Chisol: %3$.0f%%</string>
+    <string name="irrigation_rain_append">\n🌧️ %s mm</string>
 
-    <string name="profile_farm_dashboard">ðŸŒ¾ My Farm Dashboard</string>
+    <string name="profile_farm_dashboard">🌾 Angni A·a Dashboard</string>
     <string name="profile_stat_rank">Rank</string>
-    <string name="profile_stat_land">Land Size</string>
-    <string name="profile_stat_crop">Active Crop</string>
+    <string name="profile_stat_land">A·ani Dal·a</string>
+    <string name="profile_stat_crop">Da·oni Gam-cha</string>
     <string name="profile_rank_novice">Novice</string>
     <string name="profile_rank_expert">Expert</string>
     <string name="profile_rank_guardian">Guardian</string>
     <string name="profile_rank_master">Mitti Mitra</string>
     <string name="unit_acres">Acres</string>
-    <string name="status_none">None</string>
+    <string name="status_none">Mamungba Dongja</string>
+
+    <string name="scheme_select_profile">Profile-ko Seokbo</string>
+    <string name="scheme_land_size">A·ani Dal·a</string>
+    <string name="scheme_land_small">Chona (&lt; 2ha)</string>
+    <string name="scheme_land_medium">Jatchi (2-4ha)</string>
+    <string name="scheme_land_large">Dal·a (> 4ha)</string>
+    <string name="scheme_no_match">Maming scheme na·simang baksa melija.</string>
+    <string name="scheme_benefit_label">Namgni: </string>
+    <string name="scheme_tap_apply">Darkasto Ka·na Tap Ka·bo →</string>
+    
+    <string name="mandi_market_label">Anti-ni Biming</string>
+    <string name="mandi_price_min_max">Kom·a: 2000 - Bang·a 2500</string>
+    <string name="mandi_price_modal_label">Modal Price</string>
+
+    <string-array name="mandi_states">
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chhattisgarh</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Madhya Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Odisha</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttar Pradesh</item>
+        <item>Uttarakhand</item>
+        <item>West Bengal</item>
+        <item>Andaman and Nicobar</item>
+        <item>Chandigarh</item>
+        <item>Delhi</item>
+        <item>Jammu and Kashmir</item>
+        <item>Ladakh</item>
+        <item>Puducherry</item>
+    </string-array>
+
+    <string-array name="mandi_commodities">
+        <item>Gom (Wheat)</item>
+        <item>Mi (Rice)</item>
+        <item>Mera-ku·simang (Maize)</item>
+        <item>Khimil (Cotton)</item>
+        <item>Soyabean</item>
+        <item>Grit (Sugarcane)</item>
+        <item>Rasun (Onion)</item>
+        <item>Alu (Potato)</item>
+        <item>Biliti (Tomato)</item>
+        <item>Jalik (Chilli)</item>
+        <item>Rasun (Garlic)</item>
+        <item>Tur (Arhar)</item>
+        <item>Gram (Chana)</item>
+        <item>Moong (Green Gram)</item>
+        <item>Urad (Black Gram)</item>
+        <item>Groundnut</item>
+        <item>Besual (Mustard)</item>
+        <item>Sesamum</item>
+        <item>Terik (Banana)</item>
+        <item>Te·gatchu (Mango)</item>
+        <item>Komila (Orange)</item>
+        <item>Drakka (Grapes)</item>
+        <item>Apple</item>
+    </string-array>
+    
+    <string-array name="irrigation_crops">
+        <item>Mi (Rice)</item>
+        <item>Gom (Wheat)</item>
+        <item>Mera-ku·simang (Maize)</item>
+        <item>Khimil (Cotton)</item>
+        <item>Grit (Sugarcane)</item>
+        <item>Biliti (Tomato)</item>
+        <item>Alu (Potato)</item>
+        <item>Rasun (Onion)</item>
+        <item>Jalik (Chilli)</item>
+        <item>Soybean</item>
+    </string-array>
+
+    <string-array name="irrigation_soil_types">
+        <item>A·a-siliting (Clay)</item>
+        <item>An·cheng (Sandy)</item>
+        <item>A·a-makkre (Loamy)</item>
+        <item>A·a-gisim (Black)</item>
+        <item>A·a-gitchak (Red)</item>
+    </string-array>
+    <string name="dup_title">Duplicate Account-ko nikaha</string>
+    <string name="dup_merge_title">🔗 Maikai Account-ko nangrimatgen</string>
+    <string name="dup_merge_msg">Account-rangko nangrimatna:\n\n1. Skanggipa account-o login ka·bo.\n2. Settings -> Account &amp; Security-ona re·angbo.\n3. Ia login ka·aniko nangrimatna \'Link Phone/Email\' ko seokbo.\n\nIndake ka·on na·simangni data gimik biap sanno donggen.</string>
+    <string name="dup_btn_got_it">Ma·sijok</string>
+    <string name="dup_toast_login">Da·o donggipa account-chi login ka·bo</string>
+    <string name="setting_account_security">Account &amp; Security</string>
+    <string name="toast_account_linking_soon">Account Linking bakbaaken sokbagen!</string>
+    
+    <string name="login_new_user_link">Gital User? Account Kulibo</string>
+
 </resources>

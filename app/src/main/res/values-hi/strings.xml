@@ -1,104 +1,461 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€ à¤®à¤¿à¤¤à¥à¤°</string>
-    <string name="welcome_subtitle">à¤†à¤ªà¤•à¤¾ à¤…à¤ªà¤¨à¤¾ à¤–à¥‡à¤¤à¥€ à¤¸à¤¹à¤¾à¤¯à¤•</string>
-    <string name="button_scan">à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€ à¤œà¤¾à¤à¤š</string>
-    <string name="button_history">à¤ªà¥à¤°à¤¾à¤¨à¤¾ à¤°à¤¿à¤•à¥‰à¤°à¥à¤¡</string>
+﻿<resources>
+    <string name="app_name">मिट्टी मित्र</string>
 
-    <string name="button_recommendation">à¤¸à¤²à¤¾à¤¹</string>
-    <string name="button_documents">à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥‡à¤œà¤¼</string>
+    <string name="welcome_subtitle">आपका अपना कृषि सहायक</string>
+    <string name="login">लॉगिन</string>
+    <string name="signup">साइन अप</string>
 
-    <string name="greeting_format">à¤¨à¤®à¤¸à¥à¤¤à¥‡, %s</string>
-    <string name="home_card_scan">à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€ à¤¸à¥à¤•à¥ˆà¤¨ à¤•à¤°à¥‡à¤‚</string>
-    <string name="home_card_advice">à¤µà¥ˆà¤œà¥à¤žà¤¾à¤¨à¤¿à¤• à¤¸à¤²à¤¾à¤¹</string>
-    <string name="home_card_tips">à¤µà¤¿à¤¶à¥‡à¤·à¤œà¥à¤ž à¤¸à¥à¤à¤¾à¤µ</string>
+    <string name="greeting_format">नमस्ते, %s</string>
+    <string name="greeting_default">नमस्ते, किसान मित्र</string>
+    <string name="last_scan">पिछला स्कैन</string>
+    <string name="button_tip">सुझाव</string>
+    <string name="button_recommendation">सलाह</string>
+    <string name="button_history">इतिहास</string>
+    <string name="button_scan">स्कैन</string>
+    <string name="button_documents">दस्तावेज़</string>
 
-    <string name="scan_title">à¤¨à¤ˆ à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€ à¤œà¤¾à¤à¤š</string>
-    <string name="scan_btn_camera">à¤•à¥ˆà¤®à¤°à¤¾</string>
-    <string name="scan_btn_gallery">à¤—à¥ˆà¤²à¤°à¥€</string>
-    <string name="scan_btn_analyze">Analyze Plant</string>
-    <string name="scan_status_ready">à¤¸à¥à¤•à¥ˆà¤¨ à¤•à¥‡ à¤²à¤¿à¤ à¤¤à¥ˆà¤¯à¤¾à¤°</string>
-    <string name="alert_too_dark">à¤¬à¤¹à¥à¤¤ à¤…à¤‚à¤§à¥‡à¤°à¤¾ à¤¹à¥ˆ! à¤›à¤¾à¤¯à¤¾ à¤¸à¥‡ à¤¬à¤šà¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ à¤°à¥‹à¤¶à¤¨à¥€ à¤®à¥‡à¤‚ à¤†à¤à¤‚ â˜€ï¸</string>
+    <string name="menu_settings">सेटिंग्स</string>
+    <string name="menu_help">मदद</string>
+    <string name="menu_contact">संपर्क</string>
+    <string name="menu_logout">लॉग आउट</string>
+
+    <string name="setting_language">भाषा</string>
+    <string name="setting_accessibility">सुलभता (Accessibility)</string>
+    <string name="setting_theme">ऐप थीम</string>
+    <string name="setting_manage_data">डाटा प्रबंधित करें</string>
+
+    <string name="setting_unit_converter">भूमि इकाई कनवर्टर</string>
+    <string name="setting_unit_converter_desc">एकड़, हेक्टेयर, बीघा और गुंठा को बदलें।</string>
+    <string name="setting_kisan_call">किसान हेल्पलाइन पर कॉल करें</string>
+    <string name="setting_kisan_call_desc">सरकारी किसान कॉल सेंटर से जुड़ें (1800-180-1551)।</string>
+
+    <string name="language_title">भाषा चुनें</string>
+    <string name="language_system_default">सिस्टम डिफ़ॉल्ट</string>
+    <string name="language_english">English</string>
+    <string name="language_hindi">हिन्दी (Hindi)</string>
+    <string name="language_tamil">தமிழ் (Tamil)</string>
+    <string name="language_malayalam">മലയാളം (Malayalam)</string>
+    <string name="language_telugu">తెలుగు (Telugu)</string>
+    <string name="language_kannada">ಕನ್ನಡ (Kannada)</string>
+    <string name="language_marathi">मराठी (Marathi)</string>
+    <string name="language_bengali">বাংলা (Bengali)</string>
+    <string name="language_gujarati">ગુજરાતી (Gujarati)</string>
+    <string name="language_punjabi">ਪੰਜਾਬੀ (Punjabi)</string>
+    <string name="language_assamese">অসমীয়া (Assamese)</string>
+    <string name="language_manipuri">মৈতৈলোন্ (Manipuri)</string>
+    <string name="language_bodo">बड़ो (Bodo)</string>
+    <string name="language_mizo">Mizo ţawng (Mizo)</string>
+    <string name="language_garo">A·chik (Garo)</string>
+
+    <string name="font_size_title">फ़ॉन्ट का आकार</string>
+    <string name="font_size_small">छोटा</string>
+    <string name="font_size_default">डिफ़ॉल्ट</string>
+    <string name="font_size_large">बड़ा</string>
+    <string name="font_size_sample">आपका टेक्स्ट ऐसा दिखेगा।</string>
+    <string name="setting_font_dyslexic">डिस्लेक्सिया-फ्रेंडली फ़ॉन्ट</string>
+    <string name="setting_font_dyslexic_desc">पढ़ने में आसानी के लिए OpenDyslexic फ़ॉन्ट का उपयोग करें।</string>
+
+    <string name="theme_title">थीम चुनें</string>
+    <string name="theme_light">लाइट (हल्का)</string>
+    <string name="theme_dark">डार्क (गहरा)</string>
+    <string name="theme_system">सिस्टम डिफ़ॉल्ट</string>
+
+    <string name="manage_data_title">डाटा प्रबंधित करें</string>
+    <string name="manage_data_soil_title">मृदा इतिहास साफ़ करें</string>
+    <string name="manage_data_soil_desc">सभी सहेजी गई मिट्टी जांच रिपोर्ट हटा देगा।</string>
+    <string name="manage_data_docs_title">सभी दस्तावेज़ साफ़ करें</string>
+    <string name="manage_data_docs_desc">इस डिवाइस से अपलोड किए गए सभी दस्तावेज़ हटा देगा।</string>
+    <string name="dialog_are_you_sure">क्या आप सुनिश्चित हैं?</string>
+    <string name="dialog_delete">हटाएं (Delete)</string>
+    <string name="dialog_cancel">रद्द करें</string>
+    <string name="toast_history_cleared">मृदा इतिहास साफ़ कर दिया गया।</string>
+    <string name="toast_documents_cleared">सभी दस्तावेज़ साफ़ कर दिए गए।</string>
+
+    <string name="help_title">मदद और सहायता</string>
+    <string name="help_faq_title">अक्सर पूछे जाने वाले प्रश्न (FAQ)</string>
+    <string name="help_q1">मैं मिट्टी का अच्छा स्कैन कैसे लूं?</string>
+    <string name="help_a1">अच्छी रोशनी सुनिश्चित करें, नमूने को सादे बैकग्राउंड पर रखें, और फ़ोकस करने के लिए टैप करें।</string>
+    <string name="help_q2">AI कितना सटीक है?</string>
+    <string name="help_a2">AI दृश्य डेटा के आधार पर सुझाव देता है। महत्वपूर्ण निर्णयों के लिए कृपया स्थानीय कृषि विशेषज्ञ से सलाह लें।</string>
+    <string name="help_contact_title">सपोर्ट से संपर्क करें</string>
+    <string name="help_contact_phone">+91 12345 67890</string>
+    <string name="help_contact_email">support@mittimitra.com</string>
+
+    <string name="converter_title">भूमि कनवर्टर</string>
+    <string name="label_enter_area">क्षेत्रफल दर्ज करें</string>
+    <string name="label_result">परिणाम</string>
+    <string name="btn_convert">बदलें</string>
+    <string name="unit_acre">एकड़</string>
+    <string name="unit_hectare">हेक्टेयर</string>
+    <string name="unit_bigha">बीघा (मानक)</string>
+    <string name="unit_guntha">गुंठा</string>
+    <string name="unit_cent">सेंट</string>
+
+    <string name="setting_share_app">दोस्तों के साथ शेयर करें</string>
+    <string name="setting_notifications">नोटिफिकेशन प्राथमिकताएं</string>
+
+    <string name="notif_title">नोटिफिकेशन</string>
+    <string name="notif_weather_title">मौसम अलर्ट</string>
+    <string name="notif_weather_desc">भारी बारिश और तूफ़ान की चेतावनी प्राप्त करें।</string>
+    <string name="notif_mandi_title">मंडी भाव</string>
+    <string name="notif_mandi_desc">आपके ज़िले के लिए दैनिक बाज़ार भाव।</string>
+    <string name="notif_scheme_title">सरकारी योजनाएं</string>
+    <string name="notif_scheme_desc">पीएम-किसान और सब्सिडी पर अपडेट।</string>
+    <string name="share_message">Mitti Mitra देखें - मिट्टी की सेहत और खेती के लिए सबसे अच्छा ऐप! यहाँ डाउनलोड करें: https://play.google.com/store/apps/details?id=com.mittimitra</string>
+
+    <string name="title_pm_kisan">पीएम-किसान: ₹6,000/वर्ष आय सहायता</string>
+    <string name="title_smart_tools">स्मार्ट टूल्स</string>
+    <string name="title_soil_health">मृदा स्वास्थ्य कार्ड: अपनी मिट्टी की ताकत जानें</string>
+    <string name="title_fasal_bima">पीएम फसल बीमा योजना: अपनी फसल सुरक्षित करें</string>
+
+    <string name="notif_weather">मौसम अलर्ट</string>
+    <string name="notif_mandi">मंडी भाव</string>
+    <string name="notif_schemes">सरकारी योजनाएं</string>
+
+    <string name="contact_header">हम मदद के लिए यहाँ हैं</string>
+    <string name="contact_desc">विशिष्ट कृषि सलाह या तकनीकी सहायता के लिए हमसे संपर्क करें।</string>
+    <string name="contact_call">सपोर्ट को कॉल करें</string>
+    <string name="contact_time">सोम-शनि, सुबह 9 - शाम 6</string>
+    <string name="contact_email">हमें ईमेल करें</string>
+    <string name="contact_email_addr">support@mittimitra.com</string>
+
+    <string name="label_from_unit">इस इकाई से</string>
+    <string name="label_to_unit">इस इकाई में</string>
+
+    <string name="scan_title">नया मृदा स्कैन</string>
+    <string name="scan_env_data">पर्यावरण डेटा</string>
+    <string name="scan_weather">मौसम</string>
+    <string name="scan_moisture">नमी</string>
+    <string name="scan_nutrients">मृदा पोषक तत्व (अनुमानित)</string>
+    <string name="scan_hint">आपका अवलोकन (जैसे \'पीले पत्ते\')</string>
+    <string name="scan_status_ready">स्कैन करने के लिए तैयार</string>
+    <string name="scan_btn_gallery">गैलरी</string>
+    <string name="scan_btn_camera">कैमरा</string>
+    <string name="scan_btn_analyze">पौधे का विश्लेषण करें</string>
+
+    <string name="profile_recent">हालिया विश्लेषण</string>
+    <string name="profile_no_history">कोई हालिया स्कैन नहीं मिला।</string>
+    <string name="profile_logout">लॉग आउट</string>
+    <string name="profile_member_since">सदस्य बने:</string>
+    <string name="profile_phone">फ़ोन:</string>
+
+    <string name="rec_title">मृदा स्वास्थ्य कार्ड</string>
+    <string name="rec_header_title">मृदा स्वास्थ्य कार्ड</string>
+    <string name="rec_header_subtitle">मिट्टी मित्र • डिजिटल कृषि मिशन</string>
+    <string name="rec_farmer_details">किसान का विवरण</string>
+    <string name="rec_label_name">नाम:</string>
+    <string name="rec_label_mobile">मोबाइल:</string>
+    <string name="rec_label_email">ईमेल:</string>
+    <string name="rec_label_location">स्थान:</string>
+    <string name="rec_label_date">जांच की तारीख:</string>
+    <string name="rec_results_title">जांच परिणाम (प्राथमिक पोषक तत्व)</string>
+    <string name="rec_col_param">पैरामीटर</string>
+    <string name="rec_col_value">मान</string>
+    <string name="rec_col_status">स्थिति</string>
+    <string name="rec_advisory_title">वैज्ञानिक सलाह</string>
+    <string name="rec_footer">Mitti Mitra AI द्वारा जनरेट किया गया | सैटेलाइट डेटा द्वारा सत्यापित</string>
+    <string name="rec_btn_download">PDF डाउनलोड करें</string>
+
+    <string name="login_welcome">वापसी पर स्वागत है</string>
+    <string name="login_subtitle">अपने कृषि टूल एक्सेस करने के लिए लॉगिन करें</string>
+    <string name="login_google">Google के साथ आगे बढ़ें</string>
+    <string name="login_or_divider">या फ़ोन</string>
+    <string name="login_hint_phone">फ़ोन नंबर</string>
+    <string name="login_btn_otp">OTP प्राप्त करें</string>
+    <string name="login_hint_otp">6-अंकों का OTP डालें</string>
+    <string name="login_btn_verify">सत्यापित करें और लॉगिन करें</string>
+    <string name="login_trouble">लॉगिन करने में समस्या?</string>
+
+    <string name="home_welcome_default">नमस्ते, किसान</string>
+    <string name="home_card_scan">मिट्टी स्कैन</string>
+    <string name="home_card_advice">सलाह लें</string>
+    <string name="home_card_tips">किसान सहायक (AI)</string>
+    <string name="home_card_plant_doctor">प्लांट डॉक्टर</string>
+    <string name="home_section_tools">स्मार्ट टूल्स</string>
+    <string name="desc_logo">ऐप लोगो</string>
+    <string name="desc_icon">आइकन</string>
+
+    <string name="title_documents">संबंधित दस्तावेज़</string>
+    <string name="msg_no_documents">कोई दस्तावेज़ नहीं मिला।\nजोड़ने के लिए \'+\' टैप करें।</string>
+    <string name="desc_add_document">दस्तावेज़ जोड़ें</string>
+
+    <string name="title_scan_history">स्कैन इतिहास</string>
+
+    <string name="welcome_home_title">स्वागत है!</string>
+    <string name="welcome_home_desc">आप सफलतापूर्वक लॉग इन हो गए हैं!</string>
+
+    <string name="btn_test_notification">टेस्ट नोटिफिकेशन भेजें</string>
+    <string name="desc_notification_icon">नोटिफिकेशन आइकन</string>
+
+    <string name="profile_name_placeholder">लोड हो रहा है...</string>
+    <string name="profile_email_placeholder">email@example.com</string>
+    <string name="desc_profile_image">प्रोफ़ाइल चित्र</string>
+    <string name="desc_change_photo">प्रोफ़ाइल फ़ोटो बदलें</string>
+    <string name="desc_edit_profile">प्रोफ़ाइल विवरण संपादित करें</string>
+
+    <string name="rec_param_n">नाइट्रोजन (N)</string>
+    <string name="rec_param_p">फ़ॉस्फोरस (P)</string>
+    <string name="rec_param_k">पोटेशियम (K)</string>
+    <string name="rec_param_ph">मिट्टी का pH</string>
+    <string name="rec_ai_context">विशिष्ट फसल आवश्यकताओं का विश्लेषण किया जा रहा है...</string>
+    <string name="rec_ai_generating">विशेषज्ञ सलाह तैयार की जा रही है...</string>
+
+    <string name="scan_locating">स्थान ढूंढा जा रहा है...</string>
+    <string name="desc_image_preview">इमेज प्रिव्यू</string>
+    <string name="signup_title">Mitti Mitra से जुड़ें</string>
+    <string name="signup_subtitle">आज ही अपनी स्मार्ट खेती की यात्रा शुरू करें</string>
+    <string name="signup_create_account">खाता बनाएं</string>
+    <string name="signup_google">Google के साथ साइन अप करें</string>
+    <string name="signup_phone">फ़ोन के साथ साइन अप करें</string>
+    <string name="signup_footer">पहले से खाता है?</string>
+
+    <string name="chat_title">कृषि-विशेषज्ञ चैट</string>
+    <string name="chat_hint">फसल के बारे में पूछें...</string>
+    <string name="desc_mic">ऑडियो रिकॉर्ड करें</string>
+    <string name="desc_send">संदेश भेजें</string>
+
+    <string name="welcome_get_started">शुरू करें</string>
+    <string name="welcome_join_community">सबसे स्मार्ट कृषि समुदाय में शामिल हों।</string>
+
+    <string name="edit_profile_title">प्रोफ़ाइल संपादित करें</string>
+    <string name="edit_profile_name_hint">पूरा नाम</string>
+    <string name="edit_profile_phone_hint">फ़ोन नंबर</string>
+    <string name="edit_profile_phone_helper">अलर्ट के लिए आवश्यक</string>
+    <string name="btn_save_changes">बदलाव सहेजें</string>
+
+    <string name="btn_view">देखें</string>
+
+    <string name="placeholder_location">अज्ञात स्थान</string>
+    <string name="placeholder_date">तारीख</string>
+    <string name="status_calculating">गणना की जा रही है...</string>
+    <string name="desc_view_details">विवरण देखें</string>
+
+    <string name="history">विश्लेषण इतिहास</string>
+    <string name="delete_confirmation">रिकॉर्ड हटाएं</string>
+    <string name="delete_history_message">क्या आप निश्चित रूप से इस मृदा विश्लेषण रिकॉर्ड को हटाना चाहते हैं?</string>
+    <string name="delete">हटाएं</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="record_deleted">रिकॉर्ड हटा दिया गया</string>
+
+    <string name="share_report">रिपोर्ट शेयर करें</string>
+    <string name="share_via">इसके द्वारा शेयर करें</string>
+    <string name="undo">पूर्ववत करें (Undo)</string>
+
+    <string name="export_csv">CSV निर्यात करें</string>
+    <string name="compare_analysis">तुलना करें</string>
+    <string name="no_data_to_export">निर्यात करने के लिए कोई डेटा नहीं है</string>
+    <string name="need_two_records">तुलना के लिए कम से कम 2 रिकॉर्ड चाहिए</string>
+    <string name="compare_title">विश्लेषण की तुलना करें</string>
+    <string name="select_records">तुलना करने के लिए 2 रिकॉर्ड चुनें</string>
+    <string name="clear_chat">चैट साफ़ करें</string>
+    <string name="chat_cleared">चैट इतिहास साफ़ कर दिया गया</string>
+
+    <string name="rec_health_score">मृदा स्वास्थ्य स्कोर</string>
+    <string name="health_excellent">उत्कृष्ट स्थिति 🌿</string>
+    <string name="health_good">अच्छी स्थिति 🌱</string>
+    <string name="health_attention">ध्यान देने की आवश्यकता ⚠️</string>
+    <string name="health_poor">खराब स्थिति 🛑</string>
+    <string name="status_acidic">अम्लीय (ACIDIC)</string>
+    <string name="status_alkaline">क्षारीय (ALKALINE)</string>
+    <string name="status_neutral">तटस्थ (NEUTRAL)</string>
     
-    <string name="rec_title">à¤®à¥ƒà¤¦à¤¾ à¤¸à¥à¤µà¤¾à¤¸à¥à¤¥à¥à¤¯ à¤•à¤¾à¤°à¥à¤¡</string>
-    <string name="rec_health_score">à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€ à¤•à¥€ à¤¸à¥‡à¤¹à¤¤</string>
-    <string name="health_excellent">à¤‰à¤¤à¥à¤¤à¤® à¤¸à¥à¤¥à¤¿à¤¤à¤¿ ðŸŒ¿</string>
-    <string name="health_good">à¤…à¤šà¥à¤›à¥€ à¤¸à¥à¤¥à¤¿à¤¤à¤¿ ðŸŒ±</string>
-    <string name="health_attention">à¤§à¥à¤¯à¤¾à¤¨ à¤¦à¥‡à¤‚ âš ï¸</string>
-    <string name="health_poor">à¤–à¤°à¤¾à¤¬ à¤¸à¥à¤¥à¤¿à¤¤à¤¿ ðŸ›‘</string>
+    <string name="alert_too_dark">बहुत अंधेरा है! परछाई से बचने के लिए रोशनी में जाएं ☀️</string>
+    <string name="alert_data_received">लाइव मृदा डेटा प्राप्त हुआ</string>
+    <string name="alert_data_unavailable">मृदा डेटा अनुपलब्ध</string>
+    <string name="alert_network_error">नेटवर्क त्रुटि</string>
+    <string name="alert_connecting">उपग्रहों से जुड़ रहा है...</string>
+    <string name="alert_offline_mode">ऑफ़लाइन मोड का उपयोग किया जा रहा है</string>
     
-    <string name="weather_alert_title">à¤®à¥Œà¤¸à¤® à¤šà¥‡à¤¤à¤¾à¤µà¤¨à¥€ â›ˆï¸</string>
-    <string name="weather_high_heat">à¤¤à¥‡à¤œ à¤—à¤°à¥à¤®à¥€! à¤«à¤¸à¤²à¥‹à¤‚ à¤•à¥€ à¤¸à¤¿à¤‚à¤šà¤¾à¤ˆ à¤•à¤°à¥‡à¤‚à¥¤</string>
-    <string name="weather_high_humidity">à¤¨à¤®à¥€ à¤…à¤§à¤¿à¤• à¤¹à¥ˆ! à¤«à¤«à¥‚à¤‚à¤¦ à¤°à¥‹à¤—à¥‹à¤‚ à¤¸à¥‡ à¤¸à¤¾à¤µà¤§à¤¾à¤¨ à¤°à¤¹à¥‡à¤‚à¥¤</string>
-
-    <string name="setting_language">à¤­à¤¾à¤·à¤¾ (Language)</string>
-    <string name="setting_theme">à¤¥à¥€à¤®</string>
-    <string name="notif_title">à¤¸à¥‚à¤šà¤¨à¤¾à¤à¤‚</string>
+    <string name="weather_high_humidity">उच्च आर्द्रता! कवक रोगों से सावधान रहें।</string>
+    <string name="weather_high_heat">अत्यधिक गर्मी! फसलों की बार-बार सिंचाई करें।</string>
+    <string name="weather_alert_title">मौसमी मौसम अलर्ट ⛈️</string>
     
-    <!-- Fallback for untranslated strings -->
-    <string name="unit_result_format">à¤ªà¤°à¤¿à¤£à¤¾à¤®: %1$.2f %2$s</string>
+    <string name="unit_result_format">परिणाम: %1$.2f %2$s</string>
+    <string name="soil_status_low">कम (LOW)</string>
+    <string name="soil_status_high">अधिक (HIGH)</string>
+    <string name="soil_status_ok">ठीक है (OK)</string>
 
-    <!-- Weather Alerts -->
-    <string name="weather_alerts_title">à¤®à¥Œà¤¸à¤® à¤…à¤²à¤°à¥à¤Ÿ</string>
-    <string name="search_location_hint">à¤¶à¤¹à¤° à¤¯à¤¾ à¤•à¥à¤·à¥‡à¤¤à¥à¤° à¤–à¥‹à¤œà¥‡à¤‚...</string>
-    <string name="search">à¤–à¥‹à¤œà¥‡à¤‚</string>
-    <string name="current_weather">à¤µà¤°à¥à¤¤à¤®à¤¾à¤¨ à¤®à¥Œà¤¸à¤®</string>
-    <string name="seven_day_forecast">ðŸ“… 7-à¤¦à¤¿à¤¨ à¤•à¤¾ à¤ªà¥‚à¤°à¥à¤µà¤¾à¤¨à¥à¤®à¤¾à¤¨</string>
-    <string name="agri_recommendations">ðŸŒ¾ à¤•à¥ƒà¤·à¤¿ à¤¸à¤²à¤¾à¤¹</string>
-    <string name="home_card_weather">à¤®à¥Œà¤¸à¤® à¤…à¤²à¤°à¥à¤Ÿ</string>
+    <string name="kisan_sahayak_title">किसान सहायक</string>
+    <string name="kisan_sahayak_prompt">अपने खेत के बारे में कुछ भी पूछें...</string>
+    <string name="plant_doctor_title">प्लांट डॉक्टर</string>
+    <string name="plant_doctor_scanning">पौधे का विश्लेषण किया जा रहा है...</string>
+    <string name="plant_doctor_no_disease">स्वस्थ पौधा</string>
+    <string name="plant_doctor_confidence">विश्वास: %s%%</string>
+    <string name="plant_doctor_cure">उपचार</string>
+    <string name="plant_scan_hint">प्रभावित पत्ते की स्पष्ट तस्वीर लें 🍃</string>
+    <string name="scan_hint_text">कैमरे को मिट्टी के नमूने की ओर रखें</string>
+    
+    <string name="signup_hint_name">पूरा नाम</string>
+    <string name="signup_hint_email">ईमेल पता (वैकल्पिक)</string>
+    <string name="signup_hint_mobile">मोबाइल नंबर</string>
+    <string name="signup_btn_create">खाता बनाएं</string>
+    <string name="signup_login_link">पहले से खाता है? लॉगिन</string>
 
-    <!-- Crop Calendar -->
-    <string name="crop_calendar_title">à¤«à¤¸à¤² à¤•à¥ˆà¤²à¥‡à¤‚à¤¡à¤°</string>
-    <string name="crop_calendar_subtitle">AI-à¤¸à¤‚à¤šà¤¾à¤²à¤¿à¤¤ à¤¬à¥à¤µà¤¾à¤ˆ à¤”à¤° à¤•à¤Ÿà¤¾à¤ˆ à¤…à¤¨à¥à¤¸à¥‚à¤šà¥€</string>
-    <string name="select_crop">à¤«à¤¸à¤² à¤šà¥à¤¨à¥‡à¤‚</string>
-    <string name="generate_schedule">AI à¤…à¤¨à¥à¤¸à¥‚à¤šà¥€ à¤¬à¤¨à¤¾à¤à¤‚</string>
-    <string name="home_card_calendar">à¤«à¤¸à¤² à¤•à¥ˆà¤²à¥‡à¤‚à¤¡à¤°</string>
+    <string name="weather_alerts_title">मौसम अलर्ट</string>
+    <string name="search_location_hint">शहर या क्षेत्र खोजें...</string>
+    <string name="search">खोजें</string>
+    <string name="current_weather">वर्तमान मौसम</string>
+    <string name="seven_day_forecast">📅 7-दिन का पूर्वानुमान</string>
+    <string name="agri_recommendations">🌾 कृषि सिफारिशें</string>
+    <string name="home_card_weather">मौसम अलर्ट</string>
+    <string name="error_enter_location">कृपया कोई स्थान दर्ज करें</string>
+    <string name="location_default">भारत (डिफ़ॉल्ट)</string>
+    <string name="error_location_not_found">स्थान नहीं मिला</string>
+    <string name="error_geocoding">जियोकोडिंग विफल</string>
+    <string name="error_fetch_weather">मौसम डेटा लाने में विफल</string>
+    <string name="label_humidity_format">💧 आर्द्रता: %.0f%%</string>
+    <string name="label_wind_format">💨 हवा: %.1f किमी/घंटा</string>
+    <string name="pest_risk_format">🐛 कीट जोखिम: %s - फसलों की निगरानी करें!</string>
 
-    <!-- Irrigation Calculator -->
-    <string name="irrigation_title">à¤¸à¤¿à¤‚à¤šà¤¾à¤ˆ à¤•à¥ˆà¤²à¤•à¥à¤²à¥‡à¤Ÿà¤°</string>
-    <string name="irrigation_subtitle">à¤«à¤¸à¤², à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€ à¤”à¤° à¤®à¥Œà¤¸à¤® à¤•à¥‡ à¤†à¤§à¤¾à¤° à¤ªà¤° à¤¦à¥ˆà¤¨à¤¿à¤• à¤ªà¤¾à¤¨à¥€ à¤•à¥€ à¤†à¤µà¤¶à¥à¤¯à¤•à¤¤à¤¾</string>
-    <string name="soil_type">à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€ à¤•à¤¾ à¤ªà¥à¤°à¤•à¤¾à¤°</string>
-    <string name="field_size">à¤–à¥‡à¤¤ à¤•à¤¾ à¤†à¤•à¤¾à¤°</string>
-    <string name="calculate_water">à¤ªà¤¾à¤¨à¥€ à¤•à¥€ à¤—à¤£à¤¨à¤¾ à¤•à¤°à¥‡à¤‚</string>
-    <string name="water_requirement">à¤¦à¥ˆà¤¨à¤¿à¤• à¤ªà¤¾à¤¨à¥€ à¤•à¥€ à¤†à¤µà¤¶à¥à¤¯à¤•à¤¤à¤¾</string>
-    <string name="home_card_irrigation">à¤¸à¤¿à¤‚à¤šà¤¾à¤ˆ</string>
+    <string name="crop_calendar_title">फसल कैलेंडर</string>
+    <string name="crop_calendar_subtitle">AI-संचालित रोपण और कटाई कार्यक्रम</string>
+    <string name="select_crop">फसल चुनें</string>
+    <string name="generate_schedule">AI शेड्यूल बनाएं</string>
+    <string name="home_card_calendar">फसल कैलेंडर</string>
 
-    <!-- Plant Doctor -->
-    <string name="home_card_plant_doctor">à¤ªà¥Œà¤§à¤¾ à¤¡à¥‰à¤•à¥à¤Ÿà¤°</string>
+    <string name="irrigation_title">सिंचाई कैलकुलेटर</string>
+    <string name="irrigation_subtitle">फसल, मिट्टी और मौसम के आधार पर दैनिक पानी की आवश्यकता की गणना करें</string>
+    <string name="soil_type">मिट्टी का प्रकार</string>
+    <string name="field_size">खेत का आकार</string>
+    <string name="calculate_water">पानी की आवश्यकता की गणना करें</string>
+    <string name="water_requirement">दैनिक पानी की आवश्यकता</string>
+    <string name="home_card_irrigation">सिंचाई</string>
 
-    <!-- NEW LOCALIZATION STRINGS (Hindi) -->
-    <!-- Mandi Connect -->
-    <string name="mandi_title">à¤®à¤‚à¤¡à¥€ à¤­à¤¾à¤µ (à¤²à¤¾à¤‡à¤µ)</string>
-    <string name="mandi_select_prompt">à¤«à¤¸à¤² à¤”à¤° à¤•à¥à¤·à¥‡à¤¤à¥à¤° à¤šà¥à¤¨à¥‡à¤‚</string>
-    <string name="mandi_btn_check">à¤­à¤¾à¤µ à¤¦à¥‡à¤–à¥‡à¤‚</string>
-    <string name="mandi_error_no_data">à¤‡à¤¸ à¤šà¤¯à¤¨ à¤•à¥‡ à¤²à¤¿à¤ à¤•à¥‹à¤ˆ à¤¡à¥‡à¤Ÿà¤¾ à¤¨à¤¹à¥€à¤‚ à¤®à¤¿à¤²à¤¾à¥¤</string>
-    <string name="mandi_error_connect">à¤•à¤¨à¥‡à¤•à¥à¤¶à¤¨ à¤¤à¥à¤°à¥à¤Ÿà¤¿: %s</string>
-    <string name="mandi_source">à¤¸à¥à¤°à¥‹à¤¤: à¤à¤—à¤®à¤¾à¤°à¥à¤•à¤¨à¥‡à¤Ÿ (gov.in)</string>
+    <string name="mandi_title">लाइव मंडी भाव</string>
+    <string name="mandi_select_prompt">फसल और क्षेत्र चुनें</string>
+    <string name="mandi_btn_check">भाव चेक करें</string>
+    <string name="mandi_error_no_data">इस चयन के लिए कोई लाइव डेटा नहीं मिला।</string>
+    <string name="mandi_error_connect">Agmarknet से जुड़ने में त्रुटि: %s</string>
+    <string name="mandi_source">स्रोत: Agmarknet (gov.in)</string>
 
-    <!-- Plant Doctor -->
-    <string name="plant_status_scanning">à¤—à¤¹à¤¨ à¤œà¤¾à¤à¤š à¤šà¤² à¤°à¤¹à¥€ à¤¹à¥ˆ...</string>
-    <string name="plant_status_complete">AI à¤œà¤¾à¤à¤š à¤ªà¥‚à¤°à¥à¤£ à¤¹à¥à¤ˆ</string>
-    <string name="plant_status_unavailable">AI à¤¸à¥‡à¤µà¤¾ à¤…à¤¨à¥à¤ªà¤²à¤¬à¥à¤§ (%s)</string>
-    <string name="plant_status_error">à¤¡à¥‡à¤Ÿà¤¾ à¤ªà¤¢à¤¼à¤¨à¥‡ à¤®à¥‡à¤‚ à¤¤à¥à¤°à¥à¤Ÿà¤¿à¥¤</string>
-    <string name="plant_diagnosis">à¤¨à¤¿à¤¦à¤¾à¤¨: %s</string>
-    <string name="plant_remedies">à¤‰à¤ªà¤¾à¤¯:</string>
-    <string name="plant_doctor_scanning">à¤ªà¥Œà¤§à¥‡ à¤•à¥€ à¤œà¤¾à¤à¤š...</string>
+    <string name="plant_status_scanning">उन्नत विश्लेषण चल रहा है...</string>
+    <string name="plant_status_complete">AI विश्लेषण पूर्ण</string>
+    <string name="plant_status_unavailable">AI विश्लेषण अनुपलब्ध (%s)</string>
+    <string name="plant_status_error">AI प्रतिक्रिया विश्लेषण में त्रुटि।</string>
+    <string name="plant_diagnosis">निदान: %s</string>
+    <string name="plant_remedies">उपचार:</string>
 
-    <!-- Irrigation -->
-    <string name="irrigation_hint_size">à¤•à¥ƒà¤ªà¤¯à¤¾ à¤–à¥‡à¤¤ à¤•à¤¾ à¤†à¤•à¤¾à¤° à¤¦à¤°à¥à¤œ à¤•à¤°à¥‡à¤‚</string>
-    <string name="irrigation_error_size">à¤…à¤®à¤¾à¤¨à¥à¤¯ à¤–à¥‡à¤¤ à¤†à¤•à¤¾à¤°</string>
-    <string name="irrigation_result_water">ðŸ’§ %1$.0f à¤²à¥€à¤Ÿà¤°/à¤¦à¤¿à¤¨\n(%2$.1f à¤®à¤¿à¤®à¥€ à¤—à¤¹à¤°à¤¾à¤ˆ)</string>
-    <string name="irrigation_weather_note">ðŸ“ %1$s\nðŸŒ¡ï¸ à¤¤à¤¾à¤ªà¤®à¤¾à¤¨: %2$.1fÂ°C, ðŸ’§ à¤¨à¤®à¥€: %3$.0f%%</string>
+    <string name="irrigation_hint_size">कृपया खेत का आकार दर्ज करें</string>
+    <string name="irrigation_error_size">अमान्य खेत का आकार</string>
+    <string name="irrigation_result_water">💧 %1$.0f लीटर/दिन\n(%2$.1f मिमी गहराई)</string>
+    <string name="irrigation_weather_note">📍 %1$s\n🌡️ वर्तमान: %2$.1f°C, 💧 आर्द्रता: %3$.0f%%</string>
+    <string name="irrigation_rain_append">\n🌧️ %s मिमी</string>
 
-    <!-- Profile Dashboard -->
-    <string name="profile_farm_dashboard">ðŸŒ¾ à¤®à¥‡à¤°à¤¾ à¤–à¥‡à¤¤ à¤¡à¥ˆà¤¶à¤¬à¥‹à¤°à¥à¤¡</string>
-    <string name="profile_stat_rank">à¤°à¥ˆà¤‚à¤•</string>
-    <string name="profile_stat_land">à¤­à¥‚à¤®à¤¿</string>
-    <string name="profile_stat_crop">à¤«à¤¸à¤²</string>
-    <string name="profile_rank_novice">à¤¨à¤¯à¤¾ à¤•à¤¿à¤¸à¤¾à¤¨</string>
-    <string name="profile_rank_expert">à¤µà¤¿à¤¶à¥‡à¤·à¤œà¥à¤ž</string>
-    <string name="profile_rank_guardian">à¤¸à¤‚à¤°à¤•à¥à¤·à¤•</string>
-    <string name="profile_rank_master">à¤®à¤¿à¤Ÿà¥à¤Ÿà¥€ à¤®à¤¿à¤¤à¥à¤°</string>
-    <string name="unit_acres">à¤à¤•à¤¡à¤¼</string>
-    <string name="status_none">à¤•à¥‹à¤ˆ à¤¨à¤¹à¥€à¤‚</string>
+    <string name="profile_farm_dashboard">🌾 मेरा खेत डैशबोर्ड</string>
+    <string name="profile_stat_rank">रैंक</string>
+    <string name="profile_stat_land">जमीन का आकार</string>
+    <string name="profile_stat_crop">सक्रिय फसल</string>
+    <string name="profile_rank_novice">नौसिखिया (Novice)</string>
+    <string name="profile_rank_expert">विशेषज्ञ (Expert)</string>
+    <string name="profile_rank_guardian">संरक्षक (Guardian)</string>
+    <string name="profile_rank_master">मिट्टी मित्र</string>
+    <string name="unit_acres">एकड़</string>
+    <string name="status_none">कोई नहीं</string>
+
+    <string name="scheme_select_profile">अपना प्रोफ़ाइल चुनें</string>
+    <string name="scheme_land_size">जमीन का आकार</string>
+    <string name="scheme_land_small">छोटा (&lt; 2 हेक्टेयर)</string>
+    <string name="scheme_land_medium">मध्यम (2-4 हेक्टेयर)</string>
+    <string name="scheme_land_large">बड़ा (> 4 हेक्टेयर)</string>
+    <string name="scheme_no_match">आपकी प्रोफ़ाइल से कोई योजना मेल नहीं खाती।</string>
+    <string name="scheme_benefit_label">लाभ: </string>
+    <string name="scheme_tap_apply">आवेदन करने के लिए टैप करें →</string>
+    
+    <string name="mandi_market_label">बाज़ार का नाम</string>
+    <string name="mandi_price_min_max">न्यूनतम: 2000 - अधिकतम 2500</string>
+    <string name="mandi_price_modal_label">मॉडल मूल्य</string>
+
+    <string-array name="mandi_states">
+        <item>आंध्र प्रदेश</item>
+        <item>अरुणाचल प्रदेश</item>
+        <item>असम</item>
+        <item>बिहार</item>
+        <item>छत्तीसगढ़</item>
+        <item>गोवा</item>
+        <item>गुजरात</item>
+        <item>हरियाणा</item>
+        <item>हिमाचल प्रदेश</item>
+        <item>झारखंड</item>
+        <item>कर्नाटक</item>
+        <item>केरल</item>
+        <item>मध्य प्रदेश</item>
+        <item>महाराष्ट्र</item>
+        <item>मणिपुर</item>
+        <item>मेघालय</item>
+        <item>मिजोरम</item>
+        <item>नागालैंड</item>
+        <item>ओडिशा</item>
+        <item>पंजाब</item>
+        <item>राजस्थान</item>
+        <item>सिक्किम</item>
+        <item>तमिलनाडु</item>
+        <item>तेलंगाना</item>
+        <item>त्रिपुरा</item>
+        <item>उत्तर प्रदेश</item>
+        <item>उत्तराखंड</item>
+        <item>पश्चिम बंगाल</item>
+        <item>अंडमान और निकोबार</item>
+        <item>चंडीगढ़</item>
+        <item>दिल्ली</item>
+        <item>जम्मू और कश्मीर</item>
+        <item>लद्दाख</item>
+        <item>पुदुचेरी</item>
+    </string-array>
+
+    <string-array name="mandi_commodities">
+        <item>गेहूं</item>
+        <item>चावल</item>
+        <item>मक्का</item>
+        <item>कपास</item>
+        <item>सोयाबीन</item>
+        <item>गन्ना</item>
+        <item>प्याज़</item>
+        <item>आलू</item>
+        <item>टमाटर</item>
+        <item>लाल मिर्च</item>
+        <item>लहसुन</item>
+        <item>तुअर (अरहर)</item>
+        <item>चना</item>
+        <item>मूंग</item>
+        <item>उड़द</item>
+        <item>मूंगफली</item>
+        <item>सरसों</item>
+        <item>तिल</item>
+        <item>केला</item>
+        <item>आम</item>
+        <item>संतरा</item>
+        <item>अंगूर</item>
+        <item>सेब</item>
+    </string-array>
+    
+    <string-array name="irrigation_crops">
+        <item>धान</item>
+        <item>गेहूं</item>
+        <item>मक्का</item>
+        <item>कपास</item>
+        <item>गन्ना</item>
+        <item>टमाटर</item>
+        <item>आलू</item>
+        <item>प्याज़</item>
+        <item>मिर्च</item>
+        <item>सोयाबीन</item>
+    </string-array>
+
+    <string-array name="irrigation_soil_types">
+        <item>चिकनी मिट्टी (Clay)</item>
+        <item>रेतीली मिट्टी (Sandy)</item>
+        <item>दोमट मिट्टी (Loamy)</item>
+        <item>काली मिट्टी (Black)</item>
+        <item>लाल मिट्टी (Red)</item>
+    </string-array>
+    <string name="dup_title">डुप्लिकेट खाता पाया गया</string>
+    <string name="dup_merge_title">🔗 खाते कैसे मर्ज करें</string>
+    <string name="dup_merge_msg">इन खातों को मर्ज करने के लिए:\n\n1. अपने मौजूदा खाते में लॉगिन करें (जो पिछली स्क्रीन पर दिखाया गया है)।\n2. सेटिंग्स -> खाता और सुरक्षा पर जाएं।\n3. यह लॉगिन विधि जोड़ने के लिए \'फ़ोन/ईमेल लिंक करें\' चुनें।\n\nयह सुनिश्चित करता है कि आपका सारा डेटा एक ही जगह रहे।</string>
+    <string name="dup_btn_got_it">समझ गया</string>
+    <string name="dup_toast_login">कृपया अपने मौजूदा खाते से लॉगिन करें</string>
+    <string name="setting_account_security">खाता और सुरक्षा</string>
+    <string name="toast_account_linking_soon">खाता लिंकिंग जल्द ही आ रहा है!</string>
+    
+    <string name="login_new_user_link">नया उपयोगकर्ता? खाता बनाएं</string>
+
 </resources>

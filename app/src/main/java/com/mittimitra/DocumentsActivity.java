@@ -91,9 +91,11 @@ public class DocumentsActivity extends BaseActivity {
     }
 
     private void loadDocuments() {
+        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+
         databaseExecutor.execute(() -> {
-            // UPDATED: No user ID needed
-            documentList = db.documentDao().getAllDocuments();
+            documentList = db.documentDao().getDocumentsForUser(user.getUid());
             mainThreadHandler.post(this::setupRecyclerView);
         });
     }
@@ -185,6 +187,11 @@ public class DocumentsActivity extends BaseActivity {
     }
 
     private void saveDocumentToDb(Document doc) {
+        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            doc.userId = user.getUid();
+        }
+
         databaseExecutor.execute(() -> {
             db.documentDao().insertDocument(doc);
             mainThreadHandler.post(this::loadDocuments);

@@ -51,7 +51,7 @@ public class SettingsActivity extends BaseActivity {
         List<SettingItem> items = new ArrayList<>();
 
         // Use getString() here so it fetches the new language string every time
-        items.add(new SettingItem("account", "Account & Security", android.R.drawable.ic_menu_my_calendar));
+        items.add(new SettingItem("account", getString(R.string.setting_account_security), android.R.drawable.ic_menu_my_calendar));
         items.add(new SettingItem("language", getString(R.string.setting_language), android.R.drawable.ic_menu_mapmode));
         items.add(new SettingItem("accessibility", getString(R.string.setting_accessibility), android.R.drawable.ic_menu_sort_alphabetically));
         items.add(new SettingItem("theme", getString(R.string.setting_theme), android.R.drawable.ic_menu_view));
@@ -65,7 +65,7 @@ public class SettingsActivity extends BaseActivity {
             switch (item.id) {
                 case "account":
                     // TODO: Create AccountSecurityActivity for linking credentials
-                    android.widget.Toast.makeText(this, "Account Linking Coming Soon!", android.widget.Toast.LENGTH_SHORT).show();
+                    android.widget.Toast.makeText(this, getString(R.string.toast_account_linking_soon), android.widget.Toast.LENGTH_SHORT).show();
                     break;
                 case "language":
                     startActivity(new Intent(this, LanguageActivity.class));

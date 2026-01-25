@@ -275,7 +275,7 @@ public class LoginActivity extends AppCompatActivity {
         // Use existing account button - Log out and guide user
         view.findViewById(R.id.btn_use_existing).setOnClickListener(v -> {
             dialog.dismiss();
-            Toast.makeText(this, "Please login with your existing account", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.dup_toast_login), Toast.LENGTH_SHORT).show();
             mAuth.signOut();
             recreate();
         });
@@ -285,9 +285,9 @@ public class LoginActivity extends AppCompatActivity {
             dialog.dismiss();
             
             new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("🔗 How to Merge Accounts")
-                .setMessage("To merge these accounts:\n\n1. Login to your EXISTING account (shown in the previous screen).\n2. Go to Settings -> Account & Security.\n3. Select 'Link Phone/Email' to add this login method.\n\nThis ensures all your data stays in one place.")
-                .setPositiveButton("Got it", (d, w) -> {
+                .setTitle(getString(R.string.dup_merge_title))
+                .setMessage(getString(R.string.dup_merge_msg))
+                .setPositiveButton(getString(R.string.dup_btn_got_it), (d, w) -> {
                     mAuth.signOut();
                     recreate();
                 })

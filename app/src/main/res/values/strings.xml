@@ -181,6 +181,9 @@
     <string name="desc_add_document">Add Document</string>
 
     <string name="title_scan_history">Scan History</string>
+    <string name="title_soil_analysis_history">Soil Analysis</string>
+    <string name="title_plant_analysis_history">Plant Doctor</string>
+    <string name="title_crop_calendar_history">Crop Calendar</string>
 
     <string name="welcome_home_title">Welcome Home!</string>
     <string name="welcome_home_desc">You are logged in successfully!</string>
@@ -465,4 +468,16 @@
         <item>Black (काली)</item>
         <item>Red (लाल)</item>
     </string-array>
+    <!-- Account Linking & Duplicate Warning -->
+    <string name="dup_title">Duplicate Account Detected</string>
+    <string name="dup_merge_title">🔗 How to Merge Accounts</string>
+    <string name="dup_merge_msg">To merge these accounts:\n\n1. Login to your EXISTING account (shown in the previous screen).\n2. Go to Settings -> Account &amp; Security.\n3. Select \'Link Phone/Email\' to add this login method.\n\nThis ensures all your data stays in one place.</string>
+    <string name="dup_btn_got_it">Got it</string>
+    <string name="dup_toast_login">Please login with your existing account</string>
+    <string name="setting_account_security">Account &amp; Security</string>
+    <string name="toast_account_linking_soon">Account Linking Coming Soon!</string>
+    
+    <!-- Login Screen Updates -->
+    <string name="login_new_user_link">New user? Create Account</string>
+
 </resources>

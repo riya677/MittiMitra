@@ -190,7 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="New user? Create Account"
+                android:text="@string/login_new_user_link"
                 android:textColor="@color/text_secondary"
                 android:textSize="14sp"
                 android:padding="8dp"

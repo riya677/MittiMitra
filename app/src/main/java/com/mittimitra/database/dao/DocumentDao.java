@@ -19,6 +19,9 @@ public interface DocumentDao {
     @Query("SELECT * FROM documents")
     List<Document> getAllDocuments();
 
+    @Query("SELECT * FROM documents WHERE user_id = :userId")
+    List<Document> getDocumentsForUser(String userId);
+
     // --- NEW ---
     @Query("DELETE FROM documents")
     void clearAllDocuments();
