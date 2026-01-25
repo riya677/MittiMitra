@@ -17,6 +17,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.firebase.auth.FirebaseUser;
 import com.mittimitra.network.RetrofitClient;
 
 import org.json.JSONArray;
@@ -267,6 +268,38 @@ public class CropCalendarActivity extends AppCompatActivity {
             tvScheduleContent.setText(content);
             cardSchedule.setVisibility(View.VISIBLE);
         }
+
+        // SAVE TO DATABASE
+        FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            new Thread(() -> {
+                com.mittimitra.database.entity.CropSchedule entry = new com.mittimitra.database.entity.CropSchedule();
+                entry.userId = user.getUid();
+                entry.cropName = cropName;
+                entry.fullJson = content; // Save raw JSON content
+                entry.timestamp = System.currentTimeMillis();
+                
+                // Extract basic info again for easy access (redundant parsing but safer separation)
+                try {
+                    String cleaned = content.trim();
+                     if (cleaned.contains("```json")) {
+                        cleaned = cleaned.split("```json")[1].split("```")[0];
+                    } else if (cleaned.contains("```")) {
+                        cleaned = cleaned.split("```")[1].split("```")[0];
+                    }
+                    JSONObject schedule = new JSONObject(cleaned);
+                    entry.plantingDate = schedule.optString("best_planting_month", "N/A");
+                    entry.harvestDate = schedule.optString("best_harvest_month", "N/A");
+                } catch (Exception e) {
+                    entry.plantingDate = "N/A";
+                    entry.harvestDate = "N/A";
+                }
+
+                com.mittimitra.database.MittiMitraDatabase.getDatabase(this).cropDao().insert(entry);
+                Log.d(TAG, "Schedule saved to DB");
+            }).start();
+        }
+
     }
 
     private void showError(String message) {

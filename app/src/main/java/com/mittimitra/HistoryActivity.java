@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
+import com.google.firebase.auth.FirebaseUser;
 import com.google.android.material.snackbar.Snackbar;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.SoilAnalysis;
@@ -51,13 +51,13 @@ public class HistoryActivity extends BaseActivity {
 
         recyclerHistory = findViewById(R.id.recycler_history);
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_history);
-        tvEmpty = findViewById(R.id.tv_empty_history);
-
-        // Setup pull-to-refresh
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setColorSchemeResources(R.color.brand_green);
             swipeRefreshLayout.setOnRefreshListener(this::loadHistory);
         }
+
+        // Initialize tvEmpty to soil empty view to keep existing logic working
+        tvEmpty = findViewById(R.id.tv_empty_soil);
 
         if (recyclerHistory != null) {
             recyclerHistory.setLayoutManager(new LinearLayoutManager(this));
@@ -67,10 +67,22 @@ public class HistoryActivity extends BaseActivity {
     }
 
     private void loadHistory() {
+        FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+
         new Thread(() -> {
-            List<SoilAnalysis> history = MittiMitraDatabase.getDatabase(this)
-                    .soilDao()
-                    .getAllSoilAnalysis();
+            MittiMitraDatabase db = MittiMitraDatabase.getDatabase(this);
+
+            // 1. Soil Analysis
+            List<SoilAnalysis> soilHistory = db.soilDao().getAnalysisForUser(user.getUid());
+
+            // 2. Plant Analysis (All)
+            List<com.mittimitra.database.entity.PlantHealth> plantHistory = 
+                    db.plantDao().getAllByUserId(user.getUid());
+
+            // 3. Crop Calendar (All)
+            List<com.mittimitra.database.entity.CropSchedule> cropHistory = 
+                    db.cropDao().getAllByUserId(user.getUid());
 
             runOnUiThread(() -> {
                 // Stop refresh animation
@@ -78,14 +90,50 @@ public class HistoryActivity extends BaseActivity {
                     swipeRefreshLayout.setRefreshing(false);
                 }
                 
+                // --- Soil Analysis ---
                 historyList.clear();
-                if (history != null && !history.isEmpty()) {
-                    historyList.addAll(history);
+                TextView tvEmptySoil = findViewById(R.id.tv_empty_soil);
+                if (soilHistory != null && !soilHistory.isEmpty()) {
+                    historyList.addAll(soilHistory);
                     adapter = new RecentAnalysisAdapter(historyList);
                     recyclerHistory.setAdapter(adapter);
-                    if (tvEmpty != null) tvEmpty.setVisibility(View.GONE);
+                    if (tvEmptySoil != null) tvEmptySoil.setVisibility(View.GONE);
                 } else {
-                    if (tvEmpty != null) tvEmpty.setVisibility(View.VISIBLE);
+                    if (tvEmptySoil != null) tvEmptySoil.setVisibility(View.VISIBLE);
+                }
+
+                // --- Plant Doctor ---
+                RecyclerView recyclerPlant = findViewById(R.id.recycler_plant_history);
+                TextView tvEmptyPlant = findViewById(R.id.tv_empty_plant);
+                if (recyclerPlant != null) {
+                    recyclerPlant.setLayoutManager(new LinearLayoutManager(this));
+                    if (plantHistory != null && !plantHistory.isEmpty()) {
+                        com.mittimitra.ui.adapters.PlantHistoryAdapter plantAdapter = 
+                                new com.mittimitra.ui.adapters.PlantHistoryAdapter(this, plantHistory);
+                        recyclerPlant.setAdapter(plantAdapter);
+                        recyclerPlant.setVisibility(View.VISIBLE);
+                        if (tvEmptyPlant != null) tvEmptyPlant.setVisibility(View.GONE);
+                    } else {
+                        recyclerPlant.setVisibility(View.GONE);
+                        if (tvEmptyPlant != null) tvEmptyPlant.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                // --- Crop Calendar ---
+                RecyclerView recyclerCrop = findViewById(R.id.recycler_crop_history);
+                TextView tvEmptyCrop = findViewById(R.id.tv_empty_crop);
+                if (recyclerCrop != null) {
+                    recyclerCrop.setLayoutManager(new LinearLayoutManager(this));
+                    if (cropHistory != null && !cropHistory.isEmpty()) {
+                        com.mittimitra.ui.adapters.CropHistoryAdapter cropAdapter = 
+                                new com.mittimitra.ui.adapters.CropHistoryAdapter(cropHistory);
+                        recyclerCrop.setAdapter(cropAdapter);
+                        recyclerCrop.setVisibility(View.VISIBLE);
+                        if (tvEmptyCrop != null) tvEmptyCrop.setVisibility(View.GONE);
+                    } else {
+                        recyclerCrop.setVisibility(View.GONE);
+                        if (tvEmptyCrop != null) tvEmptyCrop.setVisibility(View.VISIBLE);
+                    }
                 }
             });
         }).start();

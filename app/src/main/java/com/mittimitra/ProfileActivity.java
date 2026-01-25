@@ -426,13 +426,24 @@ public class ProfileActivity extends BaseActivity {
         if (user == null) return;
         
         new Thread(() -> {
-            List<SoilAnalysis> history = MittiMitraDatabase.getDatabase(this)
-                    .soilDao().getAnalysisForUser(user.getUid());
+            MittiMitraDatabase db = MittiMitraDatabase.getDatabase(this);
+
+            // 1. Soil Analysis
+            List<SoilAnalysis> soilHistory = db.soilDao().getAnalysisForUser(user.getUid());
+            
+            // 2. Plant Analysis (Fetch last 5)
+            List<com.mittimitra.database.entity.PlantHealth> plantHistory = 
+                    db.plantDao().getRecentByUserId(user.getUid(), 5);
+
+            // 3. Crop Calendar (Fetch last 5)
+            List<com.mittimitra.database.entity.CropSchedule> cropHistory = 
+                    db.cropDao().getRecentByUserId(user.getUid(), 5);
 
             runOnUiThread(() -> {
-                if (history != null && !history.isEmpty()) {
-                    int size = Math.min(history.size(), 2);
-                    List<SoilAnalysis> recentItems = history.subList(0, size);
+                // Soil
+                if (soilHistory != null && !soilHistory.isEmpty()) {
+                    int size = Math.min(soilHistory.size(), 2);
+                    List<SoilAnalysis> recentItems = soilHistory.subList(0, size);
                     RecentAnalysisAdapter adapter = new RecentAnalysisAdapter(recentItems);
                     recyclerRecent.setAdapter(adapter);
                     recyclerRecent.setVisibility(View.VISIBLE);
@@ -440,6 +451,40 @@ public class ProfileActivity extends BaseActivity {
                 } else {
                     recyclerRecent.setVisibility(View.GONE);
                     tvNoHistory.setVisibility(View.VISIBLE);
+                }
+
+                // Plant
+                RecyclerView recyclerPlant = findViewById(R.id.recycler_plant_history);
+                TextView tvNoPlant = findViewById(R.id.tv_no_plant_history);
+                if (recyclerPlant != null) {
+                    recyclerPlant.setLayoutManager(new LinearLayoutManager(this));
+                    if (plantHistory != null && !plantHistory.isEmpty()) {
+                        com.mittimitra.ui.adapters.PlantHistoryAdapter adapter = 
+                                new com.mittimitra.ui.adapters.PlantHistoryAdapter(this, plantHistory);
+                        recyclerPlant.setAdapter(adapter);
+                        recyclerPlant.setVisibility(View.VISIBLE);
+                        tvNoPlant.setVisibility(View.GONE);
+                    } else {
+                        recyclerPlant.setVisibility(View.GONE);
+                        tvNoPlant.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                // Crop
+                RecyclerView recyclerCrop = findViewById(R.id.recycler_crop_history);
+                TextView tvNoCrop = findViewById(R.id.tv_no_crop_history);
+                if (recyclerCrop != null) {
+                    recyclerCrop.setLayoutManager(new LinearLayoutManager(this));
+                    if (cropHistory != null && !cropHistory.isEmpty()) {
+                        com.mittimitra.ui.adapters.CropHistoryAdapter adapter = 
+                                new com.mittimitra.ui.adapters.CropHistoryAdapter(cropHistory);
+                        recyclerCrop.setAdapter(adapter);
+                        recyclerCrop.setVisibility(View.VISIBLE);
+                        tvNoCrop.setVisibility(View.GONE);
+                    } else {
+                        recyclerCrop.setVisibility(View.GONE);
+                        tvNoCrop.setVisibility(View.VISIBLE);
+                    }
                 }
             });
         }).start();

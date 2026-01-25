@@ -1,345 +1,461 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">à¦®à¦¿à¦Ÿà§à¦Ÿà¦¿ à¦®à¦¿à¦¤à§à§°</string>
-    <string name="welcome_subtitle">à¦†à¦ªà§‹à¦¨à¦¾à§° à¦¬à§à¦¯à¦•à§à¦¤à¦¿à¦—à¦¤ à¦•à§ƒà¦·à¦¿ à¦¸à¦¹à¦¾à§Ÿà¦•</string>
-    <string name="login">à¦²à¦— à¦‡à¦¨</string>
-    <string name="signup">à¦šà¦¾à¦‡à¦¨à¦¾à¦ª</string>
+﻿<resources>
+    <string name="app_name">মিট্টি মিত্ৰ</string>
 
-    <string name="greeting_format">à¦¨à¦®à¦¸à§à¦•à¦¾à§°, %s</string>
-    <string name="greeting_default">à¦¨à¦®à¦¸à§à¦•à¦¾à§°, à¦•à§ƒà¦·à¦•</string>
-    <string name="last_scan">à¦…à¦¨à§à¦¤à¦¿à¦® à¦¸à§à¦•à§‡à¦¨</string>
-    <string name="button_tip">à¦ªà§°à¦¾à¦®à§°à§à¦¶</string>
-    <string name="button_recommendation">à¦¸à§à¦ªà¦¾à§°à¦¿à¦¶</string>
-    <string name="button_history">à¦‡à¦¤à¦¿à¦¹à¦¾à¦¸</string>
-    <string name="button_scan">à¦¸à§à¦•à§‡à¦¨</string>
-    <string name="button_documents">à¦¨à¦¥à¦¿à¦ªà¦¤à§à§°</string>
+    <string name="welcome_subtitle">আপোনাৰ ব্যক্তিগত কৃষি সহায়ক</string>
+    <string name="login">লগ ইন</string>
+    <string name="signup">চাইন আপ</string>
 
-    <string name="menu_settings">à¦šà§‡à¦Ÿà¦¿à¦‚</string>
-    <string name="menu_help">à¦¸à¦¹à¦¾à¦¯à¦¼</string>
-    <string name="menu_contact">à¦¯à§‹à¦—à¦¾à¦¯à§‹à¦—</string>
-    <string name="menu_logout">à¦²à¦— à¦†à¦‰à¦Ÿ</string>
+    <string name="greeting_format">নমস্কাৰ, %s</string>
+    <string name="greeting_default">নমস্কাৰ, ব্যৱহাৰকাৰী</string>
+    <string name="last_scan">অন্তিম স্কেন</string>
+    <string name="button_tip">পৰামৰ্শ</string>
+    <string name="button_recommendation">সুপাৰিশ</string>
+    <string name="button_history">ইতিহাস</string>
+    <string name="button_scan">স্কেন</string>
+    <string name="button_documents">নথিপত্ৰ</string>
 
-    <string name="setting_language">à¦­à¦¾à¦·à¦¾</string>
-    <string name="setting_accessibility">à¦…à¦­à¦¿à¦—à¦®à§à¦¯à¦¤à¦¾</string>
-    <string name="setting_theme">à¦à¦ªà§° à¦¥à¦¿à¦®</string>
-    <string name="setting_manage_data">à¦¤à¦¥à§à¦¯ à¦ªà§°à¦¿à¦šà¦¾à¦²à¦¨à¦¾</string>
+    <string name="menu_settings">চেটিংছ</string>
+    <string name="menu_help">সহায়</string>
+    <string name="menu_contact">যোগাযোগ</string>
+    <string name="menu_logout">লগ আউট</string>
 
-    <string name="setting_unit_converter">à¦­à§‚à¦®à¦¿à§° à¦à¦•à¦• à¦ªà§°à¦¿à§±à§°à§à¦¤à¦•</string>
-    <string name="setting_unit_converter_desc">à¦à¦•à§°, à¦¹à§‡à¦•à§à¦Ÿà§°, à¦¬à¦¿à¦˜à¦¾ à¦†à§°à§ à¦•à¦ à¦¾ à§°à§‚à¦ªà¦¾à¦¨à§à¦¤à§° à¦•à§°à¦•à¥¤</string>
-    <string name="setting_kisan_call">à¦•à¦¿à¦·à¦¾à¦£ à¦¹à§‡à¦²à§à¦ªà¦²à¦¾à¦‡à¦¨à¦²à§ˆ à¦•à¦² à¦•à§°à¦•</string>
-    <string name="setting_kisan_call_desc">à¦šà§°à¦•à¦¾à§°à§€ à¦•à¦¿à¦·à¦¾à¦£ à¦•à¦² à¦šà§‡à¦£à§à¦Ÿà¦¾à§°à§° à¦¸à§ˆà¦¤à§‡ à¦¸à¦‚à¦¯à§‹à¦— à¦•à§°à¦• (à§§à§®à§¦à§¦-à§§à§®à§¦-à§§à§«à§«à§§)à¥¤</string>
+    <string name="setting_language">ভাষা</string>
+    <string name="setting_accessibility">প্ৰৱেশযোগ্যতা (Accessibility)</string>
+    <string name="setting_theme">এপৰ থিম</string>
+    <string name="setting_manage_data">তথ্য পৰিচালনা</string>
 
-    <string name="language_title">à¦­à¦¾à¦·à¦¾ à¦¬à¦¾à¦›à¦¨à¦¿ à¦•à§°à¦•</string>
-    <string name="language_system_default">à¦›à¦¿à¦·à§à¦Ÿà§‡à¦®à§° à¦¡à¦¿à¦«à¦²à§à¦Ÿ</string>
+    <string name="setting_unit_converter">ভূমিৰ একক পৰিৱৰ্তক</string>
+    <string name="setting_unit_converter_desc">একৰ, হেক্টৰ, বিঘা আৰু গুণ্ঠা পৰিৱৰ্তন কৰক।</string>
+    <string name="setting_kisan_call">কিষাণ হেল্পলাইনত কল কৰক</string>
+    <string name="setting_kisan_call_desc">চৰকাৰী কিষাণ কল চেণ্টাৰৰ সৈতে সংযোগ কৰক (1800-180-1551)।</string>
+
+    <string name="language_title">ভাষা নিৰ্বাচন কৰক</string>
+    <string name="language_system_default">ছিষ্টেম ডিফ’ল্ট</string>
     <string name="language_english">English</string>
-    <string name="language_hindi">à¤¹à¤¿à¤¨à¥à¤¦à¥€ (Hindi)</string>
-    <string name="language_tamil">à®¤à®®à®¿à®´à¯ (Tamil)</string>
-    <string name="language_malayalam">à´®à´²à´¯à´¾à´³à´‚ (Malayalam)</string>
-    <string name="language_telugu">à°¤à±†à°²à±à°—à± (Telugu)</string>
-    <string name="language_kannada">à²•à²¨à³à²¨à²¡ (Kannada)</string>
-    <string name="language_marathi">à¤®à¤°à¤¾à¤ à¥€ (Marathi)</string>
-    <string name="language_bengali">à¦¬à¦¾à¦‚à¦²à¦¾ (Bengali)</string>
-    <string name="language_gujarati">àª—à«àªœàª°àª¾àª¤à«€ (Gujarati)</string>
-    <string name="language_punjabi">à¨ªà©°à¨œà¨¾à¨¬à©€ (Punjabi)</string>
-    <string name="language_assamese">à¦…à¦¸à¦®à§€à¦¯à¦¼à¦¾ (Assamese)</string>
-    <string name="language_manipuri">à¦®à§ˆà¦¤à§ˆà¦²à§‹à¦¨à§ (Manipuri)</string>
-    <string name="language_bodo">à¤¬à¤¡à¤¼à¥‹ (Bodo)</string>
-    <string name="language_mizo">Mizo Å£awng (Mizo)</string>
-    <string name="language_garo">AÂ·chik (Garo)</string>
+    <string name="language_hindi">हिन्दी (Hindi)</string>
+    <string name="language_tamil">தமிழ் (Tamil)</string>
+    <string name="language_malayalam">മലയാളം (Malayalam)</string>
+    <string name="language_telugu">తెలుగు (Telugu)</string>
+    <string name="language_kannada">ಕನ್ನಡ (Kannada)</string>
+    <string name="language_marathi">मराठी (Marathi)</string>
+    <string name="language_bengali">বাংলা (Bengali)</string>
+    <string name="language_gujarati">ગુજરાતી (Gujarati)</string>
+    <string name="language_punjabi">ਪੰਜਾਬੀ (Punjabi)</string>
+    <string name="language_assamese">অসমীয়া (Assamese)</string>
+    <string name="language_manipuri">মৈতৈলোন্ (Manipuri)</string>
+    <string name="language_bodo">बड़ो (Bodo)</string>
+    <string name="language_mizo">Mizo ţawng (Mizo)</string>
+    <string name="language_garo">A·chik (Garo)</string>
 
-    <string name="font_size_title">à¦«à¦¨à§à¦Ÿà§° à¦†à¦•à¦¾à§°</string>
-    <string name="font_size_small">à¦¸à§°à§</string>
-    <string name="font_size_default">à¦¸à§à¦¬à¦¾à¦­à¦¾à§±à¦¿à¦•</string>
-    <string name="font_size_large">à¦¡à¦¾à¦™à§°</string>
-    <string name="font_size_sample">à¦†à¦ªà§‹à¦¨à¦¾à§° à¦²à¦¿à¦–à¦¾à¦¬à§‹à§° à¦à¦¨à§‡à¦•à§à§±à¦¾ à¦¦à§‡à¦–à¦¿à¦¬à¥¤</string>
-    <string name="setting_font_dyslexic">à¦¡à¦¿à¦¸à§à¦²à§‡à¦•à§à¦¸à¦¿à¦•-à¦¬à¦¨à§à¦§à§à¦¤à§à¦¬à¦ªà§‚à§°à§à¦£ à¦«à¦¨à§à¦Ÿ</string>
-    <string name="setting_font_dyslexic_desc">à¦¸à¦¹à¦œ à¦ªà¦¢à¦¼à¦¾à§° à¦¬à¦¾à¦¬à§‡ OpenDyslexic à¦«à¦¨à§à¦Ÿ à¦¬à§à¦¯à§±à¦¹à¦¾à§° à¦•à§°à§‡à¥¤</string>
+    <string name="font_size_title">ফন্টৰ আকাৰ</string>
+    <string name="font_size_small">সৰু</string>
+    <string name="font_size_default">ডিফ’ল্ট</string>
+    <string name="font_size_large">ডাঙৰ</string>
+    <string name="font_size_sample">আপোনাৰ লিখাবোৰ এনেকুৱা দেখিব।</string>
+    <string name="setting_font_dyslexic">ডিচলেক্সিয়া-অনুকূল ফন্ট</string>
+    <string name="setting_font_dyslexic_desc">সহজ পঢ়াৰ বাবে OpenDyslexic ফন্ট ব্যৱহাৰ কৰে।</string>
 
-    <string name="theme_title">à¦¥à¦¿à¦® à¦¬à¦¾à¦›à¦¨à¦¿ à¦•à§°à¦•</string>
-    <string name="theme_light">à¦²à¦¾à¦‡ à§®</string>
-    <string name="theme_dark">à¦¡à¦¾à§°à§à¦•</string>
-    <string name="theme_system">à¦›à¦¿à¦·à§à¦Ÿà§‡à¦®à§° à¦¡à¦¿à¦«à¦²à§à¦Ÿ</string>
+    <string name="theme_title">থিম বাছনি কৰক</string>
+    <string name="theme_light">লাইট (পোহৰ)</string>
+    <string name="theme_dark">ডাৰ্ক (আন্ধাৰ)</string>
+    <string name="theme_system">ছিষ্টেম ডিফ’ল্ট</string>
 
-    <string name="manage_data_title">à¦¤à¦¥à§à¦¯ à¦ªà§°à¦¿à¦šà¦¾à¦²à¦¨à¦¾</string>
-    <string name="manage_data_soil_title">à¦®à¦¾à¦Ÿà¦¿à§° à¦‡à¦¤à¦¿à¦¹à¦¾à¦¸ à¦®à¦šà¦¿ à¦ªà§‡à¦²à¦¾à¦“à¦•</string>
-    <string name="manage_data_soil_desc">à¦¸à¦‚à§°à¦•à§à¦·à¦¿à¦¤ à¦¸à¦•à¦²à§‹ à¦®à¦¾à¦Ÿà¦¿ à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ à¦ªà§à§°à¦¤à¦¿à¦¬à§‡à¦¦à¦¨ à¦®à¦šà¦¿ à¦ªà§‡à¦²à¦¾à¦¬à¥¤</string>
-    <string name="manage_data_docs_title">à¦¸à¦•à¦²à§‹ à¦¨à¦¥à¦¿à¦ªà¦¤à§à§° à¦®à¦šà¦¿ à¦ªà§‡à¦²à¦¾à¦“à¦•</string>
-    <string name="manage_data_docs_desc">à¦à¦‡ à¦¡à¦¿à¦­à¦¾à¦‡à¦šà§° à¦ªà§°à¦¾ à¦¸à¦•à¦²à§‹ à¦†à¦ªà¦²à§‹à¦¡ à¦•à§°à¦¾ à¦¨à¦¥à¦¿à¦ªà¦¤à§à§° à¦®à¦šà¦¿ à¦ªà§‡à¦²à¦¾à¦¬à¥¤</string>
-    <string name="dialog_are_you_sure">à¦†à¦ªà§à¦¨à¦¿ à¦¨à¦¿à¦¶à§à¦šà¦¿à¦¤à¦¨à§‡?</string>
-    <string name="dialog_delete">à¦®à¦šà¦¿ à¦ªà§‡à¦²à¦¾à¦“à¦•</string>
-    <string name="dialog_cancel">à¦¬à¦¾à¦¤à¦¿à¦² à¦•à§°à¦•</string>
-    <string name="toast_history_cleared">à¦®à¦¾à¦Ÿà¦¿à§° à¦‡à¦¤à¦¿à¦¹à¦¾à¦¸ à¦®à¦šà¦¿ à¦ªà§‡à¦²à§‹à§±à¦¾ à¦¹\'à¦²à¥¤</string>
-    <string name="toast_documents_cleared">à¦¸à¦•à¦²à§‹ à¦¨à¦¥à¦¿à¦ªà¦¤à§à§° à¦®à¦šà¦¿ à¦ªà§‡à¦²à§‹à§±à¦¾ à¦¹\'à¦²à¥¤</string>
+    <string name="manage_data_title">তথ্য পৰিচালনা</string>
+    <string name="manage_data_soil_title">মাটিৰ ইতিহাস মচি পেলাওক</string>
+    <string name="manage_data_soil_desc">সংৰক্ষিত সকলো মাটি পৰীক্ষাৰ প্ৰতিবেদন মচি পেলায়।</string>
+    <string name="manage_data_docs_title">সকলো নথিপত্ৰ মচি পেলাওক</string>
+    <string name="manage_data_docs_desc">এই ডিভাইচৰ পৰা আপলোড কৰা সকলো নথিপত্ৰ মচি পেলায়।</string>
+    <string name="dialog_are_you_sure">আপুনি নিশ্চিতনে?</string>
+    <string name="dialog_delete">মচি পেলাওক (Delete)</string>
+    <string name="dialog_cancel">বাতিল কৰক</string>
+    <string name="toast_history_cleared">মাটিৰ ইতিহাস মচি পেলোৱা হ’ল।</string>
+    <string name="toast_documents_cleared">সকলো নথিপত্ৰ মচি পেলোৱা হ’ল।</string>
 
-    <string name="help_title">à¦¸à¦¹à¦¾à¦¯à¦¼ à¦†à§°à§ à¦¸à¦®à§°à§à¦¥à¦¨</string>
-    <string name="help_faq_title">à¦¸à¦˜à¦¨à¦¾à¦‡ à¦¸à§‹à¦§à¦¾ à¦ªà§à§°à¦¶à§à¦¨ (FAQ)</string>
-    <string name="help_q1">à¦®à¦‡ à¦•à§‡à¦¨à§‡à¦•à§ˆ à¦­à¦¾à¦² à¦®à¦¾à¦Ÿà¦¿à§° à¦¸à§à¦•à§‡à¦¨ à¦²à¦®?</string>
-    <string name="help_a1">à¦­à¦¾à¦² à¦ªà§‹à¦¹à§° à¦¨à¦¿à¦¶à§à¦šà¦¿à¦¤ à¦•à§°à¦•, à¦¨à¦®à§à¦¨à¦¾à¦Ÿà§‹ à¦à¦Ÿà¦¾ à¦¸à¦¾à¦§à¦¾ à¦ªà¦Ÿà¦¤ à§°à¦¾à¦–à¦•, à¦†à§°à§ à¦«à¦•à¦¾à¦š à¦•à§°à¦¿à¦¬à¦²à§ˆ à¦Ÿà§‡à¦ª à¦•à§°à¦•à¥¤</string>
-    <string name="help_q2">AI à¦•à¦¿à¦®à¦¾à¦¨ à¦¸à¦ à¦¿à¦•?</string>
-    <string name="help_a2">AI à¦¦à§ƒà¦¶à§à¦¯à¦®à¦¾à¦¨ à¦¤à¦¥à§à¦¯à§° à¦†à¦§à¦¾à§°à¦¤ à¦ªà§°à¦¾à¦®à§°à§à¦¶ à¦¦à¦¿à¦¯à¦¼à§‡à¥¤ à¦—à§à§°à§à¦¤à§à¦¬à¦ªà§‚à§°à§à¦£ à¦¸à¦¿à¦¦à§à¦§à¦¾à¦¨à§à¦¤à§° à¦¬à¦¾à¦¬à§‡ à¦…à¦¨à§à¦—à§à§°à¦¹ à¦•à§°à¦¿ à¦¸à§à¦¥à¦¾à¦¨à§€à¦¯à¦¼ à¦•à§ƒà¦·à¦¿ à¦¬à¦¿à¦¶à§‡à¦·à¦œà§à¦žà§° à¦¸à§ˆà¦¤à§‡ à¦¯à§‹à¦—à¦¾à¦¯à§‹à¦— à¦•à§°à¦•à¥¤</string>
-    <string name="help_contact_title">à¦¸à¦¹à¦¾à¦¯à¦¼à§° à¦¬à¦¾à¦¬à§‡ à¦¯à§‹à¦—à¦¾à¦¯à§‹à¦—</string>
-    <string name="help_contact_phone">+à§¯à§§ à§§à§¨à§©à§ªà§« à§¬à§­à§®à§¯à§¦</string>
+    <string name="help_title">সহায় আৰু সমৰ্থন</string>
+    <string name="help_faq_title">সঘনাই সোধা প্ৰশ্ন (FAQ)</string>
+    <string name="help_q1">মই কেনেকৈ ভাল মাটিৰ স্কেন ল’ব পাৰিম?</string>
+    <string name="help_a1">ভাল পোহৰ নিশ্চিত কৰক, নমুনাটো এটা সাধা পটভূমিত ৰাখক, আৰু ফ’কাচ কৰিবলৈ টেপ কৰক।</string>
+    <string name="help_q2">AI কিমান সঠিক?</string>
+    <string name="help_a2">AI দৃশ্যমান তথ্যৰ ওপৰত ভিত্তি কৰি পৰামৰ্শ দিয়ে। গুৰুত্বপূৰ্ণ সিদ্ধান্তৰ বাবে অনুগ্ৰহ কৰি স্থানীয় কৃষি বিশেষজ্ঞৰ পৰামৰ্শ লওক।</string>
+    <string name="help_contact_title">সাপোৰ্টৰ সৈতে যোগাযোগ</string>
+    <string name="help_contact_phone">+৯১ ১২৩৪৫ ৬৭৮৯০</string>
     <string name="help_contact_email">support@mittimitra.com</string>
 
-    <string name="converter_title">à¦­à§‚à¦®à¦¿ à¦ªà§°à¦¿à§±à§°à§à¦¤à¦•</string>
-    <string name="label_enter_area">à¦®à¦¾à¦Ÿà¦¿à§° à¦ªà§°à¦¿à¦®à¦¾à¦£ à¦²à¦¿à¦–à¦•</string>
-    <string name="label_result">à¦«à¦²à¦¾à¦«à¦²</string>
-    <string name="btn_convert">à¦ªà§°à¦¿à§±à§°à§à¦¤à¦¨ à¦•à§°à¦•</string>
-    <string name="unit_acre">à¦à¦•à§°</string>
-    <string name="unit_hectare">à¦¹à§‡à¦•à§à¦Ÿà§°</string>
-    <string name="unit_bigha">à¦¬à¦¿à¦˜à¦¾</string>
-    <string name="unit_guntha">à¦—à§à¦¨à§à¦ à¦¾</string>
-    <string name="unit_cent">à¦šà§‡à¦£à§à¦Ÿ</string>
+    <string name="converter_title">ভূমিৰ পৰিৱৰ্তক</string>
+    <string name="label_enter_area">কালি সুমুৱাওক</string>
+    <string name="label_result">ফলাফল</string>
+    <string name="btn_convert">পৰিৱৰ্তন কৰক</string>
+    <string name="unit_acre">একৰ</string>
+    <string name="unit_hectare">হেক্টৰ</string>
+    <string name="unit_bigha">বিঘা (মানক)</string>
+    <string name="unit_guntha">গুণ্ঠা</string>
+    <string name="unit_cent">চেণ্ট</string>
 
-    <string name="setting_share_app">à¦¬à¦¨à§à¦§à§à¦¸à¦•à¦²à§° à¦¸à§ˆà¦¤à§‡ à¦¶à§à¦¬à§‡à¦¯à¦¼à¦¾à§° à¦•à§°à¦•</string>
-    <string name="setting_notifications">à¦œà¦¾à¦¨à¦¨à§€ à¦…à¦—à§à§°à¦¾à¦§à¦¿à¦•à¦¾à§°</string>
+    <string name="setting_share_app">বন্ধুৰ সৈতে শ্বেয়াৰ কৰক</string>
+    <string name="setting_notifications">নটিফিকেশ্বন পছন্দসমূহ</string>
 
-    <string name="notif_title">à¦œà¦¾à¦¨à¦¨à§€</string>
-    <string name="notif_weather_title">à¦¬à¦¤à§°à§° à¦¸à¦¤à§°à§à¦•à¦¬à¦¾à¦£à§€</string>
-    <string name="notif_weather_desc">à¦§à¦¾à§°à¦¾à¦¸à¦¾à§° à¦¬à§°à¦·à§à¦£ à¦†à§°à§ à¦§à§à¦®à§à¦¹à¦¾à§° à¦¸à¦¤à§°à§à¦•à¦¬à¦¾à¦£à§€ à¦²à¦¾à¦­ à¦•à§°à¦•à¥¤</string>
-    <string name="notif_mandi_title">à¦¬à¦œà¦¾à§°à§° à¦¦à§°</string>
-    <string name="notif_mandi_desc">à¦†à¦ªà§‹à¦¨à¦¾à§° à¦œà¦¿à¦²à¦¾à§° à¦¬à¦¾à¦¬à§‡ à¦¦à§ˆà¦¨à¦¿à¦• à¦¬à¦œà¦¾à§°à§° à¦¹à¦¾à§°à¥¤</string>
-    <string name="notif_scheme_title">à¦šà§°à¦•à¦¾à§°à§€ à¦†à¦à¦šà¦¨à¦¿à¦¸à¦®à§‚à¦¹</string>
-    <string name="notif_scheme_desc">PM-KISAN à¦†à§°à§ à¦…à¦¨à§à¦¯à¦¾à¦¨à§à¦¯ à§°à¦¾à¦œ à¦¸à¦¾à¦¹à¦¾à¦¯à§à¦¯à§° à¦–à¦¬à§°à¥¤</string>
-    <string name="share_message">Mitti Mitra à¦šà¦¾à¦“à¦• - à¦®à¦¾à¦Ÿà¦¿à§° à¦¸à§à¦¬à¦¾à¦¸à§à¦¥à§à¦¯ à¦†à§°à§ à¦•à§ƒà¦·à¦¿à§° à¦¬à¦¾à¦¬à§‡ à¦¶à§à§°à§‡à¦·à§à¦  à¦à¦ª! à¦‡à¦¯à¦¼à¦¾à¦¤ à¦¡à¦¾à¦‰à¦¨à¦²à§‹à¦¡ à¦•à§°à¦•: https://play.google.com/store/apps/details?id=com.mittimitra</string>
+    <string name="notif_title">নটিফিকেশ্বন</string>
+    <string name="notif_weather_title">বতৰৰ সতৰ্কবাৰ্তা</string>
+    <string name="notif_weather_desc">প্ৰবল বৰষুণ আৰু ধুমুহাৰ সতৰ্কবাৰ্তা পাওক।</string>
+    <string name="notif_mandi_title">মণ্ডীৰ দৰ</string>
+    <string name="notif_mandi_desc">আপোনাৰ জিলাৰ বাবে দৈনিক বজাৰ দৰ।</string>
+    <string name="notif_scheme_title">চৰকাৰী আঁচনিসমূহ</string>
+    <string name="notif_scheme_desc">পিএম-কিষাণ আৰু ৰাজসাহায্যৰ আপডেটসমূহ।</string>
+    <string name="share_message">Mitti Mitra চাওক - মাটিৰ স্বাস্থ্য আৰু খেতিৰ বাবে শ্ৰেষ্ঠ এপ! ইয়াত ডাউনলোড কৰক: https://play.google.com/store/apps/details?id=com.mittimitra</string>
 
-    <string name="title_pm_kisan">PM-KISAN: â‚¹à§¬,à§¦à§¦à§¦/à¦¬à¦›à§°</string>
-    <string name="title_smart_tools">à¦¸à§à¦®à¦¾à§°à§à¦Ÿ à¦¸à¦à¦œà§à¦²à¦¿</string>
-    <string name="title_soil_health">à¦®à¦¾à¦Ÿà¦¿à§° à¦¸à§à¦¬à¦¾à¦¸à§à¦¥à§à¦¯ à¦•à¦¾à§°à§à¦¡: à¦†à¦ªà§‹à¦¨à¦¾à§° à¦®à¦¾à¦Ÿà¦¿à§° à¦¶à¦•à§à¦¤à¦¿ à¦œà¦¾à¦¨à¦•</string>
-    <string name="title_fasal_bima">à¦«à¦šà¦² à¦¬à§€à¦®à¦¾ à¦¯à§‹à¦œà¦¨à¦¾: à¦†à¦ªà§‹à¦¨à¦¾à§° à¦¶à¦¸à§à¦¯ à¦¸à§à§°à¦•à§à¦·à¦¿à¦¤ à¦•à§°à¦•</string>
+    <string name="title_pm_kisan">পিএম-কিষাণ: ₹৬,০০০/বছৰি আয়ৰ সমৰ্থন</string>
+    <string name="title_smart_tools">স্মাৰ্ট সঁজুলি</string>
+    <string name="title_soil_health">মাটিৰ স্বাস্থ্য কাৰ্ড: মাটিৰ শক্তি জানক</string>
+    <string name="title_fasal_bima">প্ৰধানমন্ত্ৰী ফচল বীমা যোজনা: আপোনাৰ শস্য সুৰক্ষিত কৰক</string>
 
-    <string name="notif_weather">à¦¬à¦¤à§°à§° à¦¸à¦¤à§°à§à¦•à¦¬à¦¾à¦£à§€</string>
-    <string name="notif_mandi">à¦¬à¦œà¦¾à§°à§° à¦¦à§°</string>
-    <string name="notif_schemes">à¦šà§°à¦•à¦¾à§°à§€ à¦†à¦à¦šà¦¨à¦¿</string>
+    <string name="notif_weather">বতৰৰ সতৰ্কবাৰ্তা</string>
+    <string name="notif_mandi">মণ্ডীৰ দৰ</string>
+    <string name="notif_schemes">চৰকাৰী আঁচনি</string>
 
-    <string name="contact_header">à¦†à¦®à¦¿ à¦¸à¦¹à¦¾à¦¯à¦¼ à¦•à§°à¦¿à¦¬à¦²à§ˆ à¦†à¦›à§‹</string>
-    <string name="contact_desc">à¦¨à¦¿à§°à§à¦¦à¦¿à¦·à§à¦Ÿ à¦•à§ƒà¦·à¦¿ à¦ªà§°à¦¾à¦®à§°à§à¦¶ à¦¬à¦¾ à¦•à¦¾à§°à¦¿à¦•à§°à§€ à¦¸à¦¹à¦¾à¦¯à¦¼à§° à¦¬à¦¾à¦¬à§‡ à¦†à¦®à¦¾à§° à¦¸à§ˆà¦¤à§‡ à¦¯à§‹à¦—à¦¾à¦¯à§‹à¦— à¦•à§°à¦•à¥¤</string>
-    <string name="contact_call">à¦•à¦² à¦•à§°à¦•</string>
-    <string name="contact_time">à¦¸à§‹à¦®-à¦¶à¦¨à¦¿, à§¯ à¦¬à¦œà¦¾ - à§¬ à¦¬à¦œà¦¾</string>
-    <string name="contact_email">à¦‡à¦®à§‡à¦‡à¦² à¦•à§°à¦•</string>
+    <string name="contact_header">আমি সহায় কৰিবলৈ আছো</string>
+    <string name="contact_desc">নিৰ্দিষ্ট কৃষি পৰামৰ্শ বা কাৰিকৰী সহায়ৰ বাবে আমাৰ সৈতে যোগাযোগ কৰক।</string>
+    <string name="contact_call">সাপোৰ্টত কল কৰক</string>
+    <string name="contact_time">সোম-শনি, পুৱা ৯ - সন্ধিয়া ৬</string>
+    <string name="contact_email">আমাক ইমেইল কৰক</string>
     <string name="contact_email_addr">support@mittimitra.com</string>
 
-    <string name="label_from_unit">à¦ªà§°à¦¾</string>
-    <string name="label_to_unit">à¦²à§ˆ</string>
+    <string name="label_from_unit">এই এককৰ পৰা</string>
+    <string name="label_to_unit">এই এককলৈ</string>
 
-    <string name="scan_title">à¦¨à¦¤à§à¦¨ à¦®à¦¾à¦Ÿà¦¿ à¦ªà§°à§€à¦•à§à¦·à¦¾</string>
-    <string name="scan_env_data">à¦ªà§°à¦¿à§±à§‡à¦¶à§° à¦¤à¦¥à§à¦¯</string>
-    <string name="scan_weather">à¦¬à¦¤à§°</string>
-    <string name="scan_moisture">à¦†à§°à§à¦¦à§à§°à¦¤à¦¾</string>
-    <string name="scan_nutrients">à¦®à¦¾à¦Ÿà¦¿à§° à¦ªà§à¦·à§à¦Ÿà¦¿ (à¦†à¦¨à§à¦®à¦¾à¦¨à¦¿à¦•)</string>
-    <string name="scan_hint">à¦†à¦ªà§‹à¦¨à¦¾à§° à¦ªà§°à§à¦¯à¦¬à§‡à¦•à§à¦·à¦£ (à¦¯à§‡à¦¨à§‡ \'à¦¹à¦¾à¦²à¦§à§€à¦¯à¦¼à¦¾ à¦ªà¦¾à¦¤\')</string>
-    <string name="scan_status_ready">à¦¸à§à¦•à§‡à¦¨ à¦•à§°à¦¿à¦¬à¦²à§ˆ à¦ªà§à§°à¦¸à§à¦¤à§à¦¤</string>
-    <string name="scan_btn_gallery">à¦—à§‡à¦²à§‡à§°à§€</string>
-    <string name="scan_btn_camera">à¦•à§‡à¦®à§‡à§°à¦¾</string>
-    <string name="scan_btn_analyze">à¦‰à¦¦à§à¦­à¦¿à¦¦ à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ à¦•à§°à¦•</string>
+    <string name="scan_title">নতুন মাটিৰ স্কেন</string>
+    <string name="scan_env_data">পৰিৱেশৰ তথ্য</string>
+    <string name="scan_weather">বতৰ</string>
+    <string name="scan_moisture">আৰ্দ্ৰতা</string>
+    <string name="scan_nutrients">মাটিৰ পুষ্টি (আনুমানিক)</string>
+    <string name="scan_hint">আপোনাৰ পৰ্যবেক্ষণ (উদাহৰণস্বৰূপে \'হালধীয়া পাত\')</string>
+    <string name="scan_status_ready">স্কেন কৰিবলৈ সাজু</string>
+    <string name="scan_btn_gallery">গেলাৰী</string>
+    <string name="scan_btn_camera">কেমেৰা</string>
+    <string name="scan_btn_analyze">উদ্ভিদ বিশ্লেষণ কৰক</string>
 
-    <string name="profile_recent">à¦¶à§‡à¦¹à¦¤à§€à¦¯à¦¼à¦¾ à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£</string>
-    <string name="profile_no_history">à¦•à§‹à¦¨à§‹ à¦¶à§‡à¦¹à¦¤à§€à¦¯à¦¼à¦¾ à¦¸à§à¦•à§‡à¦¨ à¦ªà§‹à§±à¦¾ à¦¨à¦—à¦²à¥¤</string>
-    <string name="profile_logout">à¦²à¦— à¦†à¦‰à¦Ÿ</string>
-    <string name="profile_member_since">à¦¸à¦¦à¦¸à§à¦¯à§° à¦¤à¦¾à§°à¦¿à¦–:</string>
-    <string name="profile_phone">à¦«à§‹à¦¨:</string>
+    <string name="profile_recent">শেহতীয়া বিশ্লেষণ</string>
+    <string name="profile_no_history">কোনো শেহতীয়া স্কেন পোৱা নগ’ল।</string>
+    <string name="profile_logout">লগ আউট</string>
+    <string name="profile_member_since">সদস্যভৰ্তিৰ তাৰিখ:</string>
+    <string name="profile_phone">ফোন:</string>
 
-    <string name="rec_title">à¦®à¦¾à¦Ÿà¦¿à§° à¦¸à§à¦¬à¦¾à¦¸à§à¦¥à§à¦¯ à¦•à¦¾à§°à§à¦¡</string>
-    <string name="rec_header_title">à¦®à¦¾à¦Ÿà¦¿à§° à¦¸à§à¦¬à¦¾à¦¸à§à¦¥à§à¦¯ à¦•à¦¾à§°à§à¦¡</string>
-    <string name="rec_header_subtitle">à¦®à¦¿à¦Ÿà§à¦Ÿà¦¿ à¦®à¦¿à¦¤à§à§° â€¢ à¦¡à¦¿à¦œà¦¿à¦Ÿà§‡à¦² à¦•à§ƒà¦·à¦¿ à¦…à¦­à¦¿à¦¯à¦¾à¦¨</string>
-    <string name="rec_farmer_details">à¦•à§ƒà¦·à¦•à§° à¦¬à¦¿à§±à§°à¦£</string>
-    <string name="rec_label_name">à¦¨à¦¾à¦®:</string>
-    <string name="rec_label_mobile">à¦®à§‹à¦¬à¦¾à¦‡à¦²:</string>
-    <string name="rec_label_email">à¦‡à¦®à§‡à¦‡à¦²:</string>
-    <string name="rec_label_location">à¦¸à§à¦¥à¦¾à¦¨:</string>
-    <string name="rec_label_date">à¦¤à¦¾à§°à¦¿à¦–:</string>
-    <string name="rec_results_title">à¦ªà§°à§€à¦•à§à¦·à¦¾à§° à¦«à¦²à¦¾à¦«à¦² (à¦ªà§à§°à¦¾à¦¥à¦®à¦¿à¦• à¦ªà§à¦·à§à¦Ÿà¦¿)</string>
-    <string name="rec_col_param">à¦ªà§°à¦¿à¦®à¦¾à¦ª</string>
-    <string name="rec_col_value">à¦®à¦¾à¦¨</string>
-    <string name="rec_col_status">à¦…à§±à¦¸à§à¦¥à¦¾</string>
-    <string name="rec_advisory_title">à¦¬à§ˆà¦œà§à¦žà¦¾à¦¨à¦¿à¦• à¦ªà§°à¦¾à¦®à§°à§à¦¶</string>
-    <string name="rec_footer">Mitti Mitra AI à§° à¦¦à§à¦¬à¦¾à§°à¦¾ à¦ªà§à§°à¦¸à§à¦¤à§à¦¤ | à¦‰à¦ªà¦—à§à§°à¦¹ à¦¤à¦¥à§à¦¯à§° à¦¦à§à¦¬à¦¾à§°à¦¾ à¦ªà§à§°à¦®à¦¾à¦£à¦¿à¦¤</string>
-    <string name="rec_btn_download">PDF à¦¡à¦¾à¦‰à¦¨à¦²à§‹à¦¡</string>
+    <string name="rec_title">মাটিৰ স্বাস্থ্য কাৰ্ড</string>
+    <string name="rec_header_title">মাটিৰ স্বাস্থ্য কাৰ্ড</string>
+    <string name="rec_header_subtitle">মিট্টি মিত্ৰ • ডিজিটেল কৃষি অভিযান</string>
+    <string name="rec_farmer_details">কৃষকৰ বিৱৰণ</string>
+    <string name="rec_label_name">নাম:</string>
+    <string name="rec_label_mobile">মোবাইল:</string>
+    <string name="rec_label_email">ইমেইল:</string>
+    <string name="rec_label_location">স্থান:</string>
+    <string name="rec_label_date">পৰীক্ষাৰ তাৰিখ:</string>
+    <string name="rec_results_title">পৰীক্ষাৰ ফলাফল (প্ৰাথমিক পুষ্টি)</string>
+    <string name="rec_col_param">পৰিমাপক</string>
+    <string name="rec_col_value">মান</string>
+    <string name="rec_col_status">স্থিতি</string>
+    <string name="rec_advisory_title">বৈজ্ঞানিক পৰামৰ্শ</string>
+    <string name="rec_footer">মিট্টি মিত্ৰ AI দ্বাৰা প্ৰস্তুত | উপগ্ৰহ তথ্যৰ দ্বাৰা প্ৰমাণিত</string>
+    <string name="rec_btn_download">PDF ডাউনলোড কৰক</string>
 
-    <string name="login_welcome">à¦¸à§à¦¬à¦¾à¦—à¦¤à¦®</string>
-    <string name="login_subtitle">à¦†à¦ªà§‹à¦¨à¦¾à§° à¦•à§ƒà¦·à¦¿ à¦¸à¦à¦œà§à¦²à¦¿ à¦¬à§à¦¯à§±à¦¹à¦¾à§° à¦•à§°à¦¿à¦¬à¦²à§ˆ à¦²à¦— à¦‡à¦¨ à¦•à§°à¦•</string>
-    <string name="login_google">Google à§° à¦¸à§ˆà¦¤à§‡ à¦†à¦—à¦¬à¦¾à¦¢à¦¼à¦•</string>
-    <string name="login_or_divider">à¦…à¦¥à¦¬à¦¾ à¦«à§‹à¦¨ à¦¨à¦®à§à¦¬à§°</string>
-    <string name="login_hint_phone">à¦«à§‹à¦¨ à¦¨à¦®à§à¦¬à§°</string>
-    <string name="login_btn_otp">OTP à¦ªà§à§°à¦¾à¦ªà§à¦¤ à¦•à§°à¦•</string>
-    <string name="login_hint_otp">à§¬-à¦…à¦‚à¦•à§€ OTP à¦²à¦¿à¦–à¦•</string>
-    <string name="login_btn_verify">à¦¸à¦¤à§à¦¯à¦¾à¦ªà¦¨ à¦†à§°à§ à¦²à¦— à¦‡à¦¨</string>
-    <string name="login_trouble">à¦²à¦— à¦‡à¦¨ à¦•à§°à¦¾à¦¤ à¦¸à¦®à¦¸à§à¦¯à¦¾ à¦¹à§ˆà¦›à§‡ à¦¨à§‡à¦•à¦¿?</string>
+    <string name="login_welcome">পুনৰ স্বাগতম</string>
+    <string name="login_subtitle">আপোনাৰ কৃষি সঁজুলি প্ৰৱেশ কৰিবলৈ লগ ইন কৰক</string>
+    <string name="login_google">Google ৰ সৈতে আগবাঢ়ক</string>
+    <string name="login_or_divider">অথবা ফোন</string>
+    <string name="login_hint_phone">ফোন নম্বৰ</string>
+    <string name="login_btn_otp">OTP পাওক</string>
+    <string name="login_hint_otp">৬-অংকৰ OTP দিয়ক</string>
+    <string name="login_btn_verify">যাচাই আৰু লগ ইন</string>
+    <string name="login_trouble">লগ ইনত সমস্যা হৈছে?</string>
 
-    <string name="home_welcome_default">à¦¨à¦®à¦¸à§à¦•à¦¾à§°, à¦•à§ƒà¦·à¦•</string>
-    <string name="home_card_scan">à¦®à¦¾à¦Ÿà¦¿ à¦¸à§à¦•à§‡à¦¨</string>
-    <string name="home_card_advice">à¦ªà§°à¦¾à¦®à§°à§à¦¶ à¦²à¦“à¦•</string>
-    <string name="home_card_tips">à¦•à§ƒà¦·à¦• à¦¸à¦¹à¦¾à§Ÿà¦• (AI)</string>
-    <string name="home_card_plant_doctor">à¦‰à¦¦à§à¦­à¦¿à¦¦ à¦šà¦¿à¦•à¦¿à§Žà¦¸à¦•</string>
-    <string name="home_section_tools">à¦¸à§à¦®à¦¾à§°à§à¦Ÿ à¦¸à¦à¦œà§à¦²à¦¿</string>
-    <string name="desc_logo">à¦à¦ª à¦²à§‹à¦—à§‹</string>
-    <string name="desc_icon">à¦†à¦‡à¦•à¦¨</string>
+    <string name="home_welcome_default">নমস্কাৰ, কৃষক বন্ধু</string>
+    <string name="home_card_scan">মাটি স্কেন কৰক</string>
+    <string name="home_card_advice">পৰামৰ্শ লওক</string>
+    <string name="home_card_tips">কিষাণ সহায়ক (AI)</string>
+    <string name="home_card_plant_doctor">উদ্ভিদ চিকিৎসক</string>
+    <string name="home_section_tools">স্মাৰ্ট সঁজুলি</string>
+    <string name="desc_logo">এপ ল’গ’</string>
+    <string name="desc_icon">আইকন</string>
 
-    <string name="title_documents">à¦ªà§à§°à¦¯à¦¼à§‹à¦œà¦¨à§€à¦¯à¦¼ à¦¨à¦¥à¦¿à¦ªà¦¤à§à§°</string>
-    <string name="msg_no_documents">à¦•à§‹à¦¨à§‹ à¦¨à¦¥à¦¿à¦ªà¦¤à§à§° à¦ªà§‹à§±à¦¾ à¦¨à¦—à¦²à¥¤\nà¦¯à§‹à¦— à¦•à§°à¦¿à¦¬à¦²à§ˆ \'+\' à¦Ÿà¦¿à¦ªà¦•à¥¤</string>
-    <string name="desc_add_document">à¦¨à¦¥à¦¿à¦ªà¦¤à§à§° à¦¯à§‹à¦— à¦•à§°à¦•</string>
+    <string name="title_documents">প্ৰাসংগিক নথিপত্ৰ</string>
+    <string name="msg_no_documents">কোনো নথিপত্ৰ পোৱা নগ’ল।\nযোগ কৰিবলৈ \'+\' টেপ কৰক।</string>
+    <string name="desc_add_document">নথিপত্ৰ যোগ কৰক</string>
 
-    <string name="title_scan_history">à¦¸à§à¦•à§‡à¦¨ à¦‡à¦¤à¦¿à¦¹à¦¾à¦¸</string>
+    <string name="title_scan_history">স্কেনৰ ইতিহাস</string>
 
-    <string name="welcome_home_title">à¦¸à§à¦¬à¦¾à¦—à¦¤à¦®!</string>
-    <string name="welcome_home_desc">à¦†à¦ªà§à¦¨à¦¿ à¦¸à¦«à¦²à¦­à¦¾à§±à§‡ à¦²à¦— à¦‡à¦¨ à¦•à§°à¦¿à¦›à§‡!</string>
+    <string name="welcome_home_title">ঘৰলৈ স্বাগতম!</string>
+    <string name="welcome_home_desc">আপুনি সফলতাৰে লগ ইন কৰিছে!</string>
 
-    <string name="btn_test_notification">à¦Ÿà§‡à¦·à§à¦Ÿ à¦œà¦¾à¦¨à¦¨à§€ à¦ªà¦ à¦¿à¦¯à¦¼à¦¾à¦“à¦•</string>
-    <string name="desc_notification_icon">à¦œà¦¾à¦¨à¦¨à§€ à¦†à¦‡à¦•à¦¨</string>
+    <string name="btn_test_notification">পৰীক্ষামূলক নটিফিকেশ্বন পঠাওক</string>
+    <string name="desc_notification_icon">নটিফিকেশ্বন আইকন</string>
 
-    <string name="profile_name_placeholder">à¦²à§‹à¦¡ à¦¹à§ˆ à¦†à¦›à§‡...</string>
+    <string name="profile_name_placeholder">লোড হৈ আছে...</string>
     <string name="profile_email_placeholder">email@example.com</string>
-    <string name="desc_profile_image">à¦ªà§à§°à¦«à¦¾à¦‡à¦² à¦›à¦¬à¦¿</string>
-    <string name="desc_change_photo">à¦ªà§à§°à¦«à¦¾à¦‡à¦² à¦›à¦¬à¦¿ à¦¸à¦²à¦¨à¦¿ à¦•à§°à¦•</string>
-    <string name="desc_edit_profile">à¦ªà§à§°à¦«à¦¾à¦‡à¦² à¦¬à¦¿à§±à§°à¦£ à¦¸à¦®à§à¦ªà¦¾à¦¦à¦¨à¦¾ à¦•à§°à¦•</string>
+    <string name="desc_profile_image">প্ৰফাইল ছবি</string>
+    <string name="desc_change_photo">প্ৰফাইল ফটো সলনি কৰক</string>
+    <string name="desc_edit_profile">প্ৰফাইল বিৱৰণ সম্পাদনা কৰক</string>
 
-    <string name="rec_param_n">à¦¨à¦¾à¦‡à¦Ÿà§à§°à¦œà§‡à¦¨ (N)</string>
-    <string name="rec_param_p">à¦«à¦›à¦«à§°à¦¾à¦› (P)</string>
-    <string name="rec_param_k">à¦ªà¦Ÿà¦¾à¦›à¦¿à¦¯à¦¼à¦¾à¦® (K)</string>
-    <string name="rec_param_ph">à¦®à¦¾à¦Ÿà¦¿à§° pH</string>
-    <string name="rec_ai_context">à¦¨à¦¿à§°à§à¦¦à¦¿à¦·à§à¦Ÿ à¦¶à¦¸à§à¦¯à§° à¦ªà§à§°à¦¯à¦¼à§‹à¦œà¦¨à§€à¦¯à¦¼à¦¤à¦¾ à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ à¦•à§°à¦¾ à¦¹à§ˆà¦›à§‡...</string>
-    <string name="rec_ai_generating">à¦¬à¦¿à¦¶à§‡à¦·à¦œà§à¦žà§° à¦ªà§°à¦¾à¦®à§°à§à¦¶ à¦ªà§à§°à¦¸à§à¦¤à§à¦¤ à¦•à§°à¦¾ à¦¹à§ˆà¦›à§‡...</string>
+    <string name="rec_param_n">নাইট্ৰ’জেন (N)</string>
+    <string name="rec_param_p">ফছফৰাছ (P)</string>
+    <string name="rec_param_k">পটাছিয়াম (K)</string>
+    <string name="rec_param_ph">মাটিৰ pH</string>
+    <string name="rec_ai_context">নিৰ্দিষ্ট শস্যৰ প্ৰয়োজনীয়তা বিশ্লেষণ কৰা হৈছে...</string>
+    <string name="rec_ai_generating">বিশেষজ্ঞৰ পৰামৰ্শ প্ৰস্তুত কৰা হৈছে...</string>
 
-    <string name="scan_locating">à¦¸à§à¦¥à¦¾à¦¨ à¦¨à¦¿à§°à§à¦£à¦¯à¦¼ à¦•à§°à¦¾ à¦¹à§ˆà¦›à§‡...</string>
-    <string name="desc_image_preview">à¦›à¦¬à¦¿à§° à¦ªà§‚à§°à§à¦¬à¦¦à§°à§à¦¶à¦¨</string>
-    <string name="signup_title">Mitti Mitra à¦¤ à¦¯à§‹à¦—à¦¦à¦¾à¦¨ à¦•à§°à¦•</string>
-    <string name="signup_subtitle">à¦†à¦œà¦¿à¦¯à¦¼à§‡à¦‡ à¦†à¦ªà§‹à¦¨à¦¾à§° à¦¸à§à¦®à¦¾à§°à§à¦Ÿ à¦•à§ƒà¦·à¦¿ à¦¯à¦¾à¦¤à§à§°à¦¾ à¦†à§°à¦®à§à¦­ à¦•à§°à¦•</string>
-    <string name="signup_create_account">à¦à¦•à¦¾à¦‰à¦£à§à¦Ÿ à¦¸à§ƒà¦·à§à¦Ÿà¦¿ à¦•à§°à¦•</string>
-    <string name="signup_google">Google à§° à¦¸à§ˆà¦¤à§‡ à¦šà¦¾à¦‡à¦¨ à¦†à¦ª</string>
-    <string name="signup_phone">à¦«à§‹à¦¨ à¦¨à¦®à§à¦¬à§°à§° à¦¸à§ˆà¦¤à§‡ à¦šà¦¾à¦‡à¦¨ à¦†à¦ª</string>
-    <string name="signup_footer">à¦‡à¦¤à¦¿à¦®à¦§à§à¦¯à§‡ à¦à¦•à¦¾à¦‰à¦£à§à¦Ÿ à¦†à¦›à§‡ à¦¨à§‡à¦•à¦¿?</string>
+    <string name="scan_locating">স্থান নিৰ্ধাৰণ কৰি থকা হৈছে...</string>
+    <string name="desc_image_preview">ছবিৰ পূৰ্বদৰ্শন</string>
+    <string name="signup_title">মিট্টি মিত্ৰত যোগ দিয়ক</string>
+    <string name="signup_subtitle">আজিৰ পৰাই আপোনাৰ স্মাৰ্ট কৃষি যাত্ৰা আৰম্ভ কৰক</string>
+    <string name="signup_create_account">একাউণ্ট সৃষ্টি কৰক</string>
+    <string name="signup_google">Google ৰে চাইন আপ কৰক</string>
+    <string name="signup_phone">ফোন নম্বৰেৰে চাইন আপ কৰক</string>
+    <string name="signup_footer">ইতিমধ্যে একাউণ্ট আছে নেকি?</string>
 
-    <string name="chat_title">à¦•à§ƒà¦·à¦¿ à¦¬à¦¿à¦¶à§‡à¦·à¦œà§à¦ž à¦šà§à¦¯à¦¾à¦Ÿ</string>
-    <string name="chat_hint">à¦¶à¦¸à§à¦¯à§° à¦¬à¦¿à¦·à¦¯à¦¼à§‡ à¦¸à§à¦§à¦•...</string>
-    <string name="desc_mic">à¦…à¦¡à¦¿à¦…\' à§°à§‡à¦•à§°à§à¦¡ à¦•à§°à¦•</string>
-    <string name="desc_send">à¦¬à¦¾à§°à§à¦¤à¦¾ à¦ªà¦ à¦¿à¦¯à¦¼à¦¾à¦“à¦•</string>
+    <string name="chat_title">কৃষি-বিশেষজ্ঞৰ চ্যাট</string>
+    <string name="chat_hint">শস্যৰ বিষয়ে সোধক...</string>
+    <string name="desc_mic">অডিঅ’ ৰেকৰ্ড কৰক</string>
+    <string name="desc_send">বাৰ্তা পঠাওক</string>
 
-    <string name="welcome_get_started">à¦†à§°à¦®à§à¦­ à¦•à§°à¦•</string>
-    <string name="welcome_join_community">à¦¸à§à¦®à¦¾à§°à§à¦Ÿ à¦•à§ƒà¦·à¦¿ à¦¸à¦®à§à¦ªà§à§°à¦¦à¦¾à¦¯à¦¼à¦¤ à¦¯à§‹à¦—à¦¦à¦¾à¦¨ à¦•à§°à¦•à¥¤</string>
+    <string name="welcome_get_started">আৰম্ভ কৰক</string>
+    <string name="welcome_join_community">স্মাৰ্ট কৃষি সম্প্ৰদায়ত যোগ দিয়ক।</string>
 
-    <string name="edit_profile_title">à¦ªà§à§°à¦«à¦¾à¦‡à¦² à¦¸à¦®à§à¦ªà¦¾à¦¦à¦¨à¦¾</string>
-    <string name="edit_profile_name_hint">à¦¸à¦®à§à¦ªà§‚à§°à§à¦£ à¦¨à¦¾à¦®</string>
-    <string name="edit_profile_phone_hint">à¦«à§‹à¦¨ à¦¨à¦®à§à¦¬à§°</string>
-    <string name="edit_profile_phone_helper">à¦¸à¦¤à§°à§à¦•à¦¬à¦¾à¦£à§€à§° à¦¬à¦¾à¦¬à§‡ à¦ªà§à§°à¦¯à¦¼à§‹à¦œà¦¨à§€à¦¯à¦¼</string>
-    <string name="btn_save_changes">à¦ªà§°à¦¿à§±à§°à§à¦¤à¦¨ à¦¸à¦‚à§°à¦•à§à¦·à¦£ à¦•à§°à¦•</string>
+    <string name="edit_profile_title">প্ৰফাইল সম্পাদনা কৰক</string>
+    <string name="edit_profile_name_hint">সম্পূৰ্ণ নাম</string>
+    <string name="edit_profile_phone_hint">ফোন নম্বৰ</string>
+    <string name="edit_profile_phone_helper">সতৰ্কবাৰ্তাৰ বাবে প্ৰয়োজনীয়</string>
+    <string name="btn_save_changes">পৰিৱৰ্তনসমূহ চেভ কৰক</string>
 
-    <string name="btn_view">à¦šà¦¾à¦“à¦•</string>
+    <string name="btn_view">চাওক</string>
 
-    <string name="placeholder_location">à¦…à¦œà§à¦žà¦¾à¦¤ à¦¸à§à¦¥à¦¾à¦¨</string>
-    <string name="placeholder_date">à¦¤à¦¾à§°à¦¿à¦–</string>
-    <string name="status_calculating">à¦—à¦£à¦¨à¦¾ à¦•à§°à¦¾ à¦¹à§ˆà¦›à§‡...</string>
-    <string name="desc_view_details">à¦¬à¦¿à§±à§°à¦£ à¦šà¦¾à¦“à¦•</string>
+    <string name="placeholder_location">অজ্ঞাত স্থান</string>
+    <string name="placeholder_date">তাৰিখ</string>
+    <string name="status_calculating">গণনা কৰি থকা হৈছে...</string>
+    <string name="desc_view_details">বিৱৰণ চাওক</string>
 
-    <string name="history">à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£à§° à¦‡à¦¤à¦¿à¦¹à¦¾à¦¸</string>
-    <string name="delete_confirmation">à§°à§‡à¦•à§°à§à¦¡ à¦®à¦šà¦¿ à¦ªà§‡à¦²à¦¾à¦“à¦•</string>
-    <string name="delete_history_message">à¦†à¦ªà§à¦¨à¦¿ à¦¨à¦¿à¦¶à§à¦šà¦¿à¦¤à¦¨à§‡ à¦¯à§‡ à¦†à¦ªà§à¦¨à¦¿ à¦à¦‡ à¦®à¦¾à¦Ÿà¦¿ à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£à§° à§°à§‡à¦•à§°à§à¦¡ à¦®à¦šà¦¿ à¦ªà§‡à¦²à¦¾à¦¬ à¦¬à¦¿à¦šà¦¾à§°à§‡?</string>
-    <string name="delete">à¦®à¦šà¦¿ à¦ªà§‡à¦²à¦¾à¦“à¦•</string>
-    <string name="cancel">à¦¬à¦¾à¦¤à¦¿à¦²</string>
-    <string name="record_deleted">à§°à§‡à¦•à§°à§à¦¡ à¦®à¦šà¦¿ à¦ªà§‡à¦²à§‹à§±à¦¾ à¦¹\'à¦²</string>
+    <string name="history">বিশ্লেষণৰ ইতিহাস</string>
+    <string name="delete_confirmation">ৰেকৰ্ড ডিলিট কৰক</string>
+    <string name="delete_history_message">আপুনি নিশ্চিতনে যে আপুনি এই মাটি বিশ্লেষণৰ ৰেকৰ্ডটো মচি পেলাব বিচাৰে?</string>
+    <string name="delete">মচি পেলাওক</string>
+    <string name="cancel">বাতিল কৰক</string>
+    <string name="record_deleted">ৰেকৰ্ড মচি পেলোৱা হ’ল</string>
 
-    <string name="share_report">à¦ªà§à§°à¦¤à¦¿à¦¬à§‡à¦¦à¦¨ à¦¶à§à¦¬à§‡à¦¯à¦¼à¦¾à§° à¦•à§°à¦•</string>
-    <string name="share_via">à¦¶à§à¦¬à§‡à¦¯à¦¼à¦¾à§° à¦•à§°à¦•</string>
-    <string name="undo">à¦ªà§‚à§°à§à¦¬à¦¾à¦¬à¦¸à§à¦¥à¦¾à¦²à§ˆ à¦¨à¦¿à¦¯à¦¼à¦¾</string>
+    <string name="share_report">ৰিপোৰ্ট শ্বেয়াৰ কৰক</string>
+    <string name="share_via">ইয়াৰ জৰিয়তে শ্বেয়াৰ কৰক</string>
+    <string name="undo">পূৰ্বাবস্থালৈ ঘূৰাই আনক</string>
 
-    <string name="export_csv">CSV à¦à¦•à§à¦¸à¦ªà§°à§à¦Ÿ</string>
-    <string name="compare_analysis">à¦¤à§à¦²à¦¨à¦¾ à¦•à§°à¦•</string>
-    <string name="no_data_to_export">à¦à¦•à§à¦¸à¦ªà§°à§à¦Ÿ à¦•à§°à¦¿à¦¬à¦²à§ˆ à¦•à§‹à¦¨à§‹ à¦¤à¦¥à§à¦¯ à¦¨à¦¾à¦‡</string>
-    <string name="need_two_records">à¦¤à§à¦²à¦¨à¦¾ à¦•à§°à¦¿à¦¬à¦²à§ˆ à¦•à¦®à§‡à¦“ à§¨à¦Ÿà¦¾ à§°à§‡à¦•à§°à§à¦¡ à¦ªà§à§°à¦¯à¦¼à§‹à¦œà¦¨</string>
-    <string name="compare_title">à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ à¦¤à§à¦²à¦¨à¦¾</string>
-    <string name="select_records">à¦¤à§à¦²à¦¨à¦¾ à¦•à§°à¦¿à¦¬à¦²à§ˆ à§¨à¦Ÿà¦¾ à§°à§‡à¦•à§°à§à¦¡ à¦¬à¦¾à¦›à¦¨à¦¿ à¦•à§°à¦•</string>
-    <string name="clear_chat">à¦šà§à¦¯à¦¾à¦Ÿ à¦®à¦šà¦¿ à¦ªà§‡à¦²à¦¾à¦“à¦•</string>
-    <string name="chat_cleared">à¦šà§à¦¯à¦¾à¦Ÿ à¦‡à¦¤à¦¿à¦¹à¦¾à¦¸ à¦®à¦šà¦¿ à¦ªà§‡à¦²à§‹à§±à¦¾ à¦¹\'à¦²</string>
+    <string name="export_csv">CSV এক্সপোৰ্ট কৰক</string>
+    <string name="compare_analysis">তুলনা কৰক</string>
+    <string name="no_data_to_export">এক্সপোৰ্ট কৰিবলৈ কোনো তথ্য নাই</string>
+    <string name="need_two_records">তুলনা কৰিবলৈ কমেও ২টা ৰেকৰ্ডৰ প্ৰয়োজন</string>
+    <string name="compare_title">বিশ্লেষণ তুলনা কৰক</string>
+    <string name="select_records">তুলনা কৰিবলৈ ২টা ৰেকৰ্ড বাছনি কৰক</string>
+    <string name="clear_chat">চ্যাট মচি পেলাওক</string>
+    <string name="chat_cleared">চ্যাটৰ ইতিহাস মচি পেলোৱা হ’ল</string>
 
-    <string name="rec_health_score">à¦®à¦¾à¦Ÿà¦¿à§° à¦¸à§à¦¬à¦¾à¦¸à§à¦¥à§à¦¯ à¦¸à§à¦•à§‹à§°</string>
-    <string name="health_excellent">à¦‰à§Žà¦•à§ƒà¦·à§à¦Ÿ à¦…à§±à¦¸à§à¦¥à¦¾ ðŸŒ¿</string>
-    <string name="health_good">à¦­à¦¾à¦² à¦…à§±à¦¸à§à¦¥à¦¾ ðŸŒ±</string>
-    <string name="health_attention">à¦®à¦¨à§‹à¦¯à§‹à¦— à¦ªà§à§°à¦¯à¦¼à§‹à¦œà¦¨ âš ï¸</string>
-    <string name="health_poor">à¦¬à§‡à¦¯à¦¼à¦¾ à¦…à§±à¦¸à§à¦¥à¦¾ ðŸ›‘</string>
-    <string name="status_acidic">à¦†à¦®à§à¦²à¦¿à¦•</string>
-    <string name="status_alkaline">à¦•à§à¦·à¦¾à§°à¦•à§€à¦¯à¦¼</string>
-    <string name="status_neutral">à¦¨à¦¿à§°à¦ªà§‡à¦•à§à¦·</string>
+    <string name="rec_health_score">মাটিৰ স্বাস্থ্যৰ স্ক’ৰ</string>
+    <string name="health_excellent">অতি উত্তম অৱস্থা 🌿</string>
+    <string name="health_good">ভাল অৱস্থা 🌱</string>
+    <string name="health_attention">গুৰুত্ব দিয়াৰ প্ৰয়োজন ⚠️</string>
+    <string name="health_poor">বেয়া অৱস্থা 🛑</string>
+    <string name="status_acidic">আম্লিক (ACIDIC)</string>
+    <string name="status_alkaline">ক্ষাৰকীয় (ALKALINE)</string>
+    <string name="status_neutral">নিৰপেক্ষ (NEUTRAL)</string>
     
-    <string name="alert_too_dark">à¦¬à§° à¦†à¦¨à§à¦§à¦¾à§°! à¦›à¦¾à¦ à¦¨à¦ªà§°à¦¿à¦¬à¦²à§ˆ à¦ªà§‹à¦¹à§°à¦²à§ˆ à¦¯à¦¾à¦“à¦• â˜€ï¸</string>
-    <string name="alert_data_received">à¦²à¦¾à¦‡à¦­ à¦®à¦¾à¦Ÿà¦¿à§° à¦¤à¦¥à§à¦¯ à¦ªà§à§°à¦¾à¦ªà§à¦¤ à¦•à§°à¦¾ à¦¹à§ˆà¦›à§‡</string>
-    <string name="alert_data_unavailable">à¦®à¦¾à¦Ÿà¦¿à§° à¦¤à¦¥à§à¦¯ à¦‰à¦ªà¦²à¦¬à§à¦§ à¦¨à¦¹à¦¯à¦¼</string>
-    <string name="alert_network_error">à¦¨à§‡à¦Ÿà§±à§°à§à¦• à¦¤à§à§°à§à¦Ÿà¦¿</string>
-    <string name="alert_connecting">à¦‰à¦ªà¦—à§à§°à¦¹à§° à¦¸à§ˆà¦¤à§‡ à¦¸à¦‚à¦¯à§‹à¦— à¦•à§°à¦¾ à¦¹à§ˆà¦›à§‡...</string>
-    <string name="alert_offline_mode">à¦…à¦«à¦²à¦¾à¦‡à¦¨ à¦®à§‹à¦¡ à¦¬à§à¦¯à§±à¦¹à¦¾à§° à¦•à§°à¦¾ à¦¹à§ˆà¦›à§‡</string>
+    <string name="alert_too_dark">বৰ আন্ধাৰ! ছাঁ পৰিহাৰ কৰিবলৈ পোহৰলৈ যাওক ☀️</string>
+    <string name="alert_data_received">লাইভ মাটিৰ তথ্য পোৱা গৈছে</string>
+    <string name="alert_data_unavailable">মাটিৰ তথ্য উপলব্ধ নহয়</string>
+    <string name="alert_network_error">নেটৱৰ্ক ত্ৰুটি</string>
+    <string name="alert_connecting">উপগ্ৰহৰ সৈতে সংযোগ হৈ আছে...</string>
+    <string name="alert_offline_mode">অফলাইন মোড ব্যৱহাৰ কৰা হৈছে</string>
     
-    <string name="weather_high_humidity">à¦‰à¦šà§à¦š à¦†à§°à§à¦¦à§à§°à¦¤à¦¾! à¦­à§‡à¦à¦•à§à§°à¦œà¦¨à¦¿à¦¤ à§°à§‹à¦—à§° à¦ªà§°à¦¾ à¦¸à¦¾à§±à¦§à¦¾à¦¨ à¦¹à¦“à¦•à¥¤</string>
-    <string name="weather_high_heat">à¦ªà§à§°à¦šà¦£à§à¦¡ à¦—à§°à¦®! à¦¶à¦¸à§à¦¯à¦¤ à¦¸à¦˜à¦¨à¦¾à¦‡ à¦ªà¦¾à¦¨à§€ à¦¦à¦¿à¦¯à¦¼à¦•à¥¤</string>
-    <string name="weather_alert_title">à¦‹à¦¤à§à¦­à¦¿à¦¤à§à¦¤à¦¿à¦• à¦¬à¦¤à§°à§° à¦¸à¦¤à§°à§à¦•à¦¬à¦¾à¦£à§€ â›ˆï¸</string>
+    <string name="weather_high_humidity">উচ্চ আৰ্দ্ৰতা! ভেঁকুৰজনিত ৰোগৰ পৰা সাৱধান হওক।</string>
+    <string name="weather_high_heat">অতিৰিক্ত গৰম! সঘনাই জলসিঞ্চন কৰক।</string>
+    <string name="weather_alert_title">ঋতুভিত্তিক বতৰৰ সতৰ্কবাৰ্তা ⛈️</string>
     
-    <string name="unit_result_format">à¦«à¦²à¦¾à¦«à¦²: %1$.2f %2$s</string>
-    <string name="soil_status_low">à¦•à¦®</string>
-    <string name="soil_status_high">à¦¬à§‡à¦›à¦¿</string>
-    <string name="soil_status_ok">à¦ à¦¿à¦• à¦†à¦›à§‡</string>
+    <string name="unit_result_format">ফলাফল: %1$.2f %2$s</string>
+    <string name="soil_status_low">কম (LOW)</string>
+    <string name="soil_status_high">বেছি (HIGH)</string>
+    <string name="soil_status_ok">ঠিক আছে (OK)</string>
 
-    <string name="kisan_sahayak_title">à¦•à§ƒà¦·à¦• à¦¸à¦¹à¦¾à§Ÿà¦•</string>
-    <string name="kisan_sahayak_prompt">à¦†à¦ªà§‹à¦¨à¦¾à§° à¦–à§‡à¦¤à¦¿à§° à¦¬à¦¿à¦·à¦¯à¦¼à§‡ à¦¯à¦¿à¦•à§‹à¦¨à§‹ à¦ªà§à§°à¦¶à§à¦¨ à¦¸à§à¦§à¦•...</string>
-    <string name="plant_doctor_title">à¦‰à¦¦à§à¦­à¦¿à¦¦ à¦šà¦¿à¦•à¦¿à§Žà¦¸à¦•</string>
-    <string name="plant_doctor_scanning">à¦‰à¦¦à§à¦­à¦¿à¦¦ à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ à¦•à§°à¦¾ à¦¹à§ˆà¦›à§‡...</string>
-    <string name="plant_doctor_no_disease">à¦¸à§à¦¸à§à¦¥ à¦‰à¦¦à§à¦­à¦¿à¦¦</string>
-    <string name="plant_doctor_confidence">à¦¨à¦¿à¦¶à§à¦šà¦¯à¦¼à¦¤à¦¾: %s%%</string>
-    <string name="plant_doctor_cure">à¦ªà§à§°à¦¤à¦¿à¦•à¦¾à§°</string>
-    <string name="plant_scan_hint">à¦†à¦•à§à§°à¦¾à¦¨à§à¦¤ à¦ªà¦¾à¦¤à§° à¦¸à§à¦ªà¦·à§à¦Ÿ à¦›à¦¬à¦¿ à¦²à¦“à¦• ðŸƒ</string>
-    <string name="scan_hint_text">à¦®à¦¾à¦Ÿà¦¿à§° à¦¨à¦®à§à¦¨à¦¾à§° à¦«à¦¾à¦²à§‡ à¦•à§‡à¦®à§‡à§°à¦¾ à§°à¦¾à¦–à¦•</string>
+    <string name="kisan_sahayak_title">কিষাণ সহায়ক</string>
+    <string name="kisan_sahayak_prompt">আপোনাৰ খেতিৰ বিষয়ে যিকোনো কথা সোধক...</string>
+    <string name="plant_doctor_title">উদ্ভিদ চিকিৎসক</string>
+    <string name="plant_doctor_scanning">উদ্ভিদ বিশ্লেষণ কৰি থকা হৈছে...</string>
+    <string name="plant_doctor_no_disease">সুস্থ উদ্ভিদ</string>
+    <string name="plant_doctor_confidence">নিৰ্ভৰযোগ্যতা: %s%%</string>
+    <string name="plant_doctor_cure">প্ৰতিকাৰ</string>
+    <string name="plant_scan_hint">আক্ৰান্ত পাতৰ এখন স্পষ্ট ছবি লওক 🍃</string>
+    <string name="scan_hint_text">কেমেৰাটো মাটিৰ নমুনাৰ ফালে লক্ষ্য কৰক</string>
     
-    <string name="signup_hint_name">à¦¸à¦®à§à¦ªà§‚à§°à§à¦£ à¦¨à¦¾à¦®</string>
-    <string name="signup_hint_email">à¦‡à¦®à§‡à¦‡à¦² à¦ à¦¿à¦•à¦¨à¦¾ (à¦à¦šà§à¦›à¦¿à¦•)</string>
-    <string name="signup_hint_mobile">à¦®à§‹à¦¬à¦¾à¦‡à¦² à¦¨à¦®à§à¦¬à§°</string>
-    <string name="signup_btn_create">à¦à¦•à¦¾à¦‰à¦£à§à¦Ÿ à¦¸à§ƒà¦·à§à¦Ÿà¦¿ à¦•à§°à¦•</string>
-    <string name="signup_login_link">à¦‡à¦¤à¦¿à¦®à¦§à§à¦¯à§‡ à¦à¦•à¦¾à¦‰à¦£à§à¦Ÿ à¦†à¦›à§‡ à¦¨à§‡à¦•à¦¿? à¦²à¦— à¦‡à¦¨</string>
+    <string name="signup_hint_name">সম্পূৰ্ণ নাম</string>
+    <string name="signup_hint_email">ইমেইল ঠিকনা (ঐচ্ছিক)</string>
+    <string name="signup_hint_mobile">মোবাইল নম্বৰ</string>
+    <string name="signup_btn_create">একাউণ্ট সৃষ্টি কৰক</string>
+    <string name="signup_login_link">ইতিমধ্যে একাউণ্ট আছে? লগ ইন</string>
 
-    <string name="weather_alerts_title">à¦¬à¦¤à§°à§° à¦¸à¦¤à§°à§à¦•à¦¬à¦¾à¦£à§€</string>
-    <string name="search_location_hint">à¦šà¦¹à§° à¦¬à¦¾ à¦…à¦žà§à¦šà¦² à¦…à¦¨à§à¦¸à¦¨à§à¦§à¦¾à¦¨ à¦•à§°à¦•...</string>
-    <string name="search">à¦…à¦¨à§à¦¸à¦¨à§à¦§à¦¾à¦¨</string>
-    <string name="current_weather">à¦¬à§°à§à¦¤à¦®à¦¾à¦¨ à¦¬à¦¤à§°</string>
-    <string name="seven_day_forecast">ðŸ“… à§­-à¦¦à¦¿à¦¨à§° à¦†à¦—à¦œà¦¾à¦¨à¦¨à§€</string>
-    <string name="agri_recommendations">ðŸŒ¾ à¦•à§ƒà¦·à¦¿ à¦ªà§°à¦¾à¦®à§°à§à¦¶</string>
-    <string name="home_card_weather">à¦¬à¦¤à§°à§° à¦¸à¦¤à§°à§à¦•à¦¬à¦¾à¦£à§€</string>
+    <string name="weather_alerts_title">বতৰৰ সতৰ্কবাৰ্তা</string>
+    <string name="search_location_hint">চহৰ বা অঞ্চল অনুসন্ধান কৰক...</string>
+    <string name="search">অনুসন্ধান</string>
+    <string name="current_weather">বৰ্তমানৰ বতৰ</string>
+    <string name="seven_day_forecast">📅 ৭-দিনৰ আগজাননী</string>
+    <string name="agri_recommendations">🌾 কৃষি পৰামৰ্শসমূহ</string>
+    <string name="home_card_weather">বতৰৰ সতৰ্কবাৰ্তা</string>
+    <string name="error_enter_location">অনুগ্ৰহ কৰি এটা স্থান সুমুৱাওক</string>
+    <string name="location_default">ভাৰত (ডিফ’ল্ট)</string>
+    <string name="error_location_not_found">স্থান পোৱা নগ’ল</string>
+    <string name="error_geocoding">জিঅ’কোডিং বিফল হ’ল</string>
+    <string name="error_fetch_weather">বতৰৰ তথ্য অনা ব্যৰ্থ হৈছে</string>
+    <string name="label_humidity_format">💧 আৰ্দ্ৰতা: %.0f%%</string>
+    <string name="label_wind_format">💨 বতাহ: %.1f কিমি/ঘণ্টা</string>
+    <string name="pest_risk_format">🐛 পোকৰ আশংকা: %s - শস্যৰ ওপৰত নজৰ ৰাখক!</string>
 
-    <string name="crop_calendar_title">à¦¶à¦¸à§à¦¯à§° à¦•à§‡à¦²à§‡à¦£à§à¦¡à¦¾à§°</string>
-    <string name="crop_calendar_subtitle">AI-à¦šà¦¾à¦²à¦¿à¦¤ à§°à§‹à¦ªà¦£ à¦†à§°à§ à¦šà¦ªà§‹à§±à¦¾à§° à¦¸à¦®à¦¯à¦¼à¦¸à§‚à¦šà§€</string>
-    <string name="select_crop">à¦¶à¦¸à§à¦¯ à¦¬à¦¾à¦›à¦¨à¦¿ à¦•à§°à¦•</string>
-    <string name="generate_schedule">AI à¦¸à¦®à¦¯à¦¼à¦¸à§‚à¦šà§€ à¦ªà§à§°à¦¸à§à¦¤à§à¦¤ à¦•à§°à¦•</string>
-    <string name="home_card_calendar">à¦¶à¦¸à§à¦¯ à¦•à§‡à¦²à§‡à¦£à§à¦¡à¦¾à§°</string>
+    <string name="crop_calendar_title">শস্য কেলেণ্ডাৰ</string>
+    <string name="crop_calendar_subtitle">AI-চালিত ৰোপণ আৰু চপোৱাৰ সময়সূচী</string>
+    <string name="select_crop">শস্য বাছনি কৰক</string>
+    <string name="generate_schedule">AI সময়সূচী প্ৰস্তুত কৰক</string>
+    <string name="home_card_calendar">শস্য কেলেণ্ডাৰ</string>
 
-    <string name="irrigation_title">à¦œà¦²à¦¸à¦¿à¦žà§à¦šà¦¨ à¦•à§‡à¦²à¦•à§à¦²à§‡à¦Ÿà§°</string>
-    <string name="irrigation_subtitle">à¦¶à¦¸à§à¦¯, à¦®à¦¾à¦Ÿà¦¿ à¦†à§°à§ à¦¬à¦¤à§°à§° à¦“à¦ªà§°à¦¤ à¦­à¦¿à¦¤à§à¦¤à¦¿ à¦•à§°à¦¿ à¦¦à§ˆà¦¨à¦¿à¦• à¦ªà¦¾à¦¨à§€à§° à¦ªà§à§°à¦¯à¦¼à§‹à¦œà¦¨à§€à¦¯à¦¼à¦¤à¦¾ à¦—à¦£à¦¨à¦¾ à¦•à§°à¦•</string>
-    <string name="soil_type">à¦®à¦¾à¦Ÿà¦¿à§° à¦ªà§à§°à¦•à¦¾à§°</string>
-    <string name="field_size">à¦ªà¦¥à¦¾à§°à§° à¦†à¦•à¦¾à§°</string>
-    <string name="calculate_water">à¦ªà¦¾à¦¨à§€à§° à¦ªà§à§°à¦¯à¦¼à§‹à¦œà¦¨à§€à¦¯à¦¼à¦¤à¦¾ à¦—à¦£à¦¨à¦¾ à¦•à§°à¦•</string>
-    <string name="water_requirement">à¦¦à§ˆà¦¨à¦¿à¦• à¦ªà¦¾à¦¨à§€à§° à¦ªà§à§°à¦¯à¦¼à§‹à¦œà¦¨à§€à¦¯à¦¼à¦¤à¦¾</string>
-    <string name="home_card_irrigation">à¦œà¦²à¦¸à¦¿à¦žà§à¦šà¦¨</string>
+    <string name="irrigation_title">জলসিঞ্চন কেলকুলেটৰ</string>
+    <string name="irrigation_subtitle">শস্য, মাটি আৰু বতৰৰ ওপৰত ভিত্তি কৰি দৈনিক পানীৰ প্ৰয়োজনীয়তা গণনা কৰক</string>
+    <string name="soil_type">মাটিৰ প্ৰকাৰ</string>
+    <string name="field_size">পথাৰৰ আকাৰ</string>
+    <string name="calculate_water">পানীৰ প্ৰয়োজনীয়তা গণনা কৰক</string>
+    <string name="water_requirement">দৈনিক পানীৰ প্ৰয়োজনীয়তা</string>
+    <string name="home_card_irrigation">জলসিঞ্চন</string>
 
-    <string name="mandi_title">à¦²à¦¾à¦‡à¦­ à¦¬à¦œà¦¾à§° à¦¦à§°</string>
-    <string name="mandi_select_prompt">à¦¶à¦¸à§à¦¯ à¦†à§°à§ à¦…à¦žà§à¦šà¦² à¦¬à¦¾à¦›à¦¨à¦¿ à¦•à§°à¦•</string>
-    <string name="mandi_btn_check">à¦¦à§° à¦šà¦¾à¦“à¦•</string>
-    <string name="mandi_error_no_data">à¦à¦‡ à¦¬à¦¾à¦›à¦¨à¦¿à§° à¦¬à¦¾à¦¬à§‡ à¦•à§‹à¦¨à§‹ à¦²à¦¾à¦‡à¦­ à¦¤à¦¥à§à¦¯ à¦ªà§‹à§±à¦¾ à¦¨à¦—\'à¦²à¥¤</string>
-    <string name="mandi_error_connect">Agmarknet à§° à¦¸à§ˆà¦¤à§‡ à¦¸à¦‚à¦¯à§‹à¦—à¦¤ à¦¤à§à§°à§à¦Ÿà¦¿: %s</string>
-    <string name="mandi_source">à¦‰à§Žà¦¸: Agmarknet (gov.in)</string>
+    <string name="mandi_title">লাইভ মণ্ডীৰ দৰ</string>
+    <string name="mandi_select_prompt">শস্য আৰু অঞ্চল বাছনি কৰক</string>
+    <string name="mandi_btn_check">দৰ চাওক</string>
+    <string name="mandi_error_no_data">এই বাছনিৰ বাবে কোনো লাইভ তথ্য পোৱা নগ’ল।</string>
+    <string name="mandi_error_connect">Agmarknet ৰ সৈতে সংযোগত ত্ৰুটি: %s</string>
+    <string name="mandi_source">উৎস: Agmarknet (gov.in)</string>
 
-    <string name="plant_status_scanning">à¦‰à¦¨à§à¦¨à¦¤ à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ à¦šà¦²à¦¿ à¦†à¦›à§‡...</string>
-    <string name="plant_status_complete">AI à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ à¦¸à¦®à§à¦ªà§‚à§°à§à¦£</string>
-    <string name="plant_status_unavailable">AI à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£ à¦‰à¦ªà¦²à¦¬à§à¦§ à¦¨à¦¹à¦¯à¦¼ (%s)</string>
-    <string name="plant_status_error">AI à¦¸à¦à¦¹à¦¾à§°à¦¿ à¦¬à¦¿à¦¶à§à¦²à§‡à¦·à¦£à¦¤ à¦¤à§à§°à§à¦Ÿà¦¿à¥¤</string>
-    <string name="plant_diagnosis">à¦¨à¦¿à¦¦à¦¾à¦¨: %s</string>
-    <string name="plant_remedies">à¦ªà§à§°à¦¤à¦¿à¦•à¦¾à§°:</string>
+    <string name="plant_status_scanning">উন্নত বিশ্লেষণ চলি আছে...</string>
+    <string name="plant_status_complete">AI বিশ্লেষণ সম্পূৰ্ণ</string>
+    <string name="plant_status_unavailable">AI বিশ্লেষণ উপলব্ধ নহয় (%s)</string>
+    <string name="plant_status_error">AI সঁহাৰি বিশ্লেষণত ত্ৰুটি।</string>
+    <string name="plant_diagnosis">ৰোগ নিৰ্ণয়: %s</string>
+    <string name="plant_remedies">প্ৰতিকাৰসমূহ:</string>
 
-    <string name="irrigation_hint_size">à¦…à¦¨à§à¦˜à§à§°à¦¹ à¦•à§°à¦¿ à¦ªà¦¥à¦¾à§°à§° à¦†à¦•à¦¾à§° à¦²à¦¿à¦–à¦•</string>
-    <string name="irrigation_error_size">à¦…à¦®à¦¾à¦¨à§à¦¯ à¦ªà¦¥à¦¾à§°à§° à¦†à¦•à¦¾à§°</string>
-    <string name="irrigation_result_water">ðŸ’§ %1$.0f à¦²à¦¿à¦Ÿà¦¾à§°/à¦¦à¦¿à¦¨\n(%2$.1f mm à¦—à¦­à§€à§°à¦¤à¦¾)</string>
-    <string name="irrigation_weather_note">ðŸ“ %1$s\nðŸŒ¡ï¸ à¦¬à§°à§à¦¤à¦®à¦¾à¦¨: %2$.1fÂ°C, ðŸ’§ à¦†à§°à§à¦¦à§à§°à¦¤à¦¾: %3$.0f%%</string>
+    <string name="irrigation_hint_size">অনুগ্ৰহ কৰি পথাৰৰ আকাৰ সুমুৱাওক</string>
+    <string name="irrigation_error_size">অবাধ্য পথাৰৰ আকাৰ</string>
+    <string name="irrigation_result_water">💧 %1$.0f লিটাৰ/দিন\n(%2$.1f মিমি গভীৰতা)</string>
+    <string name="irrigation_weather_note">📍 %1$s\n🌡️ বৰ্তমান: %2$.1f°C, 💧 আৰ্দ্ৰতা: %3$.0f%%</string>
+    <string name="irrigation_rain_append">\n🌧️ %s মিমি</string>
 
-    <string name="profile_farm_dashboard">ðŸŒ¾ à¦®à§‹à§° à¦ªà¦¥à¦¾à§° à¦¡à§‡à¦¶à§à¦¬à¦¬à§°à§à¦¡</string>
-    <string name="profile_stat_rank">à§°à§‡à¦‚à¦•</string>
-    <string name="profile_stat_land">à¦®à¦¾à¦Ÿà¦¿à§° à¦ªà§°à¦¿à¦®à¦¾à¦£</string>
-    <string name="profile_stat_crop">à¦¬à§°à§à¦¤à¦®à¦¾à¦¨à§° à¦¶à¦¸à§à¦¯</string>
-    <string name="profile_rank_novice">à¦¨à¦¤à§à¦¨ à¦•à§ƒà¦·à¦•</string>
-    <string name="profile_rank_expert">à¦¬à¦¿à¦¶à§‡à¦·à¦œà§à¦ž</string>
-    <string name="profile_rank_guardian">à¦…à¦­à¦¿à¦­à¦¾à§±à¦•</string>
-    <string name="profile_rank_master">à¦®à¦¿à¦Ÿà§à¦Ÿà¦¿ à¦®à¦¿à¦¤à§à§°</string>
-    <string name="unit_acres">à¦à¦•à§°</string>
-    <string name="status_none">à¦¨à¦¾à¦‡</string>
+    <string name="profile_farm_dashboard">🌾 মোৰ পথাৰ ডেশ্ববৰ্ড</string>
+    <string name="profile_stat_rank">ৰেংক</string>
+    <string name="profile_stat_land">মাটিৰ আকাৰ</string>
+    <string name="profile_stat_crop">সক্ৰিয় শস্য</string>
+    <string name="profile_rank_novice">নৱাগত (Novice)</string>
+    <string name="profile_rank_expert">বিশেষজ্ঞ (Expert)</string>
+    <string name="profile_rank_guardian">অভিভাৱক (Guardian)</string>
+    <string name="profile_rank_master">মিট্টি মিত্ৰ</string>
+    <string name="unit_acres">একৰ</string>
+    <string name="status_none">নাই</string>
+
+    <string name="scheme_select_profile">আপোনাৰ প্ৰফাইল বাছনি কৰক</string>
+    <string name="scheme_land_size">মাটিৰ আকাৰ</string>
+    <string name="scheme_land_small">সৰু (&lt; ২ হেক্টৰ)</string>
+    <string name="scheme_land_medium">মজলীয়া (২-৪ হেক্টৰ)</string>
+    <string name="scheme_land_large">ডাঙৰ (> ৪ হেক্টৰ)</string>
+    <string name="scheme_no_match">আপোনাৰ প্ৰফাইলৰ সৈতে কোনো আঁচনি নিমিলে।</string>
+    <string name="scheme_benefit_label">সুবিধা: </string>
+    <string name="scheme_tap_apply">আৱেদন কৰিবলৈ টেপ কৰক →</string>
+    
+    <string name="mandi_market_label">বজাৰৰ নাম</string>
+    <string name="mandi_price_min_max">নূন্যতম: ২০০০ - সৰ্বাধিক ২৫০০</string>
+    <string name="mandi_price_modal_label">মডাল দৰ</string>
+
+    <string-array name="mandi_states">
+        <item>অন্ধ্ৰ প্ৰদেশ</item>
+        <item>অৰুণাচল প্ৰদেশ</item>
+        <item>অসম</item>
+        <item>বিহাৰ</item>
+        <item>ছত্তীশগড়</item>
+        <item>গোৱা</item>
+        <item>গুগৰাট</item>
+        <item>হাৰিয়ানা</item>
+        <item>হিমাচল প্ৰদেশ</item>
+        <item>ঝাৰখণ্ড</item>
+        <item>কৰ্ণাটক</item>
+        <item>কেৰেলা</item>
+        <item>মধ্য প্ৰদেশ</item>
+        <item>মহাৰাষ্ট্ৰ</item>
+        <item>মণিপুৰ</item>
+        <item>মেঘালয়</item>
+        <item>মিজোৰাম</item>
+        <item>নাগালেণ্ড</item>
+        <item>ওড়িশা</item>
+        <item>পঞ্জাৱ</item>
+        <item>ৰাজস্থান</item>
+        <item>চিকিম</item>
+        <item>তামিলনাডু</item>
+        <item>তেলেংগানা</item>
+        <item>ত্ৰিপুৰা</item>
+        <item> উত্তৰ প্ৰদেশ</item>
+        <item>উত্তৰাখণ্ড</item>
+        <item>পশ্চিম বংগ</item>
+        <item>আন্দামান আৰু নিকোবৰ</item>
+        <item>চণ্ডিগড়</item>
+        <item>দিল্লী</item>
+        <item>জম্মু আৰু কাশ্মীৰ</item>
+        <item>লাডাখ</item>
+        <item>পডুচেৰী</item>
+    </string-array>
+
+    <string-array name="mandi_commodities">
+        <item>ঘেঁহু</item>
+        <item>চাউল</item>
+        <item>মাকৈ</item>
+        <item>কপাহ</item>
+        <item>চয়া বিন</item>
+        <item>কুঁহিয়াৰ</item>
+        <item>পিয়াজ</item>
+        <item>আলু</item>
+        <item> বিলাহী</item>
+        <item> ৰঙা জলকীয়া</item>
+        <item>নহৰু</item>
+        <item>ৰহৰ দাইল (Tur)</item>
+        <item>বুট (Chana)</item>
+        <item>মগু (Green Gram)</item>
+        <item>মাটিমাহ (Black Gram)</item>
+        <item>বাদাম</item>
+        <item>সৰিয়হ</item>
+        <item>তিল</item>
+        <item>কল</item>
+        <item>আম</item>
+        <item>কমলা</item>
+        <item>আঙুৰ</item>
+        <item>আপেল</item>
+    </string-array>
+    
+    <string-array name="irrigation_crops">
+        <item>ধান</item>
+        <item>ঘেঁহু</item>
+        <item>মাকৈ</item>
+        <item>কপাহ</item>
+        <item>কুঁহিয়াৰ</item>
+        <item>বিলাহী</item>
+        <item>আলু</item>
+        <item>পিয়াজ</item>
+        <item>জলকীয়া</item>
+        <item>চয়া বিন</item>
+    </string-array>
+
+    <string-array name="irrigation_soil_types">
+        <item>বোকা মাটি (Clay)</item>
+        <item>বালিচহীয়া মাটি (Sandy)</item>
+        <item>দোমাজা মাটি (Loamy)</item>
+        <item>কলা মাটি (Black)</item>
+        <item>ৰঙা মাটি (Red)</item>
+    </string-array>
+    <string name="dup_title">ডুপ্লিকেট একাউণ্ট ধৰা পৰিছে</string>
+    <string name="dup_merge_title">🔗 একাউণ্ট কেনেকৈ একত্ৰিত কৰিব</string>
+    <string name="dup_merge_msg">এই একাউণ্টবোৰ একত্ৰিত কৰিবলৈ:\n\n১. আপোনাৰ বৰ্তমানৰ একাউণ্টত লগ ইন কৰক (যিটো আগৰ স্ক্ৰীনত দেখুওৱা হৈছে)।\n২. চেটিংছ -> একাউণ্ট আৰু সুৰক্ষা লৈ যাওক।\n৩. এই লগ ইন পদ্ধতি যোগ কৰিবলৈ \'ফোন/ইমেইল লিংক কৰক\' বাছনি কৰক।\n\nই আপোনাৰ সকলো তথ্য একে ঠাইতে থকাটো নিশ্চিত কৰে।</string>
+    <string name="dup_btn_got_it">বুজি পালোঁ</string>
+    <string name="dup_toast_login">অনুগ্ৰহ কৰি আপোনাৰ বৰ্তমানৰ একাউণ্টৰ সৈতে লগ ইন কৰক</string>
+    <string name="setting_account_security">একাউণ্ট আৰু সুৰক্ষা</string>
+    <string name="toast_account_linking_soon">একাউণ্ট লিংকিং অতি সোনকালে আহি আছে!</string>
+    
+    <string name="login_new_user_link">নতুন ব্যৱহাৰকাৰী? একাউণ্ট সৃষ্টি কৰক</string>
+
 </resources>

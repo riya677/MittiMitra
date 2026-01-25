@@ -441,8 +441,11 @@ public class TipActivity extends BaseActivity {
     }
 
     private void loadChatHistory() {
+        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+        
         databaseExecutor.execute(() -> {
-            List<com.mittimitra.database.entity.ChatMessage> savedMessages = chatDao.getAllMessages();
+            List<com.mittimitra.database.entity.ChatMessage> savedMessages = chatDao.getMessagesForUser(user.getUid());
             if (savedMessages != null && !savedMessages.isEmpty()) {
                 runOnUiThread(() -> {
                     for (com.mittimitra.database.entity.ChatMessage msg : savedMessages) {
@@ -467,9 +470,13 @@ public class TipActivity extends BaseActivity {
         
         // Persist to database (don't persist LOADING type)
         if (type != ChatMessage.Type.LOADING) {
+            com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+            if (user == null) return;
+            
             databaseExecutor.execute(() -> {
                 com.mittimitra.database.entity.ChatMessage dbMessage = 
                     new com.mittimitra.database.entity.ChatMessage(message, type == ChatMessage.Type.USER);
+                dbMessage.userId = user.getUid();
                 chatDao.insertMessage(dbMessage);
             });
         }

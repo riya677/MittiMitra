@@ -20,6 +20,9 @@ public class ChatMessage {
 
     @ColumnInfo(name = "timestamp")
     public long timestamp;
+    
+    @ColumnInfo(name = "user_id")
+    public String userId;
 
     public ChatMessage() {}
 

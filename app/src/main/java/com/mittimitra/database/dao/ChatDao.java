@@ -17,6 +17,9 @@ public interface ChatDao {
     @Query("SELECT * FROM chat_messages ORDER BY timestamp DESC LIMIT :limit")
     List<ChatMessage> getRecentMessages(int limit);
 
+    @Query("SELECT * FROM chat_messages WHERE user_id = :userId ORDER BY timestamp ASC")
+    List<ChatMessage> getMessagesForUser(String userId);
+
     @Query("DELETE FROM chat_messages")
     void clearAllMessages();
 

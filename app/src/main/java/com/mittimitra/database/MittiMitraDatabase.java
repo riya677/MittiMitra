@@ -8,10 +8,14 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.mittimitra.database.dao.ChatDao;
+import com.mittimitra.database.dao.CropDao;
 import com.mittimitra.database.dao.DocumentDao;
+import com.mittimitra.database.dao.PlantDao;
 import com.mittimitra.database.dao.SoilDao;
 import com.mittimitra.database.entity.ChatMessage;
+import com.mittimitra.database.entity.CropSchedule;
 import com.mittimitra.database.entity.Document;
+import com.mittimitra.database.entity.PlantHealth;
 import com.mittimitra.database.entity.SoilAnalysis;
 
 /**
@@ -24,12 +28,14 @@ import com.mittimitra.database.entity.SoilAnalysis;
  * 
  * For future migrations, add proper migration objects below.
  */
-@Database(entities = {SoilAnalysis.class, Document.class, ChatMessage.class}, version = 5, exportSchema = false)
+@Database(entities = {SoilAnalysis.class, Document.class, ChatMessage.class, CropSchedule.class, PlantHealth.class}, version = 7, exportSchema = false)
 public abstract class MittiMitraDatabase extends RoomDatabase {
 
     public abstract SoilDao soilDao();
     public abstract DocumentDao documentDao();
     public abstract ChatDao chatDao();
+    public abstract CropDao cropDao();
+    public abstract PlantDao plantDao();
 
     private static volatile MittiMitraDatabase INSTANCE;
 
@@ -53,12 +59,14 @@ public abstract class MittiMitraDatabase extends RoomDatabase {
     
     /**
      * Migration from version 4 to 5.
-     * Adds user_id column to soil_history table for data isolation.
+     * Adds user_id column to soil_history, documents, and chat_messages for data isolation.
      */
     static final Migration MIGRATION_4_5 = new Migration(4, 5) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE `soil_history` ADD COLUMN `user_id` TEXT");
+            database.execSQL("ALTER TABLE `documents` ADD COLUMN `user_id` TEXT");
+            database.execSQL("ALTER TABLE `chat_messages` ADD COLUMN `user_id` TEXT");
         }
     };
 
@@ -68,7 +76,7 @@ public abstract class MittiMitraDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     MittiMitraDatabase.class, "mitti_mitra_database")
-                            .fallbackToDestructiveMigrationFrom(1)
+                            .fallbackToDestructiveMigration() // Allowed for development to auto-reset DB on schema changes
                             .addMigrations(MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
                             .build();
                 }

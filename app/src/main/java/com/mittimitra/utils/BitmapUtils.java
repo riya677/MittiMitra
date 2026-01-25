@@ -131,4 +131,21 @@ public final class BitmapUtils {
     public static Bitmap prepareForClassification(@NonNull Bitmap source, int size) {
         return scaleBitmap(source, size, size, false);
     }
+    /**
+     * Save a bitmap to internal storage and return the absolute path.
+     */
+    @Nullable
+    public static String saveBitmapToInternalStorage(@NonNull Context context, @NonNull Bitmap bitmap, @NonNull String fileName) {
+        try {
+            java.io.File file = new java.io.File(context.getFilesDir(), fileName);
+            java.io.FileOutputStream outputStream = new java.io.FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);
+            outputStream.flush();
+            outputStream.close();
+            return file.getAbsolutePath();
+        } catch (IOException e) {
+            ErrorHandler.logError(TAG, "Failed to save bitmap locally", e);
+            return null;
+        }
+    }
 }

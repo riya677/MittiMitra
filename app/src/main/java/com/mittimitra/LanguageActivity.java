@@ -45,6 +45,11 @@ public class LanguageActivity extends BaseActivity {
         MaterialRadioButton rbBengali = findViewById(R.id.rb_bengali);
         MaterialRadioButton rbGujarati = findViewById(R.id.rb_gujarati);
         MaterialRadioButton rbPunjabi = findViewById(R.id.rb_punjabi);
+        MaterialRadioButton rbAssamese = findViewById(R.id.rb_assamese);
+        MaterialRadioButton rbManipuri = findViewById(R.id.rb_manipuri);
+        MaterialRadioButton rbBodo = findViewById(R.id.rb_bodo);
+        MaterialRadioButton rbMizo = findViewById(R.id.rb_mizo);
+        MaterialRadioButton rbGaro = findViewById(R.id.rb_garo);
 
         // Set the currently selected language
         String currentLang = appPreferences.getLanguage();
@@ -63,6 +68,12 @@ public class LanguageActivity extends BaseActivity {
                 case "bn": rbBengali.setChecked(true); break;
                 case "gu": rbGujarati.setChecked(true); break;
                 case "pa": rbPunjabi.setChecked(true); break;
+                // Northeast Languages
+                case "as": rbAssamese.setChecked(true); break;
+                case "mni": rbManipuri.setChecked(true); break;
+                case "brx": rbBodo.setChecked(true); break;
+                case "lus": rbMizo.setChecked(true); break;
+                case "grt": rbGaro.setChecked(true); break;
             }
         }
 
@@ -80,6 +91,12 @@ public class LanguageActivity extends BaseActivity {
             else if (checkedId == R.id.rb_bengali) langCode = "bn";
             else if (checkedId == R.id.rb_gujarati) langCode = "gu";
             else if (checkedId == R.id.rb_punjabi) langCode = "pa";
+            // Northeast Languages
+            else if (checkedId == R.id.rb_assamese) langCode = "as";
+            else if (checkedId == R.id.rb_manipuri) langCode = "mni";
+            else if (checkedId == R.id.rb_bodo) langCode = "brx";
+            else if (checkedId == R.id.rb_mizo) langCode = "lus";
+            else if (checkedId == R.id.rb_garo) langCode = "grt";
 
             appPreferences.setLanguage(langCode);
 

@@ -30,6 +30,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.firebase.auth.FirebaseUser;
 import com.mittimitra.config.ApiConfig;
 import com.mittimitra.config.AppConstants;
 import com.mittimitra.network.ClassificationResult;
@@ -248,18 +249,22 @@ public class PlantScanActivity extends BaseActivity {
                "Return ONLY the JSON. No Markdown.";
     }
 
+
+
     private void parseAndShowGroqResult(String jsonString) {
         resultCard.setVisibility(View.VISIBLE);
         
         // Clean markdown code blocks if present
-        jsonString = jsonString.replace("```json", "").replace("```", "").trim();
+        String resultJson = jsonString.replace("```json", "").replace("```", "").trim();
+
+        String crop = "Unknown", status = "Unknown", issues = "None"; // Default values
 
         try {
-            JSONObject result = new JSONObject(jsonString);
+            JSONObject result = new JSONObject(resultJson);
             
-            String crop = result.optString("crop_identified", "Unknown Crop");
-            String status = result.optString("health_status", "Unknown");
-            String issues = result.optString("issues_detected", "None");
+            crop = result.optString("crop_identified", "Unknown Crop");
+            status = result.optString("health_status", "Unknown");
+            issues = result.optString("issues_detected", "None");
             
             // Update Title
             tvResultTitle.setText(crop.toUpperCase() + " - " + status.toUpperCase());
@@ -289,6 +294,40 @@ public class PlantScanActivity extends BaseActivity {
              tvResultTitle.setText("AI ANALYSIS REPORT");
              tvResultDesc.setText(jsonString);
              tvStatus.setText("Analysis Complete");
+        }
+
+        // SAVE TO DATABASE
+        FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null && currentBitmap != null) {
+            final String finalCrop = crop;
+            final String finalStatus = status;
+            final String finalIssues = issues;
+            final String finalJson = resultJson;
+
+            new Thread(() -> {
+                try {
+                    // 1. Save Image Locally
+                    String imageFileName = "plant_" + System.currentTimeMillis() + ".jpg";
+                    String imagePath = BitmapUtils.saveBitmapToInternalStorage(this, currentBitmap, imageFileName);
+
+                    // 2. Create Entity
+                    com.mittimitra.database.entity.PlantHealth entry = new com.mittimitra.database.entity.PlantHealth();
+                    entry.userId = user.getUid();
+                    entry.imagePath = imagePath; // Save the path
+                    entry.cropName = finalCrop;
+                    entry.healthStatus = finalStatus;
+                    entry.diagnosis = finalIssues;
+                    entry.fullJson = finalJson;
+                    entry.timestamp = System.currentTimeMillis();
+
+                    // 3. Insert
+                    com.mittimitra.database.MittiMitraDatabase.getDatabase(this).plantDao().insert(entry);
+                    Log.d(TAG, "Plant analysis saved to DB");
+
+                } catch (Exception e) {
+                    Log.e(TAG, "Failed to save analysis history", e);
+                }
+            }).start();
         }
     }
     
