@@ -24,8 +24,10 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.mittimitra.config.ApiConfig;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.SoilAnalysis;
+import com.mittimitra.utils.ErrorHandler;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -58,14 +60,12 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
     private View reportContainer;
     private ExtendedFloatingActionButton btnDownload;
 
-    private static final String API_URL = "https://api.groq.com/openai/v1/chat/completions";
-    private static final String MODEL_ID = "llama-3.3-70b-versatile";
+    private Uri savedPdfUri = null; // Store saved PDF for sharing
 
     private int analysisId = -1;
     private TextToSpeech tts;
     private FirebaseFirestore db;
     private String passedSoilType = null;
-    private Uri savedPdfUri = null; // Store saved PDF for sharing
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -278,7 +278,7 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
 
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("model", MODEL_ID);
+            jsonBody.put("model", ApiConfig.GROQ_MODEL_CHAT);
             jsonBody.put("temperature", 0.3);
             jsonBody.put("max_tokens", 1100);
 
@@ -290,7 +290,7 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
 
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS).build();
         Request request = new Request.Builder()
-                .url(API_URL)
+                .url(ApiConfig.GROQ_CHAT_ENDPOINT)
                 .addHeader("Authorization", "Bearer " + rawKey)
                 .post(RequestBody.create(jsonBody.toString(), MediaType.get("application/json")))
                 .build();

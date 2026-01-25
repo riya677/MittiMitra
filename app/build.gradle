@@ -93,4 +93,11 @@ dependencies {
     
     // Web Scraping
     implementation 'org.jsoup:jsoup:1.15.4'
+    
+    // UI Enhancements
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation 'androidx.datastore:datastore-preferences:1.0.0'
+    
+    // Analytics
+    implementation 'com.google.firebase:firebase-analytics'
 }

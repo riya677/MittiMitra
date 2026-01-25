@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 🇮🇳 Indian Tricolor Gradient - Saffron to White to Green -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:type="linear"
+        android:angle="180"
+        android:startColor="@color/gradient_tricolor_top"
+        android:centerColor="@color/gradient_tricolor_mid"
+        android:endColor="@color/gradient_tricolor_bottom" />
+</shape>

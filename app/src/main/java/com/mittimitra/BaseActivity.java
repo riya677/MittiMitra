@@ -101,4 +101,29 @@ public abstract class BaseActivity extends AppCompatActivity {
             default: AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM); break;
         }
     }
+
+    /**
+     * Apply enter transition animation when activity starts.
+     * Call this after setContentView() for smooth slide-in effect.
+     */
+    protected void applyEnterTransition() {
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    /**
+     * Override finish to apply exit transition animation.
+     */
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    /**
+     * Helper method to start activity with transition animation.
+     */
+    protected void startActivityWithTransition(android.content.Intent intent) {
+        startActivity(intent);
+        applyEnterTransition();
+    }
 }

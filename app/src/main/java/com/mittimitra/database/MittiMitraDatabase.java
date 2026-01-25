@@ -24,7 +24,7 @@ import com.mittimitra.database.entity.SoilAnalysis;
  * 
  * For future migrations, add proper migration objects below.
  */
-@Database(entities = {SoilAnalysis.class, Document.class, ChatMessage.class}, version = 4, exportSchema = false)
+@Database(entities = {SoilAnalysis.class, Document.class, ChatMessage.class}, version = 5, exportSchema = false)
 public abstract class MittiMitraDatabase extends RoomDatabase {
 
     public abstract SoilDao soilDao();
@@ -33,10 +33,6 @@ public abstract class MittiMitraDatabase extends RoomDatabase {
 
     private static volatile MittiMitraDatabase INSTANCE;
 
-    /**
-     * Migration from version 2 to 3.
-     * Adds chat_messages table for persisting chat history.
-     */
     static final Migration MIGRATION_2_3 = new Migration(2, 3) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
@@ -48,14 +44,21 @@ public abstract class MittiMitraDatabase extends RoomDatabase {
         }
     };
 
-    /**
-     * Migration from version 3 to 4.
-     * Adds expiry_date column to documents table for "Scheme Alerts".
-     */
     static final Migration MIGRATION_3_4 = new Migration(3, 4) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE `documents` ADD COLUMN `expiry_date` INTEGER");
+        }
+    };
+    
+    /**
+     * Migration from version 4 to 5.
+     * Adds user_id column to soil_history table for data isolation.
+     */
+    static final Migration MIGRATION_4_5 = new Migration(4, 5) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE `soil_history` ADD COLUMN `user_id` TEXT");
         }
     };
 
@@ -65,10 +68,8 @@ public abstract class MittiMitraDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     MittiMitraDatabase.class, "mitti_mitra_database")
-                            // Allow destructive migration only from v1 (breaking schema change)
-                            // Future migrations (v2+) will use proper Migration objects
                             .fallbackToDestructiveMigrationFrom(1)
-                            .addMigrations(MIGRATION_2_3, MIGRATION_3_4)
+                            .addMigrations(MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
                             .build();
                 }
             }

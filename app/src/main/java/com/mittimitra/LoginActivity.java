@@ -44,6 +44,10 @@ public class LoginActivity extends AppCompatActivity {
     private LinearLayout layoutOtpVerify;
     private ProgressBar progressBar;
     private String mVerificationId;
+    
+    // Prefilled data from SignupActivity
+    private String prefilledName;
+    private String prefilledEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,18 @@ public class LoginActivity extends AppCompatActivity {
         tvForgotPass.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
         });
+
+        findViewById(R.id.tv_go_to_signup).setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+        });
+        
+        // Check for prefilled data from SignupActivity
+        Intent intent = getIntent();
+        if (intent.hasExtra("prefill_phone")) {
+            etPhone.setText(intent.getStringExtra("prefill_phone"));
+            prefilledName = intent.getStringExtra("prefill_name");
+            prefilledEmail = intent.getStringExtra("prefill_email");
+        }
     }
 
     // --- GOOGLE ---
@@ -178,18 +194,135 @@ public class LoginActivity extends AppCompatActivity {
                     if (doc.exists()) {
                         navigateToHome(doc.getString("firstName"));
                     } else {
-                        createUserProfile(user);
+                        // 🔍 Check for duplicate accounts before creating
+                        checkForDuplicateAndCreate(user);
                     }
                 })
                 .addOnFailureListener(e -> navigateToHome("Farmer"));
     }
+    
+    // 🔒 DUPLICATE DETECTION - Check if phone/email already exists in another account
+    private void checkForDuplicateAndCreate(FirebaseUser user) {
+        String phone = user.getPhoneNumber();
+        String email = user.getEmail();
+        
+        // Check by phone first
+        if (phone != null && !phone.isEmpty()) {
+            db.collection("farmers")
+                .whereEqualTo("phone", phone)
+                .get()
+                .addOnSuccessListener(docs -> {
+                    if (!docs.isEmpty()) {
+                        // ⚠️ Duplicate found by phone!
+                        showDuplicateWarning(user, docs.getDocuments().get(0));
+                    } else if (email != null && !email.isEmpty()) {
+                        // Check by email
+                        checkDuplicateByEmail(user, email);
+                    } else {
+                        // No duplicates, create profile
+                        createUserProfile(user);
+                    }
+                })
+                .addOnFailureListener(e -> createUserProfile(user));
+        } else if (email != null && !email.isEmpty()) {
+            checkDuplicateByEmail(user, email);
+        } else {
+            createUserProfile(user);
+        }
+    }
+    
+    private void checkDuplicateByEmail(FirebaseUser user, String email) {
+        db.collection("farmers")
+            .whereEqualTo("email", email)
+            .get()
+            .addOnSuccessListener(docs -> {
+                if (!docs.isEmpty()) {
+                    // ⚠️ Duplicate found by email!
+                    showDuplicateWarning(user, docs.getDocuments().get(0));
+                } else {
+                    createUserProfile(user);
+                }
+            })
+            .addOnFailureListener(e -> createUserProfile(user));
+    }
+    
+    private void showDuplicateWarning(FirebaseUser currentUser, com.google.firebase.firestore.DocumentSnapshot existingDoc) {
+        progressBar.setVisibility(View.GONE);
+        
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_duplicate_account, null);
+        builder.setView(view);
+        androidx.appcompat.app.AlertDialog dialog = builder.create();
+        
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+        dialog.setCancelable(false);
+        
+        // Populate existing account info
+        android.widget.TextView tvName = view.findViewById(R.id.tv_existing_name);
+        android.widget.TextView tvPhone = view.findViewById(R.id.tv_existing_phone);
+        android.widget.TextView tvEmail = view.findViewById(R.id.tv_existing_email);
+        
+        String existingName = existingDoc.getString("firstName");
+        String existingPhone = existingDoc.getString("phone");
+        String existingEmail = existingDoc.getString("email");
+        
+        tvName.setText("Name: " + (existingName != null ? existingName : "--"));
+        tvPhone.setText("Phone: " + (existingPhone != null ? maskPhone(existingPhone) : "--"));
+        tvEmail.setText("Email: " + (existingEmail != null ? existingEmail : "--"));
+        
+        // Use existing account button - Log out and guide user
+        view.findViewById(R.id.btn_use_existing).setOnClickListener(v -> {
+            dialog.dismiss();
+            Toast.makeText(this, "Please login with your existing account", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            recreate();
+        });
+        
+        // Link accounts button - Show instructions for merging
+        view.findViewById(R.id.btn_link_accounts).setOnClickListener(v -> {
+            dialog.dismiss();
+            
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("🔗 How to Merge Accounts")
+                .setMessage("To merge these accounts:\n\n1. Login to your EXISTING account (shown in the previous screen).\n2. Go to Settings -> Account & Security.\n3. Select 'Link Phone/Email' to add this login method.\n\nThis ensures all your data stays in one place.")
+                .setPositiveButton("Got it", (d, w) -> {
+                    mAuth.signOut();
+                    recreate();
+                })
+                .show();
+        });
+        
+        // Cancel button
+        view.findViewById(R.id.btn_cancel_duplicate).setOnClickListener(v -> {
+            dialog.dismiss();
+            mAuth.signOut();
+            finish();
+        });
+        
+        dialog.show();
+    }
+    
+    private String maskPhone(String phone) {
+        if (phone == null || phone.length() < 6) return phone;
+        return phone.substring(0, 3) + "****" + phone.substring(phone.length() - 3);
+    }
 
     private void createUserProfile(FirebaseUser user) {
         Map<String, Object> map = new HashMap<>();
-        String name = user.getDisplayName() != null ? user.getDisplayName() : "Farmer";
+        
+        // Use prefilled name from signup, or fallback to Google display name, or "Farmer"
+        String name = prefilledName != null ? prefilledName :
+                      (user.getDisplayName() != null ? user.getDisplayName() : "Farmer");
+        
         map.put("firstName", name);
         map.put("phone", user.getPhoneNumber());
-        map.put("email", user.getEmail());
+        
+        // Use prefilled email from signup, or fallback to Firebase email
+        String email = prefilledEmail != null ? prefilledEmail : user.getEmail();
+        map.put("email", email);
+        
         map.put("createdAt", System.currentTimeMillis());
 
         db.collection("farmers").document(user.getUid()).set(map)

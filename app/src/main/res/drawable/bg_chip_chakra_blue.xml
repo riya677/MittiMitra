@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Accent chip/badge with Chakra Blue -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/chakra_blue" />
+    <corners android:radius="20dp" />
+    <padding
+        android:left="12dp"
+        android:right="12dp"
+        android:top="6dp"
+        android:bottom="6dp" />
+</shape>

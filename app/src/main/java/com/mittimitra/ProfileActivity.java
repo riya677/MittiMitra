@@ -132,7 +132,7 @@ public class ProfileActivity extends BaseActivity {
         findViewById(R.id.btn_logout).setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             sessionManager.clearSession();
-            startActivity(new Intent(this, LoginActivity.class)
+            startActivity(new Intent(this, WelcomeActivity.class)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
             finish();
         });
@@ -214,6 +214,15 @@ public class ProfileActivity extends BaseActivity {
                     } else {
                         tvPhone.setText("Add Phone Number");
                     }
+                    // FIX: Load Email from Firestore (Phone Auth users have null email in FirebaseUser)
+                    if (doc.contains("email")) {
+                        String email = doc.getString("email");
+                        if (email != null && !email.isEmpty()) {
+                            tvEmail.setText(email);
+                            // Cache for offline
+                            prefs.edit().putString("cached_email", email).apply();
+                        }
+                    }
                 }
             })
             .addOnFailureListener(e -> {
@@ -235,6 +244,12 @@ public class ProfileActivity extends BaseActivity {
         } else {
             tvPhone.setText("Offline - Add phone later");
         }
+        
+        // FIX: Load cached email
+        String cachedEmail = prefs.getString("cached_email", null);
+        if (cachedEmail != null && !cachedEmail.isEmpty()) {
+            tvEmail.setText(cachedEmail);
+        }
     }
 
     private void showEditDialog() {
@@ -249,60 +264,170 @@ public class ProfileActivity extends BaseActivity {
 
         TextInputEditText etName = view.findViewById(R.id.et_edit_name);
         TextInputEditText etPhone = view.findViewById(R.id.et_edit_phone);
+        TextInputEditText etEmail = view.findViewById(R.id.et_edit_email);
+        TextInputEditText etDob = view.findViewById(R.id.et_edit_dob);
+        TextInputEditText etAadhaar = view.findViewById(R.id.et_edit_aadhaar);
+        TextInputEditText etKisanId = view.findViewById(R.id.et_edit_kisan_id);
         Button btnSave = view.findViewById(R.id.btn_save_edit);
         Button btnCancel = view.findViewById(R.id.btn_cancel_edit);
 
-        etName.setText(tvName.getText().toString());
-        etPhone.setText(currentPhone);
+        // Pre-fill existing values - SMART HANDLING
+        String currentName = tvName.getText().toString();
+        if (!currentName.contains("Farmer") && !currentName.isEmpty()) {
+            etName.setText(currentName);
+        }
+        
+        // Phone - only set if we have a real number
+        if (currentPhone != null && !currentPhone.isEmpty() && !currentPhone.contains("Add")) {
+            etPhone.setText(currentPhone);
+        }
+        
+        // Email - DON'T pre-fill placeholder text
+        if (tvEmail != null && tvEmail.getText() != null) {
+            String email = tvEmail.getText().toString();
+            if (email.contains("@") && !email.contains("Not") && !email.contains("Linked")) {
+                etEmail.setText(email);
+            }
+        }
+        
+        // Load saved Aadhaar and Kisan ID from Firestore
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            db.collection("farmers").document(user.getUid()).get()
+                .addOnSuccessListener(doc -> {
+                    if (doc.exists()) {
+                        String aadhaar = doc.getString("aadhaarId");
+                        String kisanId = doc.getString("kisanId");
+                        String dob = doc.getString("dob");
+                        if (aadhaar != null && !aadhaar.isEmpty()) {
+                            etAadhaar.setText(aadhaar);
+                        }
+                        if (kisanId != null && !kisanId.isEmpty()) {
+                            etKisanId.setText(kisanId);
+                        }
+                        if (dob != null && !dob.isEmpty()) {
+                            etDob.setText(dob);
+                        }
+                    }
+                });
+        }
+
+        // Date picker for DOB
+        etDob.setOnClickListener(v -> {
+            java.util.Calendar calendar = java.util.Calendar.getInstance();
+            android.app.DatePickerDialog datePickerDialog = new android.app.DatePickerDialog(
+                    this,
+                    (datePicker, year, month, day) -> {
+                        String date = String.format(java.util.Locale.getDefault(), "%02d/%02d/%d", day, month + 1, year);
+                        etDob.setText(date);
+                    },
+                    calendar.get(java.util.Calendar.YEAR) - 25,
+                    calendar.get(java.util.Calendar.MONTH),
+                    calendar.get(java.util.Calendar.DAY_OF_MONTH)
+            );
+            datePickerDialog.show();
+        });
 
         btnCancel.setOnClickListener(v -> dialog.dismiss());
 
         btnSave.setOnClickListener(v -> {
             String newName = etName.getText().toString().trim();
             String newPhone = etPhone.getText().toString().trim();
+            String newEmail = etEmail.getText().toString().trim();
+            String newDob = etDob.getText().toString().trim();
+            String newAadhaar = etAadhaar.getText().toString().trim();
+            String newKisanId = etKisanId.getText().toString().trim();
 
+            // Validation
             if (newName.isEmpty()) {
                 etName.setError("Name required");
+                etName.requestFocus();
                 return;
             }
-            if (newPhone.length() != 10) {
-                etPhone.setError("Enter valid 10-digit number");
+            if (newPhone.length() < 10) {
+                etPhone.setError("Enter valid phone number");
+                etPhone.requestFocus();
+                return;
+            }
+            if (!newEmail.isEmpty() && !android.util.Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
+                etEmail.setError("Enter valid email");
+                etEmail.requestFocus();
+                return;
+            }
+            // Aadhaar validation: must be exactly 12 digits if provided
+            if (!newAadhaar.isEmpty() && newAadhaar.length() != 12) {
+                etAadhaar.setError("Aadhaar must be 12 digits");
+                etAadhaar.requestFocus();
                 return;
             }
 
-            updateProfile(newName, newPhone, dialog);
+            // Show loading state
+            btnSave.setEnabled(false);
+            btnSave.setText("Saving...");
+            
+            updateProfile(newName, newPhone, newEmail, newDob, newAadhaar, newKisanId, dialog, btnSave);
         });
 
         dialog.show();
     }
 
-    private void updateProfile(String name, String phone, AlertDialog dialog) {
+    private void updateProfile(String name, String phone, String email, String dob, 
+                               String aadhaar, String kisanId, AlertDialog dialog, Button btnSave) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) return;
 
         Map<String, Object> updates = new HashMap<>();
         updates.put("firstName", name);
         updates.put("phone", phone);
+        if (!email.isEmpty()) {
+            updates.put("email", email);
+        }
+        if (!dob.isEmpty()) {
+            updates.put("dob", dob);
+        }
+        // 🔒 Store Aadhaar securely (in production, encrypt this!)
+        if (!aadhaar.isEmpty()) {
+            updates.put("aadhaarId", aadhaar);
+        }
+        if (!kisanId.isEmpty()) {
+            updates.put("kisanId", kisanId);
+        }
 
+        // Use set() with merge to create document if it doesn't exist
         db.collection("farmers").document(user.getUid())
-                .update(updates)
+                .set(updates, com.google.firebase.firestore.SetOptions.merge())
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "Profile Updated!", Toast.LENGTH_SHORT).show();
+                    // Update ALL UI elements immediately
                     tvName.setText(name);
                     tvPhone.setText(phone);
                     currentPhone = phone;
+                    
+                    if (!email.isEmpty() && tvEmail != null) {
+                        tvEmail.setText(email);
+                    }
+                    
+                    // Update session for home screen
                     sessionManager.saveUser(user.getUid(), name);
+                    
+                    // Show success and dismiss
+                    Toast.makeText(this, "✅ Profile Updated Successfully!", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Update Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    // Reset button state
+                    btnSave.setEnabled(true);
+                    btnSave.setText(getString(R.string.btn_save_changes));
+                    Toast.makeText(this, "❌ Update Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
     private void loadRecentHistory() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+        
         new Thread(() -> {
             List<SoilAnalysis> history = MittiMitraDatabase.getDatabase(this)
-                    .soilDao().getAllSoilAnalysis();
+                    .soilDao().getAnalysisForUser(user.getUid());
 
             runOnUiThread(() -> {
                 if (history != null && !history.isEmpty()) {

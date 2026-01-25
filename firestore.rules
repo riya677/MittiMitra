@@ -1,0 +1,70 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 🔒 FARMERS COLLECTION - Secure Access Rules
+    match /farmers/{userId} {
+      // READ: Only the logged-in user can read their own data
+      allow read: if request.auth != null && request.auth.uid == userId;
+      
+      // CREATE: Only authenticated users can create their own profile
+      allow create: if request.auth != null 
+                    && request.auth.uid == userId
+                    && request.resource.data.keys().hasOnly([
+                      'firstName', 'phone', 'email', 'aadhaarId', 'kisanId', 
+                      'dob', 'createdAt', 'landSize', 'cropName', 'district', 
+                      'state', 'village', 'profileImageUrl'
+                    ]);
+      
+      // UPDATE: Only owner can update, and cannot change certain fields
+      allow update: if request.auth != null 
+                    && request.auth.uid == userId
+                    && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['createdAt']);
+      
+      // DELETE: Only owner can delete their account
+      allow delete: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // 🔍 UNIQUE CHECKS - Allow reading to check for duplicates (limited fields only)
+    // This is done via Cloud Functions for security, not client-side
+    
+    // 🌾 SOIL ANALYSIS - User can only access their own data
+    match /soilAnalysis/{docId} {
+      allow read, write: if request.auth != null 
+                         && resource.data.userId == request.auth.uid;
+      allow create: if request.auth != null 
+                    && request.resource.data.userId == request.auth.uid;
+    }
+    
+    // 🌱 PLANT ANALYSIS - User can only access their own data
+    match /plantAnalysis/{docId} {
+      allow read, write: if request.auth != null 
+                         && resource.data.userId == request.auth.uid;
+      allow create: if request.auth != null 
+                    && request.resource.data.userId == request.auth.uid;
+    }
+    
+    // 📊 CROPS DATA - Read-only public data
+    match /crops/{cropId} {
+      allow read: if request.auth != null;
+      allow write: if false; // Admin only via Firebase Console
+    }
+    
+    // 🏛️ SCHEMES DATA - Read-only government schemes
+    match /schemes/{schemeId} {
+      allow read: if request.auth != null;
+      allow write: if false; // Admin only
+    }
+    
+    // 💰 MANDI PRICES - Read-only market data
+    match /mandiPrices/{priceId} {
+      allow read: if request.auth != null;
+      allow write: if false; // Admin only, updated via Cloud Functions
+    }
+    
+    // ❌ DENY ALL OTHER ACCESS
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

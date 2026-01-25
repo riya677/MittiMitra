@@ -25,6 +25,9 @@ public interface SoilDao {
     @Query("SELECT * FROM soil_history WHERE analysis_id = :id")
     SoilAnalysis getAnalysisById(int id);
 
+    @Query("SELECT * FROM soil_history WHERE user_id = :userId ORDER BY timestamp DESC")
+    List<SoilAnalysis> getAnalysisForUser(String userId);
+
     @Query("DELETE FROM soil_history")
     void clearAllHistory();
 }

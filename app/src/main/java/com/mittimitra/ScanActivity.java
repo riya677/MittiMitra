@@ -488,6 +488,10 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
     private void generateSmartReport(String detectedSoilType) {
         new Thread(() -> {
             try {
+                // 🧠 INTELLIGENT ADJUSTMENT
+                // Correct satellite properties using the local visual evidence
+                applySmartCorrections(detectedSoilType);
+
                 JSONObject report = new JSONObject();
                 report.put("N", finalN);
                 report.put("P", finalP);
@@ -504,6 +508,13 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
                 SoilAnalysis analysis = new SoilAnalysis();
                 analysis.timestamp = System.currentTimeMillis();
                 analysis.soilReportJson = report.toString();
+                
+                // Save User ID for data isolation
+                com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    analysis.userId = user.getUid();
+                }
+                
                 MittiMitraDatabase.getDatabase(this).soilDao().insertAnalysis(analysis);
 
                 // Save soil type for Irrigation Calculator
@@ -547,6 +558,80 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
         if (sensorManager != null) {
             sensorManager.unregisterListener(this);
         }
+    }
+
+    // --- INTELLIGENCE LAYER ---
+    private void applySmartCorrections(String detectedSoilType) {
+        // 1. Soil Type Factors (Heuristics based on Indian Soil physics)
+        double nFactor = 1.0, pFactor = 1.0, kFactor = 1.0;
+
+        switch (detectedSoilType) {
+            case "Black":
+                nFactor = 1.25; kFactor = 1.2; break; // Retains nutrients well (Regur)
+            case "Red":
+                nFactor = 0.9; pFactor = 0.8; break; // Iron rich, P fixation common
+            case "Sandy":
+                nFactor = 0.7; pFactor = 0.8; kFactor = 0.8; break; // High leaching
+            case "Clay":
+                kFactor = 1.15; break; // High K retention
+            case "Laterite":
+                nFactor = 0.8; pFactor = 0.7; kFactor = 0.7; break; // Acidic/Leached
+            case "Alluvial":
+                nFactor = 1.1; kFactor = 1.1; break; // Generally fertile
+        }
+
+        // 2. Visual Brightness Factor (Darker = More Organic Carbon = More Nitrogen)
+        if (currentImageBitmap != null) {
+            try {
+                double brightness = calculateBrightness(currentImageBitmap);
+                if (brightness < 100) { // Dark soil
+                    nFactor += 0.15; // +15% Nitrogen boost
+                } else if (brightness > 180) { // Very light soil
+                    nFactor -= 0.15; // -15% Nitrogen penalty
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Brightness Calc Error", e);
+            }
+        }
+
+        // Apply corrections
+        finalN *= nFactor;
+        finalP *= pFactor;
+        finalK *= kFactor;
+        
+        // Ensure non-negative
+        if (finalN < 0) finalN = 0;
+        if (finalP < 0) finalP = 0;
+        if (finalK < 0) finalK = 0;
+    }
+
+    private double calculateBrightness(Bitmap bitmap) {
+        long r = 0, g = 0, b = 0;
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        
+        // Safety check
+        if(width < 50 || height < 50) return 128;
+
+        // Sample center for speed/relevance (50x50 area)
+        int centerX = width / 2;
+        int centerY = height / 2;
+        int sampleSize = 50; 
+        int startX = Math.max(0, centerX - 25);
+        int startY = Math.max(0, centerY - 25);
+
+        int[] pixels = new int[sampleSize * sampleSize];
+        bitmap.getPixels(pixels, 0, sampleSize, startX, startY, sampleSize, sampleSize);
+
+        for (int pixel : pixels) {
+            r += (pixel >> 16) & 0xFF;
+            g += (pixel >> 8) & 0xFF;
+            b += pixel & 0xFF;
+        }
+        
+        long count = pixels.length;
+        // Standard formula for relative luminance/brightness
+        return (double) (r + g + b) / (3 * count);
     }
 
     @Override
