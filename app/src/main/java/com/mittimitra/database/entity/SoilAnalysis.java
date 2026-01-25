@@ -17,4 +17,7 @@ public class SoilAnalysis {
 
     @ColumnInfo(name = "soil_report_json")
     public String soilReportJson;
+    
+    @ColumnInfo(name = "user_id")
+    public String userId;
 }

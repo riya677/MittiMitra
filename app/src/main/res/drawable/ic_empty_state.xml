@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Empty state illustration for screens with no data -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    
+    <!-- Ground/Soil -->
+    <path
+        android:fillColor="#8B4513"
+        android:pathData="M20,160 Q100,140 180,160 L180,180 Q100,200 20,180 Z" />
+    
+    <!-- Seedling pot -->
+    <path
+        android:fillColor="#D2691E"
+        android:pathData="M70,130 L130,130 L120,160 L80,160 Z" />
+    
+    <!-- Small plant stem -->
+    <path
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="4"
+        android:pathData="M100,130 L100,90" />
+    
+    <!-- Plant leaves -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M100,100 Q85,90 90,80 Q100,85 100,100 M100,100 Q115,90 110,80 Q100,85 100,100" />
+    
+    <!-- Sun (using path arc for circle) -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M160,40 m-20,0 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0" />
+    
+    <!-- Sun rays -->
+    <path
+        android:strokeColor="#FFC107"
+        android:strokeWidth="3"
+        android:pathData="M160,10 L160,20 M190,40 L180,40 M160,70 L160,60 M130,40 L140,40" />
+    
+    <!-- Cloud -->
+    <path
+        android:fillColor="#E0E0E0"
+        android:pathData="M40,50 Q30,50 30,40 Q30,30 45,30 Q50,20 65,25 Q80,20 85,35 Q95,35 95,45 Q95,55 80,55 Z" />
+
+</vector>

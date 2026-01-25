@@ -1,34 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Brand Identity: "Tech-Organic" -->
-    <color name="brand_primary">#2E7D32</color> <!-- Forest Green 800 -->
-    <color name="brand_primary_dark">#1B5E20</color> <!-- Forest Green 900 -->
-    <color name="brand_primary_light">#E8F5E9</color> <!-- Green 50 -->
-    
-    <color name="brand_secondary">#FFB300</color> <!-- Amber 600 - Harvest Gold -->
-    <color name="brand_secondary_light">#FFF8E1</color> <!-- Amber 50 -->
+    <!-- ============================================ -->
+    <!-- 🇮🇳 INDIAN TRICOLOR INSPIRED THEME 🇮🇳 -->
+    <!-- Saffron • White • India Green • Navy Blue -->
+    <!-- ============================================ -->
 
-    <color name="brand_accent">#0091EA</color> <!-- Light Blue A700 - Water/Sky -->
+    <!-- Primary: India Green (from flag) -->
+    <color name="brand_primary">#138808</color>         <!-- India Green -->
+    <color name="brand_primary_dark">#0A5F04</color>    <!-- Darker shade -->
+    <color name="brand_primary_light">#E8F5E9</color>   <!-- Light green tint -->
+    
+    <!-- Secondary: Saffron (Kesari) -->
+    <color name="brand_secondary">#FF9933</color>       <!-- Saffron/Kesari from flag -->
+    <color name="brand_secondary_dark">#E67300</color>  <!-- Deep saffron -->
+    <color name="brand_secondary_light">#FFF3E0</color> <!-- Saffron tint -->
+    
+    <!-- Accent: Navy Blue (Ashoka Chakra) -->
+    <color name="brand_accent">#000080</color>          <!-- Navy Blue from Chakra -->
+    <color name="brand_accent_light">#3333B2</color>    <!-- Lighter navy -->
+    <color name="chakra_blue">#06038D</color>           <!-- Ashoka Chakra Blue -->
+    
+    <!-- Tertiary: Harvest Gold (Agriculture) -->
+    <color name="harvest_gold">#FFD700</color>          <!-- Golden wheat -->
+    <color name="harvest_gold_light">#FFF8DC</color>    <!-- Cornsilk -->
+    
+    <!-- Tertiary: Soil Brown (Mitti) -->
+    <color name="mitti_brown">#8B4513</color>           <!-- Saddle brown/soil -->
+    <color name="mitti_brown_light">#DEB887</color>     <!-- Burlywood -->
 
     <!-- Neutral Surfaces -->
-    <color name="surface_background">#F5F7F6</color> <!-- Soft Mist White -->
+    <color name="surface_background">#FAFAFA</color>    <!-- Clean white -->
     <color name="surface_card">#FFFFFF</color>
     <color name="surface_modal">#FFFFFF</color>
 
     <!-- Typography -->
-    <color name="text_primary">#1A1C1E</color> <!-- Soft Black -->
-    <color name="text_secondary">#444746</color> <!-- Dark Grey -->
-    <color name="text_tertiary">#747775</color> <!-- Medium Grey -->
+    <color name="text_primary">#1A1C1E</color>
+    <color name="text_secondary">#444746</color>
+    <color name="text_tertiary">#747775</color>
     <color name="text_hint">#8E918F</color>
     <color name="text_on_primary">#FFFFFF</color>
-    <color name="text_on_secondary">#263238</color>
+    <color name="text_on_secondary">#000000</color>
 
-    <!-- Functional -->
-    <color name="status_error">#BA1A1A</color>
-    <color name="status_success">#146C2E</color>
-    <color name="status_warning">#E65100</color>
+    <!-- Functional/Status Colors -->
+    <color name="status_error">#D32F2F</color>
+    <color name="status_success">#138808</color>        <!-- India Green -->
+    <color name="status_warning">#FF9933</color>        <!-- Saffron -->
+    <color name="status_info">#000080</color>           <!-- Navy Blue -->
+    <color name="color_warning">#E65100</color>         <!-- Deep Orange for warnings -->
 
-    <!-- Legacy mappings for compatibility (overridden with new palette) -->
+    <!-- Vibrant Gradients -->
+    <color name="gradient_saffron_start">#FF9933</color>
+    <color name="gradient_saffron_end">#FFB347</color>
+    <color name="gradient_green_start">#138808</color>
+    <color name="gradient_green_end">#4CAF50</color>
+    <color name="gradient_tricolor_top">#FF9933</color>
+    <color name="gradient_tricolor_mid">#FFFFFF</color>
+    <color name="gradient_tricolor_bottom">#138808</color>
+
+    <!-- Legacy mappings for compatibility -->
     <color name="purple_200">@color/brand_primary_light</color>
     <color name="purple_500">@color/brand_primary</color>
     <color name="purple_700">@color/brand_primary_dark</color>
@@ -37,29 +66,34 @@
     <color name="black">@color/text_primary</color>
     <color name="white">@color/surface_card</color>
     
-    <!-- App Specific -->
+    <!-- App Specific Legacy -->
     <color name="brand_green">@color/brand_primary</color>
     <color name="brand_green_light">@color/brand_primary_light</color>
     <color name="text_white">@color/text_on_primary</color>
     <color name="text_dark">#333333</color>
-    
     <color name="color_logout">#D32F2F</color>
     <color name="color_delete">#B71C1C</color>
     <color name="color_accent_orange">@color/brand_secondary</color>
     <color name="color_delete_light">#FFEBEE</color>
-    <color name="text_light_orange">#FFF3E0</color>
+    <color name="text_light_orange">@color/brand_secondary_light</color>
     <color name="color_divider_success">#A5D6A7</color>
-    <color name="color_success_text">#1B5E20</color>
+    <color name="color_success_text">@color/brand_primary_dark</color>
     <color name="color_moisture">@color/brand_accent</color>
     <color name="color_green_50">@color/brand_primary_light</color>
-    
-    <!-- UI Gradients -->
-    <color name="gradient_start">#2E7D32</color>
-    <color name="gradient_end">#43A047</color>
-
-    <!-- Dividers -->
+    <color name="gradient_start">@color/gradient_green_start</color>
+    <color name="gradient_end">@color/gradient_green_end</color>
     <color name="divider">#E0E0E0</color>
-
     <color name="brand_surface">#FFFFFF</color>
+
+    <!-- Feature-specific Indian themed colors -->
+    <color name="color_scan_button">@color/brand_secondary</color>     <!-- Saffron scan button -->
+    <color name="color_chat_user_bubble">#DCF8C6</color>               <!-- Light green -->
+    <color name="color_chat_bot_bubble">#FFFFFF</color>
+    <color name="color_weather_sunny">#FF9933</color>                  <!-- Saffron sun -->
+    <color name="color_weather_cloudy">#78909C</color>
+    <color name="color_weather_rainy">#000080</color>                  <!-- Navy for rain -->
+    <color name="color_crop_healthy">#138808</color>                   <!-- India green -->
+    <color name="color_crop_warning">#FF9933</color>                   <!-- Saffron warning -->
+    <color name="color_crop_danger">#D32F2F</color>
 
 </resources>

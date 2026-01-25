@@ -30,8 +30,12 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.mittimitra.config.ApiConfig;
+import com.mittimitra.config.AppConstants;
 import com.mittimitra.network.ClassificationResult;
 import com.mittimitra.network.RetrofitClient;
+import com.mittimitra.utils.BitmapUtils;
+import com.mittimitra.utils.ErrorHandler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -46,10 +50,6 @@ import retrofit2.Response;
 public class PlantScanActivity extends BaseActivity {
 
     private static final String TAG = "PlantScanActivity";
-    private static final String HF_MODEL_URL = "https://api-inference.huggingface.co/models/linkanjarad/mobilenet_v2_1.0_224-plant-disease-identification";
-    
-    // Using Llama 3.2 Vision on Groq - MUST use vision model for image analysis
-    private static final String GROQ_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct";
 
     private ImageView ivPreview;
     private TextView tvStatus, tvResultTitle, tvResultDesc;
@@ -76,7 +76,8 @@ public class PlantScanActivity extends BaseActivity {
                         ivPreview.setImageBitmap(currentBitmap);
                         resetUI();
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        ErrorHandler.logError(TAG, "Failed to load image from gallery", e);
+                        ErrorHandler.showToast(PlantScanActivity.this, R.string.alert_network_error);
                     }
                 }
             });
@@ -134,15 +135,13 @@ public class PlantScanActivity extends BaseActivity {
     }
 
     private void runClassification() {
-        Bitmap scaled = Bitmap.createScaledBitmap(currentBitmap, 224, 224, true);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        scaled.compress(Bitmap.CompressFormat.JPEG, 90, stream);
-        byte[] byteArray = stream.toByteArray();
+        Bitmap scaled = BitmapUtils.prepareForClassification(currentBitmap, AppConstants.IMAGE_CLASSIFICATION_SIZE);
+        byte[] byteArray = BitmapUtils.bitmapToJpegBytes(scaled, AppConstants.JPEG_QUALITY_HIGH);
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpeg"), byteArray);
         String token = "Bearer " + BuildConfig.HF_API_TOKEN.replace("\"", "").trim();
 
-        RetrofitClient.getHuggingFaceService().classifyImage(HF_MODEL_URL, token, requestBody)
+        RetrofitClient.getHuggingFaceService().classifyImage(ApiConfig.HF_MODEL_PLANT_DISEASE, token, requestBody)
                 .enqueue(new Callback<List<ClassificationResult>>() {
                     @Override
                     public void onResponse(Call<List<ClassificationResult>> call, Response<List<ClassificationResult>> response) {
@@ -152,22 +151,19 @@ public class PlantScanActivity extends BaseActivity {
                     }
                     @Override
                     public void onFailure(Call<List<ClassificationResult>> call, Throwable t) {
-                        Log.e(TAG, "HF Classification failed", t);
+                        ErrorHandler.logError(TAG, "HF Classification failed", t);
                     }
                 });
     }
 
     private void runGroqAnalysis() {
         try {
-            // Encode Image
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            currentBitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArrayOutputStream); // Compress for API speed
-            String imageBase64 = "data:image/jpeg;base64," + 
-                android.util.Base64.encodeToString(byteArrayOutputStream.toByteArray(), android.util.Base64.NO_WRAP);
+            // Encode Image using BitmapUtils
+            String imageBase64 = BitmapUtils.bitmapToBase64DataUrl(currentBitmap, AppConstants.JPEG_QUALITY_MEDIUM);
 
             // Build Groq Payload (OpenAI Compatible)
             JsonObject payload = new JsonObject();
-            payload.addProperty("model", GROQ_MODEL);
+            payload.addProperty("model", ApiConfig.GROQ_MODEL_VISION);
             payload.addProperty("temperature", 0.1);
             payload.addProperty("max_tokens", 512);
 

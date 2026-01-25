@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 🇮🇳 Login Screen with Indian Tricolor Theme -->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,7 +13,7 @@
         android:id="@+id/header_bg"
         android:layout_width="match_parent"
         android:layout_height="320dp"
-        android:background="@drawable/bg_header_gradient"
+        android:background="@drawable/bg_gradient_tricolor"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -182,6 +183,18 @@
                 android:layout_gravity="center"
                 android:indeterminateTint="@color/brand_primary"
                 android:visibility="gone"/>
+
+            <!-- Don't have an account? Link -->
+            <TextView
+                android:id="@+id/tv_go_to_signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="New user? Create Account"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:padding="8dp"
+                android:layout_marginTop="16dp"/>
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

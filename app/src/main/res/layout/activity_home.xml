@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="120dp">
 
-            <!-- Premium Header -->
+            <!-- Premium Header with India Green -->
             <View
                 android:id="@+id/header_bg"
                 android:layout_width="match_parent"
@@ -173,13 +173,13 @@
                         <FrameLayout
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:background="@drawable/circle_bg_green_light">
+                            android:background="@drawable/circle_bg_saffron_light">
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
                                 android:layout_gravity="center"
                                 android:src="@android:drawable/ic_menu_today"
-                                app:tint="@color/brand_primary"
+                                app:tint="@color/brand_secondary"
                                 android:importantForAccessibility="no"/>
                         </FrameLayout>
                         <TextView
@@ -214,13 +214,13 @@
                         <FrameLayout
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:background="@drawable/circle_bg_green_light">
+                            android:background="@drawable/circle_bg_navy_light">
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
                                 android:layout_gravity="center"
                                 android:src="@android:drawable/ic_menu_sort_by_size"
-                                app:tint="@color/brand_primary"
+                                app:tint="@color/brand_accent"
                                 android:importantForAccessibility="no"/>
                         </FrameLayout>
                         <TextView
@@ -337,13 +337,13 @@
                         <FrameLayout
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:background="@drawable/circle_bg_green_light">
+                            android:background="@drawable/circle_bg_navy_light">
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
                                 android:layout_gravity="center"
                                 android:src="@android:drawable/ic_menu_rotate"
-                                app:tint="@color/brand_primary"
+                                app:tint="@color/brand_accent"
                                 android:importantForAccessibility="no"/>
                         </FrameLayout>
                         <TextView
@@ -460,13 +460,13 @@
                         <FrameLayout
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:background="@drawable/circle_bg_green_light">
+                            android:background="@drawable/circle_bg_saffron_light">
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
                                 android:layout_gravity="center"
                                 android:src="@android:drawable/ic_menu_info_details"
-                                app:tint="@color/brand_primary"
+                                app:tint="@color/brand_secondary"
                                 android:importantForAccessibility="no"/>
                         </FrameLayout>
                         <TextView

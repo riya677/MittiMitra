@@ -42,9 +42,12 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.widget.ImageView;
+import com.mittimitra.config.ApiConfig;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.dao.ChatDao;
 import com.mittimitra.database.entity.SoilAnalysis;
+import com.mittimitra.ui.adapter.ChatAdapter;
+import com.mittimitra.utils.ErrorHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,7 +74,6 @@ public class TipActivity extends BaseActivity {
 
     private static final String TAG = "TipActivity";
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-    private static final String CHAT_MODEL_ID = "llama-3.3-70b-versatile";
 
     // UI Components
     private RecyclerView recyclerViewChat;
@@ -252,7 +254,7 @@ public class TipActivity extends BaseActivity {
 
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("model", CHAT_MODEL_ID);
+            jsonBody.put("model", ApiConfig.GROQ_MODEL_CHAT);
             JSONArray messages = new JSONArray();
             messages.put(new JSONObject().put("role", "user").put("content", prompt));
             jsonBody.put("messages", messages);
@@ -262,7 +264,7 @@ public class TipActivity extends BaseActivity {
         }
 
         Request request = new Request.Builder()
-                .url("https://api.groq.com/openai/v1/chat/completions")
+                .url(ApiConfig.GROQ_CHAT_ENDPOINT)
                 .header("Authorization", "Bearer " + cleanKey)
                 .post(RequestBody.create(jsonBody.toString(), JSON))
                 .build();
@@ -379,8 +381,8 @@ public class TipActivity extends BaseActivity {
             isRecording = true;
             Toast.makeText(this, "Listening...", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
-            Log.e(TAG, "Failed to start recording", e);
-            Toast.makeText(this, "Could not start recording", Toast.LENGTH_SHORT).show();
+            ErrorHandler.logError(TAG, "Failed to start recording", e);
+            ErrorHandler.showToast(this, "Could not start recording");
         }
     }
 
@@ -388,7 +390,7 @@ public class TipActivity extends BaseActivity {
         try {
             if (mediaRecorder != null) { mediaRecorder.stop(); mediaRecorder.release(); }
         } catch (Exception e) {
-            Log.e(TAG, "Error stopping recording", e);
+            ErrorHandler.logError(TAG, "Error stopping recording", e);
         }
         mediaRecorder = null;
         isRecording = false;
@@ -502,36 +504,4 @@ public class TipActivity extends BaseActivity {
         return Html.fromHtml(html, Html.FROM_HTML_MODE_COMPACT);
     }
 
-    private static class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
-        private final List<ChatMessage> messages;
-        ChatAdapter(List<ChatMessage> messages) { this.messages = messages; }
-        @NonNull @Override public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_message, parent, false);
-            return new ChatViewHolder(view);
-        }
-        @Override
-        public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
-            ChatMessage message = messages.get(position);
-            holder.messageText.setText(parseMarkdown(message.getMessage()));
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.messageText.getLayoutParams();
-
-            if (message.getType() == ChatMessage.Type.USER) {
-                params.gravity = android.view.Gravity.END;
-                holder.messageText.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DCF8C6"))); // Soft Green
-                holder.messageText.setTextColor(Color.parseColor("#000000"));
-            } else {
-                params.gravity = android.view.Gravity.START;
-                holder.messageText.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF"))); // White
-                holder.messageText.setTextColor(Color.parseColor("#333333")); // Dark Grey
-            }
-
-            // Apply changes
-            holder.messageText.setLayoutParams(params);
-        }
-        @Override public int getItemCount() { return messages.size(); }
-        static class ChatViewHolder extends RecyclerView.ViewHolder {
-            TextView messageText;
-            ChatViewHolder(@NonNull View itemView) { super(itemView); messageText = itemView.findViewById(R.id.chat_message_text); }
-        }
-    }
 }

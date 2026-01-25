@@ -33,14 +33,18 @@ public class HomeActivity extends BaseActivity {
         }
     };
 
+    private TextView tvWelcome; // Moved to field level
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         sessionManager = new SessionManager(this);
-        TextView tvWelcome = findViewById(R.id.tv_home_welcome);
-        tvWelcome.setText(getString(R.string.greeting_format, sessionManager.getUserName()));
+        tvWelcome = findViewById(R.id.tv_home_welcome);
+        
+        // Initial set (onResume will handle updates)
+        updateWelcomeMessage();
 
         viewPagerCarousel = findViewById(R.id.viewPagerCarousel);
         List<Integer> images = new ArrayList<>();
@@ -80,6 +84,41 @@ public class HomeActivity extends BaseActivity {
                 androidx.work.ExistingPeriodicWorkPolicy.KEEP,
                 weatherWork
         );
+    }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Refresh name every time activity comes to foreground (e.g. back from Profile)
+        updateWelcomeMessage();
+        refreshUserNameFromFirestore();
+    }
+
+    private void updateWelcomeMessage() {
+        if (tvWelcome != null) {
+            tvWelcome.setText(getString(R.string.greeting_format, sessionManager.getUserName()));
+        }
+    }
+    
+    // Updated to use class member tvWelcome
+    private void refreshUserNameFromFirestore() {
+        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+        
+        com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                .collection("farmers")
+                .document(user.getUid())
+                .get()
+                .addOnSuccessListener(doc -> {
+                    if (doc.exists()) {
+                        String name = doc.getString("firstName");
+                        if (name != null && !name.isEmpty()) {
+                            // Update session and UI
+                            sessionManager.saveUser(user.getUid(), name);
+                            updateWelcomeMessage();
+                        }
+                    }
+                });
     }
 
     private void setupGridNavigation() {
