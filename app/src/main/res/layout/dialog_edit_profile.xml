@@ -48,7 +48,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Update your information below"
+                    android:text="@string/dialog_update_info"
                     android:textSize="13sp"
                     android:textColor="@color/brand_primary_light"
                     android:alpha="0.9"

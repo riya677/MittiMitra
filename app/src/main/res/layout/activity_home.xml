@@ -100,7 +100,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Farm Schemes &amp; Subsidies"
+                            android:text="@string/home_schemes_title"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary"/>
@@ -108,7 +108,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Find Govt. benefits for you"
+                            android:text="@string/home_schemes_desc"
                             android:textSize="12sp"
                             android:textColor="@color/text_secondary"
                             android:layout_marginTop="2dp"/>

@@ -28,17 +28,14 @@ public class NotificationWorker extends Worker {
         Context context = getApplicationContext();
         SharedPreferences prefs = context.getSharedPreferences("MittiMitra_Notifications", Context.MODE_PRIVATE);
         
-        // Load cached location (simplest way for background worker without permissions)
+        // Load cached location from user's last scan
         SharedPreferences scanCache = context.getSharedPreferences("scan_cache", Context.MODE_PRIVATE);
         String locName = scanCache.getString("loc", null);
         
-        // Defaults if no cache
-        double lat = 20.5937; 
-        double lon = 78.9629; 
-
-        // Try to get cached lat/lon if we stored it (we didn't explicitly store lat/lon in scan_cache, just text)
-        // For this demo, we'll try to fetch weather for a "central" location or skip if logic allows.
-        // Better: Let's assume the user has run a scan and we can just use the RetrofitClient.
+        // Load user's actual cached coordinates (cached during ScanActivity)
+        SharedPreferences locPrefs = context.getSharedPreferences("user_location_cache", Context.MODE_PRIVATE);
+        double lat = Double.parseDouble(locPrefs.getString("last_lat", "20.5937")); // Delhi fallback
+        double lon = Double.parseDouble(locPrefs.getString("last_lon", "78.9629")); // Delhi fallback
         
         // Check permissions/settings
         boolean showWeather = prefs.getBoolean("notif_weather", true);
@@ -47,15 +44,51 @@ public class NotificationWorker extends Worker {
             checkWeatherAndNotify(context);
         }
 
-        // Keep other dummy notifications for now or remove if they are annoying
+        // Mandi notification with real cached prices
         if (prefs.getBoolean("notif_mandi", false)) {
-             triggerNotification(2, context.getString(R.string.notif_mandi_title), "Check market prices for " + (locName!=null?locName:"your area"));
+            showMandiPriceNotification(context, locName);
         }
 
         // CHECK EXPIRING DOCUMENTS
         checkExpiringDocuments(context);
 
         return Result.success();
+    }
+    
+    private void showMandiPriceNotification(Context context, String locName) {
+        try {
+            // Try to load cached mandi prices
+            SharedPreferences mandiCache = context.getSharedPreferences("mandi_price_cache", Context.MODE_PRIVATE);
+            String cachedJson = mandiCache.getString("last_prices", null);
+            
+            if (cachedJson != null && !cachedJson.isEmpty()) {
+                // Parse cached prices
+                java.lang.reflect.Type listType = new com.google.gson.reflect.TypeToken<java.util.List<com.mittimitra.MandiActivity.MandiPrice>>(){}.getType();
+                java.util.List<com.mittimitra.MandiActivity.MandiPrice> prices = new com.google.gson.Gson().fromJson(cachedJson, listType);
+                
+                if (prices != null && !prices.isEmpty()) {
+                    // Show first 2-3 prices in notification
+                    StringBuilder priceMsg = new StringBuilder();
+                    int count = Math.min(prices.size(), 3);
+                    for (int i = 0; i < count; i++) {
+                        com.mittimitra.MandiActivity.MandiPrice p = prices.get(i);
+                        if (i > 0) priceMsg.append(" • ");
+                        priceMsg.append(p.market).append(": ₹").append(p.modal);
+                    }
+                    
+                    String lastCommodity = mandiCache.getString("last_commodity", "");
+                    String title = context.getString(R.string.notif_mandi_title) + (!lastCommodity.isEmpty() ? " - " + lastCommodity : "");
+                    triggerNotification(2, title, priceMsg.toString());
+                    return;
+                }
+            }
+            
+            // Fallback: if no cache, show prompt to check prices
+            triggerNotification(2, context.getString(R.string.notif_mandi_title), 
+                "Tap to check today's mandi prices for " + (locName != null ? locName : "your area"));
+        } catch (Exception e) {
+            android.util.Log.e("NotificationWorker", "Error showing mandi notification", e);
+        }
     }
 
     private void checkExpiringDocuments(Context context) {
@@ -76,12 +109,13 @@ public class NotificationWorker extends Worker {
 
     private void checkWeatherAndNotify(Context context) {
         try {
-            // Synchronous call
-            // Using a hardcoded generic location for India as fallback or "last known" strategy
-            //Ideally we should save lat/lon in prefs in ScanActivity. I will assume we did or just force a check.
+            // Load user's cached location
+            SharedPreferences locPrefs = context.getSharedPreferences("user_location_cache", Context.MODE_PRIVATE);
+            double lat = Double.parseDouble(locPrefs.getString("last_lat", "20.5937"));
+            double lon = Double.parseDouble(locPrefs.getString("last_lon", "78.9629"));
             
-            com.google.gson.JsonObject response = com.mittimitra.network.RetrofitClient.getAgroService()
-                .getAgroWeather(20.59, 78.96) // Generic Center of India as fallback
+            com.google.gson.JsonObject response = com.mittimitra.network.RetrofitClient.getWeatherService()
+                .getAgroWeather(lat, lon) // Use cached location
                 .execute()
                 .body();
 

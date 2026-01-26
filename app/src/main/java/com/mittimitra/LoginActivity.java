@@ -130,15 +130,19 @@ public class LoginActivity extends AppCompatActivity {
     // --- PHONE OTP ---
     private void sendOtp() {
         String mobile = etPhone.getText().toString().trim();
-        if (mobile.length() < 10) {
-            etPhone.setError("Valid Number Required");
+        
+        // Use ValidationUtils for proper Indian phone validation
+        if (!com.mittimitra.utils.ValidationUtils.isValidIndianPhone(mobile)) {
+            etPhone.setError(com.mittimitra.utils.ValidationUtils.getPhoneValidationError(mobile));
             return;
         }
-        if (!mobile.startsWith("+")) mobile = "+91" + mobile; // Default India
+        
+        // Format to +91XXXXXXXXXX
+        String formattedPhone = com.mittimitra.utils.ValidationUtils.formatIndianPhone(mobile);
 
         progressBar.setVisibility(View.VISIBLE);
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
-                .setPhoneNumber(mobile)
+                .setPhoneNumber(formattedPhone)
                 .setTimeout(60L, TimeUnit.SECONDS)
                 .setActivity(this)
                 .setCallbacks(mCallbacks)

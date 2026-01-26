@@ -27,6 +27,7 @@ android {
         buildConfigField "String", "OPENWEATHER_API_KEY", "\"${properties.getProperty('OPENWEATHER_API_KEY')}\""
         buildConfigField "String", "HF_API_TOKEN", "\"${properties.getProperty('HF_API_TOKEN')}\""
         buildConfigField "String", "HF_MODEL_URL", "\"${properties.getProperty('HF_MODEL_URL')}\""
+        buildConfigField "String", "DATA_GOV_API_KEY", "\"${properties.getProperty('DATA_GOV_API_KEY', '')}\""
     }
 
     buildTypes {
@@ -53,6 +54,9 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.material
     implementation libs.androidx.constraintlayout
+    
+    // Security - Encrypted SharedPreferences for secure token storage
+    implementation "androidx.security:security-crypto:1.1.0-alpha06"
 
     // Room
     implementation libs.androidx.room.runtime

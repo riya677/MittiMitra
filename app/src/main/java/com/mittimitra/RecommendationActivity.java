@@ -39,13 +39,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+
 
 public class RecommendationActivity extends BaseActivity implements TextToSpeech.OnInitListener {
 
@@ -230,8 +224,6 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
     }
 
     private void fetchProfessionalAdvice(int n, int p, int k, double ph, String userNotes, String weather, String moisture, String detectedSoil) {
-
-        String rawKey = BuildConfig.GROQ_API_KEY.replace("\"", "").trim();
         String systemPrompt =
                 "You are a Senior Scientist at the Indian Council of Agricultural Research (ICAR). " +
                         "Don't mention the name of the organisation , mention only Mittimitra. " +
@@ -240,22 +232,22 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
                         "Output must be formal, scientific, and strictly formatted in Markdown.";
 
         String taskInstruction =
-                "### 1. 搭 **Soil Health Status Report**\n" +
+                "### 1. 📋 **Soil Health Status Report**\n" +
                         "- **Diagnosis:** Classify nutrient levels (Low/Medium/High) based on Indian standards.\n" +
                         "- **Suitability:** Assess if **" + detectedSoil + "** soil is suitable for cultivation given the current status.\n\n" +
 
-                        "### 2. 言 **Crop Planning (Agro-Climatic approach)**\n" +
+                        "### 2. 📅 **Crop Planning (Agro-Climatic approach)**\n" +
                         "- Recommend 3 crops aligned with **" + detectedSoil + "** soil and local climate (" + weather + ").\n" +
                         "- **Variety Selection:** Suggest specific **ICAR/State University certified varieties** (e.g., 'Pusa Basmati', 'Co-86032').\n" +
                         "- **ECONOMIC REASONING:** For each crop, estimate current **Mandi Market Prices (INR/Quintal)** for the region. Highlight the most profitable option.\n\n" +
 
-                        "### 3. 抽 **Balanced Fertilization Schedule (RDF)**\n" +
+                        "### 3. 🧪 **Balanced Fertilization Schedule (RDF)**\n" +
                         "- **Goal:** Achieve Recommended Dose of Fertilizer (RDF) for the priority crop.\n" +
                         "- **Chemical:** Prescribe exact **Neem Coated Urea**, **DAP/SSP**, and **MOP** dosage in **kg/acre**.\n" +
                         "- **Bio-Fertilizer:** Mandate use of PSB/Azotobacter or Rhizobium cultures.\n" +
                         "- **INM:** Suggest FYM or Vermicompost quantity per acre.\n\n" +
 
-                        "### 4. 屏 **Soil Amelioration & Reclamation**\n" +
+                        "### 4. 🚑 **Soil Amelioration & Reclamation**\n" +
                         "- **pH Correction:** Current pH is " + String.format("%.1f", ph) + ". " +
                         (ph < 6.0 ? "Prescribe agricultural Lime/Dolomite dosage." :
                                 ph > 7.5 ? "Prescribe Gypsum requirement." :
@@ -276,47 +268,58 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
                 userNotes, detectedSoil, n, p, k, ph, weather, moisture, taskInstruction
         );
 
-        JSONObject jsonBody = new JSONObject();
-        try {
-            jsonBody.put("model", ApiConfig.GROQ_MODEL_CHAT);
-            jsonBody.put("temperature", 0.3);
-            jsonBody.put("max_tokens", 1100);
+        // Build Gson Payload
+        com.google.gson.JsonObject jsonBody = new com.google.gson.JsonObject();
+        jsonBody.addProperty("model", ApiConfig.GROQ_MODEL_CHAT);
+        jsonBody.addProperty("temperature", 0.3);
+        jsonBody.addProperty("max_tokens", 1100);
 
-            JSONArray messages = new JSONArray();
-            messages.put(new JSONObject().put("role", "system").put("content", systemPrompt));
-            messages.put(new JSONObject().put("role", "user").put("content", userPrompt));
-            jsonBody.put("messages", messages);
-        } catch (Exception e) { return; }
+        com.google.gson.JsonArray messages = new com.google.gson.JsonArray();
+        
+        com.google.gson.JsonObject systemMsg = new com.google.gson.JsonObject();
+        systemMsg.addProperty("role", "system");
+        systemMsg.addProperty("content", systemPrompt);
+        messages.add(systemMsg);
+        
+        com.google.gson.JsonObject userMsg = new com.google.gson.JsonObject();
+        userMsg.addProperty("role", "user");
+        userMsg.addProperty("content", userPrompt);
+        messages.add(userMsg);
+        
+        jsonBody.add("messages", messages);
 
-        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS).build();
-        Request request = new Request.Builder()
-                .url(ApiConfig.GROQ_CHAT_ENDPOINT)
-                .addHeader("Authorization", "Bearer " + rawKey)
-                .post(RequestBody.create(jsonBody.toString(), MediaType.get("application/json")))
-                .build();
+        String token = "Bearer " + BuildConfig.GROQ_API_KEY.replace("\"", "").trim();
 
-        client.newCall(request).enqueue(new Callback() {
-            @Override public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                runOnUiThread(() -> tvAiAdvice.setText("Server Connection Failed."));
-            }
-            @Override public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                try {
-                    if (!response.isSuccessful()) {
-                        runOnUiThread(() -> tvAiAdvice.setText("Advisory Generation Failed: " + response.code()));
-                        return;
+        // Use Retrofit
+        com.mittimitra.network.RetrofitClient.getGroqService().chatCompletion(token, jsonBody)
+                .enqueue(new retrofit2.Callback<com.google.gson.JsonObject>() {
+                    @Override
+                    public void onResponse(@NonNull retrofit2.Call<com.google.gson.JsonObject> call, @NonNull retrofit2.Response<com.google.gson.JsonObject> response) {
+                         if (response.isSuccessful() && response.body() != null) {
+                             try {
+                                 String content = response.body().getAsJsonArray("choices")
+                                         .get(0).getAsJsonObject()
+                                         .getAsJsonObject("message")
+                                         .get("content").getAsString();
+                                 
+                                 Spanned styledText = parseMarkdown(content);
+                                 runOnUiThread(() -> {
+                                     tvAiAdvice.setText(styledText);
+                                     btnDownload.setVisibility(View.VISIBLE);
+                                 });
+                             } catch (Exception e) {
+                                 runOnUiThread(() -> tvAiAdvice.setText("Error formatting advisory."));
+                             }
+                         } else {
+                             runOnUiThread(() -> tvAiAdvice.setText("Advisory Generation Failed: " + response.code()));
+                         }
                     }
-                    JSONObject res = new JSONObject(response.body().string());
-                    String rawContent = res.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
-                    Spanned styledText = parseMarkdown(rawContent);
-                    runOnUiThread(() -> {
-                        tvAiAdvice.setText(styledText);
-                        btnDownload.setVisibility(View.VISIBLE);
-                    });
-                } catch (Exception e) {
-                    runOnUiThread(() -> tvAiAdvice.setText("Error formatting advisory."));
-                }
-            }
-        });
+
+                    @Override
+                    public void onFailure(@NonNull retrofit2.Call<com.google.gson.JsonObject> call, @NonNull Throwable t) {
+                        runOnUiThread(() -> tvAiAdvice.setText("Server Connection Failed."));
+                    }
+                });
     }
 
     private static Spanned parseMarkdown(String markdown) {

@@ -92,7 +92,7 @@ public class PlantScanActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.plant_doctor_title);
+            getSupportActionBar().setDisplayShowTitleEnabled(false); // Title is in centered TextView
         }
 
         ivPreview = findViewById(R.id.iv_plant_preview);
@@ -118,6 +118,10 @@ public class PlantScanActivity extends BaseActivity {
         btnAnalyze.setVisibility(View.VISIBLE);
         resultCard.setVisibility(View.GONE);
         tvStatus.setText(R.string.scan_status_ready);
+        
+        // Hide hint when image is loaded
+        View hintLayout = findViewById(R.id.layout_plant_hint);
+        if (hintLayout != null) hintLayout.setVisibility(View.GONE);
     }
 
     private void analyzePlant() {
@@ -226,7 +230,6 @@ public class PlantScanActivity extends BaseActivity {
                 public void onFailure(Call<JsonObject> call, Throwable t) {
                     runOnUiThread(() -> {
                         progressBar.setVisibility(View.GONE);
-                        btnAnalyze.setEnabled(true);
                         btnAnalyze.setEnabled(true);
                         tvStatus.setText(getString(R.string.alert_network_error));
                     });
@@ -340,5 +343,15 @@ public class PlantScanActivity extends BaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) { finish(); return true; }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Clean up bitmap memory to prevent leaks
+        if (currentBitmap != null && !currentBitmap.isRecycled()) {
+            currentBitmap.recycle();
+            currentBitmap = null;
+        }
     }
 }

@@ -34,7 +34,11 @@ public final class ApiConfig {
     public static final String TFLITE_SOIL_CLASSIFIER = "soil_classifier.tflite";
 
     // ========== NETWORK TIMEOUTS (seconds) ==========
-    public static final int CONNECT_TIMEOUT = 60;
-    public static final int READ_TIMEOUT = 60;
-    public static final int WRITE_TIMEOUT = 60;
+    public static final int CONNECT_TIMEOUT = 30;
+    public static final int READ_TIMEOUT = 30;
+    public static final int WRITE_TIMEOUT = 30;
+
+    // ========== DATA.GOV.IN (Mandi Prices) ==========
+    public static final String DATA_GOV_BASE = "https://api.data.gov.in/";
+    public static final String MANDI_RESOURCE_ID = "9ef84268-d588-465a-a308-a864a43d0070";
 }

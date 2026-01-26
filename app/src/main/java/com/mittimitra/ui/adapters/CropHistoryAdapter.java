@@ -15,9 +15,20 @@ import java.util.Locale;
 
 public class CropHistoryAdapter extends RecyclerView.Adapter<CropHistoryAdapter.ViewHolder> {
     private final List<CropSchedule> list;
+    private final OnItemClickListener listener;
+    
+    public interface OnItemClickListener {
+        void onItemClick(CropSchedule schedule);
+    }
 
-    public CropHistoryAdapter(List<CropSchedule> list) {
+    public CropHistoryAdapter(List<CropSchedule> list, OnItemClickListener listener) {
         this.list = list;
+        this.listener = listener;
+    }
+    
+    // Backward compatible constructor
+    public CropHistoryAdapter(List<CropSchedule> list) {
+        this(list, null);
     }
 
     @NonNull
@@ -41,8 +52,17 @@ public class CropHistoryAdapter extends RecyclerView.Adapter<CropHistoryAdapter.
         String summary = String.format("Plant: %s | Harvest: %s", item.plantingDate, item.harvestDate);
         holder.tvSummary.setText(summary);
 
-        // TODO: Implement click listener to show full details (maybe re-open CropCalendarActivity with data?)
-        // For now, it's just a history record.
+        // Click listener to show full schedule details
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(item);
+            } else {
+                // Default: show toast with schedule summary
+                android.widget.Toast.makeText(v.getContext(), 
+                    item.cropName + "\n" + item.fullJson,
+                    android.widget.Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override

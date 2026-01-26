@@ -88,14 +88,14 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Parameter"
+                            android:text="@string/compare_parameter"
                             android:textStyle="bold"/>
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Record 1"
+                            android:text="@string/compare_record1"
                             android:textStyle="bold"
                             android:gravity="center"/>
 
@@ -103,7 +103,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Record 2"
+                            android:text="@string/compare_record2"
                             android:textStyle="bold"
                             android:gravity="center"/>
 
@@ -111,7 +111,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Change"
+                            android:text="@string/compare_change"
                             android:textStyle="bold"
                             android:gravity="center"/>
                     </LinearLayout>

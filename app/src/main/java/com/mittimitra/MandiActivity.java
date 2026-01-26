@@ -20,10 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,96 +100,163 @@ public class MandiActivity extends AppCompatActivity {
     private void fetchPrices() {
         String state = spinnerState.getSelectedItem().toString();
         String commodity = spinnerCommodity.getSelectedItem().toString();
+        
+        // Extract English name if translated (e.g., "Maharashtra (महाराष्ट्र)" -> "Maharashtra")
+        String stateClean = state.split("\\(")[0].trim();
+        String commodityClean = commodity.split("\\(")[0].trim();
 
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         tvError.setVisibility(View.GONE);
         btnCheck.setEnabled(false);
 
-        new Thread(() -> {
-            try {
-                // Since Agmarknet is complex to post to directly without viewstate,
-                // we will use a simpler URL pattern or general scraping.
-                // NOTE: For this implementation, we are going to scrape the 
-                // "Commodity-wise Daily Report" page which uses GET parameters often easier to mimic
-                // or fall back to a simulation if the government site blocks non-browser user-agents heavily.
-                
-                // Real URL structure often looks like this (Simplified for reliability):
-                // We'll scrape the main Agmarknet landing or a known report page.
-                
-                // For STABILITY in this environment without a full browser, 
-                // we will wrap the network call safely.
-                
-                // Attempting to connect to Agmarknet (using a reliable user agent)
-                String url = "https://agmarknet.gov.in/SearchCmmMkt.aspx?Tx_Commodity=17&Tx_State=MH&Tx_District=0&Tx_Market=0&DateFrom=25-Jan-2025&DateTo=25-Jan-2025&Fr_Date=25-Jan-2025&To_Date=25-Jan-2025&Tx_Trend=0&Tx_CommodityHead=Onion&Tx_StateHead=Maharashtra&Tx_DistrictHead=--Select--&Tx_MarketHead=--Select--";
-                
-                // Since dynamic URL generation is tricky, we will attempt to just read the 
-                // "Current Daily Price" general page or perform a robust mock if the secure government site
-                // rejects the scraping request (common with CAPTCHA/Cookies).
-                
-                // Let's implement a ROBUST Scraper concept.
-                // We will try to fetch, if it fails (due to Gov firewall), we show a helpful
-                // message or cached data pattern.
-                
-                Document doc = Jsoup.connect("https://agmarknet.gov.in/")
-                        .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
-                        .timeout(10000)
-                        .get();
-                        
-                // Process the main ticker or table if available
-                List<MandiPrice> prices = new ArrayList<>();
-                
-                // MOCKING FOR RELIABILITY IN THIS DEMO ENVIRONMENT
-                // (Scraping gov sites often requires session cookies which are hard to get in one shot)
-                // We will simulate real-time data structure to ensure app doesn't crash 
-                // and shows how the UI *would* look with the connected data.
-                
-                // In a real production app, we'd use the Selenium-based scraper or authorized API.
-                
-                Thread.sleep(1500); // Simulate network delay
-                
-                // Generate realistic looking data based on selection
-                if (state.contains("Maharashtra") || state.contains("महाराष्ट्र")) {
-                    prices.add(new MandiPrice("Lasalgaon", "2200", "2800", "2500", "25 Jan 2025"));
-                    prices.add(new MandiPrice("Pune", "2100", "2900", "2600", "25 Jan 2025"));
-                    prices.add(new MandiPrice("Nagpur", "2300", "2750", "2550", "25 Jan 2025"));
-                    prices.add(new MandiPrice("Solapur", "2000", "2600", "2400", "25 Jan 2025"));
-                } else if (state.contains("Madhya Pradesh") || state.contains("मध्य प्रदेश")) {
-                    prices.add(new MandiPrice("Indore", "1800", "2400", "2100", "25 Jan 2025"));
-                    prices.add(new MandiPrice("Bhopal", "1900", "2500", "2200", "25 Jan 2025"));
-                    prices.add(new MandiPrice("Ujjain", "1850", "2350", "2150", "25 Jan 2025"));
-                } else {
-                    prices.add(new MandiPrice("Main Mandi", "2000", "2500", "2250", "25 Jan 2025"));
-                    prices.add(new MandiPrice("District Market", "1900", "2400", "2100", "25 Jan 2025"));
+        String apiKey = BuildConfig.DATA_GOV_API_KEY;
+        if (apiKey == null || apiKey.isEmpty()) {
+            // Fallback: Check cache or show error
+            handleMissingApiKey(stateClean, commodityClean);
+            return;
+        }
+
+        // Real API Call to data.gov.in
+        com.mittimitra.network.RetrofitClient.getMandiService()
+            .getCommodityPrices(apiKey, "json", stateClean, commodityClean, 20)
+            .enqueue(new retrofit2.Callback<com.google.gson.JsonObject>() {
+                @Override
+                public void onResponse(retrofit2.Call<com.google.gson.JsonObject> call, 
+                                       retrofit2.Response<com.google.gson.JsonObject> response) {
+                    runOnUiThread(() -> {
+                        progressBar.setVisibility(View.GONE);
+                        btnCheck.setEnabled(true);
+
+                        if (response.isSuccessful() && response.body() != null) {
+                            List<MandiPrice> prices = parseApiResponse(response.body());
+                            if (!prices.isEmpty()) {
+                                // Cache for offline
+                                cacheResults(stateClean, commodityClean, prices);
+                                recyclerView.setVisibility(View.VISIBLE);
+                                recyclerView.setAdapter(new MandiAdapter(prices));
+                            } else {
+                                tvError.setText(R.string.mandi_no_data);
+                                tvError.setVisibility(View.VISIBLE);
+                            }
+                        } else {
+                            // Try cached data
+                            List<MandiPrice> cached = loadCachedResults(stateClean, commodityClean);
+                            if (!cached.isEmpty()) {
+                                recyclerView.setVisibility(View.VISIBLE);
+                                recyclerView.setAdapter(new MandiAdapter(cached));
+                                Toast.makeText(MandiActivity.this, 
+                                    "Showing cached data", Toast.LENGTH_SHORT).show();
+                            } else {
+                                tvError.setText(getString(R.string.mandi_error_connect, 
+                                    "API Error: " + response.code()));
+                                tvError.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    });
                 }
-                
-                // In real implementation:
-                // Elements rows = doc.select("table.tablegrid tr");
-                // for (Element row : rows) { ... parse ... }
 
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    progressBar.setVisibility(View.GONE);
-                    btnCheck.setEnabled(true);
-                    
-                    if (!prices.isEmpty()) {
-                        recyclerView.setVisibility(View.VISIBLE);
-                        recyclerView.setAdapter(new MandiAdapter(prices));
-                    } else {
-                        tvError.setVisibility(View.VISIBLE);
-                    }
-                });
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    progressBar.setVisibility(View.GONE);
-                    btnCheck.setEnabled(true);
-                    tvError.setText(getString(R.string.mandi_error_connect, e.getMessage()));
-                    tvError.setVisibility(View.VISIBLE);
-                });
-            }
-        }).start();
+                @Override
+                public void onFailure(retrofit2.Call<com.google.gson.JsonObject> call, Throwable t) {
+                    runOnUiThread(() -> {
+                        progressBar.setVisibility(View.GONE);
+                        btnCheck.setEnabled(true);
+                        
+                        // Try cached data on network failure
+                        List<MandiPrice> cached = loadCachedResults(stateClean, commodityClean);
+                        if (!cached.isEmpty()) {
+                            recyclerView.setVisibility(View.VISIBLE);
+                            recyclerView.setAdapter(new MandiAdapter(cached));
+                            Toast.makeText(MandiActivity.this, 
+                                "Offline: Showing cached data", Toast.LENGTH_SHORT).show();
+                        } else {
+                            tvError.setText(getString(R.string.mandi_error_connect, t.getMessage()));
+                            tvError.setVisibility(View.VISIBLE);
+                        }
+                    });
+                }
+            });
     }
+
+    private List<MandiPrice> parseApiResponse(com.google.gson.JsonObject json) {
+        List<MandiPrice> prices = new ArrayList<>();
+        try {
+            com.google.gson.JsonArray records = json.getAsJsonArray("records");
+            if (records != null) {
+                java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("dd MMM yyyy", java.util.Locale.ENGLISH);
+                for (int i = 0; i < records.size(); i++) {
+                    com.google.gson.JsonObject record = records.get(i).getAsJsonObject();
+                    String market = record.has("market") ? record.get("market").getAsString() : "Unknown";
+                    String min = record.has("min_price") ? record.get("min_price").getAsString() : "N/A";
+                    String max = record.has("max_price") ? record.get("max_price").getAsString() : "N/A";
+                    String modal = record.has("modal_price") ? record.get("modal_price").getAsString() : "N/A";
+                    String date = record.has("arrival_date") ? record.get("arrival_date").getAsString() : 
+                                  dateFormat.format(new java.util.Date());
+                    prices.add(new MandiPrice(market, min, max, modal, date));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return prices;
+    }
+
+    private void cacheResults(String state, String commodity, List<MandiPrice> prices) {
+        android.content.SharedPreferences prefs = getSharedPreferences("mandi_cache", MODE_PRIVATE);
+        com.google.gson.Gson gson = new com.google.gson.Gson();
+        String key = state + "_" + commodity;
+        prefs.edit()
+            .putString(key, gson.toJson(prices))
+            .putLong(key + "_time", System.currentTimeMillis())
+            .apply();
+        
+        // Also cache for notification display (global cache accessible by NotificationWorker)
+        getSharedPreferences("mandi_price_cache", MODE_PRIVATE).edit()
+            .putString("last_prices", gson.toJson(prices))
+            .putString("last_commodity", commodity)
+            .putLong("cache_time", System.currentTimeMillis())
+            .apply();
+    }
+
+    private List<MandiPrice> loadCachedResults(String state, String commodity) {
+        android.content.SharedPreferences prefs = getSharedPreferences("mandi_cache", MODE_PRIVATE);
+        String key = state + "_" + commodity;
+        String json = prefs.getString(key, null);
+        if (json != null) {
+            // Check if cache is less than 24 hours old
+            long cacheTime = prefs.getLong(key + "_time", 0);
+            if (System.currentTimeMillis() - cacheTime < 24 * 60 * 60 * 1000) {
+                java.lang.reflect.Type listType = new com.google.gson.reflect.TypeToken<List<MandiPrice>>(){}.getType();
+                return new com.google.gson.Gson().fromJson(json, listType);
+            }
+        }
+        return new ArrayList<>();
+    }
+
+    /**
+     * Handles missing API key case.
+     * Shows cached data if available, otherwise shows instructions to get a key.
+     */
+    private void handleMissingApiKey(String state, String commodity) {
+        // Check cache first
+        List<MandiPrice> cached = loadCachedResults(state, commodity);
+        if (!cached.isEmpty()) {
+            progressBar.setVisibility(View.GONE);
+            btnCheck.setEnabled(true);
+            recyclerView.setVisibility(View.VISIBLE);
+            recyclerView.setAdapter(new MandiAdapter(cached));
+            Toast.makeText(this, "Showing cached data (API key required for live prices)", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // No cache and no API key - show helpful error
+        progressBar.setVisibility(View.GONE);
+        btnCheck.setEnabled(true);
+        tvError.setText(R.string.mandi_error_no_api_key);
+        tvError.setVisibility(View.VISIBLE);
+    }
+
+    // eNAM alternative source removed - requires their own API authentication
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -204,7 +268,7 @@ public class MandiActivity extends AppCompatActivity {
     }
 
     // Data Class
-    private static class MandiPrice {
+    public static class MandiPrice {
         String market;
         String min;
         String max;

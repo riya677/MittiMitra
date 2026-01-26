@@ -149,6 +149,25 @@ public class HomeActivity extends BaseActivity {
         findViewById(R.id.nav_settings).setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
     }
 
+    // Double-back-press to exit
+    private long backPressedTime = 0;
+    private android.widget.Toast backToast;
+    
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            if (backToast != null) backToast.cancel();
+            super.onBackPressed();
+            finishAffinity(); // Exit app completely
+            return;
+        } else {
+            backToast = android.widget.Toast.makeText(this, "Press back again to exit", android.widget.Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -154,7 +154,7 @@ public class IrrigationActivity extends AppCompatActivity {
 
         final String finalLocName = locName;
 
-        RetrofitClient.getWeatherForecastService().get7DayForecast(lat, lon)
+        RetrofitClient.getWeatherService().get7DayForecast(lat, lon)
                 .enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {

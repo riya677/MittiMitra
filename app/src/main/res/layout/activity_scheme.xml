@@ -4,21 +4,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface_background">
+    android:background="@color/surface_background"
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:background="@color/surface_background"
+        app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/brand_primary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" 
-            app:titleTextColor="@android:color/white"/>
+            app:navigationIcon="?attr/homeAsUpIndicator">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/govt_schemes_title"
+                style="@style/TextAppearance.Mitti.Headline"
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
+        </androidx.appcompat.widget.Toolbar>
 
         <!-- Filter Section -->
         <LinearLayout
