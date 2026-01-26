@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -302,7 +301,19 @@ public class TipActivity extends BaseActivity {
 
     private boolean isNetworkAvailable() {
         android.net.ConnectivityManager cm = (android.net.ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+        if (cm == null) return false;
+        
+        // Modern API (Android M+)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            android.net.Network network = cm.getActiveNetwork();
+            if (network == null) return false;
+            android.net.NetworkCapabilities nc = cm.getNetworkCapabilities(network);
+            return nc != null && nc.hasCapability(android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET);
+        } else {
+            // Legacy fallback
+            android.net.NetworkInfo netInfo = cm.getActiveNetworkInfo();
+            return netInfo != null && netInfo.isConnected();
+        }
     }
 
     private void loadOfflineTips() {
@@ -361,41 +372,6 @@ public class TipActivity extends BaseActivity {
             lastKnownLocation = location;
             addInitialBotMessage();
         });
-    }
-
-    private void toggleRecording() {
-        if (isRecording) stopRecording();
-        else startRecording();
-    }
-
-    private void startRecording() {
-        try {
-            mediaRecorder = new MediaRecorder();
-            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-            mediaRecorder.setOutputFile(audioFile.getAbsolutePath());
-            mediaRecorder.prepare();
-            mediaRecorder.start();
-            btnRecordAudio.setImageTintList(ColorStateList.valueOf(Color.RED)); // Red when recording
-            isRecording = true;
-            Toast.makeText(this, "Listening...", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            ErrorHandler.logError(TAG, "Failed to start recording", e);
-            ErrorHandler.showToast(this, "Could not start recording");
-        }
-    }
-
-    private void stopRecording() {
-        try {
-            if (mediaRecorder != null) { mediaRecorder.stop(); mediaRecorder.release(); }
-        } catch (Exception e) {
-            ErrorHandler.logError(TAG, "Error stopping recording", e);
-        }
-        mediaRecorder = null;
-        isRecording = false;
-        btnRecordAudio.setImageTintList(ColorStateList.valueOf(Color.parseColor("#757575"))); // Grey when idle
-        if (audioFile.exists()) callGroqWhisperAPI(audioFile);
     }
 
     private void callGroqWhisperAPI(File audioFile) {

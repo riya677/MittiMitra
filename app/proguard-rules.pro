@@ -82,3 +82,16 @@
 -dontwarn com.google.common.**
 -dontwarn javax.annotation.**
 -dontwarn sun.misc.Unsafe
+
+# ============================================
+# AndroidX Security (EncryptedSharedPreferences)
+# ============================================
+-keep class androidx.security.crypto.** { *; }
+-keep class com.google.crypto.tink.** { *; }
+-dontwarn com.google.crypto.tink.**
+
+# ============================================
+# App-Specific Classes (for Gson serialization)
+# ============================================
+-keep class com.mittimitra.MandiActivity$MandiPrice { *; }
+-keep class com.mittimitra.utils.** { *; }

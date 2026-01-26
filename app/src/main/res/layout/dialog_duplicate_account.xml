@@ -58,7 +58,7 @@
                     android:id="@+id/tv_duplicate_message"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="This phone number or email is already linked to another account. To keep your data secure, you can only have one profile."
+                    android:text="@string/duplicate_account_msg"
                     android:textSize="15sp"
                     android:textColor="@color/text_secondary"
                     android:lineSpacingExtra="4dp"
@@ -83,7 +83,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Existing Account:"
+                            android:text="@string/existing_account"
                             android:textSize="12sp"
                             android:textColor="@color/text_tertiary"
                             android:textStyle="bold" />
@@ -150,7 +150,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:text="Cancel"
+                    android:text="@string/dialog_cancel"
                     android:textSize="14sp"
                     android:textColor="@color/text_tertiary" />
 

@@ -64,8 +64,7 @@ public class SettingsActivity extends BaseActivity {
         SettingsAdapter adapter = new SettingsAdapter(items, item -> {
             switch (item.id) {
                 case "account":
-                    // TODO: Create AccountSecurityActivity for linking credentials
-                    android.widget.Toast.makeText(this, getString(R.string.toast_account_linking_soon), android.widget.Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this, AccountSecurityActivity.class));
                     break;
                 case "language":
                     startActivity(new Intent(this, LanguageActivity.class));

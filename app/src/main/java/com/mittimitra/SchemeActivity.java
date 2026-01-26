@@ -46,7 +46,7 @@ public class SchemeActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Government Schemes");
+            getSupportActionBar().setDisplayShowTitleEnabled(false); // Title is in centered TextView
         }
 
         repository = new SchemeRepository(this);

@@ -157,7 +157,7 @@
                         android:id="@+id/tv_schedule_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Loading schedule..."
+                        android:text="@string/loading_schedule"
                         android:textSize="14sp"
                         android:lineSpacingMultiplier="1.4"
                         android:textColor="@color/text_primary"/>

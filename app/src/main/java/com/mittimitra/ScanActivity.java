@@ -273,6 +273,13 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
             if (location != null) {
                 currentLat = location.getLatitude();
                 currentLon = location.getLongitude();
+                
+                // Cache coordinates for NotificationWorker and other background services
+                getSharedPreferences("user_location_cache", MODE_PRIVATE).edit()
+                    .putString("last_lat", String.valueOf(currentLat))
+                    .putString("last_lon", String.valueOf(currentLon))
+                    .apply();
+                
                 fetchAddress(currentLat, currentLon);
                 fetchAgroData(currentLat, currentLon);
 
@@ -307,7 +314,7 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
     }
 
     private void fetchAgroData(double lat, double lon) {
-        RetrofitClient.getAgroService().getAgroWeather(lat, lon).enqueue(new Callback<JsonObject>() {
+        RetrofitClient.getWeatherService().getAgroWeather(lat, lon).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body() != null) {

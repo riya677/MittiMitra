@@ -58,6 +58,7 @@
         <activity android:name=".AccessibilityActivity" android:exported="false" />
         <activity android:name=".ThemeSettingsActivity" android:exported="false" />
         <activity android:name=".ManageDataActivity" android:exported="false" />
+        <activity android:name=".AccountSecurityActivity" android:exported="false" />
         <activity android:name=".HelpActivity" android:exported="false" />
 
         <activity android:name=".UnitConverterActivity" android:exported="false" />

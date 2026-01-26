@@ -169,7 +169,7 @@
                         android:id="@+id/tv_irrigation_advice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Loading advice..."
+                        android:text="@string/loading_advice"
                         android:textSize="14sp"
                         android:textColor="@color/text_primary"
                         android:lineSpacingMultiplier="1.3"/>

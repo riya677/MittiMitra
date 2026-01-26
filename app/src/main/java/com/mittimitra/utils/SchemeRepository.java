@@ -23,10 +23,10 @@ import okhttp3.Response;
 public class SchemeRepository {
 
     private static final String SCHEME_FILE_NAME = "cached_schemes.json";
-    // Placeholder Gist URL - In production, this would be a real URL controlled by the admin
-    // For now, we will use a raw GitHub Gist URL or similar.
-    // I am using a placeholder URL here. If this fails, it falls back to local.
-    private static final String REMOTE_URL = "https://gist.githubusercontent.com/adithya-s-k/placeholder/raw/schemes.json"; 
+    
+    // Remote URL for dynamic scheme updates (optional - local data is comprehensive)
+    // Set to empty string to disable remote updates, or use a real GitHub Gist URL with actual schemes
+    private static final String REMOTE_URL = ""; // Disabled - using local schemes_data.json which has 35+ real schemes 
     
     private final Context context;
     private final OkHttpClient client;
@@ -55,8 +55,10 @@ public class SchemeRepository {
         List<Scheme> assetSchemes = loadFromAssets();
         callback.onschemesLoaded(assetSchemes);
         
-        // 3. Trigger update check
-        checkForUpdates();
+        // 3. Trigger update check (only if remote URL is configured)
+        if (REMOTE_URL != null && !REMOTE_URL.isEmpty()) {
+            checkForUpdates();
+        }
     }
 
     private List<Scheme> loadFromAssets() {

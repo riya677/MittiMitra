@@ -152,7 +152,7 @@ public class WeatherAlertsActivity extends AppCompatActivity {
     private void fetchWeatherData(double lat, double lon) {
         progressBar.setVisibility(View.VISIBLE);
         
-        RetrofitClient.getWeatherForecastService().get7DayForecast(lat, lon).enqueue(new Callback<JsonObject>() {
+        RetrofitClient.getWeatherService().get7DayForecast(lat, lon).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 progressBar.setVisibility(View.GONE);

@@ -29,7 +29,7 @@ public class RetrofitClient {
         return soilRetrofit.create(SoilApiService.class);
     }
 
-    public static OpenMeteoService getAgroService() {
+    public static OpenMeteoService getWeatherService() {
         if (meteoRetrofit == null) {
             meteoRetrofit = new Retrofit.Builder()
                     .baseUrl(ApiConfig.OPEN_METEO_BASE)
@@ -75,15 +75,16 @@ public class RetrofitClient {
         return geocodingRetrofit.create(GeocodingService.class);
     }
 
-    private static Retrofit forecastRetrofit;
-    public static WeatherForecastService getWeatherForecastService() {
-        if (forecastRetrofit == null) {
-            forecastRetrofit = new Retrofit.Builder()
-                    .baseUrl(ApiConfig.OPEN_METEO_BASE)
+    // --- DATA.GOV.IN (Mandi Prices) ---
+    private static Retrofit mandiRetrofit;
+    public static MandiApiService getMandiService() {
+        if (mandiRetrofit == null) {
+            mandiRetrofit = new Retrofit.Builder()
+                    .baseUrl(ApiConfig.DATA_GOV_BASE)
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return forecastRetrofit.create(WeatherForecastService.class);
+        return mandiRetrofit.create(MandiApiService.class);
     }
 }
