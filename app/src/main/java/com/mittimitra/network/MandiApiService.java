@@ -32,6 +32,17 @@ public interface MandiApiService {
     );
 
     /**
+     * Fetch prices filtering only by state. Used as fallback.
+     */
+    @GET("resource/9ef84268-d588-465a-a308-a864a43d0070")
+    Call<JsonObject> getPricesByState(
+            @Query("api-key") String apiKey,
+            @Query("format") String format,
+            @Query("filters[state]") String state,
+            @Query("limit") int limit
+    );
+
+    /**
      * Fetch prices for a specific date range.
      */
     @GET("resource/9ef84268-d588-465a-a308-a864a43d0070")

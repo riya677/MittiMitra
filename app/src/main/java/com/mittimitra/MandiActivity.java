@@ -101,7 +101,7 @@ public class MandiActivity extends AppCompatActivity {
         String state = spinnerState.getSelectedItem().toString();
         String commodity = spinnerCommodity.getSelectedItem().toString();
         
-        // Extract English name if translated (e.g., "Maharashtra (महाराष्ट्र)" -> "Maharashtra")
+        // Extract English name
         String stateClean = state.split("\\(")[0].trim();
         String commodityClean = commodity.split("\\(")[0].trim();
 
@@ -112,45 +112,82 @@ public class MandiActivity extends AppCompatActivity {
 
         String apiKey = BuildConfig.DATA_GOV_API_KEY;
         if (apiKey == null || apiKey.isEmpty()) {
-            // Fallback: Check cache or show error
             handleMissingApiKey(stateClean, commodityClean);
             return;
         }
 
-        // Real API Call to data.gov.in
+        // 1. First Attempt: Specific Commodity in State
         com.mittimitra.network.RetrofitClient.getMandiService()
             .getCommodityPrices(apiKey, "json", stateClean, commodityClean, 20)
             .enqueue(new retrofit2.Callback<com.google.gson.JsonObject>() {
                 @Override
                 public void onResponse(retrofit2.Call<com.google.gson.JsonObject> call, 
                                        retrofit2.Response<com.google.gson.JsonObject> response) {
+                    // Check if we got valid data
+                    List<MandiPrice> prices = null;
+                    if (response.isSuccessful() && response.body() != null) {
+                        prices = parseApiResponse(response.body());
+                    }
+
+                    if (prices != null && !prices.isEmpty()) {
+                        // SUCCESS: Found specific data
+                        final List<MandiPrice> finalPrices = prices;
+                        runOnUiThread(() -> {
+                            progressBar.setVisibility(View.GONE);
+                            btnCheck.setEnabled(true);
+                            recyclerView.setVisibility(View.VISIBLE);
+                            recyclerView.setAdapter(new MandiAdapter(finalPrices));
+                            cacheResults(stateClean, commodityClean, finalPrices);
+                        });
+                    } else {
+                        // FAILURE (Empty or Error): Try Fallback
+                        fetchStateFallback(apiKey, stateClean, commodityClean);
+                    }
+                }
+
+                @Override
+                public void onFailure(retrofit2.Call<com.google.gson.JsonObject> call, Throwable t) {
+                    // Network Failure -> Try Cache, then fail
+                    runOnUiThread(() -> handleNetworkError(stateClean, commodityClean, t.getMessage()));
+                }
+            });
+    }
+
+    private void fetchStateFallback(String apiKey, String state, String intendedCommodity) {
+        // 2. Fallback: Get ALL commodities for this State
+        com.mittimitra.network.RetrofitClient.getMandiService()
+            .getPricesByState(apiKey, "json", state, 40)
+            .enqueue(new retrofit2.Callback<com.google.gson.JsonObject>() {
+                @Override
+                public void onResponse(retrofit2.Call<com.google.gson.JsonObject> call,
+                                       retrofit2.Response<com.google.gson.JsonObject> response) {
                     runOnUiThread(() -> {
                         progressBar.setVisibility(View.GONE);
                         btnCheck.setEnabled(true);
 
+                        List<MandiPrice> prices = null;
                         if (response.isSuccessful() && response.body() != null) {
-                            List<MandiPrice> prices = parseApiResponse(response.body());
-                            if (!prices.isEmpty()) {
-                                // Cache for offline
-                                cacheResults(stateClean, commodityClean, prices);
-                                recyclerView.setVisibility(View.VISIBLE);
-                                recyclerView.setAdapter(new MandiAdapter(prices));
-                            } else {
-                                tvError.setText(R.string.mandi_no_data);
-                                tvError.setVisibility(View.VISIBLE);
-                            }
+                            prices = parseApiResponse(response.body());
+                        }
+
+                        if (prices != null && !prices.isEmpty()) {
+                            // Show general state data with a notice
+                            recyclerView.setVisibility(View.VISIBLE);
+                            recyclerView.setAdapter(new MandiAdapter(prices));
+                            
+                            tvError.setText("No recent data for " + intendedCommodity + ".\nShowing latest prices in " + state + ".");
+                            tvError.setVisibility(View.VISIBLE);
                         } else {
-                            // Try cached data
-                            List<MandiPrice> cached = loadCachedResults(stateClean, commodityClean);
+                            // Truly no data for state either
+                            tvError.setText(R.string.mandi_no_data);
+                            tvError.setVisibility(View.VISIBLE);
+                            
+                            // Last resort: Check cache for the specific query
+                            List<MandiPrice> cached = loadCachedResults(state, intendedCommodity);
                             if (!cached.isEmpty()) {
                                 recyclerView.setVisibility(View.VISIBLE);
                                 recyclerView.setAdapter(new MandiAdapter(cached));
-                                Toast.makeText(MandiActivity.this, 
-                                    "Showing cached data", Toast.LENGTH_SHORT).show();
-                            } else {
-                                tvError.setText(getString(R.string.mandi_error_connect, 
-                                    "API Error: " + response.code()));
-                                tvError.setVisibility(View.VISIBLE);
+                                Toast.makeText(MandiActivity.this, "Showing cached data", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -158,24 +195,24 @@ public class MandiActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(retrofit2.Call<com.google.gson.JsonObject> call, Throwable t) {
-                    runOnUiThread(() -> {
-                        progressBar.setVisibility(View.GONE);
-                        btnCheck.setEnabled(true);
-                        
-                        // Try cached data on network failure
-                        List<MandiPrice> cached = loadCachedResults(stateClean, commodityClean);
-                        if (!cached.isEmpty()) {
-                            recyclerView.setVisibility(View.VISIBLE);
-                            recyclerView.setAdapter(new MandiAdapter(cached));
-                            Toast.makeText(MandiActivity.this, 
-                                "Offline: Showing cached data", Toast.LENGTH_SHORT).show();
-                        } else {
-                            tvError.setText(getString(R.string.mandi_error_connect, t.getMessage()));
-                            tvError.setVisibility(View.VISIBLE);
-                        }
-                    });
+                    runOnUiThread(() -> handleNetworkError(state, intendedCommodity, t.getMessage()));
                 }
             });
+    }
+
+    private void handleNetworkError(String state, String commodity, String errorMsg) {
+        progressBar.setVisibility(View.GONE);
+        btnCheck.setEnabled(true);
+        
+        List<MandiPrice> cached = loadCachedResults(state, commodity);
+        if (!cached.isEmpty()) {
+            recyclerView.setVisibility(View.VISIBLE);
+            recyclerView.setAdapter(new MandiAdapter(cached));
+            Toast.makeText(MandiActivity.this, "Offline: Showing cached data", Toast.LENGTH_SHORT).show();
+        } else {
+            tvError.setText(getString(R.string.mandi_error_connect, errorMsg));
+            tvError.setVisibility(View.VISIBLE);
+        }
     }
 
     private List<MandiPrice> parseApiResponse(com.google.gson.JsonObject json) {
