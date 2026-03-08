@@ -4,4 +4,8 @@
     <files-path name="my_documents" path="documents/"/>
     <!-- For CSV exports -->
     <external-files-path name="exports" path="exports/"/>
+    <!-- For full-resolution camera captures -->
+    <cache-path name="camera_images" path="camera_images/"/>
+    <!-- For shared soil health card images -->
+    <cache-path name="exports" path="exports/"/>
 </paths>

@@ -19,6 +19,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class PlantHistoryAdapter extends RecyclerView.Adapter<PlantHistoryAdapter.ViewHolder> {
+
+    private static final SimpleDateFormat DATE_FORMAT =
+            new SimpleDateFormat("dd MMM • hh:mm a", Locale.getDefault());
+
     private final List<PlantHealth> list;
     private final Context context;
 
@@ -41,8 +45,7 @@ public class PlantHistoryAdapter extends RecyclerView.Adapter<PlantHistoryAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PlantHealth item = list.get(position);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM • hh:mm a", Locale.getDefault());
-        holder.tvDate.setText(sdf.format(new Date(item.timestamp)));
+        holder.tvDate.setText(DATE_FORMAT.format(new Date(item.timestamp)));
 
         holder.tvLocation.setText(item.cropName + " (" + item.healthStatus + ")");
         if ("Healthy".equalsIgnoreCase(item.healthStatus)) {

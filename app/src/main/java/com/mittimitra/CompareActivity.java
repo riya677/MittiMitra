@@ -1,6 +1,7 @@
 package com.mittimitra;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,9 +22,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class CompareActivity extends BaseActivity {
+
+    private static final String TAG = "CompareActivity";
 
     private Spinner spinnerRecord1, spinnerRecord2;
     private TextView tvNitrogen1, tvNitrogen2, tvNitrogenDiff;
@@ -34,6 +38,8 @@ public class CompareActivity extends BaseActivity {
 
     private List<SoilAnalysis> records = new ArrayList<>();
     private SoilAnalysis selectedRecord1, selectedRecord2;
+
+    private final ExecutorService dbExecutor = Executors.newSingleThreadExecutor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +93,7 @@ public class CompareActivity extends BaseActivity {
     }
 
     private void loadRecords() {
-        Executors.newSingleThreadExecutor().execute(() -> {
+        dbExecutor.execute(() -> {
             records = MittiMitraDatabase.getDatabase(this).soilDao().getAllSoilAnalysis();
             runOnUiThread(() -> {
                 List<String> labels = new ArrayList<>();
@@ -144,14 +150,17 @@ public class CompareActivity extends BaseActivity {
     }
 
     private String[] parseValues(String json) {
+        // Keys match what ScanActivity writes: "N", "P", "K", "pH"
         String[] values = {"N/A", "N/A", "N/A", "N/A"};
         try {
             JSONObject obj = new JSONObject(json);
-            if (obj.has("nitrogen")) values[0] = obj.getString("nitrogen");
-            if (obj.has("phosphorus")) values[1] = obj.getString("phosphorus");
-            if (obj.has("potassium")) values[2] = obj.getString("potassium");
-            if (obj.has("ph")) values[3] = obj.getString("ph");
-        } catch (Exception ignored) {}
+            if (obj.has("N"))   values[0] = obj.getString("N");
+            if (obj.has("P"))   values[1] = obj.getString("P");
+            if (obj.has("K"))   values[2] = obj.getString("K");
+            if (obj.has("pH"))  values[3] = obj.getString("pH");
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to parse soil JSON for comparison", e);
+        }
         return values;
     }
 
@@ -165,6 +174,12 @@ public class CompareActivity extends BaseActivity {
         } catch (Exception e) {
             return "—";
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbExecutor.shutdownNow();
     }
 
     @Override

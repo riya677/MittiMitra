@@ -36,6 +36,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -55,6 +57,7 @@ public class ProfileActivity extends BaseActivity {
     private TextView tvName, tvPhone, tvEmail, tvJoinDate;
     private CircleImageView imgProfile;
     private String currentPhone = "";
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     // Image Picker Launcher
     private final ActivityResultLauncher<String> pickImageLauncher = registerForActivityResult(
@@ -106,11 +109,11 @@ public class ProfileActivity extends BaseActivity {
 
         if (user != null) {
             String email = user.getEmail();
-            tvEmail.setText(email != null && !email.isEmpty() ? email : "Email: Not Linked");
+            tvEmail.setText(email != null && !email.isEmpty() ? email : getString(R.string.profile_email_not_linked));
 
             if (user.getMetadata() != null) {
                 long created = user.getMetadata().getCreationTimestamp();
-                tvJoinDate.setText("Member Since: " + new SimpleDateFormat("MMM yyyy", Locale.getDefault()).format(new Date(created)));
+                tvJoinDate.setText(getString(R.string.profile_member_since) + " " + new SimpleDateFormat("MMM yyyy", Locale.getDefault()).format(new Date(created)));
             }
 
             // Load data from Firestore
@@ -144,35 +147,20 @@ public class ProfileActivity extends BaseActivity {
         if (user == null) return;
 
         try {
-            // 1. Open the input stream from the selected gallery image
-            InputStream inputStream = getContentResolver().openInputStream(sourceUri);
-
-            // 2. Create a file in the app's internal storage
-            // Naming it "profile_{uid}.jpg" ensures every user has their own unique file
             File file = new File(getFilesDir(), "profile_" + user.getUid() + ".jpg");
-
-            // 3. Create output stream to write to that file
-            FileOutputStream outputStream = new FileOutputStream(file);
-
-            // 4. Copy the bytes
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = inputStream.read(buffer)) > 0) {
-                outputStream.write(buffer, 0, length);
+            try (InputStream inputStream = getContentResolver().openInputStream(sourceUri);
+                 FileOutputStream outputStream = new FileOutputStream(file)) {
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = inputStream.read(buffer)) > 0) {
+                    outputStream.write(buffer, 0, length);
+                }
             }
-
-            // 5. Close streams
-            outputStream.close();
-            inputStream.close();
-
-            Toast.makeText(this, "Profile Photo Saved!", Toast.LENGTH_SHORT).show();
-
-            // 6. Load it immediately
+            Toast.makeText(this, getString(R.string.profile_photo_saved), Toast.LENGTH_SHORT).show();
             loadLocalProfileImage(user.getUid());
-
         } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Failed to save image locally", Toast.LENGTH_SHORT).show();
+            android.util.Log.e("ProfileActivity", "Failed to save profile image", e);
+            Toast.makeText(this, R.string.profile_photo_save_failed, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -212,7 +200,7 @@ public class ProfileActivity extends BaseActivity {
                         // Cache for offline
                         prefs.edit().putString("cached_phone", currentPhone).apply();
                     } else {
-                        tvPhone.setText("Add Phone Number");
+                        tvPhone.setText(getString(R.string.profile_add_phone));
                     }
                     // FIX: Load Email from Firestore (Phone Auth users have null email in FirebaseUser)
                     if (doc.contains("email")) {
@@ -242,7 +230,7 @@ public class ProfileActivity extends BaseActivity {
             currentPhone = cachedPhone;
             tvPhone.setText(cachedPhone);
         } else {
-            tvPhone.setText("Offline - Add phone later");
+            tvPhone.setText(getString(R.string.profile_offline_add_phone));
         }
         
         // FIX: Load cached email
@@ -340,30 +328,30 @@ public class ProfileActivity extends BaseActivity {
 
             // Validation
             if (newName.isEmpty()) {
-                etName.setError("Name required");
+                etName.setError(getString(R.string.error_name_required));
                 etName.requestFocus();
                 return;
             }
-            if (newPhone.length() < 10) {
-                etPhone.setError("Enter valid phone number");
+            if (!com.mittimitra.utils.ValidationUtils.isValidIndianPhone(newPhone)) {
+                etPhone.setError(com.mittimitra.utils.ValidationUtils.getPhoneValidationError(newPhone));
                 etPhone.requestFocus();
                 return;
             }
             if (!newEmail.isEmpty() && !android.util.Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
-                etEmail.setError("Enter valid email");
+                etEmail.setError(getString(R.string.error_valid_email));
                 etEmail.requestFocus();
                 return;
             }
             // Aadhaar validation: must be exactly 12 digits if provided
             if (!newAadhaar.isEmpty() && newAadhaar.length() != 12) {
-                etAadhaar.setError("Aadhaar must be 12 digits");
+                etAadhaar.setError(getString(R.string.error_aadhaar_digits));
                 etAadhaar.requestFocus();
                 return;
             }
 
             // Show loading state
             btnSave.setEnabled(false);
-            btnSave.setText("Saving...");
+            btnSave.setText(getString(R.string.profile_saving));
             
             updateProfile(newName, newPhone, newEmail, newDob, newAadhaar, newKisanId, dialog, btnSave);
         });
@@ -371,53 +359,79 @@ public class ProfileActivity extends BaseActivity {
         dialog.show();
     }
 
-    private void updateProfile(String name, String phone, String email, String dob, 
+    private void updateProfile(String name, String phone, String email, String dob,
                                String aadhaar, String kisanId, AlertDialog dialog, Button btnSave) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) return;
 
+        if (!phone.isEmpty()) {
+            // Enforce one phone number per account: check no other user owns this phone
+            db.collection("farmers")
+                    .whereEqualTo("phone", phone)
+                    .get()
+                    .addOnSuccessListener(querySnapshot -> {
+                        boolean conflict = false;
+                        for (com.google.firebase.firestore.DocumentSnapshot doc : querySnapshot.getDocuments()) {
+                            if (!doc.getId().equals(user.getUid())) {
+                                conflict = true;
+                                break;
+                            }
+                        }
+                        if (conflict) {
+                            btnSave.setEnabled(true);
+                            btnSave.setText(getString(R.string.btn_save_changes));
+                            Toast.makeText(this, getString(R.string.phone_already_registered), Toast.LENGTH_LONG).show();
+                        } else {
+                            doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user);
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        android.util.Log.e("ProfileActivity", "Phone uniqueness check failed", e);
+                        // PERMISSION_DENIED: client-side list queries on farmers are not allowed.
+                        // Fall through to save — uniqueness is enforced server-side via Cloud Functions.
+                        if (e instanceof com.google.firebase.firestore.FirebaseFirestoreException) {
+                            com.google.firebase.firestore.FirebaseFirestoreException fe =
+                                    (com.google.firebase.firestore.FirebaseFirestoreException) e;
+                            if (fe.getCode() == com.google.firebase.firestore.FirebaseFirestoreException.Code.PERMISSION_DENIED) {
+                                doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user);
+                                return;
+                            }
+                        }
+                        btnSave.setEnabled(true);
+                        btnSave.setText(getString(R.string.btn_save_changes));
+                        Toast.makeText(this, getString(R.string.phone_check_failed), Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user);
+        }
+    }
+
+    private void doFirestoreSave(String name, String phone, String email, String dob,
+                                  String aadhaar, String kisanId, AlertDialog dialog, Button btnSave,
+                                  FirebaseUser user) {
         Map<String, Object> updates = new HashMap<>();
         updates.put("firstName", name);
         updates.put("phone", phone);
-        if (!email.isEmpty()) {
-            updates.put("email", email);
-        }
-        if (!dob.isEmpty()) {
-            updates.put("dob", dob);
-        }
-        // 🔒 Store Aadhaar securely (in production, encrypt this!)
-        if (!aadhaar.isEmpty()) {
-            updates.put("aadhaarId", aadhaar);
-        }
-        if (!kisanId.isEmpty()) {
-            updates.put("kisanId", kisanId);
-        }
+        if (!email.isEmpty()) updates.put("email", email);
+        if (!dob.isEmpty()) updates.put("dob", dob);
+        if (!aadhaar.isEmpty()) updates.put("aadhaarId", aadhaar);
+        if (!kisanId.isEmpty()) updates.put("kisanId", kisanId);
 
-        // Use set() with merge to create document if it doesn't exist
         db.collection("farmers").document(user.getUid())
                 .set(updates, com.google.firebase.firestore.SetOptions.merge())
                 .addOnSuccessListener(aVoid -> {
-                    // Update ALL UI elements immediately
                     tvName.setText(name);
                     tvPhone.setText(phone);
                     currentPhone = phone;
-                    
-                    if (!email.isEmpty() && tvEmail != null) {
-                        tvEmail.setText(email);
-                    }
-                    
-                    // Update session for home screen
+                    if (!email.isEmpty() && tvEmail != null) tvEmail.setText(email);
                     sessionManager.saveUser(user.getUid(), name);
-                    
-                    // Show success and dismiss
-                    Toast.makeText(this, "✅ Profile Updated Successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.profile_updated_success), Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 })
                 .addOnFailureListener(e -> {
-                    // Reset button state
                     btnSave.setEnabled(true);
                     btnSave.setText(getString(R.string.btn_save_changes));
-                    Toast.makeText(this, "❌ Update Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.profile_update_failed) + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -425,7 +439,7 @@ public class ProfileActivity extends BaseActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) return;
         
-        new Thread(() -> {
+        executor.execute(() -> {
             MittiMitraDatabase db = MittiMitraDatabase.getDatabase(this);
 
             // 1. Soil Analysis
@@ -487,7 +501,7 @@ public class ProfileActivity extends BaseActivity {
                     }
                 }
             });
-        }).start();
+        });
     }
 
     private void loadFarmStats() {
@@ -505,12 +519,11 @@ public class ProfileActivity extends BaseActivity {
         }
 
         // 2. Load Badge based on Scan History Count
-        new Thread(() -> {
+        executor.execute(() -> {
             int scanCount = MittiMitraDatabase.getDatabase(this)
                     .soilDao().getAllSoilAnalysis().size();
-            
             runOnUiThread(() -> updateBadge(scanCount));
-        }).start();
+        });
     }
 
     private void updateBadge(int scanCount) {
@@ -527,6 +540,12 @@ public class ProfileActivity extends BaseActivity {
             tvBadgeIcon.setText("🌱");
             tvBadgeName.setText(getString(R.string.profile_rank_novice));
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        executor.shutdownNow();
     }
 
     @Override

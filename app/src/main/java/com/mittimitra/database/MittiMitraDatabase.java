@@ -22,11 +22,14 @@ import com.mittimitra.database.entity.SoilAnalysis;
  * Room Database for MittiMitra app.
  * 
  * Migration History:
- * - v1 → v2: Removed user ID and foreign key constraints from tables
- *            (This was a breaking change, used destructive migration)
- * - v2 → v3: Added chat_messages table for chat history persistence
- * 
- * For future migrations, add proper migration objects below.
+ * - v1 → v2: Removed user ID and foreign key constraints (destructive migration)
+ * - v2 → v3: Added chat_messages table
+ * - v3 → v4: Added expiry_date to documents
+ * - v4 → v5: Added user_id to soil_history, documents, chat_messages
+ * - v5 → v6: Added crop_schedules table (CropCalendarActivity)
+ * - v6 → v7: Added plant_health table (PlantScanActivity)
+ *
+ * For future migrations, add a new Migration object and include it in addMigrations().
  */
 @Database(entities = {SoilAnalysis.class, Document.class, ChatMessage.class, CropSchedule.class, PlantHealth.class}, version = 7, exportSchema = false)
 public abstract class MittiMitraDatabase extends RoomDatabase {
@@ -70,14 +73,53 @@ public abstract class MittiMitraDatabase extends RoomDatabase {
         }
     };
 
+    /**
+     * Migration from version 5 to 6.
+     * Adds crop_schedules table for CropCalendarActivity.
+     */
+    static final Migration MIGRATION_5_6 = new Migration(5, 6) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS `crop_schedules` (" +
+                    "`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                    "`user_id` TEXT, " +
+                    "`crop_name` TEXT, " +
+                    "`planting_date` TEXT, " +
+                    "`harvest_date` TEXT, " +
+                    "`full_json` TEXT, " +
+                    "`timestamp` INTEGER NOT NULL DEFAULT 0)");
+        }
+    };
+
+    /**
+     * Migration from version 6 to 7.
+     * Adds plant_health table for PlantScanActivity.
+     */
+    static final Migration MIGRATION_6_7 = new Migration(6, 7) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS `plant_health` (" +
+                    "`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                    "`user_id` TEXT, " +
+                    "`image_path` TEXT, " +
+                    "`crop_name` TEXT, " +
+                    "`health_status` TEXT, " +
+                    "`diagnosis` TEXT, " +
+                    "`confidence` INTEGER NOT NULL DEFAULT 0, " +
+                    "`full_json` TEXT, " +
+                    "`timestamp` INTEGER NOT NULL DEFAULT 0)");
+        }
+    };
+
     public static MittiMitraDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (MittiMitraDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     MittiMitraDatabase.class, "mitti_mitra_database")
-                            .fallbackToDestructiveMigration() // Allowed for development to auto-reset DB on schema changes
-                            .addMigrations(MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
+                            .addMigrations(
+                                    MIGRATION_2_3, MIGRATION_3_4,
+                                    MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
                             .build();
                 }
             }

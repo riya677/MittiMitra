@@ -62,7 +62,7 @@ public class SchemeActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(scheme.getUrl()));
                 startActivity(intent);
             } else {
-                Toast.makeText(this, "No link available", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.scheme_no_link), Toast.LENGTH_SHORT).show();
             }
         });
         binding.rvSchemes.setLayoutManager(new LinearLayoutManager(this));
@@ -113,7 +113,7 @@ public class SchemeActivity extends AppCompatActivity {
                     allSchemes.addAll(schemes);
                     applyFilters();
                 } else {
-                    Toast.makeText(this, "Failed to load schemes", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.scheme_load_failed), Toast.LENGTH_SHORT).show();
                 }
             });
         });

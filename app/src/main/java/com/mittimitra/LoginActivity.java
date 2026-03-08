@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                         GoogleSignInAccount account = task.getResult(ApiException.class);
                         firebaseAuthWithGoogle(account.getIdToken());
                     } catch (ApiException e) {
-                        Toast.makeText(this, "Google Sign In Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, getString(R.string.google_signin_failed), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                 checkAndCreateUser(mAuth.getCurrentUser());
             } else {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(this, "Auth Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onVerificationFailed(@NonNull FirebaseException e) {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(LoginActivity.this, "OTP Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.otp_failed_format, e.getMessage()), Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -168,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     mVerificationId = verificationId;
                     layoutOtpVerify.setVisibility(View.VISIBLE);
-                    Toast.makeText(LoginActivity.this, "OTP Sent", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.otp_sent), Toast.LENGTH_SHORT).show();
                 }
             };
 
@@ -186,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
                 checkAndCreateUser(task.getResult().getUser());
             } else {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.otp_invalid), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -196,6 +196,8 @@ public class LoginActivity extends AppCompatActivity {
         db.collection("farmers").document(user.getUid()).get()
                 .addOnSuccessListener(doc -> {
                     if (doc.exists()) {
+                        // Apply any pending phone link from a previous merge attempt
+                        applyPendingPhoneLink(user.getUid(), doc);
                         navigateToHome(doc.getString("firstName"));
                     } else {
                         // 🔍 Check for duplicate accounts before creating
@@ -203,6 +205,25 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> navigateToHome("Farmer"));
+    }
+
+    /**
+     * After a user signs back into their original account, this applies any phone number
+     * that was stored during a previous duplicate-account merge attempt.
+     */
+    private void applyPendingPhoneLink(String uid, com.google.firebase.firestore.DocumentSnapshot doc) {
+        android.content.SharedPreferences pendingPrefs = getSharedPreferences("pending_link", MODE_PRIVATE);
+        String pendingPhone = pendingPrefs.getString("phone", null);
+        String targetUid = pendingPrefs.getString("target_uid", null);
+        if (pendingPhone == null || !uid.equals(targetUid)) return;
+        // Clear first to avoid re-applying on next login
+        pendingPrefs.edit().clear().apply();
+        // Only write phone if it is not already stored in Firestore
+        String existingPhone = doc.getString("phone");
+        if (existingPhone == null || existingPhone.isEmpty()) {
+            db.collection("farmers").document(uid).update("phone", pendingPhone);
+        }
+        Toast.makeText(this, getString(R.string.dup_phone_linked), Toast.LENGTH_SHORT).show();
     }
     
     // 🔒 DUPLICATE DETECTION - Check if phone/email already exists in another account
@@ -276,26 +297,38 @@ public class LoginActivity extends AppCompatActivity {
         tvPhone.setText("Phone: " + (existingPhone != null ? maskPhone(existingPhone) : "--"));
         tvEmail.setText("Email: " + (existingEmail != null ? existingEmail : "--"));
         
-        // Use existing account button - Log out and guide user
+        // Use existing account button - delete orphan account then guide user
         view.findViewById(R.id.btn_use_existing).setOnClickListener(v -> {
             dialog.dismiss();
-            Toast.makeText(this, getString(R.string.dup_toast_login), Toast.LENGTH_SHORT).show();
-            mAuth.signOut();
-            recreate();
+            progressBar.setVisibility(View.VISIBLE);
+            // Delete the orphan phone-auth account to keep Firebase Auth clean
+            currentUser.delete().addOnCompleteListener(t -> {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(this, getString(R.string.dup_toast_login), Toast.LENGTH_SHORT).show();
+                mAuth.signOut();
+                recreate();
+            });
         });
-        
-        // Link accounts button - Show instructions for merging
+
+        // Link accounts button - store pending phone, delete orphan, redirect to sign-in
         view.findViewById(R.id.btn_link_accounts).setOnClickListener(v -> {
             dialog.dismiss();
-            
-            new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle(getString(R.string.dup_merge_title))
-                .setMessage(getString(R.string.dup_merge_msg))
-                .setPositiveButton(getString(R.string.dup_btn_got_it), (d, w) -> {
-                    mAuth.signOut();
-                    recreate();
-                })
-                .show();
+            progressBar.setVisibility(View.VISIBLE);
+            // Persist the phone number so it gets applied after user signs back in with original account
+            String phoneToLink = currentUser.getPhoneNumber();
+            if (phoneToLink != null && !phoneToLink.isEmpty()) {
+                getSharedPreferences("pending_link", MODE_PRIVATE).edit()
+                        .putString("phone", phoneToLink)
+                        .putString("target_uid", existingDoc.getId())
+                        .apply();
+            }
+            // Delete orphan account then redirect
+            currentUser.delete().addOnCompleteListener(t -> {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(this, getString(R.string.dup_link_instructions), Toast.LENGTH_LONG).show();
+                mAuth.signOut();
+                recreate();
+            });
         });
         
         // Cancel button

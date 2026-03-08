@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class CropHistoryAdapter extends RecyclerView.Adapter<CropHistoryAdapter.ViewHolder> {
+
+    private static final SimpleDateFormat DATE_FORMAT =
+            new SimpleDateFormat("dd MMM • hh:mm a", Locale.getDefault());
+
     private final List<CropSchedule> list;
     private final OnItemClickListener listener;
     
@@ -42,8 +46,7 @@ public class CropHistoryAdapter extends RecyclerView.Adapter<CropHistoryAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CropSchedule item = list.get(position);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM • hh:mm a", Locale.getDefault());
-        holder.tvDate.setText(sdf.format(new Date(item.timestamp)));
+        holder.tvDate.setText(DATE_FORMAT.format(new Date(item.timestamp)));
 
         // Reuse the location field for the Title/Crop Name
         holder.tvLocation.setText("Crop: " + item.cropName);

@@ -10,8 +10,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -31,6 +33,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -50,16 +53,22 @@ import com.mittimitra.utils.SoilNutrientMapper;
 import org.json.JSONObject;
 import org.tensorflow.lite.Interpreter;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -118,13 +127,24 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
     private Sensor lightSensor;
     private boolean isLowLight = false;
 
+    // Background executor for TFLite inference (keeps main thread unblocked)
+    private final ExecutorService analysisExecutor = Executors.newSingleThreadExecutor();
+
+    // URI for full-resolution camera capture via FileProvider
+    private Uri cameraImageUri;
+
     // --- Launchers ---
-    private final ActivityResultLauncher<Void> cameraLauncher =
-            registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), result -> {
-                if (result != null) {
-                    currentImageBitmap = result;
-                    imageViewPlaceholder.setImageBitmap(result);
-                    onImageSuccess();
+    // FIX: TakePicture (full resolution) instead of TakePicturePreview (low-res thumbnail)
+    private final ActivityResultLauncher<Uri> cameraLauncher =
+            registerForActivityResult(new ActivityResultContracts.TakePicture(), success -> {
+                if (success && cameraImageUri != null) {
+                    try {
+                        currentImageBitmap = decodeSampledBitmap(cameraImageUri, 1024);
+                        imageViewPlaceholder.setImageBitmap(currentImageBitmap);
+                        onImageSuccess();
+                    } catch (IOException e) {
+                        Log.e(TAG, "Failed to load camera image", e);
+                    }
                 }
             });
 
@@ -133,16 +153,18 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
                 if (result != null) {
                     imageViewPlaceholder.setImageURI(result);
                     try {
-                        currentImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), result);
-                    } catch (IOException e) { e.printStackTrace(); }
+                        currentImageBitmap = decodeSampledBitmap(result, 1024);
+                    } catch (IOException e) {
+                        Log.e(TAG, "Failed to load gallery image", e);
+                    }
                     onImageSuccess();
                 }
             });
 
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) cameraLauncher.launch(null);
-                else Toast.makeText(this, "Camera permission needed.", Toast.LENGTH_SHORT).show();
+                if (isGranted) launchCamera();
+                else Toast.makeText(this, getString(R.string.msg_camera_permission_needed), Toast.LENGTH_SHORT).show();
             });
 
     @Override
@@ -182,7 +204,9 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
         bindNutrientCard(R.id.card_k, "K");
         bindNutrientCard(R.id.card_ph, "pH");
 
-        findViewById(R.id.btn_camera).setOnClickListener(v -> requestPermissionLauncher.launch(Manifest.permission.CAMERA));
+        // Camera: always go through permission launcher — it calls back immediately if already granted
+        findViewById(R.id.btn_camera).setOnClickListener(v ->
+                requestPermissionLauncher.launch(Manifest.permission.CAMERA));
         findViewById(R.id.btn_upload).setOnClickListener(v ->
                 galleryLauncher.launch(new PickVisualMediaRequest.Builder()
                         .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
@@ -292,7 +316,7 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
     }
 
     private void fetchAddress(double lat, double lon) {
-        new Thread(() -> {
+        analysisExecutor.execute(() -> {
             try {
                 Geocoder geocoder = new Geocoder(this, Locale.getDefault());
                 List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
@@ -310,7 +334,7 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
             } catch (IOException e) {
                 Log.e(TAG, "Geocoding failed", e);
             }
-        }).start();
+        });
     }
 
     private void fetchAgroData(double lat, double lon) {
@@ -434,13 +458,52 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
     // --- ANALYSIS (TFLite) ---
     private void startAnalysis() {
         btnAnalyze.setEnabled(false);
-        btnAnalyze.setText("Analyzing...");
+        btnAnalyze.setText(getString(R.string.scan_btn_analyzing));
         progressAnalysis.setVisibility(View.VISIBLE);
 
-        if (currentImageBitmap != null) {
-            runLocalInference(currentImageBitmap);
+        final Bitmap bitmapSnapshot = currentImageBitmap;
+        if (bitmapSnapshot != null) {
+            // FIX: TFLite inference runs on background thread to prevent ANR
+            analysisExecutor.execute(() -> runLocalInference(bitmapSnapshot));
         } else {
             generateSmartReport("Not Scanned");
+        }
+    }
+
+    /**
+     * Creates a full-resolution temp file URI for camera capture and launches the camera.
+     */
+    private void launchCamera() {
+        try {
+            File storageDir = new File(getCacheDir(), "camera_images");
+            if (!storageDir.exists()) storageDir.mkdirs();
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+            File imageFile = new File(storageDir, "SOIL_" + timeStamp + ".jpg");
+            cameraImageUri = FileProvider.getUriForFile(this, getPackageName() + ".provider", imageFile);
+            cameraLauncher.launch(cameraImageUri);
+        } catch (Exception e) {
+            Log.e(TAG, "Could not create camera image file", e);
+        }
+    }
+
+    /**
+     * Decodes a URI into a Bitmap, sampling down to avoid OOM on high-res photos.
+     * maxDim controls the maximum width/height of the returned Bitmap.
+     */
+    private Bitmap decodeSampledBitmap(Uri uri, int maxDim) throws IOException {
+        BitmapFactory.Options bounds = new BitmapFactory.Options();
+        bounds.inJustDecodeBounds = true;
+        try (InputStream in = getContentResolver().openInputStream(uri)) {
+            BitmapFactory.decodeStream(in, null, bounds);
+        }
+        int largest = Math.max(bounds.outWidth, bounds.outHeight);
+        int sampleSize = 1;
+        while (largest / (sampleSize * 2) >= maxDim) sampleSize *= 2;
+
+        BitmapFactory.Options opts = new BitmapFactory.Options();
+        opts.inSampleSize = sampleSize;
+        try (InputStream in = getContentResolver().openInputStream(uri)) {
+            return BitmapFactory.decodeStream(in, null, opts);
         }
     }
 
@@ -493,7 +556,7 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
     }
 
     private void generateSmartReport(String detectedSoilType) {
-        new Thread(() -> {
+        analysisExecutor.execute(() -> {
             try {
                 // 🧠 INTELLIGENT ADJUSTMENT
                 // Correct satellite properties using the local visual evidence
@@ -533,8 +596,10 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
                     startActivity(intent);
                     finish();
                 });
-            } catch (Exception e) { e.printStackTrace(); }
-        }).start();
+            } catch (Exception e) {
+                Log.e(TAG, "Error generating smart report", e);
+            }
+        });
     }
 
     @Override
@@ -565,6 +630,12 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
         if (sensorManager != null) {
             sensorManager.unregisterListener(this);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        analysisExecutor.shutdownNow();
     }
 
     // --- INTELLIGENCE LAYER ---

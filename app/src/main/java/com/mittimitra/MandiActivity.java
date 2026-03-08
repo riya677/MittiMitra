@@ -175,7 +175,7 @@ public class MandiActivity extends AppCompatActivity {
                             recyclerView.setVisibility(View.VISIBLE);
                             recyclerView.setAdapter(new MandiAdapter(prices));
                             
-                            tvError.setText("No recent data for " + intendedCommodity + ".\nShowing latest prices in " + state + ".");
+                            tvError.setText(getString(R.string.mandi_fallback_msg, intendedCommodity, state));
                             tvError.setVisibility(View.VISIBLE);
                         } else {
                             // Truly no data for state either
@@ -233,7 +233,7 @@ public class MandiActivity extends AppCompatActivity {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            android.util.Log.e("MandiActivity", "Failed to parse API response", e);
         }
         return prices;
     }

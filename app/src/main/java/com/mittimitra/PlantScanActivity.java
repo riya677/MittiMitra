@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
@@ -39,8 +40,15 @@ import com.mittimitra.utils.BitmapUtils;
 import com.mittimitra.utils.ErrorHandler;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -59,13 +67,20 @@ public class PlantScanActivity extends BaseActivity {
     private MaterialCardView resultCard;
 
     private Bitmap currentBitmap;
+    private Uri cameraImageUri;
+    private final ExecutorService dbExecutor = Executors.newSingleThreadExecutor();
 
-    private final ActivityResultLauncher<Void> cameraLauncher =
-            registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), result -> {
-                if (result != null) {
-                    currentBitmap = result;
-                    ivPreview.setImageBitmap(result);
-                    resetUI();
+    // FIX: TakePicture (full resolution) instead of TakePicturePreview (low-res thumbnail)
+    private final ActivityResultLauncher<Uri> cameraLauncher =
+            registerForActivityResult(new ActivityResultContracts.TakePicture(), success -> {
+                if (success && cameraImageUri != null) {
+                    try {
+                        currentBitmap = decodeSampledBitmap(cameraImageUri, 1024);
+                        ivPreview.setImageBitmap(currentBitmap);
+                        resetUI();
+                    } catch (IOException e) {
+                        Log.e(TAG, "Failed to load camera image", e);
+                    }
                 }
             });
 
@@ -106,12 +121,42 @@ public class PlantScanActivity extends BaseActivity {
         tvResultTitle = findViewById(R.id.tv_result_title);
         tvResultDesc = findViewById(R.id.tv_result_desc);
 
-        btnCamera.setOnClickListener(v -> cameraLauncher.launch(null));
+        btnCamera.setOnClickListener(v -> launchCamera());
         btnGallery.setOnClickListener(v -> galleryLauncher.launch(new PickVisualMediaRequest.Builder()
                 .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                 .build()));
 
         btnAnalyze.setOnClickListener(v -> analyzePlant());
+    }
+
+    private void launchCamera() {
+        try {
+            File storageDir = new File(getCacheDir(), "camera_images");
+            if (!storageDir.exists()) storageDir.mkdirs();
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+            File imageFile = new File(storageDir, "PLANT_" + timeStamp + ".jpg");
+            cameraImageUri = FileProvider.getUriForFile(this, getPackageName() + ".provider", imageFile);
+            cameraLauncher.launch(cameraImageUri);
+        } catch (Exception e) {
+            Log.e(TAG, "Could not create camera image file", e);
+        }
+    }
+
+    private Bitmap decodeSampledBitmap(Uri uri, int maxDim) throws IOException {
+        BitmapFactory.Options bounds = new BitmapFactory.Options();
+        bounds.inJustDecodeBounds = true;
+        try (InputStream in = getContentResolver().openInputStream(uri)) {
+            BitmapFactory.decodeStream(in, null, bounds);
+        }
+        int largest = Math.max(bounds.outWidth, bounds.outHeight);
+        int sampleSize = 1;
+        while (largest / (sampleSize * 2) >= maxDim) sampleSize *= 2;
+
+        BitmapFactory.Options opts = new BitmapFactory.Options();
+        opts.inSampleSize = sampleSize;
+        try (InputStream in = getContentResolver().openInputStream(uri)) {
+            return BitmapFactory.decodeStream(in, null, opts);
+        }
     }
 
     private void resetUI() {
@@ -219,9 +264,13 @@ public class PlantScanActivity extends BaseActivity {
                             }
                         } else {
                             tvStatus.setText(getString(R.string.plant_status_unavailable, String.valueOf(response.code())));
-                             try {
-                                Log.e(TAG, "Groq Error: " + response.errorBody().string());
-                            } catch (IOException e) {}
+                            if (response.errorBody() != null) {
+                                try (okhttp3.ResponseBody errorBody = response.errorBody()) {
+                                    Log.e(TAG, "Groq Error: " + errorBody.string());
+                                } catch (IOException e) {
+                                    Log.e(TAG, "Error reading Groq error body", e);
+                                }
+                            }
                         }
                     });
                 }
@@ -237,7 +286,7 @@ public class PlantScanActivity extends BaseActivity {
             });
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "Groq analysis setup failed", e);
             progressBar.setVisibility(View.GONE);
             btnAnalyze.setEnabled(true);
         }
@@ -293,10 +342,10 @@ public class PlantScanActivity extends BaseActivity {
             tvStatus.setText(R.string.plant_status_complete);
 
         } catch (Exception e) {
-            // Fallback if JSON parsing fails - show raw text
-             tvResultTitle.setText("AI ANALYSIS REPORT");
-             tvResultDesc.setText(jsonString);
-             tvStatus.setText("Analysis Complete");
+            Log.e(TAG, "JSON parse failed, showing raw response", e);
+            tvResultTitle.setText(getString(R.string.plant_analysis_fallback_title));
+            tvResultDesc.setText(jsonString);
+            tvStatus.setText(getString(R.string.plant_status_complete));
         }
 
         // SAVE TO DATABASE
@@ -307,7 +356,7 @@ public class PlantScanActivity extends BaseActivity {
             final String finalIssues = issues;
             final String finalJson = resultJson;
 
-            new Thread(() -> {
+            dbExecutor.execute(() -> {
                 try {
                     // 1. Save Image Locally
                     String imageFileName = "plant_" + System.currentTimeMillis() + ".jpg";
@@ -330,7 +379,7 @@ public class PlantScanActivity extends BaseActivity {
                 } catch (Exception e) {
                     Log.e(TAG, "Failed to save analysis history", e);
                 }
-            }).start();
+            });
         }
     }
     
@@ -348,7 +397,7 @@ public class PlantScanActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Clean up bitmap memory to prevent leaks
+        dbExecutor.shutdownNow();
         if (currentBitmap != null && !currentBitmap.isRecycled()) {
             currentBitmap.recycle();
             currentBitmap = null;

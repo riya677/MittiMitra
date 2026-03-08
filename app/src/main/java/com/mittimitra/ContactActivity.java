@@ -12,7 +12,7 @@ public class ContactActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
-        setTitle("Contact Support");
+        setTitle(R.string.contact_support_title);
 
         // Enable Back Button
         if (getSupportActionBar() != null) {
@@ -22,15 +22,15 @@ public class ContactActivity extends BaseActivity {
 
         findViewById(R.id.card_contact_phone).setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_DIAL);
-            intent.setData(Uri.parse("tel:+919876543210"));
+            intent.setData(Uri.parse("tel:" + getString(R.string.contact_support_phone)));
             startActivity(intent);
         });
 
         findViewById(R.id.card_contact_email).setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
-            intent.setData(Uri.parse("mailto:support@mittimitra.com"));
-            intent.putExtra(Intent.EXTRA_SUBJECT, "Support Request - Mitti Mitra");
-            startActivity(Intent.createChooser(intent, "Send Email"));
+            intent.setData(Uri.parse("mailto:" + getString(R.string.contact_support_email)));
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.contact_email_subject));
+            startActivity(Intent.createChooser(intent, getString(R.string.contact_send_email)));
         });
     }
 

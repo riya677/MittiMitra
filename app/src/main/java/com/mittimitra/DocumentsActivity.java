@@ -16,12 +16,15 @@ import android.webkit.MimeTypeMap;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -101,8 +104,8 @@ public class DocumentsActivity extends BaseActivity {
     }
 
     private void setupRecyclerView() {
-        if (documentList.isEmpty()) {
-            tvEmptyDocs.setText("No documents found.\nTap '+' to add one.");
+        if (documentList == null || documentList.isEmpty()) {
+            tvEmptyDocs.setText(R.string.msg_no_documents);
             tvEmptyDocs.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         } else {
@@ -110,7 +113,8 @@ public class DocumentsActivity extends BaseActivity {
             recyclerView.setVisibility(View.VISIBLE);
         }
 
-        adapter = new DocumentAdapter(documentList, new DocumentAdapter.OnDocumentClickListener() {
+        adapter = new DocumentAdapter(documentList != null ? documentList : new java.util.ArrayList<>(),
+                new DocumentAdapter.OnDocumentClickListener() {
             @Override
             public void onViewClick(Document document) {
                 viewDocument(document);
@@ -120,12 +124,21 @@ public class DocumentsActivity extends BaseActivity {
                 confirmDelete(document);
             }
         });
+        if (recyclerView.getLayoutManager() == null) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        }
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        databaseExecutor.shutdownNow();
     }
 
     private void onFilePicked(Uri uri) {
         if (uri == null) {
-            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.doc_no_file_selected, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -143,7 +156,8 @@ public class DocumentsActivity extends BaseActivity {
             try (InputStream in = getContentResolver().openInputStream(uri);
                  OutputStream out = new FileOutputStream(localFile)) {
 
-                byte[] buf = new byte[1024];
+                if (in == null) throw new IOException("Cannot open input stream for URI");
+                byte[] buf = new byte[4096];
                 int len;
                 while ((len = in.read(buf)) > 0) {
                     out.write(buf, 0, len);
@@ -159,26 +173,25 @@ public class DocumentsActivity extends BaseActivity {
 
             } catch (Exception e) {
                 Log.e(TAG, "Failed to copy file", e);
-                mainThreadHandler.post(() -> Toast.makeText(DocumentsActivity.this, "Failed to save file", Toast.LENGTH_SHORT).show());
+                mainThreadHandler.post(() -> Toast.makeText(DocumentsActivity.this, R.string.doc_save_failed, Toast.LENGTH_SHORT).show());
             }
         });
     }
 
     private void showExpiryDialog(Document newDoc) {
         new AlertDialog.Builder(this)
-                .setTitle("Add Expiry Reminder?")
-                .setMessage("Does this document have an expiration date? (e.g. Insurance, Lease)")
-                .setPositiveButton("Yes", (dialog, which) -> {
-                    // Show Date Picker
+                .setTitle(R.string.doc_expiry_dialog_title)
+                .setMessage(R.string.doc_expiry_dialog_msg)
+                .setPositiveButton(R.string.doc_expiry_yes, (dialog, which) -> {
                     java.util.Calendar c = java.util.Calendar.getInstance();
                     new android.app.DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
                         c.set(year, month, dayOfMonth);
                         newDoc.expiryDate = c.getTimeInMillis();
                         saveDocumentToDb(newDoc);
-                        Toast.makeText(this, "Reminder Set!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, R.string.doc_expiry_set, Toast.LENGTH_SHORT).show();
                     }, c.get(java.util.Calendar.YEAR), c.get(java.util.Calendar.MONTH), c.get(java.util.Calendar.DAY_OF_MONTH)).show();
                 })
-                .setNegativeButton("No", (dialog, which) -> {
+                .setNegativeButton(R.string.doc_expiry_no, (dialog, which) -> {
                     newDoc.expiryDate = null;
                     saveDocumentToDb(newDoc);
                 })
@@ -201,7 +214,7 @@ public class DocumentsActivity extends BaseActivity {
     private void viewDocument(Document document) {
         File file = new File(document.internalFilePath);
         if (!file.exists()) {
-            Toast.makeText(this, "File not found.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.doc_file_not_found, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -216,24 +229,24 @@ public class DocumentsActivity extends BaseActivity {
         try {
             startActivity(intent);
         } catch (Exception e) {
-            Toast.makeText(this, "No app found to open this file type", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.doc_no_app_found, Toast.LENGTH_SHORT).show();
         }
     }
 
     private void confirmDelete(Document document) {
         new AlertDialog.Builder(this)
-                .setTitle("Delete Document")
-                .setMessage("Are you sure you want to delete '" + document.documentName + "'?")
-                .setPositiveButton("Delete", (dialog, which) -> deleteDocument(document))
-                .setNegativeButton("Cancel", null)
+                .setTitle(R.string.doc_delete_title)
+                .setMessage(getString(R.string.doc_delete_message, document.documentName))
+                .setPositiveButton(R.string.dialog_delete, (dialog, which) -> deleteDocument(document))
+                .setNegativeButton(R.string.dialog_cancel, null)
                 .show();
     }
 
     private void deleteDocument(Document document) {
         databaseExecutor.execute(() -> {
             File file = new File(document.internalFilePath);
-            if (file.exists()) {
-                file.delete();
+            if (file.exists() && !file.delete()) {
+                Log.w(TAG, "Failed to delete file: " + document.internalFilePath);
             }
 
             db.documentDao().deleteDocument(document);

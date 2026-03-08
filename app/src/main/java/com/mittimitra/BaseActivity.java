@@ -18,6 +18,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private boolean lastDyslexic;
     private float lastFontScale;
     private String lastLanguage;
+    private boolean lastAutoDark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         lastDyslexic = prefs.isDyslexicFontEnabled();
         lastFontScale = prefs.getFontScale();
         lastLanguage = prefs.getLanguage();
+        lastAutoDark = prefs.isAutoDarkMode();
 
         // 2. Apply Theme Logic (Night Mode)
         applyAppTheme(lastTheme);
@@ -49,7 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         // 4. Check if settings changed while we were away (e.g., in Settings screen)
         AppPreferences prefs = new AppPreferences(this);
 
-        boolean themeChanged = !prefs.getTheme().equals(lastTheme);
+        boolean themeChanged = !java.util.Objects.equals(prefs.getTheme(), lastTheme);
         boolean dyslexicChanged = prefs.isDyslexicFontEnabled() != lastDyslexic;
         boolean fontChanged = prefs.getFontScale() != lastFontScale;
 
@@ -57,8 +59,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         boolean langChanged = (lastLanguage == null && currentLang != null) ||
                 (lastLanguage != null && !lastLanguage.equals(currentLang));
 
+        boolean autoDarkChanged = prefs.isAutoDarkMode() != lastAutoDark;
+
         // 5. If anything changed, RECREATE this activity to apply the new look
-        if (themeChanged || dyslexicChanged || fontChanged || langChanged) {
+        if (themeChanged || dyslexicChanged || fontChanged || langChanged || autoDarkChanged) {
             recreate();
         }
     }
@@ -95,10 +99,27 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     private void applyAppTheme(String theme) {
+        AppPreferences prefs = new AppPreferences(this);
+        if (prefs.isAutoDarkMode()) {
+            long sunrise = prefs.getLastSunrise();
+            long sunset  = prefs.getLastSunset();
+            long now     = System.currentTimeMillis();
+            if (sunrise > 0 && sunset > 0) {
+                // Night = before today's sunrise OR after today's sunset
+                boolean isNight = (now < sunrise || now >= sunset);
+                AppCompatDelegate.setDefaultNightMode(isNight
+                        ? AppCompatDelegate.MODE_NIGHT_YES
+                        : AppCompatDelegate.MODE_NIGHT_NO);
+            } else {
+                // No cached times yet — fall back to system setting
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+            }
+            return;
+        }
         switch (theme) {
             case "light": AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); break;
-            case "dark": AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); break;
-            default: AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM); break;
+            case "dark":  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES); break;
+            default:      AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM); break;
         }
     }
 

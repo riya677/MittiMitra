@@ -89,14 +89,23 @@ public class ManageDataActivity extends BaseActivity {
             db.documentDao().clearAllDocuments();
             File docsDir = new File(getFilesDir(), "documents");
             if (docsDir.exists() && docsDir.isDirectory()) {
-                for (File file : docsDir.listFiles()) {
-                    file.delete();
+                File[] files = docsDir.listFiles();
+                if (files != null) {
+                    for (File file : files) {
+                        file.delete();
+                    }
                 }
             }
             mainThreadHandler.post(() -> {
                 Toast.makeText(this, R.string.toast_documents_cleared, Toast.LENGTH_SHORT).show();
             });
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        databaseExecutor.shutdownNow();
     }
 
     @Override

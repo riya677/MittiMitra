@@ -1,6 +1,7 @@
 package com.mittimitra;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -166,14 +167,14 @@ public class IrrigationActivity extends AppCompatActivity {
                         currentPrecipitation = current.has("precipitation") ? 
                                 current.get("precipitation").getAsDouble() : 0;
                     } catch (Exception e) {
-                        // Use defaults
+                        Log.e("IrrigationActivity", "Failed to parse weather response", e);
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                // Use default values
+                Log.e("IrrigationActivity", "Weather fetch failed, using defaults", t);
             }
         });
     }

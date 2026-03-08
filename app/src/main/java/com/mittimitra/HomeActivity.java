@@ -75,15 +75,8 @@ public class HomeActivity extends BaseActivity {
                         new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
             }
             }
-        // Schedule Smart Reminders (Periodic Work)
-        androidx.work.PeriodicWorkRequest weatherWork =
-                new androidx.work.PeriodicWorkRequest.Builder(NotificationWorker.class, 12, java.util.concurrent.TimeUnit.HOURS)
-                        .build();
-        androidx.work.WorkManager.getInstance(this).enqueueUniquePeriodicWork(
-                "SmartWeatherWork",
-                androidx.work.ExistingPeriodicWorkPolicy.KEEP,
-                weatherWork
-        );
+        // NOTE: Notification/weather background work is scheduled once in MittiMitraApp.onCreate()
+        // under the "DailyAlerts" tag. No duplicate scheduling needed here.
     }
     
     @Override
@@ -162,7 +155,7 @@ public class HomeActivity extends BaseActivity {
             finishAffinity(); // Exit app completely
             return;
         } else {
-            backToast = android.widget.Toast.makeText(this, "Press back again to exit", android.widget.Toast.LENGTH_SHORT);
+            backToast = android.widget.Toast.makeText(this, getString(R.string.msg_back_to_exit), android.widget.Toast.LENGTH_SHORT);
             backToast.show();
         }
         backPressedTime = System.currentTimeMillis();

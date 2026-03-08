@@ -249,6 +249,7 @@
 
     <!-- Export & Compare -->
     <string name="export_csv">Export CSV</string>
+    <string name="export_failed">Export failed. Please try again.</string>
     <string name="compare_analysis">Compare</string>
     <string name="no_data_to_export">No data to export</string>
     <string name="need_two_records">Need at least 2 records to compare</string>
@@ -529,6 +530,14 @@
     <string name="existing_account">Existing Account:</string>
 
 
+    <!-- Previously hardcoded runtime strings -->
+    <string name="scan_btn_analyzing">Analyzing…</string>
+    <string name="msg_back_to_exit">Press back again to exit</string>
+    <string name="msg_camera_permission_needed">Camera permission is needed to take photos</string>
+    <string name="msg_no_report_found">No report found. Please run a new scan.</string>
+    <string name="msg_download_first">Download the report first</string>
+    <string name="msg_pdf_saved_share">PDF saved! Would you like to share it?</string>
+
     <string name="status_not_linked">Not linked</string>
     <string name="status_unknown">Unknown</string>
     <string name="status_google_linked">✓ Google Linked</string>
@@ -536,5 +545,181 @@
     <string name="provider_email">Email</string>
     <string name="provider_phone">Phone</string>
     <string name="provider_google">Google</string>
+
+    <!-- Profile page runtime strings -->
+    <string name="profile_email_not_linked">Email: Not Linked</string>
+    <string name="profile_add_phone">Add Phone Number</string>
+    <string name="profile_offline_add_phone">Offline – Add phone later</string>
+    <string name="profile_photo_saved">Profile photo saved!</string>
+    <string name="profile_saving">Saving…</string>
+    <string name="profile_updated_success">Profile updated successfully!</string>
+    <string name="profile_update_failed">Update failed: </string>
+
+    <!-- Duplicate account merge strings -->
+    <string name="dup_link_instructions">Sign in with your original account. Your phone number will be linked automatically.</string>
+    <string name="dup_phone_linked">Phone number linked to your account!</string>
+
+    <!-- ForgotPasswordActivity -->
+    <string name="forgot_enter_email">Please enter your email address</string>
+    <string name="forgot_reset_sent">Password reset link sent to your email</string>
+    <string name="forgot_reset_error">Could not send reset link. Please try again.</string>
+
+    <!-- CropCalendarActivity errors -->
+    <string name="crop_error_ai">AI processing error. Please try again.</string>
+    <string name="crop_error_service">AI service error. Please try again later.</string>
+    <string name="crop_error_network">Network error. Check your connection and try again.</string>
+
+    <!-- PlantScanActivity fallback -->
+    <string name="plant_analysis_fallback_title">Analysis Report</string>
+
+    <!-- AccountSecurityActivity -->
+    <string name="account_link_soon">This feature will be available soon</string>
+    <string name="status_phone_saved">✓ Phone Saved in Profile</string>
+    <string name="phone_already_registered">This phone number is already linked to another account</string>
+    <string name="phone_check_failed">Could not verify phone number. Please try again.</string>
+
+    <!-- WeatherAlertsActivity -->
+    <string name="weather_network_error">Network error. Check your connection and try again.</string>
+    <string name="weather_parse_error">Error loading weather data. Please try again.</string>
+
+    <!-- Adapter / data strings -->
+    <string name="data_error">Data Error</string>
+
+    <!-- NotificationWorker -->
+    <string name="notif_doc_expiring_title">Document Expiring Soon!</string>
+    <string name="notif_doc_expiring_body">Your document \'%1$s\' is expiring this week. Please renew it.</string>
+    <string name="notif_mandi_check_prices">Tap to check today\'s mandi prices for your area</string>
+
+    <!-- Validation errors -->
+    <string name="error_invalid_email">Please enter a valid email address</string>
+    <string name="error_name_required">Name is required</string>
+    <string name="error_valid_email">Enter a valid email address</string>
+    <string name="error_aadhaar_digits">Aadhaar must be exactly 12 digits</string>
+
+    <!-- DocumentsActivity -->
+    <string name="doc_no_file_selected">No file selected</string>
+    <string name="doc_save_failed">Failed to save file</string>
+    <string name="doc_expiry_dialog_title">Add Expiry Reminder?</string>
+    <string name="doc_expiry_dialog_msg">Does this document have an expiration date? (e.g. Insurance, Lease)</string>
+    <string name="doc_expiry_yes">Yes</string>
+    <string name="doc_expiry_no">No</string>
+    <string name="doc_expiry_set">Reminder set!</string>
+    <string name="doc_delete_title">Delete Document</string>
+    <string name="doc_delete_message">Are you sure you want to delete \'%1$s\'?</string>
+    <string name="doc_file_not_found">File not found.</string>
+    <string name="doc_no_app_found">No app found to open this file type</string>
+
+    <!-- ContactActivity -->
+    <string name="contact_support_title">Contact Support</string>
+    <string name="contact_support_phone">+919876543210</string>
+    <string name="contact_support_email">support@mittimitra.com</string>
+    <string name="contact_email_subject">Support Request - Mitti Mitra</string>
+    <string name="contact_send_email">Send Email</string>
+
+    <!-- TipActivity -->
+    <string name="speech_prompt">Ask MittiMitra…</string>
+    <string name="offline_mode_label">[OFFLINE MODE]</string>
+    <string name="mic_permission_required">Mic permission required</string>
+    <string name="voice_not_supported">Voice input not supported on this device</string>
+    <string name="speech_no_match">Did not understand, please try again</string>
+
+    <!-- NotificationSettingsActivity -->
+    <string name="test_notif_sent">Test Notification Sent!</string>
+    <string name="notif_demo_title">Mitti Mitra Alert</string>
+    <string name="notif_demo_text">Heavy rain expected in your district tomorrow. Please cover your harvest!</string>
+
+    <!-- MandiActivity -->
+    <string name="mandi_fallback_msg">No recent data for %1$s.\nShowing latest prices in %2$s.</string>
+
+    <!-- ProfileActivity -->
+    <string name="profile_photo_save_failed">Failed to save image locally</string>
+
+    <!-- RecommendationActivity -->
+    <string name="soil_ph_acidic">ACIDIC</string>
+    <string name="soil_ph_alkaline">ALKALINE</string>
+    <string name="soil_ph_neutral">NEUTRAL</string>
+    <string name="rec_error_loading">Error loading report data. Please try a new scan.</string>
+    <string name="rec_error_formatting">Error formatting advisory.</string>
+    <string name="rec_error_server_code">Advisory Generation Failed: %d</string>
+    <string name="rec_error_connection">Server Connection Failed.</string>
+
+    <!-- Feature #11: Share as Image -->
+    <string name="share_as_image">Share as Image</string>
+    <string name="share_image_title">Share Soil Health Card</string>
+
+    <!-- Feature #13: History Filter and Search -->
+    <string name="search_hint">Search by location or crop…</string>
+    <string name="filter_all">All</string>
+    <string name="filter_7days">7 Days</string>
+    <string name="filter_30days">30 Days</string>
+    <string name="history_no_results">No results found</string>
+
+    <!-- Feature #14: Dark Mode Auto-Switch -->
+    <string name="theme_auto_dark">Auto Dark Mode</string>
+    <string name="theme_auto_dark_desc">Switch to dark theme after sunset automatically</string>
+
+    <!-- Feature #15: Helpline Directory -->
+    <string name="helpline_section_title">Emergency Helplines</string>
+    <string name="helpline_call_label">Call</string>
+
+    <!-- Feature #12: Onboarding -->
+    <string name="btn_skip">Skip</string>
+    <string name="btn_next">Next</string>
+    <string name="btn_get_started">Get Started</string>
+    <string name="onboarding_title_1">Smart Soil Scanner</string>
+    <string name="onboarding_desc_1">Photograph your soil and instantly get NPK analysis, pH level, and expert recommendations — no lab required.</string>
+    <string name="onboarding_title_2">Plant Disease Doctor</string>
+    <string name="onboarding_desc_2">Detect crop diseases early with a single photo. AI identifies the disease and suggests treatment before it spreads.</string>
+    <string name="onboarding_title_3">Live Mandi Prices</string>
+    <string name="onboarding_desc_3">Check today\'s market rates for your commodities across all states — sell at the right time for maximum profit.</string>
+    <string name="onboarding_title_4">AI Farming Assistant</string>
+    <string name="onboarding_desc_4">Get expert advice on any farming question, anytime — even offline. Your personal Kisan Sahayak, available 24/7.</string>
+    <string name="onboarding_title_5">Weather and Smart Alerts</string>
+    <string name="onboarding_desc_5">Stay ahead of weather changes with district-level forecasts and get notified about government schemes before deadlines.</string>
+
+    <!-- Feature #1: Disease Progression -->
+    <string name="disease_progress_title">Disease Progression</string>
+    <string name="disease_progress_scans_summary">%1$d scans over %2$d days</string>
+    <string name="disease_progress_no_history">No progression history for this crop yet.</string>
+    <string name="disease_progress_view">View Progression</string>
+
+    <!-- SchemeActivity -->
+    <string name="scheme_no_link">No link available</string>
+    <string name="scheme_load_failed">Failed to load schemes</string>
+
+    <!-- LoginActivity -->
+    <string name="otp_invalid">Invalid OTP</string>
+    <string name="google_signin_failed">Google Sign In Failed</string>
+    <string name="auth_failed">Authentication failed</string>
+    <string name="otp_failed_format">OTP Failed: %s</string>
+    <string name="otp_sent">OTP Sent</string>
+
+    <!-- SignupActivity -->
+    <string name="signup_name_required">Name is required</string>
+    <string name="signup_email_invalid">Valid email required</string>
+    <string name="signup_phone_invalid">Valid 10-digit phone required</string>
+
+    <!-- UnitConverterActivity -->
+    <string name="converter_enter_value">Please enter a value</string>
+    <string name="converter_invalid_number">Invalid number</string>
+
+    <!-- RecommendationActivity -->
+    <string name="no_email_linked">No Email Linked</string>
+    <string name="error_saving_pdf">Error saving PDF</string>
+    <string name="no_report_to_share">No report to share. Save it first.</string>
+
+    <!-- Feature #2: Field Management -->
+    <string name="fields_title">My Fields</string>
+    <string name="fields_empty">No fields added yet.\nTap + to add your first field.</string>
+    <string name="field_add_title">Add New Field</string>
+    <string name="field_edit_title">Edit Field</string>
+    <string name="field_name_hint">Field name (e.g., North Farm)</string>
+    <string name="field_area_hint">Area in hectares (e.g., 1.5)</string>
+    <string name="field_notes_hint">Notes (optional)</string>
+    <string name="field_saved">Field saved successfully</string>
+    <string name="field_deleted">Field deleted</string>
+    <string name="field_undo">Undo</string>
+    <string name="field_name_required">Field name is required</string>
+    <string name="field_hectares_label">ha</string>
 
 </resources>

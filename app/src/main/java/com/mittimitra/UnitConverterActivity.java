@@ -72,7 +72,7 @@ public class UnitConverterActivity extends BaseActivity {
     private void calculate() {
         String input = etArea.getText().toString();
         if (input.isEmpty()) {
-            Toast.makeText(this, "Please enter value", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.converter_enter_value), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -99,7 +99,7 @@ public class UnitConverterActivity extends BaseActivity {
             editor.apply();
 
         } catch (NumberFormatException e) {
-            Toast.makeText(this, "Invalid number", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.converter_invalid_number), Toast.LENGTH_SHORT).show();
         }
     }
 

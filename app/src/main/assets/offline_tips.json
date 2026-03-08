@@ -1,10 +1,196 @@
 {
   "tips": {
-    "clay": "<b>Clay Soil Advice:</b><br>• <b>Crops:</b> Rice, Lettuce, Broccoli.<br>• <b>Issues:</b> Poor drainage. Add organic compost.<br>• <b>Watering:</b> Water less frequently but deeply.",
-    "red": "<b>Red Soil Advice:</b><br>• <b>Crops:</b> Cotton, Pulses, Millets.<br>• <b>Issues:</b> Low nutrients. Add nitrogen and phosphorus fertilizers.<br>• <b>Watering:</b> Requires regular irrigation.",
-    "black": "<b>Black Soil (Regur) Advice:</b><br>• <b>Crops:</b> Cotton, Sugarcane, Wheat.<br>• <b>Issues:</b> Cracks when dry. Mulch to retain moisture.<br>• <b>Watering:</b> High water retention, avoid over-watering.",
-    "sandy": "<b>Sandy Soil Advice:</b><br>• <b>Crops:</b> Melons, Coconuts, Cactus.<br>• <b>Issues:</b> Low water retention. Add manure/peat moss.<br>• <b>Watering:</b> Frequent light watering needed.",
-    "loam": "<b>Loamy Soil Advice:</b><br>• <b>Crops:</b> Wheat, Sugarcane, Cotton.<br>• <b>Issues:</b> Ideal soil. Simply maintain organic matter.<br>• <b>Watering:</b> Standard irrigation."
+    "clay": "<b>Clay Soil Advice:</b><br>• <b>Best Crops:</b> Rice, Wheat, Lettuce, Broccoli.<br>• <b>Problem:</b> Poor drainage — mix in coarse sand or organic compost to improve it.<br>• <b>Fertilizer:</b> Add 2-3 tonnes of FYM per acre before sowing.<br>• <b>Watering:</b> Water deeply but infrequently. Allow soil to dry between irrigations.",
+    "red": "<b>Red Soil Advice:</b><br>• <b>Best Crops:</b> Cotton, Pulses, Millets, Groundnut.<br>• <b>Problem:</b> Low nutrients and poor water retention. Apply NPK at recommended doses.<br>• <b>Amendment:</b> Add 3-4 tonnes FYM + 10 kg Zinc Sulphate per acre.<br>• <b>Watering:</b> Regular and frequent irrigation — use mulch to reduce evaporation.",
+    "black": "<b>Black Soil (Regur) Advice:</b><br>• <b>Best Crops:</b> Cotton, Sugarcane, Wheat, Soybean.<br>• <b>Problem:</b> Cracks when dry; sticky when wet. Mulch to retain moisture.<br>• <b>Fertility:</b> Naturally high in Ca, Mg, K but low in N and P. Apply Urea 50 kg/acre at sowing.<br>• <b>Watering:</b> High water retention — avoid over-irrigation, especially in rainy season.",
+    "sandy": "<b>Sandy Soil Advice:</b><br>• <b>Best Crops:</b> Melons, Coconut, Groundnut, Carrot.<br>• <b>Problem:</b> Low water and nutrient retention. Add farmyard manure 5 tonnes/acre annually.<br>• <b>Fertilizer:</b> Split into 3-4 applications to reduce leaching losses.<br>• <b>Watering:</b> Frequent light irrigations — consider drip irrigation to save water.",
+    "loam": "<b>Loamy Soil Advice:</b><br>• <b>Best Crops:</b> Wheat, Sugarcane, Cotton, Vegetables — ideal for most crops.<br>• <b>Maintenance:</b> Excellent soil. Add FYM 2 tonnes/acre every season to maintain organic matter.<br>• <b>pH:</b> Usually 6.0-7.0 — ideal range. Monitor annually with soil test.<br>• <b>Watering:</b> Standard irrigation — follow crop-specific schedules.",
+    "default": "<b>General Farming Tip:</b><br>• Always test soil pH and NPK before planting. Aim for pH 6.5-7.5 for most crops.<br>• Add 2-3 tonnes of FYM or vermicompost per acre each season to maintain organic matter.<br>• Use bio-fertilizers (PSB, Azotobacter) to reduce chemical fertilizer costs by 20-30%.<br>• Rotate crops each season to prevent soil-borne diseases and nutrient depletion."
   },
-  "default": "<b>General Soil Tip:</b><br>Always test your soil pH before planting. Add organic compost to improve soil structure regardless of type."
+  "qa": [
+    {
+      "keywords": ["rice", "paddy", "dhan", "chawal"],
+      "answer": "<b>Rice / Paddy Farming:</b><br>• <b>Varieties:</b> Swarna (MTU-7029), IR-36, Pusa Basmati-1121 for premium export.<br>• <b>NPK:</b> 120:60:60 kg/ha — split urea into 3 doses (basal, tillering, panicle initiation).<br>• <b>Diseases:</b> Blast (spray Tricyclazole), Brown Plant Hopper (BPH-resistant varieties), Sheath Blight (Validamycin).<br>• <b>Water:</b> Maintain 5 cm standing water during vegetative stage. Drain 10 days before harvest."
+    },
+    {
+      "keywords": ["wheat", "gehun"],
+      "answer": "<b>Wheat Farming:</b><br>• <b>Varieties:</b> HD-2967, WH-711, DBW-17 (Punjab/Haryana).<br>• <b>Sowing:</b> 1st–15th November. Use 40-50 kg seed/acre.<br>• <b>NPK:</b> 120:60:40 kg/ha — full P and K at basal, N in 2 splits.<br>• <b>Irrigation:</b> 5-6 irrigations critical: CRI stage, tillering, jointing, flowering, grain fill, dough stage.<br>• <b>Diseases:</b> Yellow rust — spray Propiconazole at first sign."
+    },
+    {
+      "keywords": ["cotton", "kapas"],
+      "answer": "<b>Cotton Farming:</b><br>• <b>Varieties:</b> Approved Bt cotton hybrids for bollworm resistance.<br>• <b>NPK:</b> 150:60:60 kg/ha for irrigated. Apply Zinc at basal.<br>• <b>Sowing:</b> May-June (Kharif). Spacing: 60x45 cm.<br>• <b>Key Pests:</b> Bollworm (Bt spray), Whitefly (Spiromesifen), Pink Bollworm (pheromone traps)."
+    },
+    {
+      "keywords": ["sugarcane", "ganna"],
+      "answer": "<b>Sugarcane Farming:</b><br>• <b>Varieties:</b> Co-86032, CoLk-94184, Co-0238 (high sugar content).<br>• <b>Planting:</b> October-November or February-March. Use 2-eye setts at 75 cm row spacing.<br>• <b>NPK:</b> 250:60:60 kg/ha — split N into 4 doses.<br>• <b>Yield:</b> 400-500 quintals/acre with good management."
+    },
+    {
+      "keywords": ["tomato", "tamatar"],
+      "answer": "<b>Tomato Farming:</b><br>• <b>Varieties:</b> Hybrid: Arka Vikas, CO-3. Open pollinated: Pusa Ruby.<br>• <b>Nursery:</b> Raise 25-30 days before transplanting. Transplant at 4-5 leaf stage.<br>• <b>NPK:</b> 120:60:60 kg/ha + 0.5% Boron foliar spray at flowering.<br>• <b>Diseases:</b> Early Blight (Mancozeb), Late Blight (Metalaxyl+Mancozeb), Fusarium Wilt (Carbendazim soil drench)."
+    },
+    {
+      "keywords": ["onion", "pyaaz", "pyaj", "kanda"],
+      "answer": "<b>Onion Farming:</b><br>• <b>Varieties:</b> Agrifound Dark Red, Pusa Red, Arka Kalyan.<br>• <b>Nursery:</b> Sow October-November; transplant at 40-45 days age, spacing 15x10 cm.<br>• <b>NPK:</b> 100:50:50 kg/ha. Avoid excess N after bulb initiation.<br>• <b>Irrigation:</b> Stop 10 days before harvest to harden bulbs.<br>• <b>Diseases:</b> Purple Blotch (Mancozeb), Thrips (Spinosad), Basal Rot (Trichoderma soil treatment)."
+    },
+    {
+      "keywords": ["potato", "aloo", "aaloo"],
+      "answer": "<b>Potato Farming:</b><br>• <b>Varieties:</b> Kufri Jyoti, Kufri Badshah, Kufri Chipsona (for chips).<br>• <b>Planting:</b> October-November (plains). Use 25-35 g certified seed tubers.<br>• <b>NPK:</b> 180:100:120 kg/ha — N in 2 splits (planting + earthing up).<br>• <b>Diseases:</b> Late Blight — most dangerous (spray Cymoxanil+Mancozeb preventively).<br>• <b>Harvest:</b> Vine killing 2 weeks before harvest for better skin set."
+    },
+    {
+      "keywords": ["maize", "corn", "makka", "makki"],
+      "answer": "<b>Maize Farming:</b><br>• <b>Varieties:</b> Hybrid: DK-9144, Pioneer-3522.<br>• <b>Sowing:</b> Kharif: June-July. Spacing: 60x20 cm, 1 seed per hill.<br>• <b>NPK:</b> 120:60:60 kg/ha — N in 3 splits.<br>• <b>Irrigation:</b> Critical at tasseling and grain fill. 3-4 irrigations in Kharif.<br>• <b>Pests:</b> Fall Army Worm — spray Emamectin Benzoate at early infestation."
+    },
+    {
+      "keywords": ["chili", "chilli", "mirch", "mirchi"],
+      "answer": "<b>Chili Farming:</b><br>• <b>Varieties:</b> Pusa Jwala, LCA-206, Byadagi (dry red chili), Guntur Sannam S4.<br>• <b>NPK:</b> 120:60:60 kg/ha + Calcium and Boron foliar spray during fruit set.<br>• <b>Diseases:</b> Anthracnose (Carbendazim+Mancozeb), Phytophthora Blight (Metalaxyl), Mite (Dicofol).<br>• <b>Viral diseases:</b> Control thrips and aphids to prevent Leaf Curl Virus."
+    },
+    {
+      "keywords": ["groundnut", "peanut", "mungfali", "singdana"],
+      "answer": "<b>Groundnut Farming:</b><br>• <b>Varieties:</b> ICGS-76, TAG-24, K-6, GG-20.<br>• <b>NPK:</b> 20:40:40 kg/ha + 200 kg Gypsum/acre at pegging stage for pod fill.<br>• <b>Seed treatment:</b> Thiram (3 g/kg) + Rhizobium culture before sowing.<br>• <b>Diseases:</b> Tikka leaf spot (Chlorothalonil), Stem Rot (Trichoderma soil application)."
+    },
+    {
+      "keywords": ["soybean", "soya"],
+      "answer": "<b>Soybean Farming:</b><br>• <b>Varieties:</b> JS-335, JS-9305, Ahilya-1.<br>• <b>Sowing:</b> June 20-July 10 at first good monsoon rain. Spacing 45x5 cm.<br>• <b>NPK:</b> 20:80:40 kg/ha + Rhizobium+PSB seed inoculation saves much of N requirement.<br>• <b>Diseases:</b> Yellow mosaic virus (use resistant varieties), Pod borer: Quinalphos spray."
+    },
+    {
+      "keywords": ["fertilizer", "urea", "dap", "npk", "manure", "khad"],
+      "answer": "<b>Fertilizer Application Guide:</b><br>• <b>Urea (46% N):</b> Apply in 3 splits — avoid application before rain. Use Neem-coated urea to reduce volatilization by 20%.<br>• <b>DAP (18:46:0):</b> Best applied at sowing as basal dose. 50 kg/acre is standard.<br>• <b>MOP (60% K2O):</b> Apply at basal + one split for high-K crops (potato, sugarcane, banana).<br>• <b>Zinc sulphate:</b> Apply 25 kg/acre once every 3 years for zinc deficiency prevention."
+    },
+    {
+      "keywords": ["disease", "blight", "rust", "fungus", "fungal", "infection"],
+      "answer": "<b>Crop Disease Management:</b><br>• <b>Fungal diseases:</b> Spray Mancozeb (preventive) or Carbendazim (curative). Alternate fungicides to prevent resistance.<br>• <b>Bacterial diseases:</b> Use Copper Oxychloride or Streptomycin-based sprays. Remove infected plants immediately.<br>• <b>Viral diseases:</b> No chemical cure — control insect vectors (aphids, whitefly, thrips) with systemic insecticides.<br>• <b>Prevention:</b> Use certified seeds, crop rotation, deep summer ploughing."
+    },
+    {
+      "keywords": ["pest", "insect", "bug", "keeda", "caterpillar", "worm"],
+      "answer": "<b>Pest Management (IPM):</b><br>• <b>Sucking pests</b> (aphids, mites, whitefly): Spray Imidacloprid 200 mL/acre or use yellow sticky traps.<br>• <b>Caterpillars / Bollworms:</b> Pheromone traps + spray Emamectin Benzoate.<br>• <b>Soil pests</b> (termites, white grubs): Apply Chlorpyrifos to soil before sowing.<br>• <b>Biological control:</b> Trichogramma cards for stem borers, Bt spray for caterpillars."
+    },
+    {
+      "keywords": ["irrigation", "water", "paani", "drip", "sprinkler", "sinchaayi"],
+      "answer": "<b>Irrigation Management:</b><br>• <b>Drip Irrigation:</b> Saves 30-50% water vs. flood irrigation. Eligible for 90% subsidy under PMKSY.<br>• <b>Critical stages:</b> Never miss irrigation at flowering and grain fill — yield loss can be 25-40%.<br>• <b>Soil moisture:</b> Check at 15 cm depth — irrigate when soil just starts to dry.<br>• <b>Water use efficiency:</b> Irrigate in evening or early morning to reduce evaporation."
+    },
+    {
+      "keywords": ["soil test", "soil testing", "mitti test", "soil sample", "soil health"],
+      "answer": "<b>Soil Testing Guide:</b><br>• <b>When:</b> Before every planting season. Collect samples after harvest.<br>• <b>How:</b> Collect 10-15 random samples from 0-15 cm depth, mix, take 500 g composite sample.<br>• <b>Where:</b> Nearest KVK, State Agriculture Department lab, or IFFCO Kisan.<br>• <b>PM Soil Health Card:</b> Free at government centres every 2 years with N, P, K, pH, Zn recommendations."
+    },
+    {
+      "keywords": ["weed", "kharpat", "weedicide", "herbicide"],
+      "answer": "<b>Weed Management:</b><br>• <b>Critical period:</b> First 30-45 days after sowing is most critical.<br>• <b>Chemical control:</b> Pre-emergence: Pendimethalin (1 L/acre). Post-emergence: 2,4-D in wheat, Quizalofop-ethyl for grassy weeds in pulses.<br>• <b>Mechanical:</b> One manual weeding + inter-cultivation reduces weed pressure by 70%.<br>• <b>Mulching:</b> Black polythene mulch eliminates weeds in vegetables and saves 40% water."
+    },
+    {
+      "keywords": ["organic", "jeevamrit", "jivamrit", "natural farming"],
+      "answer": "<b>Organic / Natural Farming:</b><br>• <b>Jeevamrit:</b> 10 kg dung + 10 L cow urine + 2 kg jaggery + 2 kg gram flour in 200 L water. Ferment 48 hours. Apply 200 L/acre monthly.<br>• <b>Vermicompost:</b> Apply 2 tonnes/acre; improves soil structure and microbial activity.<br>• <b>Panchagavya:</b> 5 cow products mixed as foliar spray to enhance immunity and yield.<br>• <b>Certification:</b> NPOP certification for organic market premium (3-year conversion period)."
+    },
+    {
+      "keywords": ["ph", "acidic", "alkaline", "lime", "gypsum", "acid soil"],
+      "answer": "<b>Soil pH Correction:</b><br>• <b>Ideal pH:</b> 6.5-7.5 for most crops.<br>• <b>Acidic soil (pH less than 6.0):</b> Apply Agricultural Lime 500 kg/acre — raises pH by ~0.5 units. Apply 6 weeks before sowing.<br>• <b>Alkaline soil (pH more than 7.5):</b> Apply Gypsum 200-400 kg/acre or Sulphur powder 20 kg/acre.<br>• <b>Organic matter</b> acts as pH buffer — adding compost helps stabilize pH naturally."
+    },
+    {
+      "keywords": ["nitrogen", "n deficiency", "yellow leaves", "pale leaves"],
+      "answer": "<b>Nitrogen Deficiency:</b><br>• <b>Symptoms:</b> Uniform yellowing starting from older leaves. Stunted growth. Pale green colour.<br>• <b>Quick fix:</b> Foliar spray of 2% Urea solution (2 kg Urea in 100 L water).<br>• <b>Soil application:</b> Apply Urea 25-30 kg/acre and irrigate immediately.<br>• <b>Prevention:</b> Split N in 2-3 doses. Use Neem-coated urea for slow release."
+    },
+    {
+      "keywords": ["phosphorus", "phosphate", "p deficiency", "purple leaves"],
+      "answer": "<b>Phosphorus Deficiency:</b><br>• <b>Symptoms:</b> Purplish-red discolouration on underside of leaves. Delayed maturity. Restricted roots.<br>• <b>Fix:</b> Apply DAP 50 kg/acre as basal dose. In acidic soils, use SSP instead of DAP.<br>• <b>PSB:</b> Seed treatment with PSB culture can mobilize locked-up soil P, reducing fertilizer need by 25%.<br>• <b>Note:</b> P availability is highest at pH 6.5."
+    },
+    {
+      "keywords": ["potassium", "potash", "k deficiency", "brown edges"],
+      "answer": "<b>Potassium Deficiency:</b><br>• <b>Symptoms:</b> Scorching/browning of leaf margins. Weak stems prone to lodging. Poor fruit quality.<br>• <b>Fix:</b> Apply MOP 25-50 kg/acre as basal. Foliar spray: 1% Potassium Nitrate (13:0:45).<br>• <b>High-K crops:</b> Potato, Banana, Sugarcane, Tomato need special K attention.<br>• <b>Note:</b> Sandy soils need frequent K replenishment."
+    },
+    {
+      "keywords": ["zinc", "zinc deficiency", "khaira"],
+      "answer": "<b>Zinc Deficiency:</b><br>• <b>Symptoms in rice:</b> White/pale yellow streaks on young leaves, stunted growth — 'Khaira' disease.<br>• <b>Fix:</b> Apply Zinc Sulphate 25 kg/acre to soil before sowing. Foliar: 0.5% ZnSO4 + 0.25% lime solution.<br>• <b>Prevention:</b> Apply 10 kg ZnSO4/acre once every 3 years. Most Indian soils are zinc deficient."
+    },
+    {
+      "keywords": ["pm kisan", "pmkisan", "kisan samman", "6000", "samman nidhi"],
+      "answer": "<b>PM-Kisan Samman Nidhi:</b><br>• <b>Benefit:</b> Rs.6,000/year in 3 instalments of Rs.2,000 directly to farmer bank accounts.<br>• <b>Apply:</b> Visit nearest CSC or pmkisan.gov.in with Aadhaar, land records, and bank account.<br>• <b>Helpline:</b> 155261 or 1800-115-526 (toll-free).<br>• <b>Check status:</b> pmkisan.gov.in - 'Know Your Status' with Aadhaar or mobile number."
+    },
+    {
+      "keywords": ["crop insurance", "fasal bima", "pmfby", "insurance"],
+      "answer": "<b>PM Fasal Bima Yojana (PMFBY):</b><br>• <b>Premium:</b> Only 1.5-2% of sum insured for farmers. Government pays the balance.<br>• <b>Covers:</b> Pre-sowing losses, standing crop damage, post-harvest losses, localised disasters.<br>• <b>Apply:</b> Through bank at crop loan time, or PMFBY portal by cutoff date.<br>• <b>Helpline:</b> 14447"
+    },
+    {
+      "keywords": ["soil health card", "shc", "soil card", "mitti card"],
+      "answer": "<b>Soil Health Card Scheme:</b><br>• <b>Provides:</b> NPK, pH, organic carbon, S, Zn levels + crop-wise fertilizer recommendations. Free.<br>• <b>Frequency:</b> Once in 2 years per farm.<br>• <b>How to get:</b> Contact Block Agriculture Officer or nearest KVK with 500 g soil sample from 0-15 cm depth.<br>• <b>Online:</b> soilhealth.dac.gov.in for registration and status."
+    },
+    {
+      "keywords": ["harvest", "kataai", "cutting", "rabi", "kharif"],
+      "answer": "<b>Harvest Timing:</b><br>• <b>Wheat:</b> Harvest at 14-16% grain moisture (golden straw).<br>• <b>Rice:</b> Harvest 30-35 days after 80% panicle emergence; grain moisture 20-24%.<br>• <b>Pulses:</b> Harvest when 80% pods turn yellow/brown — early morning to reduce pod shatter.<br>• <b>Storage:</b> Dry grains below 12% moisture before storage. Use hermetic bags to prevent weevil damage."
+    },
+    {
+      "keywords": ["storage", "godown", "warehouse", "weevil"],
+      "answer": "<b>Grain Storage:</b><br>• <b>Moisture:</b> Store below 12% moisture. Dry in sun 2-3 days if needed.<br>• <b>Hermetic storage:</b> Use double-bag system (inner polythene + outer jute) or metal bins.<br>• <b>Chemical:</b> Mix Deltamethrin dust (100 g/tonne) for long-term storage (3-6 months).<br>• <b>Warehouse:</b> Register at enam.gov.in for pledging grain against bank loans."
+    },
+    {
+      "keywords": ["mandi", "market", "price", "mandhi", "bazar"],
+      "answer": "<b>Selling Crops at Best Price:</b><br>• <b>MSP:</b> Check current Minimum Support Price at agricoop.nic.in. Sell to government procurement centres to get MSP.<br>• <b>eNAM:</b> Online mandi platform at enam.gov.in — bid from multiple mandis, get best price.<br>• <b>FPO:</b> Join local FPO for collective bargaining power — typically 5-10% better price.<br>• <b>Direct selling:</b> Rythu Bazaar / Apni Mandi — bypass middlemen, get retail price."
+    },
+    {
+      "keywords": ["compost", "vermicompost", "organic matter"],
+      "answer": "<b>Composting Guide:</b><br>• <b>FYM:</b> Compost dung + straw for 3-4 months. Apply 3-5 tonnes/acre. N:P:K = 0.5:0.25:0.5%.<br>• <b>Vermicompost:</b> Use earthworms. Layer organic waste + dung alternately. Ready in 60-90 days. N:P:K = 1.5:1.0:1.5%.<br>• <b>Compost tea:</b> Soak 5 kg compost in 100 L water 48 hours, filter, spray as foliar fertilizer.<br>• <b>NADEP:</b> Government-promoted brick structure composting — 3 tonnes compost in 3 months."
+    },
+    {
+      "keywords": ["kvk", "krishi vigyan kendra", "helpline", "1800"],
+      "answer": "<b>Free Farmer Help Services:</b><br>• <b>KVK (Krishi Vigyan Kendra):</b> Free soil testing, seed distribution, trainings. Find at kvk.icar.gov.in for your district.<br>• <b>Kisan Call Centre:</b> Dial 1800-180-1551 (toll-free) for free expert advice in your language, 6 AM - 10 PM, 365 days.<br>• <b>PM-Kisan Helpline:</b> 155261<br>• <b>Training programs:</b> 2-day to 2-week training on crop production, post-harvest, agri-business. Usually free."
+    },
+    {
+      "keywords": ["greenhouse", "polyhouse", "protected cultivation"],
+      "answer": "<b>Polyhouse / Protected Cultivation:</b><br>• <b>Subsidy:</b> 50-65% under National Horticulture Mission for polyhouse and shade net structures.<br>• <b>Best crops:</b> Capsicum, Cucumber, Tomato, Rose, Gerbera.<br>• <b>Investment:</b> Rs.9-12 lakh per 1000 sq m. Payback in 3-5 years with vegetables.<br>• <b>Apply:</b> Contact State Horticulture Department or nhm.nic.in."
+    },
+    {
+      "keywords": ["loan", "kcc", "kisan credit card", "credit"],
+      "answer": "<b>Kisan Credit Card (KCC):</b><br>• <b>Benefit:</b> Credit up to Rs.3 lakh at 7% interest (effective 4% with government subvention for timely repayment).<br>• <b>Covers:</b> Crop production, farm asset maintenance, consumption needs.<br>• <b>Apply:</b> Any bank branch with land records, Aadhaar, and photograph.<br>• <b>Renewal:</b> Renewed annually if no default. No interest if repaid within crop season."
+    },
+    {
+      "keywords": ["drip subsidy", "sprinkler subsidy", "pmksy", "micro irrigation subsidy"],
+      "answer": "<b>Drip and Sprinkler Subsidy (PMKSY):</b><br>• <b>Subsidy:</b> 55% for small/marginal farmers, 45% for others under PMKSY.<br>• <b>Apply:</b> Contact district Agriculture Department or state agriculture portal. Submit land documents, bank passbook, identity proof.<br>• <b>Benefits:</b> Saves 30-50% water, increases yield by 20-40%, enables fertigation.<br>• <b>Maintenance:</b> Flush drip lines weekly, clean filters monthly."
+    },
+    {
+      "keywords": ["weather", "rain", "monsoon", "forecast", "temperature"],
+      "answer": "<b>Weather-Based Farming Tips:</b><br>• <b>Before rain:</b> Apply basal fertilizer 24-48 hours before expected rain. Avoid pesticide application.<br>• <b>After rain:</b> Wait 24-48 hours before harvesting wet grain.<br>• <b>Drought:</b> Apply Potassium to improve tolerance. Mulch to retain soil moisture. Use drought-tolerant varieties.<br>• <b>Heatwave:</b> Irrigate in evening. Apply Kaolin spray (3-5%) to reduce heat stress on fruits."
+    },
+    {
+      "keywords": ["seed", "seeds", "beej", "variety", "certified seed"],
+      "answer": "<b>Quality Seed Selection:</b><br>• <b>Certified seeds:</b> Always use seeds with ISI/NSC/State tag. Certified seeds improve yield by 15-20%.<br>• <b>NSC:</b> Buy at NSC outlets or indiaseeds.com at subsidized rates.<br>• <b>Seed treatment:</b> Treat with Thiram/Captan (3 g/kg) + Imidacloprid (1 mL/kg) before sowing.<br>• <b>Test germination:</b> Place 100 seeds on wet cloth — germination should be more than 70%."
+    },
+    {
+      "keywords": ["intercrop", "mixed crop", "companion planting", "mixed farming"],
+      "answer": "<b>Intercropping and Mixed Farming:</b><br>• <b>Popular combos:</b> Soybean+Sorghum, Groundnut+Maize, Sugarcane+Wheat/Onion, Cotton+Green gram.<br>• <b>Benefits:</b> 20-30% more income per acre, risk diversification, better pest management, N fixation by legumes.<br>• <b>Rule:</b> Pair tall + short crop, deep-rooted + shallow-rooted, and legume + cereal.<br>• <b>SRI:</b> Transplant 8-12 day rice seedlings singly at 25x25 cm — saves 80-90% seed, increases yield 30-50%."
+    },
+    {
+      "keywords": ["neem", "bio pesticide", "trichoderma", "bio control", "neem oil"],
+      "answer": "<b>Bio-Pesticide and Natural Pest Control:</b><br>• <b>Neem:</b> 1500 ppm NSKE 5% spray for sucking pests. Spray in evening as UV degrades neem.<br>• <b>Trichoderma:</b> Mix 2.5 kg/acre with 50 kg FYM, apply to soil at sowing — controls soil-borne diseases.<br>• <b>Beauveria bassiana:</b> Spray against thrips, whitefly. Apply in cool/humid weather.<br>• <b>Bt (Bacillus thuringiensis):</b> Very effective against caterpillars. Safe for bees and predators."
+    },
+    {
+      "keywords": ["export", "agri export", "apeda"],
+      "answer": "<b>Agricultural Export:</b><br>• <b>APEDA:</b> Key body for agri exports. Register at apeda.gov.in for export assistance.<br>• <b>High-value crops:</b> Basmati rice, spices, mango, grapes, pomegranate, onion.<br>• <b>Requirements:</b> Global GAP certification, pesticide residue testing, phytosanitary certificate from NPPO.<br>• <b>Subsidy:</b> APEDA provides 25-50% subsidy on certification, packaging, and international food fair participation."
+    },
+    {
+      "keywords": ["crop rotation", "rotation", "mixed rotation"],
+      "answer": "<b>Crop Rotation Best Practices:</b><br>• <b>Why:</b> Breaks pest cycles, replenishes soil nutrients via legumes, reduces weeds.<br>• <b>Classic rotations:</b> Rice-Wheat, Rice-Mustard, Cotton-Wheat, Groundnut-Wheat.<br>• <b>Legume benefit:</b> Growing any legume adds 30-60 kg N/acre through nitrogen fixation.<br>• <b>3-year rotation:</b> Year 1: Cereal, Year 2: Legume, Year 3: Cash crop. Best for long-term soil health."
+    },
+    {
+      "keywords": ["honey", "bee", "apiculture", "beekeeping"],
+      "answer": "<b>Beekeeping / Apiculture:</b><br>• <b>Best species:</b> Apis mellifera for highest honey yield (30-40 kg/colony/year).<br>• <b>Start-up:</b> 5-10 boxes. Investment Rs.20,000-30,000 for 10 colonies.<br>• <b>Subsidy:</b> NABARD provides 85% subsidy for SC/ST and 50% for general farmers on beekeeping equipment.<br>• <b>Pollination benefit:</b> Beekeeping in orchard increases crop yield by 20-30%."
+    },
+    {
+      "keywords": ["mushroom", "dhingri", "oyster mushroom", "button mushroom"],
+      "answer": "<b>Mushroom Cultivation:</b><br>• <b>Button mushroom:</b> Grows in cool weather (15-20 degrees C). High value: Rs.80-120/kg.<br>• <b>Oyster mushroom:</b> Easier, grows at 20-28 degrees C, year-round in South India. Uses paddy straw.<br>• <b>Spawn:</b> Buy certified spawn from NRCM (Solan, HP) or agricultural universities.<br>• <b>Training:</b> KVK centres offer free 3-day mushroom training with hands-on practice."
+    },
+    {
+      "keywords": ["animal", "dairy", "goat", "poultry", "pashu", "doodh"],
+      "answer": "<b>Integrated Farming (Animal Husbandry):</b><br>• <b>Dairy:</b> HF/Jersey cross cow gives 15-20 L/day. Net income Rs.500-800/day after feed cost.<br>• <b>Goat:</b> Black Bengal, Sirohi breeds — kidding twice/year, low investment, fast returns.<br>• <b>Poultry:</b> Kadaknath (desi breed) — higher egg price in local market.<br>• <b>Subsidy:</b> NABARD provides 25% subsidy for dairy units, poultry, goat rearing under AHIDF."
+    },
+    {
+      "keywords": ["vermi", "earthworm", "worm"],
+      "answer": "<b>Vermicomposting:</b><br>• <b>Species:</b> Eisenia foetida (red wiggler) is most efficient. Available from KVK at nominal cost.<br>• <b>Setup:</b> Raised cement bed 3mx1m. Layer organic waste + moistened dung alternately (15 cm each).<br>• <b>Conditions:</b> 50-60% moisture, temperature 15-30 degrees C. Cover from sunlight.<br>• <b>Ready in:</b> 45-60 days. Selling: Rs.8-15/kg. 1 tonne/month from 10 sq m unit."
+    },
+    {
+      "keywords": ["tractor", "machine", "farm machinery", "equipment", "rental"],
+      "answer": "<b>Farm Machinery and Rental:</b><br>• <b>CHC (Custom Hiring Centres):</b> Government-subsidized centres offer tractors, harvesters at Rs.400-800/hour. Find at farmech.dac.gov.in.<br>• <b>Subsidy:</b> 40-50% subsidy on farm machinery under SMAM scheme. Higher for SC/ST and women farmers.<br>• <b>Mobile App:</b> CHC Farm Machinery app for locating rental machinery near you.<br>• <b>Power tillers:</b> Best for small farms (less than 2 acres) — multipurpose, subsidy up to 50%."
+    },
+    {
+      "keywords": ["fpo", "farmer producer", "cooperative", "kisan organization"],
+      "answer": "<b>Farmer Producer Organization (FPO):</b><br>• <b>What:</b> Legal entity for collective input purchase, processing, and marketing by farmers.<br>• <b>Government support:</b> Equity grants up to Rs.15 lakh + Rs.18 lakh management cost for 3 years under PM-KISAN FPO scheme.<br>• <b>Benefits:</b> Bulk input purchase (10-20% cheaper), better sale price, access to credit.<br>• <b>Form:</b> Minimum 10 farmers; contact SFAC (sfacindia.com) or district agriculture officer."
+    }
+  ]
 }

@@ -28,15 +28,10 @@ public class NotificationWorker extends Worker {
         Context context = getApplicationContext();
         SharedPreferences prefs = context.getSharedPreferences("MittiMitra_Notifications", Context.MODE_PRIVATE);
         
-        // Load cached location from user's last scan
+        // Load cached location name from user's last scan
         SharedPreferences scanCache = context.getSharedPreferences("scan_cache", Context.MODE_PRIVATE);
         String locName = scanCache.getString("loc", null);
-        
-        // Load user's actual cached coordinates (cached during ScanActivity)
-        SharedPreferences locPrefs = context.getSharedPreferences("user_location_cache", Context.MODE_PRIVATE);
-        double lat = Double.parseDouble(locPrefs.getString("last_lat", "20.5937")); // Delhi fallback
-        double lon = Double.parseDouble(locPrefs.getString("last_lon", "78.9629")); // Delhi fallback
-        
+
         // Check permissions/settings
         boolean showWeather = prefs.getBoolean("notif_weather", true);
 
@@ -84,8 +79,8 @@ public class NotificationWorker extends Worker {
             }
             
             // Fallback: if no cache, show prompt to check prices
-            triggerNotification(2, context.getString(R.string.notif_mandi_title), 
-                "Tap to check today's mandi prices for " + (locName != null ? locName : "your area"));
+            triggerNotification(2, context.getString(R.string.notif_mandi_title),
+                context.getString(R.string.notif_mandi_check_prices));
         } catch (Exception e) {
             android.util.Log.e("NotificationWorker", "Error showing mandi notification", e);
         }
@@ -100,9 +95,10 @@ public class NotificationWorker extends Worker {
 
         if (expiringDocs != null && !expiringDocs.isEmpty()) {
             for (com.mittimitra.database.entity.Document doc : expiringDocs) {
-                triggerNotification((int) doc.documentId + 100, 
-                    "Document Expiring Soon! 📄", 
-                    "Your document '" + doc.documentName + "' is expiring this week. Please renew it.");
+                int notifId = (int) (doc.documentId % (Integer.MAX_VALUE - 100)) + 100;
+                triggerNotification(notifId,
+                    context.getString(R.string.notif_doc_expiring_title),
+                    context.getString(R.string.notif_doc_expiring_body, doc.documentName));
             }
         }
     }
@@ -122,15 +118,35 @@ public class NotificationWorker extends Worker {
             if (response != null) {
                 double temp = response.getAsJsonObject("current").get("temperature_2m").getAsDouble();
                 int humidity = response.getAsJsonObject("current").get("relative_humidity_2m").getAsInt();
-                
+
+                // Store sunrise/sunset for auto dark mode
+                // Present only when the weather API URL includes daily=sunrise,sunset
+                try {
+                    if (response.has("daily")) {
+                        com.google.gson.JsonObject daily = response.getAsJsonObject("daily");
+                        if (daily.has("sunrise") && daily.has("sunset")) {
+                            String sunriseStr = daily.getAsJsonArray("sunrise").get(0).getAsString();
+                            String sunsetStr  = daily.getAsJsonArray("sunset").get(0).getAsString();
+                            // Open Meteo returns ISO 8601 local time: "2024-03-08T06:15"
+                            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(
+                                    "yyyy-MM-dd'T'HH:mm", java.util.Locale.getDefault());
+                            AppPreferences appPrefs = new AppPreferences(context);
+                            appPrefs.setLastSunrise(sdf.parse(sunriseStr).getTime());
+                            appPrefs.setLastSunset(sdf.parse(sunsetStr).getTime());
+                        }
+                    }
+                } catch (Exception e) {
+                    android.util.Log.e("NotificationWorker", "Failed to parse sunrise/sunset", e);
+                }
+
                 String msg = "Current: " + Math.round(temp) + "°C, " + humidity + "% Humidity.";
                 if (humidity > 80) msg += " " + context.getString(R.string.weather_high_humidity);
                 else if (temp > 35) msg += " " + context.getString(R.string.weather_high_heat);
-                
+
                 triggerNotification(1, context.getString(R.string.weather_alert_title), msg);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            android.util.Log.e("NotificationWorker", "Weather check failed", e);
         }
     }
 

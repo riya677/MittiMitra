@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -1 /d/android/MittiMitra/app/src/main/java/com/mittimitra/*.java)",
+      "Bash(grep -n \"\"\"Invalid OTP\"\"\\\\|\"\"No Email\"\"\\\\|\"\"Error saving\"\"\\\\|\"\"No report\"\"\\\\|\"\"Please enter\"\"\\\\|\"\"Name is required\"\"\\\\|\"\"Valid email\"\"\\\\|\"\"Valid 10-digit\"\"\\\\|\"\"No link\"\"\\\\|\"\"Failed to load scheme\"\"\" app/src/main/java/com/mittimitra/*.java)"
+    ]
+  }
+}

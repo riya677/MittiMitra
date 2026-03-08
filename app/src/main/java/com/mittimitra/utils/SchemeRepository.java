@@ -62,18 +62,16 @@ public class SchemeRepository {
     }
 
     private List<Scheme> loadFromAssets() {
-        try {
-            InputStream is = context.getAssets().open("schemes_data.json");
+        try (InputStream is = context.getAssets().open("schemes_data.json")) {
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
-            is.close();
             String json = new String(buffer, StandardCharsets.UTF_8);
             Type listType = new TypeToken<ArrayList<Scheme>>(){}.getType();
             return gson.fromJson(json, listType);
         } catch (IOException e) {
-            e.printStackTrace();
-            return new ArrayList<>(); // Return empty list on failure
+            android.util.Log.e("SchemeRepository", "Failed to load schemes from assets", e);
+            return new ArrayList<>();
         }
     }
 
@@ -85,7 +83,7 @@ public class SchemeRepository {
             Type listType = new TypeToken<ArrayList<Scheme>>(){}.getType();
             return gson.fromJson(reader, listType);
         } catch (IOException e) {
-            e.printStackTrace();
+            android.util.Log.e("SchemeRepository", "Failed to load cached schemes", e);
             return null;
         }
     }
@@ -112,7 +110,7 @@ public class SchemeRepository {
                             saveToInternalStorage(json);
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        android.util.Log.e("SchemeRepository", "Failed to parse remote schemes JSON", e);
                     }
                 }
             }
@@ -124,7 +122,7 @@ public class SchemeRepository {
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(json);
         } catch (IOException e) {
-            e.printStackTrace();
+            android.util.Log.e("SchemeRepository", "Failed to cache schemes to storage", e);
         }
     }
 }

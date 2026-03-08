@@ -166,7 +166,8 @@ public class WeatherAlertsActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(WeatherAlertsActivity.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                android.util.Log.e("WeatherAlertsActivity", "Network failure", t);
+                Toast.makeText(WeatherAlertsActivity.this, getString(R.string.weather_network_error), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -229,7 +230,8 @@ public class WeatherAlertsActivity extends AppCompatActivity {
             }
 
         } catch (Exception e) {
-            Toast.makeText(this, "Error parsing weather data", Toast.LENGTH_SHORT).show();
+            android.util.Log.e("WeatherAlertsActivity", "Error parsing weather data", e);
+            Toast.makeText(this, getString(R.string.weather_parse_error), Toast.LENGTH_SHORT).show();
         }
     }
 

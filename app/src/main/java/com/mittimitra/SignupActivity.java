@@ -54,19 +54,19 @@ public class SignupActivity extends AppCompatActivity {
 
         // Validation
         if (name.isEmpty()) {
-            etName.setError("Name is required");
+            etName.setError(getString(R.string.signup_name_required));
             etName.requestFocus();
             return;
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etEmail.setError("Valid email required");
+            etEmail.setError(getString(R.string.signup_email_invalid));
             etEmail.requestFocus();
             return;
         }
 
         if (phone.length() < 10) {
-            etPhone.setError("Valid 10-digit phone required");
+            etPhone.setError(getString(R.string.signup_phone_invalid));
             etPhone.requestFocus();
             return;
         }

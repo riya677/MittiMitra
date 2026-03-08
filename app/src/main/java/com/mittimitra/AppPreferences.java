@@ -18,6 +18,14 @@ public class AppPreferences {
     private static final String KEY_LAST_SOIL_TYPE = "last_soil_type";
     private static final String KEY_LAST_FIELD_SIZE = "last_field_size";
 
+    // Auto dark mode (sunrise/sunset based)
+    private static final String KEY_AUTO_DARK_MODE = "auto_dark_mode";
+    private static final String KEY_LAST_SUNRISE = "last_sunrise";
+    private static final String KEY_LAST_SUNSET = "last_sunset";
+
+    // Onboarding
+    private static final String KEY_ONBOARDING_DONE = "onboarding_done";
+
     private final SharedPreferences sharedPreferences;
 
     public AppPreferences(Context context) {
@@ -41,19 +49,32 @@ public class AppPreferences {
     public String getTheme() { return sharedPreferences.getString(KEY_THEME, "system"); }
 
     public void setLastLocation(double lat, double lon, String name) {
+        // Store as String to preserve full double precision (float truncates decimals)
         sharedPreferences.edit()
-                .putFloat(KEY_LAST_LAT, (float) lat)
-                .putFloat(KEY_LAST_LON, (float) lon)
+                .putString(KEY_LAST_LAT, String.valueOf(lat))
+                .putString(KEY_LAST_LON, String.valueOf(lon))
                 .putString(KEY_LAST_LOC_NAME, name)
                 .apply();
     }
 
-    // Returns array [lat, lon] or null if not set
+    // Returns array [lat, lon] or null if not set.
+    // Handles migration from legacy Float storage (pre-fix #10) to String storage.
     public double[] getLastLocation() {
-        if (!sharedPreferences.contains(KEY_LAST_LAT)) return null;
-        float lat = sharedPreferences.getFloat(KEY_LAST_LAT, 0);
-        float lon = sharedPreferences.getFloat(KEY_LAST_LON, 0);
-        return new double[]{lat, lon};
+        try {
+            String latStr = sharedPreferences.getString(KEY_LAST_LAT, null);
+            String lonStr = sharedPreferences.getString(KEY_LAST_LON, null);
+            if (latStr == null || lonStr == null) return null;
+            return new double[]{Double.parseDouble(latStr), Double.parseDouble(lonStr)};
+        } catch (ClassCastException e) {
+            // Legacy data stored as Float — migrate to String and return value
+            float lat = sharedPreferences.getFloat(KEY_LAST_LAT, Float.MIN_VALUE);
+            float lon = sharedPreferences.getFloat(KEY_LAST_LON, Float.MIN_VALUE);
+            if (lat == Float.MIN_VALUE || lon == Float.MIN_VALUE) return null;
+            setLastLocation(lat, lon, getLastLocationName());
+            return new double[]{lat, lon};
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
     public String getLastLocationName() {
@@ -69,4 +90,34 @@ public class AppPreferences {
 
     public void setLastFieldSize(String size) { sharedPreferences.edit().putString(KEY_LAST_FIELD_SIZE, size).apply(); }
     public String getLastFieldSize() { return sharedPreferences.getString(KEY_LAST_FIELD_SIZE, ""); }
+
+    // --- Auto Dark Mode ---
+    public void setAutoDarkMode(boolean enabled) {
+        sharedPreferences.edit().putBoolean(KEY_AUTO_DARK_MODE, enabled).apply();
+    }
+    public boolean isAutoDarkMode() {
+        return sharedPreferences.getBoolean(KEY_AUTO_DARK_MODE, false);
+    }
+
+    public void setLastSunrise(long epochMillis) {
+        sharedPreferences.edit().putLong(KEY_LAST_SUNRISE, epochMillis).apply();
+    }
+    public long getLastSunrise() {
+        return sharedPreferences.getLong(KEY_LAST_SUNRISE, 0L);
+    }
+
+    public void setLastSunset(long epochMillis) {
+        sharedPreferences.edit().putLong(KEY_LAST_SUNSET, epochMillis).apply();
+    }
+    public long getLastSunset() {
+        return sharedPreferences.getLong(KEY_LAST_SUNSET, 0L);
+    }
+
+    // --- Onboarding ---
+    public boolean hasSeenOnboarding() {
+        return sharedPreferences.getBoolean(KEY_ONBOARDING_DONE, false);
+    }
+    public void setOnboardingComplete() {
+        sharedPreferences.edit().putBoolean(KEY_ONBOARDING_DONE, true).apply();
+    }
 }

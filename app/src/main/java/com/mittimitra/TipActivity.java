@@ -115,7 +115,7 @@ public class TipActivity extends BaseActivity {
     private final ActivityResultLauncher<String> audioPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), (isGranted) -> {
                 if (isGranted) startListening();
-                else Toast.makeText(this, "Mic permission required.", Toast.LENGTH_SHORT).show();
+                else Toast.makeText(this, R.string.mic_permission_required, Toast.LENGTH_SHORT).show();
             });
 
     @Override
@@ -165,20 +165,21 @@ public class TipActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (speechRecognizer != null) speechRecognizer.destroy();
+        if (databaseExecutor != null) databaseExecutor.shutdownNow();
     }
 
 
 
     private void startListening() {
         if (!SpeechRecognizer.isRecognitionAvailable(this)) {
-            Toast.makeText(this, "Voice input not supported on this device", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.voice_not_supported, Toast.LENGTH_SHORT).show();
             return;
         }
         
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Ask MittiMitra...");
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speech_prompt));
         
         speechRecognizer.startListening(intent);
     }
@@ -195,8 +196,9 @@ public class TipActivity extends BaseActivity {
             btnRecordAudio.setImageTintList(ColorStateList.valueOf(Color.parseColor("#757575"))); // Reset to grey
         }
         @Override public void onError(int error) {
-            String msg = "Error: " + error;
-            if (error == SpeechRecognizer.ERROR_NO_MATCH) msg = "Did not understand, please try again.";
+            String msg = error == SpeechRecognizer.ERROR_NO_MATCH
+                    ? getString(R.string.speech_no_match)
+                    : getString(R.string.speech_no_match);
             Toast.makeText(TipActivity.this, msg, Toast.LENGTH_SHORT).show();
             btnRecordAudio.setImageTintList(ColorStateList.valueOf(Color.parseColor("#757575"))); // Reset to grey
         }
@@ -213,14 +215,46 @@ public class TipActivity extends BaseActivity {
         @Override public void onEvent(int eventType, Bundle params) {}
     };
 
+    // Maps BCP-47 language codes to full language names for Groq instruction
+    private static final java.util.Map<String, String> LANGUAGE_NAMES;
+    static {
+        LANGUAGE_NAMES = new java.util.HashMap<>();
+        LANGUAGE_NAMES.put("hi", "Hindi");
+        LANGUAGE_NAMES.put("ta", "Tamil");
+        LANGUAGE_NAMES.put("ml", "Malayalam");
+        LANGUAGE_NAMES.put("te", "Telugu");
+        LANGUAGE_NAMES.put("kn", "Kannada");
+        LANGUAGE_NAMES.put("mr", "Marathi");
+        LANGUAGE_NAMES.put("bn", "Bengali");
+        LANGUAGE_NAMES.put("gu", "Gujarati");
+        LANGUAGE_NAMES.put("pa", "Punjabi");
+        LANGUAGE_NAMES.put("as", "Assamese");
+        LANGUAGE_NAMES.put("mni", "Manipuri");
+        LANGUAGE_NAMES.put("brx", "Bodo");
+        LANGUAGE_NAMES.put("lus", "Mizo");
+        LANGUAGE_NAMES.put("grt", "Garo");
+        LANGUAGE_NAMES.put("en", "English");
+    }
+
+    private String getLanguageInstruction() {
+        AppPreferences prefs = new AppPreferences(this);
+        String code = prefs.getLanguage();
+        if (code == null || code.isEmpty() || "en".equals(code)) return "";
+        String name = LANGUAGE_NAMES.get(code);
+        if (name == null) return "";
+        return "IMPORTANT: Always respond strictly in " + name + ". ";
+    }
+
     private void addInitialBotMessage() {
         databaseExecutor.execute(() -> {
             SoilAnalysis lastScan = db.soilDao().getLatestReport();
             if (lastScan != null) lastSoilReportJson = lastScan.soilReportJson;
-            String sysMsg = "You are 'Kisan Sahayak', a friendly and expert AI farming assistant for Indian farmers. " +
+            String langInstruction = getLanguageInstruction();
+            String sysMsg = langInstruction +
+                    "You are 'Kisan Sahayak', a friendly and expert AI farming assistant for Indian farmers. " +
                     "Speak in simple language. If the user speaks in Hindi/local language, reply in that language. " +
                     "Keep answers concise (max 3-4 sentences) unless asked for details.";
-            callGroqChatAPI(sysMsg, true);
+            callGroqChatAPI(sysMsg, true, "");
         });
     }
 
@@ -230,21 +264,22 @@ public class TipActivity extends BaseActivity {
         String soilContext = (lastSoilReportJson != null) ? "Last Soil Data: " + lastSoilReportJson : "";
 
         String prompt = "Context: " + locContext + "\n" + soilContext + "\nUser: " + userMessage + "\n\nAct as a friendly Agri-Expert. Format with Markdown (bold, lists) where helpful.";
-        callGroqChatAPI(prompt, false);
+        callGroqChatAPI(prompt, false, userMessage);
     }
 
-    private void callGroqChatAPI(String prompt, boolean isInitial) {
+    private void callGroqChatAPI(String prompt, boolean isInitial, String userQuery) {
         setLoading(true);
+        final String queryForOffline = (userQuery != null) ? userQuery : "";
         String rawKey = BuildConfig.GROQ_API_KEY;
-        if(rawKey == null || rawKey.isEmpty()){
+        if (rawKey == null || rawKey.isEmpty()) {
             addMessage("API Key Missing", ChatMessage.Type.BOT);
             setLoading(false);
             return;
         }
-        
+
         // Check for network before making call
         if (!isNetworkAvailable()) {
-            loadOfflineTips();
+            loadOfflineTips(queryForOffline);
             setLoading(false);
             return;
         }
@@ -271,16 +306,20 @@ public class TipActivity extends BaseActivity {
         httpClient.newCall(request).enqueue(new Callback() {
             @Override public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 runOnUiThread(() -> {
-                    loadOfflineTips(); // FALLBACK TO OFFLINE
+                    loadOfflineTips(queryForOffline); // FALLBACK TO OFFLINE
                     setLoading(false);
                 });
             }
             @Override public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 try {
+                    if (response.body() == null) {
+                        runOnUiThread(() -> { loadOfflineTips(queryForOffline); setLoading(false); });
+                        return;
+                    }
                     String resBody = response.body().string();
                     if (!response.isSuccessful()) {
                         runOnUiThread(() -> {
-                            loadOfflineTips(); // FALLBACK ON ERROR
+                            loadOfflineTips(queryForOffline); // FALLBACK ON ERROR
                             setLoading(false);
                         });
                         return;
@@ -293,7 +332,7 @@ public class TipActivity extends BaseActivity {
                         setLoading(false);
                     });
                 } catch (Exception e) {
-                    runOnUiThread(() -> loadOfflineTips());
+                    runOnUiThread(() -> loadOfflineTips(queryForOffline));
                 }
             }
         });
@@ -316,30 +355,51 @@ public class TipActivity extends BaseActivity {
         }
     }
 
-    private void loadOfflineTips() {
+    private void loadOfflineTips(String userQuery) {
         try {
-            java.io.InputStream is = getAssets().open("offline_tips.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            String jsonString = new String(buffer, "UTF-8");
+            String jsonString;
+            try (java.io.InputStream is = getAssets().open("offline_tips.json")) {
+                int size = is.available();
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                jsonString = new String(buffer, "UTF-8");
+            }
             JSONObject json = new JSONObject(jsonString);
-            JSONObject tips = json.getJSONObject("tips");
-            
-            // Basic logic: if last soil known, show specific advice, else default
-            String advice = tips.getString("default");
-            
-            if (lastSoilReportJson != null) {
-                if (lastSoilReportJson.toLowerCase().contains("clay")) advice = tips.getString("clay");
-                else if (lastSoilReportJson.toLowerCase().contains("red")) advice = tips.getString("red");
-                else if (lastSoilReportJson.toLowerCase().contains("black")) advice = tips.getString("black");
-                else if (lastSoilReportJson.toLowerCase().contains("sandy")) advice = tips.getString("sandy");
-                else if (lastSoilReportJson.toLowerCase().contains("loam")) advice = tips.getString("loam");
+
+            // 1. Try smart keyword match from QA array if user asked a question
+            if (userQuery != null && !userQuery.isEmpty()) {
+                org.json.JSONArray qaArray = json.optJSONArray("qa");
+                if (qaArray != null) {
+                    String lowerQuery = userQuery.toLowerCase(java.util.Locale.ROOT);
+                    for (int i = 0; i < qaArray.length(); i++) {
+                        JSONObject entry = qaArray.getJSONObject(i);
+                        org.json.JSONArray keywords = entry.getJSONArray("keywords");
+                        for (int k = 0; k < keywords.length(); k++) {
+                            if (lowerQuery.contains(keywords.getString(k).toLowerCase(java.util.Locale.ROOT))) {
+                                String answer = entry.getString("answer");
+                                addMessage("<b>" + getString(R.string.offline_mode_label) + "</b><br>" + answer, ChatMessage.Type.BOT);
+                                return;
+                            }
+                        }
+                    }
+                }
             }
 
-            addMessage("<b>[OFFLINE MODE]</b><br>" + advice, ChatMessage.Type.BOT);
+            // 2. Fall back to soil-type specific tip
+            JSONObject tips = json.getJSONObject("tips");
+            String advice = tips.getString("default");
+            if (lastSoilReportJson != null) {
+                String lowerSoil = lastSoilReportJson.toLowerCase(java.util.Locale.ROOT);
+                if (lowerSoil.contains("clay"))  advice = tips.optString("clay", advice);
+                else if (lowerSoil.contains("red"))   advice = tips.optString("red", advice);
+                else if (lowerSoil.contains("black")) advice = tips.optString("black", advice);
+                else if (lowerSoil.contains("sandy")) advice = tips.optString("sandy", advice);
+                else if (lowerSoil.contains("loam"))  advice = tips.optString("loam", advice);
+            }
+
+            addMessage("<b>" + getString(R.string.offline_mode_label) + "</b><br>" + advice, ChatMessage.Type.BOT);
         } catch (Exception e) {
+            android.util.Log.e("TipActivity", "Failed to load offline tips", e);
             addMessage("Offline tips unavailable.", ChatMessage.Type.BOT);
         }
     }
@@ -376,7 +436,12 @@ public class TipActivity extends BaseActivity {
 
     private void callGroqWhisperAPI(File audioFile) {
         setLoading(true);
-        String rawKey = BuildConfig.GROQ_API_KEY.replace("\"", "").trim();
+        String rawKey = BuildConfig.GROQ_API_KEY;
+        if (rawKey == null || rawKey.isEmpty()) {
+            setLoading(false);
+            return;
+        }
+        rawKey = rawKey.replace("\"", "").trim();
 
         RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("file", audioFile.getName(), RequestBody.create(audioFile, MediaType.get("audio/mp4")))
@@ -393,6 +458,10 @@ public class TipActivity extends BaseActivity {
             }
             @Override public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 try {
+                    if (response.body() == null) {
+                        runOnUiThread(() -> setLoading(false));
+                        return;
+                    }
                     JSONObject json = new JSONObject(response.body().string());
                     String text = json.getString("text");
                     runOnUiThread(() -> {

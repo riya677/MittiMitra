@@ -37,11 +37,13 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-
-
 public class RecommendationActivity extends BaseActivity implements TextToSpeech.OnInitListener {
+
+    private final ExecutorService dbExecutor = Executors.newSingleThreadExecutor();
 
     private TextView tvName, tvPhone, tvEmail, tvLocation, tvDate;
     private TextView valN, ratN, valP, ratP, valK, ratK, valPh, ratPh;
@@ -109,7 +111,7 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String email = user.getEmail();
-            tvEmail.setText((email != null && !email.isEmpty()) ? email : "No Email Linked");
+            tvEmail.setText((email != null && !email.isEmpty()) ? email : getString(R.string.no_email_linked));
 
             db.collection("farmers").document(user.getUid()).get()
                     .addOnSuccessListener(doc -> {
@@ -127,7 +129,7 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
     }
 
     private void loadAnalysisData() {
-        new Thread(() -> {
+        dbExecutor.execute(() -> {
             SoilAnalysis analysis;
             if (analysisId != -1) analysis = MittiMitraDatabase.getDatabase(this).soilDao().getAnalysisById(analysisId);
             else analysis = MittiMitraDatabase.getDatabase(this).soilDao().getLatestReport();
@@ -137,12 +139,12 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
                 runOnUiThread(() -> populateForm(finalAnalysis));
             } else {
                 runOnUiThread(() -> {
-                    Toast.makeText(this, "No Report Found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.msg_no_report_found), Toast.LENGTH_SHORT).show();
                     // Set current date anyway so UI doesn't look broken
                     tvDate.setText(new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date()));
                 });
             }
-        }).start();
+        });
     }
 
     private void populateForm(SoilAnalysis analysis) {
@@ -165,9 +167,9 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
             setRow(valK, ratK, k, 108, 280, "kg/ha");
 
             valPh.setText(String.format("%.1f", ph));
-            if(ph < 6.0) { ratPh.setText("ACIDIC"); ratPh.setTextColor(Color.RED); }
-            else if(ph > 7.5) { ratPh.setText("ALKALINE"); ratPh.setTextColor(Color.BLUE); }
-            else { ratPh.setText("NEUTRAL"); ratPh.setTextColor(Color.parseColor("#2E7D32")); }
+            if(ph < 6.0) { ratPh.setText(R.string.soil_ph_acidic); ratPh.setTextColor(Color.RED); }
+            else if(ph > 7.5) { ratPh.setText(R.string.soil_ph_alkaline); ratPh.setTextColor(Color.BLUE); }
+            else { ratPh.setText(R.string.soil_ph_neutral); ratPh.setTextColor(Color.parseColor("#2E7D32")); }
 
             // --- CALCULATE SOIL HEALTH SCORE ---
             // Score Logic: 100 is perfect (pH 6.5-7.5). Deduct 15 points for every 1.0 deviation from 7.0
@@ -179,7 +181,7 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
             int statusColor;
             
             if (healthScore >= 80) {
-                statusText = "Excellent Condition 🌿";
+                statusText = getString(R.string.health_excellent);
                 statusColor = Color.parseColor("#2E7D32"); // Green
             } else if (healthScore >= 60) {
                 statusText = getString(R.string.health_good);
@@ -212,7 +214,7 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
 
         } catch (Exception e) {
             android.util.Log.e("RecommendationActivity", "Error parsing soil report", e);
-            tvAiAdvice.setText("Error loading report data. Please try a new scan.");
+            tvAiAdvice.setText(R.string.rec_error_loading);
         }
     }
 
@@ -308,16 +310,19 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
                                      btnDownload.setVisibility(View.VISIBLE);
                                  });
                              } catch (Exception e) {
-                                 runOnUiThread(() -> tvAiAdvice.setText("Error formatting advisory."));
+                                 android.util.Log.e("RecommendationActivity", "Error formatting advisory response", e);
+                                 runOnUiThread(() -> tvAiAdvice.setText(R.string.rec_error_formatting));
                              }
                          } else {
-                             runOnUiThread(() -> tvAiAdvice.setText("Advisory Generation Failed: " + response.code()));
+                             int code = response.code();
+                             runOnUiThread(() -> tvAiAdvice.setText(getString(R.string.rec_error_server_code, code)));
                          }
                     }
 
                     @Override
                     public void onFailure(@NonNull retrofit2.Call<com.google.gson.JsonObject> call, @NonNull Throwable t) {
-                        runOnUiThread(() -> tvAiAdvice.setText("Server Connection Failed."));
+                        android.util.Log.e("RecommendationActivity", "Advisory API connection failed", t);
+                        runOnUiThread(() -> tvAiAdvice.setText(R.string.rec_error_connection));
                     }
                 });
     }
@@ -327,8 +332,8 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
         html = html.replaceAll("####\\s*(.*)", "<br><b>$1</b><br>");
         html = html.replaceAll("###\\s*(.*)", "<br><b>$1</b><br>");
         html = html.replaceAll("##\\s*(.*)", "<br><b>$1</b><br>");
-        html = html.replaceAll("^-\\s+(.*)", "窶｢ $1<br>");
-        html = html.replaceAll("\\n-\\s+(.*)", "<br>窶｢ $1");
+        html = html.replaceAll("^-\\s+(.*)", "• $1<br>");
+        html = html.replaceAll("\\n-\\s+(.*)", "<br>• $1");
         html = html.replace("\n", "<br>");
         return Html.fromHtml(html, Html.FROM_HTML_MODE_COMPACT);
     }
@@ -353,15 +358,15 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
 
             Uri uri = getContentResolver().insert(MediaStore.Files.getContentUri("external"), values);
             if (uri != null) {
-                OutputStream out = getContentResolver().openOutputStream(uri);
-                document.writeTo(out);
-                out.close();
+                try (OutputStream out = getContentResolver().openOutputStream(uri)) {
+                    document.writeTo(out);
+                }
                 savedPdfUri = uri; // Store for sharing
                 
                 // Offer to share
                 new androidx.appcompat.app.AlertDialog.Builder(this)
                     .setTitle(R.string.share_report)
-                    .setMessage("PDF saved! Would you like to share it?")
+                    .setMessage(R.string.msg_pdf_saved_share)
                     .setPositiveButton(R.string.share_via, (dialog, which) -> shareReport())
                     .setNegativeButton(R.string.cancel, null)
                     .show();
@@ -369,13 +374,13 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
             document.close();
         } catch (Exception e) {
             android.util.Log.e("RecommendationActivity", "PDF save error", e);
-            Toast.makeText(this, "Error saving PDF", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.error_saving_pdf), Toast.LENGTH_SHORT).show();
         }
     }
 
     private void shareReport() {
         if (savedPdfUri == null) {
-            Toast.makeText(this, "No report to share. Save it first.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.no_report_to_share), Toast.LENGTH_SHORT).show();
             return;
         }
         
@@ -398,6 +403,7 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0, 1, 0, "Read Aloud").setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         menu.add(0, 2, 1, R.string.share_report).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        menu.add(0, 3, 2, R.string.share_as_image).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         return true;
     }
 
@@ -415,11 +421,50 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
             if (savedPdfUri != null) {
                 shareReport();
             } else {
-                Toast.makeText(this, "Download the report first", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.msg_download_first, Toast.LENGTH_SHORT).show();
             }
             return true;
         }
+        if (item.getItemId() == 3) {
+            shareAsImage();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void shareAsImage() {
+        try {
+            // Draw the soil health card onto a Bitmap (same logic as PDF drawAgriPass)
+            android.graphics.Bitmap bmp = android.graphics.Bitmap.createBitmap(595, 842,
+                    android.graphics.Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bmp);
+            drawAgriPass(canvas);
+
+            // Save bitmap to cache dir
+            java.io.File exportsDir = new java.io.File(getCacheDir(), "exports");
+            if (!exportsDir.exists()) exportsDir.mkdirs();
+            java.io.File imageFile = new java.io.File(exportsDir, "soil_card.jpg");
+            try (java.io.FileOutputStream fos = new java.io.FileOutputStream(imageFile)) {
+                bmp.compress(android.graphics.Bitmap.CompressFormat.JPEG, 95, fos);
+                fos.flush();
+            }
+            bmp.recycle();
+
+            // Get FileProvider URI
+            android.net.Uri imageUri = androidx.core.content.FileProvider.getUriForFile(
+                    this, getApplicationContext().getPackageName() + ".provider", imageFile);
+
+            // Share via ACTION_SEND
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("image/jpeg");
+            shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_image_title));
+            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.share_image_title)));
+        } catch (Exception e) {
+            android.util.Log.e("RecommendationActivity", "Failed to share as image", e);
+            Toast.makeText(this, getString(R.string.export_failed), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void drawAgriPass(Canvas canvas) {
@@ -545,7 +590,8 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
 
     @Override
     protected void onDestroy() {
-        if(tts != null) tts.shutdown();
+        if (tts != null) tts.shutdown();
+        dbExecutor.shutdownNow();
         super.onDestroy();
     }
 }

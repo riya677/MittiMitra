@@ -9,13 +9,16 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
- * Account Security screen - shows linked accounts and allows users to link additional login methods
+ * Account Security screen - shows linked accounts and allows users to link additional login methods.
+ * Phone display checks both Firebase Auth providers AND the Firestore profile phone field.
  */
 public class AccountSecurityActivity extends BaseActivity {
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
     private TextView tvEmail, tvPhone, tvProvider;
     private MaterialButton btnLinkGoogle, btnLinkPhone;
 
@@ -24,7 +27,6 @@ public class AccountSecurityActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_security);
 
-        // Setup toolbar
         Toolbar toolbar = findViewById(R.id.toolbar_account);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -33,7 +35,8 @@ public class AccountSecurityActivity extends BaseActivity {
         }
 
         mAuth = FirebaseAuth.getInstance();
-        
+        db = FirebaseFirestore.getInstance();
+
         tvEmail = findViewById(R.id.tv_account_email);
         tvPhone = findViewById(R.id.tv_account_phone);
         tvProvider = findViewById(R.id.tv_account_provider);
@@ -41,7 +44,7 @@ public class AccountSecurityActivity extends BaseActivity {
         btnLinkPhone = findViewById(R.id.btn_link_phone);
 
         loadAccountInfo();
-        
+
         btnLinkGoogle.setOnClickListener(v -> linkGoogleAccount());
         btnLinkPhone.setOnClickListener(v -> linkPhoneNumber());
     }
@@ -51,9 +54,7 @@ public class AccountSecurityActivity extends BaseActivity {
         super.onResume();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            user.reload().addOnCompleteListener(task -> {
-                loadAccountInfo();
-            });
+            user.reload().addOnCompleteListener(task -> loadAccountInfo());
         }
     }
 
@@ -65,18 +66,14 @@ public class AccountSecurityActivity extends BaseActivity {
         }
 
         String email = user.getEmail();
-        String phone = user.getPhoneNumber();
+        String authPhone = user.getPhoneNumber();
         boolean isGoogleLinked = false;
         boolean isPhoneLinked = false;
-        boolean isEmailLinked = false;
 
         StringBuilder providersBuilder = new StringBuilder();
-        
-        // Iterate through all linked providers to get accurate status
+
         for (com.google.firebase.auth.UserInfo profile : user.getProviderData()) {
             String providerId = profile.getProviderId();
-            
-            // Check provider type and fallback to profile data if main user data is missing
             switch (providerId) {
                 case "google.com":
                     isGoogleLinked = true;
@@ -84,36 +81,26 @@ public class AccountSecurityActivity extends BaseActivity {
                     break;
                 case "phone":
                     isPhoneLinked = true;
-                    if (phone == null || phone.isEmpty()) phone = profile.getPhoneNumber();
+                    if (authPhone == null || authPhone.isEmpty()) authPhone = profile.getPhoneNumber();
                     break;
                 case "password":
-                    isEmailLinked = true;
                     if (email == null || email.isEmpty()) email = profile.getEmail();
                     break;
             }
-
-            // Build display string
             if (!providerId.equals("firebase")) {
                 if (providersBuilder.length() > 0) providersBuilder.append(", ");
                 switch (providerId) {
                     case "google.com": providersBuilder.append(getString(R.string.provider_google)); break;
-                    case "phone": providersBuilder.append(getString(R.string.provider_phone)); break;
-                    case "password": providersBuilder.append(getString(R.string.provider_email)); break;
-                    default: providersBuilder.append(providerId); break;
+                    case "phone":     providersBuilder.append(getString(R.string.provider_phone));  break;
+                    case "password":  providersBuilder.append(getString(R.string.provider_email));  break;
+                    default:          providersBuilder.append(providerId); break;
                 }
             }
         }
 
-        // 1. Set Email Text
         tvEmail.setText(email != null && !email.isEmpty() ? email : getString(R.string.status_not_linked));
-        
-        // 2. Set Phone Text
-        tvPhone.setText(phone != null && !phone.isEmpty() ? phone : getString(R.string.status_not_linked));
-        
-        // 3. Set Provider Text
         tvProvider.setText(providersBuilder.length() > 0 ? providersBuilder.toString() : getString(R.string.status_unknown));
 
-        // 4. Update Google Button State
         if (isGoogleLinked) {
             btnLinkGoogle.setEnabled(false);
             btnLinkGoogle.setText(R.string.status_google_linked);
@@ -122,24 +109,45 @@ public class AccountSecurityActivity extends BaseActivity {
             btnLinkGoogle.setText(R.string.link_google_account);
         }
 
-        // 5. Update Phone Button State
-        if (isPhoneLinked) {
+        if (isPhoneLinked && authPhone != null && !authPhone.isEmpty()) {
+            // Phone is a real Firebase Auth provider
+            tvPhone.setText(authPhone);
             btnLinkPhone.setEnabled(false);
             btnLinkPhone.setText(R.string.status_phone_linked);
         } else {
+            // Not auth-linked — check Firestore profile for a saved phone number
+            tvPhone.setText(getString(R.string.status_not_linked));
             btnLinkPhone.setEnabled(true);
             btnLinkPhone.setText(R.string.link_phone_number);
+            loadPhoneFromFirestore(user.getUid());
         }
     }
 
+    /**
+     * Fetches the phone number saved in the user's Firestore profile.
+     * This covers users who saved their phone via Profile but haven't done OTP auth linking.
+     */
+    private void loadPhoneFromFirestore(String uid) {
+        db.collection("farmers").document(uid).get()
+                .addOnSuccessListener(doc -> {
+                    if (doc.exists()) {
+                        String savedPhone = doc.getString("phone");
+                        if (savedPhone != null && !savedPhone.isEmpty()) {
+                            tvPhone.setText(savedPhone);
+                            btnLinkPhone.setEnabled(false);
+                            btnLinkPhone.setText(R.string.status_phone_saved);
+                        }
+                    }
+                });
+        // On failure, leave the UI as-is (shows "Not linked")
+    }
+
     private void linkGoogleAccount() {
-        Toast.makeText(this, "Google account linking will be available soon", Toast.LENGTH_SHORT).show();
-        // Future: Implement Google credential linking using GoogleSignInClient
+        Toast.makeText(this, getString(R.string.account_link_soon), Toast.LENGTH_SHORT).show();
     }
 
     private void linkPhoneNumber() {
-        Toast.makeText(this, "Phone linking will be available soon", Toast.LENGTH_SHORT).show();
-        // Future: Implement phone linking using PhoneAuthProvider
+        Toast.makeText(this, getString(R.string.account_link_soon), Toast.LENGTH_SHORT).show();
     }
 
     @Override

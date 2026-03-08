@@ -4,37 +4,44 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.HapticFeedbackConstants;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import com.google.firebase.auth.FirebaseUser;
+
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseUser;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.SoilAnalysis;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class HistoryActivity extends BaseActivity {
 
     private RecyclerView recyclerHistory;
     private SwipeRefreshLayout swipeRefreshLayout;
     private TextView tvEmpty;
+    private EditText etSearch;
+    private ChipGroup chipGroupFilter;
     private List<SoilAnalysis> historyList = new ArrayList<>();
     private RecentAnalysisAdapter adapter;
+    private final ExecutorService dbExecutor = Executors.newSingleThreadExecutor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +71,40 @@ public class HistoryActivity extends BaseActivity {
             setupSwipeToDelete();
             loadHistory();
         }
+
+        // Search bar
+        etSearch = findViewById(R.id.et_search_history);
+        if (etSearch != null) {
+            etSearch.addTextChangedListener(new TextWatcher() {
+                @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (adapter != null) adapter.filterByText(s.toString());
+                }
+            });
+        }
+
+        // Date filter chips
+        chipGroupFilter = findViewById(R.id.chip_group_filter);
+        if (chipGroupFilter != null) {
+            chipGroupFilter.setOnCheckedChangeListener((group, checkedId) -> {
+                long since = 0L;
+                if (checkedId == R.id.chip_7days) {
+                    since = System.currentTimeMillis() - (7L * 24 * 60 * 60 * 1000);
+                } else if (checkedId == R.id.chip_30days) {
+                    since = System.currentTimeMillis() - (30L * 24 * 60 * 60 * 1000);
+                }
+                loadHistorySince(since);
+            });
+        }
     }
 
     private void loadHistory() {
         FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) return;
 
-        new Thread(() -> {
+        dbExecutor.execute(() -> {
             MittiMitraDatabase db = MittiMitraDatabase.getDatabase(this);
 
             // 1. Soil Analysis
@@ -136,7 +170,46 @@ public class HistoryActivity extends BaseActivity {
                     }
                 }
             });
-        }).start();
+        });
+    }
+
+    /**
+     * Reload only the soil analysis section for the given date cutoff.
+     * since == 0 means "all time". Plants and crop sections are unaffected.
+     */
+    private void loadHistorySince(long since) {
+        FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+
+        dbExecutor.execute(() -> {
+            MittiMitraDatabase db = MittiMitraDatabase.getDatabase(this);
+            List<SoilAnalysis> soilHistory = (since > 0)
+                    ? db.soilDao().getAnalysisSince(user.getUid(), since)
+                    : db.soilDao().getAnalysisForUser(user.getUid());
+            final List<SoilAnalysis> result =
+                    (soilHistory != null) ? soilHistory : new ArrayList<>();
+
+            runOnUiThread(() -> {
+                historyList.clear();
+                historyList.addAll(result);
+
+                if (adapter != null) {
+                    adapter.updateList(result);
+                    // Re-apply any active text search
+                    if (etSearch != null && etSearch.getText() != null) {
+                        adapter.filterByText(etSearch.getText().toString());
+                    }
+                } else if (!result.isEmpty()) {
+                    adapter = new RecentAnalysisAdapter(new ArrayList<>(result));
+                    recyclerHistory.setAdapter(adapter);
+                }
+
+                TextView tvEmptySoil = findViewById(R.id.tv_empty_soil);
+                if (tvEmptySoil != null) {
+                    tvEmptySoil.setVisibility(result.isEmpty() ? View.VISIBLE : View.GONE);
+                }
+            });
+        });
     }
 
     private void setupSwipeToDelete() {
@@ -150,27 +223,25 @@ public class HistoryActivity extends BaseActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                // Haptic feedback for delete action
                 viewHolder.itemView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-                
+
                 int position = viewHolder.getAdapterPosition();
-                SoilAnalysis deletedItem = historyList.get(position);
-                
-                // Remove from list immediately (better UX)
-                historyList.remove(position);
-                adapter.notifyItemRemoved(position);
-                
+                if (position < 0 || adapter == null) return;
+
+                SoilAnalysis deletedItem = adapter.getItem(position);
+
+                // Remove from adapter display list and keep historyList in sync
+                historyList.remove(deletedItem);
+                adapter.removeItem(position);
+
                 if (historyList.isEmpty() && tvEmpty != null) {
                     tvEmpty.setVisibility(View.VISIBLE);
                 }
-                
-                // Show Snackbar with Undo option
+
                 Snackbar snackbar = Snackbar.make(recyclerHistory, R.string.record_deleted, Snackbar.LENGTH_LONG);
                 snackbar.setAction(R.string.undo, v -> {
-                    // Restore the item
-                    historyList.add(position, deletedItem);
-                    adapter.notifyItemInserted(position);
-                    recyclerHistory.scrollToPosition(position);
+                    historyList.add(deletedItem);
+                    adapter.restoreItem(deletedItem);
                     if (tvEmpty != null) tvEmpty.setVisibility(View.GONE);
                 });
                 snackbar.addCallback(new Snackbar.Callback() {
@@ -178,11 +249,10 @@ public class HistoryActivity extends BaseActivity {
                     public void onDismissed(Snackbar snackbar, int event) {
                         if (event != DISMISS_EVENT_ACTION) {
                             // Actually delete from database only if Undo wasn't clicked
-                            new Thread(() -> {
+                            dbExecutor.execute(() ->
                                 MittiMitraDatabase.getDatabase(HistoryActivity.this)
                                     .soilDao()
-                                    .deleteAnalysis(deletedItem);
-                            }).start();
+                                    .deleteAnalysis(deletedItem));
                         }
                     }
                 });
@@ -235,7 +305,7 @@ public class HistoryActivity extends BaseActivity {
             return;
         }
 
-        new Thread(() -> {
+        dbExecutor.execute(() -> {
             try {
                 java.io.File exportDir = new java.io.File(getExternalFilesDir(null), "exports");
                 if (!exportDir.exists()) exportDir.mkdirs();
@@ -243,29 +313,29 @@ public class HistoryActivity extends BaseActivity {
                 String fileName = "MittiMitra_History_" + new java.text.SimpleDateFormat("yyyyMMdd_HHmmss", java.util.Locale.getDefault()).format(new java.util.Date()) + ".csv";
                 java.io.File csvFile = new java.io.File(exportDir, fileName);
 
-                java.io.FileWriter writer = new java.io.FileWriter(csvFile);
-                writer.write("Date,Location,Nitrogen,Phosphorus,Potassium,pH,Notes\n");
+                // Keys match ScanActivity report: "N", "P", "K", "pH", "location"
+                try (java.io.FileWriter writer = new java.io.FileWriter(csvFile)) {
+                    writer.write("Date,Location,Nitrogen,Phosphorus,Potassium,pH,Notes\n");
 
-                for (SoilAnalysis analysis : historyList) {
-                    String date = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(new java.util.Date(analysis.timestamp));
-                    // Parse JSON for soil data
-                    String location = "N/A";
-                    String n = "N/A", p = "N/A", k = "N/A", ph = "N/A";
-                    try {
-                        org.json.JSONObject json = new org.json.JSONObject(analysis.soilReportJson);
-                        if (json.has("location")) location = json.getString("location");
-                        if (json.has("nitrogen")) n = json.getString("nitrogen");
-                        if (json.has("phosphorus")) p = json.getString("phosphorus");
-                        if (json.has("potassium")) k = json.getString("potassium");
-                        if (json.has("ph")) ph = json.getString("ph");
-                    } catch (Exception ignored) {}
-                    
-                    writer.write(String.format("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"\"\n", date, location, n, p, k, ph));
+                    for (SoilAnalysis analysis : historyList) {
+                        String date = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(new java.util.Date(analysis.timestamp));
+                        String location = "N/A";
+                        String n = "N/A", p = "N/A", k = "N/A", ph = "N/A";
+                        try {
+                            org.json.JSONObject json = new org.json.JSONObject(analysis.soilReportJson);
+                            if (json.has("location")) location = json.getString("location");
+                            if (json.has("N"))        n        = json.getString("N");
+                            if (json.has("P"))        p        = json.getString("P");
+                            if (json.has("K"))        k        = json.getString("K");
+                            if (json.has("pH"))       ph       = json.getString("pH");
+                        } catch (Exception e) {
+                            android.util.Log.e("HistoryActivity", "Failed to parse soil JSON for id=" + analysis.analysisId, e);
+                        }
+                        writer.write(String.format("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"\"\n", date, location, n, p, k, ph));
+                    }
                 }
-                writer.close();
 
                 runOnUiThread(() -> {
-                    // Share the file
                     android.net.Uri uri = androidx.core.content.FileProvider.getUriForFile(this, getPackageName() + ".provider", csvFile);
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
                     shareIntent.setType("text/csv");
@@ -274,9 +344,16 @@ public class HistoryActivity extends BaseActivity {
                     startActivity(Intent.createChooser(shareIntent, getString(R.string.export_csv)));
                 });
             } catch (Exception e) {
-                runOnUiThread(() -> Toast.makeText(this, "Export failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                android.util.Log.e("HistoryActivity", "CSV export failed", e);
+                runOnUiThread(() -> Toast.makeText(this, getString(R.string.export_failed), Toast.LENGTH_SHORT).show());
             }
-        }).start();
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbExecutor.shutdownNow();
     }
 
     private void startCompareMode() {

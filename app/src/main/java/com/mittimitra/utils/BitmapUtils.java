@@ -136,12 +136,10 @@ public final class BitmapUtils {
      */
     @Nullable
     public static String saveBitmapToInternalStorage(@NonNull Context context, @NonNull Bitmap bitmap, @NonNull String fileName) {
-        try {
-            java.io.File file = new java.io.File(context.getFilesDir(), fileName);
-            java.io.FileOutputStream outputStream = new java.io.FileOutputStream(file);
+        java.io.File file = new java.io.File(context.getFilesDir(), fileName);
+        try (java.io.FileOutputStream outputStream = new java.io.FileOutputStream(file)) {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);
             outputStream.flush();
-            outputStream.close();
             return file.getAbsolutePath();
         } catch (IOException e) {
             ErrorHandler.logError(TAG, "Failed to save bitmap locally", e);

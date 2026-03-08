@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class SettingsActivity extends BaseActivity {
 
         // 2. INIT RECYCLERVIEW
         recyclerView = findViewById(R.id.recycler_view_settings);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -94,7 +96,7 @@ public class SettingsActivity extends BaseActivity {
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
                     shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message));
-                    startActivity(Intent.createChooser(shareIntent, "Share via"));
+                    startActivity(Intent.createChooser(shareIntent, getString(R.string.share_via)));
                     break;
             }
         });

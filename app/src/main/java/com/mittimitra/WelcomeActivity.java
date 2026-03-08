@@ -11,9 +11,6 @@ public class WelcomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        // Initialize Session Manager just in case
-        new SessionManager(getApplicationContext());
-
         MaterialButton btnGoToLogin = findViewById(R.id.btn_go_to_login);
         MaterialButton btnGoToSignup = findViewById(R.id.btn_go_to_signup);
 

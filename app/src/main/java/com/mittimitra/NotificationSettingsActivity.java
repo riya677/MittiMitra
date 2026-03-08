@@ -84,14 +84,14 @@ public class NotificationSettingsActivity extends BaseActivity {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(android.R.drawable.ic_dialog_info) // Replace with R.drawable.ic_notification if you have one
-                .setContentTitle("Mitti Mitra Alert")
-                .setContentText("Heavy rain expected in your district tomorrow. Please cover your harvest!")
+                .setContentTitle(getString(R.string.notif_demo_title))
+                .setContentText(getString(R.string.notif_demo_text))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true);
 
         // Show the notification
         manager.notify(999, builder.build());
-        Toast.makeText(this, "Test Notification Sent!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.test_notif_sent, Toast.LENGTH_SHORT).show();
     }
 
     @Override

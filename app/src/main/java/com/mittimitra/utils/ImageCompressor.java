@@ -62,21 +62,22 @@ public class ImageCompressor {
             // 1. Decode bounds only first
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
-            
-            InputStream is = context.getContentResolver().openInputStream(imageUri);
-            if (is == null) return null;
-            BitmapFactory.decodeStream(is, null, options);
-            is.close();
+
+            try (InputStream is = context.getContentResolver().openInputStream(imageUri)) {
+                if (is == null) return null;
+                BitmapFactory.decodeStream(is, null, options);
+            }
 
             // 2. Calculate sample size
             options.inSampleSize = calculateInSampleSize(options, maxDimension, maxDimension);
             options.inJustDecodeBounds = false;
 
             // 3. Decode with sampling
-            is = context.getContentResolver().openInputStream(imageUri);
-            if (is == null) return null;
-            Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);
-            is.close();
+            Bitmap bitmap;
+            try (InputStream is = context.getContentResolver().openInputStream(imageUri)) {
+                if (is == null) return null;
+                bitmap = BitmapFactory.decodeStream(is, null, options);
+            }
 
             if (bitmap == null) return null;
 

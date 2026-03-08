@@ -28,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -60,6 +62,7 @@ public class CropCalendarActivity extends AppCompatActivity {
     };
 
     private OkHttpClient httpClient;
+    private final ExecutorService dbExecutor = Executors.newSingleThreadExecutor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,21 +192,24 @@ public class CropCalendarActivity extends AppCompatActivity {
                         runOnUiThread(() -> parseAndDisplaySchedule(content, cropName));
                     } catch (Exception e) {
                         Log.e(TAG, "Groq Parse Error", e);
-                        runOnUiThread(() -> showError("AI Processing Error"));
+                        runOnUiThread(() -> showError(getString(R.string.crop_error_ai)));
                     }
                 } else {
-                    try {
-                        String err = response.errorBody() != null ? response.errorBody().string() : "Unknown";
-                        Log.e(TAG, "Groq API Error: " + err);
-                    } catch (IOException e) { e.printStackTrace(); }
-                    runOnUiThread(() -> showError("AI Service Error: " + response.code()));
+                    if (response.errorBody() != null) {
+                        try (okhttp3.ResponseBody errorBody = response.errorBody()) {
+                            Log.e(TAG, "Groq API Error: " + errorBody.string());
+                        } catch (IOException e) {
+                            Log.e(TAG, "Error reading error body", e);
+                        }
+                    }
+                    runOnUiThread(() -> showError(getString(R.string.crop_error_service)));
                 }
             }
 
             @Override
             public void onFailure(retrofit2.Call<JsonObject> call, Throwable t) {
                 Log.e(TAG, "Network Failure", t);
-                runOnUiThread(() -> showError("Network Error: " + t.getMessage()));
+                runOnUiThread(() -> showError(getString(R.string.crop_error_network)));
             }
         });
     }
@@ -272,17 +278,17 @@ public class CropCalendarActivity extends AppCompatActivity {
         // SAVE TO DATABASE
         FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            new Thread(() -> {
+            dbExecutor.execute(() -> {
                 com.mittimitra.database.entity.CropSchedule entry = new com.mittimitra.database.entity.CropSchedule();
                 entry.userId = user.getUid();
                 entry.cropName = cropName;
                 entry.fullJson = content; // Save raw JSON content
                 entry.timestamp = System.currentTimeMillis();
-                
+
                 // Extract basic info again for easy access (redundant parsing but safer separation)
                 try {
                     String cleaned = content.trim();
-                     if (cleaned.contains("```json")) {
+                    if (cleaned.contains("```json")) {
                         cleaned = cleaned.split("```json")[1].split("```")[0];
                     } else if (cleaned.contains("```")) {
                         cleaned = cleaned.split("```")[1].split("```")[0];
@@ -291,13 +297,14 @@ public class CropCalendarActivity extends AppCompatActivity {
                     entry.plantingDate = schedule.optString("best_planting_month", "N/A");
                     entry.harvestDate = schedule.optString("best_harvest_month", "N/A");
                 } catch (Exception e) {
+                    Log.e(TAG, "Error parsing schedule for DB", e);
                     entry.plantingDate = "N/A";
                     entry.harvestDate = "N/A";
                 }
 
                 com.mittimitra.database.MittiMitraDatabase.getDatabase(this).cropDao().insert(entry);
                 Log.d(TAG, "Schedule saved to DB");
-            }).start();
+            });
         }
 
     }
@@ -306,6 +313,12 @@ public class CropCalendarActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         btnGenerate.setEnabled(true);
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbExecutor.shutdownNow();
     }
 
     @Override

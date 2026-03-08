@@ -19,26 +19,19 @@ public class SoilDataManager {
         SoilProfile profile = new SoilProfile();
         if (districtName == null) return profile;
 
-        try {
-            // Ensure "Soil data.csv" is in src/main/assets/
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(context.getAssets().open("Soil data.csv"))
-            );
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(context.getAssets().open("Soil data.csv")))) {
 
             String line;
             reader.readLine(); // Skip header
 
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split(",");
-
                 if (tokens.length >= 5) {
                     String csvDistrict = tokens[0].trim();
-
-                    // Robust Matching
                     if (csvDistrict.equalsIgnoreCase(districtName) ||
                             districtName.toLowerCase().contains(csvDistrict.toLowerCase()) ||
                             csvDistrict.toLowerCase().contains(districtName.toLowerCase())) {
-
                         try {
                             profile.N = Double.parseDouble(tokens[1]);
                             profile.P = Double.parseDouble(tokens[2]);
@@ -47,13 +40,14 @@ public class SoilDataManager {
                             profile.isFound = true;
                             break;
                         } catch (NumberFormatException e) {
-                            Log.e("SoilData", "Parse error for " + csvDistrict);
+                            Log.e("SoilData", "Parse error for district: " + csvDistrict, e);
                         }
                     }
                 }
             }
-            reader.close();
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            Log.e("SoilData", "Failed to load district soil data", e);
+        }
         return profile;
     }
 }
