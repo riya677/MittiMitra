@@ -150,7 +150,7 @@ async function callGeminiVision(imageDataUrl, systemPrompt, userPromptText) {
     generationConfig: {temperature: 0.1, maxOutputTokens: 900},
   };
 
-  const model = "gemini-2.0-flash";
+  const model = "gemini-2.5-flash-preview-04-17";
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
   const response = await fetch(url, {
     method: "POST",
