@@ -34,7 +34,7 @@ public class SignupActivity extends BaseActivity {
 
     private LinearLayout layoutStep1;
     private LinearLayout layoutStep2;
-    private TextInputEditText etName, etEmail, etPhone;
+    private TextInputEditText etName, etEmail, etPhone, etPassword;
     private TextInputEditText etOtp;
     private TextView tvOtpSentTo, tvResend, tvChangeNumber;
     private ProgressBar progressBar;
@@ -54,6 +54,7 @@ public class SignupActivity extends BaseActivity {
         layoutStep2 = findViewById(R.id.layout_signup_step2);
         etName = findViewById(R.id.et_signup_name);
         etEmail = findViewById(R.id.et_signup_email);
+        etPassword = findViewById(R.id.et_signup_password);
         etPhone = findViewById(R.id.et_signup_phone);
         etOtp = findViewById(R.id.et_signup_otp);
         tvOtpSentTo = findViewById(R.id.tv_otp_sent_to);
@@ -168,6 +169,17 @@ public class SignupActivity extends BaseActivity {
             }
             boolean isNew = task.getResult().getAdditionalUserInfo() != null
                     && Boolean.TRUE.equals(task.getResult().getAdditionalUserInfo().isNewUser());
+
+            String email = text(etEmail);
+            String password = text(etPassword);
+
+            if (!email.isEmpty() && password.length() >= 6) {
+                com.google.firebase.auth.AuthCredential emailCred =
+                        com.google.firebase.auth.EmailAuthProvider.getCredential(email, password);
+                user.linkWithCredential(emailCred)
+                        .addOnSuccessListener(r -> Log.d(TAG, "Email credential linked"))
+                        .addOnFailureListener(e -> Log.w(TAG, "Email credential link failed (may already exist)", e));
+            }
 
             if (isNew) {
                 createProfile(user);

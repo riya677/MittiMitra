@@ -48,10 +48,11 @@ public class LoginActivity extends BaseActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private GoogleSignInClient mGoogleSignInClient;
-    private EditText etPhone, etOtp;
-    private LinearLayout layoutOtpVerify;
+    private EditText etPhone, etOtp, etLoginEmail, etLoginPassword;
+    private LinearLayout layoutOtpVerify, layoutPhoneSection, layoutEmailLogin;
     private ProgressBar progressBar;
     private String mVerificationId;
+    private boolean isEmailMode = false;
 
     private String prefilledName;
     private String prefilledEmail;
@@ -69,12 +70,28 @@ public class LoginActivity extends BaseActivity {
         etPhone = findViewById(R.id.et_phone_auth);
         etOtp = findViewById(R.id.et_otp_code);
         layoutOtpVerify = findViewById(R.id.layout_otp_verify);
+        layoutPhoneSection = findViewById(R.id.layout_phone_section);
+        layoutEmailLogin = findViewById(R.id.layout_email_login);
+        etLoginEmail = layoutEmailLogin.findViewById(R.id.et_login_email);
+        etLoginPassword = layoutEmailLogin.findViewById(R.id.et_login_password);
         progressBar = findViewById(R.id.progress_login);
         TextView tvForgotPass = findViewById(R.id.tv_forgot_password);
+        TextView tvToggle = findViewById(R.id.tv_toggle_email_login);
 
         findViewById(R.id.btn_google_signin).setOnClickListener(v -> signInWithGoogle());
         findViewById(R.id.btn_send_otp).setOnClickListener(v -> sendOtp());
         findViewById(R.id.btn_verify_otp).setOnClickListener(v -> verifyOtp());
+        findViewById(R.id.btn_email_login).setOnClickListener(v -> signInWithEmail());
+
+        tvToggle.setOnClickListener(v -> {
+            isEmailMode = !isEmailMode;
+            layoutPhoneSection.setVisibility(isEmailMode ? View.GONE : View.VISIBLE);
+            layoutOtpVerify.setVisibility(View.GONE);
+            layoutEmailLogin.setVisibility(isEmailMode ? View.VISIBLE : View.GONE);
+            tvToggle.setText(isEmailMode
+                    ? getString(R.string.login_use_phone_instead)
+                    : getString(R.string.login_use_email_instead));
+        });
 
         tvForgotPass.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class)));
 
@@ -191,6 +208,31 @@ public class LoginActivity extends BaseActivity {
         progressBar.setVisibility(View.VISIBLE);
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
         signInWithCredential(credential);
+    }
+
+    private void signInWithEmail() {
+        String email = etLoginEmail.getText() != null ? etLoginEmail.getText().toString().trim() : "";
+        String password = etLoginPassword.getText() != null ? etLoginPassword.getText().toString().trim() : "";
+        if (!com.mittimitra.utils.ValidationUtils.isValidEmail(email)) {
+            etLoginEmail.setError(getString(R.string.signup_email_invalid));
+            etLoginEmail.requestFocus();
+            return;
+        }
+        if (password.isEmpty()) {
+            etLoginPassword.setError(getString(R.string.login_hint_password));
+            etLoginPassword.requestFocus();
+            return;
+        }
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+                checkAndCreateUser(mAuth.getCurrentUser());
+            } else {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(this, getString(R.string.login_email_failed), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Email login failed", task.getException());
+            }
+        });
     }
 
     private void signInWithCredential(PhoneAuthCredential credential) {

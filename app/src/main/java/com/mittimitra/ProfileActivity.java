@@ -545,16 +545,16 @@ public class ProfileActivity extends BaseActivity {
 
     private void updateBadge(int scanCount) {
         if (scanCount >= 50) {
-            tvBadgeIcon.setText("ðŸ‘‘");
+            tvBadgeIcon.setText("👑"); // 👑
             tvBadgeName.setText(getString(R.string.profile_rank_master));
         } else if (scanCount >= 20) {
-            tvBadgeIcon.setText("ðŸŒ³");
+            tvBadgeIcon.setText("🌳"); // 🌳
             tvBadgeName.setText(getString(R.string.profile_rank_guardian));
         } else if (scanCount >= 5) {
-            tvBadgeIcon.setText("ðŸŒ¿");
+            tvBadgeIcon.setText("🌿"); // 🌿
             tvBadgeName.setText(getString(R.string.profile_rank_expert));
         } else {
-            tvBadgeIcon.setText("ðŸŒ±");
+            tvBadgeIcon.setText("🌱"); // 🌱
             tvBadgeName.setText(getString(R.string.profile_rank_novice));
         }
     }

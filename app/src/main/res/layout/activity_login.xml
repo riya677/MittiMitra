@@ -103,30 +103,37 @@
                 <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="#E0E0E0"/>
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
+                android:id="@+id/layout_phone_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/login_hint_phone"
-                style="@style/Widget.Mitti.TextInputLayout"
-                app:startIconDrawable="@android:drawable/ic_menu_call"
-                app:startIconTint="@color/brand_primary">
+                android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_phone_auth"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:hint="@string/login_hint_phone"
+                    style="@style/Widget.Mitti.TextInputLayout"
+                    app:startIconDrawable="@android:drawable/ic_menu_call"
+                    app:startIconTint="@color/brand_primary">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_send_otp"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="@string/login_btn_otp"
-                style="@style/Widget.Mitti.Button"
-                android:layout_marginTop="20dp"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_phone_auth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_send_otp"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="@string/login_btn_otp"
+                    style="@style/Widget.Mitti.Button"
+                    android:layout_marginTop="20dp"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/layout_otp_verify"
@@ -163,6 +170,70 @@
                     android:text="@string/login_btn_verify"
                     style="@style/Widget.Mitti.Button"
                     android:layout_marginTop="20dp"/>
+            </LinearLayout>
+
+            <!-- Toggle link: switch between phone and email login -->
+            <TextView
+                android:id="@+id/tv_toggle_email_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/login_use_email_instead"
+                android:textColor="@color/brand_primary"
+                android:textSize="14sp"
+                android:padding="8dp"
+                android:layout_marginTop="4dp" />
+
+            <!-- Email + Password login section (hidden by default) -->
+            <LinearLayout
+                android:id="@+id/layout_email_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_hint_email"
+                    style="@style/Widget.Mitti.TextInputLayout"
+                    app:startIconDrawable="@android:drawable/ic_dialog_email"
+                    app:startIconTint="@color/brand_primary"
+                    android:layout_marginBottom="12dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_login_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/text_primary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_hint_password"
+                    style="@style/Widget.Mitti.TextInputLayout"
+                    app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+                    app:startIconTint="@color/brand_primary"
+                    app:endIconMode="password_toggle"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_login_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textColor="@color/text_primary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_email_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="@string/login_btn_email"
+                    style="@style/Widget.Mitti.Button" />
+
             </LinearLayout>
 
             <TextView
