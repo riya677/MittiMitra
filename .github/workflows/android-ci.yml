@@ -30,8 +30,34 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/actions/wrapper-validation@v3
 
+      - name: Set up release signing (if secrets present)
+        if: ${{ env.KEYSTORE_BASE64 != '' }}
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 -d > mittimitra-release.jks
+          cat > keystore.properties <<EOF
+          storeFile=../mittimitra-release.jks
+          storePassword=$KEYSTORE_PASSWORD
+          keyAlias=$KEY_ALIAS
+          keyPassword=$KEY_PASSWORD
+          EOF
+
       - name: Lint + Unit Test + Debug Build
         run: ./gradlew :app:lintDebug :app:testDebugUnitTest :app:assembleDebug --stacktrace
 
       - name: Build Release Bundle
         run: ./gradlew :app:bundleRelease --stacktrace
+
+      - name: Upload Release AAB
+        if: ${{ env.KEYSTORE_BASE64 != '' && github.ref == 'refs/heads/main' }}
+        uses: actions/upload-artifact@v4
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        with:
+          name: release-bundle
+          path: app/build/outputs/bundle/release/*.aab
+          retention-days: 30

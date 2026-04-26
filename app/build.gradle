@@ -53,7 +53,9 @@ android {
             buildConfigField "String", "GROQ_API_KEY", "\"${localProps.getProperty('GROQ_API_KEY', '')}\""
         }
         release {
-            signingConfig signingConfigs.release
+            if (keystorePropsFile.exists()) {
+                signingConfig signingConfigs.release
+            }
             minifyEnabled true
             shrinkResources true
             buildConfigField "boolean", "ENABLE_APP_CHECK", "true"
