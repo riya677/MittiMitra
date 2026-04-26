@@ -167,13 +167,13 @@
     <string name="login_hint_otp">Enter 6-digit OTP</string>
     <string name="login_btn_verify">Verify &amp; Login</string>
     <string name="login_trouble">Trouble logging in?</string>
-    <string name="login_hint_email">Email Address</string>
-    <string name="login_hint_password">Password</string>
-    <string name="login_btn_email">Login with Email</string>
-    <string name="login_use_email_instead">Use email &amp; password instead</string>
-    <string name="login_use_phone_instead">Use phone OTP instead</string>
-    <string name="login_email_failed">Email login failed. Check credentials.</string>
-    <string name="signup_password_hint">Optional: set a password to also enable email login</string>
+    <string name="login_hint_email" translatable="false">Email Address</string>
+    <string name="login_hint_password" translatable="false">Password</string>
+    <string name="login_btn_email" translatable="false">Login with Email</string>
+    <string name="login_use_email_instead" translatable="false">Use email &amp; password instead</string>
+    <string name="login_use_phone_instead" translatable="false">Use phone OTP instead</string>
+    <string name="login_email_failed" translatable="false">Email login failed. Check credentials.</string>
+    <string name="signup_password_hint" translatable="false">Optional: set a password to also enable email login</string>
 
     <string name="home_welcome_default">Namaste, Farmer</string>
     <string name="home_card_scan">Scan Soil</string>
