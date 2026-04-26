@@ -41,7 +41,8 @@
       "Bash(git mv *)",
       "Bash(npx firebase-tools *)",
       "Bash(firebase functions:secrets:set GEMINI_API_KEY)",
-      "PowerShell(\\(Get-Content D:\\\\android\\\\MittiMitra\\\\functions\\\\index.js -Raw\\) -replace '\"gemini-2\\\\.5-flash-preview-04-17\"', '\"gemini-2.5-flash-preview-04-17\"' | Set-Content D:\\\\android\\\\MittiMitra\\\\functions\\\\index.js -Encoding utf8; Select-String \"const model\" D:\\\\android\\\\MittiMitra\\\\functions\\\\index.js)"
+      "PowerShell(\\(Get-Content D:\\\\android\\\\MittiMitra\\\\functions\\\\index.js -Raw\\) -replace '\"gemini-2\\\\.5-flash-preview-04-17\"', '\"gemini-2.5-flash-preview-04-17\"' | Set-Content D:\\\\android\\\\MittiMitra\\\\functions\\\\index.js -Encoding utf8; Select-String \"const model\" D:\\\\android\\\\MittiMitra\\\\functions\\\\index.js)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; cd D:\\\\android\\\\MittiMitra; .\\\\gradlew updateLintBaseline 2>&1 | Select-String -Pattern \"BUILD|Lint|baseline|Wrote|error\" | Select-Object -Last 15)"
     ]
   }
 }
