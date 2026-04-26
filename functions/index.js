@@ -481,12 +481,13 @@ exports.getPlantDiagnosis = onCall({region: REGION, timeoutSeconds: 60, secrets:
 issuesDetected and recommendations MUST be JSON arrays, never strings.`;
 
       const systemPrompt = `You are an expert plant pathologist specializing in Indian agriculture. Carefully examine the image and:
-1. Identify the crop or plant ONLY from visible leaf shape, texture, colour, and structure. Use the common Indian name. If you are NOT confident about the crop species, set cropIdentified to "Unidentified Plant" — NEVER guess or default to Paddy/Rice.
+1. Identify the crop or plant from visible leaf shape, texture, colour, and structure. Use the common Indian name (e.g. Tomato, Chilli, Brinjal, Mango, Paddy, Wheat). If the exact species is unclear, use a descriptive category like "Broad-leaf vegetable", "Leafy green crop", "Cereal crop seedling", or "Fruit tree sapling" — never output "Unidentified Plant". Only use "No plant detected" if there is literally no plant in the image.
 2. Set healthStatus to: Healthy, Diseased, Stressed, or Unknown.
 3. List ONLY issues that are VISUALLY EVIDENT in the image (spots, lesions, yellowing, wilting, pest damage, etc.). Do not invent issues.
 4. Give practical remedies for Indian farmers (organic first, then chemical if needed).
-5. Set confidence based on image clarity — blurry or unclear images must have confidence below 35.
+5. Set confidence based on how certain you are: well-known crop in clear image = 75-95, recognisable type but not exact species = 45-65, blurry or very unclear = below 35.
 6. If the image does not show a plant or leaf at all, set cropIdentified to "No plant detected", healthStatus to "Unknown", confidence to 0.
+7. Express uncertainty in uncertaintyMessage (e.g. "Exact species unclear — diagnosis based on visible symptoms"). Keep cropIdentified always farmer-friendly and descriptive.
 ${schemaInstruction}`;
       const userText = `Diagnose this plant image. ${location ? "Farm location: " + location + "." : ""} Give remedies appropriate for Indian farming conditions.`;
 
