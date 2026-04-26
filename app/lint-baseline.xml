@@ -19,7 +19,7 @@
         errorLine2="                ~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/HomeActivity.java"
-            line="152"
+            line="164"
             column="17"/>
     </issue>
 
@@ -30,7 +30,7 @@
         errorLine2="                                                                                         ~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/DocumentsActivity.java"
-            line="288"
+            line="300"
             column="90"/>
     </issue>
 
@@ -41,7 +41,7 @@
         errorLine2="                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/IrrigationActivity.java"
-            line="239"
+            line="244"
             column="71"/>
     </issue>
 
@@ -52,52 +52,8 @@
         errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/RecommendationActivity.java"
-            line="184"
+            line="155"
             column="27"/>
-    </issue>
-
-    <issue
-        id="DefaultLocale"
-        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
-        errorLine1="            tvValN.setText(String.format(&quot;%.0f (%s)&quot;, finalN, s.label));"
-        errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/com/mittimitra/ScanActivity.java"
-            line="263"
-            column="28"/>
-    </issue>
-
-    <issue
-        id="DefaultLocale"
-        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
-        errorLine1="            tvValP.setText(String.format(&quot;%.0f (%s)&quot;, finalP, s.label));"
-        errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/com/mittimitra/ScanActivity.java"
-            line="269"
-            column="28"/>
-    </issue>
-
-    <issue
-        id="DefaultLocale"
-        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
-        errorLine1="            tvValK.setText(String.format(&quot;%.0f (%s)&quot;, finalK, s.label));"
-        errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/com/mittimitra/ScanActivity.java"
-            line="274"
-            column="28"/>
-    </issue>
-
-    <issue
-        id="DefaultLocale"
-        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
-        errorLine1="            tvValPh.setText(String.format(&quot;%.1f (%s)&quot;, finalpH, s.label));"
-        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/com/mittimitra/ScanActivity.java"
-            line="279"
-            column="29"/>
     </issue>
 
     <issue
@@ -173,7 +129,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/WeatherAlertsActivity.java"
-            line="272"
+            line="276"
             column="38"/>
     </issue>
 
@@ -184,7 +140,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/WeatherAlertsActivity.java"
-            line="273"
+            line="277"
             column="38"/>
     </issue>
 
@@ -195,7 +151,7 @@
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/WeatherAlertsActivity.java"
-            line="274"
+            line="278"
             column="35"/>
     </issue>
 
@@ -591,7 +547,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="64"
+            line="90"
             column="20"/>
     </issue>
 
@@ -602,7 +558,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="71"
+            line="97"
             column="20"/>
     </issue>
 
@@ -613,7 +569,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="102"
+            line="128"
             column="20"/>
     </issue>
 
@@ -624,7 +580,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="109"
+            line="135"
             column="20"/>
     </issue>
 
@@ -767,7 +723,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="101"
+            line="127"
             column="20"/>
     </issue>
 
@@ -778,7 +734,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="105"
+            line="131"
             column="20"/>
     </issue>
 
@@ -929,14 +885,25 @@
         id="Aligned16KB"
         message="The native library `arm64-v8a/libtensorflowlite_jni.so` (from `org.tensorflow:tensorflow-lite:2.16.1`) is not 16 KB aligned">
         <location
-            file="$GRADLE_USER_HOME/caches/8.13/transforms/c8ccb9b4cbe5fc516cce97ff77a05d82/transformed/tensorflow-lite-2.16.1/jni/arm64-v8a/libtensorflowlite_jni.so"/>
+            file="C:/Users/adith/.gradle/caches/8.13/transforms/c8ccb9b4cbe5fc516cce97ff77a05d82/transformed/tensorflow-lite-2.16.1/jni/arm64-v8a/libtensorflowlite_jni.so"/>
     </issue>
 
     <issue
         id="Aligned16KB"
         message="The native library `arm64-v8a/libtensorflowlite_jni.so` (from `org.tensorflow:tensorflow-lite:2.16.1`) is not 16 KB aligned">
         <location
-            file="$GRADLE_USER_HOME/caches/8.13/transforms/c8ccb9b4cbe5fc516cce97ff77a05d82/transformed/tensorflow-lite-2.16.1/jni/arm64-v8a/libtensorflowlite_jni.so"/>
+            file="C:/Users/adith/.gradle/caches/8.13/transforms/c8ccb9b4cbe5fc516cce97ff77a05d82/transformed/tensorflow-lite-2.16.1/jni/arm64-v8a/libtensorflowlite_jni.so"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;kisan_helpline_number&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;kisan_helpline_number&quot;>18001801551&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="31"
+            column="13"/>
     </issue>
 
     <issue
@@ -946,7 +913,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="184"
+            line="185"
             column="13"/>
     </issue>
 
@@ -957,7 +924,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="185"
+            line="186"
             column="13"/>
     </issue>
 
@@ -968,7 +935,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="186"
+            line="187"
             column="13"/>
     </issue>
 
@@ -979,7 +946,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="252"
+            line="253"
             column="13"/>
     </issue>
 
@@ -990,7 +957,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="345"
+            line="346"
             column="13"/>
     </issue>
 
@@ -1001,7 +968,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="346"
+            line="347"
             column="13"/>
     </issue>
 
@@ -1012,7 +979,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="534"
+            line="535"
             column="13"/>
     </issue>
 
@@ -1023,7 +990,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="535"
+            line="536"
             column="13"/>
     </issue>
 
@@ -1034,7 +1001,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="536"
+            line="537"
             column="13"/>
     </issue>
 
@@ -1045,7 +1012,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="537"
+            line="538"
             column="13"/>
     </issue>
 
@@ -1056,7 +1023,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="538"
+            line="539"
             column="13"/>
     </issue>
 
@@ -1067,7 +1034,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="539"
+            line="540"
             column="13"/>
     </issue>
 
@@ -1078,7 +1045,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="541"
+            line="542"
             column="13"/>
     </issue>
 
@@ -1089,7 +1056,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="542"
+            line="543"
             column="13"/>
     </issue>
 
@@ -1100,7 +1067,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="543"
+            line="544"
             column="13"/>
     </issue>
 
@@ -1111,7 +1078,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="544"
+            line="545"
             column="13"/>
     </issue>
 
@@ -1122,7 +1089,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="545"
+            line="546"
             column="13"/>
     </issue>
 
@@ -1133,7 +1100,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="546"
+            line="547"
             column="13"/>
     </issue>
 
@@ -1144,7 +1111,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="547"
+            line="548"
             column="13"/>
     </issue>
 
@@ -1155,7 +1122,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="550"
+            line="551"
             column="13"/>
     </issue>
 
@@ -1166,7 +1133,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="551"
+            line="552"
             column="13"/>
     </issue>
 
@@ -1177,7 +1144,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="552"
+            line="553"
             column="13"/>
     </issue>
 
@@ -1188,7 +1155,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="553"
+            line="554"
             column="13"/>
     </issue>
 
@@ -1199,7 +1166,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="554"
+            line="555"
             column="13"/>
     </issue>
 
@@ -1210,7 +1177,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="555"
+            line="556"
             column="13"/>
     </issue>
 
@@ -1221,7 +1188,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="556"
+            line="557"
             column="13"/>
     </issue>
 
@@ -1232,7 +1199,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="559"
+            line="560"
             column="13"/>
     </issue>
 
@@ -1243,7 +1210,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="560"
+            line="561"
             column="13"/>
     </issue>
 
@@ -1254,7 +1221,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="563"
+            line="564"
             column="13"/>
     </issue>
 
@@ -1265,7 +1232,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="564"
+            line="565"
             column="13"/>
     </issue>
 
@@ -1276,7 +1243,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="565"
+            line="566"
             column="13"/>
     </issue>
 
@@ -1287,7 +1254,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="568"
+            line="569"
             column="13"/>
     </issue>
 
@@ -1298,7 +1265,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="569"
+            line="570"
             column="13"/>
     </issue>
 
@@ -1309,7 +1276,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="570"
+            line="571"
             column="13"/>
     </issue>
 
@@ -1320,7 +1287,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="573"
+            line="574"
             column="13"/>
     </issue>
 
@@ -1331,7 +1298,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="576"
+            line="577"
             column="13"/>
     </issue>
 
@@ -1342,7 +1309,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="577"
+            line="578"
             column="13"/>
     </issue>
 
@@ -1353,7 +1320,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="578"
+            line="579"
             column="13"/>
     </issue>
 
@@ -1364,7 +1331,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="579"
+            line="580"
             column="13"/>
     </issue>
 
@@ -1375,7 +1342,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="582"
+            line="583"
             column="13"/>
     </issue>
 
@@ -1386,7 +1353,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="583"
+            line="584"
             column="13"/>
     </issue>
 
@@ -1397,7 +1364,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="586"
+            line="587"
             column="13"/>
     </issue>
 
@@ -1408,7 +1375,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="589"
+            line="590"
             column="13"/>
     </issue>
 
@@ -1419,7 +1386,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="590"
+            line="591"
             column="13"/>
     </issue>
 
@@ -1430,7 +1397,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="591"
+            line="592"
             column="13"/>
     </issue>
 
@@ -1441,7 +1408,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="594"
+            line="595"
             column="13"/>
     </issue>
 
@@ -1452,7 +1419,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="595"
+            line="596"
             column="13"/>
     </issue>
 
@@ -1463,7 +1430,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="596"
+            line="597"
             column="13"/>
     </issue>
 
@@ -1474,7 +1441,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="597"
+            line="598"
             column="13"/>
     </issue>
 
@@ -1485,7 +1452,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="600"
+            line="601"
             column="13"/>
     </issue>
 
@@ -1496,7 +1463,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="601"
+            line="602"
             column="13"/>
     </issue>
 
@@ -1507,7 +1474,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="602"
+            line="603"
             column="13"/>
     </issue>
 
@@ -1518,7 +1485,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="603"
+            line="604"
             column="13"/>
     </issue>
 
@@ -1529,7 +1496,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="604"
+            line="605"
             column="13"/>
     </issue>
 
@@ -1540,7 +1507,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="605"
+            line="606"
             column="13"/>
     </issue>
 
@@ -1551,7 +1518,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="606"
+            line="607"
             column="13"/>
     </issue>
 
@@ -1562,7 +1529,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="607"
+            line="608"
             column="13"/>
     </issue>
 
@@ -1573,7 +1540,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="608"
+            line="609"
             column="13"/>
     </issue>
 
@@ -1584,7 +1551,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="609"
+            line="610"
             column="13"/>
     </issue>
 
@@ -1595,7 +1562,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="610"
+            line="611"
             column="13"/>
     </issue>
 
@@ -1606,7 +1573,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="613"
+            line="614"
             column="13"/>
     </issue>
 
@@ -1617,7 +1584,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="614"
+            line="615"
             column="13"/>
     </issue>
 
@@ -1628,7 +1595,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="615"
+            line="616"
             column="13"/>
     </issue>
 
@@ -1639,7 +1606,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="616"
+            line="617"
             column="13"/>
     </issue>
 
@@ -1650,7 +1617,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="617"
+            line="618"
             column="13"/>
     </issue>
 
@@ -1661,7 +1628,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="620"
+            line="621"
             column="13"/>
     </issue>
 
@@ -1672,7 +1639,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="621"
+            line="622"
             column="13"/>
     </issue>
 
@@ -1683,7 +1650,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="622"
+            line="623"
             column="13"/>
     </issue>
 
@@ -1694,7 +1661,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="623"
+            line="624"
             column="13"/>
     </issue>
 
@@ -1705,7 +1672,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="624"
+            line="625"
             column="13"/>
     </issue>
 
@@ -1716,7 +1683,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="627"
+            line="628"
             column="13"/>
     </issue>
 
@@ -1727,7 +1694,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="628"
+            line="629"
             column="13"/>
     </issue>
 
@@ -1738,7 +1705,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="629"
+            line="630"
             column="13"/>
     </issue>
 
@@ -1749,7 +1716,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="632"
+            line="633"
             column="13"/>
     </issue>
 
@@ -1760,7 +1727,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="635"
+            line="636"
             column="13"/>
     </issue>
 
@@ -1771,7 +1738,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="638"
+            line="639"
             column="13"/>
     </issue>
 
@@ -1782,7 +1749,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="639"
+            line="640"
             column="13"/>
     </issue>
 
@@ -1793,7 +1760,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="640"
+            line="641"
             column="13"/>
     </issue>
 
@@ -1804,7 +1771,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="641"
+            line="642"
             column="13"/>
     </issue>
 
@@ -1815,7 +1782,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="642"
+            line="643"
             column="13"/>
     </issue>
 
@@ -1826,7 +1793,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="643"
+            line="644"
             column="13"/>
     </issue>
 
@@ -1837,7 +1804,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="644"
+            line="645"
             column="13"/>
     </issue>
 
@@ -1848,7 +1815,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="647"
+            line="648"
             column="13"/>
     </issue>
 
@@ -1859,7 +1826,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="648"
+            line="649"
             column="13"/>
     </issue>
 
@@ -1870,7 +1837,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="651"
+            line="652"
             column="13"/>
     </issue>
 
@@ -1881,7 +1848,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="652"
+            line="653"
             column="13"/>
     </issue>
 
@@ -1892,7 +1859,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="653"
+            line="654"
             column="13"/>
     </issue>
 
@@ -1903,7 +1870,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="654"
+            line="655"
             column="13"/>
     </issue>
 
@@ -1914,7 +1881,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="655"
+            line="656"
             column="13"/>
     </issue>
 
@@ -1925,7 +1892,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="658"
+            line="659"
             column="13"/>
     </issue>
 
@@ -1936,7 +1903,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="659"
+            line="660"
             column="13"/>
     </issue>
 
@@ -1947,7 +1914,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="662"
+            line="663"
             column="13"/>
     </issue>
 
@@ -1958,7 +1925,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="663"
+            line="664"
             column="13"/>
     </issue>
 
@@ -1969,7 +1936,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="666"
+            line="667"
             column="13"/>
     </issue>
 
@@ -1980,7 +1947,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="667"
+            line="668"
             column="13"/>
     </issue>
 
@@ -1991,7 +1958,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="668"
+            line="669"
             column="13"/>
     </issue>
 
@@ -2002,7 +1969,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="669"
+            line="670"
             column="13"/>
     </issue>
 
@@ -2013,7 +1980,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="670"
+            line="671"
             column="13"/>
     </issue>
 
@@ -2024,7 +1991,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="671"
+            line="672"
             column="13"/>
     </issue>
 
@@ -2035,7 +2002,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="672"
+            line="673"
             column="13"/>
     </issue>
 
@@ -2046,7 +2013,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="673"
+            line="674"
             column="13"/>
     </issue>
 
@@ -2057,7 +2024,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="674"
+            line="675"
             column="13"/>
     </issue>
 
@@ -2068,7 +2035,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="675"
+            line="676"
             column="13"/>
     </issue>
 
@@ -2079,7 +2046,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="676"
+            line="677"
             column="13"/>
     </issue>
 
@@ -2090,7 +2057,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="677"
+            line="678"
             column="13"/>
     </issue>
 
@@ -2101,7 +2068,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="678"
+            line="679"
             column="13"/>
     </issue>
 
@@ -2112,7 +2079,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="681"
+            line="682"
             column="13"/>
     </issue>
 
@@ -2123,7 +2090,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="682"
+            line="683"
             column="13"/>
     </issue>
 
@@ -2134,7 +2101,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="683"
+            line="684"
             column="13"/>
     </issue>
 
@@ -2145,7 +2112,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="684"
+            line="685"
             column="13"/>
     </issue>
 
@@ -2156,7 +2123,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="687"
+            line="688"
             column="13"/>
     </issue>
 
@@ -2167,7 +2134,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="688"
+            line="689"
             column="13"/>
     </issue>
 
@@ -2178,7 +2145,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="691"
+            line="692"
             column="13"/>
     </issue>
 
@@ -2189,7 +2156,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="692"
+            line="693"
             column="13"/>
     </issue>
 
@@ -2200,7 +2167,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="693"
+            line="694"
             column="13"/>
     </issue>
 
@@ -2211,7 +2178,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="694"
+            line="695"
             column="13"/>
     </issue>
 
@@ -2222,7 +2189,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="695"
+            line="696"
             column="13"/>
     </issue>
 
@@ -2233,7 +2200,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="698"
+            line="699"
             column="13"/>
     </issue>
 
@@ -2244,7 +2211,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="699"
+            line="700"
             column="13"/>
     </issue>
 
@@ -2255,7 +2222,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="700"
+            line="701"
             column="13"/>
     </issue>
 
@@ -2266,7 +2233,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="703"
+            line="704"
             column="13"/>
     </issue>
 
@@ -2277,7 +2244,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="704"
+            line="705"
             column="13"/>
     </issue>
 
@@ -2288,7 +2255,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="707"
+            line="708"
             column="13"/>
     </issue>
 
@@ -2299,7 +2266,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="708"
+            line="709"
             column="13"/>
     </issue>
 
@@ -2310,7 +2277,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="709"
+            line="710"
             column="13"/>
     </issue>
 
@@ -2321,7 +2288,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="712"
+            line="713"
             column="13"/>
     </issue>
 
@@ -2332,7 +2299,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="713"
+            line="714"
             column="13"/>
     </issue>
 
@@ -2343,7 +2310,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="714"
+            line="715"
             column="13"/>
     </issue>
 
@@ -2354,7 +2321,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="715"
+            line="716"
             column="13"/>
     </issue>
 
@@ -2365,7 +2332,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="716"
+            line="717"
             column="13"/>
     </issue>
 
@@ -2376,7 +2343,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="717"
+            line="718"
             column="13"/>
     </issue>
 
@@ -2387,7 +2354,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="718"
+            line="719"
             column="13"/>
     </issue>
 
@@ -2398,7 +2365,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="719"
+            line="720"
             column="13"/>
     </issue>
 
@@ -2409,7 +2376,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="720"
+            line="721"
             column="13"/>
     </issue>
 
@@ -2420,7 +2387,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="721"
+            line="722"
             column="13"/>
     </issue>
 
@@ -2431,7 +2398,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="722"
+            line="723"
             column="13"/>
     </issue>
 
@@ -2442,304 +2409,18 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="723"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;label_name_value&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;label_name_value&quot;>Name: %1$s&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="726"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;label_phone_value&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;label_phone_value&quot;>Phone: %1$s&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="727"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;label_email_value&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;label_email_value&quot;>Email: %1$s&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="728"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;label_name_value_default&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;label_name_value_default&quot;>Name: --&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="729"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;label_phone_value_default&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;label_phone_value_default&quot;>Phone: --&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="730"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;label_email_value_default&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;label_email_value_default&quot;>Email: --&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="731"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;duplicate_warning_icon_desc&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;duplicate_warning_icon_desc&quot;>Duplicate account warning&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="732"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;dup_btn_use_existing&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;dup_btn_use_existing&quot;>Use Existing Account&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="733"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;dup_btn_link_methods&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;dup_btn_link_methods&quot;>Link Both Login Methods&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="734"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;prediction_low_confidence_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;prediction_low_confidence_hint&quot;>Model confidence is low. Please verify with a local expert before taking action.&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="735"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;notif_permission_required&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;notif_permission_required&quot;>Enable notification permission to receive alerts.&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="738"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;task_reminder_title&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;task_reminder_title&quot;>Farm Task Reminder&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="739"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;task_reminder_body&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;task_reminder_body&quot;>Upcoming task: %1$s&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="740"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;scan_image_required&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;scan_image_required&quot;>Capture or upload a soil image before analysis.&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="743"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;plant_select_image_first&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;plant_select_image_first&quot;>Please capture or upload a plant image first.&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="744"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;crop_schedule_title_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;crop_schedule_title_format&quot;>%1$s Schedule&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="747"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;crop_plant_label_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;crop_plant_label_format&quot;>Plant: %1$s&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="748"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;crop_harvest_label_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;crop_harvest_label_format&quot;>Harvest: %1$s&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="749"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;crop_duration_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;crop_duration_format&quot;>Duration: %1$d days&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="750"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;crop_weekly_activities&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;crop_weekly_activities&quot;>Weekly Activities&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="751"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;crop_week_item_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;crop_week_item_format&quot;>Week %1$d: %2$s\n -> %3$s&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="752"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;crop_fertilizer_label&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;crop_fertilizer_label&quot;>Fertilizer: &lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="753"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;crop_irrigation_label&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;crop_irrigation_label&quot;>Irrigation: &lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="754"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;crop_pest_watch_label&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;crop_pest_watch_label&quot;>Pest Watch: &lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="755"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;home_card_tasks&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;home_card_tasks&quot;>Farm Tasks&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="758"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;farm_tasks_title&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;farm_tasks_title&quot;>Farm Task Planner&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="759"
+            line="724"
             column="13"/>
     </issue>
 
     <issue
         id="MissingTranslation"
         message="&quot;farm_tasks_empty&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;farm_tasks_empty&quot;>No tasks yet. Tap + to add a farm task.&lt;/string>"
+        errorLine1="    &lt;string name=&quot;farm_tasks_empty&quot;>No tasks added yet.\nTap + to add one.&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="760"
+            line="728"
             column="13"/>
     </issue>
 
@@ -2750,73 +2431,62 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="761"
+            line="729"
             column="13"/>
     </issue>
 
     <issue
         id="MissingTranslation"
-        message="&quot;dialog_save&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;dialog_save&quot;>Save&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        message="&quot;home_card_tasks&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;home_card_tasks&quot;>Farm Tasks&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="762"
+            line="730"
             column="13"/>
     </issue>
 
     <issue
         id="MissingTranslation"
-        message="&quot;task_title_required&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;task_title_required&quot;>Task title is required&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;task_title_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;task_title_hint&quot;>Task Title&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="763"
+            line="731"
             column="13"/>
     </issue>
 
     <issue
         id="MissingTranslation"
-        message="&quot;task_saved&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;task_saved&quot;>Task saved&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        message="&quot;task_description_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;task_description_hint&quot;>Description&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="764"
+            line="732"
             column="13"/>
     </issue>
 
     <issue
         id="MissingTranslation"
-        message="&quot;task_completed&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;task_completed&quot;>Task marked as completed&lt;/string>"
+        message="&quot;task_crop_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;task_crop_hint&quot;>Related Crop (optional)&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="765"
+            line="733"
             column="13"/>
     </issue>
 
     <issue
         id="MissingTranslation"
-        message="&quot;task_no_description&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;task_no_description&quot;>No description&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;task_due_date_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;task_due_date_hint&quot;>Due Date&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="766"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;task_meta_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;task_meta_format&quot;>Crop: %1$s | Due: %2$s&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="767"
+            line="734"
             column="13"/>
     </issue>
 
@@ -2827,15 +2497,312 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
+            line="735"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;duplicate_warning_icon_desc&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;duplicate_warning_icon_desc&quot;>Warning Icon&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="738"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;label_name_value_default&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;label_name_value_default&quot;>Name: —&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="739"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;label_phone_value_default&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;label_phone_value_default&quot;>Phone: —&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="740"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;label_email_value_default&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;label_email_value_default&quot;>Email: —&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="741"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;dup_btn_use_existing&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;dup_btn_use_existing&quot;>Use Existing Account&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="742"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;dup_btn_link_methods&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;dup_btn_link_methods&quot;>Learn How to Merge&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="743"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_fallback_context_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_fallback_context_format&quot;>Offline Mode | Weather: %1$s | Soil: %2$s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="746"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_error_network_offline&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_error_network_offline&quot;>No internet connection. Showing offline advisory.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="747"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_error_backend_auth&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_error_backend_auth&quot;>Authentication failed. Please login again.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="748"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_error_backend_not_deployed&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_error_backend_not_deployed&quot;>AI service not available yet.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="749"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_error_backend_unavailable&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_error_backend_unavailable&quot;>AI service temporarily unavailable. Please try again later.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="750"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_error_backend_rate_limit&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_error_backend_rate_limit&quot;>Too many requests. Please wait a moment and try again.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="751"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_error_with_trace_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_error_with_trace_format&quot;>%1$s (Ref: %2$s)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="752"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;prediction_low_confidence_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;prediction_low_confidence_hint&quot;>⚠️ Low confidence. Verify with a local expert.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="753"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_fallback_title&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_fallback_title&quot;>📋 Offline Advisory&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="754"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_fallback_n_low&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_fallback_n_low&quot;>Nitrogen low – apply urea or compost&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="755"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_fallback_n_high&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_fallback_n_high&quot;>Nitrogen excessive – reduce fertilizer&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="756"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_fallback_p_low&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_fallback_p_low&quot;>Phosphorus low – apply DAP&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="757"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_fallback_p_high&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_fallback_p_high&quot;>Phosphorus excessive – reduce DAP&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="758"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_fallback_k_low&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_fallback_k_low&quot;>Potassium low – apply MOP&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="759"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_fallback_k_high&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_fallback_k_high&quot;>Potassium excessive – flush with water&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="760"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_fallback_ph_low&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_fallback_ph_low&quot;>Acidic soil – apply lime to raise pH&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="761"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_fallback_ph_high&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_fallback_ph_high&quot;>Alkaline soil – apply gypsum to lower pH&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="762"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_fallback_ph_ok&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_fallback_ph_ok&quot;>pH balanced ✓&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="763"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;rec_fallback_footer&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;rec_fallback_footer&quot;>For detailed advice, connect to the internet and run a new scan.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="764"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;farm_tasks_title&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;farm_tasks_title&quot;>Farm Tasks&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="767"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;dialog_save&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;dialog_save&quot;>Save&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
             line="768"
             column="13"/>
     </issue>
 
     <issue
         id="MissingTranslation"
-        message="&quot;task_title_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;task_title_hint&quot;>Task title&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;task_title_required&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;task_title_required&quot;>Task title is required&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="769"
@@ -2844,9 +2811,9 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;task_description_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;task_description_hint&quot;>Task description&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;task_saved&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;task_saved&quot;>Task saved&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="770"
@@ -2855,8 +2822,8 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;task_crop_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;task_crop_hint&quot;>Crop (optional)&lt;/string>"
+        message="&quot;task_completed&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;task_completed&quot;>Task marked complete&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
@@ -2866,12 +2833,507 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;task_due_date_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
-        errorLine1="    &lt;string name=&quot;task_due_date_hint&quot;>Due date&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="&quot;task_no_description&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;task_no_description&quot;>No description&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
             line="772"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;task_meta_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;task_meta_format&quot;>Crop: %1$s | Due: %2$s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="773"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;task_reminder_title&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;task_reminder_title&quot;>Task Reminder&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="774"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;task_reminder_body&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;task_reminder_body&quot;>Don\&apos;t forget: %s is due soon!&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="775"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;crop_schedule_title_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;crop_schedule_title_format&quot;>%s – Crop Schedule&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="778"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;crop_plant_label_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;crop_plant_label_format&quot;>🌱 Planting: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="779"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;crop_harvest_label_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;crop_harvest_label_format&quot;>🌾 Harvest: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="780"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;crop_duration_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;crop_duration_format&quot;>⏱ Duration: %d days&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="781"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;crop_weekly_activities&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;crop_weekly_activities&quot;>📅 Weekly Activities&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="782"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;crop_week_item_format&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;crop_week_item_format&quot;>Week %1$d: %2$s\n💡 %3$s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="783"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;crop_fertilizer_label&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;crop_fertilizer_label&quot;>🌱 Fertilizer Schedule:\n&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="784"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;crop_irrigation_label&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;crop_irrigation_label&quot;>💧 Irrigation Tips:\n&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="785"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;crop_pest_watch_label&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;crop_pest_watch_label&quot;>🐛 Pest Watch:\n&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="786"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;google_play_services_required&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;google_play_services_required&quot;>Google Play Services required. Please update and try again.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="789"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;google_signin_config_error&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;google_signin_config_error&quot;>Google Sign-In configuration error. Please contact support.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="790"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;label_name_value&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;label_name_value&quot;>Name: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="791"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;label_phone_value&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;label_phone_value&quot;>Phone: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="792"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;label_email_value&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;label_email_value&quot;>Email: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="793"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;notif_permission_required&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;notif_permission_required&quot;>Notification permission required&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="796"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;plant_select_image_first&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;plant_select_image_first&quot;>Please select an image first&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="799"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;scan_image_required&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;scan_image_required&quot;>Please capture or select an image first&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="802"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;signup_btn_send_otp&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;signup_btn_send_otp&quot;>Send OTP&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="807"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;signup_otp_sent_to&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;signup_otp_sent_to&quot;>OTP sent to %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="808"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;signup_otp_sent_to_placeholder&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;signup_otp_sent_to_placeholder&quot;>OTP sent to your number&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="809"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;signup_verify_create&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;signup_verify_create&quot;>Verify &amp;amp; Create Account&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="810"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;signup_resend_otp&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;signup_resend_otp&quot;>Resend OTP&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="811"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;signup_change_number&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;signup_change_number&quot;>Change Number&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="812"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;link_email_title&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;link_email_title&quot;>Link Email Account&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="815"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;link_email_subtitle&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;link_email_subtitle&quot;>Add email login for easy account recovery and additional security.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="816"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;link_email_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;link_email_hint&quot;>Email Address&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="817"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;link_email_password_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;link_email_password_hint&quot;>Create Password (min. 6 characters)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="818"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;link_email_confirm_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;link_email_confirm_hint&quot;>Confirm Password&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="819"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;link_email_password_note&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;link_email_password_note&quot;>You\&apos;ll use this password to sign in with email in the future.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="820"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;link_email_btn&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;link_email_btn&quot;>Link Email &amp;amp; Save&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="821"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;link_email_account&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;link_email_account&quot;>Link Email Account&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="822"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;email_linked_success&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;email_linked_success&quot;>Email linked successfully!&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="825"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;google_linked_success&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;google_linked_success&quot;>Google account linked!&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="826"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;phone_linked_success&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;phone_linked_success&quot;>Phone number linked!&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="827"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;link_credential_in_use&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;link_credential_in_use&quot;>This credential is already linked to another account.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="828"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;link_failed&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;link_failed&quot;>Linking failed. Please try again.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="829"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;status_email_linked&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;status_email_linked&quot;>✓ Email Linked&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="830"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;error_password_too_short&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;error_password_too_short&quot;>Password must be at least 6 characters&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="833"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;error_passwords_dont_match&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;error_passwords_dont_match&quot;>Passwords do not match&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="834"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;link_phone_number_hint&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;link_phone_number_hint&quot;>10-digit mobile number&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="837"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;btn_send_link_otp&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;btn_send_link_otp&quot;>Send OTP&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="838"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;btn_verify_link_phone&quot; is not translated in &quot;hi&quot; (Hindi), &quot;kn&quot; (Kannada), &quot;mr&quot; (Marathi), &quot;grt&quot;, &quot;brx&quot;, &quot;mni&quot; (Manipuri), &quot;lus&quot; (Lushai), &quot;bn&quot; (Bangla), &quot;ta&quot; (Tamil), &quot;gu&quot; (Gujarati), &quot;pa&quot; (Punjabi), &quot;te&quot; (Telugu), &quot;as&quot; (Assamese), &quot;ml&quot; (Malayalam)"
+        errorLine1="    &lt;string name=&quot;btn_verify_link_phone&quot;>Verify &amp;amp; Link&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="839"
             column="13"/>
     </issue>
 
@@ -2882,18 +3344,18 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="682"
+            line="683"
             column="5"/>
     </issue>
 
     <issue
         id="PluralsCandidate"
         message="Formatting %d followed by words (&quot;days&quot;): This should probably be a plural rather than a string"
-        errorLine1="    &lt;string name=&quot;crop_duration_format&quot;>Duration: %1$d days&lt;/string>"
+        errorLine1="    &lt;string name=&quot;crop_duration_format&quot;>⏱ Duration: %d days&lt;/string>"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="750"
+            line="781"
             column="5"/>
     </issue>
 
@@ -2915,7 +3377,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/ui/adapters/FarmTaskAdapter.java"
-            line="37"
+            line="38"
             column="9"/>
     </issue>
 
@@ -2955,11 +3417,22 @@
     <issue
         id="NotifyDataSetChanged"
         message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
+        errorLine1="            settingsAdapter.notifyDataSetChanged();"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/mittimitra/SettingsActivity.java"
+            line="107"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
         errorLine1="                chatAdapter.notifyDataSetChanged();"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/TipActivity.java"
-            line="399"
+            line="402"
             column="17"/>
     </issue>
 
@@ -3266,6 +3739,17 @@
         errorLine1="    android:background=&quot;@color/surface_background&quot;"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
+            file="src/main/res/layout/activity_link_email.xml"
+            line="7"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/surface_background` with a theme that also paints a background (inferred theme is `@style/Theme.MittiMitra`)"
+        errorLine1="    android:background=&quot;@color/surface_background&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
             file="src/main/res/layout/activity_login.xml"
             line="9"
             column="5"/>
@@ -3377,7 +3861,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/layout/activity_signup.xml"
-            line="9"
+            line="7"
             column="5"/>
     </issue>
 
@@ -4157,7 +4641,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="51"
+            line="52"
             column="13"/>
     </issue>
 
@@ -4168,7 +4652,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="52"
+            line="53"
             column="13"/>
     </issue>
 
@@ -4179,7 +4663,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="53"
+            line="54"
             column="13"/>
     </issue>
 
@@ -4190,7 +4674,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="63"
+            line="64"
             column="13"/>
     </issue>
 
@@ -4201,7 +4685,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="88"
+            line="89"
             column="13"/>
     </issue>
 
@@ -4212,7 +4696,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="90"
+            line="91"
             column="13"/>
     </issue>
 
@@ -4223,7 +4707,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="91"
+            line="92"
             column="13"/>
     </issue>
 
@@ -4234,7 +4718,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="92"
+            line="93"
             column="13"/>
     </issue>
 
@@ -4245,7 +4729,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="98"
+            line="99"
             column="13"/>
     </issue>
 
@@ -4256,7 +4740,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="99"
+            line="100"
             column="13"/>
     </issue>
 
@@ -4267,7 +4751,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="101"
+            line="102"
             column="13"/>
     </issue>
 
@@ -4278,7 +4762,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="102"
+            line="103"
             column="13"/>
     </issue>
 
@@ -4289,7 +4773,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="103"
+            line="104"
             column="13"/>
     </issue>
 
@@ -4300,7 +4784,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="107"
+            line="108"
             column="13"/>
     </issue>
 
@@ -4311,7 +4795,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="137"
+            line="138"
             column="13"/>
     </issue>
 
@@ -4322,7 +4806,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="145"
+            line="146"
             column="13"/>
     </issue>
 
@@ -4333,7 +4817,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="151"
+            line="152"
             column="13"/>
     </issue>
 
@@ -4344,7 +4828,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="153"
+            line="154"
             column="13"/>
     </issue>
 
@@ -4355,7 +4839,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="154"
+            line="155"
             column="13"/>
     </issue>
 
@@ -4366,7 +4850,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="155"
+            line="156"
             column="13"/>
     </issue>
 
@@ -4377,7 +4861,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="188"
+            line="189"
             column="13"/>
     </issue>
 
@@ -4388,7 +4872,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="189"
+            line="190"
             column="13"/>
     </issue>
 
@@ -4399,7 +4883,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="211"
+            line="212"
             column="13"/>
     </issue>
 
@@ -4410,7 +4894,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="212"
+            line="213"
             column="13"/>
     </issue>
 
@@ -4421,7 +4905,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="213"
+            line="214"
             column="13"/>
     </issue>
 
@@ -4432,7 +4916,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="214"
+            line="215"
             column="13"/>
     </issue>
 
@@ -4443,7 +4927,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="216"
+            line="217"
             column="13"/>
     </issue>
 
@@ -4454,7 +4938,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="227"
+            line="228"
             column="13"/>
     </issue>
 
@@ -4465,7 +4949,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="235"
+            line="236"
             column="13"/>
     </issue>
 
@@ -4476,7 +4960,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="239"
+            line="240"
             column="13"/>
     </issue>
 
@@ -4487,7 +4971,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="240"
+            line="241"
             column="13"/>
     </issue>
 
@@ -4498,7 +4982,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="241"
+            line="242"
             column="13"/>
     </issue>
 
@@ -4509,7 +4993,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="258"
+            line="259"
             column="13"/>
     </issue>
 
@@ -4520,7 +5004,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="259"
+            line="260"
             column="13"/>
     </issue>
 
@@ -4531,7 +5015,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="266"
+            line="267"
             column="13"/>
     </issue>
 
@@ -4542,7 +5026,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="267"
+            line="268"
             column="13"/>
     </issue>
 
@@ -4553,7 +5037,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="268"
+            line="269"
             column="13"/>
     </issue>
 
@@ -4564,7 +5048,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="281"
+            line="282"
             column="13"/>
     </issue>
 
@@ -4575,7 +5059,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="288"
+            line="289"
             column="13"/>
     </issue>
 
@@ -4586,7 +5070,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="290"
+            line="291"
             column="13"/>
     </issue>
 
@@ -4597,7 +5081,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="291"
+            line="292"
             column="13"/>
     </issue>
 
@@ -4608,7 +5092,18 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="293"
+            line="294"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.signup_btn_create` appears to be unused"
+        errorLine1="    &lt;string name=&quot;signup_btn_create&quot;>Create Account&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="302"
             column="13"/>
     </issue>
 
@@ -4619,7 +5114,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="353"
+            line="354"
             column="13"/>
     </issue>
 
@@ -4630,7 +5125,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="354"
+            line="355"
             column="13"/>
     </issue>
 
@@ -4641,7 +5136,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="386"
+            line="387"
             column="13"/>
     </issue>
 
@@ -4652,7 +5147,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="387"
+            line="388"
             column="13"/>
     </issue>
 
@@ -4663,7 +5158,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="476"
+            line="477"
             column="13"/>
     </issue>
 
@@ -4674,7 +5169,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="477"
+            line="478"
             column="13"/>
     </issue>
 
@@ -4685,7 +5180,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="478"
+            line="479"
             column="13"/>
     </issue>
 
@@ -4696,7 +5191,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="481"
+            line="482"
             column="13"/>
     </issue>
 
@@ -4707,7 +5202,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="569"
+            line="570"
             column="13"/>
     </issue>
 
@@ -4718,7 +5213,18 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="573"
+            line="574"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.account_link_soon` appears to be unused"
+        errorLine1="    &lt;string name=&quot;account_link_soon&quot;>This feature will be available soon&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="577"
             column="13"/>
     </issue>
 
@@ -4729,7 +5235,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="579"
+            line="580"
             column="13"/>
     </issue>
 
@@ -4740,7 +5246,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="621"
+            line="622"
             column="13"/>
     </issue>
 
@@ -4751,7 +5257,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="643"
+            line="644"
             column="13"/>
     </issue>
 
@@ -4762,7 +5268,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="655"
+            line="656"
             column="13"/>
     </issue>
 
@@ -4773,7 +5279,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="666"
+            line="667"
             column="13"/>
     </issue>
 
@@ -4784,7 +5290,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="667"
+            line="668"
             column="13"/>
     </issue>
 
@@ -4795,7 +5301,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="668"
+            line="669"
             column="13"/>
     </issue>
 
@@ -4806,7 +5312,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="669"
+            line="670"
             column="13"/>
     </issue>
 
@@ -4817,7 +5323,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="670"
+            line="671"
             column="13"/>
     </issue>
 
@@ -4828,7 +5334,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="671"
+            line="672"
             column="13"/>
     </issue>
 
@@ -4839,7 +5345,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="672"
+            line="673"
             column="13"/>
     </issue>
 
@@ -4850,7 +5356,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="673"
+            line="674"
             column="13"/>
     </issue>
 
@@ -4861,7 +5367,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="674"
+            line="675"
             column="13"/>
     </issue>
 
@@ -4872,7 +5378,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="675"
+            line="676"
             column="13"/>
     </issue>
 
@@ -4883,7 +5389,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="676"
+            line="677"
             column="13"/>
     </issue>
 
@@ -4894,7 +5400,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="677"
+            line="678"
             column="13"/>
     </issue>
 
@@ -4905,7 +5411,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="678"
+            line="679"
             column="13"/>
     </issue>
 
@@ -4916,7 +5422,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="681"
+            line="682"
             column="13"/>
     </issue>
 
@@ -4927,7 +5433,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="682"
+            line="683"
             column="13"/>
     </issue>
 
@@ -4938,7 +5444,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="683"
+            line="684"
             column="13"/>
     </issue>
 
@@ -4949,7 +5455,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="684"
+            line="685"
             column="13"/>
     </issue>
 
@@ -4960,7 +5466,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="712"
+            line="713"
             column="13"/>
     </issue>
 
@@ -4971,7 +5477,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="713"
+            line="714"
             column="13"/>
     </issue>
 
@@ -4982,7 +5488,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="714"
+            line="715"
             column="13"/>
     </issue>
 
@@ -4993,7 +5499,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="715"
+            line="716"
             column="13"/>
     </issue>
 
@@ -5004,7 +5510,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="716"
+            line="717"
             column="13"/>
     </issue>
 
@@ -5015,7 +5521,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="717"
+            line="718"
             column="13"/>
     </issue>
 
@@ -5026,7 +5532,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="718"
+            line="719"
             column="13"/>
     </issue>
 
@@ -5037,7 +5543,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="719"
+            line="720"
             column="13"/>
     </issue>
 
@@ -5048,7 +5554,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="720"
+            line="721"
             column="13"/>
     </issue>
 
@@ -5059,7 +5565,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="721"
+            line="722"
             column="13"/>
     </issue>
 
@@ -5070,7 +5576,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="722"
+            line="723"
             column="13"/>
     </issue>
 
@@ -5081,7 +5587,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="723"
+            line="724"
             column="13"/>
     </issue>
 
@@ -5411,41 +5917,8 @@
         errorLine2="                                      ~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="379"
+            line="380"
             column="39"/>
-    </issue>
-
-    <issue
-        id="TypographyDashes"
-        message="Replace &quot;--&quot; with an &quot;em dash&quot; character (—, &amp;#8212;) ?"
-        errorLine1="    &lt;string name=&quot;label_name_value_default&quot;>Name: --&lt;/string>"
-        errorLine2="                                            ~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="729"
-            column="45"/>
-    </issue>
-
-    <issue
-        id="TypographyDashes"
-        message="Replace &quot;--&quot; with an &quot;em dash&quot; character (—, &amp;#8212;) ?"
-        errorLine1="    &lt;string name=&quot;label_phone_value_default&quot;>Phone: --&lt;/string>"
-        errorLine2="                                             ~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="730"
-            column="46"/>
-    </issue>
-
-    <issue
-        id="TypographyDashes"
-        message="Replace &quot;--&quot; with an &quot;em dash&quot; character (—, &amp;#8212;) ?"
-        errorLine1="    &lt;string name=&quot;label_email_value_default&quot;>Email: --&lt;/string>"
-        errorLine2="                                             ~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="731"
-            column="46"/>
     </issue>
 
     <issue
@@ -5609,7 +6082,7 @@
         errorLine2="                                            ~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="194"
+            line="195"
             column="45"/>
     </issue>
 
@@ -6082,7 +6555,7 @@
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="204"
+            line="205"
             column="35"/>
     </issue>
 
@@ -6093,7 +6566,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="205"
+            line="206"
             column="38"/>
     </issue>
 
@@ -6104,7 +6577,7 @@
         errorLine2="                                 ~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="207"
+            line="208"
             column="34"/>
     </issue>
 
@@ -6269,7 +6742,7 @@
         errorLine2="                             ~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="217"
+            line="218"
             column="30"/>
     </issue>
 
@@ -6434,7 +6907,7 @@
         errorLine2="                                      ~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="234"
+            line="235"
             column="39"/>
     </issue>
 
@@ -6599,7 +7072,7 @@
         errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="274"
+            line="275"
             column="37"/>
     </issue>
 
@@ -6918,7 +7391,7 @@
         errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="288"
+            line="289"
             column="41"/>
     </issue>
 
@@ -6929,7 +7402,7 @@
         errorLine2="                                         ~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="290"
+            line="291"
             column="42"/>
     </issue>
 
@@ -7094,7 +7567,7 @@
         errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="306"
+            line="307"
             column="41"/>
     </issue>
 
@@ -7259,7 +7732,7 @@
         errorLine2="                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="349"
+            line="350"
             column="42"/>
     </issue>
 
@@ -7886,7 +8359,7 @@
         errorLine2="                           ~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="518"
+            line="519"
             column="28"/>
     </issue>
 
@@ -7897,7 +8370,7 @@
         errorLine2="                                    ~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="519"
+            line="520"
             column="37"/>
     </issue>
 
@@ -7908,7 +8381,7 @@
         errorLine2="                                  ~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="520"
+            line="521"
             column="35"/>
     </issue>
 
@@ -7919,7 +8392,7 @@
         errorLine2="                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="521"
+            line="522"
             column="44"/>
     </issue>
 
@@ -8020,7 +8493,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="64"
+            line="90"
             column="20"/>
     </issue>
 
@@ -8031,7 +8504,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="71"
+            line="97"
             column="20"/>
     </issue>
 
@@ -8042,7 +8515,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="89"
+            line="115"
             column="20"/>
     </issue>
 
@@ -8053,7 +8526,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="101"
+            line="127"
             column="20"/>
     </issue>
 
@@ -8064,7 +8537,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="102"
+            line="128"
             column="20"/>
     </issue>
 
@@ -8075,7 +8548,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="105"
+            line="131"
             column="20"/>
     </issue>
 
@@ -8086,7 +8559,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="108"
+            line="134"
             column="20"/>
     </issue>
 
@@ -8097,7 +8570,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="109"
+            line="135"
             column="20"/>
     </issue>
 
@@ -8108,7 +8581,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle"
-            line="112"
+            line="138"
             column="20"/>
     </issue>
 
@@ -8214,6 +8687,17 @@
     <issue
         id="ConstantLocale"
         message="Assigning `Locale.getDefault()` to a final static field is suspicious; this code will not work correctly if the user changes locale while the app is running"
+        errorLine1="    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(&quot;dd MMM yyyy&quot;, Locale.getDefault());"
+        errorLine2="                                                                                            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/mittimitra/ui/adapters/FarmTaskAdapter.java"
+            line="29"
+            column="93"/>
+    </issue>
+
+    <issue
+        id="ConstantLocale"
+        message="Assigning `Locale.getDefault()` to a final static field is suspicious; this code will not work correctly if the user changes locale while the app is running"
         errorLine1="            new SimpleDateFormat(&quot;dd MMM • hh:mm a&quot;, Locale.getDefault());"
         errorLine2="                                                     ~~~~~~~~~~~~~~~~~~~">
         <location
@@ -8262,7 +8746,7 @@
         errorLine2="                                   ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/MandiActivity.java"
-            line="340"
+            line="347"
             column="36"/>
     </issue>
 
@@ -8273,7 +8757,7 @@
         errorLine2="                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/MandiActivity.java"
-            line="341"
+            line="348"
             column="36"/>
     </issue>
 
@@ -8284,7 +8768,7 @@
         errorLine2="                                   ~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/MandiActivity.java"
-            line="341"
+            line="348"
             column="36"/>
     </issue>
 
@@ -8295,7 +8779,7 @@
         errorLine2="                                                         ~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/MandiActivity.java"
-            line="341"
+            line="348"
             column="58"/>
     </issue>
 
@@ -8339,7 +8823,7 @@
         errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/PlantScanActivity.java"
-            line="225"
+            line="241"
             column="31"/>
     </issue>
 
@@ -8383,7 +8867,7 @@
         errorLine2="                                       ~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/RecommendationActivity.java"
-            line="131"
+            line="110"
             column="40"/>
     </issue>
 
@@ -8394,7 +8878,7 @@
         errorLine2="                                                          ~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/RecommendationActivity.java"
-            line="134"
+            line="113"
             column="59"/>
     </issue>
 
@@ -8405,7 +8889,7 @@
         errorLine2="                     ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/mittimitra/RecommendationActivity.java"
-            line="237"
+            line="199"
             column="22"/>
     </issue>
 
@@ -8418,28 +8902,6 @@
             file="src/main/java/com/mittimitra/WeatherAlertsActivity.java"
             line="187"
             column="40"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;Loading...&quot;, should use `@string` resource"
-        errorLine1="                        android:text=&quot;Loading...&quot;"
-        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/layout/activity_account_security.xml"
-            line="101"
-            column="25"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        message="Hardcoded string &quot;Loading...&quot;, should use `@string` resource"
-        errorLine1="                        android:text=&quot;Loading...&quot;"
-        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/layout/activity_account_security.xml"
-            line="122"
-            column="25"/>
     </issue>
 
     <issue
@@ -8532,6 +8994,17 @@
 
     <issue
         id="HardcodedText"
+        message="Hardcoded string &quot;📧&quot;, should use `@string` resource"
+        errorLine1="                        android:text=&quot;📧&quot;"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_link_email.xml"
+            line="61"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
         message="Hardcoded string &quot;🌱&quot;, should use `@string` resource"
         errorLine1="                                android:text=&quot;🌱&quot;"
         errorLine2="                                ~~~~~~~~~~~~~~~~~">
@@ -8615,6 +9088,17 @@
         <location
             file="src/main/res/layout/activity_scan.xml"
             line="219"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;·&quot;, should use `@string` resource"
+        errorLine1="                            android:text=&quot;·&quot;"
+        errorLine2="                            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_signup.xml"
+            line="199"
             column="29"/>
     </issue>
 

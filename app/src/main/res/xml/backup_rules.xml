@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <full-backup-content>
-    <!-- Exclude all SharedPreferences from cloud backup — they contain auth tokens and keys -->
+    <!-- Exclude SharedPreferences — contain auth tokens and API keys -->
     <exclude domain="sharedpref" path="." />
     <!-- Exclude Room database — re-syncs from Firestore on login -->
     <exclude domain="database" path="." />
-    <!-- Exclude cached camera images -->
-    <exclude domain="cache" path="camera_images" />
 </full-backup-content>
