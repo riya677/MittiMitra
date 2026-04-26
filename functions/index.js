@@ -1,4 +1,4 @@
-const crypto = require("node:crypto");
+﻿const crypto = require("node:crypto");
 const admin = require("firebase-admin");
 const {onCall, HttpsError} = require("firebase-functions/v2/https");
 const {defineSecret} = require("firebase-functions/params");
@@ -150,7 +150,7 @@ async function callGeminiVision(imageDataUrl, systemPrompt, userPromptText) {
     generationConfig: {temperature: 0.1, maxOutputTokens: 900},
   };
 
-  const model = "gemini-2.5-flash-preview-04-17";
+  const model = "gemini-3-flash-preview";
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
   const response = await fetch(url, {
     method: "POST",
@@ -481,13 +481,13 @@ exports.getPlantDiagnosis = onCall({region: REGION, timeoutSeconds: 60, secrets:
 issuesDetected and recommendations MUST be JSON arrays, never strings.`;
 
       const systemPrompt = `You are an expert plant pathologist specializing in Indian agriculture. Carefully examine the image and:
-1. Identify the crop or plant from visible leaf shape, texture, colour, and structure. Use the common Indian name (e.g. Tomato, Chilli, Brinjal, Mango, Paddy, Wheat). If the exact species is unclear, use a descriptive category like "Broad-leaf vegetable", "Leafy green crop", "Cereal crop seedling", or "Fruit tree sapling" — never output "Unidentified Plant". Only use "No plant detected" if there is literally no plant in the image.
+1. Identify the crop or plant from visible leaf shape, texture, colour, and structure. Use the common Indian name (e.g. Tomato, Chilli, Brinjal, Mango, Paddy, Wheat). If the exact species is unclear, use a descriptive category like "Broad-leaf vegetable", "Leafy green crop", "Cereal crop seedling", or "Fruit tree sapling" â€” never output "Unidentified Plant". Only use "No plant detected" if there is literally no plant in the image.
 2. Set healthStatus to: Healthy, Diseased, Stressed, or Unknown.
 3. List ONLY issues that are VISUALLY EVIDENT in the image (spots, lesions, yellowing, wilting, pest damage, etc.). Do not invent issues.
 4. Give practical remedies for Indian farmers (organic first, then chemical if needed).
 5. Set confidence based on how certain you are: well-known crop in clear image = 75-95, recognisable type but not exact species = 45-65, blurry or very unclear = below 35.
 6. If the image does not show a plant or leaf at all, set cropIdentified to "No plant detected", healthStatus to "Unknown", confidence to 0.
-7. Express uncertainty in uncertaintyMessage (e.g. "Exact species unclear — diagnosis based on visible symptoms"). Keep cropIdentified always farmer-friendly and descriptive.
+7. Express uncertainty in uncertaintyMessage (e.g. "Exact species unclear â€” diagnosis based on visible symptoms"). Keep cropIdentified always farmer-friendly and descriptive.
 ${schemaInstruction}`;
       const userText = `Diagnose this plant image. ${location ? "Farm location: " + location + "." : ""} Give remedies appropriate for Indian farming conditions.`;
 
@@ -512,7 +512,7 @@ ${schemaInstruction}`;
 
       const parsed = parseFirstJson(content);
 
-      // Normalise issuesDetected — AI sometimes returns a string despite instructions
+      // Normalise issuesDetected â€” AI sometimes returns a string despite instructions
       let issuesDetected = parsed.issuesDetected;
       if (!Array.isArray(issuesDetected)) {
         issuesDetected = (typeof issuesDetected === "string" && issuesDetected.trim())
@@ -574,9 +574,9 @@ exports.getFarmerChatResponse = onCall({region: REGION, timeoutSeconds: 45, secr
 - Post-harvest storage and processing
 
 If a user asks ANYTHING outside these topics (coding, math, jokes, general knowledge, politics, entertainment, etc.), respond with ONLY this exact message:
-"🌾 I am Kisan Sahayak, your farming assistant. I can only help with farming, soil, crops, pests, weather, and agriculture topics. Please ask me something related to farming!"
+"ðŸŒ¾ I am Kisan Sahayak, your farming assistant. I can only help with farming, soil, crops, pests, weather, and agriculture topics. Please ask me something related to farming!"
 
-Keep replies concise, practical, in simple language. Respond in the user's language (language code: ${languageCode}). Never give unsafe advice on pesticide doses — always recommend consulting a local Krishi officer for chemical applications.`,
+Keep replies concise, practical, in simple language. Respond in the user's language (language code: ${languageCode}). Never give unsafe advice on pesticide doses â€” always recommend consulting a local Krishi officer for chemical applications.`,
         },
         {
           role: "user",
@@ -602,3 +602,6 @@ Keep replies concise, practical, in simple language. Respond in the user's langu
     return failure("CHAT_FAILED", err.message || "Chat response failed", t);
   }
 });
+
+
+
