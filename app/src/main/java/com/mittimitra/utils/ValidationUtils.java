@@ -19,6 +19,10 @@ public class ValidationUtils {
     private static final Pattern NAME_PATTERN = 
         Pattern.compile("^[\\p{L}\\s.'-]{2,50}$");
 
+    // OTP pattern: exactly 6 digits
+    private static final Pattern OTP_PATTERN =
+        Pattern.compile("^[0-9]{6}$");
+
     /**
      * Validate Indian phone number.
      * Accepts: +91XXXXXXXXXX, 91XXXXXXXXXX, 0XXXXXXXXXX, XXXXXXXXXX
@@ -36,6 +40,7 @@ public class ValidationUtils {
     public static String formatIndianPhone(String phone) {
         if (phone == null) return null;
         String cleaned = phone.replaceAll("[\\s()-]", "");
+        if (cleaned.isEmpty()) return cleaned;
         
         if (cleaned.startsWith("+91")) {
             return cleaned;
@@ -46,7 +51,13 @@ public class ValidationUtils {
         } else if (cleaned.length() == 10) {
             return "+91" + cleaned;
         }
-        return phone; // Return as-is if format unknown
+        if (cleaned.length() > 10) {
+            String last10 = cleaned.substring(cleaned.length() - 10);
+            if (INDIAN_PHONE_PATTERN.matcher(last10).matches()) {
+                return "+91" + last10;
+            }
+        }
+        return cleaned;
     }
 
     /**
@@ -70,7 +81,7 @@ public class ValidationUtils {
      */
     public static boolean isValidOtp(String otp) {
         if (otp == null) return false;
-        return otp.matches("^[0-9]{6}$");
+        return OTP_PATTERN.matcher(otp).matches();
     }
 
     /**

@@ -2,36 +2,23 @@ package com.mittimitra;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.location.Location;
-import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.Spanned;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
-import android.content.Intent;
-import android.view.MotionEvent;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout; // Needed for LayoutParams
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Locale;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,69 +27,53 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import android.widget.ImageView;
-import com.mittimitra.config.ApiConfig;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.mittimitra.backend.ApiEnvelope;
+import com.mittimitra.backend.BackendCallback;
+import com.mittimitra.backend.model.AiModels;
+import com.mittimitra.data.repository.FirebasePredictionRepository;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.dao.ChatDao;
 import com.mittimitra.database.entity.SoilAnalysis;
+import com.mittimitra.domain.repository.PredictionRepository;
 import com.mittimitra.ui.adapter.ChatAdapter;
-import com.mittimitra.utils.ErrorHandler;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class TipActivity extends BaseActivity {
 
-    private static final String TAG = "TipActivity";
-    private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-
-    // UI Components
     private RecyclerView recyclerViewChat;
     private EditText etChatMessage;
-
-    // Matched to XML types to prevent Crash
     private FloatingActionButton btnSendChat;
     private ImageView btnRecordAudio;
-
     private ProgressBar loadingIndicator;
+
     private ChatAdapter chatAdapter;
     private final List<ChatMessage> messageList = new ArrayList<>();
 
-    // Dependencies
-    private OkHttpClient httpClient;
     private MittiMitraDatabase db;
     private ChatDao chatDao;
     private ExecutorService databaseExecutor;
     private FusedLocationProviderClient fusedLocationClient;
     private Location lastKnownLocation;
-    private String lastSoilReportJson = null;
+    private volatile String lastSoilReportJson;
 
-    // Audio
-    private MediaRecorder mediaRecorder;
-    private File audioFile;
-    private boolean isRecording = false;
+    private SpeechRecognizer speechRecognizer;
+    private final PredictionRepository predictionRepository = new FirebasePredictionRepository();
 
-    // Permissions
     private final ActivityResultLauncher<String[]> locationPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), (permissions) -> {
+            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), permissions -> {
                 if (Boolean.TRUE.equals(permissions.get(Manifest.permission.ACCESS_FINE_LOCATION))) {
                     getCurrentLocation();
                 } else {
@@ -110,115 +81,19 @@ public class TipActivity extends BaseActivity {
                 }
             });
 
-    private SpeechRecognizer speechRecognizer;
-
     private final ActivityResultLauncher<String> audioPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), (isGranted) -> {
-                if (isGranted) startListening();
-                else Toast.makeText(this, R.string.mic_permission_required, Toast.LENGTH_SHORT).show();
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    startListening();
+                } else {
+                    Toast.makeText(this, R.string.mic_permission_required, Toast.LENGTH_SHORT).show();
+                }
             });
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tip);
+    private static final Map<String, String> LANGUAGE_NAMES;
 
-        Toolbar toolbar = findViewById(R.id.tip_toolbar);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        // Find Views
-        recyclerViewChat = findViewById(R.id.recycler_view_chat);
-        etChatMessage = findViewById(R.id.et_chat_message);
-        loadingIndicator = findViewById(R.id.loading_indicator);
-
-        // THESE CASTS MUST MATCH THE XML ELEMENTS
-        btnSendChat = findViewById(R.id.btn_send_chat);
-        btnRecordAudio = findViewById(R.id.btn_record_audio);
-
-        httpClient = new OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS).build();
-        db = MittiMitraDatabase.getDatabase(getApplicationContext());
-        chatDao = db.chatDao();
-        databaseExecutor = Executors.newSingleThreadExecutor();
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
-        setupRecyclerView();
-        requestLocation();
-
-        btnSendChat.setOnClickListener(v -> {
-            String message = etChatMessage.getText().toString().trim();
-            if (!message.isEmpty()) {
-                sendMessage(message);
-                etChatMessage.setText("");
-            }
-        });
-
-        // Initialize Speech Recognizer
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-        speechRecognizer.setRecognitionListener(speechListener);
-        
-        // Set up audio button click
-        btnRecordAudio.setOnClickListener(v -> requestAudioPermission());
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (speechRecognizer != null) speechRecognizer.destroy();
-        if (databaseExecutor != null) databaseExecutor.shutdownNow();
-    }
-
-
-
-    private void startListening() {
-        if (!SpeechRecognizer.isRecognitionAvailable(this)) {
-            Toast.makeText(this, R.string.voice_not_supported, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        
-        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speech_prompt));
-        
-        speechRecognizer.startListening(intent);
-    }
-
-    // --- SpeechListener Implementation ---
-    private final RecognitionListener speechListener = new RecognitionListener() {
-        @Override public void onReadyForSpeech(Bundle params) { 
-            btnRecordAudio.setImageTintList(ColorStateList.valueOf(Color.RED)); // Red when listening
-        }
-        @Override public void onBeginningOfSpeech() {}
-        @Override public void onRmsChanged(float rmsdB) {}
-        @Override public void onBufferReceived(byte[] buffer) {}
-        @Override public void onEndOfSpeech() {
-            btnRecordAudio.setImageTintList(ColorStateList.valueOf(Color.parseColor("#757575"))); // Reset to grey
-        }
-        @Override public void onError(int error) {
-            String msg = error == SpeechRecognizer.ERROR_NO_MATCH
-                    ? getString(R.string.speech_no_match)
-                    : getString(R.string.speech_no_match);
-            Toast.makeText(TipActivity.this, msg, Toast.LENGTH_SHORT).show();
-            btnRecordAudio.setImageTintList(ColorStateList.valueOf(Color.parseColor("#757575"))); // Reset to grey
-        }
-        @Override public void onResults(Bundle results) {
-            ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-            if (matches != null && !matches.isEmpty()) {
-                String spokenText = matches.get(0);
-                etChatMessage.setText(spokenText);
-                sendMessage(spokenText); // Auto-send
-                etChatMessage.setText("");
-            }
-        }
-        @Override public void onPartialResults(Bundle partialResults) {}
-        @Override public void onEvent(int eventType, Bundle params) {}
-    };
-
-    // Maps BCP-47 language codes to full language names for Groq instruction
-    private static final java.util.Map<String, String> LANGUAGE_NAMES;
     static {
-        LANGUAGE_NAMES = new java.util.HashMap<>();
+        LANGUAGE_NAMES = new HashMap<>();
         LANGUAGE_NAMES.put("hi", "Hindi");
         LANGUAGE_NAMES.put("ta", "Tamil");
         LANGUAGE_NAMES.put("ml", "Malayalam");
@@ -236,6 +111,100 @@ public class TipActivity extends BaseActivity {
         LANGUAGE_NAMES.put("en", "English");
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tip);
+
+        Toolbar toolbar = findViewById(R.id.tip_toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(R.string.kisan_sahayak_title);
+        }
+
+        recyclerViewChat = findViewById(R.id.recycler_view_chat);
+        etChatMessage = findViewById(R.id.et_chat_message);
+        loadingIndicator = findViewById(R.id.loading_indicator);
+        btnSendChat = findViewById(R.id.btn_send_chat);
+        btnRecordAudio = findViewById(R.id.btn_record_audio);
+
+        db = MittiMitraDatabase.getDatabase(getApplicationContext());
+        chatDao = db.chatDao();
+        databaseExecutor = Executors.newSingleThreadExecutor();
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        setupRecyclerView();
+        requestLocation();
+
+        btnSendChat.setOnClickListener(v -> {
+            String message = etChatMessage.getText().toString().trim();
+            if (message.isEmpty()) return;
+            sendMessage(message);
+            etChatMessage.setText("");
+        });
+
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        speechRecognizer.setRecognitionListener(speechListener);
+        btnRecordAudio.setOnClickListener(v -> requestAudioPermission());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (speechRecognizer != null) speechRecognizer.destroy();
+        if (databaseExecutor != null) databaseExecutor.shutdownNow();
+    }
+
+    private void startListening() {
+        if (!SpeechRecognizer.isRecognitionAvailable(this)) {
+            Toast.makeText(this, R.string.voice_not_supported, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speech_prompt));
+        speechRecognizer.startListening(intent);
+    }
+
+    private final RecognitionListener speechListener = new RecognitionListener() {
+        @Override
+        public void onReadyForSpeech(Bundle params) {
+            btnRecordAudio.setImageTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.RED));
+        }
+
+        @Override public void onBeginningOfSpeech() {}
+        @Override public void onRmsChanged(float rmsdB) {}
+        @Override public void onBufferReceived(byte[] buffer) {}
+
+        @Override
+        public void onEndOfSpeech() {
+            btnRecordAudio.setImageTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#757575")));
+        }
+
+        @Override
+        public void onError(int error) {
+            Toast.makeText(TipActivity.this, getString(R.string.speech_no_match), Toast.LENGTH_SHORT).show();
+            btnRecordAudio.setImageTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#757575")));
+        }
+
+        @Override
+        public void onResults(Bundle results) {
+            ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            if (matches == null || matches.isEmpty()) return;
+
+            String spokenText = matches.get(0);
+            etChatMessage.setText(spokenText);
+            sendMessage(spokenText);
+            etChatMessage.setText("");
+        }
+
+        @Override public void onPartialResults(Bundle partialResults) {}
+        @Override public void onEvent(int eventType, Bundle params) {}
+    };
+
     private String getLanguageInstruction() {
         AppPreferences prefs = new AppPreferences(this);
         String code = prefs.getLanguage();
@@ -246,94 +215,77 @@ public class TipActivity extends BaseActivity {
     }
 
     private void addInitialBotMessage() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+
         databaseExecutor.execute(() -> {
-            SoilAnalysis lastScan = db.soilDao().getLatestReport();
-            if (lastScan != null) lastSoilReportJson = lastScan.soilReportJson;
-            String langInstruction = getLanguageInstruction();
-            String sysMsg = langInstruction +
-                    "You are 'Kisan Sahayak', a friendly and expert AI farming assistant for Indian farmers. " +
-                    "Speak in simple language. If the user speaks in Hindi/local language, reply in that language. " +
-                    "Keep answers concise (max 3-4 sentences) unless asked for details.";
-            callGroqChatAPI(sysMsg, true, "");
+            SoilAnalysis lastScan = db.soilDao().getLatestReportForUser(user.getUid());
+            if (lastScan != null) {
+                lastSoilReportJson = lastScan.soilReportJson;
+            }
+
+            String prompt = getLanguageInstruction()
+                    + "You are Kisan Sahayak, an expert farming assistant for Indian farmers. "
+                    + "Respond clearly in 3-4 short sentences unless detailed answer is requested.";
+            callBackendChat(prompt, true, "");
         });
     }
 
     private void sendMessage(String userMessage) {
         addMessage(userMessage, ChatMessage.Type.USER);
-        String locContext = (lastKnownLocation != null) ? "Loc: " + lastKnownLocation.getLatitude() + "," + lastKnownLocation.getLongitude() : "";
-        String soilContext = (lastSoilReportJson != null) ? "Last Soil Data: " + lastSoilReportJson : "";
 
-        String prompt = "Context: " + locContext + "\n" + soilContext + "\nUser: " + userMessage + "\n\nAct as a friendly Agri-Expert. Format with Markdown (bold, lists) where helpful.";
-        callGroqChatAPI(prompt, false, userMessage);
+        String locContext = (lastKnownLocation != null)
+                ? (lastKnownLocation.getLatitude() + "," + lastKnownLocation.getLongitude())
+                : "";
+
+        String prompt = "Context:\nLocation=" + locContext + "\n"
+                + "LastSoil=" + (lastSoilReportJson != null ? lastSoilReportJson : "") + "\n"
+                + "User=" + userMessage;
+
+        callBackendChat(prompt, false, userMessage);
     }
 
-    private void callGroqChatAPI(String prompt, boolean isInitial, String userQuery) {
+    private void callBackendChat(String prompt, boolean isInitial, String userQuery) {
         setLoading(true);
-        final String queryForOffline = (userQuery != null) ? userQuery : "";
-        String rawKey = BuildConfig.GROQ_API_KEY;
-        if (rawKey == null || rawKey.isEmpty()) {
-            addMessage("API Key Missing", ChatMessage.Type.BOT);
-            setLoading(false);
-            return;
-        }
-
-        // Check for network before making call
         if (!isNetworkAvailable()) {
-            loadOfflineTips(queryForOffline);
+            loadOfflineTips(userQuery);
             setLoading(false);
             return;
         }
 
-        String cleanKey = rawKey.replace("\"", "").trim();
+        AppPreferences prefs = new AppPreferences(this);
+        AiModels.ChatRequest request = new AiModels.ChatRequest();
+        request.prompt = prompt;
+        request.userQuery = userQuery;
+        request.languageCode = prefs.getLanguage();
+        request.location = (lastKnownLocation != null)
+                ? (lastKnownLocation.getLatitude() + "," + lastKnownLocation.getLongitude())
+                : "";
+        request.soilContext = lastSoilReportJson;
 
-        JSONObject jsonBody = new JSONObject();
-        try {
-            jsonBody.put("model", ApiConfig.GROQ_MODEL_CHAT);
-            JSONArray messages = new JSONArray();
-            messages.put(new JSONObject().put("role", "user").put("content", prompt));
-            jsonBody.put("messages", messages);
-        } catch (JSONException e) {
-            setLoading(false);
-            return;
-        }
-
-        Request request = new Request.Builder()
-                .url(ApiConfig.GROQ_CHAT_ENDPOINT)
-                .header("Authorization", "Bearer " + cleanKey)
-                .post(RequestBody.create(jsonBody.toString(), JSON))
-                .build();
-
-        httpClient.newCall(request).enqueue(new Callback() {
-            @Override public void onFailure(@NonNull Call call, @NonNull IOException e) {
+        predictionRepository.fetchChatResponse(request, new BackendCallback<AiModels.ChatResponseData>() {
+            @Override
+            public void onSuccess(@NonNull ApiEnvelope<AiModels.ChatResponseData> envelope) {
                 runOnUiThread(() -> {
-                    loadOfflineTips(queryForOffline); // FALLBACK TO OFFLINE
+                    AiModels.ChatResponseData data = envelope.data;
+                    if (data == null || data.replyMarkdown == null || data.replyMarkdown.trim().isEmpty()) {
+                        loadOfflineTips(userQuery);
+                    } else {
+                        addMessage(data.replyMarkdown, ChatMessage.Type.BOT);
+                        if (data.confidence != null && data.confidence < 45 && data.uncertaintyMessage != null) {
+                            addMessage(data.uncertaintyMessage, ChatMessage.Type.BOT);
+                        }
+                    }
                     setLoading(false);
                 });
             }
-            @Override public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                try {
-                    if (response.body() == null) {
-                        runOnUiThread(() -> { loadOfflineTips(queryForOffline); setLoading(false); });
-                        return;
-                    }
-                    String resBody = response.body().string();
-                    if (!response.isSuccessful()) {
-                        runOnUiThread(() -> {
-                            loadOfflineTips(queryForOffline); // FALLBACK ON ERROR
-                            setLoading(false);
-                        });
-                        return;
-                    }
-                    JSONObject json = new JSONObject(resBody);
-                    String content = json.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
 
-                    runOnUiThread(() -> {
-                        addMessage(content, ChatMessage.Type.BOT);
-                        setLoading(false);
-                    });
-                } catch (Exception e) {
-                    runOnUiThread(() -> loadOfflineTips(queryForOffline));
-                }
+            @Override
+            public void onFailure(@NonNull ApiEnvelope<AiModels.ChatResponseData> envelope, Throwable throwable) {
+                runOnUiThread(() -> {
+                    loadOfflineTips(userQuery);
+                    setLoading(false);
+                });
             }
         });
     }
@@ -341,15 +293,13 @@ public class TipActivity extends BaseActivity {
     private boolean isNetworkAvailable() {
         android.net.ConnectivityManager cm = (android.net.ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm == null) return false;
-        
-        // Modern API (Android M+)
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             android.net.Network network = cm.getActiveNetwork();
             if (network == null) return false;
             android.net.NetworkCapabilities nc = cm.getNetworkCapabilities(network);
             return nc != null && nc.hasCapability(android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET);
         } else {
-            // Legacy fallback
             android.net.NetworkInfo netInfo = cm.getActiveNetworkInfo();
             return netInfo != null && netInfo.isConnected();
         }
@@ -358,26 +308,27 @@ public class TipActivity extends BaseActivity {
     private void loadOfflineTips(String userQuery) {
         try {
             String jsonString;
-            try (java.io.InputStream is = getAssets().open("offline_tips.json")) {
-                int size = is.available();
-                byte[] buffer = new byte[size];
-                is.read(buffer);
-                jsonString = new String(buffer, "UTF-8");
+            try (InputStream is = getAssets().open("offline_tips.json")) {
+                java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+                byte[] buffer = new byte[4096];
+                int read;
+                while ((read = is.read(buffer)) != -1) {
+                    baos.write(buffer, 0, read);
+                }
+                jsonString = baos.toString(java.nio.charset.StandardCharsets.UTF_8.name());
             }
             JSONObject json = new JSONObject(jsonString);
 
-            // 1. Try smart keyword match from QA array if user asked a question
             if (userQuery != null && !userQuery.isEmpty()) {
-                org.json.JSONArray qaArray = json.optJSONArray("qa");
+                JSONArray qaArray = json.optJSONArray("qa");
                 if (qaArray != null) {
-                    String lowerQuery = userQuery.toLowerCase(java.util.Locale.ROOT);
+                    String lowerQuery = userQuery.toLowerCase(Locale.ROOT);
                     for (int i = 0; i < qaArray.length(); i++) {
                         JSONObject entry = qaArray.getJSONObject(i);
-                        org.json.JSONArray keywords = entry.getJSONArray("keywords");
+                        JSONArray keywords = entry.getJSONArray("keywords");
                         for (int k = 0; k < keywords.length(); k++) {
-                            if (lowerQuery.contains(keywords.getString(k).toLowerCase(java.util.Locale.ROOT))) {
-                                String answer = entry.getString("answer");
-                                addMessage("<b>" + getString(R.string.offline_mode_label) + "</b><br>" + answer, ChatMessage.Type.BOT);
+                            if (lowerQuery.contains(keywords.getString(k).toLowerCase(Locale.ROOT))) {
+                                addMessage("[OFFLINE MODE]\n" + entry.getString("answer"), ChatMessage.Type.BOT);
                                 return;
                             }
                         }
@@ -385,36 +336,28 @@ public class TipActivity extends BaseActivity {
                 }
             }
 
-            // 2. Fall back to soil-type specific tip
             JSONObject tips = json.getJSONObject("tips");
-            String advice = tips.getString("default");
+            String advice = tips.optString("default", "General farming tip unavailable offline.");
             if (lastSoilReportJson != null) {
-                String lowerSoil = lastSoilReportJson.toLowerCase(java.util.Locale.ROOT);
-                if (lowerSoil.contains("clay"))  advice = tips.optString("clay", advice);
-                else if (lowerSoil.contains("red"))   advice = tips.optString("red", advice);
+                String lowerSoil = lastSoilReportJson.toLowerCase(Locale.ROOT);
+                if (lowerSoil.contains("clay")) advice = tips.optString("clay", advice);
+                else if (lowerSoil.contains("red")) advice = tips.optString("red", advice);
                 else if (lowerSoil.contains("black")) advice = tips.optString("black", advice);
                 else if (lowerSoil.contains("sandy")) advice = tips.optString("sandy", advice);
-                else if (lowerSoil.contains("loam"))  advice = tips.optString("loam", advice);
+                else if (lowerSoil.contains("loam")) advice = tips.optString("loam", advice);
             }
-
-            addMessage("<b>" + getString(R.string.offline_mode_label) + "</b><br>" + advice, ChatMessage.Type.BOT);
+            addMessage("[OFFLINE MODE]\n" + advice, ChatMessage.Type.BOT);
         } catch (Exception e) {
             android.util.Log.e("TipActivity", "Failed to load offline tips", e);
             addMessage("Offline tips unavailable.", ChatMessage.Type.BOT);
         }
     }
 
-    // --- Helper Methods ---
     private void requestLocation() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             getCurrentLocation();
         } else {
             locationPermissionLauncher.launch(new String[]{Manifest.permission.ACCESS_FINE_LOCATION});
-        }
-        
-        // Update Title to "Kisan Sahayak"
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(R.string.kisan_sahayak_title);
         }
     }
 
@@ -434,48 +377,6 @@ public class TipActivity extends BaseActivity {
         });
     }
 
-    private void callGroqWhisperAPI(File audioFile) {
-        setLoading(true);
-        String rawKey = BuildConfig.GROQ_API_KEY;
-        if (rawKey == null || rawKey.isEmpty()) {
-            setLoading(false);
-            return;
-        }
-        rawKey = rawKey.replace("\"", "").trim();
-
-        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("file", audioFile.getName(), RequestBody.create(audioFile, MediaType.get("audio/mp4")))
-                .addFormDataPart("model", "whisper-large-v3").build();
-
-        Request request = new Request.Builder()
-                .url("https://api.groq.com/openai/v1/audio/transcriptions")
-                .header("Authorization", "Bearer " + rawKey)
-                .post(requestBody).build();
-
-        httpClient.newCall(request).enqueue(new Callback() {
-            @Override public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                runOnUiThread(() -> setLoading(false));
-            }
-            @Override public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                try {
-                    if (response.body() == null) {
-                        runOnUiThread(() -> setLoading(false));
-                        return;
-                    }
-                    JSONObject json = new JSONObject(response.body().string());
-                    String text = json.getString("text");
-                    runOnUiThread(() -> {
-                        etChatMessage.setText(text);
-                        setLoading(false);
-                        sendMessage(text);
-                    });
-                } catch (Exception e) {
-                    runOnUiThread(() -> setLoading(false));
-                }
-            }
-        });
-    }
-
     private void setupRecyclerView() {
         chatAdapter = new ChatAdapter(messageList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -486,23 +387,21 @@ public class TipActivity extends BaseActivity {
     }
 
     private void loadChatHistory() {
-        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) return;
-        
+
         databaseExecutor.execute(() -> {
             List<com.mittimitra.database.entity.ChatMessage> savedMessages = chatDao.getMessagesForUser(user.getUid());
-            if (savedMessages != null && !savedMessages.isEmpty()) {
-                runOnUiThread(() -> {
-                    for (com.mittimitra.database.entity.ChatMessage msg : savedMessages) {
-                        ChatMessage.Type type = msg.isUser ? ChatMessage.Type.USER : ChatMessage.Type.BOT;
-                        messageList.add(new ChatMessage(msg.content, type));
-                    }
-                    chatAdapter.notifyDataSetChanged();
-                    if (!messageList.isEmpty()) {
-                        recyclerViewChat.scrollToPosition(messageList.size() - 1);
-                    }
-                });
-            }
+            if (savedMessages == null || savedMessages.isEmpty()) return;
+
+            runOnUiThread(() -> {
+                for (com.mittimitra.database.entity.ChatMessage msg : savedMessages) {
+                    ChatMessage.Type type = msg.isUser ? ChatMessage.Type.USER : ChatMessage.Type.BOT;
+                    messageList.add(new ChatMessage(msg.content, type));
+                }
+                chatAdapter.notifyDataSetChanged();
+                recyclerViewChat.scrollToPosition(messageList.size() - 1);
+            });
         });
     }
 
@@ -512,19 +411,18 @@ public class TipActivity extends BaseActivity {
             chatAdapter.notifyItemInserted(messageList.size() - 1);
             recyclerViewChat.scrollToPosition(messageList.size() - 1);
         });
-        
-        // Persist to database (don't persist LOADING type)
-        if (type != ChatMessage.Type.LOADING) {
-            com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
-            if (user == null) return;
-            
-            databaseExecutor.execute(() -> {
-                com.mittimitra.database.entity.ChatMessage dbMessage = 
+
+        if (type == ChatMessage.Type.LOADING) return;
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+
+        databaseExecutor.execute(() -> {
+            com.mittimitra.database.entity.ChatMessage dbMessage =
                     new com.mittimitra.database.entity.ChatMessage(message, type == ChatMessage.Type.USER);
-                dbMessage.userId = user.getUid();
-                chatDao.insertMessage(dbMessage);
-            });
-        }
+            dbMessage.userId = user.getUid();
+            chatDao.insertMessage(dbMessage);
+        });
     }
 
     private void setLoading(boolean isLoading) {
@@ -536,24 +434,10 @@ public class TipActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) { finish(); return true; }
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
-
-    // --- MARKDOWN PARSER ---
-    private static Spanned parseMarkdown(String markdown) {
-        if (markdown == null) return Html.fromHtml("", Html.FROM_HTML_MODE_COMPACT);
-
-        // Convert common Markdown to HTML tags
-        String html = markdown.replaceAll("\\*\\*(.*?)\\*\\*", "<b>$1</b>");
-        html = html.replaceAll("####\\s*(.*)", "<br><b>$1</b><br>"); // H4
-        html = html.replaceAll("###\\s*(.*)", "<br><b>$1</b><br>"); // H3
-        html = html.replaceAll("##\\s*(.*)", "<br><b>$1</b><br>"); // H2
-        html = html.replaceAll("^-\\s+(.*)", "• $1<br>"); // List start
-        html = html.replaceAll("\\n-\\s+(.*)", "<br>• $1"); // List item
-        html = html.replace("\n", "<br>"); // Newlines
-
-        return Html.fromHtml(html, Html.FROM_HTML_MODE_COMPACT);
-    }
-
 }

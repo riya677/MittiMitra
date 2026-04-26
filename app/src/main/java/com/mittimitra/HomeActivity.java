@@ -25,6 +25,9 @@ public class HomeActivity extends BaseActivity {
         @Override
         public void run() {
             if (viewPagerCarousel != null) {
+                if (viewPagerCarousel.getAdapter() == null || viewPagerCarousel.getAdapter().getItemCount() <= 0) {
+                    return;
+                }
                 int currentItem = viewPagerCarousel.getCurrentItem();
                 int totalItems = viewPagerCarousel.getAdapter().getItemCount();
                 viewPagerCarousel.setCurrentItem((currentItem + 1) % totalItems);
@@ -85,6 +88,14 @@ public class HomeActivity extends BaseActivity {
         // Refresh name every time activity comes to foreground (e.g. back from Profile)
         updateWelcomeMessage();
         refreshUserNameFromFirestore();
+        carouselHandler.removeCallbacks(carouselRunnable);
+        carouselHandler.postDelayed(carouselRunnable, 3000);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        carouselHandler.removeCallbacks(carouselRunnable);
     }
 
     private void updateWelcomeMessage() {
@@ -111,7 +122,8 @@ public class HomeActivity extends BaseActivity {
                             updateWelcomeMessage();
                         }
                     }
-                });
+                })
+                .addOnFailureListener(e -> android.util.Log.e("HomeActivity", "Failed to refresh user name", e));
     }
 
     private void setupGridNavigation() {
@@ -131,6 +143,7 @@ public class HomeActivity extends BaseActivity {
         findViewById(R.id.card_calendar).setOnClickListener(v -> startActivity(new Intent(this, CropCalendarActivity.class)));
         findViewById(R.id.card_irrigation).setOnClickListener(v -> startActivity(new Intent(this, IrrigationActivity.class)));
         findViewById(R.id.card_mandi).setOnClickListener(v -> startActivity(new Intent(this, MandiActivity.class)));
+        findViewById(R.id.card_farm_tasks).setOnClickListener(v -> startActivity(new Intent(this, FarmTaskPlannerActivity.class)));
     }
 
     private void setupBottomNavigation() {

@@ -95,3 +95,38 @@
 # ============================================
 -keep class com.mittimitra.MandiActivity$MandiPrice { *; }
 -keep class com.mittimitra.utils.** { *; }
+
+# ============================================
+# Jsoup (web scraping for scheme data)
+# ============================================
+-keep public class org.jsoup.** { *; }
+-keeppackagenames org.jsoup.parser
+-keeppackagenames org.jsoup.nodes
+
+# ============================================
+# Facebook Shimmer (loading animation)
+# ============================================
+-keep class com.facebook.shimmer.** { *; }
+-dontwarn com.facebook.shimmer.**
+
+# ============================================
+# WorkManager
+# ============================================
+-keep class androidx.work.** { *; }
+-keep class * extends androidx.work.Worker
+-keep class * extends androidx.work.ListenableWorker {
+    public <init>(android.content.Context, androidx.work.WorkerParameters);
+}
+
+# ============================================
+# DataStore (Preferences)
+# ============================================
+-keepclassmembers class * extends com.google.protobuf.GeneratedMessageLite {
+    <fields>;
+}
+
+# ============================================
+# Crashlytics — preserve stack traces
+# ============================================
+-keepattributes SourceFile,LineNumberTable
+-keep public class * extends java.lang.Exception

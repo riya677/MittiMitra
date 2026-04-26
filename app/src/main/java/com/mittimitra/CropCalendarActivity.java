@@ -3,66 +3,59 @@ package com.mittimitra;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.mittimitra.network.RetrofitClient;
+import com.google.gson.Gson;
+import com.mittimitra.backend.ApiEnvelope;
+import com.mittimitra.backend.BackendCallback;
+import com.mittimitra.backend.model.AiModels;
+import com.mittimitra.data.repository.FirebasePredictionRepository;
+import com.mittimitra.database.MittiMitraDatabase;
+import com.mittimitra.database.entity.CropSchedule;
+import com.mittimitra.domain.repository.PredictionRepository;
+import com.mittimitra.tasks.TaskSuggestionEngine;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
- * Crop Calendar Activity - AI-generated planting and harvesting schedules.
- * Uses Groq API to generate personalized schedules based on crop and location.
+ * Crop Calendar Activity - AI generated planting and harvesting schedules.
  */
-public class CropCalendarActivity extends AppCompatActivity {
+public class CropCalendarActivity extends BaseActivity {
 
     private static final String TAG = "CropCalendarActivity";
-    
+
     private Spinner spinnerCrop;
     private MaterialButton btnGenerate;
     private ProgressBar progressBar;
     private MaterialCardView cardSchedule;
-    private TextView tvScheduleTitle, tvScheduleContent;
-    private TextView tvPlantingDate, tvHarvestDate, tvDuration;
+    private TextView tvScheduleTitle;
+    private TextView tvScheduleContent;
+    private TextView tvPlantingDate;
+    private TextView tvHarvestDate;
+    private TextView tvDuration;
 
-    private final String[] CROPS = {
-        "Rice (धान)", "Wheat (गेहूं)", "Maize (मक्का)", "Cotton (कपास)",
-        "Sugarcane (गन्ना)", "Soybean (सोयाबीन)", "Groundnut (मूंगफली)",
-        "Tomato (टमाटर)", "Potato (आलू)", "Onion (प्याज)",
-        "Chilli (मिर्च)", "Brinjal (बैंगन)", "Cabbage (पत्तागोभी)",
-        "Cauliflower (फूलगोभी)", "Mustard (सरसों)"
+    private final String[] crops = {
+            "Rice", "Wheat", "Maize", "Cotton", "Sugarcane", "Soybean", "Groundnut",
+            "Tomato", "Potato", "Onion", "Chilli", "Brinjal", "Cabbage", "Cauliflower", "Mustard"
     };
 
-    private OkHttpClient httpClient;
     private final ExecutorService dbExecutor = Executors.newSingleThreadExecutor();
+    private final PredictionRepository predictionRepository = new FirebasePredictionRepository();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +68,6 @@ public class CropCalendarActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(R.string.crop_calendar_title);
         }
-
-        httpClient = new OkHttpClient.Builder()
-                .readTimeout(60, TimeUnit.SECONDS)
-                .build();
 
         initViews();
         setupSpinner();
@@ -99,18 +88,17 @@ public class CropCalendarActivity extends AppCompatActivity {
 
     private void setupSpinner() {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, CROPS);
+                android.R.layout.simple_spinner_item, crops);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCrop.setAdapter(adapter);
 
-        // Pre-select last used crop from Session
         String lastCrop = new AppPreferences(this).getLastCrop();
-        if (lastCrop != null) {
-            for (int i = 0; i < CROPS.length; i++) {
-                if (CROPS[i].equals(lastCrop)) {
-                    spinnerCrop.setSelection(i);
-                    break;
-                }
+        if (lastCrop == null) return;
+
+        for (int i = 0; i < crops.length; i++) {
+            if (crops[i].equalsIgnoreCase(lastCrop.split(" ")[0])) {
+                spinnerCrop.setSelection(i);
+                break;
             }
         }
     }
@@ -120,197 +108,111 @@ public class CropCalendarActivity extends AppCompatActivity {
     }
 
     private void generateSchedule() {
-        String selectedCrop = CROPS[spinnerCrop.getSelectedItemPosition()];
-        
-        // Save to Session for Irrigation Calculator
+        String selectedCrop = crops[spinnerCrop.getSelectedItemPosition()];
         new AppPreferences(this).setLastCrop(selectedCrop);
 
-        String cropName = selectedCrop.split(" ")[0]; // Get English name only
-        
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(android.view.View.VISIBLE);
         btnGenerate.setEnabled(false);
-        cardSchedule.setVisibility(View.GONE);
+        cardSchedule.setVisibility(android.view.View.GONE);
 
-        // Get current date for context
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
         String currentMonth = sdf.format(new Date());
 
-        // Build AI prompt
-        String prompt = String.format(
-            "You are an expert agricultural advisor for Indian farmers. " +
-            "Generate a detailed planting and harvesting schedule for %s crop. " +
-            "Current month is %s. Location: Central India. " +
-            "Respond ONLY with valid JSON (no markdown, no extra text):\n" +
-            "{\n" +
-            "  \"crop\": \"%s\",\n" +
-            "  \"best_planting_month\": \"Month name\",\n" +
-            "  \"best_harvest_month\": \"Month name\",\n" +
-            "  \"duration_days\": 90,\n" +
-            "  \"schedule\": [\n" +
-            "    {\"week\": 1, \"activity\": \"Land preparation\", \"tips\": \"Plow field 2-3 times\"},\n" +
-            "    {\"week\": 2, \"activity\": \"Sowing\", \"tips\": \"Maintain seed spacing\"}\n" +
-            "  ],\n" +
-            "  \"fertilizer_schedule\": \"NPK recommendations\",\n" +
-            "  \"irrigation_tips\": \"Water requirements\",\n" +
-            "  \"pest_watch\": \"Common pests to monitor\"\n" +
-            "}", 
-            cropName, currentMonth, cropName
-        );
+        AiModels.CropScheduleRequest request = new AiModels.CropScheduleRequest();
+        request.cropName = selectedCrop;
+        request.currentMonth = currentMonth;
+        request.location = getSharedPreferences("scan_cache", MODE_PRIVATE).getString("loc", "Central India");
+        request.languageCode = new AppPreferences(this).getLanguage();
 
-        callGroqAPI(prompt, selectedCrop);
-    }
-
-    private void callGroqAPI(String prompt, String cropName) {
-        // Use Retrofit (Gson)
-        String apiKey = BuildConfig.GROQ_API_KEY.replace("\"", "").trim();
-        String token = "Bearer " + apiKey;
-
-        JsonObject userMessage = new JsonObject();
-        userMessage.addProperty("role", "user");
-        userMessage.addProperty("content", prompt);
-
-        JsonArray messages = new JsonArray();
-        messages.add(userMessage);
-
-        JsonObject payload = new JsonObject();
-        payload.addProperty("model", "llama-3.3-70b-versatile");
-        payload.add("messages", messages);
-        payload.addProperty("temperature", 0.3);
-        payload.addProperty("max_tokens", 1024);
-
-        RetrofitClient.getGroqService().chatCompletion(token, payload).enqueue(new retrofit2.Callback<JsonObject>() {
+        predictionRepository.fetchCropSchedule(request, new BackendCallback<AiModels.CropScheduleData>() {
             @Override
-            public void onResponse(retrofit2.Call<JsonObject> call, retrofit2.Response<JsonObject> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    try {
-                        JsonObject json = response.body();
-                        String content = json.getAsJsonArray("choices")
-                                .get(0).getAsJsonObject()
-                                .getAsJsonObject("message")
-                                .get("content").getAsString();
+            public void onSuccess(@NonNull ApiEnvelope<AiModels.CropScheduleData> envelope) {
+                runOnUiThread(() -> {
+                    progressBar.setVisibility(android.view.View.GONE);
+                    btnGenerate.setEnabled(true);
 
-                        runOnUiThread(() -> parseAndDisplaySchedule(content, cropName));
-                    } catch (Exception e) {
-                        Log.e(TAG, "Groq Parse Error", e);
-                        runOnUiThread(() -> showError(getString(R.string.crop_error_ai)));
+                    AiModels.CropScheduleData data = envelope.data;
+                    if (data == null) {
+                        showError(getString(R.string.crop_error_ai));
+                        return;
                     }
-                } else {
-                    if (response.errorBody() != null) {
-                        try (okhttp3.ResponseBody errorBody = response.errorBody()) {
-                            Log.e(TAG, "Groq API Error: " + errorBody.string());
-                        } catch (IOException e) {
-                            Log.e(TAG, "Error reading error body", e);
-                        }
-                    }
-                    runOnUiThread(() -> showError(getString(R.string.crop_error_service)));
-                }
+
+                    displaySchedule(data, selectedCrop);
+                    persistSchedule(data, selectedCrop);
+                });
             }
 
             @Override
-            public void onFailure(retrofit2.Call<JsonObject> call, Throwable t) {
-                Log.e(TAG, "Network Failure", t);
+            public void onFailure(@NonNull ApiEnvelope<AiModels.CropScheduleData> envelope, Throwable throwable) {
+                Log.e(TAG, "Crop schedule fetch failed", throwable);
                 runOnUiThread(() -> showError(getString(R.string.crop_error_network)));
             }
         });
     }
 
-    private void parseAndDisplaySchedule(String content, String cropName) {
-        progressBar.setVisibility(View.GONE);
-        btnGenerate.setEnabled(true);
+    private void displaySchedule(AiModels.CropScheduleData data, String cropName) {
+        tvScheduleTitle.setText(getString(R.string.crop_schedule_title_format, cropName));
+        tvPlantingDate.setText(getString(R.string.crop_plant_label_format, nonEmpty(data.bestPlantingMonth, "N/A")));
+        tvHarvestDate.setText(getString(R.string.crop_harvest_label_format, nonEmpty(data.bestHarvestMonth, "N/A")));
+        tvDuration.setText(getString(R.string.crop_duration_format, data.durationDays != null ? data.durationDays : 90));
 
-        try {
-            // Clean JSON if wrapped in markdown
-            String cleaned = content.trim();
-            if (cleaned.contains("```json")) {
-                cleaned = cleaned.split("```json")[1].split("```")[0];
-            } else if (cleaned.contains("```")) {
-                cleaned = cleaned.split("```")[1].split("```")[0];
+        StringBuilder scheduleText = new StringBuilder();
+        if (data.schedule != null && !data.schedule.isEmpty()) {
+            scheduleText.append(getString(R.string.crop_weekly_activities)).append("\n\n");
+            for (AiModels.ScheduleItem item : data.schedule) {
+                if (item == null) continue;
+                int week = item.week != null ? item.week : 0;
+                scheduleText.append(getString(R.string.crop_week_item_format,
+                        week,
+                        nonEmpty(item.activity, getString(R.string.status_unknown)),
+                        nonEmpty(item.tips, "")));
+                scheduleText.append("\n");
             }
-            cleaned = cleaned.trim();
-
-            JSONObject schedule = new JSONObject(cleaned);
-            
-            tvScheduleTitle.setText("📅 " + cropName + " Schedule");
-            tvPlantingDate.setText("🌱 Plant: " + schedule.optString("best_planting_month", "N/A"));
-            tvHarvestDate.setText("🌾 Harvest: " + schedule.optString("best_harvest_month", "N/A"));
-            tvDuration.setText("⏱️ Duration: " + schedule.optInt("duration_days", 90) + " days");
-
-            StringBuilder scheduleText = new StringBuilder();
-            
-            // Weekly schedule
-            if (schedule.has("schedule")) {
-                scheduleText.append("📋 Weekly Activities:\n\n");
-                JSONArray activities = schedule.getJSONArray("schedule");
-                for (int i = 0; i < activities.length(); i++) {
-                    JSONObject activity = activities.getJSONObject(i);
-                    scheduleText.append("Week ").append(activity.optInt("week", i+1))
-                            .append(": ").append(activity.optString("activity", ""))
-                            .append("\n   → ").append(activity.optString("tips", ""))
-                            .append("\n\n");
-                }
-            }
-
-            // Additional info
-            if (schedule.has("fertilizer_schedule")) {
-                scheduleText.append("🧪 Fertilizer: ").append(schedule.getString("fertilizer_schedule")).append("\n\n");
-            }
-            if (schedule.has("irrigation_tips")) {
-                scheduleText.append("💧 Irrigation: ").append(schedule.getString("irrigation_tips")).append("\n\n");
-            }
-            if (schedule.has("pest_watch")) {
-                scheduleText.append("🐛 Pest Watch: ").append(schedule.getString("pest_watch"));
-            }
-
-            tvScheduleContent.setText(scheduleText.toString().trim());
-            cardSchedule.setVisibility(View.VISIBLE);
-
-        } catch (Exception e) {
-            Log.e(TAG, "Error parsing schedule", e);
-            // Fallback: show raw response
-            tvScheduleTitle.setText("📅 " + cropName + " Schedule");
-            tvPlantingDate.setText("");
-            tvHarvestDate.setText("");
-            tvDuration.setText("");
-            tvScheduleContent.setText(content);
-            cardSchedule.setVisibility(View.VISIBLE);
         }
 
-        // SAVE TO DATABASE
-        FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            dbExecutor.execute(() -> {
-                com.mittimitra.database.entity.CropSchedule entry = new com.mittimitra.database.entity.CropSchedule();
-                entry.userId = user.getUid();
-                entry.cropName = cropName;
-                entry.fullJson = content; // Save raw JSON content
-                entry.timestamp = System.currentTimeMillis();
-
-                // Extract basic info again for easy access (redundant parsing but safer separation)
-                try {
-                    String cleaned = content.trim();
-                    if (cleaned.contains("```json")) {
-                        cleaned = cleaned.split("```json")[1].split("```")[0];
-                    } else if (cleaned.contains("```")) {
-                        cleaned = cleaned.split("```")[1].split("```")[0];
-                    }
-                    JSONObject schedule = new JSONObject(cleaned);
-                    entry.plantingDate = schedule.optString("best_planting_month", "N/A");
-                    entry.harvestDate = schedule.optString("best_harvest_month", "N/A");
-                } catch (Exception e) {
-                    Log.e(TAG, "Error parsing schedule for DB", e);
-                    entry.plantingDate = "N/A";
-                    entry.harvestDate = "N/A";
-                }
-
-                com.mittimitra.database.MittiMitraDatabase.getDatabase(this).cropDao().insert(entry);
-                Log.d(TAG, "Schedule saved to DB");
-            });
+        if (data.fertilizerSchedule != null && !data.fertilizerSchedule.isEmpty()) {
+            scheduleText.append("\n").append(getString(R.string.crop_fertilizer_label)).append(data.fertilizerSchedule).append("\n");
+        }
+        if (data.irrigationTips != null && !data.irrigationTips.isEmpty()) {
+            scheduleText.append("\n").append(getString(R.string.crop_irrigation_label)).append(data.irrigationTips).append("\n");
+        }
+        if (data.pestWatch != null && !data.pestWatch.isEmpty()) {
+            scheduleText.append("\n").append(getString(R.string.crop_pest_watch_label)).append(data.pestWatch).append("\n");
+        }
+        if (data.confidence != null && data.confidence < 45) {
+            scheduleText.append("\n").append(nonEmpty(data.uncertaintyMessage, getString(R.string.prediction_low_confidence_hint)));
         }
 
+        tvScheduleContent.setText(scheduleText.toString().trim());
+        cardSchedule.setVisibility(android.view.View.VISIBLE);
+    }
+
+    private void persistSchedule(AiModels.CropScheduleData data, String cropName) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+        final android.content.Context appContext = getApplicationContext();
+        final String uid = user.getUid();
+
+        dbExecutor.execute(() -> {
+            CropSchedule entry = new CropSchedule();
+            entry.userId = uid;
+            entry.cropName = cropName;
+            entry.plantingDate = nonEmpty(data.bestPlantingMonth, "N/A");
+            entry.harvestDate = nonEmpty(data.bestHarvestMonth, "N/A");
+            entry.fullJson = new Gson().toJson(data);
+            entry.timestamp = System.currentTimeMillis();
+
+            MittiMitraDatabase.getDatabase(appContext).cropDao().insert(entry);
+            TaskSuggestionEngine.suggestFromCropSchedule(appContext, uid, cropName, data);
+        });
+    }
+
+    private String nonEmpty(String value, String fallback) {
+        return (value == null || value.trim().isEmpty()) ? fallback : value;
     }
 
     private void showError(String message) {
-        progressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(android.view.View.GONE);
         btnGenerate.setEnabled(true);
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }

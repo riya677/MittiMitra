@@ -11,7 +11,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.button.MaterialButton;
@@ -28,7 +27,7 @@ import retrofit2.Response;
  * Irrigation Calculator Activity.
  * Calculates daily water requirements based on crop, field size, and weather.
  */
-public class IrrigationActivity extends AppCompatActivity {
+public class IrrigationActivity extends BaseActivity {
 
     private Spinner spinnerCrop, spinnerSoilType;
     private EditText etFieldSize;
@@ -199,6 +198,11 @@ public class IrrigationActivity extends AppCompatActivity {
 
         int cropIndex = spinnerCrop.getSelectedItemPosition();
         int soilIndex = spinnerSoilType.getSelectedItemPosition();
+        if (cropIndex < 0 || cropIndex >= CROP_WATER_NEEDS.length
+                || soilIndex < 0 || soilIndex >= SOIL_FACTORS.length) {
+            Toast.makeText(this, getString(R.string.irrigation_error_size), Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // Base water requirement (mm/day)
         double baseWater = CROP_WATER_NEEDS[cropIndex];

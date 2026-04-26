@@ -15,7 +15,7 @@ public class RetrofitClient {
             .writeTimeout(ApiConfig.WRITE_TIMEOUT, TimeUnit.SECONDS)
             .build();
 
-    // Eagerly initialized — thread-safe with no synchronization overhead
+    // Eagerly initialized - thread-safe with no synchronization overhead
     private static final Retrofit soilRetrofit = new Retrofit.Builder()
             .baseUrl(ApiConfig.SOIL_GRIDS_BASE)
             .client(client)
@@ -24,18 +24,6 @@ public class RetrofitClient {
 
     private static final Retrofit meteoRetrofit = new Retrofit.Builder()
             .baseUrl(ApiConfig.OPEN_METEO_BASE)
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
-
-    private static final Retrofit hfRetrofit = new Retrofit.Builder()
-            .baseUrl(ApiConfig.HF_API_BASE)
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
-
-    private static final Retrofit groqRetrofit = new Retrofit.Builder()
-            .baseUrl(ApiConfig.GROQ_API_BASE)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
@@ -52,20 +40,18 @@ public class RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
+    private static final Retrofit groqRetrofit = new Retrofit.Builder()
+            .baseUrl(ApiConfig.GROQ_BASE)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
     public static SoilApiService getSoilService() {
         return soilRetrofit.create(SoilApiService.class);
     }
 
     public static OpenMeteoService getWeatherService() {
         return meteoRetrofit.create(OpenMeteoService.class);
-    }
-
-    public static HuggingFaceService getHuggingFaceService() {
-        return hfRetrofit.create(HuggingFaceService.class);
-    }
-
-    public static GroqApiService getGroqService() {
-        return groqRetrofit.create(GroqApiService.class);
     }
 
     public static GeocodingService getGeocodingService() {
@@ -75,4 +61,9 @@ public class RetrofitClient {
     public static MandiApiService getMandiService() {
         return mandiRetrofit.create(MandiApiService.class);
     }
+
+    public static GroqApiService getGroqService() {
+        return groqRetrofit.create(GroqApiService.class);
+    }
 }
+

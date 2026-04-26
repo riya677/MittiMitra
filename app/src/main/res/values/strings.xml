@@ -28,6 +28,7 @@
     <string name="setting_unit_converter_desc">Convert Acre, Hectare, Bigha, and Guntha.</string>
     <string name="setting_kisan_call">Call Kisan Helpline</string>
     <string name="setting_kisan_call_desc">Connect to Govt. Kisan Call Center (1800-180-1551).</string>
+    <string name="kisan_helpline_number">18001801551</string>
 
     <string name="language_title">Select Language</string>
     <string name="language_system_default">System Default</string>
@@ -721,5 +722,120 @@
     <string name="field_undo">Undo</string>
     <string name="field_name_required">Field name is required</string>
     <string name="field_hectares_label">ha</string>
+
+
+    <!-- Farm Task Planner -->
+    <string name="farm_tasks_empty">No tasks added yet.\nTap + to add one.</string>
+    <string name="add_task_title">Add Task</string>
+    <string name="home_card_tasks">Farm Tasks</string>
+    <string name="task_title_hint">Task Title</string>
+    <string name="task_description_hint">Description</string>
+    <string name="task_crop_hint">Related Crop (optional)</string>
+    <string name="task_due_date_hint">Due Date</string>
+    <string name="task_mark_complete">Mark Complete</string>
+
+    <!-- Duplicate Account Dialog -->
+    <string name="duplicate_warning_icon_desc">Warning Icon</string>
+    <string name="label_name_value_default">Name: —</string>
+    <string name="label_phone_value_default">Phone: —</string>
+    <string name="label_email_value_default">Email: —</string>
+    <string name="dup_btn_use_existing">Use Existing Account</string>
+    <string name="dup_btn_link_methods">Learn How to Merge</string>
+
+    <!-- Recommendation: offline fallback advisory -->
+    <string name="rec_fallback_context_format">Offline Mode | Weather: %1$s | Soil: %2$s</string>
+    <string name="rec_error_network_offline">No internet connection. Showing offline advisory.</string>
+    <string name="rec_error_backend_auth">Authentication failed. Please login again.</string>
+    <string name="rec_error_backend_not_deployed">AI service not available yet.</string>
+    <string name="rec_error_backend_unavailable">AI service temporarily unavailable. Please try again later.</string>
+    <string name="rec_error_backend_rate_limit">Too many requests. Please wait a moment and try again.</string>
+    <string name="rec_error_with_trace_format">%1$s (Ref: %2$s)</string>
+    <string name="prediction_low_confidence_hint">⚠️ Low confidence. Verify with a local expert.</string>
+    <string name="rec_fallback_title">📋 Offline Advisory</string>
+    <string name="rec_fallback_n_low">Nitrogen low – apply urea or compost</string>
+    <string name="rec_fallback_n_high">Nitrogen excessive – reduce fertilizer</string>
+    <string name="rec_fallback_p_low">Phosphorus low – apply DAP</string>
+    <string name="rec_fallback_p_high">Phosphorus excessive – reduce DAP</string>
+    <string name="rec_fallback_k_low">Potassium low – apply MOP</string>
+    <string name="rec_fallback_k_high">Potassium excessive – flush with water</string>
+    <string name="rec_fallback_ph_low">Acidic soil – apply lime to raise pH</string>
+    <string name="rec_fallback_ph_high">Alkaline soil – apply gypsum to lower pH</string>
+    <string name="rec_fallback_ph_ok">pH balanced ✓</string>
+    <string name="rec_fallback_footer">For detailed advice, connect to the internet and run a new scan.</string>
+
+    <!-- Farm Task Planner -->
+    <string name="farm_tasks_title">Farm Tasks</string>
+    <string name="dialog_save">Save</string>
+    <string name="task_title_required">Task title is required</string>
+    <string name="task_saved">Task saved</string>
+    <string name="task_completed">Task marked complete</string>
+    <string name="task_no_description">No description</string>
+    <string name="task_meta_format">Crop: %1$s | Due: %2$s</string>
+    <string name="task_reminder_title">Task Reminder</string>
+    <string name="task_reminder_body">Don\'t forget: %s is due soon!</string>
+
+    <!-- Crop Calendar schedule display -->
+    <string name="crop_schedule_title_format">%s – Crop Schedule</string>
+    <string name="crop_plant_label_format">🌱 Planting: %s</string>
+    <string name="crop_harvest_label_format">🌾 Harvest: %s</string>
+    <string name="crop_duration_format">⏱ Duration: %d days</string>
+    <string name="crop_weekly_activities">📅 Weekly Activities</string>
+    <string name="crop_week_item_format">Week %1$d: %2$s\n💡 %3$s</string>
+    <string name="crop_fertilizer_label">🌱 Fertilizer Schedule:\n</string>
+    <string name="crop_irrigation_label">💧 Irrigation Tips:\n</string>
+    <string name="crop_pest_watch_label">🐛 Pest Watch:\n</string>
+
+    <!-- Login / Google Sign-In -->
+    <string name="google_play_services_required">Google Play Services required. Please update and try again.</string>
+    <string name="google_signin_config_error">Google Sign-In configuration error. Please contact support.</string>
+    <string name="label_name_value">Name: %s</string>
+    <string name="label_phone_value">Phone: %s</string>
+    <string name="label_email_value">Email: %s</string>
+
+    <!-- Notifications -->
+    <string name="notif_permission_required">Notification permission required</string>
+
+    <!-- Plant Doctor -->
+    <string name="plant_select_image_first">Please select an image first</string>
+
+    <!-- Scan -->
+    <string name="scan_image_required">Please capture or select an image first</string>
+
+    <!-- Additional keys merged from working tree -->
+
+    <!-- SignupActivity OTP flow -->
+    <string name="signup_btn_send_otp">Send OTP</string>
+    <string name="signup_otp_sent_to">OTP sent to %s</string>
+    <string name="signup_otp_sent_to_placeholder">OTP sent to your number</string>
+    <string name="signup_verify_create">Verify &amp; Create Account</string>
+    <string name="signup_resend_otp">Resend OTP</string>
+    <string name="signup_change_number">Change Number</string>
+
+    <!-- LinkEmailActivity -->
+    <string name="link_email_title">Link Email Account</string>
+    <string name="link_email_subtitle">Add email login for easy account recovery and additional security.</string>
+    <string name="link_email_hint">Email Address</string>
+    <string name="link_email_password_hint">Create Password (min. 6 characters)</string>
+    <string name="link_email_confirm_hint">Confirm Password</string>
+    <string name="link_email_password_note">You\'ll use this password to sign in with email in the future.</string>
+    <string name="link_email_btn">Link Email &amp; Save</string>
+    <string name="link_email_account">Link Email Account</string>
+
+    <!-- Account Linking Results -->
+    <string name="email_linked_success">Email linked successfully!</string>
+    <string name="google_linked_success">Google account linked!</string>
+    <string name="phone_linked_success">Phone number linked!</string>
+    <string name="link_credential_in_use">This credential is already linked to another account.</string>
+    <string name="link_failed">Linking failed. Please try again.</string>
+    <string name="status_email_linked">✓ Email Linked</string>
+
+    <!-- Password validation -->
+    <string name="error_password_too_short">Password must be at least 6 characters</string>
+    <string name="error_passwords_dont_match">Passwords do not match</string>
+
+    <!-- Phone link section -->
+    <string name="link_phone_number_hint">10-digit mobile number</string>
+    <string name="btn_send_link_otp">Send OTP</string>
+    <string name="btn_verify_link_phone">Verify &amp; Link</string>
 
 </resources>

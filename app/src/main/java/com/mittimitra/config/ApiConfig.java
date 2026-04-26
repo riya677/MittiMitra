@@ -10,18 +10,8 @@ public final class ApiConfig {
         // Prevent instantiation
     }
 
-    // ========== GROQ API ==========
-    public static final String GROQ_API_BASE = "https://api.groq.com/openai/v1/";
-    public static final String GROQ_CHAT_ENDPOINT = GROQ_API_BASE + "chat/completions";
-    
-    // Groq Model IDs
-    public static final String GROQ_MODEL_CHAT = "llama-3.3-70b-versatile";
-    public static final String GROQ_MODEL_VISION = "meta-llama/llama-4-scout-17b-16e-instruct";
-
-    // ========== HUGGING FACE ==========
-    public static final String HF_API_BASE = "https://api-inference.huggingface.co/";
-    public static final String HF_MODEL_PLANT_DISEASE = 
-            "https://api-inference.huggingface.co/models/linkanjarad/mobilenet_v2_1.0_224-plant-disease-identification";
+    // AI provider calls are intentionally removed from client-side networking.
+    // All advisory/diagnosis/schedule requests must go through authenticated backend functions.
 
     // ========== OPEN METEO ==========
     public static final String OPEN_METEO_BASE = "https://api.open-meteo.com/";
@@ -29,6 +19,9 @@ public final class ApiConfig {
 
     // ========== SOIL DATA ==========
     public static final String SOIL_GRIDS_BASE = "https://rest.isric.org/soilgrids/v2.0/";
+
+    // ========== OPTIONAL DEBUG AI FALLBACK ==========
+    public static final String GROQ_BASE = "https://api.groq.com/openai/v1/";
 
     // ========== LOCAL ML MODELS ==========
     public static final String TFLITE_SOIL_CLASSIFIER = "soil_classifier.tflite";

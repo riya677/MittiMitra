@@ -13,7 +13,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +24,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MandiActivity extends AppCompatActivity {
+public class MandiActivity extends BaseActivity {
 
     private Spinner spinnerState, spinnerCommodity;
     private MaterialButton btnCheck;
@@ -98,8 +97,15 @@ public class MandiActivity extends AppCompatActivity {
     }
 
     private void fetchPrices() {
-        String state = spinnerState.getSelectedItem().toString();
-        String commodity = spinnerCommodity.getSelectedItem().toString();
+        Object selectedState = spinnerState != null ? spinnerState.getSelectedItem() : null;
+        Object selectedCommodity = spinnerCommodity != null ? spinnerCommodity.getSelectedItem() : null;
+        if (selectedState == null || selectedCommodity == null) {
+            Toast.makeText(this, R.string.mandi_no_data, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String state = selectedState.toString();
+        String commodity = selectedCommodity.toString();
         
         // Extract English name
         String stateClean = state.split("\\(")[0].trim();

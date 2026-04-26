@@ -18,6 +18,8 @@ import java.util.List;
 public class SettingsActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
+    private final List<SettingItem> items = new ArrayList<>();
+    private SettingsAdapter settingsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,30 +42,7 @@ public class SettingsActivity extends BaseActivity {
         // 2. INIT RECYCLERVIEW
         recyclerView = findViewById(R.id.recycler_view_settings);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // 3. REFRESH DATA ON RESUME (Fixes "Names not changing" issue)
-        loadSettingsList();
-    }
-
-    private void loadSettingsList() {
-        List<SettingItem> items = new ArrayList<>();
-
-        // Use getString() here so it fetches the new language string every time
-        items.add(new SettingItem("account", getString(R.string.setting_account_security), android.R.drawable.ic_menu_my_calendar));
-        items.add(new SettingItem("language", getString(R.string.setting_language), android.R.drawable.ic_menu_mapmode));
-        items.add(new SettingItem("accessibility", getString(R.string.setting_accessibility), android.R.drawable.ic_menu_sort_alphabetically));
-        items.add(new SettingItem("theme", getString(R.string.setting_theme), android.R.drawable.ic_menu_view));
-        items.add(new SettingItem("unit_converter", getString(R.string.setting_unit_converter), android.R.drawable.ic_menu_sort_by_size));
-        items.add(new SettingItem("kisan_call", getString(R.string.setting_kisan_call), android.R.drawable.ic_menu_call));
-        items.add(new SettingItem("manage_data", getString(R.string.setting_manage_data), android.R.drawable.ic_menu_delete));
-        items.add(new SettingItem("notifications", getString(R.string.setting_notifications), android.R.drawable.ic_popup_reminder));
-        items.add(new SettingItem("share", getString(R.string.setting_share_app), android.R.drawable.ic_menu_share));
-
-        SettingsAdapter adapter = new SettingsAdapter(items, item -> {
+        settingsAdapter = new SettingsAdapter(items, item -> {
             switch (item.id) {
                 case "account":
                     startActivity(new Intent(this, AccountSecurityActivity.class));
@@ -82,7 +61,7 @@ public class SettingsActivity extends BaseActivity {
                     break;
                 case "kisan_call":
                     Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                    callIntent.setData(Uri.parse("tel:18001801551"));
+                    callIntent.setData(Uri.parse("tel:" + getString(R.string.kisan_helpline_number)));
                     startActivity(callIntent);
                     break;
                 case "manage_data":
@@ -100,8 +79,33 @@ public class SettingsActivity extends BaseActivity {
                     break;
             }
         });
+        recyclerView.setAdapter(settingsAdapter);
+    }
 
-        recyclerView.setAdapter(adapter);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 3. REFRESH DATA ON RESUME (Fixes "Names not changing" issue)
+        loadSettingsList();
+    }
+
+    private void loadSettingsList() {
+        items.clear();
+
+        // Use getString() here so it fetches the new language string every time
+        items.add(new SettingItem("account", getString(R.string.setting_account_security), android.R.drawable.ic_menu_my_calendar));
+        items.add(new SettingItem("language", getString(R.string.setting_language), android.R.drawable.ic_menu_mapmode));
+        items.add(new SettingItem("accessibility", getString(R.string.setting_accessibility), android.R.drawable.ic_menu_sort_alphabetically));
+        items.add(new SettingItem("theme", getString(R.string.setting_theme), android.R.drawable.ic_menu_view));
+        items.add(new SettingItem("unit_converter", getString(R.string.setting_unit_converter), android.R.drawable.ic_menu_sort_by_size));
+        items.add(new SettingItem("kisan_call", getString(R.string.setting_kisan_call), android.R.drawable.ic_menu_call));
+        items.add(new SettingItem("manage_data", getString(R.string.setting_manage_data), android.R.drawable.ic_menu_delete));
+        items.add(new SettingItem("notifications", getString(R.string.setting_notifications), android.R.drawable.ic_popup_reminder));
+        items.add(new SettingItem("share", getString(R.string.setting_share_app), android.R.drawable.ic_menu_share));
+
+        if (settingsAdapter != null) {
+            settingsAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

@@ -5,10 +5,10 @@ import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 
-public class ForgotPasswordActivity extends AppCompatActivity {
+public class ForgotPasswordActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +44,19 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                             finish();
                         } else {
                             Exception ex = task.getException();
-                            String msg = ex != null ? ex.getMessage() : getString(R.string.forgot_reset_error);
-                            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, resolveResetError(ex), Toast.LENGTH_SHORT).show();
                         }
                     });
         });
+    }
+
+    private String resolveResetError(Exception ex) {
+        if (ex instanceof FirebaseAuthException) {
+            String code = ((FirebaseAuthException) ex).getErrorCode();
+            if ("ERROR_USER_NOT_FOUND".equals(code) || "ERROR_INVALID_EMAIL".equals(code)) {
+                return getString(R.string.error_invalid_email);
+            }
+        }
+        return getString(R.string.forgot_reset_error);
     }
 }

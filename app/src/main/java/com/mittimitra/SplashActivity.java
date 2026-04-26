@@ -20,6 +20,8 @@ public class SplashActivity extends BaseActivity {
 
     private static final long SPLASH_DELAY = 1500; // 1.5 seconds
     private SessionManager sessionManager;
+    private final Handler splashHandler = new Handler(Looper.getMainLooper());
+    private final Runnable splashRunnable = this::continueLaunchFlow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,29 +30,25 @@ public class SplashActivity extends BaseActivity {
 
         sessionManager = new SessionManager(getApplicationContext());
 
-        // Check for deep link
-        Intent intent = getIntent();
-        Uri deepLink = intent.getData();
+        splashHandler.postDelayed(splashRunnable, SPLASH_DELAY);
+    }
 
-        // Use a Handler to delay the next action
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-
-            // Check if the user is logged in
-            if (sessionManager.isLoggedIn()) {
-                // Handle deep link navigation
-                if (deepLink != null) {
-                    handleDeepLink(deepLink);
-                } else {
-                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-                }
+    private void continueLaunchFlow() {
+        // Check if the user is logged in
+        if (sessionManager.isLoggedIn()) {
+            // Handle deep link navigation
+            Uri deepLink = getIntent() != null ? getIntent().getData() : null;
+            if (deepLink != null) {
+                handleDeepLink(deepLink);
             } else {
-                // User is not logged in, go to Welcome screen
-                startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
+                startActivity(new Intent(SplashActivity.this, HomeActivity.class));
             }
+        } else {
+            // User is not logged in, go to Welcome screen
+            startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
+        }
 
-            finish();
-
-        }, SPLASH_DELAY);
+        finish();
     }
 
     /**
@@ -90,5 +88,11 @@ public class SplashActivity extends BaseActivity {
         }
 
         startActivity(targetIntent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        splashHandler.removeCallbacks(splashRunnable);
+        super.onDestroy();
     }
 }

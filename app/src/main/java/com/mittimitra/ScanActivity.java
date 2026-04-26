@@ -17,7 +17,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +29,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
@@ -260,23 +258,23 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
 
         if (tvValN != null) {
             NutrientStatus.Status s = NutrientStatus.getNitrogenStatus(finalN);
-            tvValN.setText(String.format("%.0f (%s)", finalN, s.label));
+            tvValN.setText(String.format(Locale.US, "%.0f (%s)", finalN, getString(s.labelResId)));
             tvValN.setTextColor(s.color);
         }
         // Repeat for P, K, and pH using their respective status methods
         if (tvValP != null) {
             NutrientStatus.Status s = NutrientStatus.getPhosphorusStatus(finalP);
-            tvValP.setText(String.format("%.0f (%s)", finalP, s.label));
+            tvValP.setText(String.format(Locale.US, "%.0f (%s)", finalP, getString(s.labelResId)));
             tvValP.setTextColor(s.color);
         }
         if (tvValK != null) {
             NutrientStatus.Status s = NutrientStatus.getPotassiumStatus(finalK);
-            tvValK.setText(String.format("%.0f (%s)", finalK, s.label));
+            tvValK.setText(String.format(Locale.US, "%.0f (%s)", finalK, getString(s.labelResId)));
             tvValK.setTextColor(s.color);
         }
         if (tvValPh != null) {
             NutrientStatus.Status s = NutrientStatus.getPhStatus(finalpH);
-            tvValPh.setText(String.format("%.1f (%s)", finalpH, s.label));
+            tvValPh.setText(String.format(Locale.US, "%.1f (%s)", finalpH, getString(s.labelResId)));
             tvValPh.setTextColor(s.color);
         }
     }
@@ -312,6 +310,9 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
             } else {
                 tvStatusLabel.setText(getString(R.string.alert_offline_mode));
             }
+        }).addOnFailureListener(e -> {
+            Log.e(TAG, "Failed to get last location", e);
+            tvStatusLabel.setText(getString(R.string.alert_offline_mode));
         });
     }
 
@@ -324,6 +325,7 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
                     Address addr = addresses.get(0);
                     districtName = addr.getSubAdminArea();
                     if (districtName == null) districtName = addr.getLocality();
+                    if (districtName == null || districtName.trim().isEmpty()) districtName = "Unknown";
                     locationName = (addr.getLocality() != null ? addr.getLocality() : "Unknown") + ", " + addr.getAdminArea();
 
                     new Handler(Looper.getMainLooper()).post(() -> {
@@ -457,17 +459,20 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
 
     // --- ANALYSIS (TFLite) ---
     private void startAnalysis() {
+        final Bitmap bitmapSnapshot = currentImageBitmap;
+        if (bitmapSnapshot == null) {
+            Toast.makeText(this, R.string.scan_image_required, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        final String userNotes = etUserNotes != null && etUserNotes.getText() != null
+                ? etUserNotes.getText().toString().trim()
+                : "";
+
         btnAnalyze.setEnabled(false);
         btnAnalyze.setText(getString(R.string.scan_btn_analyzing));
         progressAnalysis.setVisibility(View.VISIBLE);
-
-        final Bitmap bitmapSnapshot = currentImageBitmap;
-        if (bitmapSnapshot != null) {
-            // FIX: TFLite inference runs on background thread to prevent ANR
-            analysisExecutor.execute(() -> runLocalInference(bitmapSnapshot));
-        } else {
-            generateSmartReport("Not Scanned");
-        }
+        // TFLite inference runs on background thread to prevent ANR
+        analysisExecutor.execute(() -> runLocalInference(bitmapSnapshot, userNotes));
     }
 
     /**
@@ -508,15 +513,17 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
     }
 
     private MappedByteBuffer loadModelFile() throws IOException {
-        AssetFileDescriptor fileDescriptor = this.getAssets().openFd(MODEL_PATH);
-        FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
-        FileChannel fileChannel = inputStream.getChannel();
-        return fileChannel.map(FileChannel.MapMode.READ_ONLY, fileDescriptor.getStartOffset(), fileDescriptor.getDeclaredLength());
+        try (AssetFileDescriptor fileDescriptor = this.getAssets().openFd(MODEL_PATH);
+             FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
+             FileChannel fileChannel = inputStream.getChannel()) {
+            return fileChannel.map(FileChannel.MapMode.READ_ONLY, fileDescriptor.getStartOffset(), fileDescriptor.getDeclaredLength());
+        }
     }
 
-    private void runLocalInference(Bitmap bitmap) {
+    private void runLocalInference(Bitmap bitmap, String userNotes) {
+        Bitmap resizedBitmap = null;
         try (Interpreter interpreter = new Interpreter(loadModelFile())) {
-            Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
+            resizedBitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
             ByteBuffer inputBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3);
             inputBuffer.order(ByteOrder.nativeOrder());
 
@@ -539,11 +546,15 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
             int maxIndex = getMaxIndex(output[0]);
             String detectedSoil = (maxIndex < SOIL_LABELS.length) ? SOIL_LABELS[maxIndex] : "Unknown";
 
-            generateSmartReport(detectedSoil);
+            generateSmartReport(detectedSoil, userNotes);
 
         } catch (Exception e) {
             Log.e(TAG, "Inference Error", e);
-            generateSmartReport("Analysis Error");
+            generateSmartReport("Analysis Error", userNotes);
+        } finally {
+            if (resizedBitmap != null && resizedBitmap != bitmap && !resizedBitmap.isRecycled()) {
+                resizedBitmap.recycle();
+            }
         }
     }
 
@@ -555,7 +566,7 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
         return maxIndex;
     }
 
-    private void generateSmartReport(String detectedSoilType) {
+    private void generateSmartReport(String detectedSoilType, String userNotes) {
         analysisExecutor.execute(() -> {
             try {
                 // 🧠 INTELLIGENT ADJUSTMENT
@@ -571,9 +582,7 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
                 report.put("soil_dynamic", soilDynamic);
                 report.put("location", locationName);
                 report.put("detected_soil", detectedSoilType);
-
-                String notes = etUserNotes.getText().toString().trim();
-                report.put("user_notes", notes.isEmpty() ? "No notes added" : notes);
+                report.put("user_notes", userNotes.isEmpty() ? "No notes added" : userNotes);
 
                 SoilAnalysis analysis = new SoilAnalysis();
                 analysis.timestamp = System.currentTimeMillis();
@@ -598,6 +607,12 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
                 });
             } catch (Exception e) {
                 Log.e(TAG, "Error generating smart report", e);
+                runOnUiThread(() -> {
+                    progressAnalysis.setVisibility(View.GONE);
+                    btnAnalyze.setEnabled(true);
+                    btnAnalyze.setText(getString(R.string.scan_btn_analyze));
+                    Toast.makeText(ScanActivity.this, R.string.alert_data_unavailable, Toast.LENGTH_SHORT).show();
+                });
             }
         });
     }

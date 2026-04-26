@@ -9,7 +9,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +31,7 @@ import retrofit2.Response;
  * Weather Alerts Activity - Shows 7-day forecast with agricultural recommendations.
  * Uses Open-Meteo API for weather data.
  */
-public class WeatherAlertsActivity extends AppCompatActivity {
+public class WeatherAlertsActivity extends BaseActivity {
 
     private EditText etLocation;
     private MaterialButton btnSearch;
@@ -42,7 +41,7 @@ public class WeatherAlertsActivity extends AppCompatActivity {
     private TextView tvLocationName, tvCurrentTemp, tvCurrentCondition, tvHumidity, tvWind;
     private TextView tvRecommendations;
 
-    private double currentLat, currentLon;
+    private volatile double currentLat, currentLon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -269,7 +268,11 @@ public class WeatherAlertsActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             ForecastItem item = items.get(position);
-            holder.tvDate.setText(item.date.substring(5)); // MM-DD
+            String dateLabel = item.date;
+            if (dateLabel != null && dateLabel.length() >= 10 && dateLabel.charAt(4) == '-') {
+                dateLabel = dateLabel.substring(5); // MM-DD
+            }
+            holder.tvDate.setText(dateLabel != null ? dateLabel : "");
             holder.tvMaxTemp.setText(String.format("↑%.0f°", item.maxTemp));
             holder.tvMinTemp.setText(String.format("↓%.0f°", item.minTemp));
             holder.tvRain.setText(String.format("💧%d%%", item.precipProb));

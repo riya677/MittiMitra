@@ -2,8 +2,8 @@ package com.mittimitra;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -13,13 +13,14 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthCredential;
@@ -30,12 +31,19 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+import com.mittimitra.backend.ApiEnvelope;
+import com.mittimitra.backend.BackendCallback;
+import com.mittimitra.backend.model.AccountModels;
+import com.mittimitra.data.repository.FirebaseUserProfileRepository;
+import com.mittimitra.domain.repository.UserProfileRepository;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
+    private static final String TAG = "LoginActivity";
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -44,10 +52,11 @@ public class LoginActivity extends AppCompatActivity {
     private LinearLayout layoutOtpVerify;
     private ProgressBar progressBar;
     private String mVerificationId;
-    
-    // Prefilled data from SignupActivity
+
     private String prefilledName;
     private String prefilledEmail;
+
+    private final UserProfileRepository userProfileRepository = new FirebaseUserProfileRepository();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,28 +72,14 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_login);
         TextView tvForgotPass = findViewById(R.id.tv_forgot_password);
 
-        // Google Sign In Config
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        // Listeners
         findViewById(R.id.btn_google_signin).setOnClickListener(v -> signInWithGoogle());
         findViewById(R.id.btn_send_otp).setOnClickListener(v -> sendOtp());
         findViewById(R.id.btn_verify_otp).setOnClickListener(v -> verifyOtp());
 
-        // Requirement 5: Forgot Password
-        tvForgotPass.setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
-        });
+        tvForgotPass.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class)));
 
-        findViewById(R.id.tv_go_to_signup).setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, SignupActivity.class));
-        });
-        
-        // Check for prefilled data from SignupActivity
+        findViewById(R.id.tv_go_to_signup).setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, SignupActivity.class)));
+
         Intent intent = getIntent();
         if (intent.hasExtra("prefill_phone")) {
             etPhone.setText(intent.getStringExtra("prefill_phone"));
@@ -93,8 +88,21 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    // --- GOOGLE ---
     private void signInWithGoogle() {
+        int playServicesStatus = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
+        if (playServicesStatus != ConnectionResult.SUCCESS) {
+            Toast.makeText(this, getString(R.string.google_play_services_required), Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (mGoogleSignInClient == null) {
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build();
+            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        }
+
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         googleSignInLauncher.launch(signInIntent);
     }
@@ -108,7 +116,12 @@ public class LoginActivity extends AppCompatActivity {
                         GoogleSignInAccount account = task.getResult(ApiException.class);
                         firebaseAuthWithGoogle(account.getIdToken());
                     } catch (ApiException e) {
-                        Toast.makeText(this, getString(R.string.google_signin_failed), Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Google sign-in failed. status=" + e.getStatusCode(), e);
+                        if (e.getStatusCode() == ConnectionResult.DEVELOPER_ERROR) {
+                            Toast.makeText(this, getString(R.string.google_signin_config_error), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(this, getString(R.string.google_signin_failed), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
@@ -127,17 +140,14 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    // --- PHONE OTP ---
     private void sendOtp() {
         String mobile = etPhone.getText().toString().trim();
-        
-        // Use ValidationUtils for proper Indian phone validation
+
         if (!com.mittimitra.utils.ValidationUtils.isValidIndianPhone(mobile)) {
             etPhone.setError(com.mittimitra.utils.ValidationUtils.getPhoneValidationError(mobile));
             return;
         }
-        
-        // Format to +91XXXXXXXXXX
+
         String formattedPhone = com.mittimitra.utils.ValidationUtils.formatIndianPhone(mobile);
 
         progressBar.setVisibility(View.VISIBLE);
@@ -174,7 +184,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void verifyOtp() {
         String code = etOtp.getText().toString().trim();
-        if (code.isEmpty()) return;
+        if (!com.mittimitra.utils.ValidationUtils.isValidOtp(code)) {
+            etOtp.setError(getString(R.string.otp_invalid));
+            return;
+        }
         progressBar.setVisibility(View.VISIBLE);
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
         signInWithCredential(credential);
@@ -191,179 +204,205 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    // --- COMMON USER CHECK ---
     private void checkAndCreateUser(FirebaseUser user) {
+        if (user == null) {
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         db.collection("farmers").document(user.getUid()).get()
                 .addOnSuccessListener(doc -> {
                     if (doc.exists()) {
-                        // Apply any pending phone link from a previous merge attempt
                         applyPendingPhoneLink(user.getUid(), doc);
                         navigateToHome(doc.getString("firstName"));
                     } else {
-                        // 🔍 Check for duplicate accounts before creating
                         checkForDuplicateAndCreate(user);
                     }
                 })
                 .addOnFailureListener(e -> navigateToHome("Farmer"));
     }
 
-    /**
-     * After a user signs back into their original account, this applies any phone number
-     * that was stored during a previous duplicate-account merge attempt.
-     */
     private void applyPendingPhoneLink(String uid, com.google.firebase.firestore.DocumentSnapshot doc) {
         android.content.SharedPreferences pendingPrefs = getSharedPreferences("pending_link", MODE_PRIVATE);
         String pendingPhone = pendingPrefs.getString("phone", null);
+        String pendingEmail = pendingPrefs.getString("email", null);
         String targetUid = pendingPrefs.getString("target_uid", null);
         if (pendingPhone == null || !uid.equals(targetUid)) return;
-        // Clear first to avoid re-applying on next login
+
         pendingPrefs.edit().clear().apply();
-        // Only write phone if it is not already stored in Firestore
+
+        Map<String, Object> updates = new HashMap<>();
         String existingPhone = doc.getString("phone");
-        if (existingPhone == null || existingPhone.isEmpty()) {
-            db.collection("farmers").document(uid).update("phone", pendingPhone);
+        String existingEmail = doc.getString("email");
+
+        if ((existingPhone == null || existingPhone.isEmpty()) && !pendingPhone.isEmpty()) {
+            updates.put("phone", pendingPhone);
         }
-        Toast.makeText(this, getString(R.string.dup_phone_linked), Toast.LENGTH_SHORT).show();
+        if ((existingEmail == null || existingEmail.isEmpty()) && pendingEmail != null && !pendingEmail.isEmpty()) {
+            updates.put("email", pendingEmail);
+        }
+
+        if (!updates.isEmpty()) {
+            db.collection("farmers").document(uid).set(updates, SetOptions.merge())
+                    .addOnSuccessListener(unused ->
+                            Toast.makeText(this, getString(R.string.dup_phone_linked), Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e ->
+                            Log.e(TAG, "Failed to apply pending phone/email link", e));
+        }
     }
-    
-    // 🔒 DUPLICATE DETECTION - Check if phone/email already exists in another account
+
     private void checkForDuplicateAndCreate(FirebaseUser user) {
-        String phone = user.getPhoneNumber();
-        String email = user.getEmail();
-        
-        // Check by phone first
-        if (phone != null && !phone.isEmpty()) {
-            db.collection("farmers")
-                .whereEqualTo("phone", phone)
-                .get()
-                .addOnSuccessListener(docs -> {
-                    if (!docs.isEmpty()) {
-                        // ⚠️ Duplicate found by phone!
-                        showDuplicateWarning(user, docs.getDocuments().get(0));
-                    } else if (email != null && !email.isEmpty()) {
-                        // Check by email
-                        checkDuplicateByEmail(user, email);
-                    } else {
-                        // No duplicates, create profile
-                        createUserProfile(user);
-                    }
-                })
-                .addOnFailureListener(e -> createUserProfile(user));
-        } else if (email != null && !email.isEmpty()) {
-            checkDuplicateByEmail(user, email);
-        } else {
+        String phone = user.getPhoneNumber() != null ? user.getPhoneNumber() : "";
+        String email = user.getEmail() != null ? user.getEmail() : "";
+
+        if (phone.isEmpty() && email.isEmpty()) {
             createUserProfile(user);
+            return;
         }
-    }
-    
-    private void checkDuplicateByEmail(FirebaseUser user, String email) {
-        db.collection("farmers")
-            .whereEqualTo("email", email)
-            .get()
-            .addOnSuccessListener(docs -> {
-                if (!docs.isEmpty()) {
-                    // ⚠️ Duplicate found by email!
-                    showDuplicateWarning(user, docs.getDocuments().get(0));
+
+        AccountModels.DuplicateAccountRequest request = new AccountModels.DuplicateAccountRequest();
+        request.currentUid = user.getUid();
+        request.phone = phone;
+        request.email = email;
+
+        userProfileRepository.checkDuplicateAccount(request, new BackendCallback<AccountModels.DuplicateAccountData>() {
+            @Override
+            public void onSuccess(@NonNull ApiEnvelope<AccountModels.DuplicateAccountData> envelope) {
+                AccountModels.DuplicateAccountData data = envelope.data;
+                if (data != null && data.duplicate && data.existingUid != null && !data.existingUid.isEmpty()) {
+                    showDuplicateWarning(user, data);
                 } else {
                     createUserProfile(user);
                 }
-            })
-            .addOnFailureListener(e -> createUserProfile(user));
+            }
+
+            @Override
+            public void onFailure(@NonNull ApiEnvelope<AccountModels.DuplicateAccountData> envelope, Throwable throwable) {
+                createUserProfile(user);
+            }
+        });
     }
-    
-    private void showDuplicateWarning(FirebaseUser currentUser, com.google.firebase.firestore.DocumentSnapshot existingDoc) {
+
+    private void showDuplicateWarning(FirebaseUser currentUser, AccountModels.DuplicateAccountData existing) {
         progressBar.setVisibility(View.GONE);
-        
+
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog_duplicate_account, null);
         builder.setView(view);
         androidx.appcompat.app.AlertDialog dialog = builder.create();
-        
+
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
         dialog.setCancelable(false);
-        
-        // Populate existing account info
-        android.widget.TextView tvName = view.findViewById(R.id.tv_existing_name);
-        android.widget.TextView tvPhone = view.findViewById(R.id.tv_existing_phone);
-        android.widget.TextView tvEmail = view.findViewById(R.id.tv_existing_email);
-        
-        String existingName = existingDoc.getString("firstName");
-        String existingPhone = existingDoc.getString("phone");
-        String existingEmail = existingDoc.getString("email");
-        
-        tvName.setText("Name: " + (existingName != null ? existingName : "--"));
-        tvPhone.setText("Phone: " + (existingPhone != null ? maskPhone(existingPhone) : "--"));
-        tvEmail.setText("Email: " + (existingEmail != null ? existingEmail : "--"));
-        
-        // Use existing account button - delete orphan account then guide user
+
+        TextView tvName = view.findViewById(R.id.tv_existing_name);
+        TextView tvPhone = view.findViewById(R.id.tv_existing_phone);
+        TextView tvEmail = view.findViewById(R.id.tv_existing_email);
+
+        tvName.setText(getString(R.string.label_name_value, safe(existing.maskedName)));
+        tvPhone.setText(getString(R.string.label_phone_value, safe(existing.maskedPhone)));
+        tvEmail.setText(getString(R.string.label_email_value, safe(existing.maskedEmail)));
+
         view.findViewById(R.id.btn_use_existing).setOnClickListener(v -> {
             dialog.dismiss();
             progressBar.setVisibility(View.VISIBLE);
-            // Delete the orphan phone-auth account to keep Firebase Auth clean
             currentUser.delete().addOnCompleteListener(t -> {
                 progressBar.setVisibility(View.GONE);
+                if (!t.isSuccessful()) {
+                    Toast.makeText(this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Failed to delete duplicate signed-in user", t.getException());
+                    return;
+                }
                 Toast.makeText(this, getString(R.string.dup_toast_login), Toast.LENGTH_SHORT).show();
                 mAuth.signOut();
                 recreate();
             });
         });
 
-        // Link accounts button - store pending phone, delete orphan, redirect to sign-in
         view.findViewById(R.id.btn_link_accounts).setOnClickListener(v -> {
             dialog.dismiss();
             progressBar.setVisibility(View.VISIBLE);
-            // Persist the phone number so it gets applied after user signs back in with original account
+
             String phoneToLink = currentUser.getPhoneNumber();
-            if (phoneToLink != null && !phoneToLink.isEmpty()) {
-                getSharedPreferences("pending_link", MODE_PRIVATE).edit()
-                        .putString("phone", phoneToLink)
-                        .putString("target_uid", existingDoc.getId())
-                        .apply();
-            }
-            // Delete orphan account then redirect
+            String emailToLink = currentUser.getEmail();
+
+            getSharedPreferences("pending_link", MODE_PRIVATE).edit()
+                    .putString("phone", phoneToLink != null ? phoneToLink : "")
+                    .putString("email", emailToLink != null ? emailToLink : "")
+                    .putString("target_uid", existing.existingUid)
+                    .apply();
+
+            AccountModels.LinkIdentityRequest linkReq = new AccountModels.LinkIdentityRequest();
+            linkReq.targetUid = existing.existingUid;
+            linkReq.phone = phoneToLink;
+            linkReq.email = emailToLink;
+
+            userProfileRepository.linkAccountIdentity(linkReq, new BackendCallback<AccountModels.LinkIdentityData>() {
+                @Override
+                public void onSuccess(@NonNull ApiEnvelope<AccountModels.LinkIdentityData> envelope) {
+                    // Keep user flow identical even if backend already linked.
+                }
+
+                @Override
+                public void onFailure(@NonNull ApiEnvelope<AccountModels.LinkIdentityData> envelope, Throwable throwable) {
+                    // Keep fallback path through pending_link to avoid blocking sign-in.
+                }
+            });
+
             currentUser.delete().addOnCompleteListener(t -> {
                 progressBar.setVisibility(View.GONE);
+                if (!t.isSuccessful()) {
+                    Toast.makeText(this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Failed to delete user after account-link flow", t.getException());
+                    return;
+                }
                 Toast.makeText(this, getString(R.string.dup_link_instructions), Toast.LENGTH_LONG).show();
                 mAuth.signOut();
                 recreate();
             });
         });
-        
-        // Cancel button
+
         view.findViewById(R.id.btn_cancel_duplicate).setOnClickListener(v -> {
             dialog.dismiss();
             mAuth.signOut();
             finish();
         });
-        
+
         dialog.show();
     }
-    
-    private String maskPhone(String phone) {
-        if (phone == null || phone.length() < 6) return phone;
-        return phone.substring(0, 3) + "****" + phone.substring(phone.length() - 3);
+
+    private String safe(String value) {
+        return value == null || value.trim().isEmpty() ? "--" : value;
     }
 
     private void createUserProfile(FirebaseUser user) {
         Map<String, Object> map = new HashMap<>();
-        
-        // Use prefilled name from signup, or fallback to Google display name, or "Farmer"
+
         String name = prefilledName != null ? prefilledName :
-                      (user.getDisplayName() != null ? user.getDisplayName() : "Farmer");
-        
+                (user.getDisplayName() != null ? user.getDisplayName() : "Farmer");
+
         map.put("firstName", name);
-        map.put("phone", user.getPhoneNumber());
-        
-        // Use prefilled email from signup, or fallback to Firebase email
+        String phone = user.getPhoneNumber();
+        if (phone != null && !phone.trim().isEmpty()) {
+            map.put("phone", phone);
+        }
+
         String email = prefilledEmail != null ? prefilledEmail : user.getEmail();
-        map.put("email", email);
-        
+        if (email != null && !email.trim().isEmpty()) {
+            map.put("email", email);
+        }
+
         map.put("createdAt", System.currentTimeMillis());
 
         db.collection("farmers").document(user.getUid()).set(map)
-                .addOnSuccessListener(aVoid -> navigateToHome(name));
+                .addOnSuccessListener(aVoid -> navigateToHome(name))
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Failed to create user profile", e);
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
+                });
     }
 
     private void navigateToHome(String name) {

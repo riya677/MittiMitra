@@ -21,6 +21,9 @@ public interface SoilDao {
     @Query("SELECT * FROM soil_history ORDER BY timestamp DESC LIMIT 1")
     SoilAnalysis getLatestReport();
 
+    @Query("SELECT * FROM soil_history WHERE user_id = :userId ORDER BY timestamp DESC LIMIT 1")
+    SoilAnalysis getLatestReportForUser(String userId);
+
     // NEW: Fetch specific report by ID
     @Query("SELECT * FROM soil_history WHERE analysis_id = :id")
     SoilAnalysis getAnalysisById(int id);
@@ -33,4 +36,10 @@ public interface SoilDao {
 
     @Query("DELETE FROM soil_history")
     void clearAllHistory();
+
+    @Query("DELETE FROM soil_history WHERE user_id = :userId")
+    void clearHistoryForUser(String userId);
+
+    @Query("SELECT COUNT(*) FROM soil_history WHERE user_id = :userId")
+    int getCountForUser(String userId);
 }

@@ -5,9 +5,17 @@ plugins {
     alias(libs.plugins.firebase.crashlytics)
 }
 
-Properties properties = new Properties()
-if (project.rootProject.file('local.properties').exists()) {
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+// Load local dev keys (GROQ, API keys, etc.)
+Properties localProps = new Properties()
+if (rootProject.file('local.properties').exists()) {
+    localProps.load(rootProject.file('local.properties').newDataInputStream())
+}
+
+// Load release signing config — file must never be committed to git
+Properties keystoreProps = new Properties()
+def keystorePropsFile = rootProject.file('keystore.properties')
+if (keystorePropsFile.exists()) {
+    keystoreProps.load(keystorePropsFile.newDataInputStream())
 }
 
 android {
@@ -19,21 +27,38 @@ android {
         minSdk 24
         targetSdk 36
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        // Define the API Key here so it generates in BuildConfig
-        buildConfigField "String", "GROQ_API_KEY", "\"${properties.getProperty('GROQ_API_KEY')}\""
-        buildConfigField "String", "OPENWEATHER_API_KEY", "\"${properties.getProperty('OPENWEATHER_API_KEY')}\""
-        buildConfigField "String", "HF_API_TOKEN", "\"${properties.getProperty('HF_API_TOKEN')}\""
-        buildConfigField "String", "HF_MODEL_URL", "\"${properties.getProperty('HF_MODEL_URL')}\""
-        buildConfigField "String", "DATA_GOV_API_KEY", "\"${properties.getProperty('DATA_GOV_API_KEY', '')}\""
+        buildConfigField "String", "OPENWEATHER_API_KEY", "\"${localProps.getProperty('OPENWEATHER_API_KEY', '')}\""
+        buildConfigField "String", "DATA_GOV_API_KEY", "\"${localProps.getProperty('DATA_GOV_API_KEY', '')}\""
+        buildConfigField "String", "BACKEND_BASE_URL", "\"${localProps.getProperty('BACKEND_BASE_URL', '')}\""
+    }
+
+    signingConfigs {
+        release {
+            if (keystorePropsFile.exists()) {
+                storeFile file(keystoreProps['storeFile'])
+                storePassword keystoreProps['storePassword']
+                keyAlias keystoreProps['keyAlias']
+                keyPassword keystoreProps['keyPassword']
+            }
+        }
     }
 
     buildTypes {
+        debug {
+            buildConfigField "boolean", "ENABLE_APP_CHECK", "false"
+            buildConfigField "boolean", "ENABLE_LOCAL_AI_FALLBACK", "true"
+            buildConfigField "String", "GROQ_API_KEY", "\"${localProps.getProperty('GROQ_API_KEY', '')}\""
+        }
         release {
+            signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources true
+            buildConfigField "boolean", "ENABLE_APP_CHECK", "true"
+            buildConfigField "boolean", "ENABLE_LOCAL_AI_FALLBACK", "false"
+            buildConfigField "String", "GROQ_API_KEY", "\"\""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -47,6 +72,12 @@ android {
     buildFeatures {
         viewBinding true
         buildConfig true
+    }
+    lint {
+        // Keep strict lint enabled, but snapshot existing legacy issues so CI blocks only regressions.
+        baseline = file("lint-baseline.xml")
+        abortOnError true
+        checkReleaseBuilds true
     }
 }
 
@@ -81,6 +112,7 @@ dependencies {
     implementation libs.firebase.crashlytics
     implementation libs.firebase.appcheck.playintegrity
     implementation libs.firebase.appcheck.debug
+    implementation "com.google.firebase:firebase-functions"
     implementation libs.play.services.auth.v2070
 
     // Images
@@ -104,4 +136,8 @@ dependencies {
     
     // Analytics
     implementation 'com.google.firebase:firebase-analytics'
+
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
 }

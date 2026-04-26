@@ -23,6 +23,12 @@ public interface ChatDao {
     @Query("DELETE FROM chat_messages")
     void clearAllMessages();
 
+    @Query("DELETE FROM chat_messages WHERE user_id = :userId")
+    void clearMessagesForUser(String userId);
+
     @Query("SELECT COUNT(*) FROM chat_messages")
     int getMessageCount();
+
+    @Query("SELECT COUNT(*) FROM chat_messages WHERE user_id = :userId")
+    int getMessageCountForUser(String userId);
 }

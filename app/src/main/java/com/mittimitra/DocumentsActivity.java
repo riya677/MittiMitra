@@ -141,6 +141,11 @@ public class DocumentsActivity extends BaseActivity {
             Toast.makeText(this, R.string.doc_no_file_selected, Toast.LENGTH_SHORT).show();
             return;
         }
+        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            Toast.makeText(this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         databaseExecutor.execute(() -> {
             String fileName = getFileName(uri);
@@ -167,6 +172,7 @@ public class DocumentsActivity extends BaseActivity {
                 newDoc.documentName = fileName;
                 newDoc.documentType = fileType;
                 newDoc.internalFilePath = localFile.getAbsolutePath();
+                newDoc.userId = user.getUid();
 
                 // ASK FOR EXPIRY DATE (Optional)
                 mainThreadHandler.post(() -> showExpiryDialog(newDoc));
@@ -259,7 +265,8 @@ public class DocumentsActivity extends BaseActivity {
 
     private String getFileName(Uri uri) {
         String result = null;
-        if (uri.getScheme().equals("content")) {
+        String scheme = uri.getScheme();
+        if ("content".equals(scheme)) {
             try (Cursor cursor = getContentResolver().query(uri, null, null, null, null)) {
                 if (cursor != null && cursor.moveToFirst()) {
                     int index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
@@ -271,10 +278,15 @@ public class DocumentsActivity extends BaseActivity {
         }
         if (result == null) {
             result = uri.getPath();
-            int cut = result.lastIndexOf('/');
-            if (cut != -1) {
-                result = result.substring(cut + 1);
+            if (result != null) {
+                int cut = result.lastIndexOf('/');
+                if (cut != -1) {
+                    result = result.substring(cut + 1);
+                }
             }
+        }
+        if (result == null || result.trim().isEmpty()) {
+            result = "document_" + System.currentTimeMillis();
         }
         return result;
     }

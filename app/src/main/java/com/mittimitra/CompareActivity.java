@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.SoilAnalysis;
 
@@ -93,9 +95,21 @@ public class CompareActivity extends BaseActivity {
     }
 
     private void loadRecords() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            records = new ArrayList<>();
+            compareCard.setVisibility(View.GONE);
+            return;
+        }
+
         dbExecutor.execute(() -> {
-            records = MittiMitraDatabase.getDatabase(this).soilDao().getAllSoilAnalysis();
+            records = MittiMitraDatabase.getDatabase(this).soilDao().getAnalysisForUser(user.getUid());
             runOnUiThread(() -> {
+                if (records == null || records.isEmpty()) {
+                    compareCard.setVisibility(View.GONE);
+                    return;
+                }
+
                 List<String> labels = new ArrayList<>();
                 SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy", Locale.getDefault());
                 for (SoilAnalysis record : records) {
@@ -111,6 +125,12 @@ public class CompareActivity extends BaseActivity {
                 if (records.size() >= 2) {
                     spinnerRecord1.setSelection(0);
                     spinnerRecord2.setSelection(1);
+                    compareCard.setVisibility(View.VISIBLE);
+                } else {
+                    spinnerRecord1.setSelection(0);
+                    spinnerRecord2.setSelection(0);
+                    compareCard.setVisibility(View.GONE);
+                    android.widget.Toast.makeText(this, R.string.need_two_records, android.widget.Toast.LENGTH_SHORT).show();
                 }
             });
         });
@@ -121,6 +141,10 @@ public class CompareActivity extends BaseActivity {
         int pos2 = spinnerRecord2.getSelectedItemPosition();
 
         if (pos1 < 0 || pos2 < 0 || pos1 >= records.size() || pos2 >= records.size()) {
+            compareCard.setVisibility(View.GONE);
+            return;
+        }
+        if (records.size() < 2 || pos1 == pos2) {
             compareCard.setVisibility(View.GONE);
             return;
         }

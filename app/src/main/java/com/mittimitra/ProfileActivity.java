@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,8 +25,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.mittimitra.backend.ApiEnvelope;
+import com.mittimitra.backend.BackendCallback;
+import com.mittimitra.backend.model.AccountModels;
+import com.mittimitra.data.repository.FirebaseUserProfileRepository;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.SoilAnalysis;
+import com.mittimitra.domain.repository.UserProfileRepository;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -58,6 +64,7 @@ public class ProfileActivity extends BaseActivity {
     private CircleImageView imgProfile;
     private String currentPhone = "";
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private final UserProfileRepository userProfileRepository = new FirebaseUserProfileRepository();
 
     // Image Picker Launcher
     private final ActivityResultLauncher<String> pickImageLauncher = registerForActivityResult(
@@ -148,12 +155,16 @@ public class ProfileActivity extends BaseActivity {
 
         try {
             File file = new File(getFilesDir(), "profile_" + user.getUid() + ".jpg");
-            try (InputStream inputStream = getContentResolver().openInputStream(sourceUri);
-                 FileOutputStream outputStream = new FileOutputStream(file)) {
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = inputStream.read(buffer)) > 0) {
-                    outputStream.write(buffer, 0, length);
+            try (InputStream inputStream = getContentResolver().openInputStream(sourceUri)) {
+                if (inputStream == null) {
+                    throw new IllegalStateException("Cannot open image stream");
+                }
+                try (FileOutputStream outputStream = new FileOutputStream(file)) {
+                    byte[] buffer = new byte[4096];
+                    int length;
+                    while ((length = inputStream.read(buffer)) > 0) {
+                        outputStream.write(buffer, 0, length);
+                    }
                 }
             }
             Toast.makeText(this, getString(R.string.profile_photo_saved), Toast.LENGTH_SHORT).show();
@@ -196,6 +207,7 @@ public class ProfileActivity extends BaseActivity {
                     }
                     if (doc.contains("phone")) {
                         currentPhone = doc.getString("phone");
+                        if (currentPhone == null) currentPhone = "";
                         tvPhone.setText(currentPhone);
                         // Cache for offline
                         prefs.edit().putString("cached_phone", currentPhone).apply();
@@ -230,6 +242,7 @@ public class ProfileActivity extends BaseActivity {
             currentPhone = cachedPhone;
             tvPhone.setText(cachedPhone);
         } else {
+            currentPhone = "";
             tvPhone.setText(getString(R.string.profile_offline_add_phone));
         }
         
@@ -273,7 +286,7 @@ public class ProfileActivity extends BaseActivity {
         // Email - DON'T pre-fill placeholder text
         if (tvEmail != null && tvEmail.getText() != null) {
             String email = tvEmail.getText().toString();
-            if (email.contains("@") && !email.contains("Not") && !email.contains("Linked")) {
+            if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 etEmail.setText(email);
             }
         }
@@ -288,10 +301,12 @@ public class ProfileActivity extends BaseActivity {
                         String kisanId = doc.getString("kisanId");
                         String dob = doc.getString("dob");
                         if (aadhaar != null && !aadhaar.isEmpty()) {
-                            etAadhaar.setText(aadhaar);
+                            etAadhaar.setTag(aadhaar);
+                            etAadhaar.setText(maskSensitiveId(aadhaar, 4));
                         }
                         if (kisanId != null && !kisanId.isEmpty()) {
-                            etKisanId.setText(kisanId);
+                            etKisanId.setTag(kisanId);
+                            etKisanId.setText(maskSensitiveId(kisanId, 3));
                         }
                         if (dob != null && !dob.isEmpty()) {
                             etDob.setText(dob);
@@ -325,6 +340,15 @@ public class ProfileActivity extends BaseActivity {
             String newDob = etDob.getText().toString().trim();
             String newAadhaar = etAadhaar.getText().toString().trim();
             String newKisanId = etKisanId.getText().toString().trim();
+            String originalAadhaar = etAadhaar.getTag() instanceof String ? (String) etAadhaar.getTag() : null;
+            String originalKisanId = etKisanId.getTag() instanceof String ? (String) etKisanId.getTag() : null;
+
+            if (originalAadhaar != null && newAadhaar.equals(maskSensitiveId(originalAadhaar, 4))) {
+                newAadhaar = originalAadhaar;
+            }
+            if (originalKisanId != null && newKisanId.equals(maskSensitiveId(originalKisanId, 3))) {
+                newKisanId = originalKisanId;
+            }
 
             // Validation
             if (newName.isEmpty()) {
@@ -365,42 +389,29 @@ public class ProfileActivity extends BaseActivity {
         if (user == null) return;
 
         if (!phone.isEmpty()) {
-            // Enforce one phone number per account: check no other user owns this phone
-            db.collection("farmers")
-                    .whereEqualTo("phone", phone)
-                    .get()
-                    .addOnSuccessListener(querySnapshot -> {
-                        boolean conflict = false;
-                        for (com.google.firebase.firestore.DocumentSnapshot doc : querySnapshot.getDocuments()) {
-                            if (!doc.getId().equals(user.getUid())) {
-                                conflict = true;
-                                break;
-                            }
-                        }
-                        if (conflict) {
-                            btnSave.setEnabled(true);
-                            btnSave.setText(getString(R.string.btn_save_changes));
-                            Toast.makeText(this, getString(R.string.phone_already_registered), Toast.LENGTH_LONG).show();
-                        } else {
-                            doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user);
-                        }
-                    })
-                    .addOnFailureListener(e -> {
-                        android.util.Log.e("ProfileActivity", "Phone uniqueness check failed", e);
-                        // PERMISSION_DENIED: client-side list queries on farmers are not allowed.
-                        // Fall through to save — uniqueness is enforced server-side via Cloud Functions.
-                        if (e instanceof com.google.firebase.firestore.FirebaseFirestoreException) {
-                            com.google.firebase.firestore.FirebaseFirestoreException fe =
-                                    (com.google.firebase.firestore.FirebaseFirestoreException) e;
-                            if (fe.getCode() == com.google.firebase.firestore.FirebaseFirestoreException.Code.PERMISSION_DENIED) {
-                                doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user);
-                                return;
-                            }
-                        }
+            AccountModels.DuplicateAccountRequest request = new AccountModels.DuplicateAccountRequest();
+            request.currentUid = user.getUid();
+            request.phone = phone;
+            request.email = email;
+
+            userProfileRepository.checkDuplicateAccount(request, new BackendCallback<AccountModels.DuplicateAccountData>() {
+                @Override
+                public void onSuccess(@NonNull ApiEnvelope<AccountModels.DuplicateAccountData> envelope) {
+                    AccountModels.DuplicateAccountData data = envelope.data;
+                    if (data != null && data.duplicate) {
                         btnSave.setEnabled(true);
                         btnSave.setText(getString(R.string.btn_save_changes));
-                        Toast.makeText(this, getString(R.string.phone_check_failed), Toast.LENGTH_SHORT).show();
-                    });
+                        Toast.makeText(ProfileActivity.this, getString(R.string.phone_already_registered), Toast.LENGTH_LONG).show();
+                    } else {
+                        doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull ApiEnvelope<AccountModels.DuplicateAccountData> envelope, Throwable throwable) {
+                    doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user);
+                }
+            });
         } else {
             doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user);
         }
@@ -431,7 +442,8 @@ public class ProfileActivity extends BaseActivity {
                 .addOnFailureListener(e -> {
                     btnSave.setEnabled(true);
                     btnSave.setText(getString(R.string.btn_save_changes));
-                    Toast.makeText(this, getString(R.string.profile_update_failed) + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    String message = e != null && e.getMessage() != null ? e.getMessage() : getString(R.string.status_unknown);
+                    Toast.makeText(this, getString(R.string.profile_update_failed) + message, Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -520,26 +532,48 @@ public class ProfileActivity extends BaseActivity {
 
         // 2. Load Badge based on Scan History Count
         executor.execute(() -> {
-            int scanCount = MittiMitraDatabase.getDatabase(this)
-                    .soilDao().getAllSoilAnalysis().size();
-            runOnUiThread(() -> updateBadge(scanCount));
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            int scanCount = 0;
+            if (user != null) {
+                scanCount = MittiMitraDatabase.getDatabase(this)
+                        .soilDao().getCountForUser(user.getUid());
+            }
+            final int badgeCount = scanCount;
+            runOnUiThread(() -> updateBadge(badgeCount));
         });
     }
 
     private void updateBadge(int scanCount) {
         if (scanCount >= 50) {
-            tvBadgeIcon.setText("👑");
+            tvBadgeIcon.setText("ðŸ‘‘");
             tvBadgeName.setText(getString(R.string.profile_rank_master));
         } else if (scanCount >= 20) {
-            tvBadgeIcon.setText("🌳");
+            tvBadgeIcon.setText("ðŸŒ³");
             tvBadgeName.setText(getString(R.string.profile_rank_guardian));
         } else if (scanCount >= 5) {
-            tvBadgeIcon.setText("🌿");
+            tvBadgeIcon.setText("ðŸŒ¿");
             tvBadgeName.setText(getString(R.string.profile_rank_expert));
         } else {
-            tvBadgeIcon.setText("🌱");
+            tvBadgeIcon.setText("ðŸŒ±");
             tvBadgeName.setText(getString(R.string.profile_rank_novice));
         }
+    }
+
+    private String maskSensitiveId(String value, int visibleSuffixChars) {
+        if (value == null || value.isEmpty()) return "";
+        int visible = Math.max(1, visibleSuffixChars);
+        if (value.length() <= visible) return value;
+
+        String suffix = value.substring(value.length() - visible);
+        StringBuilder masked = new StringBuilder();
+        for (int i = 0; i < value.length() - visible; i++) {
+            if (Character.isLetterOrDigit(value.charAt(i))) {
+                masked.append('*');
+            } else {
+                masked.append(value.charAt(i));
+            }
+        }
+        return masked + suffix;
     }
 
     @Override

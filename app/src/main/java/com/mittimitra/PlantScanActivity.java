@@ -1,15 +1,10 @@
 package com.mittimitra;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,79 +17,76 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.mittimitra.config.ApiConfig;
+import com.mittimitra.backend.ApiEnvelope;
+import com.mittimitra.backend.BackendCallback;
+import com.mittimitra.backend.model.AiModels;
 import com.mittimitra.config.AppConstants;
-import com.mittimitra.network.ClassificationResult;
-import com.mittimitra.network.RetrofitClient;
+import com.mittimitra.data.repository.FirebasePredictionRepository;
+import com.mittimitra.database.MittiMitraDatabase;
+import com.mittimitra.database.entity.PlantHealth;
+import com.mittimitra.domain.repository.PredictionRepository;
+import com.mittimitra.tasks.TaskSuggestionEngine;
 import com.mittimitra.utils.BitmapUtils;
-import com.mittimitra.utils.ErrorHandler;
 
-import java.io.ByteArrayOutputStream;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class PlantScanActivity extends BaseActivity {
 
     private static final String TAG = "PlantScanActivity";
 
     private ImageView ivPreview;
-    private TextView tvStatus, tvResultTitle, tvResultDesc;
+    private TextView tvStatus;
+    private TextView tvResultTitle;
+    private TextView tvResultDesc;
     private ProgressBar progressBar;
-    private MaterialButton btnCamera, btnGallery, btnAnalyze;
+    private MaterialButton btnAnalyze;
     private MaterialCardView resultCard;
 
     private Bitmap currentBitmap;
     private Uri cameraImageUri;
     private final ExecutorService dbExecutor = Executors.newSingleThreadExecutor();
+    private final PredictionRepository predictionRepository = new FirebasePredictionRepository();
 
-    // FIX: TakePicture (full resolution) instead of TakePicturePreview (low-res thumbnail)
     private final ActivityResultLauncher<Uri> cameraLauncher =
             registerForActivityResult(new ActivityResultContracts.TakePicture(), success -> {
-                if (success && cameraImageUri != null) {
-                    try {
-                        currentBitmap = decodeSampledBitmap(cameraImageUri, 1024);
-                        ivPreview.setImageBitmap(currentBitmap);
-                        resetUI();
-                    } catch (IOException e) {
-                        Log.e(TAG, "Failed to load camera image", e);
-                    }
+                if (!success || cameraImageUri == null) return;
+                try {
+                    currentBitmap = decodeSampledBitmap(cameraImageUri, 1024);
+                    ivPreview.setImageBitmap(currentBitmap);
+                    resetUI();
+                } catch (IOException e) {
+                    Log.e(TAG, "Failed to load camera image", e);
                 }
             });
 
     private final ActivityResultLauncher<PickVisualMediaRequest> galleryLauncher =
             registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), result -> {
-                if (result != null) {
-                    try {
-                        currentBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), result);
-                        ivPreview.setImageBitmap(currentBitmap);
-                        resetUI();
-                    } catch (IOException e) {
-                        ErrorHandler.logError(TAG, "Failed to load image from gallery", e);
-                        ErrorHandler.showToast(PlantScanActivity.this, R.string.alert_network_error);
-                    }
+                if (result == null) return;
+                try {
+                    currentBitmap = decodeSampledBitmap(result, 1024);
+                    ivPreview.setImageBitmap(currentBitmap);
+                    resetUI();
+                } catch (IOException e) {
+                    Log.e(TAG, "Failed to load gallery image", e);
+                    Toast.makeText(this, R.string.alert_network_error, Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -107,16 +99,15 @@ public class PlantScanActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(false); // Title is in centered TextView
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
 
         ivPreview = findViewById(R.id.iv_plant_preview);
         tvStatus = findViewById(R.id.tv_plant_status);
         progressBar = findViewById(R.id.progress_plant);
-        btnCamera = findViewById(R.id.btn_plant_camera);
-        btnGallery = findViewById(R.id.btn_plant_gallery);
+        MaterialButton btnCamera = findViewById(R.id.btn_plant_camera);
+        MaterialButton btnGallery = findViewById(R.id.btn_plant_gallery);
         btnAnalyze = findViewById(R.id.btn_plant_analyze);
-        
         resultCard = findViewById(R.id.card_plant_result);
         tvResultTitle = findViewById(R.id.tv_result_title);
         tvResultDesc = findViewById(R.id.tv_result_desc);
@@ -125,7 +116,6 @@ public class PlantScanActivity extends BaseActivity {
         btnGallery.setOnClickListener(v -> galleryLauncher.launch(new PickVisualMediaRequest.Builder()
                 .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                 .build()));
-
         btnAnalyze.setOnClickListener(v -> analyzePlant());
     }
 
@@ -163,234 +153,203 @@ public class PlantScanActivity extends BaseActivity {
         btnAnalyze.setVisibility(View.VISIBLE);
         resultCard.setVisibility(View.GONE);
         tvStatus.setText(R.string.scan_status_ready);
-        
-        // Hide hint when image is loaded
+
         View hintLayout = findViewById(R.id.layout_plant_hint);
         if (hintLayout != null) hintLayout.setVisibility(View.GONE);
     }
 
     private void analyzePlant() {
-        if (currentBitmap == null) return;
+        if (currentBitmap == null) {
+            Toast.makeText(this, R.string.plant_select_image_first, Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         progressBar.setVisibility(View.VISIBLE);
         tvStatus.setText(R.string.plant_status_scanning);
         btnAnalyze.setEnabled(false);
 
-        // 1. Run Classification (Fast, Specialized)
-        runClassification();
-
-        // 2. Run Deep Analysis (Groq VLM) - Triggered after classification for now, or parallel.
-        // For better UX, we'll trigger Groq analysis immediately in parallel.
-        runGroqAnalysis();
+        runBackendDiagnosis();
     }
 
-    private void runClassification() {
-        Bitmap scaled = BitmapUtils.prepareForClassification(currentBitmap, AppConstants.IMAGE_CLASSIFICATION_SIZE);
-        byte[] byteArray = BitmapUtils.bitmapToJpegBytes(scaled, AppConstants.JPEG_QUALITY_HIGH);
+    private void runBackendDiagnosis() {
+        final Bitmap bitmapSnapshot = currentBitmap;
+        if (bitmapSnapshot == null) {
+            runOnUiThread(() -> {
+                progressBar.setVisibility(View.GONE);
+                btnAnalyze.setEnabled(true);
+                tvStatus.setText(R.string.plant_select_image_first);
+            });
+            return;
+        }
 
-        RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpeg"), byteArray);
-        String token = "Bearer " + BuildConfig.HF_API_TOKEN.replace("\"", "").trim();
+        dbExecutor.execute(() -> {
+            try {
+                // Base64 conversion is CPU/memory heavy; keep it off the main thread.
+                String imageBase64 = BitmapUtils.bitmapToBase64DataUrl(bitmapSnapshot, AppConstants.JPEG_QUALITY_HIGH);
+                AppPreferences prefs = new AppPreferences(this);
 
-        RetrofitClient.getHuggingFaceService().classifyImage(ApiConfig.HF_MODEL_PLANT_DISEASE, token, requestBody)
-                .enqueue(new Callback<List<ClassificationResult>>() {
+                AiModels.PlantDiagnosisRequest request = new AiModels.PlantDiagnosisRequest();
+                request.imageBase64DataUrl = imageBase64;
+                request.languageCode = prefs.getLanguage();
+                request.location = getSharedPreferences("scan_cache", MODE_PRIVATE).getString("loc", "");
+
+                predictionRepository.fetchPlantDiagnosis(request, new BackendCallback<AiModels.PlantDiagnosisData>() {
                     @Override
-                    public void onResponse(Call<List<ClassificationResult>> call, Response<List<ClassificationResult>> response) {
-                         // We are relying on Groq for the main detailed report, but we use this for robust "Label" validation
-                         // Logging result but not strictly updating UI here to avoid race conditions with Groq,
-                         // UNLESS Groq fails. For now, let's let Groq take the lead on the text description.
+                    public void onSuccess(@NonNull ApiEnvelope<AiModels.PlantDiagnosisData> envelope) {
+                        runOnUiThread(() -> {
+                            progressBar.setVisibility(View.GONE);
+                            btnAnalyze.setEnabled(true);
+                            AiModels.PlantDiagnosisData data = envelope.data;
+                            if (data == null) {
+                                tvStatus.setText(R.string.plant_status_error);
+                                return;
+                            }
+                            showResult(data);
+                        });
                     }
+
                     @Override
-                    public void onFailure(Call<List<ClassificationResult>> call, Throwable t) {
-                        ErrorHandler.logError(TAG, "HF Classification failed", t);
+                    public void onFailure(@NonNull ApiEnvelope<AiModels.PlantDiagnosisData> envelope, Throwable throwable) {
+                        runOnUiThread(() -> {
+                            progressBar.setVisibility(View.GONE);
+                            btnAnalyze.setEnabled(true);
+                            tvStatus.setText(getString(R.string.plant_status_unavailable, envelope.code));
+                        });
                     }
                 });
+            } catch (Exception e) {
+                Log.e(TAG, "Backend diagnosis setup failed", e);
+                runOnUiThread(() -> {
+                    progressBar.setVisibility(View.GONE);
+                    btnAnalyze.setEnabled(true);
+                    tvStatus.setText(R.string.plant_status_error);
+                });
+            }
+        });
     }
 
-    private void runGroqAnalysis() {
-        try {
-            // Encode Image using BitmapUtils
-            String imageBase64 = BitmapUtils.bitmapToBase64DataUrl(currentBitmap, AppConstants.JPEG_QUALITY_MEDIUM);
-
-            // Build Groq Payload (OpenAI Compatible)
-            JsonObject payload = new JsonObject();
-            payload.addProperty("model", ApiConfig.GROQ_MODEL_VISION);
-            payload.addProperty("temperature", 0.1);
-            payload.addProperty("max_tokens", 512);
-
-            JsonArray messages = new JsonArray();
-            JsonObject userMessage = new JsonObject();
-            userMessage.addProperty("role", "user");
-
-            JsonArray content = new JsonArray();
-            
-            // Text Part
-            JsonObject textPart = new JsonObject();
-            textPart.addProperty("type", "text");
-            textPart.addProperty("text", buildPrompt());
-            content.add(textPart);
-
-            // Image Part
-            JsonObject imagePart = new JsonObject();
-            imagePart.addProperty("type", "image_url");
-            JsonObject imageUrl = new JsonObject();
-            imageUrl.addProperty("url", imageBase64);
-            imagePart.add("image_url", imageUrl);
-            content.add(imagePart);
-
-            userMessage.add("content", content);
-            messages.add(userMessage);
-            payload.add("messages", messages);
-
-            String token = "Bearer " + BuildConfig.GROQ_API_KEY.replace("\"", "").trim();
-
-            RetrofitClient.getGroqService().chatCompletion(token, payload).enqueue(new Callback<JsonObject>() {
-                @Override
-                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    runOnUiThread(() -> {
-                        progressBar.setVisibility(View.GONE);
-                        btnAnalyze.setEnabled(true);
-                        
-                        if (response.isSuccessful() && response.body() != null) {
-                            try {
-                                String content = response.body().getAsJsonArray("choices")
-                                        .get(0).getAsJsonObject()
-                                        .getAsJsonObject("message")
-                                        .get("content").getAsString();
-                                
-                                parseAndShowGroqResult(content);
-                            } catch (Exception e) {
-                                tvStatus.setText(R.string.plant_status_error);
-                                Log.e(TAG, "Groq Parse Error", e);
-                            }
-                        } else {
-                            tvStatus.setText(getString(R.string.plant_status_unavailable, String.valueOf(response.code())));
-                            if (response.errorBody() != null) {
-                                try (okhttp3.ResponseBody errorBody = response.errorBody()) {
-                                    Log.e(TAG, "Groq Error: " + errorBody.string());
-                                } catch (IOException e) {
-                                    Log.e(TAG, "Error reading Groq error body", e);
-                                }
-                            }
-                        }
-                    });
-                }
-
-                @Override
-                public void onFailure(Call<JsonObject> call, Throwable t) {
-                    runOnUiThread(() -> {
-                        progressBar.setVisibility(View.GONE);
-                        btnAnalyze.setEnabled(true);
-                        tvStatus.setText(getString(R.string.alert_network_error));
-                    });
-                }
-            });
-
-        } catch (Exception e) {
-            Log.e(TAG, "Groq analysis setup failed", e);
-            progressBar.setVisibility(View.GONE);
-            btnAnalyze.setEnabled(true);
-        }
-    }
-
-    private String buildPrompt() {
-        return "You are an expert agronomist analyzing a crop image. " +
-               "Analyze this image and provide a JSON response with the following keys: " +
-               "crop_identified (string), health_status (string: Healthy/Diseased/Stressed/Unknown), " +
-               "confidence (int 0-100), issues_detected (string summary of disease/pests), " +
-               "recommendations (list of strings). " +
-               "Return ONLY the JSON. No Markdown.";
-    }
-
-
-
-    private void parseAndShowGroqResult(String jsonString) {
+    private void showResult(AiModels.PlantDiagnosisData data) {
         resultCard.setVisibility(View.VISIBLE);
-        
-        // Clean markdown code blocks if present
-        String resultJson = jsonString.replace("```json", "").replace("```", "").trim();
 
-        String crop = "Unknown", status = "Unknown", issues = "None"; // Default values
+        String crop = nonEmpty(data.cropIdentified, "Unknown Crop");
+        String health = nonEmpty(data.healthStatus, "Unknown");
+        int confidence = normalizeConfidence(data.confidence);
+        String issues = (data.issuesDetected != null && !data.issuesDetected.isEmpty())
+                ? android.text.TextUtils.join(", ", data.issuesDetected)
+                : getString(R.string.status_unknown);
 
-        try {
-            JSONObject result = new JSONObject(resultJson);
-            
-            crop = result.optString("crop_identified", "Unknown Crop");
-            status = result.optString("health_status", "Unknown");
-            issues = result.optString("issues_detected", "None");
-            
-            // Update Title
-            tvResultTitle.setText(crop.toUpperCase() + " - " + status.toUpperCase());
-            if (status.equalsIgnoreCase("Healthy")) {
-                tvResultTitle.setTextColor(ContextCompat.getColor(this, R.color.brand_green));
-            } else {
-                tvResultTitle.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
-            }
-
-            // Build Description
-            StringBuilder desc = new StringBuilder();
-            desc.append("Diagnosis: ").append(issues).append("\n\n");
-            
-            org.json.JSONArray recs = result.optJSONArray("recommendations");
-            if (recs != null && recs.length() > 0) {
-                desc.append("Remedies:\n");
-                for (int i = 0; i < recs.length(); i++) {
-                    desc.append("• ").append(recs.getString(i)).append("\n");
-                }
-            }
-
-            tvResultDesc.setText(desc.toString());
-            tvStatus.setText(R.string.plant_status_complete);
-
-        } catch (Exception e) {
-            Log.e(TAG, "JSON parse failed, showing raw response", e);
-            tvResultTitle.setText(getString(R.string.plant_analysis_fallback_title));
-            tvResultDesc.setText(jsonString);
-            tvStatus.setText(getString(R.string.plant_status_complete));
+        tvResultTitle.setText(crop.toUpperCase(Locale.getDefault()) + " - " + health.toUpperCase(Locale.getDefault()));
+        if ("Healthy".equalsIgnoreCase(health)) {
+            tvResultTitle.setTextColor(ContextCompat.getColor(this, R.color.brand_green));
+        } else {
+            tvResultTitle.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
         }
 
-        // SAVE TO DATABASE
-        FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null && currentBitmap != null) {
-            final String finalCrop = crop;
-            final String finalStatus = status;
-            final String finalIssues = issues;
-            final String finalJson = resultJson;
+        StringBuilder desc = new StringBuilder();
+        desc.append(getString(R.string.plant_doctor_confidence, String.valueOf(confidence))).append("\n");
+        desc.append("Diagnosis: ").append(issues).append("\n\n");
 
-            dbExecutor.execute(() -> {
-                try {
-                    // 1. Save Image Locally
-                    String imageFileName = "plant_" + System.currentTimeMillis() + ".jpg";
-                    String imagePath = BitmapUtils.saveBitmapToInternalStorage(this, currentBitmap, imageFileName);
+        if (data.recommendations != null && !data.recommendations.isEmpty()) {
+            desc.append("Remedies:\n");
+            for (String recommendation : data.recommendations) {
+                if (recommendation == null || recommendation.trim().isEmpty()) continue;
+                desc.append("- ").append(recommendation).append("\n");
+            }
+        }
 
-                    // 2. Create Entity
-                    com.mittimitra.database.entity.PlantHealth entry = new com.mittimitra.database.entity.PlantHealth();
-                    entry.userId = user.getUid();
-                    entry.imagePath = imagePath; // Save the path
-                    entry.cropName = finalCrop;
-                    entry.healthStatus = finalStatus;
-                    entry.diagnosis = finalIssues;
-                    entry.fullJson = finalJson;
-                    entry.timestamp = System.currentTimeMillis();
+        if (confidence < 45) {
+            desc.append("\n").append(nonEmpty(data.uncertaintyMessage, getString(R.string.prediction_low_confidence_hint)));
+        }
 
-                    // 3. Insert
-                    com.mittimitra.database.MittiMitraDatabase.getDatabase(this).plantDao().insert(entry);
-                    Log.d(TAG, "Plant analysis saved to DB");
+        tvResultDesc.setText(desc.toString().trim());
+        tvStatus.setText(R.string.plant_status_complete);
 
-                } catch (Exception e) {
-                    Log.e(TAG, "Failed to save analysis history", e);
+        persistResult(data, crop, health, issues, confidence);
+    }
+
+    private void persistResult(AiModels.PlantDiagnosisData data,
+                               String crop,
+                               String status,
+                               String issues,
+                               int confidence) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final Bitmap bitmapSnapshot = currentBitmap;
+        if (user == null || bitmapSnapshot == null) return;
+        final String userId = user.getUid();
+
+        dbExecutor.execute(() -> {
+            try {
+                String imageFileName = "plant_" + System.currentTimeMillis() + ".jpg";
+                String imagePath = BitmapUtils.saveBitmapToInternalStorage(this, bitmapSnapshot, imageFileName);
+                if (imagePath == null || imagePath.trim().isEmpty()) {
+                    Log.e(TAG, "Failed to persist diagnosis image");
+                    return;
                 }
-            });
+
+                PlantHealth entry = new PlantHealth();
+                entry.userId = userId;
+                entry.imagePath = imagePath;
+                entry.cropName = crop;
+                entry.healthStatus = status;
+                entry.diagnosis = issues;
+                entry.confidence = confidence;
+                entry.fullJson = buildSafeRawJson(data, crop, status, issues, confidence);
+                entry.timestamp = System.currentTimeMillis();
+
+                MittiMitraDatabase.getDatabase(this).plantDao().insert(entry);
+                TaskSuggestionEngine.suggestFromPlantDiagnosis(this, userId, crop, status, issues, confidence);
+            } catch (Exception e) {
+                Log.e(TAG, "Failed to save diagnosis history", e);
+            }
+        });
+    }
+
+    private int normalizeConfidence(Integer rawConfidence) {
+        if (rawConfidence == null) return 50;
+        int value = rawConfidence;
+        if (value < 0) return 0;
+        if (value > 100) return 100;
+        if (value == 0) return 50;
+        return value;
+    }
+
+    private String buildSafeRawJson(AiModels.PlantDiagnosisData data,
+                                    String crop,
+                                    String status,
+                                    String issues,
+                                    int confidence) {
+        if (data.rawJson != null && !data.rawJson.trim().isEmpty()) {
+            return data.rawJson;
+        }
+        try {
+            JSONObject json = new JSONObject();
+            json.put("crop_identified", crop);
+            json.put("health_status", status);
+            json.put("issues_detected", issues);
+            json.put("confidence", confidence);
+            JSONArray recs = new JSONArray();
+            if (data.recommendations != null) {
+                for (String item : data.recommendations) {
+                    recs.put(item);
+                }
+            }
+            json.put("recommendations", recs);
+            return json.toString();
+        } catch (Exception e) {
+            return "{}";
         }
     }
-    
-    // Using org.json.JSONObject for internal parsing helper as standard in Android
-    private static class JSONObject extends org.json.JSONObject {
-        public JSONObject(String json) throws org.json.JSONException { super(json); }
+
+    private String nonEmpty(String value, String fallback) {
+        return (value == null || value.trim().isEmpty()) ? fallback : value;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) { finish(); return true; }
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

@@ -229,10 +229,16 @@ public class HistoryActivity extends BaseActivity {
                 if (position < 0 || adapter == null) return;
 
                 SoilAnalysis deletedItem = adapter.getItem(position);
+                String activeQuery = (etSearch != null && etSearch.getText() != null)
+                        ? etSearch.getText().toString()
+                        : "";
 
                 // Remove from adapter display list and keep historyList in sync
                 historyList.remove(deletedItem);
                 adapter.removeItem(position);
+                if (!activeQuery.trim().isEmpty()) {
+                    adapter.filterByText(activeQuery);
+                }
 
                 if (historyList.isEmpty() && tvEmpty != null) {
                     tvEmpty.setVisibility(View.VISIBLE);
@@ -242,6 +248,9 @@ public class HistoryActivity extends BaseActivity {
                 snackbar.setAction(R.string.undo, v -> {
                     historyList.add(deletedItem);
                     adapter.restoreItem(deletedItem);
+                    if (!activeQuery.trim().isEmpty()) {
+                        adapter.filterByText(activeQuery);
+                    }
                     if (tvEmpty != null) tvEmpty.setVisibility(View.GONE);
                 });
                 snackbar.addCallback(new Snackbar.Callback() {

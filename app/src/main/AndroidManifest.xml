@@ -59,6 +59,7 @@
         <activity android:name=".ThemeSettingsActivity" android:exported="false" />
         <activity android:name=".ManageDataActivity" android:exported="false" />
         <activity android:name=".AccountSecurityActivity" android:exported="false" />
+        <activity android:name=".LinkEmailActivity" android:exported="false" />
         <activity android:name=".HelpActivity" android:exported="false" />
 
         <activity android:name=".UnitConverterActivity" android:exported="false" />
@@ -66,6 +67,7 @@
         <activity android:name=".NotificationSettingsActivity" android:exported="false" />
         <activity android:name=".CompareActivity" android:exported="false" />
         <activity android:name=".PlantScanActivity" android:exported="false" />
+        <activity android:name=".FarmTaskPlannerActivity" android:exported="false" />
 
         <!-- New Features -->
         <activity android:name=".SchemeActivity" android:exported="false" />

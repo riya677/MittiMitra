@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.mittimitra.database.MittiMitraDatabase;
 
 import java.io.File;
@@ -76,8 +78,11 @@ public class ManageDataActivity extends BaseActivity {
     }
 
     private void clearSoilHistory() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+
         databaseExecutor.execute(() -> {
-            db.soilDao().clearAllHistory();
+            db.soilDao().clearHistoryForUser(user.getUid());
             mainThreadHandler.post(() -> {
                 Toast.makeText(this, R.string.toast_history_cleared, Toast.LENGTH_SHORT).show();
             });
@@ -85,17 +90,22 @@ public class ManageDataActivity extends BaseActivity {
     }
 
     private void clearDocuments() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+
         databaseExecutor.execute(() -> {
-            db.documentDao().clearAllDocuments();
-            File docsDir = new File(getFilesDir(), "documents");
-            if (docsDir.exists() && docsDir.isDirectory()) {
-                File[] files = docsDir.listFiles();
-                if (files != null) {
-                    for (File file : files) {
+            java.util.List<com.mittimitra.database.entity.Document> docs = db.documentDao().getDocumentsForUser(user.getUid());
+            if (docs != null) {
+                for (com.mittimitra.database.entity.Document doc : docs) {
+                    if (doc.internalFilePath == null) continue;
+                    File file = new File(doc.internalFilePath);
+                    if (file.exists()) {
+                        //noinspection ResultOfMethodCallIgnored
                         file.delete();
                     }
                 }
             }
+            db.documentDao().clearDocumentsForUser(user.getUid());
             mainThreadHandler.post(() -> {
                 Toast.makeText(this, R.string.toast_documents_cleared, Toast.LENGTH_SHORT).show();
             });

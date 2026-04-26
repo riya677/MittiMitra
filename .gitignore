@@ -1,6 +1,19 @@
+# Android / Gradle
 *.iml
 .gradle
-/local.properties
+.gradle/
+.gradle-cache/
+/build
+/captures
+.externalNativeBuild
+.cxx
+.kotlin
+
+# Local config (never commit)
+local.properties
+
+# IDE
+/.idea/
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
@@ -8,15 +21,15 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
-# Ignore IDE and local configuration files
-.idea/
-*.iml
-.gradle/
-/build
-local.properties
-.kotlin
+
+# Release signing secrets — NEVER commit
+keystore.properties
+*.jks
+*.keystore
+
+# Firebase / Node
+functions/node_modules/
+
+# Sensitive env
+.env
+*.env

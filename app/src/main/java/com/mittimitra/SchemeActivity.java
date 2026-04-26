@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +25,7 @@ import com.mittimitra.utils.SchemeRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SchemeActivity extends AppCompatActivity {
+public class SchemeActivity extends BaseActivity {
 
     private ActivitySchemeBinding binding;
     private SchemeRepository repository;
