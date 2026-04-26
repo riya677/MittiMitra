@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1024px; height: 500px; overflow: hidden; font-family: 'Segoe UI', Arial, sans-serif; }
+
+  .canvas {
+    width: 1024px;
+    height: 500px;
+    background: linear-gradient(135deg, #0A5F04 0%, #138808 45%, #1aaa0a 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Decorative circles */
+  .circle1 {
+    position: absolute;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    top: -120px; right: -60px;
+  }
+  .circle2 {
+    position: absolute;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    bottom: -80px; right: 160px;
+  }
+  .circle3 {
+    position: absolute;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    top: 40px; left: 480px;
+  }
+
+  /* Saffron top stripe — India flag accent */
+  .stripe-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%);
+  }
+
+  /* Left — branding block */
+  .left {
+    flex: 0 0 480px;
+    padding: 48px 40px 48px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 2;
+  }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo-icon {
+    width: 64px; height: 64px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 34px;
+  }
+
+  .app-name {
+    font-size: 44px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .app-name span {
+    color: #FFD700;
+  }
+
+  .tagline {
+    font-size: 18px;
+    color: rgba(255,255,255,0.92);
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 340px;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .pill {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Right — feature cards */
+  .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 28px 48px 28px 20px;
+    z-index: 2;
+    justify-content: center;
+  }
+
+  .feature-card {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 14px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    backdrop-filter: blur(4px);
+  }
+
+  .feat-icon {
+    font-size: 24px;
+    width: 42px; height: 42px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .feat-text h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .feat-text p {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.3;
+  }
+
+  .badge {
+    position: absolute;
+    bottom: 22px;
+    left: 56px;
+    background: rgba(255,215,0,0.18);
+    border: 1px solid rgba(255,215,0,0.5);
+    color: #FFD700;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="stripe-top"></div>
+  <div class="circle1"></div>
+  <div class="circle2"></div>
+  <div class="circle3"></div>
+
+  <div class="left">
+    <div class="logo-row">
+      <div class="logo-icon">🌱</div>
+      <div class="app-name">Mitti<span>Mitra</span></div>
+    </div>
+    <div class="tagline">AI-powered farm advisor for Indian farmers. Smarter crops, healthier soil.</div>
+    <div class="pills">
+      <div class="pill">🤖 Gemini AI</div>
+      <div class="pill">🇮🇳 Made for India</div>
+      <div class="pill">🌾 12+ Features</div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="feature-card">
+      <div class="feat-icon">🔬</div>
+      <div class="feat-text">
+        <h3>Soil Analysis</h3>
+        <p>NPK, pH & AI advisory from your sensor data</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feat-icon">🌿</div>
+      <div class="feat-text">
+        <h3>Plant Doctor</h3>
+        <p>Diagnose crop disease instantly from a photo</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feat-icon">📈</div>
+      <div class="feat-text">
+        <h3>Mandi Prices</h3>
+        <p>Live market rates from data.gov.in</p>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feat-icon">🌤️</div>
+      <div class="feat-text">
+        <h3>Weather & Crop Calendar</h3>
+        <p>Hyper-local forecasts and planting schedules</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="badge">B.Tech Project — Amrita School of Computing</div>
+</div>
+</body>
+</html>

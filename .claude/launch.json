@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "feature-graphic",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "docs", "-p", "4400", "--no-clipboard"],
+      "port": 4400
+    }
+  ]
+}
