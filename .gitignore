@@ -2,6 +2,7 @@
 *.iml
 .gradle
 .gradle/
+.gradle-user/
 .gradle-cache/
 /build
 /captures
@@ -28,6 +29,7 @@ keystore.properties
 *.keystore
 
 # Firebase / Node
+node_modules/
 functions/node_modules/
 
 # Sensitive env
