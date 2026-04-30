@@ -23,7 +23,7 @@ android {
     compileSdk 36
 
     defaultConfig {
-        applicationId "com.mittimitra"
+        applicationId "in.mittimitra.app"
         minSdk 24
         targetSdk 36
         versionCode 1

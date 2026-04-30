@@ -102,7 +102,7 @@
     <string name="notif_mandi_desc">Daily market rates for your district.</string>
     <string name="notif_scheme_title">Govt. Schemes</string>
     <string name="notif_scheme_desc">Updates on PM-Kisan and subsidies.</string>
-    <string name="share_message">Check out Mitti Mitra - The best app for Soil Health and Farming! Download here: https://play.google.com/store/apps/details?id=com.mittimitra</string>
+    <string name="share_message">Check out Mitti Mitra - The best app for Soil Health and Farming! Download here: https://play.google.com/store/apps/details?id=in.mittimitra.app</string>
 
     <string name="title_pm_kisan">PM-KISAN: ₹6,000/yr Income Support</string>
     <string name="title_smart_tools">Smart Tools</string>

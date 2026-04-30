@@ -14,6 +14,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "512527213662-8degrnirrjogudg9nakkhd4r2hj21iv1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mittimitra",
+            "certificate_hash": "3304272fdf77819c0522e7e5b5752eef5268f98a"
+          }
+        },
+        {
+          "client_id": "512527213662-9piklhnnj5g71qcbnlal1cursppunble.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mittimitra",
+            "certificate_hash": "157ff1d2dd7cba6cd068a2272a4291710e50a00e"
+          }
+        },
+        {
+          "client_id": "512527213662-c060d0dfn9sog8ng654ns8fainepi3t3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mittimitra",
+            "certificate_hash": "529bf5bdc6b6c2e39c7af6e78cc053b231bb8901"
+          }
+        },
+        {
           "client_id": "512527213662-lpahkg8sfdcfnjbi8hded4r2hr98s9hc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -27,6 +51,91 @@
           "android_info": {
             "package_name": "com.mittimitra",
             "certificate_hash": "899db548cc070d83c96c865daa03e84517110652"
+          }
+        },
+        {
+          "client_id": "512527213662-ud91h3ctd5k362a9at5s8ochhesuah3o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mittimitra",
+            "certificate_hash": "415765369a30043f810289f5e3a5c4d3f1c9bb65"
+          }
+        },
+        {
+          "client_id": "512527213662-57brgiqoaf0it2kn1em8hhfpkr0ua6ta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGRPPrbfFrpxvy4u2-Nox5VT5Uf_mgvy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512527213662-57brgiqoaf0it2kn1em8hhfpkr0ua6ta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512527213662:android:af005cdb7107fe99b600cf",
+        "android_client_info": {
+          "package_name": "in.mittimitra.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512527213662-0sgechhtfpmm8n5keja3ph2n8vse4phc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.mittimitra.app",
+            "certificate_hash": "3304272fdf77819c0522e7e5b5752eef5268f98a"
+          }
+        },
+        {
+          "client_id": "512527213662-1rs1jh63smep1i1sung5982qbh3g6imu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.mittimitra.app",
+            "certificate_hash": "157ff1d2dd7cba6cd068a2272a4291710e50a00e"
+          }
+        },
+        {
+          "client_id": "512527213662-7go30ahu1g7r1fheofpigttdeiobl48s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.mittimitra.app",
+            "certificate_hash": "415765369a30043f810289f5e3a5c4d3f1c9bb65"
+          }
+        },
+        {
+          "client_id": "512527213662-h5ebkful8gh4i4bu0vqdk1afh8hcr2kp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.mittimitra.app",
+            "certificate_hash": "899db548cc070d83c96c865daa03e84517110652"
+          }
+        },
+        {
+          "client_id": "512527213662-kacj48vh88d5cekms52uu3n52f5kprur.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.mittimitra.app",
+            "certificate_hash": "529bf5bdc6b6c2e39c7af6e78cc053b231bb8901"
+          }
+        },
+        {
+          "client_id": "512527213662-kao7na148sd86fdl3kobemhvd4oihvrg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.mittimitra.app",
+            "certificate_hash": "01f11d2326e52f38468db966077d88ad3c808028"
           }
         },
         {
