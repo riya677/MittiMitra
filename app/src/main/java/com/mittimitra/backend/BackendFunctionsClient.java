@@ -29,6 +29,8 @@ public class BackendFunctionsClient {
 
     private static final String TAG = "BackendFunctionsClient";
     private static final String REGION = "asia-south1";
+    private static final Type STRING_LIST_TYPE =
+            TypeToken.getParameterized(List.class, String.class).getType();
 
     private final FirebaseFunctions functions;
     private final Gson gson;
@@ -37,7 +39,7 @@ public class BackendFunctionsClient {
         functions = FirebaseFunctions.getInstance(REGION);
         gson = new GsonBuilder()
                 .registerTypeAdapter(
-                        new TypeToken<List<String>>() {}.getType(),
+                        STRING_LIST_TYPE,
                         new StringOrListTypeAdapter())
                 .create();
     }
@@ -81,43 +83,41 @@ public class BackendFunctionsClient {
     public void getSoilAdvisory(@NonNull AiModels.SoilAdvisoryRequest request,
                                 @NonNull BackendCallback<AiModels.SoilAdvisoryData> callback) {
         callEndpoint("getSoilAdvisory", request,
-                new TypeToken<ApiEnvelope<AiModels.SoilAdvisoryData>>() {
-                }.getType(), callback);
+                envelopeType(AiModels.SoilAdvisoryData.class), callback);
     }
 
     public void getPlantDiagnosis(@NonNull AiModels.PlantDiagnosisRequest request,
                                   @NonNull BackendCallback<AiModels.PlantDiagnosisData> callback) {
         callEndpoint("getPlantDiagnosis", request,
-                new TypeToken<ApiEnvelope<AiModels.PlantDiagnosisData>>() {
-                }.getType(), callback);
+                envelopeType(AiModels.PlantDiagnosisData.class), callback);
     }
 
     public void getCropSchedule(@NonNull AiModels.CropScheduleRequest request,
                                 @NonNull BackendCallback<AiModels.CropScheduleData> callback) {
         callEndpoint("getCropSchedule", request,
-                new TypeToken<ApiEnvelope<AiModels.CropScheduleData>>() {
-                }.getType(), callback);
+                envelopeType(AiModels.CropScheduleData.class), callback);
     }
 
     public void checkDuplicateAccount(@NonNull AccountModels.DuplicateAccountRequest request,
                                       @NonNull BackendCallback<AccountModels.DuplicateAccountData> callback) {
         callEndpoint("checkDuplicateAccount", request,
-                new TypeToken<ApiEnvelope<AccountModels.DuplicateAccountData>>() {
-                }.getType(), callback);
+                envelopeType(AccountModels.DuplicateAccountData.class), callback);
     }
 
     public void linkAccountIdentity(@NonNull AccountModels.LinkIdentityRequest request,
                                     @NonNull BackendCallback<AccountModels.LinkIdentityData> callback) {
         callEndpoint("linkAccountIdentity", request,
-                new TypeToken<ApiEnvelope<AccountModels.LinkIdentityData>>() {
-                }.getType(), callback);
+                envelopeType(AccountModels.LinkIdentityData.class), callback);
     }
 
     public void getFarmerChatResponse(@NonNull AiModels.ChatRequest request,
                                       @NonNull BackendCallback<AiModels.ChatResponseData> callback) {
         callEndpoint("getFarmerChatResponse", request,
-                new TypeToken<ApiEnvelope<AiModels.ChatResponseData>>() {
-                }.getType(), callback);
+                envelopeType(AiModels.ChatResponseData.class), callback);
+    }
+
+    private static Type envelopeType(@NonNull Class<?> dataClass) {
+        return TypeToken.getParameterized(ApiEnvelope.class, dataClass).getType();
     }
 
     private <T> void callEndpoint(@NonNull String endpoint,

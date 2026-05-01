@@ -124,12 +124,23 @@ public class AccountSecurityActivity extends BaseActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             user.reload().addOnCompleteListener(task -> loadAccountInfo());
+        } else {
+            loadAccountInfo();
         }
     }
 
     private void loadAccountInfo() {
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) { finish(); return; }
+        if (user == null) {
+            tvEmail.setText(getString(R.string.status_not_linked));
+            tvPhone.setText(getString(R.string.status_not_linked));
+            tvProvider.setText(getString(R.string.status_unknown));
+            btnLinkGoogle.setEnabled(false);
+            btnLinkPhone.setEnabled(false);
+            btnLinkEmail.setEnabled(false);
+            Toast.makeText(this, R.string.guest_upgrade_required_for_account_security, Toast.LENGTH_LONG).show();
+            return;
+        }
 
         String email = user.getEmail();
         String authPhone = user.getPhoneNumber();
@@ -214,7 +225,11 @@ public class AccountSecurityActivity extends BaseActivity {
             return;
         }
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) { finish(); return; }
+        if (user == null) {
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(this, R.string.guest_upgrade_required_for_account_security, Toast.LENGTH_LONG).show();
+            return;
+        }
 
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         user.linkWithCredential(credential)
@@ -297,7 +312,11 @@ public class AccountSecurityActivity extends BaseActivity {
 
     private void performPhoneLink(PhoneAuthCredential credential) {
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) { finish(); return; }
+        if (user == null) {
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(this, R.string.guest_upgrade_required_for_account_security, Toast.LENGTH_LONG).show();
+            return;
+        }
         user.linkWithCredential(credential)
                 .addOnSuccessListener(result -> {
                     progressBar.setVisibility(View.GONE);

@@ -91,7 +91,7 @@ public class LinkEmailActivity extends BaseActivity {
 
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
-            Toast.makeText(this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.guest_upgrade_required_for_account_security, Toast.LENGTH_LONG).show();
             finish();
             return;
         }

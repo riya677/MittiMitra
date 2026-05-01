@@ -124,6 +124,15 @@
                 android:text="@string/signup"
                 app:strokeWidth="2dp"/>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_continue_guest"
+                style="@style/Widget.Mitti.Button.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="@string/login_continue_guest"
+                app:strokeWidth="1dp"
+                android:layout_marginTop="12dp"/>
+
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

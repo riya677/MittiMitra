@@ -12,8 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.SoilAnalysis;
 
@@ -95,15 +93,15 @@ public class CompareActivity extends BaseActivity {
     }
 
     private void loadRecords() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
+        String userId = UserIdentityResolver.getActiveUserId(this);
+        if (userId == null || userId.trim().isEmpty()) {
             records = new ArrayList<>();
             compareCard.setVisibility(View.GONE);
             return;
         }
 
         dbExecutor.execute(() -> {
-            records = MittiMitraDatabase.getDatabase(this).soilDao().getAnalysisForUser(user.getUid());
+            records = MittiMitraDatabase.getDatabase(this).soilDao().getAnalysisForUser(userId);
             runOnUiThread(() -> {
                 if (records == null || records.isEmpty()) {
                     compareCard.setVisibility(View.GONE);

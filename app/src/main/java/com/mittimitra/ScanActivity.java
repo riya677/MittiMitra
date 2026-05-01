@@ -588,10 +588,10 @@ public class ScanActivity extends BaseActivity implements SensorEventListener {
                 analysis.timestamp = System.currentTimeMillis();
                 analysis.soilReportJson = report.toString();
                 
-                // Save User ID for data isolation
-                com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null) {
-                    analysis.userId = user.getUid();
+                // Save User ID for data isolation (Firebase user or local guest session)
+                String userId = UserIdentityResolver.getActiveUserId(this);
+                if (userId != null && !userId.trim().isEmpty()) {
+                    analysis.userId = userId;
                 }
                 
                 MittiMitraDatabase.getDatabase(this).soilDao().insertAnalysis(analysis);

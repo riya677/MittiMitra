@@ -27,8 +27,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.mittimitra.backend.ApiEnvelope;
 import com.mittimitra.backend.BackendCallback;
 import com.mittimitra.backend.model.AiModels;
@@ -215,11 +213,11 @@ public class TipActivity extends BaseActivity {
     }
 
     private void addInitialBotMessage() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) return;
+        String userId = UserIdentityResolver.getActiveUserId(this);
+        if (userId == null || userId.trim().isEmpty()) return;
 
         databaseExecutor.execute(() -> {
-            SoilAnalysis lastScan = db.soilDao().getLatestReportForUser(user.getUid());
+            SoilAnalysis lastScan = db.soilDao().getLatestReportForUser(userId);
             if (lastScan != null) {
                 lastSoilReportJson = lastScan.soilReportJson;
             }
@@ -387,11 +385,11 @@ public class TipActivity extends BaseActivity {
     }
 
     private void loadChatHistory() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) return;
+        String userId = UserIdentityResolver.getActiveUserId(this);
+        if (userId == null || userId.trim().isEmpty()) return;
 
         databaseExecutor.execute(() -> {
-            List<com.mittimitra.database.entity.ChatMessage> savedMessages = chatDao.getMessagesForUser(user.getUid());
+            List<com.mittimitra.database.entity.ChatMessage> savedMessages = chatDao.getMessagesForUser(userId);
             if (savedMessages == null || savedMessages.isEmpty()) return;
 
             runOnUiThread(() -> {
@@ -414,13 +412,13 @@ public class TipActivity extends BaseActivity {
 
         if (type == ChatMessage.Type.LOADING) return;
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) return;
+        String userId = UserIdentityResolver.getActiveUserId(this);
+        if (userId == null || userId.trim().isEmpty()) return;
 
         databaseExecutor.execute(() -> {
             com.mittimitra.database.entity.ChatMessage dbMessage =
                     new com.mittimitra.database.entity.ChatMessage(message, type == ChatMessage.Type.USER);
-            dbMessage.userId = user.getUid();
+            dbMessage.userId = userId;
             chatDao.insertMessage(dbMessage);
         });
     }

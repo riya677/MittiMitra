@@ -94,11 +94,11 @@ public class DocumentsActivity extends BaseActivity {
     }
 
     private void loadDocuments() {
-        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) return;
+        String userId = UserIdentityResolver.getActiveUserId(this);
+        if (userId == null || userId.trim().isEmpty()) return;
 
         databaseExecutor.execute(() -> {
-            documentList = db.documentDao().getDocumentsForUser(user.getUid());
+            documentList = db.documentDao().getDocumentsForUser(userId);
             mainThreadHandler.post(this::setupRecyclerView);
         });
     }
@@ -141,11 +141,7 @@ public class DocumentsActivity extends BaseActivity {
             Toast.makeText(this, R.string.doc_no_file_selected, Toast.LENGTH_SHORT).show();
             return;
         }
-        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
-            Toast.makeText(this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
-            return;
-        }
+        String userId = UserIdentityResolver.getActiveUserIdOrCreateGuest(this);
 
         databaseExecutor.execute(() -> {
             String fileName = getFileName(uri);
@@ -172,7 +168,7 @@ public class DocumentsActivity extends BaseActivity {
                 newDoc.documentName = fileName;
                 newDoc.documentType = fileType;
                 newDoc.internalFilePath = localFile.getAbsolutePath();
-                newDoc.userId = user.getUid();
+                newDoc.userId = userId;
 
                 // ASK FOR EXPIRY DATE (Optional)
                 mainThreadHandler.post(() -> showExpiryDialog(newDoc));
@@ -206,9 +202,9 @@ public class DocumentsActivity extends BaseActivity {
     }
 
     private void saveDocumentToDb(Document doc) {
-        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            doc.userId = user.getUid();
+        String userId = UserIdentityResolver.getActiveUserId(this);
+        if (userId != null && !userId.trim().isEmpty()) {
+            doc.userId = userId;
         }
 
         databaseExecutor.execute(() -> {

@@ -13,6 +13,7 @@ public class SessionManager {
     private static final String PREF_NAME = "MittiMitraSession";
     private static final String KEY_USER_ID = "user_id";
     private static final String KEY_USER_NAME = "user_name";
+    private static final String KEY_IS_GUEST = "is_guest";
 
     private final SharedPreferences sharedPreferences;
 
@@ -25,9 +26,14 @@ public class SessionManager {
      * To be called from your teammate's Login/Signup screen.
      */
     public void saveUser(String userId, String userName) {
+        saveUser(userId, userName, false);
+    }
+
+    public void saveUser(String userId, String userName, boolean isGuest) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(KEY_USER_ID, userId);
         editor.putString(KEY_USER_NAME, userName);
+        editor.putBoolean(KEY_IS_GUEST, isGuest);
         editor.apply();
     }
 
@@ -48,5 +54,9 @@ public class SessionManager {
 
     public String getUserName() {
         return sharedPreferences.getString(KEY_USER_NAME, "User");
+    }
+
+    public boolean isGuest() {
+        return sharedPreferences.getBoolean(KEY_IS_GUEST, false);
     }
 }

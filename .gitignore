@@ -2,8 +2,10 @@
 *.iml
 .gradle
 .gradle/
+.gradle-home/
 .gradle-user/
 .gradle-cache/
+.android-home/
 /build
 /captures
 .externalNativeBuild

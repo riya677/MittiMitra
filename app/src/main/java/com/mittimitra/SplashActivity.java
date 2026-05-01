@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 /**
  * Splash screen that handles both normal launch and deep link navigation.
  * 
@@ -34,8 +36,12 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void continueLaunchFlow() {
-        // Check if the user is logged in
-        if (sessionManager.isLoggedIn()) {
+        // Keep session and Firebase auth in sync to avoid null-user regressions.
+        boolean hasSession = sessionManager.isLoggedIn();
+        boolean hasFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() != null;
+        boolean hasLocalGuestSession = hasSession && sessionManager.isGuest();
+
+        if (hasSession && (hasFirebaseUser || hasLocalGuestSession)) {
             // Handle deep link navigation
             Uri deepLink = getIntent() != null ? getIntent().getData() : null;
             if (deepLink != null) {
@@ -44,6 +50,7 @@ public class SplashActivity extends BaseActivity {
                 startActivity(new Intent(SplashActivity.this, HomeActivity.class));
             }
         } else {
+            sessionManager.clearSession();
             // User is not logged in, go to Welcome screen
             startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
         }

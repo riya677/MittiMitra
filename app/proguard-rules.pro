@@ -5,16 +5,14 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
-# Keep line numbers for debugging stack traces
--keepattributes SourceFile,LineNumberTable
+# Keep line numbers and reflection metadata for release crash diagnosis.
+-keepattributes SourceFile,LineNumberTable,Signature,InnerClasses,EnclosingMethod,Exceptions,*Annotation*
 -renamesourcefileattribute SourceFile
 
 # ============================================
 # Retrofit & OkHttp
 # ============================================
--keepattributes Signature
--keepattributes Exceptions
--keepattributes *Annotation*
+-keepattributes Signature,InnerClasses,EnclosingMethod,Exceptions,*Annotation*
 
 -keep class retrofit2.** { *; }
 -keepclasseswithmembers class * {
@@ -31,11 +29,25 @@
 # Gson
 # ============================================
 -keep class com.google.gson.** { *; }
+-keep class com.google.gson.stream.** { *; }
+
+# Official Gson R8/ProGuard rules (Gson 2.10+ — prevents TypeToken IllegalStateException)
+# R8 strips generic signatures from anonymous TypeToken subclasses; these two rules stop that.
+-keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
+-keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
+
+-keep class * extends com.google.gson.TypeAdapter
 -keep class * implements com.google.gson.TypeAdapterFactory
 -keep class * implements com.google.gson.JsonSerializer
 -keep class * implements com.google.gson.JsonDeserializer
 
+# Keep fields annotated with @SerializedName so R8 doesn't null them out
+-keepclassmembers,allowobfuscation class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+
 # Keep model/entity classes for JSON serialization
+-keep class com.mittimitra.backend.** { *; }
 -keep class com.mittimitra.network.** { *; }
 -keep class com.mittimitra.database.entity.** { *; }
 -keep class com.mittimitra.ChatMessage { *; }
@@ -128,5 +140,5 @@
 # ============================================
 # Crashlytics — preserve stack traces
 # ============================================
--keepattributes SourceFile,LineNumberTable
+-keepattributes SourceFile,LineNumberTable,Signature,InnerClasses,EnclosingMethod,Exceptions,*Annotation*
 -keep public class * extends java.lang.Exception

@@ -161,6 +161,7 @@
     <string name="login_welcome">Welcome Back</string>
     <string name="login_subtitle">Login to access your farm tools</string>
     <string name="login_google">Continue with Google</string>
+    <string name="login_continue_guest">Continue as Guest</string>
     <string name="login_or_divider">OR PHONE</string>
     <string name="login_hint_phone">Phone Number</string>
     <string name="login_btn_otp">Get OTP</string>
@@ -562,6 +563,7 @@
     <string name="profile_saving">Saving…</string>
     <string name="profile_updated_success">Profile updated successfully!</string>
     <string name="profile_update_failed">Update failed: </string>
+    <string name="profile_saved_local_guest">Profile saved on this device. Cloud sync will happen when connection/auth is available.</string>
 
     <!-- Duplicate account merge strings -->
     <string name="dup_link_instructions">Sign in with your original account. Your phone number will be linked automatically.</string>
@@ -795,6 +797,16 @@
     <!-- Login / Google Sign-In -->
     <string name="google_play_services_required">Google Play Services required. Please update and try again.</string>
     <string name="google_signin_config_error">Google Sign-In configuration error. Please contact support.</string>
+    <string name="login_cancelled">Sign-in cancelled</string>
+    <string name="guest_existing_account_switched">Signed in with existing %1$s account. Guest draft data remains on the previous guest profile.</string>
+    <string name="guest_error_not_enabled">Guest mode is not enabled in Firebase Auth yet. Please enable Anonymous sign-in in Firebase Console.</string>
+    <string name="guest_error_too_many_requests">Guest sign-in is temporarily rate-limited. Please wait a bit and try again.</string>
+    <string name="guest_error_network">Network issue while starting guest mode. Check internet and try again.</string>
+    <string name="guest_error_with_code">Guest sign-in failed (%1$s): %2$s</string>
+    <string name="guest_offline_profile_warning">Guest mode started. Cloud sync is currently unavailable; your profile will sync when connection is stable.</string>
+    <string name="guest_local_fallback_auth_disabled">Guest mode started on this device. Cloud guest auth is currently restricted, so data will be saved locally.</string>
+    <string name="guest_local_fallback_network">Guest mode started offline on this device. Cloud sync will resume when network is stable.</string>
+    <string name="guest_upgrade_required_for_account_security">Please sign in with Google/Phone/Email to use account security options.</string>
     <string name="label_name_value">Name: %s</string>
     <string name="label_phone_value">Phone: %s</string>
     <string name="label_email_value">Email: %s</string>

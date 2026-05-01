@@ -96,10 +96,11 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
     }
     private void loadFarmerProfile() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) return;
-        String email = user.getEmail();
+        String uid = UserIdentityResolver.getActiveUserId(this);
+        if (uid == null || uid.trim().isEmpty()) return;
+        String email = user != null ? user.getEmail() : null;
         tvEmail.setText((email != null && !email.isEmpty()) ? email : getString(R.string.no_email_linked));
-        db.collection("farmers").document(user.getUid()).get()
+        db.collection("farmers").document(uid).get()
                 .addOnSuccessListener(doc -> {
                     if (doc.exists()) {
                         String name = doc.getString("firstName");
@@ -113,20 +114,15 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
                 .addOnFailureListener(e -> tvName.setText("Offline User"));
     }
     private void loadAnalysisData() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
-            Toast.makeText(this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
+        String uid = UserIdentityResolver.getActiveUserIdOrCreateGuest(this);
         dbExecutor.execute(() -> {
             SoilAnalysis analysis;
             if (analysisId != -1) {
                 analysis = MittiMitraDatabase.getDatabase(this).soilDao().getAnalysisById(analysisId);
             } else {
-                analysis = MittiMitraDatabase.getDatabase(this).soilDao().getLatestReportForUser(user.getUid());
+                analysis = MittiMitraDatabase.getDatabase(this).soilDao().getLatestReportForUser(uid);
             }
-            if (analysis != null && user.getUid().equals(analysis.userId)) {
+            if (analysis != null && uid.equals(analysis.userId)) {
                 SoilAnalysis finalAnalysis = analysis;
                 runOnUiThread(() -> populateForm(finalAnalysis));
             } else {
@@ -241,9 +237,8 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
                     Spanned styledText = parseMarkdown(finalAdvice);
                     tvAiAdvice.setText(styledText);
                     btnDownload.setVisibility(View.VISIBLE);
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if (user != null) {
-                        String uid = user.getUid();
+                    String uid = UserIdentityResolver.getActiveUserId(RecommendationActivity.this);
+                    if (uid != null && !uid.trim().isEmpty()) {
                         String crop = new AppPreferences(RecommendationActivity.this).getLastCrop();
                         dbExecutor.execute(() -> TaskSuggestionEngine.suggestFromSoilAdvisory(
                                 RecommendationActivity.this, uid, crop, n, p, k, ph, data.confidence));

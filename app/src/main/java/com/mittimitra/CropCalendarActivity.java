@@ -14,8 +14,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 import com.mittimitra.backend.ApiEnvelope;
 import com.mittimitra.backend.BackendCallback;
@@ -188,10 +186,9 @@ public class CropCalendarActivity extends BaseActivity {
     }
 
     private void persistSchedule(AiModels.CropScheduleData data, String cropName) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) return;
+        String uid = UserIdentityResolver.getActiveUserId(this);
+        if (uid == null || uid.trim().isEmpty()) return;
         final android.content.Context appContext = getApplicationContext();
-        final String uid = user.getUid();
 
         dbExecutor.execute(() -> {
             CropSchedule entry = new CropSchedule();

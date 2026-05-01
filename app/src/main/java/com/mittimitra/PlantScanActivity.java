@@ -23,8 +23,6 @@ import androidx.core.content.FileProvider;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.mittimitra.backend.ApiEnvelope;
 import com.mittimitra.backend.BackendCallback;
 import com.mittimitra.backend.model.AiModels;
@@ -272,10 +270,10 @@ public class PlantScanActivity extends BaseActivity {
                                String status,
                                String issues,
                                int confidence) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final Bitmap bitmapSnapshot = currentBitmap;
-        if (user == null || bitmapSnapshot == null) return;
-        final String userId = user.getUid();
+        String userId = UserIdentityResolver.getActiveUserId(this);
+        if (userId == null || userId.trim().isEmpty() || bitmapSnapshot == null) return;
+        final String resolvedUserId = userId;
 
         dbExecutor.execute(() -> {
             try {
@@ -287,7 +285,7 @@ public class PlantScanActivity extends BaseActivity {
                 }
 
                 PlantHealth entry = new PlantHealth();
-                entry.userId = userId;
+                entry.userId = resolvedUserId;
                 entry.imagePath = imagePath;
                 entry.cropName = crop;
                 entry.healthStatus = status;
@@ -297,7 +295,7 @@ public class PlantScanActivity extends BaseActivity {
                 entry.timestamp = System.currentTimeMillis();
 
                 MittiMitraDatabase.getDatabase(this).plantDao().insert(entry);
-                TaskSuggestionEngine.suggestFromPlantDiagnosis(this, userId, crop, status, issues, confidence);
+                TaskSuggestionEngine.suggestFromPlantDiagnosis(this, resolvedUserId, crop, status, issues, confidence);
             } catch (Exception e) {
                 Log.e(TAG, "Failed to save diagnosis history", e);
             }

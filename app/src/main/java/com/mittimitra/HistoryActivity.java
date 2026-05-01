@@ -23,7 +23,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseUser;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.SoilAnalysis;
 
@@ -101,22 +100,22 @@ public class HistoryActivity extends BaseActivity {
     }
 
     private void loadHistory() {
-        FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) return;
+        String userId = UserIdentityResolver.getActiveUserId(this);
+        if (userId == null || userId.trim().isEmpty()) return;
 
         dbExecutor.execute(() -> {
             MittiMitraDatabase db = MittiMitraDatabase.getDatabase(this);
 
             // 1. Soil Analysis
-            List<SoilAnalysis> soilHistory = db.soilDao().getAnalysisForUser(user.getUid());
+            List<SoilAnalysis> soilHistory = db.soilDao().getAnalysisForUser(userId);
 
             // 2. Plant Analysis (All)
             List<com.mittimitra.database.entity.PlantHealth> plantHistory = 
-                    db.plantDao().getAllByUserId(user.getUid());
+                    db.plantDao().getAllByUserId(userId);
 
             // 3. Crop Calendar (All)
             List<com.mittimitra.database.entity.CropSchedule> cropHistory = 
-                    db.cropDao().getAllByUserId(user.getUid());
+                    db.cropDao().getAllByUserId(userId);
 
             runOnUiThread(() -> {
                 // Stop refresh animation
@@ -178,14 +177,14 @@ public class HistoryActivity extends BaseActivity {
      * since == 0 means "all time". Plants and crop sections are unaffected.
      */
     private void loadHistorySince(long since) {
-        FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) return;
+        String userId = UserIdentityResolver.getActiveUserId(this);
+        if (userId == null || userId.trim().isEmpty()) return;
 
         dbExecutor.execute(() -> {
             MittiMitraDatabase db = MittiMitraDatabase.getDatabase(this);
             List<SoilAnalysis> soilHistory = (since > 0)
-                    ? db.soilDao().getAnalysisSince(user.getUid(), since)
-                    : db.soilDao().getAnalysisForUser(user.getUid());
+                    ? db.soilDao().getAnalysisSince(userId, since)
+                    : db.soilDao().getAnalysisForUser(userId);
             final List<SoilAnalysis> result =
                     (soilHistory != null) ? soilHistory : new ArrayList<>();
 

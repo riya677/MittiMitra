@@ -39,6 +39,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -64,7 +65,7 @@ public class ProfileActivity extends BaseActivity {
     private CircleImageView imgProfile;
     private String currentPhone = "";
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
-    private final UserProfileRepository userProfileRepository = new FirebaseUserProfileRepository();
+    private UserProfileRepository userProfileRepository;
 
     // Image Picker Launcher
     private final ActivityResultLauncher<String> pickImageLauncher = registerForActivityResult(
@@ -112,6 +113,7 @@ public class ProfileActivity extends BaseActivity {
 
         // Setup Data
         tvName.setText(sessionManager.getUserName());
+        String resolvedUserId = UserIdentityResolver.getActiveUserId(this);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user != null) {
@@ -122,15 +124,28 @@ public class ProfileActivity extends BaseActivity {
                 long created = user.getMetadata().getCreationTimestamp();
                 tvJoinDate.setText(getString(R.string.profile_member_since) + " " + new SimpleDateFormat("MMM yyyy", Locale.getDefault()).format(new Date(created)));
             }
-
-            // Load data from Firestore
-            loadFirestoreData(user.getUid());
-
-            // Load Local Image immediately
-            loadLocalProfileImage(user.getUid());
+        } else {
+            tvEmail.setText(getString(R.string.profile_email_not_linked));
+        }
+        if (resolvedUserId != null && !resolvedUserId.trim().isEmpty()) {
+            // Load data from Firestore/cache
+            loadFirestoreData(resolvedUserId);
+            // Load local profile image immediately
+            loadLocalProfileImage(resolvedUserId);
         }
 
         recyclerRecent.setLayoutManager(new LinearLayoutManager(this));
+        recyclerRecent.setAdapter(new RecentAnalysisAdapter(new ArrayList<>()));
+        RecyclerView recyclerPlant = findViewById(R.id.recycler_plant_history);
+        if (recyclerPlant != null) {
+            recyclerPlant.setLayoutManager(new LinearLayoutManager(this));
+            recyclerPlant.setAdapter(new com.mittimitra.ui.adapters.PlantHistoryAdapter(this, new ArrayList<>()));
+        }
+        RecyclerView recyclerCrop = findViewById(R.id.recycler_crop_history);
+        if (recyclerCrop != null) {
+            recyclerCrop.setLayoutManager(new LinearLayoutManager(this));
+            recyclerCrop.setAdapter(new com.mittimitra.ui.adapters.CropHistoryAdapter(new ArrayList<>()));
+        }
         loadRecentHistory();
         loadFarmStats();
 
@@ -150,11 +165,11 @@ public class ProfileActivity extends BaseActivity {
 
     // --- NEW: SAVE IMAGE TO PHONE STORAGE ---
     private void saveImageLocally(Uri sourceUri) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) return;
+        String resolvedUserId = UserIdentityResolver.getActiveUserId(this);
+        if (resolvedUserId == null || resolvedUserId.trim().isEmpty()) return;
 
         try {
-            File file = new File(getFilesDir(), "profile_" + user.getUid() + ".jpg");
+            File file = new File(getFilesDir(), "profile_" + resolvedUserId + ".jpg");
             try (InputStream inputStream = getContentResolver().openInputStream(sourceUri)) {
                 if (inputStream == null) {
                     throw new IllegalStateException("Cannot open image stream");
@@ -168,7 +183,7 @@ public class ProfileActivity extends BaseActivity {
                 }
             }
             Toast.makeText(this, getString(R.string.profile_photo_saved), Toast.LENGTH_SHORT).show();
-            loadLocalProfileImage(user.getUid());
+            loadLocalProfileImage(resolvedUserId);
         } catch (Exception e) {
             android.util.Log.e("ProfileActivity", "Failed to save profile image", e);
             Toast.makeText(this, R.string.profile_photo_save_failed, Toast.LENGTH_SHORT).show();
@@ -201,7 +216,7 @@ public class ProfileActivity extends BaseActivity {
                     if (doc.contains("firstName")) {
                         String name = doc.getString("firstName");
                         tvName.setText(name);
-                        sessionManager.saveUser(uid, name);
+                        sessionManager.saveUser(uid, name, sessionManager.isGuest());
                         // Cache for offline
                         prefs.edit().putString("cached_name", name).apply();
                     }
@@ -292,9 +307,9 @@ public class ProfileActivity extends BaseActivity {
         }
         
         // Load saved Aadhaar and Kisan ID from Firestore
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            db.collection("farmers").document(user.getUid()).get()
+        String resolvedUserId = UserIdentityResolver.getActiveUserId(this);
+        if (resolvedUserId != null && !resolvedUserId.trim().isEmpty()) {
+            db.collection("farmers").document(resolvedUserId).get()
                 .addOnSuccessListener(doc -> {
                     if (doc.exists()) {
                         String aadhaar = doc.getString("aadhaarId");
@@ -385,8 +400,23 @@ public class ProfileActivity extends BaseActivity {
 
     private void updateProfile(String name, String phone, String email, String dob,
                                String aadhaar, String kisanId, AlertDialog dialog, Button btnSave) {
+        String resolvedUserId = UserIdentityResolver.getActiveUserIdOrCreateGuest(this);
+
+        // Local guest profile path: save on device even if cloud auth/network is unavailable.
+        if (sessionManager.isGuest()) {
+            applyLocalProfileUpdate(name, phone, email, dob, aadhaar, kisanId, resolvedUserId);
+            Toast.makeText(this, getString(R.string.profile_saved_local_guest), Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+            return;
+        }
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) return;
+        if (user == null) {
+            applyLocalProfileUpdate(name, phone, email, dob, aadhaar, kisanId, resolvedUserId);
+            Toast.makeText(this, getString(R.string.profile_saved_local_guest), Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+            return;
+        }
 
         if (!phone.isEmpty()) {
             AccountModels.DuplicateAccountRequest request = new AccountModels.DuplicateAccountRequest();
@@ -394,7 +424,7 @@ public class ProfileActivity extends BaseActivity {
             request.phone = phone;
             request.email = email;
 
-            userProfileRepository.checkDuplicateAccount(request, new BackendCallback<AccountModels.DuplicateAccountData>() {
+            userProfileRepository().checkDuplicateAccount(request, new BackendCallback<AccountModels.DuplicateAccountData>() {
                 @Override
                 public void onSuccess(@NonNull ApiEnvelope<AccountModels.DuplicateAccountData> envelope) {
                     AccountModels.DuplicateAccountData data = envelope.data;
@@ -403,23 +433,23 @@ public class ProfileActivity extends BaseActivity {
                         btnSave.setText(getString(R.string.btn_save_changes));
                         Toast.makeText(ProfileActivity.this, getString(R.string.phone_already_registered), Toast.LENGTH_LONG).show();
                     } else {
-                        doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user);
+                        doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user.getUid());
                     }
                 }
 
                 @Override
                 public void onFailure(@NonNull ApiEnvelope<AccountModels.DuplicateAccountData> envelope, Throwable throwable) {
-                    doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user);
+                    doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user.getUid());
                 }
             });
         } else {
-            doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user);
+            doFirestoreSave(name, phone, email, dob, aadhaar, kisanId, dialog, btnSave, user.getUid());
         }
     }
 
     private void doFirestoreSave(String name, String phone, String email, String dob,
                                   String aadhaar, String kisanId, AlertDialog dialog, Button btnSave,
-                                  FirebaseUser user) {
+                                  String userId) {
         Map<String, Object> updates = new HashMap<>();
         updates.put("firstName", name);
         updates.put("phone", phone);
@@ -428,42 +458,68 @@ public class ProfileActivity extends BaseActivity {
         if (!aadhaar.isEmpty()) updates.put("aadhaarId", aadhaar);
         if (!kisanId.isEmpty()) updates.put("kisanId", kisanId);
 
-        db.collection("farmers").document(user.getUid())
+        db.collection("farmers").document(userId)
                 .set(updates, com.google.firebase.firestore.SetOptions.merge())
                 .addOnSuccessListener(aVoid -> {
                     tvName.setText(name);
                     tvPhone.setText(phone);
                     currentPhone = phone;
                     if (!email.isEmpty() && tvEmail != null) tvEmail.setText(email);
-                    sessionManager.saveUser(user.getUid(), name);
+                    sessionManager.saveUser(userId, name, sessionManager.isGuest());
                     Toast.makeText(this, getString(R.string.profile_updated_success), Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 })
                 .addOnFailureListener(e -> {
-                    btnSave.setEnabled(true);
-                    btnSave.setText(getString(R.string.btn_save_changes));
-                    String message = e != null && e.getMessage() != null ? e.getMessage() : getString(R.string.status_unknown);
-                    Toast.makeText(this, getString(R.string.profile_update_failed) + message, Toast.LENGTH_SHORT).show();
+                    // If network/cloud write fails, still preserve profile locally.
+                    applyLocalProfileUpdate(name, phone, email, dob, aadhaar, kisanId, userId);
+                    Toast.makeText(this, getString(R.string.profile_saved_local_guest), Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 });
     }
 
+    private void applyLocalProfileUpdate(String name, String phone, String email, String dob,
+                                         String aadhaar, String kisanId, String userId) {
+        tvName.setText(name);
+        tvPhone.setText(phone);
+        currentPhone = phone;
+        if (!email.isEmpty() && tvEmail != null) tvEmail.setText(email);
+        sessionManager.saveUser(userId, name, sessionManager.isGuest());
+
+        android.content.SharedPreferences prefs = getSharedPreferences("profile_cache", MODE_PRIVATE);
+        android.content.SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("cached_name", name);
+        editor.putString("cached_phone", phone);
+        if (!email.isEmpty()) editor.putString("cached_email", email);
+        if (!dob.isEmpty()) editor.putString("cached_dob", dob);
+        if (!aadhaar.isEmpty()) editor.putString("cached_aadhaar", aadhaar);
+        if (!kisanId.isEmpty()) editor.putString("cached_kisan_id", kisanId);
+        editor.apply();
+    }
+
+    private UserProfileRepository userProfileRepository() {
+        if (userProfileRepository == null) {
+            userProfileRepository = new FirebaseUserProfileRepository();
+        }
+        return userProfileRepository;
+    }
+
     private void loadRecentHistory() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) return;
+        String userId = UserIdentityResolver.getActiveUserId(this);
+        if (userId == null || userId.trim().isEmpty()) return;
         
         executor.execute(() -> {
             MittiMitraDatabase db = MittiMitraDatabase.getDatabase(this);
 
             // 1. Soil Analysis
-            List<SoilAnalysis> soilHistory = db.soilDao().getAnalysisForUser(user.getUid());
+            List<SoilAnalysis> soilHistory = db.soilDao().getAnalysisForUser(userId);
             
             // 2. Plant Analysis (Fetch last 5)
             List<com.mittimitra.database.entity.PlantHealth> plantHistory = 
-                    db.plantDao().getRecentByUserId(user.getUid(), 5);
+                    db.plantDao().getRecentByUserId(userId, 5);
 
             // 3. Crop Calendar (Fetch last 5)
             List<com.mittimitra.database.entity.CropSchedule> cropHistory = 
-                    db.cropDao().getRecentByUserId(user.getUid(), 5);
+                    db.cropDao().getRecentByUserId(userId, 5);
 
             runOnUiThread(() -> {
                 // Soil
@@ -532,11 +588,11 @@ public class ProfileActivity extends BaseActivity {
 
         // 2. Load Badge based on Scan History Count
         executor.execute(() -> {
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String userId = UserIdentityResolver.getActiveUserId(this);
             int scanCount = 0;
-            if (user != null) {
+            if (userId != null && !userId.trim().isEmpty()) {
                 scanCount = MittiMitraDatabase.getDatabase(this)
-                        .soilDao().getCountForUser(user.getUid());
+                        .soilDao().getCountForUser(userId);
             }
             final int badgeCount = scanCount;
             runOnUiThread(() -> updateBadge(badgeCount));

@@ -115,6 +115,14 @@
           }
         },
         {
+          "client_id": "512527213662-ca88q0fqfnk5rsk1jsaf2tb7aejqm715.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.mittimitra.app",
+            "certificate_hash": "c903a9ad5e3cd9ae446d0de813bf4752f39d6522"
+          }
+        },
+        {
           "client_id": "512527213662-h5ebkful8gh4i4bu0vqdk1afh8hcr2kp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

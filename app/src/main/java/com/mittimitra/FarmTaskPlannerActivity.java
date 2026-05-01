@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.mittimitra.data.repository.RoomTaskRepository;
 import com.mittimitra.database.MittiMitraDatabase;
 import com.mittimitra.database.entity.FarmTask;
@@ -52,14 +50,9 @@ public class FarmTaskPlannerActivity extends BaseActivity implements FarmTaskAda
             getSupportActionBar().setTitle(R.string.farm_tasks_title);
         }
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
-            Toast.makeText(this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
+        String resolvedUserId = UserIdentityResolver.getActiveUserIdOrCreateGuest(this);
 
-        userId = user.getUid();
+        userId = resolvedUserId;
         taskRepository = new RoomTaskRepository(MittiMitraDatabase.getDatabase(this));
 
         recyclerTasks = findViewById(R.id.recycler_farm_tasks);

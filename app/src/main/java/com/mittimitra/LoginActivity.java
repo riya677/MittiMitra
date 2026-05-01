@@ -24,7 +24,10 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -44,6 +47,8 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends BaseActivity {
     private static final String TAG = "LoginActivity";
+    public static final String EXTRA_START_GUEST_FLOW = "extra_start_guest_flow";
+    private static final String GUEST_PROFILE_NAME = "Guest Farmer";
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -57,7 +62,7 @@ public class LoginActivity extends BaseActivity {
     private String prefilledName;
     private String prefilledEmail;
 
-    private final UserProfileRepository userProfileRepository = new FirebaseUserProfileRepository();
+    private UserProfileRepository userProfileRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,7 @@ public class LoginActivity extends BaseActivity {
         findViewById(R.id.btn_send_otp).setOnClickListener(v -> sendOtp());
         findViewById(R.id.btn_verify_otp).setOnClickListener(v -> verifyOtp());
         findViewById(R.id.btn_email_login).setOnClickListener(v -> signInWithEmail());
+        findViewById(R.id.btn_continue_guest).setOnClickListener(v -> continueAsGuest());
 
         tvToggle.setOnClickListener(v -> {
             isEmailMode = !isEmailMode;
@@ -102,6 +108,10 @@ public class LoginActivity extends BaseActivity {
             etPhone.setText(intent.getStringExtra("prefill_phone"));
             prefilledName = intent.getStringExtra("prefill_name");
             prefilledEmail = intent.getStringExtra("prefill_email");
+        }
+
+        if (intent.getBooleanExtra(EXTRA_START_GUEST_FLOW, false)) {
+            continueAsGuest();
         }
     }
 
@@ -140,6 +150,8 @@ public class LoginActivity extends BaseActivity {
                             Toast.makeText(this, getString(R.string.google_signin_failed), Toast.LENGTH_SHORT).show();
                         }
                     }
+                } else {
+                    Toast.makeText(this, getString(R.string.login_cancelled), Toast.LENGTH_SHORT).show();
                 }
             }
     );
@@ -147,14 +159,13 @@ public class LoginActivity extends BaseActivity {
     private void firebaseAuthWithGoogle(String idToken) {
         progressBar.setVisibility(View.VISIBLE);
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential).addOnCompleteListener(this, task -> {
-            if (task.isSuccessful()) {
-                checkAndCreateUser(mAuth.getCurrentUser());
-            } else {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
-            }
-        });
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null && currentUser.isAnonymous()) {
+            linkAnonymousUserWithCredential(currentUser, credential, "Google");
+            return;
+        }
+
+        signInWithCredentialAndContinue(credential);
     }
 
     private void sendOtp() {
@@ -224,6 +235,14 @@ public class LoginActivity extends BaseActivity {
             return;
         }
         progressBar.setVisibility(View.VISIBLE);
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null && currentUser.isAnonymous()) {
+            AuthCredential emailCredential = EmailAuthProvider.getCredential(email, password);
+            linkAnonymousUserWithCredential(currentUser, emailCredential, "Email");
+            return;
+        }
+
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
                 checkAndCreateUser(mAuth.getCurrentUser());
@@ -236,14 +255,198 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void signInWithCredential(PhoneAuthCredential credential) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null && currentUser.isAnonymous()) {
+            linkAnonymousUserWithCredential(currentUser, credential, "Phone");
+            return;
+        }
+
+        signInWithCredentialAndContinue(credential);
+    }
+
+    private void signInWithCredentialAndContinue(AuthCredential credential) {
         mAuth.signInWithCredential(credential).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
-                checkAndCreateUser(task.getResult().getUser());
+                checkAndCreateUser(mAuth.getCurrentUser());
             } else {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(this, getString(R.string.otp_invalid), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "signInWithCredential failed", task.getException());
             }
         });
+    }
+
+    private void linkAnonymousUserWithCredential(@NonNull FirebaseUser anonymousUser,
+                                                 @NonNull AuthCredential credential,
+                                                 @NonNull String providerName) {
+        anonymousUser.linkWithCredential(credential).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+                FirebaseUser linkedUser = task.getResult() != null ? task.getResult().getUser() : null;
+                if (linkedUser != null) {
+                    upgradeGuestProfileAndContinue(linkedUser);
+                } else {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            Exception error = task.getException();
+            if (error instanceof FirebaseAuthUserCollisionException) {
+                // Provider already belongs to an existing account: sign in directly.
+                mAuth.signInWithCredential(credential).addOnCompleteListener(this, signInTask -> {
+                    if (signInTask.isSuccessful()) {
+                        Toast.makeText(this, getString(R.string.guest_existing_account_switched, providerName), Toast.LENGTH_LONG).show();
+                        checkAndCreateUser(mAuth.getCurrentUser());
+                    } else {
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Credential collision fallback sign-in failed", signInTask.getException());
+                    }
+                });
+                return;
+            }
+
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "Anonymous account upgrade failed for provider: " + providerName, error);
+        });
+    }
+
+    private void continueAsGuest() {
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.signInAnonymously().addOnCompleteListener(this, task -> {
+            if (!task.isSuccessful()) {
+                progressBar.setVisibility(View.GONE);
+                Exception error = task.getException();
+                String code = getFirebaseAuthErrorCode(error);
+                if (shouldFallbackToLocalGuest(code)) {
+                    startLocalGuestMode(code, error);
+                    return;
+                }
+
+                String message = getGuestAuthErrorMessage(error);
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                Log.e(TAG, "Anonymous sign-in failed", error);
+                return;
+            }
+
+            FirebaseUser guestUser = mAuth.getCurrentUser();
+            if (guestUser == null) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            ensureGuestProfileAndNavigate(guestUser);
+        });
+    }
+
+    private boolean shouldFallbackToLocalGuest(String code) {
+        return "ERROR_OPERATION_NOT_ALLOWED".equals(code)
+                || "ERROR_ADMIN_RESTRICTED_OPERATION".equals(code)
+                || "ERROR_NETWORK_REQUEST_FAILED".equals(code)
+                || code.isEmpty(); // App Check rejection or unknown error — never strand user
+    }
+
+    private String getFirebaseAuthErrorCode(Exception error) {
+        if (error instanceof FirebaseAuthException) {
+            return ((FirebaseAuthException) error).getErrorCode();
+        }
+        return "";
+    }
+
+    private void startLocalGuestMode(String errorCode, Exception error) {
+        UserIdentityResolver.LocalGuestIdentity identity =
+                UserIdentityResolver.createOrRestoreLocalGuestIdentity(this);
+        progressBar.setVisibility(View.GONE);
+
+        if ("ERROR_NETWORK_REQUEST_FAILED".equals(errorCode)) {
+            Toast.makeText(this, getString(R.string.guest_local_fallback_network), Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, getString(R.string.guest_local_fallback_auth_disabled), Toast.LENGTH_LONG).show();
+        }
+        Log.w(TAG, "Falling back to local guest session due to auth restriction. code=" + errorCode, error);
+
+        navigateToHome(identity.displayName, true, identity.userId);
+    }
+
+    private String getGuestAuthErrorMessage(Exception error) {
+        if (!(error instanceof FirebaseAuthException)) {
+            return getString(R.string.auth_failed);
+        }
+
+        String code = getFirebaseAuthErrorCode(error);
+        if ("ERROR_OPERATION_NOT_ALLOWED".equals(code)) {
+            return getString(R.string.guest_error_not_enabled);
+        }
+        if ("ERROR_ADMIN_RESTRICTED_OPERATION".equals(code)) {
+            return getString(R.string.guest_error_not_enabled);
+        }
+        if ("ERROR_TOO_MANY_REQUESTS".equals(code)) {
+            return getString(R.string.guest_error_too_many_requests);
+        }
+        if ("ERROR_NETWORK_REQUEST_FAILED".equals(code)) {
+            return getString(R.string.guest_error_network);
+        }
+
+        String fallback = error.getMessage();
+        if (fallback != null && !fallback.trim().isEmpty()) {
+            return getString(R.string.guest_error_with_code, code, fallback);
+        }
+        return getString(R.string.auth_failed);
+    }
+
+    private void ensureGuestProfileAndNavigate(@NonNull FirebaseUser user) {
+        db.collection("farmers").document(user.getUid()).get()
+                .addOnSuccessListener(doc -> {
+                    if (doc.exists()) {
+                        String existingName = doc.getString("firstName");
+                        navigateToHome(existingName != null ? existingName : GUEST_PROFILE_NAME, true);
+                        return;
+                    }
+
+                    Map<String, Object> profile = new HashMap<>();
+                    profile.put("firstName", GUEST_PROFILE_NAME);
+                    profile.put("isGuest", true);
+                    profile.put("authProvider", "anonymous");
+                    profile.put("createdAt", System.currentTimeMillis());
+
+                    db.collection("farmers").document(user.getUid()).set(profile)
+                            .addOnSuccessListener(unused -> navigateToHome(GUEST_PROFILE_NAME, true))
+                            .addOnFailureListener(e -> {
+                                Log.e(TAG, "Failed to create guest profile", e);
+                                Toast.makeText(this, getString(R.string.guest_offline_profile_warning), Toast.LENGTH_LONG).show();
+                                navigateToHome(GUEST_PROFILE_NAME, true);
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Failed to read guest profile", e);
+                    Toast.makeText(this, getString(R.string.guest_offline_profile_warning), Toast.LENGTH_LONG).show();
+                    navigateToHome(GUEST_PROFILE_NAME, true);
+                });
+    }
+
+    private void upgradeGuestProfileAndContinue(@NonNull FirebaseUser user) {
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("isGuest", false);
+        updates.put("upgradedFromGuestAt", System.currentTimeMillis());
+        if (user.getDisplayName() != null && !user.getDisplayName().trim().isEmpty()) {
+            updates.put("firstName", user.getDisplayName().trim());
+        }
+        if (user.getPhoneNumber() != null && !user.getPhoneNumber().trim().isEmpty()) {
+            updates.put("phone", user.getPhoneNumber());
+        }
+        if (user.getEmail() != null && !user.getEmail().trim().isEmpty()) {
+            updates.put("email", user.getEmail());
+        }
+
+        db.collection("farmers").document(user.getUid()).set(updates, SetOptions.merge())
+                .addOnSuccessListener(unused -> checkAndCreateUser(user))
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Failed to upgrade guest profile. Continuing login.", e);
+                    checkAndCreateUser(user);
+                });
     }
 
     private void checkAndCreateUser(FirebaseUser user) {
@@ -308,7 +511,7 @@ public class LoginActivity extends BaseActivity {
         request.phone = phone;
         request.email = email;
 
-        userProfileRepository.checkDuplicateAccount(request, new BackendCallback<AccountModels.DuplicateAccountData>() {
+        userProfileRepository().checkDuplicateAccount(request, new BackendCallback<AccountModels.DuplicateAccountData>() {
             @Override
             public void onSuccess(@NonNull ApiEnvelope<AccountModels.DuplicateAccountData> envelope) {
                 AccountModels.DuplicateAccountData data = envelope.data;
@@ -381,7 +584,7 @@ public class LoginActivity extends BaseActivity {
             linkReq.phone = phoneToLink;
             linkReq.email = emailToLink;
 
-            userProfileRepository.linkAccountIdentity(linkReq, new BackendCallback<AccountModels.LinkIdentityData>() {
+            userProfileRepository().linkAccountIdentity(linkReq, new BackendCallback<AccountModels.LinkIdentityData>() {
                 @Override
                 public void onSuccess(@NonNull ApiEnvelope<AccountModels.LinkIdentityData> envelope) {
                     // Keep user flow identical even if backend already linked.
@@ -419,6 +622,13 @@ public class LoginActivity extends BaseActivity {
         return value == null || value.trim().isEmpty() ? "--" : value;
     }
 
+    private UserProfileRepository userProfileRepository() {
+        if (userProfileRepository == null) {
+            userProfileRepository = new FirebaseUserProfileRepository();
+        }
+        return userProfileRepository;
+    }
+
     private void createUserProfile(FirebaseUser user) {
         Map<String, Object> map = new HashMap<>();
 
@@ -437,6 +647,7 @@ public class LoginActivity extends BaseActivity {
         }
 
         map.put("createdAt", System.currentTimeMillis());
+        map.put("isGuest", false);
 
         db.collection("farmers").document(user.getUid()).set(map)
                 .addOnSuccessListener(aVoid -> navigateToHome(name))
@@ -448,9 +659,25 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void navigateToHome(String name) {
+        navigateToHome(name, false);
+    }
+
+    private void navigateToHome(String name, boolean isGuest) {
+        navigateToHome(name, isGuest, mAuth.getUid());
+    }
+
+    private void navigateToHome(String name, boolean isGuest, String userId) {
         progressBar.setVisibility(View.GONE);
         SessionManager session = new SessionManager(this);
-        session.saveUser(mAuth.getUid(), name != null ? name : "Farmer");
+        String resolvedUserId = userId;
+        if (resolvedUserId == null || resolvedUserId.trim().isEmpty()) {
+            resolvedUserId = session.getUserId();
+        }
+        if (resolvedUserId == null || resolvedUserId.trim().isEmpty()) {
+            resolvedUserId = UserIdentityResolver.createOrRestoreLocalGuestIdentity(this).userId;
+            isGuest = true;
+        }
+        session.saveUser(resolvedUserId, name != null ? name : "Farmer", isGuest);
 
         Intent intent = new Intent(this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
