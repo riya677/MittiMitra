@@ -50,7 +50,8 @@
       "Bash(python -c ' *)",
       "Bash(pandoc \"C:/Users/adith/Downloads/Content_Pages.pdf\" -t plain)",
       "Bash(cd /tmp)",
-      "Bash(node -e \"const m = require\\('pdf-parse'\\); console.log\\(typeof m, Object.keys\\(m\\).join\\(','\\)\\);\")"
+      "Bash(node -e \"const m = require\\('pdf-parse'\\); console.log\\(typeof m, Object.keys\\(m\\).join\\(','\\)\\);\")",
+      "Bash(./gradlew updateLintBaseline)"
     ]
   }
 }
