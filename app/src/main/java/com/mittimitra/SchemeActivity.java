@@ -3,6 +3,7 @@ package com.mittimitra;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,16 +57,35 @@ public class SchemeActivity extends BaseActivity {
 
     private void setupRecyclerView() {
         adapter = new SchemeAdapter(new ArrayList<>(), scheme -> {
-            // Open URL on click
-            if (scheme.getUrl() != null && !scheme.getUrl().isEmpty()) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(scheme.getUrl()));
+            openSchemeUrlSafely(scheme);
+        });
+        binding.rvSchemes.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvSchemes.setAdapter(adapter);
+    }
+
+    private void openSchemeUrlSafely(@NonNull Scheme scheme) {
+        String rawUrl = scheme.getUrl();
+        if (TextUtils.isEmpty(rawUrl)) {
+            Toast.makeText(this, getString(R.string.scheme_no_link), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String normalized = rawUrl.trim();
+        if (!normalized.startsWith("http://") && !normalized.startsWith("https://")) {
+            normalized = "https://" + normalized;
+        }
+
+        try {
+            Uri uri = Uri.parse(normalized);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            if (intent.resolveActivity(getPackageManager()) != null) {
                 startActivity(intent);
             } else {
                 Toast.makeText(this, getString(R.string.scheme_no_link), Toast.LENGTH_SHORT).show();
             }
-        });
-        binding.rvSchemes.setLayoutManager(new LinearLayoutManager(this));
-        binding.rvSchemes.setAdapter(adapter);
+        } catch (Exception e) {
+            Toast.makeText(this, getString(R.string.scheme_no_link), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setupFilters() {

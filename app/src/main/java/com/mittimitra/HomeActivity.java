@@ -149,8 +149,15 @@ public class HomeActivity extends BaseActivity {
     private void setupBottomNavigation() {
         findViewById(R.id.nav_scan).setOnClickListener(v -> startActivity(new Intent(this, ScanActivity.class)));
 
-        // RE-ENABLED profile navigation
-        findViewById(R.id.nav_profile).setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
+        android.view.View profileNav = findViewById(R.id.nav_profile);
+        if (sessionManager.isGuest()) {
+            // Guest users should not see profile entry.
+            profileNav.setVisibility(android.view.View.GONE);
+            profileNav.setOnClickListener(null);
+        } else {
+            profileNav.setVisibility(android.view.View.VISIBLE);
+            profileNav.setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
+        }
 
         findViewById(R.id.nav_settings).setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
     }
