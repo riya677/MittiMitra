@@ -96,6 +96,34 @@
                     android:text="@string/scheme_land_large"
                     style="@style/Widget.MaterialComponents.Chip.Choice"/>
             </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/scheme_source_title"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_scheme_source_links"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:text="@string/scheme_source_links"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_scheme_disclaimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/gov_info_disclaimer"
+                android:textColor="@color/text_tertiary"
+                android:textSize="12sp" />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -447,7 +447,7 @@ public class RecommendationActivity extends BaseActivity implements TextToSpeech
         paint.setColor(Color.BLACK);
         paint.setTextSize(12);
         paint.setTextAlign(android.graphics.Paint.Align.CENTER);
-        canvas.drawText("Official Agri-Pass | Govt. of India Guidelines Compliant", 595/2, 70, paint);
+        canvas.drawText(getString(R.string.report_non_affiliation_note), 595 / 2, 70, paint);
         
         // Border
         paint.setStyle(android.graphics.Paint.Style.STROKE);

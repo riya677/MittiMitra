@@ -1,8 +1,7 @@
 package com.mittimitra;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,6 +60,8 @@ public class MandiActivity extends BaseActivity {
         recyclerView = findViewById(R.id.recycler_mandi);
         progressBar = findViewById(R.id.progress_mandi);
         tvError = findViewById(R.id.tv_mandi_error);
+        TextView tvSourceCitation = findViewById(R.id.tv_source_citation);
+        tvSourceCitation.setMovementMethod(LinkMovementMethod.getInstance());
         
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

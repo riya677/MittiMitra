@@ -3,6 +3,7 @@ package com.mittimitra;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,7 @@ public class SchemeActivity extends BaseActivity {
         repository = new SchemeRepository(this);
         setupRecyclerView();
         setupFilters();
+        binding.tvSchemeSourceLinks.setMovementMethod(LinkMovementMethod.getInstance());
         loadSchemes();
     }
 

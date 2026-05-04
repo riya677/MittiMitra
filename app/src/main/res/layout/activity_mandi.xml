@@ -113,7 +113,18 @@
             android:textColor="@color/text_tertiary"
             android:paddingTop="8dp"
             android:paddingBottom="4dp"
-            android:autoLink="web"/>
+            android:autoLink="web"
+            android:linksClickable="true"/>
+
+        <TextView
+            android:id="@+id/tv_mandi_disclaimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/gov_info_disclaimer"
+            android:textColor="@color/text_tertiary"
+            android:textSize="12sp"
+            android:paddingBottom="8dp" />
 
     </LinearLayout>
 
